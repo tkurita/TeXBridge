@@ -132,6 +132,7 @@ on launched theObject
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
+	--dviToPS() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
 	--doTypeSet() of TeXCompileObj
 	
