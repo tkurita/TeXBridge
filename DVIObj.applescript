@@ -160,7 +160,8 @@ on makeObj(theTexDocObj)
 			set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
 			
 			doCommands of TerminalCommander for allCommand with activation
-			waitEndOfCommand(300) of TerminalCommander
+			copy TerminalCommander to currentTerminal
+			waitEndOfCommand(300) of currentTerminal
 			
 			if thePDFObj is missing value then
 				set thePDFObj to lookupPDFFile()
