@@ -12,13 +12,14 @@ property dQ : ASCII character 34
 property yenmark : ASCII character 92
 property comDelim : return
 
-property FactorySetting : missing value
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
+property MessageUtility : missing value
+
 property LogFileParser : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
-property MessageUtility : missing value
+
 
 on importScript(scriptName)
 	tell main bundle
@@ -29,22 +30,36 @@ end importScript
 
 on initilize()
 	if not isLaunched then
+		set MessageUtility to importScript("MessageUtility")
+		
+		tell application "System Events"
+			set UIScriptFlag to UI elements enabled
+		end tell
+		if not (UIScriptFlag) then
+			set theMessage to localized string "disableUIScripting"
+			tell application "System Preferences"
+				activate
+				set current pane to pane "com.apple.preference.universalaccess"
+				display dialog theMessage buttons {"OK"} default button "OK"
+			end tell
+			quit
+		end if
+		
 		set FactorySetting to importScript("FactorySetting")
 		set UtilityHandlers to importScript("UtilityHandlers")
 		set LogFileParser to importScript("LogFileParser")
 		set EditCommands to importScript("EditCommands")
-		set MessageUtility to importScript("MessageUtility")
 		
 		set TeXCompileObj to importScript("TeXCompileObj")
 		set texCommandsBox of TeXCompileObj to box "TeXCommands" of window "Setting"
 		set dviPreviewBox of TeXCompileObj to box "DVIPreview" of window "Setting"
-		loadSettings() of TeXCompileObj
+		loadSettings(FactorySetting) of TeXCompileObj
 		
 		set TerminalSettingObj to importScript("TerminalSettingObj")
 		set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
 		loadSettings() of TerminalSettingObj
 		
-		loadSettings()
+		loadSettings(FactorySetting)
 		center window "Setting"
 		set isLaunched to true
 	end if
@@ -54,6 +69,7 @@ end initilize
 on launched theObject
 	initilize()
 	(*debug code*)
+	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview()
 	--dviToPDF()
