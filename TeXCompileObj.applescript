@@ -8,6 +8,7 @@ global PathAnalyzer
 global ShellUtils
 global TerminalCommander
 global PathConverter
+global PDFObj
 
 --special values
 global comDelim
@@ -90,6 +91,7 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	writeSettings()
 end saveSettingsFromWindow
 
+(*
 on newPDFObj(theDviObj)
 	script PDFObj
 		property parent : theDviObj
@@ -183,6 +185,7 @@ on newPDFObj(theDviObj)
 	
 	return PDFObj
 end newPDFObj
+*)
 
 on newDviObj(theTexDocObj)
 	script dviObj
@@ -271,8 +274,11 @@ on newDviObj(theTexDocObj)
 			set thePDFObj to lookupPDFFile()
 			--check busy status of pdf file.
 			if thePDFObj is not missing value then
-				prepareDVItoPDF() of thePDFObj
+				if not prepareDVItoPDF() of thePDFObj then
+					return missing value
+				end if
 			end if
+			
 			--convert a DVI file into a PDF file
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
@@ -293,7 +299,7 @@ on newDviObj(theTexDocObj)
 		end dviToPDF
 		
 		on lookupPDFFile()
-			set thePDFObj to newPDFObj(a reference to me)
+			set thePDFObj to makeObj(a reference to me) of PDFObj
 			setPDFObj() of thePDFObj
 			if isExistPDF() of thePDFObj then
 				return thePDFObj

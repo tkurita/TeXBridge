@@ -19,6 +19,7 @@ property MessageUtility : missing value
 property LogFileParser : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
+property PDFObj : missing value
 
 on importScript(scriptName)
 	tell main bundle
@@ -48,6 +49,7 @@ on initilize()
 		set UtilityHandlers to importScript("UtilityHandlers")
 		set LogFileParser to importScript("LogFileParser")
 		set EditCommands to importScript("EditCommands")
+		set PDFObj to importScript("PDFObj")
 		
 		set TeXCompileObj to importScript("TeXCompileObj")
 		set texCommandsBox of TeXCompileObj to box "TeXCommands" of window "Setting"
@@ -71,7 +73,7 @@ on launched theObject
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview()
-	--dviToPDF()
+	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
 	--doTypeSet() of TeXCompileObj
 	--openRelatedFile with revealOnly
