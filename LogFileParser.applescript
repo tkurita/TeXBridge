@@ -15,8 +15,8 @@ end run
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:加速器勉強会:予習:2.19 位相振動:PhaseOscillation.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:加速器勉強会:予習:2.19 位相振動:PhaseOscillation" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:ビームフィードバック:questions:error_sample_questions1.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:ビームフィードバック:questions:error_sample_questions1" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -172,7 +172,8 @@ on makeObj(theTexDocObj)
 			
 			set theLogItem to item currentPos of theLogTree
 			set theClass to class of theLogItem
-			
+			--log theLogItem
+			--log theClass
 			if theClass is list then
 				findErrors(theLogItem)
 				return {newPosition:currentPos, errorRecord:hyperrec}
@@ -196,7 +197,11 @@ on makeObj(theTexDocObj)
 				repeat while (thePos < nItem)
 					set thePos to thePos + 1
 					set theLogItem to item thePos of theLogTree
-					set theLogContent to logContent of theLogItem
+					try
+						set theLogContent to logContent of theLogItem
+					on error
+						set theLogContent to logContent of item 1 of theLogItem
+					end try
 					if theLogContent starts with "l." then
 						set tmpstr to text 3 thru -1 of theLogContent
 						set errpn to (first word of tmpstr) as integer
