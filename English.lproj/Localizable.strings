@@ -40,3 +40,6 @@
 "noGraphicFile" = "does not include graphic files";
 "bbAlreadyCreated" = "All . bb files are already created.";
 
+/*initilize*/
+"disableUIScripting" = "UI element scripting is not enabled.\rCheck \"Enable access for assistive devices\".";
+

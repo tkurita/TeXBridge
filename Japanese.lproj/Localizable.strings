@@ -43,3 +43,6 @@
 "noGraphicFile" = "は グラフィックファイルを取り込んでいません。";
 "bbAlreadyCreated" = "すべての .bb ファイルは、既に生成されています。";
 
+/*initilize*/
+"disableUIScripting" = "UI element scripting が有効になっていません。\r\"補助機能にアクセスできるようにする\" を ON にして下さい。";
+
