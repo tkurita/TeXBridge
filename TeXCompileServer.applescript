@@ -79,29 +79,24 @@ on initialize()
 	set dviObj to importScript("DVIObj")
 	set WindowController to importScript("WindowController")
 	set SettingWindowController to importScript("SettingWindowController")
-	set SettingWindowController to makeObj(window "Setting") of SettingWindowController
-	set ToolPaletteController to makeObj(window "ToolPalette") of WindowController
+	set SettingWindowController to makeObj("Setting") of SettingWindowController
+	set ToolPaletteController to makeObj("ToolPalette") of WindowController
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	--log "end of import library"
 	showStartupMessage("Loading Preferences ...")
-	set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
 	
 	loadSettings() of TeXCompileObj
 	--log "end of setting TeXCompileObj"
 	
 	loadSettings() of TexDocObj
-	
-	set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
 	loadSettings() of dviObj
 	
 	--log "start of initializeing PDFObj"
-	set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
 	--log "loadSettings() of PDFObj"
 	loadSettings() of PDFObj
 	
 	--log "start of initilizing TerminalSettingObj"
-	set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
 	loadSettings() of TerminalSettingObj
 	--log "end of setting TerminalSettingObj"
 	
@@ -139,6 +134,7 @@ on launched theObject
 	--checkmifiles with saving
 	--log "end of launched"
 	(*end of debug code*)
+	
 	if showToolPaletteWhenLaunched then
 		showStartupMessage("opening Tool Palette ...")
 		openWindow() of ToolPaletteController
@@ -276,6 +272,7 @@ on clicked theObject
 end clicked
 
 on choose menu item theObject
+	--log "start choose menu item"
 	set FreeTime to 0
 	set theName to name of theObject
 	if theName is "Preference" then

@@ -179,6 +179,8 @@
 				DA206CF4015C4E8B03C91932,
 				2C9E42BE052215CB00248965,
 				2C771B7706D444ED00275DF1,
+				2C732C7B07AE666B005ACE75,
+				2C732C7E07AE667D005ACE75,
 			);
 			isa = PBXGroup;
 			name = Resources;
@@ -315,6 +317,8 @@
 				2C49446107AD21E900B2A8D8,
 				2C49446207AD21E900B2A8D8,
 				2C49446307AD21E900B2A8D8,
+				2C732C7D07AE666B005ACE75,
+				2C732C8007AE667D005ACE75,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +568,54 @@
 				ATTRIBUTES = (
 					Debug,
 				);
+			};
+		};
+		2C732C7B07AE666B005ACE75 = {
+			children = (
+				2C732C7C07AE666B005ACE75,
+			);
+			isa = PBXVariantGroup;
+			name = Setting.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C732C7C07AE666B005ACE75 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = Japanese;
+			path = Japanese.lproj/Setting.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C732C7D07AE666B005ACE75 = {
+			fileRef = 2C732C7B07AE666B005ACE75;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C732C7E07AE667D005ACE75 = {
+			children = (
+				2C732C7F07AE667D005ACE75,
+			);
+			isa = PBXVariantGroup;
+			name = ToolPalette.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C732C7F07AE667D005ACE75 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = Japanese;
+			path = Japanese.lproj/ToolPalette.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C732C8007AE667D005ACE75 = {
+			fileRef = 2C732C7E07AE667D005ACE75;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		2C771B7706D444ED00275DF1 = {
