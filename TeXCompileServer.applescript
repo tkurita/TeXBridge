@@ -17,7 +17,6 @@ property FreeTime : 0
 property isLaunched : false
 property logSuffix : ".log"
 
-property compileInTerminal : true
 property usexdvi : false
 
 property dQ : ASCII character 34
@@ -53,10 +52,8 @@ on open theCommandID
 	end if
 	
 	if theCommandID is "typesetOnly" then
-		set compileInTerminal to true
 		doTypeSet()
 	else if theCommandID is "typesetAndPreview" then
-		set compileInTerminal to true
 		typesetAndPreview()
 	else if theCommandID is "quickTypesetAndPreview" then
 		quickTypesetAndPreview()
@@ -398,9 +395,9 @@ end getColorSettingsFromWindow
 (* end: handlers get values from window ===============================================*)
 
 (* intaract with mi and prepare typesetting and parsing log file ===============================*)
-on viewErrorLog(docname, hyperlist, theCommand)
+on viewErrorLog(theTexDocObj, hyperlist, theCommand)
 	set textGroup to localized string "group"
-	
+	set docname to texFileName of theTexDocObj
 	if hyperlist is not {} then
 		tell application "mi"
 			if compileInTerminal then
@@ -747,6 +744,7 @@ on checkmifiles given saving:savingFlag
 		property workingDirectory : folderReference of pathRecord
 		property isParentFile : parentFileFlag
 		property isSrcSpecial : missing value
+		property compileInTerminal : true
 		
 		property texSuffixList : {".tex", ".dtx"}
 		
@@ -908,7 +906,7 @@ on prepareTypeSet()
 	return theTexDocObj
 end prepareTypeSet
 
-on prepareVIewErrorLog(theLogFileParser)
+on prepareVIewErrorLog(theLogFileParser, theDviObj)
 	using terms from application "mi"
 		try
 			set auxFileRef to (getPathWithSuffix(".aux") of theLogFileParser) as alias
@@ -921,7 +919,11 @@ on prepareVIewErrorLog(theLogFileParser)
 				end ignoring
 			end tell
 		end try
+		
 		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theLogFileParser}
+		if theDviObj is not missing value then
+			set beginning of hyperlist of theLogFileParser to {file:dviFileRef of theDviObj}
+		end if
 	end using terms from
 end prepareVIewErrorLog
 
@@ -929,13 +931,8 @@ end prepareVIewErrorLog
 
 (* execute tex commands called from tools from mi  ====================================*)
 on doTypeSet()
-	set compileInTerminal to true
-	
 	try
 		set theTexDocObj to prepareTypeSet()
-		if theTexDocObj is missing value then
-			return missing value
-		end if
 	on error errMsg number errNum
 		if errNum is not in {1200, 1210, 1220} then
 			showError(errNum, errMsg)
@@ -943,12 +940,16 @@ on doTypeSet()
 		return missing value
 	end try
 	
+	if theTexDocObj is missing value then
+		return missing value
+	end if
+	
 	set theDviObj to texCompile() of theTexDocObj
 	set theLogFileParser to my prepareLogParsing(theTexDocObj)
 	activate
 	parseLogFile() of theLogFileParser
-	prepareVIewErrorLog(theLogFileParser)
-	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
+	prepareVIewErrorLog(theLogFileParser, theDviObj)
+	viewErrorLog(theTexDocObj, hyperlist of theLogFileParser, "latex")
 	return theDviObj
 end doTypeSet
 
@@ -971,8 +972,6 @@ on dviPreview()
 end dviPreview
 
 on quickTypesetAndPreview()
-	set compileInTerminal to false
-	
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
@@ -986,6 +985,7 @@ on quickTypesetAndPreview()
 		return
 	end if
 	
+	set compileInTerminal of theTexDocObj to false
 	set theDviObj to texCompile() of theTexDocObj
 	if theDviObj is not missing value then
 		openDVI() of theDviObj
@@ -993,8 +993,8 @@ on quickTypesetAndPreview()
 	
 	set theLogFileParser to my prepareLogParsing(theTexDocObj)
 	parseLogFile() of theLogFileParser
-	prepareVIewErrorLog(theLogFileParser)
-	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
+	prepareVIewErrorLog(theLogFileParser, theDviObj)
+	viewErrorLog(theTexDocObj, hyperlist of theLogFileParser, "latex")
 	
 end quickTypesetAndPreview
 
