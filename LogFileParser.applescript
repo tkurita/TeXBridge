@@ -1,17 +1,28 @@
+--property yenmark : ASCII character 92
 global yenmark
 global PathConverter
-
-on returnName()
-	return "LogParseEngine"
-end returnName
-
-on returnVer()
-	return 1.27
-end returnVer
 
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 --property PathConverter : load script file (LibraryFolder & "PathConverter")
 --property valueMonitor : missing value
+
+(*
+on debug()
+	set startTime to current date
+	script theTexDocObj
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:�e�X�g:report:report.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:�e�X�g:report:report" as Unicode text
+	end script
+	activate
+	set theLogFileParser to newLogFileParser(theTexDocObj)
+	parseLogFile() of theLogFileParser
+	set stopTime to current date
+	set deltaTime to stopTime - startTime
+	hyperlist of theLogFileParser
+	--theLogFileParser
+	
+end debug
+*)
 
 on newLogFileParser(theTexDocObj)
 	script LogFileParser
@@ -140,7 +151,9 @@ on newLogFileParser(theTexDocObj)
 				end repeat
 				
 				if hyperrec is {} then
-					set hyperrec to {file:"", comment:errMsg}
+					using terms from application "mi"
+						set hyperrec to {file:"", comment:errMsg}
+					end using terms from
 					set currentPos to currentPos + 1
 				end if
 				
@@ -395,23 +408,6 @@ on run
 	debug()
 end run
 
-(*
-on debug()
-	set startTime to current date
-	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:Mathematical Basic:回帰分析:My 回帰分析:regression.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:Mathematical Basic:回帰分析:My 回帰分析:regression" as Unicode text
-	end script
-	activate
-	set theLogFileParser to newLogFileParser(theTexDocObj)
-	parseLogFile() of theLogFileParser
-	set stopTime to current date
-	set deltaTime to stopTime - startTime
-	hyperlist of theLogFileParser
-	--theLogFileParser
-	
-end debug
-*)
 on prepareLogParsing(theTexDocObj)
 	set theLogFile to logFileRef of theTexDocObj
 	set theLogFile to theLogFile as alias
