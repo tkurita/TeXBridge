@@ -100,6 +100,10 @@
 		<string>pm</string>
 		<key>-+</key>
 		<string>mp</string>
+		<key>.</key>
+		<string>cdot</string>
+		<key>...</key>
+		<string>cdots</string>
 		<key>/=</key>
 		<string>neq</string>
 		<key>&lt;&lt;</key>
@@ -112,6 +116,8 @@
 		<string>gg</string>
 		<key>&gt;_</key>
 		<string>geq</string>
+		<key>^</key>
+		<string>wedge</string>
 		<key>oo</key>
 		<string>infty</string>
 		<key>~</key>
