@@ -91,9 +91,9 @@ on openGraphicFile(fileAlias)
 		set graphicFileNames to name of files of theFolder whose name starts with baseName
 	end tell
 	
+	set selectGraphicFileText to localized string "selectGraphicFile"
 	tell application "mi"
-		set selectedGraphics to choose from list graphicFileNames with prompt "select graphic files"
-		
+		set selectedGraphics to choose from list graphicFileNames with prompt selectGraphicFileText
 	end tell
 	if class of selectedGraphics is not list then
 		return
