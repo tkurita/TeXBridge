@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BackgroundColor</key>
+	<array>
+		<integer>42858</integer>
+		<integer>43841</integer>
+		<integer>65535</integer>
+	</array>
+	<key>BoldTextColor</key>
+	<array>
+		<integer>65535</integer>
+		<integer>65535</integer>
+		<integer>65535</integer>
+	</array>
+	<key>CursorColor</key>
+	<array>
+		<integer>21823</integer>
+		<integer>21823</integer>
+		<integer>21823</integer>
+	</array>
+	<key>CustomTitle</key>
+	<string>TeX Console</string>
+	<key>DVIPreviewMode</key>
+	<integer>2</integer>
+	<key>ExecutionString</key>
+	<string>source ~/Library/Preferences/mi/mode/TEX/initialize.sh</string>
+	<key>IsChangeBackground</key>
+	<true/>
+	<key>IsChangeBoldText</key>
+	<false/>
+	<key>IsChangeCursor</key>
+	<false/>
+	<key>IsChangeNormalText</key>
+	<true/>
+	<key>IsChangeSelection</key>
+	<false/>
+	<key>LifeTime</key>
+	<integer>3600</integer>
+	<key>NormalTextColor</key>
+	<array>
+		<integer>0</integer>
+		<integer>0</integer>
+		<integer>0</integer>
+	</array>
+	<key>PDFPreviewIndex</key>
+	<integer>1</integer>
+	<key>SelectionColor</key>
+	<array>
+		<integer>43690</integer>
+		<integer>43690</integer>
+		<integer>43690</integer>
+	</array>
+	<key>Shell</key>
+	<string>/bin/bash</string>
+	<key>ShowRefPaletteWhenLaunched</key>
+	<false/>
+	<key>ShowToolPaletteWhenLaunched</key>
+	<true/>
+	<key>StringEncoding</key>
+	<integer>4</integer>
+	<key>TerminalOpaqueness</key>
+	<integer>58100</integer>
+	<key>UseCtrlVEscapes</key>
+	<string>NO</string>
+	<key>UseLoginShell</key>
+	<false/>
+	<key>bibtex</key>
+	<string>/usr/local/bin/jbibtex</string>
+	<key>dviView</key>
+	<string>xdvi -postscript 0</string>
+	<key>dvipdfmx</key>
+	<string>/usr/local/bin/dvipdfmx -V 4</string>
+	<key>dvips</key>
+	<string>/usr/local/bin/dvips</string>
+	<key>ebb</key>
+	<string>ebb</string>
+	<key>latex</key>
+	<string>/usr/local/bin/platex -src-special -interaction=nonstopmode</string>
+	<key>mendex</key>
+	<string>/usr/local/bin/mendex</string>
+	<key>useeqref</key>
+	<true/>
+</dict>
+</plist>
