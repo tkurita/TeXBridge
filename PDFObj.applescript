@@ -230,6 +230,7 @@ script AcrobatDriver
 		else
 			set pageNumber of thePDFObj to missing value
 		end if
+		--log pageNumber of thePDFObj
 		return true
 	end prepare
 	
@@ -242,7 +243,7 @@ script AcrobatDriver
 					set theFileAliasPath to file alias of document (pdfFileName of thePDFObj) as Unicode text
 					if theFileAliasPath is (pdfAlias of thePDFObj as Unicode text) then
 						bring to front document (pdfFileName of thePDFObj)
-						set pageNumber of thePDFObj to page number of PDF Window 1
+						set pageNumber of thePDFObj to page number of PDF Window 1 of active doc
 						--close PDF Window 1
 						try
 							close active doc
@@ -264,7 +265,7 @@ script AcrobatDriver
 				activate
 				open pdfAlias of thePDFObj
 				if pageNumber of thePDFObj is not missing value then
-					set page number of PDF Window 1 to pageNumber of thePDFObj
+					set page number of PDF Window 1 of active doc to pageNumber of thePDFObj
 				end if
 			end tell
 		end using terms from
