@@ -241,7 +241,7 @@ on loadColorSettings()
 	set isChangeBackground of TerminalCommander to readDefaultValue("IsChangeBackground", true)
 	set backgroundColor of TerminalCommander to readDefaultValue("BackgroundColor", {42858, 43841, 65535})
 	set terminalOpaqueness of TerminalCommander to readDefaultValue("TerminalOpaqueness", 58100)
-	set isChangeNormalText of TerminalCommander to readDefaultValue("IsChangeNormalText", false)
+	set isChangeNormalText of TerminalCommander to readDefaultValue("IsChangeNormalText", true)
 	set normalTextColor of TerminalCommander to readDefaultValue("NormalTextColor", {65535, 65535, 65535})
 	set isChangeBoldText of TerminalCommander to readDefaultValue("IsChangeBoldText", false)
 	set boldTextColor of TerminalCommander to readDefaultValue("BoldTextColor", {65535, 65535, 65535})
@@ -400,9 +400,11 @@ on texCompile(theTexDocObj)
 	set allCommand to cdCommand & comDelim & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
 	
 	if compileInTerminal then
+		set allCommand to cdCommand & comDelim & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
 		doCommands(allCommand) of TerminalCommander
 		waitEndOfCommand(300) of TerminalCommander
 	else
+		set allCommand to cdCommand & "; " & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
 		try
 			do shell script allCommand
 		on error errMsg number errNum
