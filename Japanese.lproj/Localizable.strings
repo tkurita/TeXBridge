@@ -1,0 +1,36 @@
+/*global*/
+"aLogfile" = "ログファイル";
+"hasBeenOpend" = "は開かれています。";
+"startQuote" ="“";
+"endQuote" ="”";
+"aDocument" = "書類";
+
+/*checkLogFileStatus*/
+"shouldClose" = "タイプセットの前に閉じる必要があります。";
+"Cancel" = "キャンセル";
+"Close" = "閉じる";
+
+/*doTypeSet*/
+"closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
+
+/*dviToPDF*/
+"OpenedMessage" = "は開かれています。コマンドの実行前に閉じて下さい。";
+ 
+/* checkmifiles */
+"isNotSaved" = "は保存されていません。";
+"isNotFound" = "が見つかりません。";
+"isModified" = "は修正されています。";
+"doYouSave" = "実行前に保存しますか？";
+
+/*viewErrorLog*/
+"group" = "グループ";
+
+/*showError*/
+"errorLabel" = "エラー :";
+
+/*openParentFile*/
+"noParentFile" = "は ParentFile を持っていません。";
+
+/*seekExecEbb*/
+"noGraphhicFile" = "は グラフィックファイルを取り込んでいません。";
+

@@ -1,0 +1,36 @@
+/*global*/
+"aLogfile" = "A log file";
+"hasBeenOpend" = "has been opened.";
+"startQuote" = "“";
+"endQuote" = "”";
+"aDocument" = "A document";
+
+/*checkLogFileStatus*/
+"shouldClose" = "should be Close before typesetting.";
+"Cancel" = "Cancel";
+"Close" = "Close";
+
+/*doTypeSet*/
+"closeBeforeTypeset" = "Close before typesetting.";
+
+/*dviToPDF*/
+"OpenedMessage" = "is opend. Close the file before executing command.";
+
+/* checkmifiles */
+"isNotSaved" = "is not saved.";
+"isNotFound" = "is not found.";
+"isModified" = "is modified.";
+"doYouSave" = "Do you save the document before typesetting.";
+
+/*viewErrorLog*/
+"group" = "group";
+
+/*showError*/
+"errorLabel" = "Error :";
+
+/*openParentFile*/
+"noParentFile" = "does not have a ParentFile";
+
+/*seekExecEbb*/
+"noGraphhicFile" = "does not include graphic files";
+
