@@ -262,9 +262,9 @@
 				29B97328FDCFA39411CA2CEA,
 				29B9732BFDCFA39411CA2CEA,
 				29B9732DFDCFA39411CA2CEA,
-				2C5FF53405FB3F0900784136,
 				2CCFEDB906CC93690021EA3E,
 				2CCFEDBD06CC93F10021EA3E,
+				2C5FF53405FB3F0900784136,
 			);
 			buildSettings = {
 				DEBUGGING_SYMBOLS = NO;
@@ -294,7 +294,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXCompileServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.6.5 copyright 2003-2004, Tetsuro KURITA</string>
+	<string>2.6.6 copyright 2003-2005, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXCompileServer Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -310,11 +310,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6.5</string>
+	<string>2.6.6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6.5</string>
+	<string>2.6.6</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
@@ -637,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#echo $PWD\n#cd ../ToolPalette\n#xcodebuild -buildstyle Deployment";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\ncd ../ToolPalette\nxcodebuild -buildstyle Deployment\ncd ../ReferencePalette\nxcodebuild -buildstyle Deployment\nfi";
 		};
 		2CCFEDBD06CC93F10021EA3E = {
 			buildActionMask = 2147483647;
