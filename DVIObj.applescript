@@ -14,8 +14,10 @@ property texCommandsBox : missing value
 property dviPreviewBox : missing value
 
 on controlClicked(theObject)
+	--log "controlClicked in DViObj"
 	set DVIPreviewMode to current row of theObject
 	set contents of default entry "DVIPreviewMode" of user defaults to DVIPreviewMode
+	setDVIDriver()
 end controlClicked
 
 on endEditing(theObject)
