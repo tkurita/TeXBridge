@@ -14,6 +14,8 @@ property texCommandsBox : missing value
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
 property comDelim : return
+property sQ : missing value
+property eQ : missing value
 
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
@@ -36,7 +38,10 @@ end importScript
 on initialize()
 	--log "start initialize"
 	if not isLaunched then
+		
 		set MessageUtility to importScript("MessageUtility")
+		set sQ to localized string "startQuote"
+		set eQ to localized string "endQuote"
 		
 		tell application "System Events"
 			set UIScriptFlag to UI elements enabled
@@ -98,7 +103,7 @@ on launched theObject
 	--execmendex() of TeXCompileObj
 	--showToolPalette()
 	--openParentFile() of EditCommands
-	--seekExecEbb() of TeXCompileObj
+	seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
@@ -115,8 +120,7 @@ on launched theObject
 end launched
 
 on open theCommandID
-	--display dialog "open"
-	--initialize()
+	--log "start open"
 	
 	if theCommandID is "typesetOnly" then
 		doTypeSet() of TeXCompileObj
