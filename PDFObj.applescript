@@ -53,6 +53,7 @@ on findAcrobatApp()
 end findAcrobatApp
 
 on findAdobeReaderApp()
+	--log "start findAdobeReaderApp"
 	--log adobeReaderPath
 	if class of adobeReaderPath is alias then
 		return
@@ -80,6 +81,7 @@ on findAdobeReaderApp()
 	tell user defaults
 		set contents of default entry "AdobeReaderPath" to adobeReaderPath
 	end tell
+	--log "end findAdobeReaderApp"
 end findAdobeReaderApp
 
 on loadSettings()
