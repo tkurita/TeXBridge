@@ -7,7 +7,6 @@ property StringEngine : PathConverter
 
 property lifeTime : 60 -- minutes
 property FreeTime : 0
-property isLaunched : false
 property settingWindowBounds : {}
 property texCommandsBox : missing value
 
@@ -28,6 +27,8 @@ property PDFObj : missing value
 property TexDocObj : missing value
 property dviObj : missing value
 
+property settingWindow : missing value
+
 on importScript(scriptName)
 	tell main bundle
 		set scriptPath to path for script scriptName extension "scpt"
@@ -37,73 +38,67 @@ end importScript
 
 on initialize()
 	--log "start initialize"
-	if not isLaunched then
-		
-		set MessageUtility to importScript("MessageUtility")
-		set sQ to localized string "startQuote"
-		set eQ to localized string "endQuote"
-		
-		tell application "System Events"
-			set UIScriptFlag to UI elements enabled
+	set MessageUtility to importScript("MessageUtility")
+	set sQ to localized string "startQuote"
+	set eQ to localized string "endQuote"
+	
+	tell application "System Events"
+		set UIScriptFlag to UI elements enabled
+	end tell
+	if not (UIScriptFlag) then
+		set theMessage to localized string "disableUIScripting"
+		tell application "System Preferences"
+			activate
+			set current pane to pane "com.apple.preference.universalaccess"
+			display dialog theMessage buttons {"OK"} default button "OK"
 		end tell
-		if not (UIScriptFlag) then
-			set theMessage to localized string "disableUIScripting"
-			tell application "System Preferences"
-				activate
-				set current pane to pane "com.apple.preference.universalaccess"
-				display dialog theMessage buttons {"OK"} default button "OK"
-			end tell
-			quit
-		end if
-		
-		set FactorySetting to importScript("FactorySetting")
-		set UtilityHandlers to importScript("UtilityHandlers")
-		set LogFileParser to importScript("LogFileParser")
-		set EditCommands to importScript("EditCommands")
-		set PDFObj to importScript("PDFObj")
-		set TeXCompileObj to importScript("TeXCompileObj")
-		set TexDocObj to importScript("TeXDocObj")
-		set dviObj to importScript("DVIObj")
-		set TerminalSettingObj to importScript("TerminalSettingObj")
-		
-		--log "end of import library"
-		
-		set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
-		
-		loadSettings() of TeXCompileObj
-		--log "end of setting TeXCompileObj"
-		
-		loadSettings() of TexDocObj
-		
-		set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
-		loadSettings() of dviObj
-		
-		--log "start of initializeing PDFObj"
-		set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
-		--log "loadSettings() of PDFObj"
-		loadSettings() of PDFObj
-		
-		--log "start of initilizing TerminalSettingObj"
-		set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
-		loadSettings(FactorySetting) of TerminalSettingObj
-		--log "end of setting TerminalSettingObj"
-		
-		loadSettings()
-		
-		--center window "Setting"
-		set isLaunched to true
+		quit
 	end if
+	
+	set FactorySetting to importScript("FactorySetting")
+	set UtilityHandlers to importScript("UtilityHandlers")
+	set LogFileParser to importScript("LogFileParser")
+	set EditCommands to importScript("EditCommands")
+	set PDFObj to importScript("PDFObj")
+	set TeXCompileObj to importScript("TeXCompileObj")
+	set TexDocObj to importScript("TeXDocObj")
+	set dviObj to importScript("DVIObj")
+	set TerminalSettingObj to importScript("TerminalSettingObj")
+	
+	--log "end of import library"
+	
+	set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
+	
+	loadSettings() of TeXCompileObj
+	--log "end of setting TeXCompileObj"
+	
+	loadSettings() of TexDocObj
+	
+	set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+	loadSettings() of dviObj
+	
+	--log "start of initializeing PDFObj"
+	set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+	--log "loadSettings() of PDFObj"
+	loadSettings() of PDFObj
+	
+	--log "start of initilizing TerminalSettingObj"
+	set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
+	loadSettings(FactorySetting) of TerminalSettingObj
+	--log "end of setting TerminalSettingObj"
+	
+	loadSettings()
+	
+	--center window "Setting"
 end initialize
 
 (* events of application*)
 on launched theObject
-	--initialize()
-	--log "end of initialize"
 	(*debug code*)
 	--execmendex() of TeXCompileObj
 	--showToolPalette()
 	--openParentFile() of EditCommands
-	seekExecEbb() of TeXCompileObj
+	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
@@ -174,14 +169,23 @@ on idle theObject
 end idle
 
 on will open theObject
+	--log "start will open"
 	setSettingToWindow() of TerminalSettingObj
 	setSettingToWindow() of TeXCompileObj
 	setSettingToWindow() of PDFObj
 	setSettingToWindow() of TexDocObj
 	setSettingToWindow() of dviObj
+	set settingWindow to theObject
 	
 	tell theObject
-		set contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of theObject to lifeTime as integer
+		set contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" to lifeTime as integer
+		set currentMxdviEditor to do shell script "defaults read Mxdvi MxdviEditor"
+		set contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" to currentMxdviEditor
+		if settingWindowBounds is not {} then
+			set bounds to settingWindowBounds
+		else
+			center
+		end if
 	end tell
 end will open
 
@@ -198,8 +202,39 @@ on clicked theObject
 		revertColorsToTerminal() of TerminalSettingObj
 	else if theName is "Save" then
 		saveSettingsFromWindow()
+	else if theName is "usemi" then
+		setmiclient()
+	else if theName is "saveMxdviEditor" then
+		saveMxdviEditor(missing value)
 	end if
 end clicked
+
+on setmiclient()
+	set currentSetting to contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow
+	if currentSetting ends with "miclient %l %f" then
+		set miclientPath to text 1 thru -7 of currentSetting
+		if not (isExists(POSIX file miclientPath) of UtilityHandlers) then
+			set theMessage to localized string "whereismiclient"
+			set theResult to choose file with prompt theMessage without invisibles
+			saveMxdviEditor((POSIX path of theResult) & " %l %f")
+		end if
+	else
+		set prefFolderPath to path to preferences from user domain as Unicode text
+		set miclientSetting to POSIX path of (prefFolderPath & "mi:mode:TEX:miclient %l %f")
+		saveMxdviEditor(miclientSetting)
+	end if
+end setmiclient
+
+on saveMxdviEditor(theSetting)
+	if theSetting is missing value then
+		set theSetting to contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow
+	else
+		set contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow to theSetting
+	end if
+	set theCommand to "defaults write Mxdvi MxdviEditor " & (quoted form of theSetting)
+	--log theCommand
+	do shell script theCommand
+end saveMxdviEditor
 
 on choose menu item theObject
 	set theName to name of theObject
@@ -231,11 +266,6 @@ end will finish launching
 on loadSettings()
 	set lifeTime to readDefaultValue("LifeTime", lifeTime) of UtilityHandlers
 	set settingWindowBounds to readDefaultValue("SettingWindowBounds", settingWindowBounds) of UtilityHandlers
-	if settingWindowBounds is not {} then
-		set bounds of window "Setting" to settingWindowBounds
-	else
-		center window "Setting"
-	end if
 end loadSettings
 
 on writeSettings()
