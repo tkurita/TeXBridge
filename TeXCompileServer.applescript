@@ -69,7 +69,7 @@ on initialize()
 	
 	showStartupMessage("Loading Factory Settings ...")
 	set DefaultsManager to importScript("DefaultsManager")
-	loadFactorySettings("FactorySettings") of DefaultsManager
+	registerFactorySetting("FactorySettings") of DefaultsManager
 	
 	showStartupMessage("Loading Scripts ...")
 	set UtilityHandlers to importScript("UtilityHandlers")
@@ -121,14 +121,13 @@ on launched theObject
 		showRefPalette() of EditCommands
 	end if
 	hide window "Startup"
-	
 	(*debug code*)
 	--openRelatedFile of EditCommands without revealOnly
 	--open "replaceInput"
 	--openWindow() of ToolPaletteController
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--dviPreview() of TeXCompileObj
-	openWindow() of SettingWindowController
+	--openWindow() of SettingWindowController
 	--pdfPreview() of TeXCompileObj
 	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
@@ -266,6 +265,8 @@ on controlClicked(theObject)
 			setmiclient() of SettingWindowController
 		else if theName is "saveMxdviEditor" then
 			saveMxdviEditor(missing value) of SettingWindowController
+		else if theName is "HelpButton" then
+			showHelp() of SettingWindowController
 		end if
 	end if
 end controlClicked
@@ -359,6 +360,7 @@ on selected tab view item theObject tab view item tabViewItem
 end selected tab view item
 
 on end editing theObject
+	--log "start end editing"
 	set FreeTime to 0
 	set theTag to tag of theObject
 	if theTag is 1 then
