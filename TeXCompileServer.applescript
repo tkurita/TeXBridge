@@ -32,7 +32,7 @@ on launched theObject
 		set isLaunched to true
 	end if
 	(*debug code*)
-	seekExecEbb()
+	--seekExecEbb()
 	--dviToPDF()
 	--dviPreview()
 	--doTypeSet()
