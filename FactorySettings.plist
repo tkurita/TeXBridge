@@ -23,7 +23,7 @@
 	<key>CustomTitle</key>
 	<string>TeX Console</string>
 	<key>DVIPreviewMode</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>ExecutionString</key>
 	<string>source ~/Library/Preferences/mi/mode/TEX/initialize.sh</string>
 	<key>IsChangeBackground</key>
@@ -66,20 +66,20 @@
 	<string>NO</string>
 	<key>UseLoginShell</key>
 	<false/>
-	<key>bibtex</key>
+	<key>bibtexCommand</key>
 	<string>/usr/local/bin/jbibtex</string>
-	<key>dviView</key>
+	<key>dviViewCommand</key>
 	<string>xdvi -postscript 0</string>
-	<key>dvipdfmx</key>
+	<key>dvipdfCommand</key>
 	<string>/usr/local/bin/dvipdfmx -V 4</string>
-	<key>dvips</key>
+	<key>dvipsCommand</key>
 	<string>/usr/local/bin/dvips</string>
-	<key>ebb</key>
-	<string>ebb</string>
-	<key>latex</key>
-	<string>/usr/local/bin/platex -src-special -interaction=nonstopmode</string>
-	<key>mendex</key>
+	<key>ebbCommand</key>
+	<string>/usr/local/bin/ebb</string>
+	<key>mendexCommand</key>
 	<string>/usr/local/bin/mendex</string>
+	<key>typesetCommand</key>
+	<string>/usr/local/bin/platex -src-special -interaction=nonstopmode</string>
 	<key>useeqref</key>
 	<true/>
 </dict>
