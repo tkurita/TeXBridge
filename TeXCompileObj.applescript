@@ -70,7 +70,7 @@ end saveSettingsFromWindow
 
 on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
-	set parentFile to text 13 thru -2 of theParagraph
+	set parentFile to stripHeadTailSpaces(text 13 thru -2 of theParagraph) of UtilityHandlers
 	--log parentFile
 	if parentFile starts with ":" then
 		setHFSoriginPath(theTargetFile) of PathConverter
@@ -137,6 +137,8 @@ on checkmifiles given saving:savingFlag
 	--check ParentFile and TypesetCommand
 	set theParentFile to missing value
 	set theTypesetCommand to missing value
+	set theDviPdfCommand to missing value
+	
 	set ith to 1
 	repeat
 		tell application "mi"
@@ -145,8 +147,12 @@ on checkmifiles given saving:savingFlag
 		if theParagraph starts with "%" then
 			if theParagraph starts with "%ParentFile" then
 				set theParentFile to resolveParentFile(theParagraph, theTargetFile)
-			else if theParagraph starts with "%TypesetCommand" then
-				set theTypesetCommand to text 17 thru -2 of theParagraph
+			else if theParagraph starts with "%Typeset-Command" then
+				set theTypesetCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+			else if theParagraph starts with "%DviToPdf-Command" then
+				set theDviPdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
+			else if theParagraph starts with "%DviToPs-Command" then
+				set theDviPsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
 			end if
 		else
 			exit repeat
@@ -160,6 +166,10 @@ on checkmifiles given saving:savingFlag
 	
 	if theTypesetCommand is not missing value then
 		set texCommand of theTexDocObj to theTypesetCommand
+	end if
+	
+	if theDviPdfCommand is not missing value then
+		set dvipdfCommand of theTexDocObj to theDviPdfCommand
 	end if
 	
 	if savingFlag then
@@ -284,8 +294,7 @@ on doTypeSet()
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			set errMsg to "Error in doTypeSet" & return & errMsg
-			showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
+			showError(errNum, "doTypeSet", errMsg) of MessageUtility
 		end if
 		return missing value
 	end try
@@ -319,7 +328,7 @@ on dviPreview()
 		try
 			openDVI() of theDviObj
 		on error errMsg number errNum
-			showErrorInFrontmostApp(errNum, errMsg)
+			showError(errNum, "dviPreview", errMsg) of MessageUtility
 		end try
 	else
 		set textDviFile to localized string "dviFile"
@@ -373,8 +382,7 @@ on quickTypesetAndPreview()
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then -- "The document is not saved."
-			set errMsg to "Error in quickTypesetAndPreview" & return & errMsg
-			showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
+			showError(errNum, "quickTypesetAndPreview after calling prepareTypeSet", errMsg) of MessageUtility
 		end if
 		return
 	end try
@@ -395,7 +403,7 @@ on quickTypesetAndPreview()
 		try
 			openDVI() of theDviObj
 		on error errMsg number errNum
-			showErrorInFrontmostApp(errNum, errMsg)
+			showError(errNum, "quickTypesetAndPreview after calling openDVI", errMsg) of MessageUtility
 		end try
 	end if
 	
@@ -416,7 +424,7 @@ on typesetAndPreview()
 		try
 			openDVI() of theDviObj
 		on error errMsg number errNum
-			showErrorInFrontmostApp(errNum, errMsg)
+			showError(errNum, "typesetAndPreview", errMsg) of MessageUtility
 		end try
 	end if
 end typesetAndPreview
@@ -480,7 +488,25 @@ on dviToPDF()
 end dviToPDF
 
 on dviToPS()
-	execTexCommand(dvipsCommand, ".dvi", false)
+	try
+		set theTexDocObj to checkmifiles without saving
+	on error errMsg number errNum
+		if errNum is not in {1200, 1210, 1220, 1230} then
+			error errMsg number errNum
+		end if
+		return
+	end try
+	
+	if dvipsCommand of theTexDocObj is not missing value then
+		set theCommand to dvipsCommand of theTexDocObj
+	else
+		set theCommand to dvipsCommand
+	end if
+	
+	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
+	set theCommand to buildCommand(theCommand, ".dvi") of theTexDocObj
+	set allCommand to cdCommand & comDelim & theCommand
+	doCommands of TerminalCommander for allCommand with activation
 end dviToPS
 
 --simply execute TeX command in Terminal
