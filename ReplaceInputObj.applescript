@@ -136,7 +136,10 @@ on controlClicked(theObject)
 		end try
 		log preKeyword
 		if preKeyword is not "" then
-			removeItem of userReplaceDict given forKey:preKeyword
+			if removeItem of userReplaceDict given forKey:preKeyword then
+				set isChangedUserDict to true
+				saveUserDict()
+			end if
 		end if
 	end if
 end controlClicked
