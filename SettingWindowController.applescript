@@ -16,25 +16,26 @@ on makeObj(theWindow)
 		global lifeTime
 		global showToolPaletteWhenLaunched
 		global showRefPaletteWhenLaunched
+		global texCommandsBox
 		
 		property parent : theWindowController
 		property theOtherSettingTab : missing value
 		
-		on initialize()
-			set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of my targetWindow
-			continue initialize()
-		end initialize
 		
 		on openWindow()
 			activate
-			if my isOpened then
-				showWindow()
-			else
-				continue openWindow()
-			end if
+			continue openWindow()
 		end openWindow
 		
 		on applyDefaults()
+			tell my targetWindow
+				set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of it
+				set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of it
+				set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of it
+				set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of it
+				set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of it
+			end tell
+			
 			setSettingToWindow() of TerminalSettingObj
 			setSettingToWindow() of TeXCompileObj
 			setSettingToWindow() of PDFObj
