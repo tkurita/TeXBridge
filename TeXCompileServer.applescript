@@ -98,6 +98,8 @@ end initialize
 (* events of application*)
 on launched theObject
 	(*debug code*)
+	--pdfPreview() of TeXCompileObj
+	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
 	--showToolPalette()
 	--openParentFile() of EditCommands
@@ -136,6 +138,8 @@ on open theCommandID
 		typesetAndPDFPreview() of TeXCompileObj
 	else if theCommandID is "dviPreview" then
 		dviPreview() of TeXCompileObj
+	else if theCommandID is "pdfPreview" then
+		pdfPreview() of TeXCompileObj
 	else if theCommandID is "bibTex" then
 		bibTex() of TeXCompileObj
 	else if theCommandID is "dviToPDF" then
@@ -232,6 +236,24 @@ on clicked theObject
 		setmiclient()
 	else if theName is "saveMxdviEditor" then
 		saveMxdviEditor(missing value)
+	else if theName is "AdobeReader" then
+		try
+			findAdobeReaderApp() of PDFObj
+		on error errMsg number -128
+			setSettingToWindow() of PDFObj
+			set theMessage to localized string "PDFPreviewIsInvalid"
+			showMessage(theMessage) of MessageUtility
+		end try
+		
+	else if theName is "Acrobat" then
+		try
+			findAcrobatApp() of PDFObj
+		on error errMsg number -128
+			setSettingToWindow() of PDFObj
+			set theMessage to localized string "PDFPreviewIsInvalid"
+			showMessage(theMessage) of MessageUtility
+		end try
+		
 	end if
 end clicked
 
