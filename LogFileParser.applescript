@@ -1,20 +1,20 @@
 --property yenmark : ASCII character 92
 global yenmark
-global PathConverter
 
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
+global PathConverter
 --property PathConverter : load script file (LibraryFolder & "PathConverter")
 --property valueMonitor : missing value
 
-(*
+(* 
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:テスト:report:report.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:テスト:report:report" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:サンプル:sample 3:sample.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:サンプル:sample 3:sample" as Unicode text
 	end script
 	activate
-	set theLogFileParser to newLogFileParser(theTexDocObj)
+	set theLogFileParser to makeObj(theTexDocObj)
 	parseLogFile() of theLogFileParser
 	set stopTime to current date
 	set deltaTime to stopTime - startTime
@@ -22,9 +22,9 @@ on debug()
 	--theLogFileParser
 	
 end debug
-*)
+ *)
 
-on newLogFileParser(theTexDocObj)
+on makeObj(theTexDocObj)
 	script LogFileParser
 		property parent : theTexDocObj
 		property texFileExtensions : {".tex", ".cls", ".sty", ".dtx", ".txt", ".bbl", ".ind"}
@@ -37,7 +37,7 @@ on newLogFileParser(theTexDocObj)
 		--private property
 		property logtext : missing value
 		property nLine : missing value
-		--global logTree -- for debug
+		global logTree -- for debug
 		
 		on getLogText()
 			set logtext to (read my logFileRef)
@@ -195,6 +195,12 @@ on newLogFileParser(theTexDocObj)
 						set hyperrec to {file:"", comment:theLogItem}
 					end using terms from
 				end try
+			else if (theLogItem starts with "No file") then
+				set isNoError to false
+				using terms from application "mi"
+					set hyperrec to {file:"", comment:theLogItem}
+				end using terms from
+				set currentPos to currentPos + 1
 			else if theLogItem is "No pages of output." then
 				set isDviOutput to false
 				set isNoError to false
@@ -402,24 +408,9 @@ on newLogFileParser(theTexDocObj)
 	end script
 	
 	return LogFileParser
-end newLogFileParser
+end makeObj
 
 on run
 	debug()
 end run
-
-on prepareLogParsing(theTexDocObj)
-	set theLogFile to logFileRef of theTexDocObj
-	set theLogFile to theLogFile as alias
-	set logFileRef of theTexDocObj to theLogFile
-	
-	tell application "Finder"
-		ignoring application responses
-			set creator type of theLogFile to "MMKE"
-			set file type of theLogFile to "TEXT"
-		end ignoring
-	end tell
-	
-	return newLogFileParser(theTexDocObj)
-end prepareLogParsing
 
