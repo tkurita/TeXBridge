@@ -33,6 +33,7 @@ on makeObj(theWindow)
 			set bookName to |CFBundleHelpBookName| of infoDict
 			set theAnchor to name of current tab view item of tab view "SettingTabs" of my targetWindow
 			tell application "Help Viewer"
+				activate
 				lookup anchor theAnchor in book bookName
 			end tell
 		end showHelp
