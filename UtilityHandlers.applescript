@@ -1,3 +1,14 @@
+on loadPlistDictionary(baseName)
+	tell main bundle
+		set plistFile to path for resource baseName extension "plist"
+	end tell
+	return call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistFile
+end loadPlistDictionary
+
+on getKeyValue for entryName from dictionaryValue
+	return call method "valueForKey:" of dictionaryValue with parameter entryName
+end getKeyValue
+
 on stripHeadTailSpaces(theText)
 	if theText starts with space then
 		set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
