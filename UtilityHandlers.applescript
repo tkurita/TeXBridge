@@ -15,7 +15,8 @@ on loadPlistDictionary(baseName)
 end loadPlistDictionary
 
 on getKeyValue for entryName from dictionaryValue
-	return call method "valueForKey:" of dictionaryValue with parameter entryName
+	return call method "objectForKey:" of dictionaryValue with parameter entryName
+	--return call method "valueForKey:" of dictionaryValue with parameter entryName
 end getKeyValue
 
 on stripHeadTailSpaces(theText)
