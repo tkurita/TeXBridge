@@ -32,7 +32,7 @@ on launched theObject
 		set isLaunched to true
 	end if
 	(*debug code*)
-	dviToPDF()
+	--dviToPDF()
 	--dviPreview()
 	--doTypeSet()
 	--openRelatedFile with revealOnly
