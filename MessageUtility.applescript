@@ -1,3 +1,11 @@
+on showErrorInFrontmostApp(errNum, errMsg)
+	set errorLabel to localized string "errorLabel"
+	set theMessage to errorLabel & space & errNum & return & (name of current application) & " : " & errMsg
+	tell application (path to frontmost application as Unicode text)
+		display dialog theMessage buttons {"OK"} default button "OK"
+	end tell
+end showErrorInFrontmostApp
+
 on showError(errNum, errMsg)
 	activate
 	set errorLabel to localized string "errorLabel"
