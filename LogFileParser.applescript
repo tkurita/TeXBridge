@@ -15,8 +15,8 @@ end run
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:ビームフィードバック:questions:error_sample_questions1.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:ビームフィードバック:questions:error_sample_questions1" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:加速器:CT:CT.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:加速器:CT:CT" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -30,11 +30,10 @@ end debug
 --end debug code
 *)
 
-
 on makeObj(theTexDocObj)
 	script LogFileParser
 		property parent : theTexDocObj
-		property texFileExtensions : {".tex", ".cls", ".sty", ".dtx", ".txt", ".bbl", ".ind"}
+		property texFileExtensions : {".tex", ".cls", ".sty", ".aux", ".dtx", ".txt", ".bbl", ".ind"}
 		--property logFileRef : missing value
 		property isDviOutput : true
 		property hyperlist : {}
@@ -126,6 +125,7 @@ on makeObj(theTexDocObj)
 		end findErrors
 		
 		on resolveTargetFile(theLogItem, theNextItem)
+			--log theLogItem
 			set theTargetFile to logContent of theLogItem
 			if class of theTargetFile is alias then
 				return theTargetFile
