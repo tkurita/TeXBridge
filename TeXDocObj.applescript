@@ -1,4 +1,5 @@
 global PathAnalyzer
+global StringEngine
 global UtilityHandlers
 global TerminalCommander
 global MessageUtility
@@ -76,6 +77,18 @@ on makeObj(theTargetFile)
 			end if
 			return texBaseName
 		end getBaseName
+		
+		on buildCommand(theCommand, theSuffix)
+			-- replace %s in theCommand with texBaseName. if %s is not in theCommand, texBaseName+theSuffix is added end of theCommand
+			if "%s" is in theCommand then
+				startStringEngine() of StringEngine
+				set theCommand to uTextReplace of StringEngine for theCommand from "%s" by texBaseName
+				stopStringEngine() of StringEngine
+			else
+				set targetFileName to getNameWithSuffix(theSuffix)
+				return (theCommand & space & "'" & texBaseName & theSuffix & "'")
+			end if
+		end buildCommand
 		
 		on getPathWithSuffix(theSuffix)
 			if texBasePath is missing value then
@@ -165,7 +178,22 @@ on makeObj(theTargetFile)
 				copy TerminalCommander to currentTerminal
 				waitEndOfCommand(300) of currentTerminal
 			else
-				set allCommand to cdCommand & "; " & texCommand & space & "'" & texFileName & "'"
+				startStringEngine() of StringEngine
+				set commandElements to everyTextItem of StringEngine from texCommand by space
+				if "-interaction=" is in texCommand then
+					repeat with ith from 2 to length of commandElements
+						set theItem to item ith of commandElements
+						if theItem starts with "-interaction=" then
+							set item ith of commandElements to "-interaction=batchmode"
+							exit repeat
+						end if
+					end repeat
+				else
+					set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
+				end if
+				set theTexCommand to joinUTextList of StringEngine for commandElements by space
+				stopStringEngine() of StringEngine
+				set allCommand to cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
 				try
 					do shell script allCommand
 				on error errMsg number errNum
