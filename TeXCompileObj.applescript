@@ -14,6 +14,8 @@ global PathConverter
 --special values
 global comDelim
 global yenmark
+global sQ -- start of quotation character
+global eQ -- end of quotation character
 
 global texCommandsBox
 
@@ -64,10 +66,11 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 end saveSettingsFromWindow
 
 on resolveParentFile(theParagraph)
+	--log "start resolveParentFile"
 	set parentFile to text 13 thru -2 of theParagraph
-	--tell me to log parentFile
+	--log parentFile
 	if parentFile starts with ":" then
-		setHFSoriginPath(theTargetFile) of PathConverter
+		setHFSoriginPath(parentFile) of PathConverter
 		set theTexFile to getAbsolutePath of PathConverter for parentFile
 	else
 		set theTexFile to parentFile
@@ -89,13 +92,13 @@ on resolveParentFile(theParagraph)
 		showMessageOnmi(theMessage) of MessageUtility
 		error "ParentFile is not found." number 1220
 	end try
+	
 	return theTexFile
 end resolveParentFile
 
 on checkmifiles given saving:savingFlag
+	--log "start checkmifiles"
 	set textADocument to localized string "aDocument"
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
 	
 	try
 		tell application "mi"
@@ -122,7 +125,9 @@ on checkmifiles given saving:savingFlag
 		error "The document is not saved." number 1200
 	end try
 	
+	--log "before makeObj of TexDocObj"
 	set theTexDocObj to makeObj(theTargetFile) of TexDocObj
+	--log "success makeObj of TexDocObj"
 	set targetParagraph of theTexDocObj to theParagraph
 	
 	--check ParentFile and TypesetCommand
@@ -170,7 +175,7 @@ on checkmifiles given saving:savingFlag
 			end if
 		end tell
 	end if
-	
+	--log "end of checkmifiles"
 	return theTexDocObj
 end checkmifiles
 
@@ -457,7 +462,10 @@ on seekExecEbb()
 	
 	try
 		set theTexDocObj to checkmifiles without saving
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in {1220, 1230} then
+			error errMsg number errNum
+		end if
 		return
 	end try
 	
