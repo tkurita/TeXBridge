@@ -85,14 +85,14 @@ on makeObj(theTargetFile)
 		on buildCommand(theCommand, theSuffix)
 			-- replace %s in theCommand with texBaseName. if %s is not in theCommand, texBaseName+theSuffix is added end of theCommand
 			if "%s" is in theCommand then
-				getBaseName()
+				set theBaseName to getBaseName()
 				startStringEngine() of StringEngine
-				set theCommand to uTextReplace of StringEngine for theCommand from "%s" by texBaseName
+				set theCommand to uTextReplace of StringEngine for theCommand from "%s" by theBaseName
 				stopStringEngine() of StringEngine
 				return theCommand
 			else
 				set targetFileName to getNameWithSuffix(theSuffix)
-				return (theCommand & space & "'" & texBaseName & theSuffix & "'")
+				return (theCommand & space & "'" & targetFileName & "'")
 			end if
 		end buildCommand
 		
