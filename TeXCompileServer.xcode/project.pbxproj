@@ -14,18 +14,12 @@
 		080E96DDFE201D6D7F000001 = {
 			children = (
 				DA206CF3015C4E8B03C91932,
-				2C1732EF063C19ED000FEAF8,
-				2C17332A063C1C9D000FEAF8,
-				2C1732F1063C1A19000FEAF8,
 				2C329BDD063AB42000C9A56F,
-				2C1732F7063C1BD0000FEAF8,
 				2C6FB9BD06255005004731C7,
 				2CDA10AA069404FE00467991,
 				2C6FB9C906255508004731C7,
 				2CCD19FA06BE5DF800B6B166,
 				2CCD1A4A06BE616C00B6B166,
-				2C7C492E07960C830026564C,
-				2C7DA39B07AB75F70046A8E1,
 				2C7C493607960CCD0026564C,
 			);
 			isa = PBXGroup;
@@ -142,6 +136,7 @@
 		29B97314FDCFA39411CA2CEA = {
 			children = (
 				080E96DDFE201D6D7F000001,
+				2C54FE0A07C9E5AC00E8CEEB,
 				29B97317FDCFA39411CA2CEA,
 				2C49445407AD219B00B2A8D8,
 				29B97315FDCFA39411CA2CEA,
@@ -264,7 +259,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXCompileServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.6.8 copyright 2003-2005, Tetsuro KURITA</string>
+	<string>2.6.9 copyright 2003-2005, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXCompileServer Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -280,11 +275,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6.8</string>
+	<string>2.6.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6.8</string>
+	<string>2.6.9</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
@@ -522,6 +517,21 @@
 			isa = PBXBuildFile;
 			settings = {
 			};
+		};
+		2C54FE0A07C9E5AC00E8CEEB = {
+			children = (
+				2C17332A063C1C9D000FEAF8,
+				2C7C492E07960C830026564C,
+				2C7DA39B07AB75F70046A8E1,
+				2C1732F7063C1BD0000FEAF8,
+				2C1732EF063C19ED000FEAF8,
+				2C1732F1063C1A19000FEAF8,
+			);
+			isa = PBXGroup;
+			name = "Library Scripts";
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
 		};
 		2C5FF53405FB3F0900784136 = {
 			buildActionMask = 12;
