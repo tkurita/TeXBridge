@@ -2,29 +2,19 @@ global UtilityHandlers
 global PathAnalyzer
 
 script GenericDriver
-	property pdfFileName : missing value
-	property fileInfo : missing value
-	property pdfAlias : missing value
-	property pdfPath : missing value
-	
-	on setup()
-		set pdfAlias to alias pdfPath
-		set fileInfo to info for pdfAlias
-	end setup
-	
-	on prepare()
-		set isPDFBusy to busy status of fileInfo
+	on prepare(thePDFObj)
+		set isPDFBusy to busy status of fileInfo of thePDFObj
 		if isPDFBusy then
 			try
-				tell application (default application of fileInfo as Unicode text)
-					close window pdfFileName
+				tell application (default application of fileInfo of thePDFObj as Unicode text)
+					close window pdfFileName of thePDFObj
 				end tell
-				set isPDFBusy to busy status of (info for pdfAlias)
+				set isPDFBusy to busy status of (info for pdfAlias of thePDFObj)
 			end try
 			
 			if isPDFBusy then
 				set openedMessage to localized string "OpenedMessage"
-				set theMessage to pdfPath & return & openedMessage
+				set theMessage to (pdfPath of thePDFObj) & return & openedMessage
 				showMessageOnmi(theMessage) of MessageUtility
 				return false
 			else
@@ -35,10 +25,10 @@ script GenericDriver
 		end if
 	end prepare
 	
-	on openPDF()
+	on openPDF(thePDFObj)
 		try
 			tell application "Finder"
-				open pdfAlias
+				open pdfAlias of thePDFObj
 			end tell
 		on error errMsg number errNum
 			activate
@@ -48,43 +38,38 @@ script GenericDriver
 end script
 
 script AcrobatDriver
-	property parent : GenericDriver
-	property appName : missing value
-	property pageNumber : missing value
-	
-	on prepare()
-		if isRunning(appName) of UtilityHandlers then
-			closePDFfile()
+	on prepare(thePDFObj)
+		if isRunning(appName of thePDFObj) of UtilityHandlers then
+			closePDFfile(thePDFObj)
 		else
-			set pageNumber to missing value
+			set pageNumber of thePDFDriver to missing value
 		end if
 	end prepare
 	
-	on closePDFfile()
-		set pageNumber to missing value
+	on closePDFfile(thePDFObj)
+		set pageNumber of thePDFObj to missing value
 		using terms from application "Acrobat 6.0 Standard"
-			tell application appName
-				if exists document (my pdfFileName) then
-					set theFileAliasPath to file alias of document (my pdfFileName) as Unicode text
+			tell application (appName of thePDFObj)
+				if exists document (pdfFileName of thePDFObj) then
+					set theFileAliasPath to file alias of document (pdfFileName of thePDFObj) as Unicode text
 					if theFileAliasPath is (pdfAlias as Unicode text) then
-						bring to front document (my pdfFileName)
-						set pageNumber to page number of PDF Window 1
+						bring to front document (pdfFileName of thePDFObj)
+						set pageNumber of thePDFObj to page number of PDF Window 1
 						close PDF Window 1
 					end if
 				else
-					set pageNumber to missing value
+					set pageNumber of thePDFObj to missing value
 				end if
 			end tell
 		end using terms from
 	end closePDFfile
 	
-	on openPDF()
+	on openPDF(thePDFObj)
 		using terms from application "Acrobat 6.0 Standard"
-			tell application appName
-				open my pdfAlias
-				if pageNumber is not missing value then
-					set page number of PDF Window 1 to pageNumber
-					set pageNaumber to missing value
+			tell application (appName of thePDFObj)
+				open pdfAlias of thePDFObj
+				if pageNumber of thePDFObj is not missing value then
+					set page number of PDF Window 1 to pageNumber of thePDFObj
 				end if
 			end tell
 		end using terms from
@@ -92,98 +77,91 @@ script AcrobatDriver
 end script
 
 script PreviewDriver
-	property parent : GenericDriver
-	property windowNumber : missing value
-	property appName : missing value
-	property processName : missing value
 	
-	on prepare()
-		if isRunning(processName) of UtilityHandlers then
-			log "process is running"
+	on prepare(thePDFObj)
+		if isRunning(processName of thePDFObj) of UtilityHandlers then
 			tell application "System Events"
-				tell application process processName
-					set windowNumber to count windows
+				tell application process (processName of thePDFObj)
+					set windowNumber of thePDFObj to count windows
 				end tell
 			end tell
 		end if
 		return true
 	end prepare
 	
-	on openPDF()
-		tell application appName
-			open my pdfAlias
+	on openPDF(thePDFObj)
+		tell application (appName of thePDFObj)
+			open pdfAlias of thePDFObj
 		end tell
-		if windowNumber is not missing value then
+		if windowNumber of thePDFObj is not missing value then
 			tell application "System Events"
-				tell application process processName
+				tell application process (processName of thePDFObj)
 					set currentWinNumber to count windows
 				end tell
 			end tell
-			activate application appName
-			if windowNumber is currentWinNumber then
+			
+			activate application (appName of thePDFObj)
+			
+			if windowNumber of thePDFObj is currentWinNumber then
 				tell application "System Events"
-					tell application process processName
+					tell application process (processName of thePDFObj)
 						keystroke "w" using command down
 					end tell
 				end tell
 				delay 1
-				tell application appName
-					open my pdfAlias
+				tell application (appName of thePDFObj)
+					open pdfAlias of thePDFObj
 				end tell
 			end if
 		end if
-		set windowNumber to missing value
 	end openPDF
 end script
 
 script AutoDriver
-	property parent : GenericDriver
-	property targetDriver : missing value
 	
-	on prepare()
-		setTargetDriver()
+	on prepare(thePDFObj)
+		setTargetDriver(thePDFObj)
 		
-		return prepare() of targetDriver
+		return prepare(thePDFObj) of targetDriver of thePDFObj
 	end prepare
 	
-	on setTargetDriver()
-		set defAppPath to (default application of my fileInfo) as Unicode text
+	on setTargetDriver(thePDFObj)
+		set defAppPath to (default application of fileInfo of thePDFObj) as Unicode text
 		
 		if defAppPath ends with "Acrobat 6.0 Standard.app:" then
-			set targetDriver to AcrobatDriver
-			set appName of targetDriver to "Acrobat"
+			set targetDriver of thePDFObj to AcrobatDriver
+			set appName of thePDFObj to "Acrobat"
 		else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
-			set targetDriver to AcrobatDriver
-			set appName of targetDriver to "Acrobat"
+			set targetDriver of thePDFObj to AcrobatDriver
+			set appName of thePDFObj to "Acrobat"
 		else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
-			set targetDriver to AcrobatDriver
-			set appName of targetDriver to "Acrobat"
+			set targetDriver of thePDFObj to AcrobatDriver
+			set appName of thePDFObj to "Acrobat"
 		else if defAppPath ends with "Acrobat 5.0" then
-			set targetDriver to AcrobatDriver
-			set appName of targetDriver to "Acrobat 5.0"
+			set targetDriver of thePDFObj to AcrobatDriver
+			set appName of thePDFObj to "Acrobat 5.0"
 		else
-			set targetDriver to PreviewDriver
+			set targetDriver of thePDFObj to PreviewDriver
 			
 			set pathRecord to do(defAppPath) of PathAnalyzer
 			set theName to name of pathRecord
 			if theName starts with "Adobe Reader" then
-				set processName of targetDriver to "Adobe Reader"
+				set processName of thePDFObj to "Adobe Reader"
 			else if theName ends with ".app" then
 				set theName to text 1 thru -5 of theName
-				set processName of targetDriver to theName
+				set processName of thePDFObj to theName
 			end if
 			
-			set appName of targetDriver to theName
+			set appName of thePDFObj to theName
 			--set targetDriver to GenericDriver
 		end if
 	end setTargetDriver
 	
-	on openPDF()
-		if targetDriver is missing value then
-			setTargetDriver()
+	on openPDF(thePDFObj)
+		if targetDriver of thePDFObj is missing value then
+			setTargetDriver(thePDFObj)
 		end if
-		openPDF() of targetDriver
-		set targetDriver to missing value
+		openPDF(thePDFObj) of targetDriver of thePDFObj
 	end openPDF
 end script
 
@@ -193,15 +171,26 @@ on makeObj(theDviObj)
 	script PDFObj
 		property parent : theDviObj
 		property aliasIsResolved : false
+		property pdfFileName : missing value
+		property pdfPath : missing value
+		property pdfAlias : missing value
+		property fileInfo : missing value
+		
+		property targetDriver : missing value
+		property appName : missing value
+		property processName : missing value -- used for PreviewDriver
+		property windowNumber : missing value -- used for PreviewDriver
+		property pageNumber : missing value -- used for AcrobatDriver
 		
 		on setPDFObj()
-			set pdfFileName of GenericDriver to getNameWithSuffix(".pdf")
-			set pdfPath of GenericDriver to (((my workingDirectory) as Unicode text) & pdfFileName of GenericDriver)
+			set pdfFileName to getNameWithSuffix(".pdf")
+			set pdfPath to ((my workingDirectory) as Unicode text) & pdfFileName
 		end setPDFObj
 		
 		on isExistPDF()
 			try
-				setup() of GenericDriver
+				set pdfAlias to alias pdfPath
+				set fileInfo to info for pdfAlias
 				return true
 			on error
 				return false
@@ -211,11 +200,11 @@ on makeObj(theDviObj)
 		
 		on prepareDVItoPDF()
 			
-			return prepare() of PDFDriver
+			return prepare(a reference to me) of PDFDriver
 		end prepareDVItoPDF
 		
 		on openPDFFile()
-			openPDF() of PDFDriver
+			openPDF(a reference to me) of PDFDriver
 		end openPDFFile
 	end script
 	
