@@ -276,7 +276,11 @@ on doTypeSet()
 	if theTexDocObj is missing value then
 		return missing value
 	end if
-	set theDviObj to texCompile() of theTexDocObj
+	try
+		set theDviObj to texCompile() of theTexDocObj
+	on error number 1250
+		return missing value
+	end try
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	parseLogFile() of theLogFileParser
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
@@ -340,7 +344,12 @@ on quickTypesetAndPreview()
 	end if
 	
 	set compileInTerminal of theTexDocObj to false
-	set theDviObj to texCompile() of theTexDocObj
+	try
+		set theDviObj to texCompile() of theTexDocObj
+	on error number 1250
+		return
+	end try
+	
 	if theDviObj is not missing value then
 		openDVI() of theDviObj
 	end if
