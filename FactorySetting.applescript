@@ -2,9 +2,11 @@ property isChangeBackground : true
 property backgroundColor : {42858, 43841, 65535}
 property terminalOpaqueness : 58100
 property isChangeNormalText : true
-property normalTextColor : {65535, 65535, 65535}
+--property normalTextColor : {65535, 65535, 65535} -- white
+property normalTextColor : {0, 0, 0} -- black
 property isChangeBoldText : true
-property boldTextColor : {65535, 65535, 65535}
+--property boldTextColor : {65535, 65535, 65535}
+property boldTextColor : {0, 0, 0}
 property isChangeCursor : false
 property cursorColor : {21823, 21823, 21823}
 property isChangeSelection : false
