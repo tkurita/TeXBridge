@@ -111,7 +111,6 @@ on setColorsToWindow(theObject)
 			set enabled of slider "BackTransparency" to false
 		end if
 		
-		
 		if isChangeNormalText of TerminalCommander then
 			set state of button "NormalSwitch" to 1
 			set enabled of color well "NormalTextColor" to true
