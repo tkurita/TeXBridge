@@ -1,5 +1,6 @@
 global UtilityHandlers
 global PathAnalyzer
+global DefaultsManager
 
 property PDFPreviewIndex : 1 -- 1: open in Finder, 2: Preview.app, 3: Adobe Reader, 4: Acrobat
 property pdfPreviewBox : missing value
@@ -82,9 +83,9 @@ on findAdobeReaderApp()
 end findAdobeReaderApp
 
 on loadSettings()
-	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex", PDFPreviewIndex) of UtilityHandlers) as integer
-	set acrobatPath to readDefaultValue("AcrobatPath", acrobatPath) of UtilityHandlers
-	set adobeReaderPath to readDefaultValue("AdobeReaderPath", adobeReaderPath) of UtilityHandlers
+	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex") of DefaultsManager) as integer
+	set acrobatPath to readDefaultValueWith("AcrobatPath", acrobatPath) of DefaultsManager
+	set adobeReaderPath to readDefaultValueWith("AdobeReaderPath", adobeReaderPath) of DefaultsManager
 	--log "success read default value of PDFPreviewIndex"
 	if PDFPreviewIndex is 3 then
 		try
