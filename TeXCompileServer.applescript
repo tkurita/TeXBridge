@@ -400,7 +400,7 @@ on viewErrorLog(theTexDocObj, hyperlist, theCommand)
 	set docname to texFileName of theTexDocObj
 	if hyperlist is not {} then
 		tell application "mi"
-			if compileInTerminal then
+			if compileInTerminal of theTexDocObj then
 				activate
 			end if
 			set theDateText to (current date) as string
@@ -605,8 +605,9 @@ on newDviObj(theTexDocObj)
 		end openDVI
 		
 		on xdviPreview()
-			if not (isRunning("X11")) then
-				tell application "X11"
+			set x11AppName to "X11"
+			if not (isRunning(x11AppName)) then
+				tell application x11AppName
 					launch
 				end tell
 			end if
