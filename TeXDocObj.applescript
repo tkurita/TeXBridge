@@ -46,7 +46,7 @@ on makeObj(theTargetFile)
 		property texBasePath : missing value
 		property texBaseName : missing value
 		
-		property targetFileRef : theTargetFile -- a document applied tools
+		property targetFileRef : theTargetFile -- a document applied tools. alias class
 		property targetParagraph : missing value
 		
 		property logFileRef : missing value

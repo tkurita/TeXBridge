@@ -156,7 +156,7 @@ on prepareTypeSet()
 	set eQ to localized string "endQuote"
 	
 	set theTexDocObj to checkmifiles with saving
-	log "end of checkmifiles in prepareTypeSet"
+	--log "end of checkmifiles in prepareTypeSet"
 	if not checkLogFileStatus() of theTexDocObj then
 		set theMessage to textALogfile & return & sQ & (logFileRef of theTexDocObj) & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
 		showMessageOnmi(theMessage) of MessageUtility
@@ -252,11 +252,11 @@ on doTypeSet()
 		return missing value
 	end if
 	set theDviObj to texCompile() of theTexDocObj
-	
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	parseLogFile() of theLogFileParser
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
+	updateReferencePalette(theTexDocObj)
 	return theDviObj
 end doTypeSet
 
@@ -277,6 +277,28 @@ on dviPreview()
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
 end dviPreview
+
+on updateReferencePalette(theTexDocObj)
+	try
+		tell user defaults
+			set visibleRefPalette to contents of default entry "visibleRefPalette"
+		end tell
+	on error
+		return
+	end try
+	if visibleRefPalette then
+		tell main bundle
+			set refPalettePath to path for resource "ReferencePalette" extension "app"
+		end tell
+		set theFileRef to texFileRef of theTexDocObj
+		--log "call rebuildLabelsFromAux"
+		tell application ((POSIX file refPalettePath) as Unicode text)
+			ignoring application responses
+				open {commandID:"rebuildLabelsFromAux", argument:theFileRef}
+			end ignoring
+		end tell
+	end if
+end updateReferencePalette
 
 on quickTypesetAndPreview()
 	try
@@ -302,7 +324,7 @@ on quickTypesetAndPreview()
 	parseLogFile() of theLogFileParser
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
-	
+	updateReferencePalette(theTexDocObj)
 end quickTypesetAndPreview
 
 on typesetAndPreview()

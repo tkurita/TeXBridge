@@ -2,18 +2,21 @@ global yenmark
 global PathConverter
 
 (*
+---debug code
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 property PathConverter : load script file (LibraryFolder & "PathConverter")
 property yenmark : ASCII character 92
+global logTree -- for debug
+global loglogTree -- for debug
+		
 on run
 	debug()
 end run
-
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:制御:My ラプラス変換:LaplaceTransform.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:制御:My ラプラス変換:LaplaceTransform" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:制御:伝達関数:transferfunction.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:制御:伝達関数:transferfunction" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -24,6 +27,8 @@ on debug()
 	--theLogFileParser
 	
 end debug
+--end debug code
+
 *)
 
 on makeObj(theTexDocObj)
@@ -40,8 +45,6 @@ on makeObj(theTexDocObj)
 		--private property
 		property logtext : missing value
 		property nLine : missing value
-		--global logTree -- for debug
-		--global loglogTree -- for debug
 		
 		on getLogText()
 			set logtext to (read my logFileRef)
@@ -70,6 +73,7 @@ on makeObj(theTexDocObj)
 			
 			repeat with ith from 2 to nItem
 				set theLogItem to item ith of theLogTree
+				--log theLogItem
 				--set theClass to class of theItem
 				set theResult to isThisError(theLogTree, nItem, ith)
 				set ith to newPosition of theResult
@@ -85,6 +89,7 @@ on makeObj(theTexDocObj)
 							set theErrorRecord to theErrorRecord & {paragraph:lineNumber of theLogItem}
 						end try
 					end using terms from
+					
 					set end of hyperlist to theErrorRecord
 				end if
 			end repeat
@@ -164,6 +169,14 @@ on makeObj(theTexDocObj)
 				set theLogContent to logContent of theLogItem
 			end if
 			
+			try
+				if length of theLogContent is less than 1 then
+					return {newPosition:currentPos, errorRecord:hyperrec}
+				end if
+			on error
+				return {newPosition:currentPos, errorRecord:hyperrec}
+			end try
+			
 			if (theLogContent starts with "!") then
 				set isNoError to false
 				set errMsg to theLogContent
@@ -172,6 +185,7 @@ on makeObj(theTexDocObj)
 				repeat while (thePos < nItem)
 					set thePos to thePos + 1
 					set theLogItem to item thePos of theLogTree
+					set theLogContent to logContent of theLogItem
 					if theLogContent starts with "l." then
 						set tmpstr to text 3 thru -1 of theLogContent
 						set errpn to (first word of tmpstr) as integer

@@ -33,6 +33,7 @@ on importScript(scriptName)
 end importScript
 
 on initialize()
+	--log "start initialize"
 	if not isLaunched then
 		set MessageUtility to importScript("MessageUtility")
 		
@@ -111,6 +112,8 @@ end launched
 
 on open theCommandID
 	--display dialog "open"
+	--initialize()
+	
 	if theCommandID is "typesetOnly" then
 		doTypeSet() of TeXCompileObj
 	else if theCommandID is "typesetAndPreview" then
@@ -142,6 +145,8 @@ on open theCommandID
 		call method "showHelp:"
 	else if theCommandID is "ShowToolPalette" then
 		showToolPalette()
+	else if theCommandID is "ShowRefPalette" then
+		showRefPalette()
 	else if theCommandID starts with "." then
 		openOutputHadler(theCommandID) of TeXCompileObj
 	end if
@@ -192,6 +197,8 @@ on choose menu item theObject
 		show window "Setting"
 	else if theName is "ShowToolPalette" then
 		showToolPalette()
+	else if theName is "ShowRefPalette" then
+		showRefPalette()
 	end if
 end choose menu item
 
@@ -204,8 +211,8 @@ end will close
 
 on will finish launching theObject
 	--activate
-	--display dialog "will finish launch"
 	initialize()
+	--display dialog "will finish launch"
 end will finish launching
 
 (* read and write defaults ===============================================*)
@@ -257,3 +264,15 @@ on showToolPalette()
 		launch
 	end tell
 end showToolPalette
+
+on showRefPalette()
+	tell main bundle
+		set refPalettePath to path for resource "ReferencePalette" extension "app"
+	end tell
+	ignoring application responses
+		tell application ((POSIX file refPalettePath) as Unicode text)
+			--launch
+			open {commandID:"openRefPalette"}
+		end tell
+	end ignoring
+end showRefPalette
