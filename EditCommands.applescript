@@ -74,7 +74,7 @@ on openParentFile()
 		set noParentFile to localized string "noParentFile"
 		set sQ to localized string "startQuote"
 		set eQ to localized string "endQuote"
-		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & dQ & space & noParentFile
+		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & eQ & space & noParentFile
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
 end openParentFile
