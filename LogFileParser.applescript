@@ -1,17 +1,16 @@
---property yenmark : ASCII character 92
 global yenmark
 
-property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 global PathConverter
---property PathConverter : load script file (LibraryFolder & "PathConverter")
---property valueMonitor : missing value
 
-(* 
+(*
+property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
+property PathConverter : load script file (LibraryFolder & "PathConverter")
+property yenmark : ASCII character 92
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:サンプル:sample 3:sample.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:サンプル:sample 3:sample" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:2004.07 フィードバック試験:入射エネルギーと捕獲軌道:CaputureOrbit(invalid).log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:2004.07 フィードバック試験:入射エネルギーと捕獲軌道:CaputureOrbit(invalid)" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -22,7 +21,7 @@ on debug()
 	--theLogFileParser
 	
 end debug
- *)
+*)
 
 on makeObj(theTexDocObj)
 	script LogFileParser
@@ -37,7 +36,7 @@ on makeObj(theTexDocObj)
 		--private property
 		property logtext : missing value
 		property nLine : missing value
-		global logTree -- for debug
+		--global logTree -- for debug
 		
 		on getLogText()
 			set logtext to (read my logFileRef)
@@ -47,8 +46,9 @@ on makeObj(theTexDocObj)
 		on parseLogFile()
 			getLogText()
 			set linePosition to skipHeader()
-			set logTree to {}
-			set {linePosition, charPosition} to parseBody(logTree, linePosition, 2)
+			set theParagraph to text 2 thru -1 of (paragraph linePosition of logtext)
+			set logTree to {theParagraph}
+			set {linePosition, charPosition} to parseBody(logTree, linePosition + 1, 1)
 			parseFooter(logTree, linePosition, charPosition)
 			setHFSoriginPath(my texBasePath) of PathConverter
 			findErrors(logTree)
@@ -307,6 +307,9 @@ on makeObj(theTexDocObj)
 		end parseBody
 		
 		on isSpecialLine(currentList, theParagraph, linePos)
+			local theParagraph
+			
+			--log theParagraph
 			if theParagraph starts with "LaTeX Font Info:" then
 				--skip this line
 				return linePos + 1
@@ -336,6 +339,20 @@ on makeObj(theTexDocObj)
 					set linePos to linePos + 1
 				end repeat
 				-- add to current list
+				(*
+			else if theParagraph starts with "(" then
+				if (theParagraph ends with ".tex") then
+					set theParagraph to text 2 thru -1 of theParagraph
+					-- add to current list
+				else if (theParagraph ends with ".sty") then
+					log "sty file : " & theParagraph
+					set theParagraph to text 2 thru -1 of theParagraph
+					log theParagraph
+				else
+					--parse char by char
+					return linePos
+				end if
+				*)
 			else if theParagraph starts with yenmark then
 				--skip this line
 				return linePos + 1
