@@ -7,8 +7,8 @@ global texCommandsBox
 
 property dvipdfmxCommand : "/usr/local/bin/dvipdfmx"
 property dviViewCommand : "xdvi"
+property DVIPreviewMode : 1
 
-property usexdvi : false
 property dviPreviewBox : missing value
 
 on setSettingToWindow()
@@ -18,23 +18,21 @@ on setSettingToWindow()
 	
 	tell dviPreviewBox
 		set contents of text field "dviViewCommand" to dviViewCommand
-		if usexdvi then
-			set state of cell "OpenInFinder" of matrix "PreviewerMode" to off state
-			set state of cell "UseXdvi" of matrix "PreviewerMode" to on state
-		else
-			set state of cell "UseXdvi" of matrix "PreviewerMode" to off state
-			set state of cell "OpenInFinder" of matrix "PreviewerMode" to on state
-		end if
+		set current row of matrix "PreviewerMode" to DVIPreviewMode
 	end tell
 end setSettingToWindow
 
 on loadSettings()
+	--log "start loadSettings of DVIObj"
 	--commands
 	set dvipdfmxCommand to readDefaultValue("dvipdfmx", dvipdfmxCommand) of UtilityHandlers
 	
 	--DVI Previewer
-	set usexdvi to readDefaultValue("UseXdvi", usexdvi) of UtilityHandlers
+	set DVIPreviewMode to (readDefaultValue("DVIPreviewMode", DVIPreviewMode) of UtilityHandlers) as integer
 	set dviViewCommand to readDefaultValue("dviView", dviViewCommand) of UtilityHandlers
+	
+	setDVIDriver()
+	--log "end of loadSettings of DVIObj"
 end loadSettings
 
 on writeSettings()
@@ -43,7 +41,7 @@ on writeSettings()
 		set contents of default entry "dvipdfmx" to dvipdfmxCommand
 		--DVI previewer
 		set contents of default entry "dviView" to dviViewCommand
-		set contents of default entry "UseXdvi" to usexdvi
+		set contents of default entry "DVIPreviewMode" to DVIPreviewMode
 	end tell
 end writeSettings
 
@@ -54,11 +52,105 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	
 	tell dviPreviewBox
 		set dviViewCommand to contents of text field "dviViewCommand"
-		set usexdvi to ((state of cell "UseXdvi" of matrix "PreviewerMode") is on state)
+		--set usexdvi to ((state of cell "UseXdvi" of matrix "PreviewerMode") is on state)
+		set DVIPreviewMode to current row of matrix "PreviewerMode"
 	end tell
 	
 	writeSettings()
 end saveSettingsFromWindow
+
+script XdviDriver
+	on openDVI(theDviObj)
+		set x11AppName to "X11"
+		if not (isRunning(x11AppName) of UtilityHandlers) then
+			tell application x11AppName
+				launch
+			end tell
+		end if
+		
+		getSrcSpecialFlag() of theDviObj
+		set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
+		set dviFileName to getNameWithSuffix(".dvi") of theDviObj
+		
+		if isSrcSpecial of theDviObj then
+			if hasParentFile of theDviObj then
+				setPOSIXoriginPath(POSIX path of texFileRef of theDviObj) of PathConverter
+				set sourceFile to getRelativePath of PathConverter for (POSIX path of targetFileRef of theDviObj)
+			else
+				set sourceFile to texFileName of theDviObj
+			end if
+			
+			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (targetParagraph of theDviObj) & space & sourceFile & "' '" & dviFileName & "' &"
+			doCommands of TerminalCommander for allCommand without activation
+		else
+			try
+				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
+			on error errMsg number 1
+				set pid to ""
+			end try
+			
+			if pid is "" then
+				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
+				doCommands of TerminalCommander for allCommand with activation
+			else
+				set pid to word 1 of pid
+				do shell script "kill -USR1" & space & pid --reread
+			end if
+		end if
+	end openDVI
+end script
+
+script SimpleDriver
+	on openDVI(theDviObj)
+		openOutputFile(".dvi") of theDviObj
+	end openDVI
+end script
+
+script MxdviDriver
+	on openDVI(theDviObj)
+		--log "start openDVI of MxdviDriver"
+		try
+			tell application "Finder"
+				set mxdviApp to (application file id "Mxdv") as alias
+			end tell
+		on error errMsg number errNum
+			--display dialog errNum & return & errMsg
+			tell application "Mxdvi"
+				launch
+			end tell
+			tell application "Finder"
+				set mxdviApp to (application file id "Mxdv") as alias
+			end tell
+		end try
+		getSrcSpecialFlag() of theDviObj
+		--log "success getSrcSpecialFlag"
+		if isSrcSpecial of theDviObj then
+			set dviFileName to getNameWithSuffix(".dvi") of theDviObj
+			--log "success getNameWithSuffix"
+			set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
+			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
+			set allCommand to cdCommand & comDelim & mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & " '" & dviFileName & "' &"
+			doCommands of TerminalCommander for allCommand without activation
+		else
+			tell application (mxdviApp as Unicode text)
+				open dviFileRef of theDviObj
+			end tell
+		end if
+	end openDVI
+end script
+
+
+property DVIDriver : MxdviDriver
+
+on setDVIDriver()
+	if DVIPreviewMode is 1 then
+		set DVIDriver to SimpleDriver
+	else if DVIPreviewMode is 2 then
+		set DVIDriver to MxdviDriver
+	else if DVIPreviewMode is 3 then
+		set DVIDriver to XdviDriver
+	end if
+end setDVIDriver
 
 on makeObj(theTexDocObj)
 	script dviObj
@@ -68,10 +160,6 @@ on makeObj(theTexDocObj)
 		
 		on getModDate()
 			return modification date of (info for dviFileRef)
-			(*tell application "System Events"
-				return modification date of dviFileRef
-			end tell
-			*)
 		end getModDate
 		
 		on setSrcSpecialFlag()
@@ -98,52 +186,8 @@ on makeObj(theTexDocObj)
 		end getSrcSpecialFlag
 		
 		on openDVI()
-			if usexdvi then
-				xdviPreview()
-			else
-				openOutputFile(".dvi")
-			end if
+			openDVI(a reference to me) of DVIDriver
 		end openDVI
-		
-		on xdviPreview()
-			set x11AppName to "X11"
-			if not (isRunning(x11AppName) of UtilityHandlers) then
-				tell application x11AppName
-					launch
-				end tell
-			end if
-			
-			getSrcSpecialFlag()
-			set cdCommand to "cd " & (quoted form of POSIX path of my workingDirectory)
-			set dviFileName to getNameWithSuffix(".dvi")
-			
-			if my isSrcSpecial then
-				if my hasParentFile then
-					setPOSIXoriginPath(POSIX path of my texFileRef) of PathConverter
-					set sourceFile to getRelativePath of PathConverter for (POSIX path of my targetFileRef)
-				else
-					set sourceFile to my texFileName
-				end if
-				
-				set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (my targetParagraph) & space & sourceFile & "' '" & dviFileName & "' &"
-				doCommands of TerminalCommander for allCommand without activation
-			else
-				try
-					set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
-				on error errMsg number 1
-					set pid to ""
-				end try
-				
-				if pid is "" then
-					set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
-					doCommands of TerminalCommander for allCommand with activation
-				else
-					set pid to word 1 of pid
-					do shell script "kill -USR1" & space & pid --reread
-				end if
-			end if
-			
-		end xdviPreview
 		
 		on dviToPDF()
 			--log "start dviToPDF"
