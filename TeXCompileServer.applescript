@@ -3,6 +3,7 @@ property ShellUtils : load script file (LibraryFolder & "ShellUtils")
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
 property TerminalCommander : load script file (LibraryFolder & "TerminalCommander")
 property PathConverter : load script file (LibraryFolder & "PathConverter")
+property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary")
 property StringEngine : PathConverter
 
 property lifeTime : missing value -- second
@@ -11,25 +12,26 @@ property showToolPaletteWhenLaunched : true
 property showRefPaletteWhenLaunched : false
 
 property FreeTime : 0
-property texCommandsBox : missing value
 property miAppRef : missing value
 
-(* shared constants*)
+(*=== shared constants ===*)
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
 property comDelim : return
 property sQ : missing value
 property eQ : missing value
 
+(*=== dynamically loaded script objects ===*)
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
 property DefaultsManager : missing value
 property WindowController : missing value
 property ToolPaletteController : missing value
-
+property AlertManager : missing value
 property SettingWindowController : missing value
 property LogFileParser : missing value
+property ReplaceInputObj : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
 property PDFObj : missing value
@@ -71,6 +73,7 @@ on initialize()
 	
 	showStartupMessage("Loading Scripts ...")
 	set UtilityHandlers to importScript("UtilityHandlers")
+	set AlertManager to importScript("AlertManager")
 	set LogFileParser to importScript("LogFileParser")
 	set EditCommands to importScript("EditCommands")
 	set PDFObj to importScript("PDFObj")
@@ -93,7 +96,6 @@ on initialize()
 	loadSettings() of dviObj
 	
 	--log "start of initializeing PDFObj"
-	--log "loadSettings() of PDFObj"
 	loadSettings() of PDFObj
 	
 	--log "start of initilizing TerminalSettingObj"
@@ -116,15 +118,17 @@ on launched theObject
 	end if
 	if showRefPaletteWhenLaunched then
 		showStartupMessage("opening Reference Palette ...")
-		showRefPalette()
+		showRefPalette() of EditCommands
 	end if
 	hide window "Startup"
 	
 	(*debug code*)
+	--openRelatedFile of EditCommands without revealOnly
+	--open "replaceInput"
 	--openWindow() of ToolPaletteController
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--dviPreview() of TeXCompileObj
-	--openWindow() of SettingWindowController
+	openWindow() of SettingWindowController
 	--pdfPreview() of TeXCompileObj
 	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
@@ -154,13 +158,18 @@ on open theObject
 		if theCommandID is "updateVisibleRefPalette" then
 			set visibleRefPalette of TeXCompileObj to argument of theObject
 		else if theCommandID is "reverseSearch" then
-			doReverseSearch(argument of theObject)
+			doReverseSearch(argument of theObject) of EditCommands
 		end if
 		
 	else
 		set theCommandID to theObject
 		
-		if theCommandID is "typesetOnly" then
+		if theCommandID is "replaceInput" then
+			if ReplaceInputObj is missing value then
+				set ReplaceInputObj to importScript("ReplaceInputObj")
+			end if
+			do() of ReplaceInputObj
+		else if theCommandID is "typesetOnly" then
 			doTypeSet() of TeXCompileObj
 		else if theCommandID is "typesetAndPreview" then
 			typesetAndPreview() of TeXCompileObj
@@ -196,7 +205,7 @@ on open theObject
 			--showToolPalette()
 			openWindow() of ToolPaletteController
 		else if theCommandID is "ShowRefPalette" then
-			showRefPalette()
+			showRefPalette() of EditCommands
 		else if theCommandID starts with "." then
 			openOutputHadler(theCommandID) of TeXCompileObj
 		else if theCommandID ends with ".tex" then
@@ -226,34 +235,22 @@ end idle
 on clicked theObject
 	--log "start clicked"
 	set FreeTime to 0
-	if class of theObject is button cell then
-		buttoncellClicked(theObject)
+	set theTag to tag of theObject
+	if theTag is 1 then
+		controlClicked(theObject) of TerminalSettingObj
+	else if theTag is 3 then
+		controlClicked(theObject) of dviObj
+	else if theTag is 4 then
+		controlClicked(theObject) of PDFObj
+	else if theTag is 5 then
+		(* 5: Other Setting *)
+		controlClicked(theObject) of SettingWindowController
+	else if theTag is 6 then
+		controlClicked(theObject) of ReplaceInputObj
 	else
 		controlClicked(theObject)
 	end if
 end clicked
-
-on buttoncellClicked(theObject)
-	(* I can not get window property from button cell *)
-	set theName to name of theObject
-	if theName is "AdobeReader" then
-		try
-			findAdobeReaderApp() of PDFObj
-		on error errMsg number -128
-			setSettingToWindow() of PDFObj
-			set theMessage to localized string "PDFPreviewIsInvalid"
-			showMessage(theMessage) of MessageUtility
-		end try
-	else if theName is "Acrobat" then
-		try
-			findAcrobatApp() of PDFObj
-		on error errMsg number -128
-			setSettingToWindow() of PDFObj
-			set theMessage to localized string "PDFPreviewIsInvalid"
-			showMessage(theMessage) of MessageUtility
-		end try
-	end if
-end buttoncellClicked
 
 on controlClicked(theObject)
 	set theName to name of theObject
@@ -263,17 +260,8 @@ on controlClicked(theObject)
 	if windowName is "ToolPalette" then
 		open theName
 	else
-		if theName is "OKButton" then
-			saveSettingsFromWindow() of SettingWindowController
-			closeWindow() of SettingWindowController
-		else if theName is "CancelButton" then
-			closeWindow() of SettingWindowController
-		else if theName is "ApplyColors" then
-			applyColorsToTerminal() of TerminalSettingObj
-		else if theName is "RevertColors" then
-			revertColorsToTerminal() of TerminalSettingObj
-		else if theName is "Save" then
-			saveSettingsFromWindow() of SettingWindowController
+		if theName is "RevertToDefault" then
+			RevertToDefault() of SettingWindowController
 		else if theName is "usemi" then
 			setmiclient() of SettingWindowController
 		else if theName is "saveMxdviEditor" then
@@ -291,7 +279,7 @@ on choose menu item theObject
 	else if theName is "ShowToolPalette" then
 		openWindow() of ToolPaletteController
 	else if theName is "ShowRefPalette" then
-		showRefPalette()
+		showRefPalette() of EditCommands
 	end if
 end choose menu item
 
@@ -317,7 +305,12 @@ on should zoom theObject proposed bounds proposedBounds
 end should zoom
 
 on will resize theObject proposed size proposedSize
-	return size of theObject
+	set theName to name of theObject
+	if theName is "ToolPalette" then
+		return size of theObject
+	else
+		return proposedSize
+	end if
 end will resize
 
 on will finish launching theObject
@@ -329,8 +322,16 @@ end will finish launching
 
 on awake from nib theObject
 	set theName to name of theObject
-	if theName is "ToolPalette" then
-		set hides when deactivated of theObject to false
+	set theClass to class of theObject
+	if theClass is panel then
+		if theName is "ToolPalette" then
+			set hides when deactivated of theObject to false
+		end if
+	else if theClass is data source then
+		tell theObject
+			make new data column at the end of the data columns with properties {name:"keyword"}
+			make new data column at the end of the data columns with properties {name:"replace"}
+		end tell
 	end if
 end awake from nib
 
@@ -353,6 +354,38 @@ on will open theObject
 	end if
 end will open
 
+on selected tab view item theObject tab view item tabViewItem
+	selectedTab(tabViewItem) of SettingWindowController
+end selected tab view item
+
+on end editing theObject
+	set FreeTime to 0
+	set theTag to tag of theObject
+	if theTag is 1 then
+		endEditing(theObject) of TerminalSettingObj
+	else if theTag is 2 then
+		endEditing(theObject) of TexDocObj
+	else if theTag is 3 then -- dviObj setting
+		endEditing(theObject) of dviObj
+	else if theTag is 4 then
+		endEditing(theObject) of TeXCompileObj
+	else if theTag is 5 then -- other setting
+		endEditing(theObject) of SettingWindowController
+	end if
+end end editing
+
+on selection changed theObject
+	selectionChanged(theObject) of ReplaceInputObj
+end selection changed
+
+on should selection change theObject
+	return shouldSelectionChange(theObject) of ReplaceInputObj
+end should selection change
+
+on alert ended theObject with reply withReply
+	transferToOwner of AlertManager for withReply from theObject
+end alert ended
+
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
 end showStartupMessage
@@ -365,27 +398,6 @@ on loadSettings()
 	end tell
 end loadSettings
 
-on showRefPalette()
-	tell main bundle
-		set refPalettePath to path for resource "ReferencePalette" extension "app"
-	end tell
-	ignoring application responses
-		tell application ((POSIX file refPalettePath) as Unicode text)
-			--launch
-			open {commandID:"openRefPalette"}
-		end tell
-	end ignoring
-end showRefPalette
 
-on doReverseSearch(targetLine)
-	tell application "System Events"
-		tell application process "mi"
-			keystroke "b" using command down
-		end tell
-	end tell
-	--ignoring application responses
-	tell application "mi"
-		select paragraph targetLine of first document
-	end tell
-	--end ignoring
-end doReverseSearch
+
+
