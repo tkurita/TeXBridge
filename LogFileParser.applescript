@@ -8,15 +8,15 @@ property PathConverter : load script file (LibraryFolder & "PathConverter")
 property yenmark : ASCII character 92
 global logTree -- for debug
 global loglogTree -- for debug
-		
+
 on run
 	debug()
 end run
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:制御:伝達関数:transferfunction.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:制御:伝達関数:transferfunction" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:シンクロトロン振動:SynchrotronFrequency.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:シンクロトロン振動:SynchrotronFrequency" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -28,8 +28,8 @@ on debug()
 	
 end debug
 --end debug code
-
 *)
+
 
 on makeObj(theTexDocObj)
 	script LogFileParser
@@ -215,10 +215,11 @@ on makeObj(theTexDocObj)
 				end if
 				
 			else if theLogContent contains "Warning:" then
-				
 				if theLogContent does not end with "." then
 					set currentPos to currentPos + 1
-					set theLogContent to theLogContent & (logContent of item currentPos of theLogTree)
+					if class of item currentPos of theLogTree is record then
+						set theLogContent to theLogContent & (logContent of item currentPos of theLogTree)
+					end if
 				end if
 				
 				if theLogContent contains "Label(s) may have changed. Rerun to get cross-references right." then
@@ -375,9 +376,17 @@ on makeObj(theTexDocObj)
 			else if theParagraph starts with "LaTeX Info" then
 				--skip this line
 				return linePos + 1
-			else if theParagraph starts with "(Font)" then
+				--else if theParagraph starts with "LaTeX Warning:" then
 				--add to currentList
-			else if theParagraph starts with "LaTeX Warning:" then
+			else if theParagraph contains "Warning:" then
+				set theLine to theParagraph
+				repeat while (theLine does not end with ".")
+					set linePos to linePos + 1
+					set theLine to theLine & (paragraph linePos of logtext)
+				end repeat
+				set end of currentList to {logContent:theLine, lineNumber:linePos}
+				return linePos + 1
+			else if theParagraph starts with "(Font)" then
 				--add to currentList
 			else if theParagraph starts with "File:" then
 				if (length of theParagraph is greater than or equal to 79) then
@@ -396,20 +405,7 @@ on makeObj(theTexDocObj)
 					set linePos to linePos + 1
 				end repeat
 				-- add to current list
-				(*
-			else if theParagraph starts with "(" then
-				if (theParagraph ends with ".tex") then
-					set theParagraph to text 2 thru -1 of theParagraph
-					-- add to current list
-				else if (theParagraph ends with ".sty") then
-					log "sty file : " & theParagraph
-					set theParagraph to text 2 thru -1 of theParagraph
-					log theParagraph
-				else
-					--parse char by char
-					return linePos
-				end if
-				*)
+				
 			else if theParagraph starts with yenmark then
 				--skip this line
 				return linePos + 1
