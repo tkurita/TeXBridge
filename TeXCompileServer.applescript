@@ -6,6 +6,9 @@ property PathConverter : load script file (LibraryFolder & "PathConverter")
 property StringEngine : PathConverter
 
 property lifeTime : 60 -- minutes
+property showToolPaletteWhenLaunched : true
+property showRefPaletteWhenLaunched : false
+
 property FreeTime : 0
 property settingWindowBounds : {}
 property texCommandsBox : missing value
@@ -112,6 +115,12 @@ on launched theObject
 	--checkmifiles with saving
 	--log "end of launched"
 	(*end of debug code*)
+	if showToolPaletteWhenLaunched then
+		showToolPalette()
+	end if
+	if showRefPaletteWhenLaunched then
+		showRefPalette()
+	end if
 end launched
 
 on open theCommandID
@@ -177,10 +186,27 @@ on will open theObject
 	setSettingToWindow() of dviObj
 	set settingWindow to theObject
 	
+	--The other setting
+	set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of theObject
+	set contents of text field "LifeTime" of theOtherSettingTab to lifeTime as integer
+	if showToolPaletteWhenLaunched then
+		set state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab to 1
+	else
+		set state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab to 0
+	end if
+	
+	if showRefPaletteWhenLaunched then
+		set state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab to 1
+	else
+		set state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab to 0
+	end if
+	
 	tell theObject
-		set contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" to lifeTime as integer
+		--MxdviEditor
 		set currentMxdviEditor to do shell script "defaults read Mxdvi MxdviEditor"
 		set contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" to currentMxdviEditor
+		
+		--set window position
 		if settingWindowBounds is not {} then
 			set bounds to settingWindowBounds
 		else
@@ -264,13 +290,19 @@ end will finish launching
 (* read and write defaults ===============================================*)
 
 on loadSettings()
-	set lifeTime to readDefaultValue("LifeTime", lifeTime) of UtilityHandlers
-	set settingWindowBounds to readDefaultValue("SettingWindowBounds", settingWindowBounds) of UtilityHandlers
+	tell UtilityHandlers
+		set lifeTime to readDefaultValue("LifeTime", lifeTime) of it
+		set settingWindowBounds to readDefaultValue("SettingWindowBounds", settingWindowBounds) of it
+		set showToolPaletteWhenLaunched to readDefaultValue("ShowToolPaletteWhenLaunched", showToolPaletteWhenLaunched) of it
+		set showRefPaletteWhenLaunched to readDefaultValue("ShowRefPaletteWhenLaunched", showRefPaletteWhenLaunched) of it
+	end tell
 end loadSettings
 
 on writeSettings()
 	tell user defaults
 		set contents of default entry "LifeTime" to lifeTime
+		set contents of default entry "ShowToolPaletteWhenLaunched" to showToolPaletteWhenLaunched
+		set contents of default entry "ShowRefPaletteWhenLaunched" to showRefPaletteWhenLaunched
 	end tell
 end writeSettings
 (* end : read and write defaults ===============================================*)
@@ -287,12 +319,14 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	--log "success saveSettingsFromWindow() of TexDocObj"
 	saveSettingsFromWindow() of dviObj
 	--log "success saveSettingsFromWindow() of dviObj"
-	
-	set theLifeTime to (contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of window "Setting") as string
+	set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of window "Setting"
+	set theLifeTime to (contents of text field "LifeTime" of theOtherSettingTab) as string
 	
 	if theLifeTime is not "" then
 		set lifeTime to theLifeTime as integer
 	end if
+	set showToolPaletteWhenLaunched to (state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab is 1)
+	set showRefPaletteWhenLaunched to (state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab is 1)
 	writeSettings()
 end saveSettingsFromWindow
 (* end: handlers get values from window ===============================================*)
