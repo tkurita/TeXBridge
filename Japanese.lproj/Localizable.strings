@@ -11,6 +11,7 @@
 "Cancel" = "キャンセル";
 "Close" = "閉じる";
 
+/*** TeXCompileObj ***/
 /*doTypeSet*/
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 
@@ -30,7 +31,9 @@
 "doYouSave" = "実行前に保存しますか？";
 "isInvalid" = "は正しい設定ではありません。";
 "noDocument" = "mi で開かれているファイルはありません。";
+"invalidMode" = "書類 “$1” のモード設定が正しくありません。";
 
+/*** ***/
 /*viewErrorLog*/
 "group" = "グループ";
 
@@ -59,4 +62,11 @@
 "whereisAdobeReader" = "Adobe Reader を選択して下さい。";
 "PDFPreviewIsInvalid" = "PDF プレビューアの設定は無効です。";
 
-
+/*ReolaceInputObj*/
+"keywordiIsBlank" = "キーワードが設定されていません。";
+"replaceIsBlank" = "置換テキストが設定されていません。";
+"keywordStillDefined" = "キーワード “$1” は既に定義されています。"; 
+"MathCharacters" = "数式文字";
+"Greek" = "ギリシャ文字";
+"Arrows" = "矢印";
+"Others" = "その他";
