@@ -511,7 +511,7 @@ on checkmifiles given saving:savingFlag
 			--tell me to log "theTexFile : " & theTexFile
 			
 			if theTexFile ends with ":" then
-				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsInvalid
+				set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
 				showMessageOnmi(theMessage) of MessageUtility
 				error "ParentFile is invalid." number 1230
 			end if

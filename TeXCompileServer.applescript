@@ -53,13 +53,13 @@ on initilize()
 		set TeXCompileObj to importScript("TeXCompileObj")
 		set texCommandsBox of TeXCompileObj to box "TeXCommands" of window "Setting"
 		set dviPreviewBox of TeXCompileObj to box "DVIPreview" of window "Setting"
-		loadSettings(FactorySetting) of TeXCompileObj
+		loadSettings() of TeXCompileObj
 		
 		set TerminalSettingObj to importScript("TerminalSettingObj")
 		set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
-		loadSettings() of TerminalSettingObj
+		loadSettings(FactorySetting) of TerminalSettingObj
 		
-		loadSettings(FactorySetting)
+		loadSettings()
 		center window "Setting"
 		set isLaunched to true
 	end if
