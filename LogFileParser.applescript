@@ -15,8 +15,8 @@ end run
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:ƒVƒ“ƒNƒƒgƒƒ“:ƒVƒ“ƒNƒƒgƒƒ“U“®:SynchrotronFrequency.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:ƒVƒ“ƒNƒƒgƒƒ“:ƒVƒ“ƒNƒƒgƒƒ“U“®:SynchrotronFrequency" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:‰Á‘¬Ší•×‹­‰ï:—\K:2.19 ˆÊ‘ŠU“®:PhaseOscillation.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:‰Á‘¬Ší•×‹­‰ï:—\K:2.19 ˆÊ‘ŠU“®:PhaseOscillation" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -114,7 +114,7 @@ on makeObj(theTexDocObj)
 				set theErrorRecord to errorRecord of theResult
 				if theErrorRecord is not {} then
 					if not isTaragetFileResolved then -- already resolved
-						set theTargetFile to resolveTargetFile(theTargetFile)
+						set theTargetFile to resolveTargetFile(theTargetFile, item 2 of theLogTree)
 						set isTaragetFileResolved to true
 					end if
 					try -- some records do not have "file" label
@@ -125,23 +125,12 @@ on makeObj(theTexDocObj)
 			end repeat
 		end findErrors
 		
-		on resolveTargetFile(theLogItem)
+		on resolveTargetFile(theLogItem, theNextItem)
 			set theTargetFile to logContent of theLogItem
 			if class of theTargetFile is alias then
 				return theTargetFile
 			end if
-			
-			repeat with theExtension in texFileExtensions
-				if theTargetFile ends with theExtension then
-					exit repeat
-				else
-					set endOfPath to offset of (theExtension & space) in theTargetFile
-					if endOfPath is not 0 then
-						set theTargetFile to text 1 thru (endOfPath + (length of theExtension) - 1) of theTargetFile
-						exit repeat
-					end if
-				end if
-			end repeat
+			set theTargetFile to checkTexFileExtensions(theTargetFile, logContent of theNextItem)
 			
 			if (theTargetFile starts with "./") or (theTargetFile starts with "../") then
 				set theTargetFile to getHFSfromPOSIXpath of PathConverter for theTargetFile
@@ -152,6 +141,28 @@ on makeObj(theTexDocObj)
 			end if
 			return theTargetFile
 		end resolveTargetFile
+		
+		on checkTexFileExtensions(theTargetFile, theNextLine)
+			repeat with theExtension in texFileExtensions
+				if theTargetFile ends with theExtension then
+					return theTargetFile
+				end if
+			end repeat
+			
+			repeat with theExtension in texFileExtensions
+				set endOfPath to offset of (theExtension & space) in theTargetFile
+				if endOfPath is not 0 then
+					set theTargetFile to text 1 thru (endOfPath + (length of theExtension) - 1) of theTargetFile
+					return theTargetFile
+				end if
+			end repeat
+			
+			if theNextLine is not missing value then
+				return checkTexFileExtensions(theTargetFile & theNextLine, missing value)
+			else
+				return theTargetFile
+			end if
+		end checkTexFileExtensions
 		
 		on isThisError(theLogTree, nItem, currentPos)
 			local theLogItem, theClass, errMsg, hyperrec, theLogTree
