@@ -21,6 +21,8 @@ property ebbCommand : "/usr/local/bin/ebb"
 property bibtexCommand : "/usr/local/bin/jbibtex"
 property dvipsCommand : "/usr/local/bin/dvips"
 
+property ignoringErrorList : {1200, 1210, 1220, 1230, 1240}
+
 on setSettingToWindow()
 	tell matrix "Commands" of texCommandsBox
 		set contents of cell "ebb" to ebbCommand
@@ -59,63 +61,76 @@ end saveSettingsFromWindow
 
 on checkmifiles given saving:savingFlag
 	set textADocument to localized string "aDocument"
-	set textIsNotSaved to localized string "isNotSaved"
-	set textIsNotFound to localized string "isNotFound"
-	set textIsInvalid to localized string "isInvalid"
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
-	set textIsModified to localized string "isModified"
-	set textDoYouSave to localized string "doYouSave"
+	
+	try
+		tell application "mi"
+			tell document 1
+				set theTargetFile to file
+				set theParagraph to index of paragraph 1 of selection object 1
+			end tell
+		end tell
+	on error errMsg number -1728
+		set theMessage to localized string "noDocument"
+		showMessage(theMessage) of MessageUtility
+		error "No opened documents." number 1240
+	end try
+	
+	try
+		set theTargetFile to theTargetFile as alias
+	on error
+		tell application "mi"
+			set docname to name of document 1
+		end tell
+		set textIsNotSaved to localized string "isNotSaved"
+		set theMessage to textADocument & space & sQ & docname & eQ & space & textIsNotSaved
+		showMessageOnmi(theMessage) of MessageUtility
+		error "The document is not saved." number 1200
+	end try
+	
+	set theTexDocObj to makeObj(theTargetFile) of TexDocObj
+	set targetParagraph of theTexDocObj to theParagraph
 	
 	tell application "mi"
-		tell document 1
-			set theTargetFile to file
-			set theParagraph to index of paragraph 1 of selection object 1
-		end tell
-		try
-			set theTargetFile to theTargetFile as alias
-		on error
-			set docname to name of document 1
-			set theMessage to textADocument & space & sQ & docname & eQ & space & textIsNotSaved
-			showMessageOnmi(theMessage) of MessageUtility
-			error "The document is not saved." number 1200
-		end try
-		
-		set theTexDocObj to makeObj(theTargetFile) of TexDocObj
-		set targetParagraph of theTexDocObj to theParagraph
-		
 		set firstLine to paragraph 1 of document 1
 		--tell me to log firstLine
-		if firstLine starts with "%ParentFile" then
-			set parentFile to text 13 thru -2 of firstLine
-			--tell me to log parentFile
-			if parentFile starts with ":" then
-				setHFSoriginPath(theTargetFile) of PathConverter
-				set theTexFile to getAbsolutePath of PathConverter for parentFile
-			else
-				set theTexFile to parentFile
-			end if
-			--tell me to log "theTexFile : " & theTexFile
-			
-			if theTexFile ends with ":" then
-				set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-				showMessageOnmi(theMessage) of MessageUtility
-				error "ParentFile is invalid." number 1230
-			end if
-			
-			try
-				set theTexFile to theTexFile as alias
-			on error
-				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
-				showMessageOnmi(theMessage) of MessageUtility
-				error "ParentFile is not found." number 1220
-			end try
-			
-			setTexFileRef(theTexFile) of theTexDocObj
-		end if
 	end tell
+	if firstLine starts with "%ParentFile" then
+		set parentFile to text 13 thru -2 of firstLine
+		--tell me to log parentFile
+		if parentFile starts with ":" then
+			setHFSoriginPath(theTargetFile) of PathConverter
+			set theTexFile to getAbsolutePath of PathConverter for parentFile
+		else
+			set theTexFile to parentFile
+		end if
+		--tell me to log "theTexFile : " & theTexFile
+		
+		if theTexFile ends with ":" then
+			set textIsInvalid to localized string "isInvalid"
+			set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
+			showMessageOnmi(theMessage) of MessageUtility
+			error "ParentFile is invalid." number 1230
+		end if
+		
+		try
+			set theTexFile to theTexFile as alias
+		on error
+			set textIsNotFound to localized string "isNotFound"
+			set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
+			showMessageOnmi(theMessage) of MessageUtility
+			error "ParentFile is not found." number 1220
+		end try
+		
+		setTexFileRef(theTexFile) of theTexDocObj
+	end if
+	
 	
 	if savingFlag then
+		set textDoYouSave to localized string "doYouSave"
+		set textIsModified to localized string "isModified"
+		
 		tell application "mi"
 			if modified of document 1 then
 				set docname to name of document 1
@@ -228,7 +243,7 @@ on doTypeSet()
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220, 1230} then
+		if errNum is not in ignoringErrorList then
 			showError(errNum, errMsg) of MessageUtility
 		end if
 		return missing value
@@ -267,7 +282,7 @@ on quickTypesetAndPreview()
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220, 1230} then -- "The document is not saved."
+		if errNum is not in ignoringErrorList then -- "The document is not saved."
 			showError(errNum, errMsg) of MessageUtility
 		end if
 		return
