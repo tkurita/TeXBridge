@@ -49,8 +49,7 @@ on makeObj(argument)
 				set isOpened to true
 			else
 				if isShown then
-					set main of my targetWindow to true
-					set key of my targetWindow to true
+					show targetWindow
 				end if
 			end if
 		end openWindow
