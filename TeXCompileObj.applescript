@@ -65,12 +65,12 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	writeSettings()
 end saveSettingsFromWindow
 
-on resolveParentFile(theParagraph)
+on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
 	set parentFile to text 13 thru -2 of theParagraph
 	--log parentFile
 	if parentFile starts with ":" then
-		setHFSoriginPath(parentFile) of PathConverter
+		setHFSoriginPath(theTargetFile) of PathConverter
 		set theTexFile to getAbsolutePath of PathConverter for parentFile
 	else
 		set theTexFile to parentFile
@@ -140,7 +140,7 @@ on checkmifiles given saving:savingFlag
 		end tell
 		if theParagraph starts with "%" then
 			if theParagraph starts with "%ParentFile" then
-				set theParentFile to resolveParentFile(theParagraph)
+				set theParentFile to resolveParentFile(theParagraph, theTargetFile)
 			else if theParagraph starts with "%TypesetCommand" then
 				set theTypesetCommand to text 17 thru -2 of theParagraph
 			end if
