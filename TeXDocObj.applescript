@@ -1,6 +1,7 @@
 global PathAnalyzer
 global UtilityHandlers
 global TerminalCommander
+global MessageUtility
 global dviObj
 
 property name : "TeXDocObj"
@@ -172,8 +173,9 @@ on makeObj(theTargetFile)
 						-- 1:general tex error
 						-- -1700: unknown, result can not be accept
 					else if errNum is 127 then
-						display dialog errMsg
-						return missing value
+						-- maybe comannd name or path setting is not correct
+						showError(errNum, errMsg) of MessageUtility
+						error "Typeset is not executed." number 1250
 					else
 						error errMsg number errNum
 					end if
