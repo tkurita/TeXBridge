@@ -50,18 +50,28 @@ on initilize()
 		set LogFileParser to importScript("LogFileParser")
 		set EditCommands to importScript("EditCommands")
 		set PDFObj to importScript("PDFObj")
-		
 		set TeXCompileObj to importScript("TeXCompileObj")
-		set texCommandsBox of TeXCompileObj to box "TeXCommands" of window "Setting"
-		set dviPreviewBox of TeXCompileObj to box "DVIPreview" of window "Setting"
-		loadSettings() of TeXCompileObj
+		--log "end of import library"
 		
+		set texCommandsBox of TeXCompileObj to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
+		set dviPreviewBox of TeXCompileObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+		loadSettings() of TeXCompileObj
+		--log "end of setting TeXCompileObj"
+		
+		--log "start of initilizeing PDFObj"
+		set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+		--log "loadSettings() of PDFObj"
+		loadSettings() of PDFObj
+		
+		--log "start of initilizing TerminalSettingObj"
 		set TerminalSettingObj to importScript("TerminalSettingObj")
-		set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
+		set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
 		loadSettings(FactorySetting) of TerminalSettingObj
+		--log "end of setting TerminalSettingObj"
 		
 		loadSettings()
-		center window "Setting"
+		
+		--center window "Setting"
 		set isLaunched to true
 	end if
 end initilize
@@ -134,11 +144,10 @@ end idle
 
 on will open theObject
 	setSettingToWindow() of TerminalSettingObj
-	
 	setSettingToWindow() of TeXCompileObj
-	
+	setSettingToWindow() of PDFObj
 	tell theObject
-		set contents of text field "LifeTime" to lifeTime as integer
+		set contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of theObject to lifeTime as integer
 	end tell
 end will open
 
@@ -181,16 +190,19 @@ end writeSettings
 (* handlers get values from window ===============================================*)
 on saveSettingsFromWindow() -- get all values from and window and save into preference
 	saveSettingsFromWindow() of TerminalSettingObj
+	--log "success saveSettingsFromWindow() of TerminalSettingObj"
 	saveSettingsFromWindow() of TeXCompileObj
+	--log "success saveSettingsFromWindow() of TeXCompileObj"
+	saveSettingsFromWindow() of PDFObj
+	--log "success saveSettingsFromWindow() of PDFObj"
 	
-	tell window "Setting"
-		set theLifeTime to (contents of text field "LifeTime") as string
-		if theLifeTime is not "" then
-			set lifeTime to theLifeTime as integer
-		end if
-	end tell
+	set theLifeTime to (contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of window "Setting") as string
 	
+	if theLifeTime is not "" then
+		set lifeTime to theLifeTime as integer
+	end if
 	writeSettings()
 end saveSettingsFromWindow
 (* end: handlers get values from window ===============================================*)
+
 

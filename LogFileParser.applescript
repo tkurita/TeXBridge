@@ -1,5 +1,4 @@
 global yenmark
-
 global PathConverter
 
 (*

@@ -36,7 +36,6 @@ on setSettingToWindow()
 	end tell
 	
 	tell dviPreviewBox
-		set contents of text field "dviViewCommand" to dviViewCommand
 		if usexdvi then
 			set state of cell "OpenInFinder" of matrix "PreviewerMode" to off state
 			set state of cell "UseXdvi" of matrix "PreviewerMode" to on state

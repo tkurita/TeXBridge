@@ -1,6 +1,35 @@
 global UtilityHandlers
 global PathAnalyzer
 
+property PDFPreviewIndex : 1
+property pdfPreviewBox : missing value
+property defaultProcessName : missing value
+property defaultAppName : missing value
+
+on loadSettings()
+	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex", PDFPreviewIndex) of UtilityHandlers) as integer
+	--log "success read default value of PDFPreviewIndex"
+	setPDFDriver()
+end loadSettings
+
+on writeSettings()
+	tell user defaults
+		set contents of default entry "PDFPreviewIndex" to PDFPreviewIndex
+	end tell
+end writeSettings
+
+on saveSettingsFromWindow() -- get all values from and window and save into preference	
+	--log "start of saveSettingsFromWindow of PDFObj"
+	set PDFPreviewIndex to current row of matrix "PDFPreview" of pdfPreviewBox
+	--log "success get value of PDFPreviewIndex"
+	writeSettings()
+	setPDFDriver()
+end saveSettingsFromWindow
+
+on setSettingToWindow()
+	set current row of matrix "PDFPreview" of pdfPreviewBox to PDFPreviewIndex
+end setSettingToWindow
+
 script GenericDriver
 	on prepare(thePDFObj)
 		set isPDFBusy to busy status of fileInfo of thePDFObj
@@ -167,6 +196,26 @@ end script
 
 property PDFDriver : AutoDriver
 
+on setPDFDriver()
+	--log "start setPDFDriver()"
+	if PDFPreviewIndex is 1 then
+		set PDFDriver to AutoDriver
+	else if PDFPreviewIndex is 2 then
+		--log "PreviewDriver is selected"
+		set PDFDriver to PreviewDriver
+		set defaultProcessName of PreviewDriver to "Preview"
+		set defaultAppName of PreviewDriver to "Preview"
+	else if PDFPreviewIndex is 3 then
+		set PDFDriver to PreviewDriver
+		set defaultProcessName of PreviewDriver to "Adobe Reader"
+		set defaultAppName of PreviewDriver to "Adobe Reader"
+	else if PDFPreviewIndex is 4 then
+		set PDFDriver to AcrobatDriver
+		set defaultAppName to "Acrobat"
+	end if
+	--log "end of setPDFDriver()"
+end setPDFDriver
+
 on makeObj(theDviObj)
 	script PDFObj
 		property parent : theDviObj
@@ -177,8 +226,8 @@ on makeObj(theDviObj)
 		property fileInfo : missing value
 		
 		property targetDriver : missing value
-		property appName : missing value
-		property processName : missing value -- used for PreviewDriver
+		property appName : defaultAppName
+		property processName : defaultProcessName -- used for PreviewDriver
 		property windowNumber : missing value -- used for PreviewDriver
 		property pageNumber : missing value -- used for AcrobatDriver
 		
