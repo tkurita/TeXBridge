@@ -32,7 +32,7 @@ on importScript(scriptName)
 	return load script POSIX file scriptPath
 end importScript
 
-on initilize()
+on initialize()
 	if not isLaunched then
 		set MessageUtility to importScript("MessageUtility")
 		
@@ -70,7 +70,7 @@ on initilize()
 		set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
 		loadSettings() of dviObj
 		
-		--log "start of initilizeing PDFObj"
+		--log "start of initializeing PDFObj"
 		set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
 		--log "loadSettings() of PDFObj"
 		loadSettings() of PDFObj
@@ -86,13 +86,14 @@ on initilize()
 		--center window "Setting"
 		set isLaunched to true
 	end if
-end initilize
+end initialize
 
 (* events of application*)
 on launched theObject
-	initilize()
-	--log "end of initilize"
+	--initialize()
+	--log "end of initialize"
 	(*debug code*)
+	--showToolPalette()
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
@@ -109,8 +110,7 @@ on launched theObject
 end launched
 
 on open theCommandID
-	initilize()
-	
+	--display dialog "open"
 	if theCommandID is "typesetOnly" then
 		doTypeSet() of TeXCompileObj
 	else if theCommandID is "typesetAndPreview" then
@@ -140,6 +140,8 @@ on open theCommandID
 		show window "Setting"
 	else if theCommandID is "Help" then
 		call method "showHelp:"
+	else if theCommandID is "ShowToolPalette" then
+		showToolPalette()
 	else if theCommandID starts with "." then
 		openOutputHadler(theCommandID) of TeXCompileObj
 	end if
@@ -188,6 +190,8 @@ on choose menu item theObject
 	set theName to name of theObject
 	if theName is "Preference" then
 		show window "Setting"
+	else if theName is "ShowToolPalette" then
+		showToolPalette()
 	end if
 end choose menu item
 
@@ -197,6 +201,12 @@ on will close theObject
 		set contents of default entry "SettingWindowBounds" to settingWindowBounds
 	end tell
 end will close
+
+on will finish launching theObject
+	--activate
+	--display dialog "will finish launch"
+	initialize()
+end will finish launching
 
 (* read and write defaults ===============================================*)
 
@@ -239,4 +249,11 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 end saveSettingsFromWindow
 (* end: handlers get values from window ===============================================*)
 
-
+on showToolPalette()
+	tell main bundle
+		set ToolPalettePath to path for resource "ToolPalette" extension "app"
+	end tell
+	tell application ((POSIX file ToolPalettePath) as Unicode text)
+		launch
+	end tell
+end showToolPalette
