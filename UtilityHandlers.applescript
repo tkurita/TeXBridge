@@ -1,3 +1,12 @@
+global StringEngine
+
+on importScript(scriptName)
+	tell main bundle
+		set scriptPath to path for script scriptName extension "scpt"
+	end tell
+	return load script POSIX file scriptPath
+end importScript
+
 on loadPlistDictionary(baseName)
 	tell main bundle
 		set plistFile to path for resource baseName extension "plist"
@@ -42,3 +51,38 @@ on copyItem(sourceItem, saveLocation, newName)
 		return (move theItem to saveLocation with replacing) as alias
 	end tell
 end copyItem
+
+on deleteListItem for theItem from theList
+	set nList to length of theList
+	repeat with ith from 1 to nList
+		if theItem is item ith of theList then
+			if ith is 1 then
+				set theList to rest of theList
+				exit repeat
+			else if ith is nList
+				set theList to item 1 thru -2 of theList
+				exit repeat
+			else
+				set theList to (item 1 thru (ith -1) of theList)&(item (ith + 1) thru -1 of theList)
+				exit repeat
+			end if
+		end if
+	end repeat
+	return theList
+end deleteListItem
+
+on getLocalizedString given keyword:theKeyword, insertTexts:insertList
+	--log "start getLocalizedString"
+	set theText to localized string theKeyword
+	--log theKeyword & ":" & theText
+	repeat with ith from 1 to (length of insertList)
+		set insertText to item ith of insertList
+		tell StringEngine
+			startStringEngine() of it
+			set theText to uTextReplace of it for theText from "$" & (ith as Unicode text) by insertText
+			stopStringEngine() of it
+		end tell
+	end repeat
+	--log "end getLocalizedString"
+	return theText
+end getLocalizedString
