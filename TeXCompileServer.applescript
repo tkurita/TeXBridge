@@ -37,7 +37,6 @@ property TexDocObj : missing value
 property dviObj : missing value
 
 property settingWindow : missing value
-property WorkspaceObj : missing value
 
 on importScript(scriptName)
 	tell main bundle
@@ -109,7 +108,6 @@ on initialize()
 	loadSettings()
 	
 	set miAppRef to path to application "mi" as alias
-	set WorkspaceObj to call method "sharedWorkspace" of class "NSWorkspace"
 	--log "end of initialize"
 end initialize
 
