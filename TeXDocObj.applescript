@@ -170,8 +170,6 @@ on makeObj(theTargetFile)
 			set beforeCompileTime to current date
 			set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory))
 			
-			set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
-			
 			if compileInTerminal then
 				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
 				doCommands of TerminalCommander for allCommand with activation
@@ -193,7 +191,9 @@ on makeObj(theTargetFile)
 				end if
 				set theTexCommand to joinUTextList of StringEngine for commandElements by space
 				stopStringEngine() of StringEngine
-				set allCommand to cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
+				
+				set pathCommand to "export PATH=/usr/local/bin:$PATH"
+				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
 				try
 					do shell script allCommand
 				on error errMsg number errNum
