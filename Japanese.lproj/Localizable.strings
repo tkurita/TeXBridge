@@ -19,7 +19,11 @@
 
 /*dviToPDF*/
 "OpenedMessage" = "は開かれています。コマンドの実行前に閉じて下さい。";
- 
+"PDFisNotGenerated" = "PDF ファイルは生成されませんでした。";
+
+/*typesetAndPDFPreview*/
+"DVIisNotGenerated" = "DVI ファイルは生成されませんでした。";
+
 /* checkmifiles */
 "isNotSaved" = "は保存されていません。";
 "isModified" = "は修正されています。";

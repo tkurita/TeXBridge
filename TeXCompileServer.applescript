@@ -57,6 +57,8 @@ on open theCommandID
 		typesetAndPreview()
 	else if theCommandID is "quickTypesetAndPreview" then
 		quickTypesetAndPreview()
+	else if theCommandID is "typesetAndPDFPreview" then
+		typesetAndPDFPreview()
 	else if theCommandID is "dviPreview" then
 		dviPreview()
 	else if theCommandID is "bibTex" then
@@ -472,59 +474,55 @@ on newPDFObj(theDviObj)
 		property fileInfo : missing value
 		property pageNumber : missing value
 		property previewerName : missing value
-		property isFirstOperation : missing value
 		
 		on setPDFObj()
 			set pdfFileName to getNameWithSuffix(".pdf")
 			set pdfPath to (((my workingDirectory) as Unicode text) & pdfFileName)
 		end setPDFObj
 		
+		on isExistPDF()
+			return isExist(pdfPath)
+		end isExistPDF
+		
 		on prepareDVItoPDF()
-			set existsPDFfile to isExist(pdfPath)
+			set pdfAlias to alias pdfPath
+			set fileInfo to info for pdfAlias
+			set defAppPath to (default application of fileInfo) as Unicode text
+			if defAppPath ends with "Acrobat 6.0 Standard.app:" then
+				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
+				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
+				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 5.0" then
+				set previewerName to "Acrobat 5.0"
+			else
+				set previewerName to missing value
+			end if
 			
-			if existsPDFfile then
-				set isFirstOperation to false
-				set pdfAlias to alias pdfPath
-				set fileInfo to info for pdfAlias
-				set defAppPath to (default application of fileInfo) as Unicode text
-				if defAppPath ends with "Acrobat 6.0 Standard.app:" then
-					set previewerName to "Acrobat"
-				else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
-					set previewerName to "Acrobat"
-				else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
-					set previewerName to "Acrobat"
-				else if defAppPath ends with "Acrobat 5.0" then
-					set previewerName to "Acrobat 5.0"
+			if previewerName is not missing value then
+				if isRunning(previewerName) then
+					closePDFfile()
 				else
-					set previewerName to missing value
-				end if
-				
-				if previewerName is not missing value then
-					if isRunning(previewerName) then
-						closePDFfile()
-					else
-						set pageNumber to missing value
-					end if
-				else
-					set isPDFBusy to busy status of fileInfo
-					if isPDFBusy then
-						try
-							tell application (default application of fileInfo as Unicode text)
-								close window pdfFileName
-							end tell
-							set isPDFBusy to busy status of (info for pdfAlias)
-						end try
-						
-						if isPDFBusy then
-							set openedMessage to localized string "OpenedMessage"
-							set theMessage to pdfPath & return & openedMessage
-							showMessageOnmi(theMessage)
-							return
-						end if
-					end if
+					set pageNumber to missing value
 				end if
 			else
-				set isFirstOperation to true
+				set isPDFBusy to busy status of fileInfo
+				if isPDFBusy then
+					try
+						tell application (default application of fileInfo as Unicode text)
+							close window pdfFileName
+						end tell
+						set isPDFBusy to busy status of (info for pdfAlias)
+					end try
+					
+					if isPDFBusy then
+						set openedMessage to localized string "OpenedMessage"
+						set theMessage to pdfPath & return & openedMessage
+						showMessageOnmi(theMessage)
+						return
+					end if
+				end if
 			end if
 		end prepareDVItoPDF
 		
@@ -648,7 +646,9 @@ on newDviObj(theTexDocObj)
 		on dviToPDF()
 			set thePDFObj to lookupPDFFile()
 			--check busy status of pdf file.
-			prepareDVItoPDF() of thePDFObj
+			if thePDFObj is not missing value then
+				prepareDVItoPDF() of thePDFObj
+			end if
 			--convert a DVI file into a PDF file
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
@@ -656,13 +656,26 @@ on newDviObj(theTexDocObj)
 			
 			doCommands(allCommand) of TerminalCommander
 			waitEndOfCommand(300) of TerminalCommander
+			
+			if thePDFObj is missing value then
+				set thePDFObj to lookupPDFFile()
+			else
+				if not (isExistPDF() of thePDFObj) then
+					set thePDFObj to missing value
+				end if
+			end if
+			
 			return thePDFObj
 		end dviToPDF
 		
 		on lookupPDFFile()
 			set thePDFObj to newPDFObj(a reference to me)
 			setPDFObj() of thePDFObj
-			return thePDFObj
+			if isExistPDF() of thePDFObj then
+				return thePDFObj
+			else
+				return missing value
+			end if
 		end lookupPDFFile
 	end script
 end newDviObj
@@ -1008,6 +1021,23 @@ on typesetAndPreview()
 	end if
 end typesetAndPreview
 
+on typesetAndPDFPreview()
+	set theDviObj to doTypeSet()
+	
+	if theDviObj is missing value then
+		set theMessage to localized string "DVIisNotGenerated"
+		showMessageOnmi(theMessage)
+	end if
+	
+	set thePDFObj to dviToPDF() of theDviObj
+	if thePDFObj is missing value then
+		set theMessage to localized string "PDFisNotGenerated"
+		showMessageOnmi(theMessage)
+	else
+		openPDFFile() of thePDFObj
+	end if
+end typesetAndPDFPreview
+
 on openOutputHadler(theExtension)
 	try
 		set theTexDocObj to checkmifiles without saving
@@ -1039,8 +1069,12 @@ on dviToPDF()
 	end if
 	
 	set thePDFObj to dviToPDF() of theDviObj
-	
-	openPDFFile() of thePDFObj
+	if thePDFObj is missing value then
+		set theMessage to localized string "PDFisNotGenerated"
+		showMessageOnmi(theMessage)
+	else
+		openPDFFile() of thePDFObj
+	end if
 end dviToPDF
 
 on dviToPS()
