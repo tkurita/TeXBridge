@@ -14,6 +14,7 @@
 		080E96DDFE201D6D7F000001 = {
 			children = (
 				DA206CF3015C4E8B03C91932,
+				2C54024007CCEF5000E8CEEB,
 				2C329BDD063AB42000C9A56F,
 				2C6FB9BD06255005004731C7,
 				2CDA10AA069404FE00467991,
@@ -23,7 +24,7 @@
 				2C7C493607960CCD0026564C,
 			);
 			isa = PBXGroup;
-			name = Scripts;
+			name = "TeXCompileServer Scripts";
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -169,6 +170,7 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				2C54027507CD5AAB00E8CEEB,
 				2C7C498707962E380026564C,
 				29B97318FDCFA39411CA2CEA,
 				DA206CF4015C4E8B03C91932,
@@ -188,7 +190,7 @@
 				2C8C1DD80520B0DB009688D1,
 			);
 			isa = PBXVariantGroup;
-			name = MainMenu.nib;
+			name = TeXCompileServer.nib;
 			path = "";
 			refType = 4;
 			sourceTree = "<group>";
@@ -259,7 +261,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXCompileServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.6.9 copyright 2003-2005, Tetsuro KURITA</string>
+	<string>2.8 copyright 2003-2005, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXCompileServer Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -275,17 +277,17 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.6.9</string>
+	<string>2.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.6.9</string>
+	<string>2.8</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>TeXCompileServer</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
@@ -314,6 +316,9 @@
 				2C49446307AD21E900B2A8D8,
 				2C732C7D07AE666B005ACE75,
 				2C732C8007AE667D005ACE75,
+				2C54027607CD5AAB00E8CEEB,
+				2C71167F07D177B8008BCAEF,
+				2C71168007D177B8008BCAEF,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +450,8 @@
 				2C49445B07AD21E900B2A8D8,
 				2C49445C07AD21E900B2A8D8,
 				2C49445D07AD21E900B2A8D8,
+				2C71167D07D177B8008BCAEF,
+				2C71167E07D177B8008BCAEF,
 				2C49445E07AD21E900B2A8D8,
 			);
 			isa = PBXGroup;
@@ -518,8 +525,40 @@
 			settings = {
 			};
 		};
+		2C54024007CCEF5000E8CEEB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.applescript;
+			path = ReplaceInputObj.applescript;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C54024107CCEF5000E8CEEB = {
+			fileRef = 2C54024007CCEF5000E8CEEB;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+			};
+		};
+		2C54027507CD5AAB00E8CEEB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = ReplaceDictionary.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C54027607CD5AAB00E8CEEB = {
+			fileRef = 2C54027507CD5AAB00E8CEEB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		2C54FE0A07C9E5AC00E8CEEB = {
 			children = (
+				2CDA398E07D5500C00A25B91,
 				2C17332A063C1C9D000FEAF8,
 				2C7C492E07960C830026564C,
 				2C7DA39B07AB75F70046A8E1,
@@ -544,7 +583,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$OBJROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help/\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_path='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual/index.html'\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/index.html\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\nfi\n";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$OBJROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_path=\"$manual_folder/index.html\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/index.html\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
 		2C6FB9BD06255005004731C7 = {
 			fileEncoding = 4;
@@ -578,6 +617,32 @@
 				ATTRIBUTES = (
 					Debug,
 				);
+			};
+		};
+		2C71167D07D177B8008BCAEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = plus.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C71167E07D177B8008BCAEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = minus.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C71167F07D177B8008BCAEF = {
+			fileRef = 2C71167D07D177B8008BCAEF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C71168007D177B8008BCAEF = {
+			fileRef = 2C71167E07D177B8008BCAEF;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		2C732C7B07AE666B005ACE75 = {
@@ -717,7 +782,7 @@
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.nib;
 			name = Japanese;
-			path = Japanese.lproj/MainMenu.nib;
+			path = Japanese.lproj/TeXCompileServer.nib;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -842,6 +907,23 @@
 				);
 			};
 		};
+		2CDA398E07D5500C00A25B91 = {
+			fileEncoding = "-2147483647";
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.applescript;
+			path = AlertManager.applescript;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CDA398F07D5500C00A25B91 = {
+			fileRef = 2CDA398E07D5500C00A25B91;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+			};
+		};
 //2C0
 //2C1
 //2C2
@@ -942,6 +1024,8 @@
 				2C7C492F07960C830026564C,
 				2C7C493707960CCD0026564C,
 				2C7DA39C07AB75F70046A8E1,
+				2C54024107CCEF5000E8CEEB,
+				2CDA398F07D5500C00A25B91,
 			);
 			isSharedContext = 0;
 			isa = PBXAppleScriptBuildPhase;
