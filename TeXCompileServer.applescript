@@ -22,6 +22,7 @@ property usexdvi : false
 
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
+property comDelim : return
 
 (* events of application*)
 on launched theObject
@@ -732,7 +733,7 @@ script dviObj
 				set sourceFile to texFileName of targetTexDocObj
 			end if
 			
-			set allCommand to cdCommand & "; " & dviViewCommand & " -sourceposition '" & (targetParagraph of targetTexDocObj) & space & sourceFile & "' '" & dviFileName & "' &"
+			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (targetParagraph of targetTexDocObj) & space & sourceFile & "' '" & dviFileName & "' &"
 			doCommands(allCommand) of TerminalCommander
 		else
 			try
@@ -770,13 +771,6 @@ on dviPreview()
 	on error errMsg number 1200
 		return
 	end try
-	(*
-	if usexdvi then
-		display dialog "xdvi"
-	else
-		display dialog "not xdvi"
-	end if
-	*)
 	set targetTexDocObj of dviObj to theTexDocObj
 	openDVI() of dviObj
 end dviPreview
@@ -849,7 +843,7 @@ on dviToPDF()
 	--convert a DVI file into a PDF file
 	set cdCommand to "cd" & space & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set targetFileName to getNameWithSuffix(".dvi") of theTexDocObj
-	set allCommand to cdCommand & "; " & dvipdfmxCommand & space & "'" & targetFileName & "'"
+	set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
 	
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
@@ -873,8 +867,8 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set targetFileName to getNameWithSuffix(theExtension) of theTexDocObj
-	set allCommand to cdCommand & "; " & texCommand & space & "'" & targetFileName & "'"
-	
+	--set allCommand to cdCommand & "; " & texCommand & space & "'" & targetFileName & "'"
+	set allCommand to cdCommand & return & texCommand & space & "'" & targetFileName & "'"
 	doCommands(allCommand) of TerminalCommander
 end execTexCommand
 
@@ -937,7 +931,8 @@ on execEbb(theGraphicPath)
 	set fileName to baseName(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set eddCommand to ebbCommand & space & "'" & fileName & "'"
-	set allCommand to cdCommand & ";" & eddCommand
+	--set allCommand to cdCommand & ";" & eddCommand
+	set allCommand to cdCommand & return & eddCommand
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
 end execEbb
