@@ -28,6 +28,15 @@ on makeObj(theWindow)
 		property isLoadedOtherSetting : false
 		property isLoadedReplaceInputSetting : false
 		
+		on showHelp()
+			set infoDict to call method "infoDictionary" of main bundle
+			set bookName to |CFBundleHelpBookName| of infoDict
+			set theAnchor to name of current tab view item of tab view "SettingTabs" of my targetWindow
+			tell application "Help Viewer"
+				lookup anchor theAnchor in book bookName
+			end tell
+		end showHelp
+		
 		on RevertToDefault()
 			--log "start RevertToDefault"
 			revertToFactorySetting() of TeXCompileObj
@@ -41,7 +50,6 @@ on makeObj(theWindow)
 			set isLoadedCommandSetting to false
 			set isLoadedPreviewSetting to false
 			set isLoadedOtherSetting to false
-			set isLoadedReplaceInputSetting to false
 			
 			selectedTab(current tab view item of tab view "SettingTabs" of my targetWindow)
 		end RevertToDefault
