@@ -2,6 +2,7 @@ global UtilityHandlers
 global TerminalCommander
 global PDFObj
 global PathConverter
+global DefaultsManager
 
 global comDelim
 global texCommandsBox
@@ -26,11 +27,11 @@ end setSettingToWindow
 on loadSettings()
 	--log "start loadSettings of DVIObj"
 	--commands
-	set dvipdfmxCommand to readDefaultValue("dvipdfmx", dvipdfmxCommand) of UtilityHandlers
+	set dvipdfmxCommand to readDefaultValue("dvipdfmx") of DefaultsManager
 	
 	--DVI Previewer
-	set DVIPreviewMode to (readDefaultValue("DVIPreviewMode", DVIPreviewMode) of UtilityHandlers) as integer
-	set dviViewCommand to readDefaultValue("dviView", dviViewCommand) of UtilityHandlers
+	set DVIPreviewMode to (readDefaultValue("DVIPreviewMode") of DefaultsManager) as integer
+	set dviViewCommand to readDefaultValue("dviView") of DefaultsManager
 	
 	setDVIDriver()
 	--log "end of loadSettings of DVIObj"
@@ -110,17 +111,10 @@ script MxdviDriver
 	on openDVI(theDviObj)
 		--log "start openDVI of MxdviDriver"
 		try
-			tell application "Finder"
-				set mxdviApp to (application file id "Mxdv") as alias
-			end tell
-		on error errMsg number errNum
-			--display dialog errNum & return & errMsg
-			tell application "Mxdvi"
-				launch
-			end tell
-			tell application "Finder"
-				set mxdviApp to (application file id "Mxdv") as alias
-			end tell
+			set mxdviApp to path to application "Mxdvi" as alias
+		on error
+			set theMessage to localized string "mxdviIsnotFound"
+			error theMessage number 1260
 		end try
 		getSrcSpecialFlag() of theDviObj
 		--log "success getSrcSpecialFlag"
@@ -136,6 +130,7 @@ script MxdviDriver
 				open dviFileRef of theDviObj
 			end tell
 		end if
+		--log "end openDVI"
 	end openDVI
 end script
 
