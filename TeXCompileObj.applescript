@@ -4,6 +4,7 @@ global LogFileParser
 global MessageUtility
 global PDFObj
 global TexDocObj
+global DefaultsManager
 
 --general libs
 global PathAnalyzer
@@ -38,10 +39,10 @@ end setSettingToWindow
 
 on loadSettings()
 	--commands
-	set dvipsCommand to readDefaultValue("dvips", dvipsCommand) of UtilityHandlers
-	set ebbCommand to readDefaultValue("ebb", ebbCommand) of UtilityHandlers
-	set bibtexCommand to readDefaultValue("bibtex", bibtexCommand) of UtilityHandlers
-	set mendexCommand to readDefaultValue("mendex", mendexCommand) of UtilityHandlers
+	set dvipsCommand to readDefaultValue("dvips") of DefaultsManager
+	set ebbCommand to readDefaultValue("ebb") of DefaultsManager
+	set bibtexCommand to readDefaultValue("bibtex") of DefaultsManager
+	set mendexCommand to readDefaultValue("mendex") of DefaultsManager
 end loadSettings
 
 on writeSettings()
@@ -424,6 +425,7 @@ on typesetAndPDFPreview()
 	else
 		openPDFFile() of thePDFObj
 	end if
+	updateReferencePalette(theTexDocObj)
 end typesetAndPDFPreview
 
 on openOutputHadler(theExtension)
@@ -560,7 +562,8 @@ on execEbb(theGraphicPath, theExtension)
 	set eddCommand to ebbCommand & space & "'" & fileName & "'"
 	set allCommand to cdCommand & comDelim & eddCommand
 	doCommands of TerminalCommander for allCommand with activation
-	waitEndOfCommand(300) of TerminalCommander
+	copy TerminalCommander to currentTerminal
+	waitEndOfCommand(300) of currentTerminal
 	return true
 end execEbb
 
