@@ -59,6 +59,35 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	writeSettings()
 end saveSettingsFromWindow
 
+on resolveParentFile(theParagraph)
+	set parentFile to text 13 thru -2 of theParagraph
+	--tell me to log parentFile
+	if parentFile starts with ":" then
+		setHFSoriginPath(theTargetFile) of PathConverter
+		set theTexFile to getAbsolutePath of PathConverter for parentFile
+	else
+		set theTexFile to parentFile
+	end if
+	--tell me to log "theTexFile : " & theTexFile
+	
+	if theTexFile ends with ":" then
+		set textIsInvalid to localized string "isInvalid"
+		set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
+		showMessageOnmi(theMessage) of MessageUtility
+		error "ParentFile is invalid." number 1230
+	end if
+	
+	try
+		set theTexFile to theTexFile as alias
+	on error
+		set textIsNotFound to localized string "isNotFound"
+		set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
+		showMessageOnmi(theMessage) of MessageUtility
+		error "ParentFile is not found." number 1220
+	end try
+	return theTexFile
+end resolveParentFile
+
 on checkmifiles given saving:savingFlag
 	set textADocument to localized string "aDocument"
 	set sQ to localized string "startQuote"
@@ -92,40 +121,33 @@ on checkmifiles given saving:savingFlag
 	set theTexDocObj to makeObj(theTargetFile) of TexDocObj
 	set targetParagraph of theTexDocObj to theParagraph
 	
-	tell application "mi"
-		set firstLine to paragraph 1 of document 1
-		--tell me to log firstLine
-	end tell
-	if firstLine starts with "%ParentFile" then
-		set parentFile to text 13 thru -2 of firstLine
-		--tell me to log parentFile
-		if parentFile starts with ":" then
-			setHFSoriginPath(theTargetFile) of PathConverter
-			set theTexFile to getAbsolutePath of PathConverter for parentFile
+	--check ParentFile and TypesetCommand
+	set theParentFile to missing value
+	set theTypesetCommand to missing value
+	set ith to 1
+	repeat
+		tell application "mi"
+			set theParagraph to paragraph ith of document 1
+		end tell
+		if theParagraph starts with "%" then
+			if theParagraph starts with "%ParentFile" then
+				set theParentFile to resolveParentFile(theParagraph)
+			else if theParagraph starts with "%TypesetCommand" then
+				set theTypesetCommand to text 17 thru -2 of theParagraph
+			end if
 		else
-			set theTexFile to parentFile
+			exit repeat
 		end if
-		--tell me to log "theTexFile : " & theTexFile
-		
-		if theTexFile ends with ":" then
-			set textIsInvalid to localized string "isInvalid"
-			set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-			showMessageOnmi(theMessage) of MessageUtility
-			error "ParentFile is invalid." number 1230
-		end if
-		
-		try
-			set theTexFile to theTexFile as alias
-		on error
-			set textIsNotFound to localized string "isNotFound"
-			set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
-			showMessageOnmi(theMessage) of MessageUtility
-			error "ParentFile is not found." number 1220
-		end try
-		
-		setTexFileRef(theTexFile) of theTexDocObj
+		set ith to ith + 1
+	end repeat
+	
+	if theParentFile is not missing value then
+		setTexFileRef(theParentFile) of theTexDocObj
 	end if
 	
+	if theTypesetCommand is not missing value then
+		set texCommand of theTexDocObj to theTypesetCommand
+	end if
 	
 	if savingFlag then
 		set textDoYouSave to localized string "doYouSave"
@@ -149,6 +171,7 @@ on checkmifiles given saving:savingFlag
 end checkmifiles
 
 on prepareTypeSet()
+	--log "start prepareTypeSet"
 	set textALogfile to localized string "aLogfile"
 	set textHasBeenOpend to localized string "hasBeenOpend"
 	set textCloseBeforeTypeset to localized string "saveBeforeTypeset"
@@ -162,6 +185,7 @@ on prepareTypeSet()
 		showMessageOnmi(theMessage) of MessageUtility
 		return missing value
 	end if
+	--log "end of prepareTypeSet"
 	return theTexDocObj
 end prepareTypeSet
 
@@ -240,6 +264,7 @@ on newLogFileParser(theTexDocObj)
 end newLogFileParser
 
 on doTypeSet()
+	--log "start doTypeset"
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
@@ -384,6 +409,7 @@ on dviToPDF()
 	end if
 	
 	set thePDFObj to dviToPDF() of theDviObj
+	--log "success to get PDFObj"
 	if thePDFObj is missing value then
 		set theMessage to localized string "PDFisNotGenerated"
 		showMessageOnmi(theMessage) of MessageUtility
