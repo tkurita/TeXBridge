@@ -33,7 +33,7 @@ on launched theObject
 	end if
 	(*debug code*)
 	--seekExecEbb()
-	--dviToPDF()
+	dviToPDF()
 	--dviPreview()
 	--doTypeSet()
 	--openRelatedFile with revealOnly
@@ -398,31 +398,6 @@ end getColorSettingsFromWindow
 (* end: handlers get values from window ===============================================*)
 
 (* intaract with mi and prepare typesetting and parsing log file ===============================*)
-on texCompile(theTexDocObj)
-	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
-	
-	set allCommand to cdCommand & comDelim & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
-	
-	if compileInTerminal then
-		set allCommand to cdCommand & comDelim & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
-		doCommands(allCommand) of TerminalCommander
-		waitEndOfCommand(300) of TerminalCommander
-	else
-		set allCommand to cdCommand & "; " & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
-		try
-			do shell script allCommand
-		on error errMsg number errNum
-			if errNum is not in {1, -1700} then
-				-- 1:general tex error
-				-- -1700: unknown, result can not be accept
-				error errMsg number errNum
-			end if
-		end try
-	end if
-	
-	return true
-end texCompile
-
 on viewErrorLog(docname, hyperlist, theCommand)
 	set textGroup to localized string "group"
 	
@@ -488,6 +463,206 @@ on isRunning(appName)
 		return exists application process appName
 	end tell
 end isRunning
+
+on newPDFObj(theDviObj)
+	script PDFObj
+		property parent : theDviObj
+		property pdfFileName : missing value
+		property pdfPath : missing value
+		property pdfAlias : missing value
+		property fileInfo : missing value
+		property pageNumber : missing value
+		property previewerName : missing value
+		property isFirstOperation : missing value
+		
+		on setPDFObj()
+			set pdfFileName to getNameWithSuffix(".pdf")
+			set pdfPath to (((my workingDirectory) as Unicode text) & pdfFileName)
+		end setPDFObj
+		
+		on prepareDVItoPDF()
+			set existsPDFfile to isExist(pdfPath)
+			
+			if existsPDFfile then
+				set isFirstOperation to false
+				set pdfAlias to alias pdfPath
+				set fileInfo to info for pdfAlias
+				set defAppPath to (default application of fileInfo) as Unicode text
+				if defAppPath ends with "Acrobat 6.0 Standard.app:" then
+					set previewerName to "Acrobat"
+				else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
+					set previewerName to "Acrobat"
+				else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
+					set previewerName to "Acrobat"
+				else if defAppPath ends with "Acrobat 5.0" then
+					set previewerName to "Acrobat 5.0"
+				else
+					set previewerName to missing value
+				end if
+				
+				if previewerName is not missing value then
+					if isRunning(previewerName) then
+						closePDFfile()
+					else
+						set pageNumber to missing value
+					end if
+				else
+					set isPDFBusy to busy status of fileInfo
+					if isPDFBusy then
+						try
+							tell application (default application of fileInfo as Unicode text)
+								close window pdfFileName
+							end tell
+							set isPDFBusy to busy status of (info for pdfAlias)
+						end try
+						
+						if isPDFBusy then
+							set openedMessage to localized string "OpenedMessage"
+							set theMessage to pdfPath & return & openedMessage
+							showMessageOnmi(theMessage)
+							return
+						end if
+					end if
+				end if
+			else
+				set isFirstOperation to true
+			end if
+		end prepareDVItoPDF
+		
+		on closePDFfile()
+			set pageNumber to missing value
+			using terms from application "Acrobat 6.0 Standard"
+				tell application previewerName
+					if exists document pdfFileName then
+						set theFileAliasPath to file alias of document pdfFileName as Unicode text
+						if theFileAliasPath is (pdfAlias as Unicode text) then
+							bring to front document pdfFileName
+							set pageNumber to page number of PDF Window 1
+							close PDF Window 1
+						end if
+					else
+						set pageNumber to missing value
+					end if
+				end tell
+			end using terms from
+		end closePDFfile
+		
+		on openPDFFile()
+			openOutputFile(".pdf")
+			if pageNumber is not missing value then
+				using terms from application "Acrobat 6.0 Standard"
+					tell application previewerName
+						set page number of PDF Window 1 to pageNumber
+					end tell
+				end using terms from
+			end if
+		end openPDFFile
+	end script
+	
+	return PDFObj
+end newPDFObj
+
+on newDviObj(theTexDocObj)
+	script dviObj
+		property parent : theTexDocObj
+		property dviFileRef : missing value
+		property isSrcSpecial : missing value
+		global usexdvi
+		
+		on getModDate()
+			tell application "System Events"
+				return modification date of dviFileRef
+			end tell
+		end getModDate
+		
+		on setSrcSpecialFlag()
+			if texCommand contains "-src" then
+				set my isSrcSpecial to true
+				tell application "Finder"
+					set comment of (dviFileRef) to "Source Specials"
+				end tell
+			else
+				set my isSrcSpecial to false
+				tell application "Finder"
+					set comment of dviFileRef to ""
+				end tell
+			end if
+		end setSrcSpecialFlag
+		
+		on getSrcSpecialFlag()
+			if my isSrcSpecial is missing value then
+				tell application "Finder"
+					set theComment to comment of (dviFileRef)
+				end tell
+				set isSrcSpecial to (theComment starts with "Source Special")
+			end if
+		end getSrcSpecialFlag
+		
+		on openDVI()
+			if usexdvi then
+				xdviPreview()
+			else
+				openOutputFile(".dvi")
+			end if
+		end openDVI
+		
+		on xdviPreview()
+			tell application "X11"
+				activate
+			end tell
+			getSrcSpecialFlag()
+			set cdCommand to "cd " & (quoted form of POSIX path of my workingDirectory)
+			set dviFileName to getNameWithSuffix(".dvi")
+			
+			if my isSrcSpecial then
+				if my isParentFile then
+					setPOSIXoriginPath(POSIX path of my texFileRef) of PathConverter of me
+					set sourceFile to getRelativePath of (PathConverter of me) for (POSIX path of my targetFileRef)
+				else
+					set sourceFile to my texFileName
+				end if
+				
+				set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (my targetParagraph) & space & sourceFile & "' '" & dviFileName & "' &"
+				doCommands(allCommand) of TerminalCommander
+			else
+				try
+					set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
+				on error errMsg number 1
+					set pid to ""
+				end try
+				
+				if pid is "" then
+					set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
+					doCommands(allCommand) of TerminalCommander
+				else
+					set pid to word 1 of pid
+					do shell script "kill -USR1" & space & pid --reread
+				end if
+			end if
+			
+		end xdviPreview
+		
+		on dviToPDF()
+			set thePDFObj to lookupPDFFile()
+			--check busy status of pdf file.
+			prepareDVItoPDF() of thePDFObj
+			--convert a DVI file into a PDF file
+			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
+			set targetFileName to getNameWithSuffix(".dvi")
+			set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
+			
+			doCommands(allCommand) of TerminalCommander
+			waitEndOfCommand(300) of TerminalCommander
+			return thePDFObj
+		end dviToPDF
+		
+		on lookupPDFFile()
+			set thePDFObj to newPDFObj(a reference to me)
+			setPDFObj() of thePDFObj
+			return thePDFObj
+		end lookupPDFFile
+	end script
+end newDviObj
 
 on checkmifiles given saving:savingFlag
 	set textADocument to localized string "aDocument"
@@ -647,6 +822,65 @@ on checkmifiles given saving:savingFlag
 			end if
 			return logFileReady
 		end checkLogFileStatus
+		
+		on openOutputFile(theExtension)
+			set ouputFilePath to getPathWithSuffix(theExtension)
+			try
+				tell application "Finder"
+					open (ouputFilePath as alias)
+				end tell
+			on error errMsg number errNum
+				activate
+				display dialog errMsg buttons {"OK"} default button "OK"
+			end try
+		end openOutputFile
+		
+		on texCompile()
+			set beforeCompileTime to current date
+			set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory))
+			
+			set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
+			
+			if compileInTerminal then
+				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
+				doCommands(allCommand) of TerminalCommander
+				waitEndOfCommand(300) of TerminalCommander
+			else
+				set allCommand to cdCommand & "; " & texCommand & space & "'" & texFileName & "'"
+				try
+					do shell script allCommand
+				on error errMsg number errNum
+					if errNum is not in {1, -1700} then
+						-- 1:general tex error
+						-- -1700: unknown, result can not be accept
+						error errMsg number errNum
+					end if
+				end try
+			end if
+			
+			set theDviObj to lookUpDviFile()
+			if theDviObj is not missing value then
+				set dviModDate to getModDate() of theDviObj
+				if dviModDate > beforeCompileTime then
+					setSrcSpecialFlag() of theDviObj
+				else
+					set theDviObj to missing value
+				end if
+			end if
+			
+			return theDviObj
+		end texCompile
+		
+		on lookUpDviFile()
+			set dviFilePath to getPathWithSuffix(".dvi")
+			if isExist(dviFilePath) then
+				set theDviObj to newDviObj(a reference to me)
+				set dviFileRef of theDviObj to dviFilePath as alias
+				return theDviObj
+			else
+				return missing value
+			end if
+		end lookUpDviFile
 	end script
 	
 	return TexDocObj
@@ -668,10 +902,10 @@ on doTypeSet()
 		return
 	end if
 	--log "before compile"
-	texCompile(theTexDocObj)
+	set theDviObj to texCompile() of theTexDocObj
 	set theLogFileParser to my prepareLogParsing(theTexDocObj)
 	activate
-	parseLogFile(theTexDocObj) of theLogFileParser
+	parseLogFile() of theLogFileParser
 	using terms from application "mi"
 		try
 			set auxFileRef to (getPathWithSuffix(".aux") of theTexDocObj) as alias
@@ -688,6 +922,7 @@ on doTypeSet()
 	end using terms from
 	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
 	
+	(*
 	if (isDviOutput of theLogFileParser) then
 		set dviFilePath to getPathWithSuffix(".dvi") of theTexDocObj
 		if texCommand contains "-src" then
@@ -702,73 +937,12 @@ on doTypeSet()
 			end tell
 		end if
 	end if
-	
-	return {logFileParserRef:theLogFileParser, texDocObjRef:theTexDocObj}
+	*)
+	return theDviObj
 end doTypeSet
 (* end: intaract with mi and prepare typesetting and parsing log file ====================================*)
 
 (* execute tex commands called from tools from mi  ====================================*)
-script dviObj
-	property targetTexDocObj : missing value
-	property isSrcSpecial : missing value
-	global usexdvi
-	
-	on getSrcSpecialFlag()
-		set isSrcSpecial to isSrcSpecial of targetTexDocObj
-		if isSrcSpecial is missing value then
-			set dviFilePath to getPathWithSuffix(".dvi") of targetTexDocObj
-			tell application "Finder"
-				set theComment to comment of (dviFilePath as alias)
-			end tell
-			set isSrcSpecial to (theComment starts with "Source Special")
-		end if
-	end getSrcSpecialFlag
-	
-	on openDVI()
-		if usexdvi then
-			xdviPreview()
-		else
-			openOutputFile(targetTexDocObj, ".dvi")
-		end if
-	end openDVI
-	
-	on xdviPreview()
-		tell application "X11"
-			activate
-		end tell
-		getSrcSpecialFlag()
-		set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of targetTexDocObj)
-		set dviFileName to getNameWithSuffix(".dvi") of targetTexDocObj
-		
-		if isSrcSpecial then
-			if isParentFile of targetTexDocObj then
-				setPOSIXoriginPath(POSIX path of texFileRef of targetTexDocObj) of PathConverter of me
-				set sourceFile to getRelativePath of (PathConverter of me) for (POSIX path of targetFileRef of targetTexDocObj)
-			else
-				set sourceFile to texFileName of targetTexDocObj
-			end if
-			
-			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (targetParagraph of targetTexDocObj) & space & sourceFile & "' '" & dviFileName & "' &"
-			doCommands(allCommand) of TerminalCommander
-		else
-			try
-				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
-			on error errMsg number 1
-				set pid to ""
-			end try
-			
-			if pid is "" then
-				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
-				doCommands(allCommand) of TerminalCommander
-			else
-				set pid to word 1 of pid
-				do shell script "kill -USR1" & space & pid --reread
-			end if
-		end if
-		
-	end xdviPreview
-end script
-
 on typesetOnly()
 	set compileInTerminal to true
 	try
@@ -786,23 +960,29 @@ on dviPreview()
 	on error errMsg number 1200
 		return
 	end try
-	set targetTexDocObj of dviObj to theTexDocObj
-	openDVI() of dviObj
+	set theDviObj to lookUpDviFile() of theTexDocObj
+	if theDviObj is not missing value then
+		openDVI() of theDviObj
+	else
+		set textDviFile to localized string "dviFile"
+		set isNotFound to localized string "isNotFound"
+		set dviName to getNameWithSuffix(".dvi") of theTexDocObj
+		set theMessage to textDviFile & space & dviName & space & isNotFound
+		showMessageOnmi(theMessage)
+	end if
 end dviPreview
 
 on typesetAndPreview()
 	try
-		set {logFileParserRef:theLogFileParser, texDocObjRef:theTexDocObj} to doTypeSet()
+		set theDviObj to doTypeSet()
 	on error errMsg number errNum
 		if errNum is not in {1200, 1210, 1220} then -- "The document is not saved."
 			showError(errNum, errMsg)
 		end if
 		return
 	end try
-	--if (isDviOutput of theLogFileParser and isNoError of theLogFileParser) then
-	if (isDviOutput of theLogFileParser) then
-		set targetTexDocObj of dviObj to theTexDocObj
-		openDVI() of dviObj
+	if theDviObj is not missing value then
+		openDVI() of theDviObj
 	end if
 end typesetAndPreview
 
@@ -812,107 +992,12 @@ on openOutputHadler(theExtension)
 	on error errMsg number 1200
 		return
 	end try
-	openOutputFile(theTexDocObj, theExtension)
+	openOutputFile(theExtension) of theTexDocObj
 end openOutputHadler
 
 on bibTex()
 	execTexCommand(bibtexCommand, "", true)
 end bibTex
-
-script PDFObj
-	property targetTexDocObj : missing value
-	property pdfFileName : missing value
-	property pdfPath : missing value
-	property pdfAlias : missing value
-	property fileInfo : missing value
-	property pageNumber : missing value
-	property previewerName : missing value
-	property isFirstOperation : missing value
-	
-	on setPDFObj(theTexDocObj)
-		set targetTexDocObj to theTexDocObj
-		set pdfFileName to getNameWithSuffix(".pdf") of theTexDocObj
-		set pdfPath to (((workingDirectory of theTexDocObj) as Unicode text) & pdfFileName)
-	end setPDFObj
-	
-	on prepareDVItoPDF()
-		set existsPDFfile to isExist(pdfPath)
-		
-		if existsPDFfile then
-			set isFirstOperation to false
-			set pdfAlias to alias pdfPath
-			set fileInfo to info for pdfAlias
-			set defAppPath to (default application of fileInfo) as Unicode text
-			if defAppPath ends with "Acrobat 6.0 Standard.app:" then
-				set previewerName to "Acrobat"
-			else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
-				set previewerName to "Acrobat"
-			else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
-				set previewerName to "Acrobat"
-			else if defAppPath ends with "Acrobat 5.0" then
-				set previewerName to "Acrobat 5.0"
-			else
-				set previewerName to missing value
-			end if
-			
-			if previewerName is not missing value then
-				if isRunning(previewerName) then
-					closePDFfile()
-				else
-					set pageNumber to missing value
-				end if
-			else
-				set isPDFBusy to busy status of fileInfo
-				if isPDFBusy then
-					try
-						tell application (default application of fileInfo as Unicode text)
-							close window pdfFileName
-						end tell
-						set isPDFBusy to busy status of (info for pdfAlias)
-					end try
-					
-					if isPDFBusy then
-						set openedMessage to localized string "OpenedMessage"
-						set theMessage to pdfPath & return & openedMessage
-						showMessageOnmi(theMessage)
-						return
-					end if
-				end if
-			end if
-		else
-			set isFirstOperation to true
-		end if
-	end prepareDVItoPDF
-	
-	on closePDFfile()
-		set pageNumber to missing value
-		using terms from application "Acrobat 6.0 Standard"
-			tell application previewerName
-				if exists document pdfFileName then
-					set theFileAliasPath to file alias of document pdfFileName as Unicode text
-					if theFileAliasPath is (pdfAlias as Unicode text) then
-						bring to front document pdfFileName
-						set pageNumber to page number of PDF Window 1
-						close PDF Window 1
-					end if
-				else
-					set pageNumber to missing value
-				end if
-			end tell
-		end using terms from
-	end closePDFfile
-	
-	on openPDFFile()
-		openOutputFile(targetTexDocObj, ".pdf")
-		if pageNumber is not missing value then
-			using terms from application "Acrobat 6.0 Standard"
-				tell application previewerName
-					set page number of PDF Window 1 to pageNumber
-				end tell
-			end using terms from
-		end if
-	end openPDFFile
-end script
 
 on dviToPDF()
 	try
@@ -921,19 +1006,19 @@ on dviToPDF()
 		return
 	end try
 	
-	--check busy status of pdf file.
-	setPDFObj(theTexDocObj) of PDFObj
-	prepareDVItoPDF() of PDFObj
+	set theDviObj to lookUpDviFile() of theTexDocObj
+	if theDviObj is missing value then
+		set textDviFile to localized string "dviFile"
+		set isNotFound to localized string "isNotFound"
+		set dviName to getNameWithSuffix(".dvi") of theTexDocObj
+		set theMessage to textDviFile & space & dviName & space & isNotFound
+		showMessageOnmi(theMessage)
+		return
+	end if
 	
-	--convert a DVI file into a PDF file
-	set cdCommand to "cd" & space & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
-	set targetFileName to getNameWithSuffix(".dvi") of theTexDocObj
-	set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
+	set thePDFObj to dviToPDF() of theDviObj
 	
-	doCommands(allCommand) of TerminalCommander
-	waitEndOfCommand(300) of TerminalCommander
-	
-	openPDFFile() of PDFObj
+	openPDFFile() of thePDFObj
 end dviToPDF
 
 on dviToPS()
@@ -957,18 +1042,6 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	set allCommand to cdCommand & comDelim & texCommand & space & "'" & targetFileName & "'"
 	doCommands(allCommand) of TerminalCommander
 end execTexCommand
-
-on openOutputFile(theTexDocObj, theExtension)
-	set ouputFilePath to getPathWithSuffix(theExtension) of theTexDocObj
-	try
-		tell application "Finder"
-			open (ouputFilePath as alias)
-		end tell
-	on error errMsg number errNum
-		activate
-		display dialog errMsg buttons {"OK"} default button "OK"
-	end try
-end openOutputFile
 
 on seekExecEbb()
 	set graphicCommand to yenmark & "includegraphics"
