@@ -33,7 +33,8 @@ on launched theObject
 	end if
 	(*debug code*)
 	--seekExecEbb()
-	dviToPDF()
+	--quickTypesetAndPreview()
+	--dviToPDF()
 	--dviPreview()
 	--doTypeSet()
 	--openRelatedFile with revealOnly
@@ -53,13 +54,12 @@ on open theCommandID
 	
 	if theCommandID is "typesetOnly" then
 		set compileInTerminal to true
-		typesetOnly()
+		doTypeSet()
 	else if theCommandID is "typesetAndPreview" then
 		set compileInTerminal to true
 		typesetAndPreview()
 	else if theCommandID is "quickTypesetAndPreview" then
-		set compileInTerminal to false
-		typesetAndPreview()
+		quickTypesetAndPreview()
 	else if theCommandID is "dviPreview" then
 		dviPreview()
 	else if theCommandID is "bibTex" then
@@ -406,20 +406,21 @@ on viewErrorLog(docname, hyperlist, theCommand)
 			if compileInTerminal then
 				activate
 			end if
+			set theDateText to (current date) as string
 			if (indexwindow "TeX Compile Log" exists) then
 				ignoring application responses
 					tell (a reference to (every indexgroup of indexwindow "TeX Compile Log")) to collapse
 					
 					tell (a reference to indexwindow "TeX Compile Log")
 						set index to 1
-						make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & (current date), content:hyperlist}
+						make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist}
 					end tell
 				end ignoring
 			else
 				make new indexwindow with properties {name:"TeX Compile Log", infoorder:2, fileorder:1, filewidth:200, infowidth:500}
 				tell (a reference to indexwindow "TeX Compile Log")
 					set index to 1
-					make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & (current date), content:hyperlist}
+					make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist}
 					repeat while (exists indexgroup textGroup)
 						delete indexgroup textGroup
 					end repeat
@@ -607,9 +608,12 @@ on newDviObj(theTexDocObj)
 		end openDVI
 		
 		on xdviPreview()
-			tell application "X11"
-				activate
-			end tell
+			if not (isRunning("X11")) then
+				tell application "X11"
+					launch
+				end tell
+			end if
+			
 			getSrcSpecialFlag()
 			set cdCommand to "cd " & (quoted form of POSIX path of my workingDirectory)
 			set dviFileName to getNameWithSuffix(".dvi")
@@ -886,7 +890,7 @@ on checkmifiles given saving:savingFlag
 	return TexDocObj
 end checkmifiles
 
-on doTypeSet()
+on prepareTypeSet()
 	set textALogfile to localized string "aLogfile"
 	set textHasBeenOpend to localized string "hasBeenOpend"
 	set textCloseBeforeTypeset to localized string "saveBeforeTypeset"
@@ -899,16 +903,15 @@ on doTypeSet()
 	if not checkLogFileStatus() of theTexDocObj then
 		set theMessage to textALogfile & return & sQ & (logFileRef of theTexDocObj) & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
 		showMessageOnmi(theMessage)
-		return
+		return missing value
 	end if
-	--log "before compile"
-	set theDviObj to texCompile() of theTexDocObj
-	set theLogFileParser to my prepareLogParsing(theTexDocObj)
-	activate
-	parseLogFile() of theLogFileParser
+	return theTexDocObj
+end prepareTypeSet
+
+on prepareVIewErrorLog(theLogFileParser)
 	using terms from application "mi"
 		try
-			set auxFileRef to (getPathWithSuffix(".aux") of theTexDocObj) as alias
+			set auxFileRef to (getPathWithSuffix(".aux") of theLogFileParser) as alias
 			set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
 			
 			tell application "Finder"
@@ -918,41 +921,36 @@ on doTypeSet()
 				end ignoring
 			end tell
 		end try
-		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theTexDocObj}
+		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theLogFileParser}
 	end using terms from
-	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
-	
-	(*
-	if (isDviOutput of theLogFileParser) then
-		set dviFilePath to getPathWithSuffix(".dvi") of theTexDocObj
-		if texCommand contains "-src" then
-			set isSrcSpecial of theTexDocObj to true
-			tell application "Finder"
-				set comment of (dviFilePath as alias) to "Source Specials"
-			end tell
-		else
-			set isSrcSpecial of theTexDocObj to false
-			tell application "Finder"
-				set comment of (dviFilePath as alias) to ""
-			end tell
-		end if
-	end if
-	*)
-	return theDviObj
-end doTypeSet
+end prepareVIewErrorLog
+
 (* end: intaract with mi and prepare typesetting and parsing log file ====================================*)
 
 (* execute tex commands called from tools from mi  ====================================*)
-on typesetOnly()
+on doTypeSet()
 	set compileInTerminal to true
+	
 	try
-		doTypeSet()
+		set theTexDocObj to prepareTypeSet()
+		if theTexDocObj is missing value then
+			return missing value
+		end if
 	on error errMsg number errNum
 		if errNum is not in {1200, 1210, 1220} then
 			showError(errNum, errMsg)
 		end if
+		return missing value
 	end try
-end typesetOnly
+	
+	set theDviObj to texCompile() of theTexDocObj
+	set theLogFileParser to my prepareLogParsing(theTexDocObj)
+	activate
+	parseLogFile() of theLogFileParser
+	prepareVIewErrorLog(theLogFileParser)
+	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
+	return theDviObj
+end doTypeSet
 
 on dviPreview()
 	try
@@ -972,15 +970,37 @@ on dviPreview()
 	end if
 end dviPreview
 
-on typesetAndPreview()
+on quickTypesetAndPreview()
+	set compileInTerminal to false
+	
 	try
-		set theDviObj to doTypeSet()
+		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
 		if errNum is not in {1200, 1210, 1220} then -- "The document is not saved."
 			showError(errNum, errMsg)
 		end if
 		return
 	end try
+	
+	if theTexDocObj is missing value then
+		return
+	end if
+	
+	set theDviObj to texCompile() of theTexDocObj
+	if theDviObj is not missing value then
+		openDVI() of theDviObj
+	end if
+	
+	set theLogFileParser to my prepareLogParsing(theTexDocObj)
+	parseLogFile() of theLogFileParser
+	prepareVIewErrorLog(theLogFileParser)
+	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
+	
+end quickTypesetAndPreview
+
+on typesetAndPreview()
+	set theDviObj to doTypeSet()
+	
 	if theDviObj is not missing value then
 		openDVI() of theDviObj
 	end if
