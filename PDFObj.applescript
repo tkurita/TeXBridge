@@ -85,6 +85,9 @@ script AcrobatDriver
 	on prepare(thePDFObj)
 		--log "start prepare of AcrobatDriver"
 		if isRunning(processName of thePDFObj) of UtilityHandlers then
+			tell application "System Events"
+				set visible of application process (processName of thePDFObj) to true
+			end tell
 			closePDFfile(thePDFObj)
 		else
 			set pageNumber of thePDFObj to missing value
