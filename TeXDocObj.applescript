@@ -9,30 +9,39 @@ global DefaultsManager
 property name : "TeXDocObj"
 property defaultTexCommand : "/usr/local/bin/platex -src-specials -interaction=nonstopmode"
 property logSuffix : ".log"
+property texCommandsBox : missing value
 
 global comDelim
-global texCommandsBox
 
-on setSettingToWindow()
-	tell matrix "Commands" of texCommandsBox
-		set contents of cell "latex" to defaultTexCommand
+on endEditing(theObject)
+	set defaultTexCommand to contents of contents of theObject
+	tell user defaults
+		set contents of default entry "typesetCommand" to defaultTexCommand
 	end tell
+end endEditing
+
+on setSettingToWindow(theView)
+	set texCommandsBox to theView
+	set contents of text field "typesetCommand" of texCommandsBox to defaultTexCommand
 end setSettingToWindow
 
+on revertToFactorySetting()
+	set defaultTexCommand to getFactorySetting of DefaultsManager for "typesetCommand"
+	writeSettings()
+end revertToFactorySetting
+
 on loadSettings()
-	set defaultTexCommand to readDefaultValue("latex") of DefaultsManager
+	set defaultTexCommand to readDefaultValue("typesetCommand") of DefaultsManager
 end loadSettings
 
 on writeSettings()
 	tell user defaults
-		set contents of default entry "latex" to defaultTexCommand
+		set contents of default entry "typesetCommand" to defaultTexCommand
 	end tell
 end writeSettings
 
 on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	tell matrix "Commands" of texCommandsBox
-		set defaultTexCommand to contents of cell "latex"
-	end tell
+	set defaultTexCommand to contents of text field "typesetCommand" of texCommandsBox
 	
 	writeSettings()
 end saveSettingsFromWindow
