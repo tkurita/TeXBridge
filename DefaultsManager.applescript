@@ -9,6 +9,7 @@ end loadFactorySettings
 
 on getFactorySetting for entryName
 	return call method "valueForKey:" of factorySettingDict with parameter entryName
+	--return call method "ObjectForKey:" of factorySettingDict with parameter entryName
 end getFactorySetting
 
 on initializeDefaultValue(entryName, defaultValue)
@@ -20,6 +21,7 @@ on initializeDefaultValue(entryName, defaultValue)
 end initializeDefaultValue
 
 on readDefaultValue(entryName)
+	--log entryName
 	tell user defaults
 		if exists default entry entryName then
 			return contents of default entry entryName
