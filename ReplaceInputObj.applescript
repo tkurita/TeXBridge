@@ -245,16 +245,13 @@ on do()
 			if cursorPosition is 1 then -- cursor is  at beginning of document
 				error "beginning of document."
 			end if
-			set linePos to index of insertion point 1 of paragraph 1 of selection object 1
+			set lineIndex to index of paragraph 1 of selection object 1
+			set linePos to index of insertion point 1 of paragraph lineIndex
+			set theLine to paragraph lineIndex
 		end tell
 	end tell
 	set cursorPositionInPar to cursorPosition - linePos
 	
-	tell application "mi"
-		tell first document
-			set theLine to paragraph 1 of selection object 1
-		end tell
-	end tell
 	set targetText to text 1 thru cursorPositionInPar of theLine
 	if targetText ends with yenmark then
 		return
@@ -279,7 +276,8 @@ on do()
 	set newLine to fText & newText & sText
 	tell application "mi"
 		tell first document
-			set paragraph 1 of selection object 1 to newLine
+			set paragraph lineIndex to newLine
+			--set paragraph 1 of selection object 1 to newLine
 			select insertion point (cursorPosition - ((length of keyText) - (length of newText)))
 		end tell
 	end tell
