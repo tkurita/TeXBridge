@@ -1,17 +1,106 @@
 global UtilityHandlers
 global PathAnalyzer
 
-property PDFPreviewIndex : 1
+property PDFPreviewIndex : 1 -- 1: open in Finder, 2: Preview.app, 3: Adobe Reader, 4: Acrobat
 property pdfPreviewBox : missing value
 property defaultProcessName : missing value
 property defaultAppName : missing value
 property acrobatName : missing value
+property acrobatPath : ""
+property adobeReaderPath : ""
 property hasAcrobat : false
 property hasReader : false
 
+on findCARO() -- find acrobat or adobe reader from creator code
+	try
+		tell application "Finder"
+			set caroApp to application file id "CARO"
+		end tell
+		return caroApp as alias
+	on error
+		return missing value
+	end try
+end findCARO
+
+on findAcrobatApp()
+	if class of acrobatPath is alias then
+		return
+	end if
+	
+	try
+		set acrobatPath to (POSIX file acrobatPath) as alias
+	on error
+		set acrobatPath to findCARO()
+	end try
+	
+	if acrobatPath is missing value then
+		set theMessage to localized string "whereisAdobeAcrobat"
+		set acrobatPath to choose application with prompt theMessage as alias
+	else
+		tell application "Finder"
+			set theName to name of acrobatPath
+		end tell
+		if theName contains "Reader" then
+			set acrobatPath to missing value
+			set theMessage to localized string "whereisAdobeAcrobat"
+			set acrobatPath to choose application with prompt theMessage as alias
+		end if
+	end if
+	tell user defaults
+		set contents of default entry "AcrobatPath" to acrobatPath
+	end tell
+end findAcrobatApp
+
+on findAdobeReaderApp()
+	--log adobeReaderPath
+	if class of adobeReaderPath is alias then
+		return
+	end if
+	
+	try
+		set adobeReaderPath to (POSIX file adobeReaderPath) as alias
+	on error
+		set adobeReaderPath to findCARO()
+	end try
+	
+	if adobeReaderPath is missing value then
+		set theMessage to localized string "whereisAdobeReader"
+		set adobeReaderPath to choose application with prompt theMessage as alias
+	else
+		tell application "Finder"
+			set theName to name of adobeReaderPath
+		end tell
+		if theName does not contain "Reader" then
+			set adobeReaderPath to missing value
+			set theMessage to localized string "whereisAdobeReader"
+			set adobeReaderPath to choose application with prompt theMessage as alias
+		end if
+	end if
+	tell user defaults
+		set contents of default entry "AdobeReaderPath" to adobeReaderPath
+	end tell
+end findAdobeReaderApp
+
 on loadSettings()
 	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex", PDFPreviewIndex) of UtilityHandlers) as integer
+	set acrobatPath to readDefaultValue("AcrobatPath", acrobatPath) of UtilityHandlers
+	set adobeReaderPath to readDefaultValue("AdobeReaderPath", adobeReaderPath) of UtilityHandlers
 	--log "success read default value of PDFPreviewIndex"
+	if PDFPreviewIndex is 3 then
+		try
+			findAdobeReaderApp()
+		on error errMsg number -128
+			set PDFPreviewIndex to 1
+		end try
+	else if PDFPreviewIndex is 4 then
+		try
+			findAcrobatApp()
+		on error errMsg number -128
+			set PDFPreviewIndex to 1
+		end try
+	end if
+	
+	(*
 	try
 		tell application "Finder"
 			set acrobatName to name of application file id "CARO"
@@ -22,6 +111,7 @@ on loadSettings()
 			set hasAcrobat to true
 		end if
 	end try
+	*)
 	setPDFDriver()
 end loadSettings
 
@@ -40,9 +130,12 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 end saveSettingsFromWindow
 
 on setSettingToWindow()
+	--log "PDFPreviewIndex : " & PDFPreviewIndex
 	set current row of matrix "PDFPreview" of pdfPreviewBox to PDFPreviewIndex
-	set enabled of cell "Acrobat" of matrix "PDFPreview" of pdfPreviewBox to hasAcrobat
-	set enabled of cell "AdobeReader" of matrix "PDFPreview" of pdfPreviewBox to hasReader
+	--log "current row of matrix PDFPreview"
+	--log (current row of matrix "PDFPreview" of pdfPreviewBox) as string
+	--set enabled of cell "Acrobat" of matrix "PDFPreview" of pdfPreviewBox to hasAcrobat
+	--set enabled of cell "AdobeReader" of matrix "PDFPreview" of pdfPreviewBox to hasReader
 end setSettingToWindow
 
 script GenericDriver
@@ -99,7 +192,7 @@ script AcrobatDriver
 		--log "start closePDFfile of AcrobatDriver"
 		using terms from application "Acrobat 6.0 Standard"
 			--log pdfFileName of thePDFObj
-			tell application (appName of thePDFObj)
+			tell application ((appName of thePDFObj) as Unicode text)
 				if exists document (pdfFileName of thePDFObj) then
 					set theFileAliasPath to file alias of document (pdfFileName of thePDFObj) as Unicode text
 					if theFileAliasPath is (pdfAlias of thePDFObj as Unicode text) then
@@ -122,7 +215,7 @@ script AcrobatDriver
 	
 	on openPDF(thePDFObj)
 		using terms from application "Acrobat 6.0 Standard"
-			tell application (appName of thePDFObj)
+			tell application ((appName of thePDFObj) as Unicode text)
 				activate
 				open pdfAlias of thePDFObj
 				if pageNumber of thePDFObj is not missing value then
@@ -236,11 +329,13 @@ on setPDFDriver()
 	else if PDFPreviewIndex is 3 then
 		set PDFDriver to PreviewDriver
 		set defaultProcessName to "Adobe Reader"
-		set defaultAppName to acrobatName
+		tell application "Finder"
+			set defaultAppName to name of adobeReaderPath
+		end tell
 	else if PDFPreviewIndex is 4 then
 		set PDFDriver to AcrobatDriver
 		set defaultProcessName to "Acrobat"
-		set defaultAppName to acrobatName
+		set defaultAppName to acrobatPath
 	end if
 	--log "end of setPDFDriver()"
 end setPDFDriver
