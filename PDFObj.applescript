@@ -5,10 +5,23 @@ property PDFPreviewIndex : 1
 property pdfPreviewBox : missing value
 property defaultProcessName : missing value
 property defaultAppName : missing value
+property acrobatName : missing value
+property hasAcrobat : false
+property hasReader : false
 
 on loadSettings()
 	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex", PDFPreviewIndex) of UtilityHandlers) as integer
 	--log "success read default value of PDFPreviewIndex"
+	try
+		tell application "Finder"
+			set acrobatName to name of application file id "CARO"
+		end tell
+		if acrobatName contains "Reader" then
+			set hasReader to true
+		else
+			set hasAcrobat to true
+		end if
+	end try
 	setPDFDriver()
 end loadSettings
 
@@ -28,6 +41,8 @@ end saveSettingsFromWindow
 
 on setSettingToWindow()
 	set current row of matrix "PDFPreview" of pdfPreviewBox to PDFPreviewIndex
+	set enabled of cell "Acrobat" of matrix "PDFPreview" of pdfPreviewBox to hasAcrobat
+	set enabled of cell "AdobeReader" of matrix "PDFPreview" of pdfPreviewBox to hasReader
 end setSettingToWindow
 
 script GenericDriver
@@ -69,33 +84,36 @@ end script
 script AcrobatDriver
 	on prepare(thePDFObj)
 		--log "start prepare of AcrobatDriver"
-		if isRunning(appName of thePDFObj) of UtilityHandlers then
+		if isRunning(processName of thePDFObj) of UtilityHandlers then
 			closePDFfile(thePDFObj)
 		else
-			set pageNumber of thePDFDriver to missing value
+			set pageNumber of thePDFObj to missing value
 		end if
 		return true
 	end prepare
 	
 	on closePDFfile(thePDFObj)
 		--log "start closePDFfile of AcrobatDriver"
-		set pageNumber of thePDFObj to missing value
-		--log appName of thePDFObj
 		using terms from application "Acrobat 6.0 Standard"
 			--log pdfFileName of thePDFObj
 			tell application (appName of thePDFObj)
 				if exists document (pdfFileName of thePDFObj) then
 					set theFileAliasPath to file alias of document (pdfFileName of thePDFObj) as Unicode text
-					if theFileAliasPath is (pdfAlias as Unicode text) then
+					if theFileAliasPath is (pdfAlias of thePDFObj as Unicode text) then
 						bring to front document (pdfFileName of thePDFObj)
 						set pageNumber of thePDFObj to page number of PDF Window 1
-						close PDF Window 1
+						--close PDF Window 1
+						try
+							close active doc
+						on error
+							delay 1
+							close active doc
+						end try
 					end if
 				else
 					set pageNumber of thePDFObj to missing value
 				end if
 			end tell
-			
 		end using terms from
 	end closePDFfile
 	
@@ -129,6 +147,7 @@ script PreviewDriver
 		tell application (appName of thePDFObj)
 			open pdfAlias of thePDFObj
 		end tell
+		
 		if windowNumber of thePDFObj is not missing value then
 			tell application "System Events"
 				tell application process (processName of thePDFObj)
@@ -149,6 +168,8 @@ script PreviewDriver
 					open pdfAlias of thePDFObj
 				end tell
 			end if
+		else
+			activate application (appName of thePDFObj)
 		end if
 	end openPDF
 end script
@@ -162,35 +183,32 @@ script AutoDriver
 	end prepare
 	
 	on setTargetDriver(thePDFObj)
-		set defAppPath to (default application of fileInfo of thePDFObj) as Unicode text
+		set defAppInfo to info for (default application of fileInfo of thePDFObj)
+		set theName to name of defAppInfo
+		if theName ends with ".app" then
+			set theName to text 1 thru -5 of theName
+		end if
 		
-		if defAppPath ends with "Acrobat 6.0 Standard.app:" then
-			set targetDriver of thePDFObj to AcrobatDriver
-			set appName of thePDFObj to "Acrobat"
-		else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
-			set targetDriver of thePDFObj to AcrobatDriver
-			set appName of thePDFObj to "Acrobat"
-		else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
-			set targetDriver of thePDFObj to AcrobatDriver
-			set appName of thePDFObj to "Acrobat"
-		else if defAppPath ends with "Acrobat 5.0" then
-			set targetDriver of thePDFObj to AcrobatDriver
-			set appName of thePDFObj to "Acrobat 5.0"
+		if (file creator of defAppInfo) is "CARO" then
+			if (theName) contains "Reader" then
+				set targetDriver of thePDFObj to PreviewDriver
+				set processName of thePDFObj to "Adobe Reader"
+			else
+				set targetDriver of thePDFObj to AcrobatDriver
+				if (package folder of defAppInfo) then
+					set processName of thePDFObj to "Acrobat"
+				else
+					set processName of thePDFObj to theName
+				end if
+				
+			end if
 		else
 			set targetDriver of thePDFObj to PreviewDriver
-			
-			set pathRecord to do(defAppPath) of PathAnalyzer
-			set theName to name of pathRecord
-			if theName starts with "Adobe Reader" then
-				set processName of thePDFObj to "Adobe Reader"
-			else if theName ends with ".app" then
-				set theName to text 1 thru -5 of theName
-				set processName of thePDFObj to theName
-			end if
-			
-			set appName of thePDFObj to theName
-			--set targetDriver to GenericDriver
+			set processName of thePDFObj to theName
 		end if
+		
+		set appName of thePDFObj to theName
+		
 	end setTargetDriver
 	
 	on openPDF(thePDFObj)
@@ -204,21 +222,22 @@ end script
 property PDFDriver : AutoDriver
 
 on setPDFDriver()
-	log "start setPDFDriver()"
+	--log "start setPDFDriver()"
 	if PDFPreviewIndex is 1 then
 		set PDFDriver to AutoDriver
 	else if PDFPreviewIndex is 2 then
 		--log "PreviewDriver is selected"
 		set PDFDriver to PreviewDriver
-		set defaultProcessName of PreviewDriver to "Preview"
-		set defaultAppName of PreviewDriver to "Preview"
+		set defaultProcessName to "Preview"
+		set defaultAppName to "Preview"
 	else if PDFPreviewIndex is 3 then
 		set PDFDriver to PreviewDriver
-		set defaultProcessName of PreviewDriver to "Adobe Reader"
-		set defaultAppName of PreviewDriver to "Adobe Reader"
+		set defaultProcessName to "Adobe Reader"
+		set defaultAppName to acrobatName
 	else if PDFPreviewIndex is 4 then
 		set PDFDriver to AcrobatDriver
-		set defaultAppName to "Acrobat"
+		set defaultProcessName to "Acrobat"
+		set defaultAppName to acrobatName
 	end if
 	--log "end of setPDFDriver()"
 end setPDFDriver
@@ -255,7 +274,6 @@ on makeObj(theDviObj)
 		end isExistPDF
 		
 		on prepareDVItoPDF()
-			
 			return prepare(a reference to me) of PDFDriver
 		end prepareDVItoPDF
 		
