@@ -1,3 +1,13 @@
+on stripHeadTailSpaces(theText)
+	if theText starts with space then
+		set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
+	else if theText ends with space then
+		set theText to stripHeadTailSpaces(text 1 thru -2 of theText)
+	else
+		return theText
+	end if
+end stripHeadTailSpaces
+
 on isExists(filePath)
 	try
 		filePath as alias
