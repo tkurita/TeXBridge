@@ -143,6 +143,7 @@
 			children = (
 				080E96DDFE201D6D7F000001,
 				29B97317FDCFA39411CA2CEA,
+				2C49445407AD219B00B2A8D8,
 				29B97315FDCFA39411CA2CEA,
 				29B97323FDCFA39411CA2CEA,
 				19C28FACFE9D520D11CA2CBB,
@@ -174,7 +175,6 @@
 		29B97317FDCFA39411CA2CEA = {
 			children = (
 				2C7C498707962E380026564C,
-				2CD5AA9506CCD9B500967BE0,
 				29B97318FDCFA39411CA2CEA,
 				DA206CF4015C4E8B03C91932,
 				2C9E42BE052215CB00248965,
@@ -310,6 +310,11 @@
 				2CD5AA9606CCD9B500967BE0,
 				2C771B7806D444ED00275DF1,
 				2C7C498807962E380026564C,
+				2C49445F07AD21E900B2A8D8,
+				2C49446007AD21E900B2A8D8,
+				2C49446107AD21E900B2A8D8,
+				2C49446207AD21E900B2A8D8,
+				2C49446307AD21E900B2A8D8,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +437,86 @@
 				ATTRIBUTES = (
 					Debug,
 				);
+			};
+		};
+		2C49445407AD219B00B2A8D8 = {
+			children = (
+				2CD5AA9506CCD9B500967BE0,
+				2C49445A07AD21E900B2A8D8,
+				2C49445B07AD21E900B2A8D8,
+				2C49445C07AD21E900B2A8D8,
+				2C49445D07AD21E900B2A8D8,
+				2C49445E07AD21E900B2A8D8,
+			);
+			isa = PBXGroup;
+			name = "Icon Images";
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445A07AD21E900B2A8D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = TeXtoPDFIcon.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445B07AD21E900B2A8D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = TeXtoDVIIcon.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445C07AD21E900B2A8D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = generalpref.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445D07AD21E900B2A8D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = DVItoPDFIcon.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445E07AD21E900B2A8D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = DVIPreviewIcon.png;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C49445F07AD21E900B2A8D8 = {
+			fileRef = 2C49445A07AD21E900B2A8D8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C49446007AD21E900B2A8D8 = {
+			fileRef = 2C49445B07AD21E900B2A8D8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C49446107AD21E900B2A8D8 = {
+			fileRef = 2C49445C07AD21E900B2A8D8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C49446207AD21E900B2A8D8 = {
+			fileRef = 2C49445D07AD21E900B2A8D8;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C49446307AD21E900B2A8D8 = {
+			fileRef = 2C49445E07AD21E900B2A8D8;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		2C5FF53405FB3F0900784136 = {
