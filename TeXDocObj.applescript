@@ -4,6 +4,7 @@ global UtilityHandlers
 global TerminalCommander
 global MessageUtility
 global dviObj
+global DefaultsManager
 
 property name : "TeXDocObj"
 property defaultTexCommand : "/usr/local/bin/platex -src-specials -interaction=nonstopmode"
@@ -19,7 +20,7 @@ on setSettingToWindow()
 end setSettingToWindow
 
 on loadSettings()
-	set defaultTexCommand to readDefaultValue("latex", defaultTexCommand) of UtilityHandlers
+	set defaultTexCommand to readDefaultValue("latex") of DefaultsManager
 end loadSettings
 
 on writeSettings()
@@ -174,6 +175,7 @@ on makeObj(theTargetFile)
 				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
 				doCommands of TerminalCommander for allCommand with activation
 				copy TerminalCommander to currentTerminal
+				delay 1
 				waitEndOfCommand(300) of currentTerminal
 			else
 				startStringEngine() of StringEngine
@@ -202,7 +204,8 @@ on makeObj(theTargetFile)
 						-- -1700: unknown, result can not be accept
 					else if errNum is 127 then
 						-- maybe comannd name or path setting is not correct
-						showError(errNum, errMsg) of MessageUtility
+						set errMsg to "Error in texCompile" & return & errMsg
+						showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
 						error "Typeset is not executed." number 1250
 					else
 						error errMsg number errNum
