@@ -55,12 +55,13 @@ on setSettingToWindow(theView)
 end setSettingToWindow
 
 on revertToFactorySetting()
-	log "start revertToFactorySetting"
+	--log "start revertToFactorySetting in TeXCompileServer"
 	set dvipsCommand to getFactorySetting of DefaultsManager for "dvipsCommand"
 	set ebbCommand to getFactorySetting of DefaultsManager for "ebbCommand"
 	set bibtexCommand to getFactorySetting of DefaultsManager for "bibtexCommand"
 	set mendexCommand to getFactorySetting of DefaultsManager for "mendexCommand"
 	writeSettings()
+	--log "end revertToFactorySetting in TeXCompileServer"
 end revertToFactorySetting
 
 on loadSettings()
