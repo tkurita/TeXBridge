@@ -109,16 +109,25 @@ end initialize
 (* events of application*)
 on launched theObject
 	--log "start lanunched"
-	--activate
+	
+	if showToolPaletteWhenLaunched then
+		showStartupMessage("opening Tool Palette ...")
+		openWindow() of ToolPaletteController
+	end if
+	if showRefPaletteWhenLaunched then
+		showStartupMessage("opening Reference Palette ...")
+		showRefPalette()
+	end if
+	hide window "Startup"
+	
 	(*debug code*)
-	--display alert "hello"
+	--openWindow() of ToolPaletteController
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--dviPreview() of TeXCompileObj
 	--openWindow() of SettingWindowController
 	--pdfPreview() of TeXCompileObj
 	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
-	--showToolPalette()
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
@@ -134,16 +143,6 @@ on launched theObject
 	--checkmifiles with saving
 	--log "end of launched"
 	(*end of debug code*)
-	
-	if showToolPaletteWhenLaunched then
-		showStartupMessage("opening Tool Palette ...")
-		openWindow() of ToolPaletteController
-	end if
-	if showRefPaletteWhenLaunched then
-		showStartupMessage("opening Reference Palette ...")
-		showRefPalette()
-	end if
-	hide window "Startup"
 end launched
 
 on open theObject
@@ -212,9 +211,6 @@ on open theObject
 		end if
 	end if
 	
-	
-	--display dialog theCommandID
-	
 	return true
 end open
 
@@ -227,10 +223,42 @@ on idle theObject
 end idle
 
 on clicked theObject
+	--log "start clicked"
 	set FreeTime to 0
+	if class of theObject is button cell then
+		buttoncellClicked(theObject)
+	else
+		controlClicked(theObject)
+	end if
+end clicked
+
+on buttoncellClicked(theObject)
+	(* I can not get window property from button cell *)
+	set theName to name of theObject
+	if theName is "AdobeReader" then
+		try
+			findAdobeReaderApp() of PDFObj
+		on error errMsg number -128
+			setSettingToWindow() of PDFObj
+			set theMessage to localized string "PDFPreviewIsInvalid"
+			showMessage(theMessage) of MessageUtility
+		end try
+	else if theName is "Acrobat" then
+		try
+			findAcrobatApp() of PDFObj
+		on error errMsg number -128
+			setSettingToWindow() of PDFObj
+			set theMessage to localized string "PDFPreviewIsInvalid"
+			showMessage(theMessage) of MessageUtility
+		end try
+	end if
+end buttoncellClicked
+
+on controlClicked(theObject)
 	set theName to name of theObject
 	set windowName to name of window of theObject
-	
+	--log windowName
+	--log "clicked item name :" & theName & " , window name : " & windowName
 	if windowName is "ToolPalette" then
 		open theName
 	else
@@ -249,27 +277,9 @@ on clicked theObject
 			setmiclient() of SettingWindowController
 		else if theName is "saveMxdviEditor" then
 			saveMxdviEditor(missing value) of SettingWindowController
-		else if theName is "AdobeReader" then
-			try
-				findAdobeReaderApp() of PDFObj
-			on error errMsg number -128
-				setSettingToWindow() of PDFObj
-				set theMessage to localized string "PDFPreviewIsInvalid"
-				showMessage(theMessage) of MessageUtility
-			end try
-			
-		else if theName is "Acrobat" then
-			try
-				findAcrobatApp() of PDFObj
-			on error errMsg number -128
-				setSettingToWindow() of PDFObj
-				set theMessage to localized string "PDFPreviewIsInvalid"
-				showMessage(theMessage) of MessageUtility
-			end try
-			
 		end if
 	end if
-end clicked
+end controlClicked
 
 on choose menu item theObject
 	--log "start choose menu item"
