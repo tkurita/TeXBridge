@@ -20,7 +20,6 @@ property LogFileParser : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
 
-
 on importScript(scriptName)
 	tell main bundle
 		set scriptPath to path for script scriptName extension "scpt"
