@@ -20,6 +20,7 @@ global texCommandsBox
 property ebbCommand : "/usr/local/bin/ebb"
 property bibtexCommand : "/usr/local/bin/jbibtex"
 property dvipsCommand : "/usr/local/bin/dvips"
+property mendexCommand : "/usr/local/bin/mendex"
 
 property ignoringErrorList : {1200, 1210, 1220, 1230, 1240}
 
@@ -28,6 +29,7 @@ on setSettingToWindow()
 		set contents of cell "ebb" to ebbCommand
 		set contents of cell "bibtex" to bibtexCommand
 		set contents of cell "dvips" to dvipsCommand
+		set contents of cell "mendex" to mendexCommand
 	end tell
 	
 end setSettingToWindow
@@ -37,7 +39,7 @@ on loadSettings()
 	set dvipsCommand to readDefaultValue("dvips", dvipsCommand) of UtilityHandlers
 	set ebbCommand to readDefaultValue("ebb", ebbCommand) of UtilityHandlers
 	set bibtexCommand to readDefaultValue("bibtex", bibtexCommand) of UtilityHandlers
-	
+	set mendexCommand to readDefaultValue("mendex", mendexCommand) of UtilityHandlers
 end loadSettings
 
 on writeSettings()
@@ -46,6 +48,7 @@ on writeSettings()
 		set contents of default entry "dvips" to dvipsCommand
 		set contents of default entry "ebb" to ebbCommand
 		set contents of default entry "bibtex" to bibtexCommand
+		set contents of default entry "mendex" to mendexCommand
 	end tell
 end writeSettings
 
@@ -54,6 +57,7 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 		set ebbCommand to contents of cell "ebb"
 		set bibtexCommand to contents of cell "bibtex"
 		set dvipsCommand to contents of cell "dvips"
+		set mendexCommand to contents of cell "mendex"
 	end tell
 	
 	writeSettings()
@@ -443,8 +447,8 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	end try
 	
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
-	set targetFileName to getNameWithSuffix(theExtension) of theTexDocObj
-	set allCommand to cdCommand & comDelim & texCommand & space & "'" & targetFileName & "'"
+	set texCommand to buildCommand(texCommand, theExtension) of theTexDocObj
+	set allCommand to cdCommand & comDelim & texCommand
 	doCommands of TerminalCommander for allCommand with activation
 end execTexCommand
 
@@ -522,6 +526,10 @@ on execEbb(theGraphicPath, theExtension)
 	return true
 end execEbb
 
+
+on execmendex()
+	execTexCommand(mendexCommand, ".idx", false)
+end execmendex
 (* end: execute tex commands called from tools from mi  ====================================*)
 
 (*

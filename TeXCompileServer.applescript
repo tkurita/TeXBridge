@@ -3,6 +3,7 @@ property ShellUtils : load script file (LibraryFolder & "ShellUtils")
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
 property TerminalCommander : load script file (LibraryFolder & "TerminalCommander")
 property PathConverter : load script file (LibraryFolder & "PathConverter")
+property StringEngine : PathConverter
 
 property lifeTime : 60 -- minutes
 property FreeTime : 0
@@ -135,6 +136,8 @@ on open theCommandID
 		seekExecEbb() of TeXCompileObj
 	else if theCommandID is "dvips" then
 		dviToPS() of TeXCompileObj
+	else if theCommandID is "mendex" then
+		execmendex() of TeXCompileObj
 	else if theCommandID is "openRelatedFile" then
 		openRelatedFile of EditCommands without revealOnly
 	else if theCommandID is "revealRelatedFile" then
