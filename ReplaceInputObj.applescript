@@ -215,14 +215,15 @@ on setSettingToWindow(theView)
 end setSettingToWindow
 
 on findReplaceText(keyText)
-	(* find replaceText from user dictionary *)
-	set newText to getKeyValue of UtilityHandlers for keyText from userReplaceDict
-	try
-		get newText
+	log "start findReplaceText for " & keyText
+	log "find replaceText from user dictionary"
+	set newText to getValue of userReplaceDict given forKey:keyText
+	if newText is not missing value then
+		log "replece text is found from userReplaceDict"
 		return newText
-	end try
+	end if
 	
-	(* find replaceText from internal dictionary *)
+	log "find replaceText from internal dictionary"
 	repeat with theDict in dictList
 		set newText to getKeyValue of UtilityHandlers for keyText from theDict
 		try
