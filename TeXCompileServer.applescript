@@ -58,6 +58,7 @@ on initialize()
 		set TeXCompileObj to importScript("TeXCompileObj")
 		set TexDocObj to importScript("TeXDocObj")
 		set dviObj to importScript("DVIObj")
+		set TerminalSettingObj to importScript("TerminalSettingObj")
 		
 		--log "end of import library"
 		
@@ -77,7 +78,6 @@ on initialize()
 		loadSettings() of PDFObj
 		
 		--log "start of initilizing TerminalSettingObj"
-		set TerminalSettingObj to importScript("TerminalSettingObj")
 		set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
 		loadSettings(FactorySetting) of TerminalSettingObj
 		--log "end of setting TerminalSettingObj"
@@ -211,8 +211,9 @@ end will close
 
 on will finish launching theObject
 	--activate
+	--log "start will finish launching"
 	initialize()
-	--display dialog "will finish launch"
+	--log "end sill finish launching"
 end will finish launching
 
 (* read and write defaults ===============================================*)
