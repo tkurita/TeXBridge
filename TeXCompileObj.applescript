@@ -145,15 +145,17 @@ on checkmifiles given saving:savingFlag
 			set theParagraph to paragraph ith of document 1
 		end tell
 		if theParagraph starts with "%" then
-			if theParagraph starts with "%ParentFile" then
-				set theParentFile to resolveParentFile(theParagraph, theTargetFile)
-			else if theParagraph starts with "%Typeset-Command" then
-				set theTypesetCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
-			else if theParagraph starts with "%DviToPdf-Command" then
-				set theDviPdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
-			else if theParagraph starts with "%DviToPs-Command" then
-				set theDviPsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
-			end if
+			ignoring case
+				if theParagraph starts with "%ParentFile" then
+					set theParentFile to resolveParentFile(theParagraph, theTargetFile)
+				else if theParagraph starts with "%Typeset-Command" then
+					set theTypesetCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+				else if theParagraph starts with "%DviToPdf-Command" then
+					set theDviPdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
+				else if theParagraph starts with "%DviToPs-Command" then
+					set theDviPsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+				end if
+			end ignoring
 		else
 			exit repeat
 		end if
