@@ -28,7 +28,7 @@ property previousDataRow : missing value
 
 on saveUserDict()
 	if isChangedUserDict then
-		log "user dict will be saved"
+		--log "user dict will be saved"
 		tell user defaults
 			set contents of default entry "ReplaceInput_KeyList" to keyList of userReplaceDict
 			set contents of default entry "ReplaceInput_ValueList" to valueList of userReplaceDict
@@ -38,9 +38,9 @@ on saveUserDict()
 end saveUserDict
 
 on addToUserDict given keyword:keywordText, replace:replaceText
-	log "start addToUserDict"
+	--log "start addToUserDict"
 	if keywordText is in userKeywordList then
-		log userKeywordList
+		--log userKeywordList
 		set theMessage to getLocalizedString of UtilityHandlers given keyword:"keywordStillDefined", insertTexts:{keywordText}
 		displayAlert(theMessage) of SettingWindowController
 		return false
@@ -54,12 +54,11 @@ on addToUserDict given keyword:keywordText, replace:replaceText
 end addToUserDict
 
 on shouldSelectionChange(theObject)
-	log "start shouldSelectionChange in ReplaceInputObj"
+	--log "start shouldSelectionChange in ReplaceInputObj"
 	(*
 	set editedRow to edited row of theObject
 	
 	if editedRow is not 0 then
-		log editedRow
 		return true
 	end if
 	*)
@@ -85,10 +84,10 @@ on shouldSelectionChange(theObject)
 	else if theReplace is "" then
 		set theMessage to localized string "replaceIsBlank"
 		displayAlert(theMessage) of SettingWindowController
-		log "there are blanked cells"
+		--log "there are blanked cells"
 		return false
 	else
-		log "cells are filled"
+		--log "cells are filled"
 		if (addToUserDict given keyword:theKeyword, replace:theReplace) then
 			set previousDataRow to selectedData
 			return true
@@ -99,7 +98,7 @@ on shouldSelectionChange(theObject)
 end shouldSelectionChange
 
 on selectionChanged(theObject)
-	log "start selectionChanged in ReplaceInputObj"
+	--log "start selectionChanged in ReplaceInputObj"
 	set theDataRow to selected data row of theObject
 	try
 		get theDataRow
@@ -110,18 +109,17 @@ on selectionChanged(theObject)
 	
 	set preKeyword to contents of data cell "keyword" of theDataRow
 	set preReplace to contents of data cell "replace" of theDataRow
-	log preKeyword
 	if preKeyword is not "" then
-		log "keyword is not blank"
+		--log "keyword is not blank"
 		set userKeywordList to deleteListItem of UtilityHandlers for preKeyword from userKeywordList
 	end if
-	log "start selectionChanged in ReplaceInputObj"
+	--log "end selectionChanged in ReplaceInputObj"
 end selectionChanged
 
 on controlClicked(theObject)
 	set theName to name of theObject
 	if theName is "addReplaceText" then
-		log "called addRelaceText"
+		--log "called addRelaceText"
 		if shouldSelectionChange(userReplaceTable) then
 			set theRow to make new data row at the end of the data rows of userReplaceDataSource
 			set selected data row of userReplaceTable to theRow
@@ -134,7 +132,7 @@ on controlClicked(theObject)
 		on error
 			retrun
 		end try
-		log preKeyword
+		--log preKeyword
 		if preKeyword is not "" then
 			if removeItem of userReplaceDict given forKey:preKeyword then
 				set isChangedUserDict to true
@@ -158,7 +156,7 @@ on initialize()
 end initialize
 
 on appendDictToOutline for theDict into parentDataItem
-	log "start appendDictToOutline"
+	--log "start appendDictToOutline"
 	set keywordList to call method "allKeys" of theDict
 	set dataRecord to {}
 	--log "before repeat"
@@ -173,18 +171,18 @@ on appendDictToOutline for theDict into parentDataItem
 end appendDictToOutline
 
 on setSettingToWindow(theView)
-	log "start setSettingToWindow in ReplaceInputObj"
+	--log "start setSettingToWindow in ReplaceInputObj"
 	set parentView to theView
 	set internalReplaceOutline to outline view "InternalReplaceOutline" of scroll view "InternalReplaceScroll" of theView
 	set userReplaceTable to table view "UserReplaceTable" of scroll view "UserReplaceScroll" of theView
 	
 	initialize()
-	log "success initialize"
+	--log "success initialize"
 	set internalReplaceDataSource to data source of internalReplaceOutline
 	set userReplaceDataSource to data source of userReplaceTable
-	log "success get data source"
+	--log "success get data source"
 	
-	log "set internal keywords"
+	--log "set internal keywords"
 	set categoryList to call method "allKeys" of internalReplaceDict
 	repeat with theCategory in categoryList
 		set categoryItem to make new data item at end of data items of internalReplaceDataSource
@@ -192,11 +190,11 @@ on setSettingToWindow(theView)
 		set contents of data cell "keyword" of categoryItem to categoryText
 		set contents of data cell "replace" of categoryItem to ""
 		set theDict to getKeyValue of UtilityHandlers for theCategory from internalReplaceDict
-		log "before appendDictToOutline"
+		--log "before appendDictToOutline"
 		appendDictToOutline for theDict into categoryItem
 	end repeat
 	
-	log "set user-defined keywords"
+	--log "set user-defined keywords"
 	copy keyList of userReplaceDict to userKeywordList
 	set numUserKeyword to length of userKeywordList
 	
@@ -207,23 +205,23 @@ on setSettingToWindow(theView)
 			set theDataItem to make new data row at end of data rows of userReplaceDataSource
 			set contents of data cell "keyword" of theDataItem to theKeyword
 			set contents of data cell "replace" of theDataItem to replaceText
-			log theKeyword & " : " & replaceText
+			--log theKeyword & " : " & replaceText
 		end repeat
 		tell userReplaceTable to update
 	end if
-	log "end setSettingToWindow in ReplaceInputObj"
+	--log "end setSettingToWindow in ReplaceInputObj"
 end setSettingToWindow
 
 on findReplaceText(keyText)
-	log "start findReplaceText for " & keyText
-	log "find replaceText from user dictionary"
+	--log "start findReplaceText for " & keyText
+	--log "find replaceText from user dictionary"
 	set newText to getValue of userReplaceDict given forKey:keyText
 	if newText is not missing value then
-		log "replece text is found from userReplaceDict"
+		--log "replece text is found from userReplaceDict"
 		return newText
 	end if
 	
-	log "find replaceText from internal dictionary"
+	--log "find replaceText from internal dictionary"
 	repeat with theDict in dictList
 		set newText to getKeyValue of UtilityHandlers for keyText from theDict
 		try
