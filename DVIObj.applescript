@@ -1,6 +1,7 @@
 global UtilityHandlers
 global TerminalCommander
 global PDFObj
+global PathConverter
 
 global comDelim
 global texCommandsBox
