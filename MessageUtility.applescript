@@ -1,16 +1,18 @@
 on showErrorInFrontmostApp(errNum, errMsg)
 	set errorLabel to localized string "errorLabel"
 	set theMessage to errorLabel & space & errNum & return & (name of current application) & " : " & errMsg
-	tell application (path to frontmost application as Unicode text)
-		display dialog theMessage buttons {"OK"} default button "OK"
-	end tell
+	using terms from application "System Events" -- without this statemet, display dialog means a showing panel intead of display dialog command in Standard Additions.
+		tell application (path to frontmost application as Unicode text)
+			display dialog theMessage buttons {"OK"} default button "OK" with icon caution
+		end tell
+	end using terms from
 end showErrorInFrontmostApp
 
-on showError(errNum, errMsg)
+on showError(errNum, errPlace, errMsg)
 	activate
 	set errorLabel to localized string "errorLabel"
-	set theMessage to errorLabel & space & errNum & return & errMsg
-	display dialog theMessage buttons {"OK"} default button "OK" with icon caution
+	set theMessage to errorLabel & space & errNum & " in " & errPlace & return & errMsg
+	display dialog theMessage buttons {"OK"} default button "OK" with icon 0
 end showError
 
 on showMessage(theMessage)
