@@ -828,7 +828,7 @@ on seekExecEbb()
 		set sQ to localized string "startQuote"
 		set eQ to localized string "endQuote"
 		set noGraphicFile to localized string "noGraphicFile"
-		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & dQ & space & noGraphicFile
+		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & eQ & space & noGraphicFile
 		showMessageOnmi(theMessage) of MessageUtility
 	else if noNewBBFlag then
 		set theMessage to localized string "bbAlreadyCreated"
