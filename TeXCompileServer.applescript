@@ -254,6 +254,7 @@ end loadColorSettings
 
 on loadSettings()
 	set customTitle of TerminalCommander to "TeX Console"
+	set stringEncoding of TerminalCommander to 4
 	set useLoginShell of TerminalCommander to readDefaultValue("UseLoginShell", false)
 	set shellPath of TerminalCommander to readDefaultValue("Shell", "/bin/bash")
 	set useCtrlVEscapes of TerminalCommander to readDefaultValue("UseCtrlVEscapes", "YES")
