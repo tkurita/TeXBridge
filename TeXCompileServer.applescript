@@ -1060,7 +1060,6 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set targetFileName to getNameWithSuffix(theExtension) of theTexDocObj
-	--set allCommand to cdCommand & "; " & texCommand & space & "'" & targetFileName & "'"
 	set allCommand to cdCommand & comDelim & texCommand & space & "'" & targetFileName & "'"
 	doCommands(allCommand) of TerminalCommander
 end execTexCommand
@@ -1130,8 +1129,7 @@ on execEbb(theGraphicPath, theExtension)
 	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set baseName to baseName(theGraphicPath, theExtension) of ShellUtils
-	set fileName to baseName & theExtension
+	set fileName to baseName(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set eddCommand to ebbCommand & space & "'" & fileName & "'"
 	set allCommand to cdCommand & comDelim & eddCommand
