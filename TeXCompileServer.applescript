@@ -5,14 +5,16 @@ property TerminalCommander : load script file (LibraryFolder & "TerminalCommande
 property PathConverter : load script file (LibraryFolder & "PathConverter")
 property StringEngine : PathConverter
 
-property lifeTime : 60 -- minutes
+property lifeTime : missing value -- second
+property idleTime : 60 --second
 property showToolPaletteWhenLaunched : true
 property showRefPaletteWhenLaunched : false
 
 property FreeTime : 0
-property settingWindowBounds : {}
 property texCommandsBox : missing value
+property miAppRef : missing value
 
+(* shared constants*)
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
 property comDelim : return
@@ -22,7 +24,11 @@ property eQ : missing value
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
+property DefaultsManager : missing value
+property WindowController : missing value
+property ToolPaletteController : missing value
 
+property SettingWindowController : missing value
 property LogFileParser : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
@@ -31,6 +37,7 @@ property TexDocObj : missing value
 property dviObj : missing value
 
 property settingWindow : missing value
+property WorkspaceObj : missing value
 
 on importScript(scriptName)
 	tell main bundle
@@ -45,6 +52,7 @@ on initialize()
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
 	
+	showStartupMessage("checking UI Elements Scripting ...")
 	tell application "System Events"
 		set UIScriptFlag to UI elements enabled
 	end tell
@@ -58,7 +66,11 @@ on initialize()
 		quit
 	end if
 	
-	set FactorySetting to importScript("FactorySetting")
+	showStartupMessage("Loading Factory Settings ...")
+	set DefaultsManager to importScript("DefaultsManager")
+	loadFactorySettings("FactorySettings") of DefaultsManager
+	
+	showStartupMessage("Loading Scripts ...")
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set LogFileParser to importScript("LogFileParser")
 	set EditCommands to importScript("EditCommands")
@@ -66,10 +78,14 @@ on initialize()
 	set TeXCompileObj to importScript("TeXCompileObj")
 	set TexDocObj to importScript("TeXDocObj")
 	set dviObj to importScript("DVIObj")
+	set WindowController to importScript("WindowController")
+	set SettingWindowController to importScript("SettingWindowController")
+	set SettingWindowController to makeObj(window "Setting") of SettingWindowController
+	set ToolPaletteController to makeObj(window "ToolPalette") of WindowController
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	--log "end of import library"
-	
+	showStartupMessage("Loading Preferences ...")
 	set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
 	
 	loadSettings() of TeXCompileObj
@@ -87,17 +103,25 @@ on initialize()
 	
 	--log "start of initilizing TerminalSettingObj"
 	set terminalSettingBox of TerminalSettingObj to tab view item "TerminalSetting" of tab view "SettingTabs" of window "Setting"
-	loadSettings(FactorySetting) of TerminalSettingObj
+	loadSettings() of TerminalSettingObj
 	--log "end of setting TerminalSettingObj"
 	
 	loadSettings()
 	
-	--center window "Setting"
+	set miAppRef to path to application "mi" as alias
+	set WorkspaceObj to call method "sharedWorkspace" of class "NSWorkspace"
+	--log "end of initialize"
 end initialize
 
 (* events of application*)
 on launched theObject
+	--log "start lanunched"
+	--activate
 	(*debug code*)
+	--display alert "hello"
+	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
+	--dviPreview() of TeXCompileObj
+	--openWindow() of SettingWindowController
 	--pdfPreview() of TeXCompileObj
 	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
@@ -118,189 +142,177 @@ on launched theObject
 	--log "end of launched"
 	(*end of debug code*)
 	if showToolPaletteWhenLaunched then
-		showToolPalette()
+		showStartupMessage("opening Tool Palette ...")
+		openWindow() of ToolPaletteController
 	end if
 	if showRefPaletteWhenLaunched then
+		showStartupMessage("opening Reference Palette ...")
 		showRefPalette()
 	end if
+	hide window "Startup"
 end launched
 
-on open theCommandID
+on open theObject
 	--log "start open"
-	
-	if theCommandID is "typesetOnly" then
-		doTypeSet() of TeXCompileObj
-	else if theCommandID is "typesetAndPreview" then
-		typesetAndPreview() of TeXCompileObj
-	else if theCommandID is "quickTypesetAndPreview" then
-		quickTypesetAndPreview() of TeXCompileObj
-	else if theCommandID is "typesetAndPDFPreview" then
-		typesetAndPDFPreview() of TeXCompileObj
-	else if theCommandID is "dviPreview" then
-		dviPreview() of TeXCompileObj
-	else if theCommandID is "pdfPreview" then
-		pdfPreview() of TeXCompileObj
-	else if theCommandID is "bibTex" then
-		bibTex() of TeXCompileObj
-	else if theCommandID is "dviToPDF" then
-		dviToPDF() of TeXCompileObj
-	else if theCommandID is "seekExecEbb" then
-		seekExecEbb() of TeXCompileObj
-	else if theCommandID is "dvips" then
-		dviToPS() of TeXCompileObj
-	else if theCommandID is "mendex" then
-		execmendex() of TeXCompileObj
-	else if theCommandID is "openRelatedFile" then
-		openRelatedFile of EditCommands without revealOnly
-	else if theCommandID is "revealRelatedFile" then
-		openRelatedFile of EditCommands with revealOnly
-	else if theCommandID is "openParentFile" then
-		openParentFile() of EditCommands
-	else if theCommandID is "setting" then
-		activate
-		show window "Setting"
-	else if theCommandID is "Help" then
-		call method "showHelp:"
-	else if theCommandID is "ShowToolPalette" then
-		showToolPalette()
-	else if theCommandID is "ShowRefPalette" then
-		showRefPalette()
-	else if theCommandID starts with "." then
-		openOutputHadler(theCommandID) of TeXCompileObj
-	end if
-	--display dialog theCommandID
 	set FreeTime to 0
+	if class of theObject is record then
+		set theCommandID to commandID of theObject
+		if theCommandID is "updateVisibleRefPalette" then
+			set visibleRefPalette of TeXCompileObj to argument of theObject
+		else if theCommandID is "reverseSearch" then
+			doReverseSearch(argument of theObject)
+		end if
+		
+	else
+		set theCommandID to theObject
+		
+		if theCommandID is "typesetOnly" then
+			doTypeSet() of TeXCompileObj
+		else if theCommandID is "typesetAndPreview" then
+			typesetAndPreview() of TeXCompileObj
+		else if theCommandID is "quickTypesetAndPreview" then
+			quickTypesetAndPreview() of TeXCompileObj
+		else if theCommandID is "typesetAndPDFPreview" then
+			typesetAndPDFPreview() of TeXCompileObj
+		else if theCommandID is "dviPreview" then
+			dviPreview() of TeXCompileObj
+		else if theCommandID is "pdfPreview" then
+			pdfPreview() of TeXCompileObj
+		else if theCommandID is "bibTex" then
+			bibTex() of TeXCompileObj
+		else if theCommandID is "dviToPDF" then
+			dviToPDF() of TeXCompileObj
+		else if theCommandID is "seekExecEbb" then
+			seekExecEbb() of TeXCompileObj
+		else if theCommandID is "dvips" then
+			dviToPS() of TeXCompileObj
+		else if theCommandID is "mendex" then
+			execmendex() of TeXCompileObj
+		else if theCommandID is "openRelatedFile" then
+			openRelatedFile of EditCommands without revealOnly
+		else if theCommandID is "revealRelatedFile" then
+			openRelatedFile of EditCommands with revealOnly
+		else if theCommandID is "openParentFile" then
+			openParentFile() of EditCommands
+		else if theCommandID is "setting" then
+			openWindow() of SettingWindowController
+		else if theCommandID is "Help" then
+			call method "showHelp:"
+		else if theCommandID is "ShowToolPalette" then
+			--showToolPalette()
+			openWindow() of ToolPaletteController
+		else if theCommandID is "ShowRefPalette" then
+			showRefPalette()
+		else if theCommandID starts with "." then
+			openOutputHadler(theCommandID) of TeXCompileObj
+		else if theCommandID ends with ".tex" then
+			--ignoring application responses
+			tell application "Finder"
+				open theCommandID using miAppRef
+			end tell
+			--end ignoring
+			tell user defaults
+				set targetLine to contents of default entry "SourcePosition"
+			end tell
+			doReverseSearch(targetLine)
+		end if
+	end if
+	
+	
+	--display dialog theCommandID
+	
 	return true
 end open
 
 on idle theObject
-	set FreeTime to FreeTime + 1
+	set FreeTime to FreeTime + idleTime
 	if FreeTime > lifeTime then
 		quit
 	end if
-	return 60
+	return idleTime
 end idle
 
-on will open theObject
-	--log "start will open"
-	setSettingToWindow() of TerminalSettingObj
-	setSettingToWindow() of TeXCompileObj
-	setSettingToWindow() of PDFObj
-	setSettingToWindow() of TexDocObj
-	setSettingToWindow() of dviObj
-	set settingWindow to theObject
-	
-	--The other setting
-	set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of theObject
-	set contents of text field "LifeTime" of theOtherSettingTab to lifeTime as integer
-	if showToolPaletteWhenLaunched then
-		set state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab to 1
-	else
-		set state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab to 0
-	end if
-	
-	if showRefPaletteWhenLaunched then
-		set state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab to 1
-	else
-		set state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab to 0
-	end if
-	
-	tell theObject
-		--MxdviEditor
-		set currentMxdviEditor to do shell script "defaults read Mxdvi MxdviEditor"
-		set contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" to currentMxdviEditor
-		
-		--set window position
-		if settingWindowBounds is not {} then
-			set bounds to settingWindowBounds
-		else
-			center
-		end if
-	end tell
-end will open
-
 on clicked theObject
+	set FreeTime to 0
 	set theName to name of theObject
-	if theName is "OKButton" then
-		saveSettingsFromWindow()
-		hide window of theObject
-	else if theName is "CancelButton" then
-		hide window of theObject
-	else if theName is "ApplyColors" then
-		applyColorsToTerminal() of TerminalSettingObj
-	else if theName is "RevertColors" then
-		revertColorsToTerminal() of TerminalSettingObj
-	else if theName is "Save" then
-		saveSettingsFromWindow()
-	else if theName is "usemi" then
-		setmiclient()
-	else if theName is "saveMxdviEditor" then
-		saveMxdviEditor(missing value)
-	else if theName is "AdobeReader" then
-		try
-			findAdobeReaderApp() of PDFObj
-		on error errMsg number -128
-			setSettingToWindow() of PDFObj
-			set theMessage to localized string "PDFPreviewIsInvalid"
-			showMessage(theMessage) of MessageUtility
-		end try
-		
-	else if theName is "Acrobat" then
-		try
-			findAcrobatApp() of PDFObj
-		on error errMsg number -128
-			setSettingToWindow() of PDFObj
-			set theMessage to localized string "PDFPreviewIsInvalid"
-			showMessage(theMessage) of MessageUtility
-		end try
-		
+	set windowName to name of window of theObject
+	
+	if windowName is "ToolPalette" then
+		open theName
+	else
+		if theName is "OKButton" then
+			saveSettingsFromWindow() of SettingWindowController
+			closeWindow() of SettingWindowController
+		else if theName is "CancelButton" then
+			closeWindow() of SettingWindowController
+		else if theName is "ApplyColors" then
+			applyColorsToTerminal() of TerminalSettingObj
+		else if theName is "RevertColors" then
+			revertColorsToTerminal() of TerminalSettingObj
+		else if theName is "Save" then
+			saveSettingsFromWindow() of SettingWindowController
+		else if theName is "usemi" then
+			setmiclient() of SettingWindowController
+		else if theName is "saveMxdviEditor" then
+			saveMxdviEditor(missing value) of SettingWindowController
+		else if theName is "AdobeReader" then
+			try
+				findAdobeReaderApp() of PDFObj
+			on error errMsg number -128
+				setSettingToWindow() of PDFObj
+				set theMessage to localized string "PDFPreviewIsInvalid"
+				showMessage(theMessage) of MessageUtility
+			end try
+			
+		else if theName is "Acrobat" then
+			try
+				findAcrobatApp() of PDFObj
+			on error errMsg number -128
+				setSettingToWindow() of PDFObj
+				set theMessage to localized string "PDFPreviewIsInvalid"
+				showMessage(theMessage) of MessageUtility
+			end try
+			
+		end if
 	end if
 end clicked
 
-on setmiclient()
-	set currentSetting to contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow
-	if currentSetting ends with "miclient %l %f" then
-		set miclientPath to text 1 thru -7 of currentSetting
-		if not (isExists(POSIX file miclientPath) of UtilityHandlers) then
-			set theMessage to localized string "whereismiclient"
-			set theResult to choose file with prompt theMessage without invisibles
-			saveMxdviEditor((POSIX path of theResult) & " %l %f")
-		end if
-	else
-		set prefFolderPath to path to preferences from user domain as Unicode text
-		set miclientSetting to POSIX path of (prefFolderPath & "mi:mode:TEX:miclient %l %f")
-		saveMxdviEditor(miclientSetting)
-	end if
-end setmiclient
-
-on saveMxdviEditor(theSetting)
-	if theSetting is missing value then
-		set theSetting to contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow
-	else
-		set contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of settingWindow to theSetting
-	end if
-	set theCommand to "defaults write Mxdvi MxdviEditor " & (quoted form of theSetting)
-	--log theCommand
-	do shell script theCommand
-end saveMxdviEditor
-
 on choose menu item theObject
+	set FreeTime to 0
 	set theName to name of theObject
 	if theName is "Preference" then
-		show window "Setting"
+		openWindow() of SettingWindowController
 	else if theName is "ShowToolPalette" then
-		showToolPalette()
+		openWindow() of ToolPaletteController
 	else if theName is "ShowRefPalette" then
 		showRefPalette()
 	end if
 end choose menu item
 
 on will close theObject
-	set settingWindowBounds to bounds of theObject
-	tell user defaults
-		set contents of default entry "SettingWindowBounds" to settingWindowBounds
-	end tell
+	set theName to name of theObject
+	
+	if theName is "Setting" then
+		prepareClose() of SettingWindowController
+	else if theName is "ToolPalette" then
+		prepareClose() of ToolPaletteController
+	end if
 end will close
+
+on should zoom theObject proposed bounds proposedBounds
+	set FreeTime to 0
+	set theName to name of theObject
+	
+	if theName is "Setting" then
+		return toggleCollapseWIndow() of SettingWindowController
+	else if theName is "ToolPalette" then
+		return toggleCollapsePanel() of ToolPaletteController
+	end if
+end should zoom
+
+on will resize theObject proposed size proposedSize
+	return size of theObject
+end will resize
 
 on will finish launching theObject
 	--activate
@@ -309,58 +321,43 @@ on will finish launching theObject
 	--log "end sill finish launching"
 end will finish launching
 
-(* read and write defaults ===============================================*)
+on awake from nib theObject
+	set theName to name of theObject
+	if theName is "ToolPalette" then
+		set hides when deactivated of theObject to false
+	end if
+end awake from nib
+
+on will quit theObject
+	if isOpened of SettingWindowController then
+		prepareClose() of SettingWindowController
+	end if
+	if isOpened of ToolPaletteController then
+		prepareClose() of ToolPaletteController
+	end if
+end will quit
+
+on will open theObject
+	set theName to name of theObject
+	
+	if theName is "Startup" then
+		set level of theObject to 1
+		center theObject
+		set alpha value of theObject to 0.7
+	end if
+end will open
+
+on showStartupMessage(theMessage)
+	set contents of text field "StartupMessage" of window "Startup" to theMessage
+end showStartupMessage
 
 on loadSettings()
-	tell UtilityHandlers
-		set lifeTime to readDefaultValue("LifeTime", lifeTime) of it
-		set settingWindowBounds to readDefaultValue("SettingWindowBounds", settingWindowBounds) of it
-		set showToolPaletteWhenLaunched to readDefaultValue("ShowToolPaletteWhenLaunched", showToolPaletteWhenLaunched) of it
-		set showRefPaletteWhenLaunched to readDefaultValue("ShowRefPaletteWhenLaunched", showRefPaletteWhenLaunched) of it
+	tell DefaultsManager
+		set lifeTime to (readDefaultValue("LifeTime") of it)
+		set showToolPaletteWhenLaunched to readDefaultValue("ShowToolPaletteWhenLaunched") of it
+		set showRefPaletteWhenLaunched to readDefaultValue("ShowRefPaletteWhenLaunched") of it
 	end tell
 end loadSettings
-
-on writeSettings()
-	tell user defaults
-		set contents of default entry "LifeTime" to lifeTime
-		set contents of default entry "ShowToolPaletteWhenLaunched" to showToolPaletteWhenLaunched
-		set contents of default entry "ShowRefPaletteWhenLaunched" to showRefPaletteWhenLaunched
-	end tell
-end writeSettings
-(* end : read and write defaults ===============================================*)
-
-(* handlers get values from window ===============================================*)
-on saveSettingsFromWindow() -- get all values from and window and save into preference
-	saveSettingsFromWindow() of TerminalSettingObj
-	--log "success saveSettingsFromWindow() of TerminalSettingObj"
-	saveSettingsFromWindow() of TeXCompileObj
-	--log "success saveSettingsFromWindow() of TeXCompileObj"
-	saveSettingsFromWindow() of PDFObj
-	--log "success saveSettingsFromWindow() of PDFObj"
-	saveSettingsFromWindow() of TexDocObj
-	--log "success saveSettingsFromWindow() of TexDocObj"
-	saveSettingsFromWindow() of dviObj
-	--log "success saveSettingsFromWindow() of dviObj"
-	set theOtherSettingTab to tab view item "TheOtherSetting" of tab view "SettingTabs" of window "Setting"
-	set theLifeTime to (contents of text field "LifeTime" of theOtherSettingTab) as string
-	
-	if theLifeTime is not "" then
-		set lifeTime to theLifeTime as integer
-	end if
-	set showToolPaletteWhenLaunched to (state of button "ShowToolPaletteWhenLaunched" of theOtherSettingTab is 1)
-	set showRefPaletteWhenLaunched to (state of button "ShowRefPaletteWhenLaunched" of theOtherSettingTab is 1)
-	writeSettings()
-end saveSettingsFromWindow
-(* end: handlers get values from window ===============================================*)
-
-on showToolPalette()
-	tell main bundle
-		set ToolPalettePath to path for resource "ToolPalette" extension "app"
-	end tell
-	tell application ((POSIX file ToolPalettePath) as Unicode text)
-		launch
-	end tell
-end showToolPalette
 
 on showRefPalette()
 	tell main bundle
@@ -373,3 +370,16 @@ on showRefPalette()
 		end tell
 	end ignoring
 end showRefPalette
+
+on doReverseSearch(targetLine)
+	tell application "System Events"
+		tell application process "mi"
+			keystroke "b" using command down
+		end tell
+	end tell
+	--ignoring application responses
+	tell application "mi"
+		select paragraph targetLine of first document
+	end tell
+	--end ignoring
+end doReverseSearch
