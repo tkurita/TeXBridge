@@ -18,7 +18,7 @@ end setSettingToWindow
 
 on loadSettings()
 	--commands
-	set texCommand to readDefaultValue("latex", defaultTexCommand) of UtilityHandlers
+	set defaultTexCommand to readDefaultValue("latex", defaultTexCommand) of UtilityHandlers
 end loadSettings
 
 on writeSettings()
@@ -30,7 +30,7 @@ end writeSettings
 
 on saveSettingsFromWindow() -- get all values from and window and save into preference	
 	tell matrix "Commands" of texCommandsBox
-		set texCommand to contents of cell "latex"
+		set defaultTexCommand to contents of cell "latex"
 	end tell
 	
 	writeSettings()
