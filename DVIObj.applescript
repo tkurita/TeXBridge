@@ -7,7 +7,7 @@ global DefaultsManager
 global comDelim
 global texCommandsBox
 
-property dvipdfmxCommand : "/usr/local/bin/dvipdfmx"
+property defaultDVIPDFCommand : "/usr/local/bin/dvipdfmx"
 property dviViewCommand : "xdvi"
 property DVIPreviewMode : 1
 
@@ -15,7 +15,7 @@ property dviPreviewBox : missing value
 
 on setSettingToWindow()
 	tell matrix "Commands" of texCommandsBox
-		set contents of cell "dvipdfmx" to dvipdfmxCommand
+		set contents of cell "dvipdfmx" to defaultDVIPDFCommand
 	end tell
 	
 	tell dviPreviewBox
@@ -27,7 +27,7 @@ end setSettingToWindow
 on loadSettings()
 	--log "start loadSettings of DVIObj"
 	--commands
-	set dvipdfmxCommand to readDefaultValue("dvipdfmx") of DefaultsManager
+	set defaultDVIPDFCommand to readDefaultValue("dvipdfmx") of DefaultsManager
 	
 	--DVI Previewer
 	set DVIPreviewMode to (readDefaultValue("DVIPreviewMode") of DefaultsManager) as integer
@@ -40,7 +40,7 @@ end loadSettings
 on writeSettings()
 	tell user defaults
 		--commands
-		set contents of default entry "dvipdfmx" to dvipdfmxCommand
+		set contents of default entry "dvipdfmx" to defaultDVIPDFCommand
 		--DVI previewer
 		set contents of default entry "dviView" to dviViewCommand
 		set contents of default entry "DVIPreviewMode" to DVIPreviewMode
@@ -49,7 +49,7 @@ end writeSettings
 
 on saveSettingsFromWindow() -- get all values from and window and save into preference	
 	tell matrix "Commands" of texCommandsBox
-		set dvipdfmxCommand to contents of cell "dvipdfmx"
+		set defaultDVIPDFCommand to contents of cell "dvipdfmx"
 	end tell
 	
 	tell dviPreviewBox
@@ -148,10 +148,17 @@ on setDVIDriver()
 end setDVIDriver
 
 on makeObj(theTexDocObj)
+	if dvipdfCommand of theTexDocObj is missing value then
+		set theCommand to defaultDVIPDFCommand
+	else
+		set theCommand to dvipdfCommand of theTexDocObj
+	end if
+	
 	script dviObj
 		property parent : theTexDocObj
 		property dviFileRef : missing value
 		property isSrcSpecial : missing value
+		property dvipdfCommand : theCommand
 		
 		on getModDate()
 			return modification date of (info for dviFileRef)
@@ -198,7 +205,7 @@ on makeObj(theTexDocObj)
 			--log "convert a DVI file into a PDF file"
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
-			set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
+			set allCommand to cdCommand & comDelim & dvipdfCommand & space & "'" & targetFileName & "'"
 			
 			doCommands of TerminalCommander for allCommand with activation
 			copy TerminalCommander to currentTerminal
