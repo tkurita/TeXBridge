@@ -7,6 +7,8 @@ property PathConverter : load script file (LibraryFolder & "PathConverter")
 property lifeTime : 60 -- minutes
 property FreeTime : 0
 property isLaunched : false
+property settingWindowBounds : {}
+property texCommandsBox : missing value
 
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
@@ -20,6 +22,8 @@ property LogFileParser : missing value
 property EditCommands : missing value
 property TeXCompileObj : missing value
 property PDFObj : missing value
+property TexDocObj : missing value
+property dviObj : missing value
 
 on importScript(scriptName)
 	tell main bundle
@@ -51,12 +55,20 @@ on initilize()
 		set EditCommands to importScript("EditCommands")
 		set PDFObj to importScript("PDFObj")
 		set TeXCompileObj to importScript("TeXCompileObj")
+		set TexDocObj to importScript("TeXDocObj")
+		set dviObj to importScript("DVIObj")
+		
 		--log "end of import library"
 		
-		set texCommandsBox of TeXCompileObj to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
-		set dviPreviewBox of TeXCompileObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+		set texCommandsBox to tab view item "TeXCommands" of tab view "SettingTabs" of window "Setting"
+		
 		loadSettings() of TeXCompileObj
 		--log "end of setting TeXCompileObj"
+		
+		loadSettings() of TexDocObj
+		
+		set dviPreviewBox of dviObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
+		loadSettings() of dviObj
 		
 		--log "start of initilizeing PDFObj"
 		set pdfPreviewBox of PDFObj to tab view item "PreviewSetting" of tab view "SettingTabs" of window "Setting"
@@ -79,13 +91,15 @@ end initilize
 (* events of application*)
 on launched theObject
 	initilize()
+	--log "end of initilize"
 	(*debug code*)
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
-	--quickTypesetAndPreview()
+	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
 	--doTypeSet() of TeXCompileObj
+	--typesetAndPreview() of TeXCompileObj
 	--openRelatedFile with revealOnly
 	--show window "Setting"
 	--debug()
@@ -146,6 +160,9 @@ on will open theObject
 	setSettingToWindow() of TerminalSettingObj
 	setSettingToWindow() of TeXCompileObj
 	setSettingToWindow() of PDFObj
+	setSettingToWindow() of TexDocObj
+	setSettingToWindow() of dviObj
+	
 	tell theObject
 		set contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of theObject to lifeTime as integer
 	end tell
@@ -174,10 +191,23 @@ on choose menu item theObject
 	end if
 end choose menu item
 
+on will close theObject
+	set settingWindowBounds to bounds of theObject
+	tell user defaults
+		set contents of default entry "SettingWindowBounds" to settingWindowBounds
+	end tell
+end will close
+
 (* read and write defaults ===============================================*)
 
 on loadSettings()
 	set lifeTime to readDefaultValue("LifeTime", lifeTime) of UtilityHandlers
+	set settingWindowBounds to readDefaultValue("SettingWindowBounds", settingWindowBounds) of UtilityHandlers
+	if settingWindowBounds is not {} then
+		set bounds of window "Setting" to settingWindowBounds
+	else
+		center window "Setting"
+	end if
 end loadSettings
 
 on writeSettings()
@@ -195,6 +225,10 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	--log "success saveSettingsFromWindow() of TeXCompileObj"
 	saveSettingsFromWindow() of PDFObj
 	--log "success saveSettingsFromWindow() of PDFObj"
+	saveSettingsFromWindow() of TexDocObj
+	--log "success saveSettingsFromWindow() of TexDocObj"
+	saveSettingsFromWindow() of dviObj
+	--log "success saveSettingsFromWindow() of dviObj"
 	
 	set theLifeTime to (contents of text field "LifeTime" of tab view item "TheOtherSetting" of tab view "SettingTabs" of window "Setting") as string
 	
