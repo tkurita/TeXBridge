@@ -397,7 +397,7 @@ end getColorSettingsFromWindow
 on texCompile(theTexDocObj)
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	
-	set allCommand to cdCommand & "; " & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
+	set allCommand to cdCommand & comDelim & texCommand & space & "'" & (texFileName of theTexDocObj) & "'"
 	
 	if compileInTerminal then
 		doCommands(allCommand) of TerminalCommander
@@ -476,6 +476,12 @@ on isExist(filePath)
 		return false
 	end try
 end isExist
+
+on isRunning(appName)
+	tell application "System Events"
+		return exists application process appName
+	end tell
+end isRunning
 
 on checkLogFileStatus(theTexDocObj)
 	set textALogfile to localized string "aLogfile"
@@ -743,7 +749,7 @@ script dviObj
 			end try
 			
 			if pid is "" then
-				set allCommand to cdCommand & "; " & dviViewCommand & space & "'" & dviFileName & "' &"
+				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
 				doCommands(allCommand) of TerminalCommander
 			else
 				set pid to word 1 of pid
@@ -804,6 +810,25 @@ on bibTex()
 	execTexCommand(bibtexCommand, "", true)
 end bibTex
 
+on closePDFfile(fileInfo, thePDFAlias)
+	set pageNumber to missing value
+	using terms from application "Acrobat 5.0"
+		set acrobatName to "Acrobat 5.0"
+		set pdfFileName to name of fileInfo
+		tell application acrobatName
+			if exists document pdfFileName then
+				set theFileAliasPath to file alias of document pdfFileName as Unicode text
+				if theFileAliasPath is (thePDFAlias as Unicode text) then
+					bring to front document pdfFileName
+					set pageNumber to number of PDF Window 1
+					close PDF Window 1
+				end if
+			end if
+		end tell
+	end using terms from
+	return pageNumber
+end closePDFfile
+
 on dviToPDF()
 	try
 		set theTexDocObj to checkmifiles without saving
@@ -813,29 +838,34 @@ on dviToPDF()
 	
 	--check busy status of pdf file.
 	set pdfFileName to getNameWithSuffix(".pdf") of theTexDocObj
-	try
-		set thePDFPath to alias (((workingDirectory of theTexDocObj) as Unicode text) & pdfFileName)
-		set existsPDFfile to true
-	on error
-		set existsPDFfile to false
-	end try
+	set thePDFPath to (((workingDirectory of theTexDocObj) as Unicode text) & pdfFileName)
+	set existsPDFfile to isExist(thePDFPath)
 	
+	set pageNumber to missing value
 	if existsPDFfile then
-		set fileInfo to info for thePDFPath
-		set isPDFBusy to busy status of (info for thePDFPath)
-		if isPDFBusy then
-			try
-				tell application (default application of fileInfo as Unicode text)
-					close window pdfFileName
-				end tell
-				set isPDFBusy to busy status of (info for thePDFPath)
-			end try
-			
+		set thePDFAlias to alias thePDFPath
+		set fileInfo to info for thePDFAlias
+		set defAppPath to (default application of fileInfo) as Unicode text
+		if defAppPath ends with "Acrobat 5.0" then
+			if isRunning("Acrobat 5.0") then
+				set pageNumber to closePDFfile(fileInfo, thePDFAlias)
+			end if
+		else
+			set isPDFBusy to busy status of fileInfo
 			if isPDFBusy then
-				set openedMessage to localized string "OpenedMessage"
-				set theMessage to (thePDFPath as Unicode text) & return & openedMessage
-				showMessageOnmi(theMessage)
-				return
+				try
+					tell application (default application of fileInfo as Unicode text)
+						close window pdfFileName
+					end tell
+					set isPDFBusy to busy status of (info for thePDFAlias)
+				end try
+				
+				if isPDFBusy then
+					set openedMessage to localized string "OpenedMessage"
+					set theMessage to thePDFPath & return & openedMessage
+					showMessageOnmi(theMessage)
+					return
+				end if
 			end if
 		end if
 	end if
@@ -848,6 +878,14 @@ on dviToPDF()
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
 	openOutputFile(theTexDocObj, ".pdf")
+	if pageNumber is not missing value then
+		using terms from application "Acrobat 5.0"
+			set acrobatName to "Acrobat 5.0"
+			tell application acrobatName
+				set number of PDF Window 1 to pageNumber
+			end tell
+		end using terms from
+	end if
 end dviToPDF
 
 on dviToPS()
@@ -868,7 +906,7 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set targetFileName to getNameWithSuffix(theExtension) of theTexDocObj
 	--set allCommand to cdCommand & "; " & texCommand & space & "'" & targetFileName & "'"
-	set allCommand to cdCommand & return & texCommand & space & "'" & targetFileName & "'"
+	set allCommand to cdCommand & comDelim & texCommand & space & "'" & targetFileName & "'"
 	doCommands(allCommand) of TerminalCommander
 end execTexCommand
 
@@ -932,7 +970,7 @@ on execEbb(theGraphicPath)
 	set cdCommand to "cd '" & targetDir & "'"
 	set eddCommand to ebbCommand & space & "'" & fileName & "'"
 	--set allCommand to cdCommand & ";" & eddCommand
-	set allCommand to cdCommand & return & eddCommand
+	set allCommand to cdCommand & comDelim & eddCommand
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
 end execEbb
