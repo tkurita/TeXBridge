@@ -52,7 +52,6 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	
 	tell dviPreviewBox
 		set dviViewCommand to contents of text field "dviViewCommand"
-		--set usexdvi to ((state of cell "UseXdvi" of matrix "PreviewerMode") is on state)
 		set DVIPreviewMode to current row of matrix "PreviewerMode"
 	end tell
 	setDVIDriver()
