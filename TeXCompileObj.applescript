@@ -134,11 +134,7 @@ on checkmifiles given saving:savingFlag
 	--log "success makeObj of TexDocObj"
 	set targetParagraph of theTexDocObj to theParagraph
 	
-	--check ParentFile and TypesetCommand
-	set theParentFile to missing value
-	set theTypesetCommand to missing value
-	set theDviPdfCommand to missing value
-	
+	(* finde header commands *)
 	set ith to 1
 	repeat
 		tell application "mi"
@@ -148,12 +144,13 @@ on checkmifiles given saving:savingFlag
 			ignoring case
 				if theParagraph starts with "%ParentFile" then
 					set theParentFile to resolveParentFile(theParagraph, theTargetFile)
+					setTexFileRef(theParentFile) of theTexDocObj
 				else if theParagraph starts with "%Typeset-Command" then
-					set theTypesetCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+					set texCommand of theTexDocObj to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
 				else if theParagraph starts with "%DviToPdf-Command" then
-					set theDviPdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
+					set dvipdfCommand of theTexDocObj to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
 				else if theParagraph starts with "%DviToPs-Command" then
-					set theDviPsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+					set dvipsCommand of theTexDocObj to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
 				end if
 			end ignoring
 		else
@@ -161,18 +158,6 @@ on checkmifiles given saving:savingFlag
 		end if
 		set ith to ith + 1
 	end repeat
-	
-	if theParentFile is not missing value then
-		setTexFileRef(theParentFile) of theTexDocObj
-	end if
-	
-	if theTypesetCommand is not missing value then
-		set texCommand of theTexDocObj to theTypesetCommand
-	end if
-	
-	if theDviPdfCommand is not missing value then
-		set dvipdfCommand of theTexDocObj to theDviPdfCommand
-	end if
 	
 	if savingFlag then
 		set textDoYouSave to localized string "doYouSave"
