@@ -316,7 +316,25 @@ on dviPreview()
 	end if
 end dviPreview
 
+on pdfPreview()
+	try
+		set theTexDocObj to checkmifiles without saving
+	on error errMsg number 1200
+		return
+	end try
+	
+	set thePDFObj to makeObj(theTexDocObj) of PDFObj
+	setPDFObj() of thePDFObj
+	if isExistPDF() of thePDFObj then
+		openPDFFile() of thePDFObj
+	else
+		set theMessage to localized string "noPDFfile"
+		showMessageOnmi(theMessage)
+	end if
+end pdfPreview
+
 on updateReferencePalette(theTexDocObj)
+	--log "start updateReferencePalette"
 	try
 		tell user defaults
 			set visibleRefPalette to contents of default entry "visibleRefPalette"
@@ -324,21 +342,26 @@ on updateReferencePalette(theTexDocObj)
 	on error
 		return
 	end try
+	
 	if visibleRefPalette then
 		tell main bundle
 			set refPalettePath to path for resource "ReferencePalette" extension "app"
 		end tell
 		set theFileRef to texFileRef of theTexDocObj
+		--log "theFileRef : " & (theFileRef as Unicode text)
 		--log "call rebuildLabelsFromAux"
 		tell application ((POSIX file refPalettePath) as Unicode text)
 			ignoring application responses
 				open {commandID:"rebuildLabelsFromAux", argument:theFileRef}
 			end ignoring
 		end tell
+	else
+		--log "rebuildLabesFromAux is not called."
 	end if
 end updateReferencePalette
 
 on quickTypesetAndPreview()
+	--log "start quickTypesetAndPreview"
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
@@ -358,13 +381,17 @@ on quickTypesetAndPreview()
 	on error number 1250
 		return
 	end try
+	--log "after texCompile in quickTypesetAndPreview"
 	
 	if theDviObj is not missing value then
 		openDVI() of theDviObj
 	end if
 	
+	--log "after openDVI in quickTypesetAndPreview"
 	set theLogFileParser to newLogFileParser(theTexDocObj)
+	--log "before parseLogFile in quickTypesetAndPreview"
 	parseLogFile() of theLogFileParser
+	--log "after parseLogFile in quickTypesetAndPreview"
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
 	updateReferencePalette(theTexDocObj)
