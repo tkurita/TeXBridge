@@ -474,6 +474,7 @@ on checkmifiles given saving:savingFlag
 	set textADocument to localized string "aDocument"
 	set textIsNotSaved to localized string "isNotSaved"
 	set textIsNotFound to localized string "isNotFound"
+	set textIsInvalid to localized string "isInvalid"
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
 	set textIsModified to localized string "isModified"
@@ -508,14 +509,22 @@ on checkmifiles given saving:savingFlag
 				set theTexFile to parentFile
 			end if
 			--tell me to log "theTexFile : " & theTexFile
+			
+			if theTexFile ends with ":" then
+				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsInvalid
+				showMessageOnmi(theMessage) of MessageUtility
+				error "ParentFile is invalid." number 1230
+			end if
+			
 			try
 				set theTexFile to theTexFile as alias
-				setTexFileRef(theTexFile) of theTexDocObj
 			on error
 				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
 				showMessageOnmi(theMessage) of MessageUtility
 				error "ParentFile is not found." number 1220
 			end try
+			
+			setTexFileRef(theTexFile) of theTexDocObj
 		end if
 	end tell
 	
@@ -630,7 +639,7 @@ on doTypeSet()
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220} then
+		if errNum is not in {1200, 1210, 1220, 1230} then
 			showError(errNum, errMsg) of MessageUtility
 		end if
 		return missing value
@@ -670,7 +679,7 @@ on quickTypesetAndPreview()
 	try
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220} then -- "The document is not saved."
+		if errNum is not in {1200, 1210, 1220, 1230} then -- "The document is not saved."
 			showError(errNum, errMsg) of MessageUtility
 		end if
 		return
@@ -767,7 +776,7 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	try
 		set theTexDocObj to checkmifiles given saving:checkSaved
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220} then
+		if errNum is not in {1200, 1210, 1220, 1230} then
 			error errMsg number errNum
 		end if
 		return
