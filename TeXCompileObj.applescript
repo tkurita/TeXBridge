@@ -93,6 +93,7 @@ on resolveParentFile(theParagraph, theTargetFile)
 		error "ParentFile is not found." number 1220
 	end try
 	
+	--log "end resolveParentFile"
 	return theTexFile
 end resolveParentFile
 
@@ -258,6 +259,7 @@ end prepareVIewErrorLog
 
 (* execute tex commands called from tools from mi  ====================================*)
 on newLogFileParser(theTexDocObj)
+	--log "start newLogFileParser"
 	set theLogFile to logFileRef of theTexDocObj
 	set theLogFile to theLogFile as alias
 	set logFileRef of theTexDocObj to theLogFile
@@ -269,6 +271,7 @@ on newLogFileParser(theTexDocObj)
 		end ignoring
 	end tell
 	
+	--log "end of newLogFileParser"
 	return makeObj(theTexDocObj) of LogFileParser
 end newLogFileParser
 
