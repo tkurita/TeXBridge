@@ -17,13 +17,11 @@ on setSettingToWindow()
 end setSettingToWindow
 
 on loadSettings()
-	--commands
 	set defaultTexCommand to readDefaultValue("latex", defaultTexCommand) of UtilityHandlers
 end loadSettings
 
 on writeSettings()
 	tell user defaults
-		--commands
 		set contents of default entry "latex" to defaultTexCommand
 	end tell
 end writeSettings
@@ -170,9 +168,13 @@ on makeObj(theTargetFile)
 				try
 					do shell script allCommand
 				on error errMsg number errNum
-					if errNum is not in {1, -1700} then
+					if errNum is in {1, -1700} then
 						-- 1:general tex error
 						-- -1700: unknown, result can not be accept
+					else if errNum is 127 then
+						display dialog errMsg
+						return missing value
+					else
 						error errMsg number errNum
 					end if
 				end try
