@@ -113,9 +113,9 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					240,
+					514,
 					20,
-					42,
+					81,
 					43,
 					43,
 					20,
@@ -771,6 +771,8 @@
 			2C732CB507AE6B0D005ACE75 = 2C732CB507AE6B0D005ACE75;
 			2C732CBA07AE798F005ACE75 = 2C732CBA07AE798F005ACE75;
 			2C732CBB07AE798F005ACE75 = 2C732CBB07AE798F005ACE75;
+			2C732CC507AF0F27005ACE75 = 2C732CC507AF0F27005ACE75;
+			2C732CC607AF0F27005ACE75 = 2C732CC607AF0F27005ACE75;
 			2C7C49440796103A0026564C = 2C7C49440796103A0026564C;
 			2C7C4957079614250026564C = 2C7C4957079614250026564C;
 			2C7C495C079614250026564C = 2C7C495C079614250026564C;
@@ -1201,6 +1203,26 @@
 		vrLen = 445;
 		vrLoc = 8699;
 	};
+	2C732CC507AF0F27005ACE75 = {
+		fRef = 2C7C493607960CCD0026564C;
+		isa = PBXTextBookmark;
+		name = "SettingWindowController.applescript: 133";
+		rLen = 0;
+		rLoc = 5192;
+		rType = 0;
+		vrLen = 625;
+		vrLoc = 4567;
+	};
+	2C732CC607AF0F27005ACE75 = {
+		fRef = 2C7C493607960CCD0026564C;
+		isa = PBXTextBookmark;
+		name = "SettingWindowController.applescript: 125";
+		rLen = 0;
+		rLoc = 4847;
+		rType = 0;
+		vrLen = 349;
+		vrLoc = 286;
+	};
 	2C7C492E07960C830026564C = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {769, 763}}";
@@ -1211,8 +1233,8 @@
 	2C7C493607960CCD0026564C = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {769, 2329}}";
-			sepNavSelRange = "{5192, 0}";
-			sepNavVisRect = "{{0, 2028}, {769, 301}}";
+			sepNavSelRange = "{4847, 0}";
+			sepNavVisRect = "{{0, 209}, {769, 301}}";
 			sepNavWindowFrame = "{{61, 79}, {810, 706}}";
 		};
 	};
