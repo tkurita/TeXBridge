@@ -32,6 +32,7 @@ on launched theObject
 		set isLaunched to true
 	end if
 	(*debug code*)
+	dviToPDF()
 	--dviPreview()
 	--doTypeSet()
 	--openRelatedFile with revealOnly
@@ -485,50 +486,6 @@ on isRunning(appName)
 	end tell
 end isRunning
 
-on checkLogFileStatus(theTexDocObj)
-	set textALogfile to localized string "aLogfile"
-	set textHasBeenOpend to localized string "hasBeenOpend"
-	set textShouldClose to localized string "shouldClose"
-	set textCancel to localized string "Cancel"
-	set textClose to localized string "Close"
-	
-	set theLogFile to getPathWithSuffix(logSuffix) of theTexDocObj
-	set logFileReady to false
-	if isExist(theLogFile) then
-		if busy status of (info for file theLogFile) then
-			tell application "mi"
-				set nDoc to count document
-				repeat with ith from 1 to nDoc
-					set theFilePath to file of document ith as Unicode text
-					if theFilePath is theLogFile then
-						try
-							set theResult to display dialog textALogfile & return & theLogFile & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
-						on error errMsg number -128 --if canceld, error number -128
-							set logFileReady to false
-							exit repeat
-						end try
-						
-						if button returned of theResult is textClose then
-							close document ith without saving
-							set logFileReady to true
-							exit repeat
-						end if
-					end if
-				end repeat
-			end tell
-		else
-			set logFileReady to true
-		end if
-	else
-		set logFileReady to true
-	end if
-	
-	if logFileReady then
-		set logFileRef of theTexDocObj to theLogFile
-	end if
-	return logFileReady
-end checkLogFileStatus
-
 on checkmifiles given saving:savingFlag
 	set textADocument to localized string "aDocument"
 	set textIsNotSaved to localized string "isNotSaved"
@@ -643,6 +600,50 @@ on checkmifiles given saving:savingFlag
 			end repeat
 			return theText
 		end removeSuffix
+		
+		on checkLogFileStatus()
+			set textALogfile to localized string "aLogfile"
+			set textHasBeenOpend to localized string "hasBeenOpend"
+			set textShouldClose to localized string "shouldClose"
+			set textCancel to localized string "Cancel"
+			set textClose to localized string "Close"
+			
+			set theLogFile to getPathWithSuffix(logSuffix)
+			set logFileReady to false
+			if isExist(theLogFile) then
+				if busy status of (info for file theLogFile) then
+					tell application "mi"
+						set nDoc to count document
+						repeat with ith from 1 to nDoc
+							set theFilePath to file of document ith as Unicode text
+							if theFilePath is theLogFile then
+								try
+									set theResult to display dialog textALogfile & return & theLogFile & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
+								on error errMsg number -128 --if canceld, error number -128
+									set logFileReady to false
+									exit repeat
+								end try
+								
+								if button returned of theResult is textClose then
+									close document ith without saving
+									set logFileReady to true
+									exit repeat
+								end if
+							end if
+						end repeat
+					end tell
+				else
+					set logFileReady to true
+				end if
+			else
+				set logFileReady to true
+			end if
+			
+			if logFileReady then
+				set logFileRef to theLogFile
+			end if
+			return logFileReady
+		end checkLogFileStatus
 	end script
 	
 	return TexDocObj
@@ -658,7 +659,7 @@ on doTypeSet()
 	set theTexDocObj to checkmifiles with saving
 	--log "end of checkmi"
 	
-	if not checkLogFileStatus(theTexDocObj) then
+	if not checkLogFileStatus() of theTexDocObj then
 		set theMessage to textALogfile & return & sQ & (logFileRef of theTexDocObj) & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
 		showMessageOnmi(theMessage)
 		return
@@ -815,24 +816,98 @@ on bibTex()
 	execTexCommand(bibtexCommand, "", true)
 end bibTex
 
-on closePDFfile(fileInfo, thePDFAlias)
-	set pageNumber to missing value
-	using terms from application "Acrobat 5.0"
-		set acrobatName to "Acrobat 5.0"
-		set pdfFileName to name of fileInfo
-		tell application acrobatName
-			if exists document pdfFileName then
-				set theFileAliasPath to file alias of document pdfFileName as Unicode text
-				if theFileAliasPath is (thePDFAlias as Unicode text) then
-					bring to front document pdfFileName
-					set pageNumber to number of PDF Window 1
-					close PDF Window 1
+script PDFObj
+	property targetTexDocObj : missing value
+	property pdfFileName : missing value
+	property pdfPath : missing value
+	property pdfAlias : missing value
+	property fileInfo : missing value
+	property pageNumber : missing value
+	property previewerName : missing value
+	property isFirstOperation : missing value
+	
+	on setPDFObj(theTexDocObj)
+		set targetTexDocObj to theTexDocObj
+		set pdfFileName to getNameWithSuffix(".pdf") of theTexDocObj
+		set pdfPath to (((workingDirectory of theTexDocObj) as Unicode text) & pdfFileName)
+	end setPDFObj
+	
+	on prepareDVItoPDF()
+		set existsPDFfile to isExist(pdfPath)
+		
+		if existsPDFfile then
+			set isFirstOperation to false
+			set pdfAlias to alias pdfPath
+			set fileInfo to info for pdfAlias
+			set defAppPath to (default application of fileInfo) as Unicode text
+			if defAppPath ends with "Acrobat 6.0 Standard.app:" then
+				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
+				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 5.0" then
+				set previewerName to "Acrobat 5.0"
+			else
+				set previewerName to missing value
+			end if
+			
+			if previewerName is not missing value then
+				if isRunning(previewerName) then
+					closePDFfile()
+				else
+					set pageNumber to missing value
+				end if
+			else
+				set isPDFBusy to busy status of fileInfo
+				if isPDFBusy then
+					try
+						tell application (default application of fileInfo as Unicode text)
+							close window pdfFileName
+						end tell
+						set isPDFBusy to busy status of (info for pdfAlias)
+					end try
+					
+					if isPDFBusy then
+						set openedMessage to localized string "OpenedMessage"
+						set theMessage to pdfPath & return & openedMessage
+						showMessageOnmi(theMessage)
+						return
+					end if
 				end if
 			end if
-		end tell
-	end using terms from
-	return pageNumber
-end closePDFfile
+		else
+			set isFirstOperation to true
+		end if
+	end prepareDVItoPDF
+	
+	on closePDFfile()
+		set pageNumber to missing value
+		using terms from application "Acrobat 5.0"
+			tell application previewerName
+				if exists document pdfFileName then
+					set theFileAliasPath to file alias of document pdfFileName as Unicode text
+					if theFileAliasPath is (pdfAlias as Unicode text) then
+						bring to front document pdfFileName
+						set pageNumber to number of PDF Window 1
+						close PDF Window 1
+					end if
+				else
+					set pageNumber to missing value
+				end if
+			end tell
+		end using terms from
+	end closePDFfile
+	
+	on openPDFFile()
+		openOutputFile(targetTexDocObj, ".pdf")
+		if pageNumber is not missing value then
+			using terms from application "Acrobat 5.0"
+				tell application previewerName
+					set number of PDF Window 1 to pageNumber
+				end tell
+			end using terms from
+		end if
+	end openPDFFile
+end script
 
 on dviToPDF()
 	try
@@ -842,38 +917,8 @@ on dviToPDF()
 	end try
 	
 	--check busy status of pdf file.
-	set pdfFileName to getNameWithSuffix(".pdf") of theTexDocObj
-	set thePDFPath to (((workingDirectory of theTexDocObj) as Unicode text) & pdfFileName)
-	set existsPDFfile to isExist(thePDFPath)
-	
-	set pageNumber to missing value
-	if existsPDFfile then
-		set thePDFAlias to alias thePDFPath
-		set fileInfo to info for thePDFAlias
-		set defAppPath to (default application of fileInfo) as Unicode text
-		if defAppPath ends with "Acrobat 5.0" then
-			if isRunning("Acrobat 5.0") then
-				set pageNumber to closePDFfile(fileInfo, thePDFAlias)
-			end if
-		else
-			set isPDFBusy to busy status of fileInfo
-			if isPDFBusy then
-				try
-					tell application (default application of fileInfo as Unicode text)
-						close window pdfFileName
-					end tell
-					set isPDFBusy to busy status of (info for thePDFAlias)
-				end try
-				
-				if isPDFBusy then
-					set openedMessage to localized string "OpenedMessage"
-					set theMessage to thePDFPath & return & openedMessage
-					showMessageOnmi(theMessage)
-					return
-				end if
-			end if
-		end if
-	end if
+	setPDFObj(theTexDocObj) of PDFObj
+	prepareDVItoPDF() of PDFObj
 	
 	--convert a DVI file into a PDF file
 	set cdCommand to "cd" & space & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
@@ -882,15 +927,8 @@ on dviToPDF()
 	
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
-	openOutputFile(theTexDocObj, ".pdf")
-	if pageNumber is not missing value then
-		using terms from application "Acrobat 5.0"
-			set acrobatName to "Acrobat 5.0"
-			tell application acrobatName
-				set number of PDF Window 1 to pageNumber
-			end tell
-		end using terms from
-	end if
+	
+	openPDFFile() of PDFObj
 end dviToPDF
 
 on dviToPS()
