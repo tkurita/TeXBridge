@@ -4,6 +4,7 @@
 "startQuote" = "“";
 "endQuote" = "”";
 "aDocument" = "A document";
+"isNotFound" = "is not found.";
 
 /*checkLogFileStatus*/
 "shouldClose" = "should be Close before typesetting.";
@@ -13,12 +14,14 @@
 /*doTypeSet*/
 "closeBeforeTypeset" = "Close before typesetting.";
 
+/*dviPreview*/
+"dviFile" = "A DVI file";
+
 /*dviToPDF*/
 "OpenedMessage" = "is opend. Close the file before executing command.";
 
 /* checkmifiles */
 "isNotSaved" = "is not saved.";
-"isNotFound" = "is not found.";
 "isModified" = "is modified.";
 "doYouSave" = "Do you save the document before typesetting.";
 

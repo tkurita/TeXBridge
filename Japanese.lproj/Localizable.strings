@@ -4,6 +4,7 @@
 "startQuote" ="“";
 "endQuote" ="”";
 "aDocument" = "書類";
+"isNotFound" = "が見つかりません。";
 
 /*checkLogFileStatus*/
 "shouldClose" = "タイプセットの前に閉じる必要があります。";
@@ -13,12 +14,14 @@
 /*doTypeSet*/
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 
+/*dviPreview*/
+"dviFile" = "DVI ファイル";
+
 /*dviToPDF*/
 "OpenedMessage" = "は開かれています。コマンドの実行前に閉じて下さい。";
  
 /* checkmifiles */
 "isNotSaved" = "は保存されていません。";
-"isNotFound" = "が見つかりません。";
 "isModified" = "は修正されています。";
 "doYouSave" = "実行前に保存しますか？";
 
