@@ -29,18 +29,24 @@
 	</dict>
 	<key>Greek</key>
 	<dict>
-		<key>A</key>
-		<string>Alpha</string>
-		<key>B</key>
-		<string>Beta</string>
-		<key>C</key>
-		<string>Chi</string>
 		<key>D</key>
 		<string>Delta</string>
+		<key>F</key>
+		<string>Phi</string>
 		<key>G</key>
 		<string>Gamma</string>
 		<key>L</key>
 		<string>Lambda</string>
+		<key>P</key>
+		<string>Pi</string>
+		<key>Q</key>
+		<string>Theta</string>
+		<key>S</key>
+		<string>Sigma</string>
+		<key>W</key>
+		<string>Omega</string>
+		<key>Y</key>
+		<string>Psi</string>
 		<key>a</key>
 		<string>alpha</string>
 		<key>b</key>
@@ -51,6 +57,8 @@
 		<string>delta</string>
 		<key>e</key>
 		<string>varepsilon</string>
+		<key>f</key>
+		<string>phi</string>
 		<key>g</key>
 		<string>gamma</string>
 		<key>h</key>
@@ -75,10 +83,14 @@
 		<string>sigma</string>
 		<key>t</key>
 		<string>tau</string>
+		<key>w</key>
+		<string>omega</string>
 		<key>x</key>
 		<string>xi</string>
 		<key>y</key>
-		<string>phi</string>
+		<string>psi</string>
+		<key>z</key>
+		<string>zeta</string>
 		<key>λ</key>
 		<string>lambda</string>
 	</dict>
@@ -88,6 +100,8 @@
 		<string>pm</string>
 		<key>-+</key>
 		<string>mp</string>
+		<key>/=</key>
+		<string>neq</string>
 		<key>&lt;&lt;</key>
 		<string>ll</string>
 		<key>&lt;_</key>
@@ -114,8 +128,6 @@
 		<string>patitial</string>
 		<key>∇</key>
 		<string>nabla</string>
-		<key>∓</key>
-		<string>mp</string>
 		<key>∝</key>
 		<string>prompt</string>
 		<key>∫</key>
