@@ -50,6 +50,9 @@
 /*pdfPreview:TeXCompileObj*/
 "noPDFfile" = "PDF ファイルがありません。";
 
+/*DVIObj:MxdviDriver:openDVI*/
+"mxdviIsnotFound" = "Mxdvi が見つかりません。";
+
 /*Others*/
 "whereismiclient" = "miclient はどこですか？";
 "whereisAdobeAcrobat" = "Adobe Acrobat を選択して下さい。";
