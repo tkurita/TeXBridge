@@ -193,7 +193,7 @@ script AcrobatDriver
 	
 	on closePDFfile(thePDFObj)
 		--log "start closePDFfile of AcrobatDriver"
-		using terms from application "Acrobat 6.0 Standard"
+		using terms from application "Adobe Acrobat 7.0 Standard"
 			--log pdfFileName of thePDFObj
 			tell application ((appName of thePDFObj) as Unicode text)
 				if exists document (pdfFileName of thePDFObj) then
@@ -217,7 +217,7 @@ script AcrobatDriver
 	end closePDFfile
 	
 	on openPDF(thePDFObj)
-		using terms from application "Acrobat 6.0 Standard"
+		using terms from application "Adobe Acrobat 7.0 Standard"
 			tell application ((appName of thePDFObj) as Unicode text)
 				activate
 				open pdfAlias of thePDFObj
