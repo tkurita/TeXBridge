@@ -43,6 +43,9 @@ on makeObj(theTargetFile)
 	script TexDocObj
 		property texFileRef : theTargetFile -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
 		property texCommand : defaultTexCommand
+		property dvipdfCommand : missing value
+		property dvipsCommand : missing value
+		
 		property texFileName : name of pathRecord
 		property texBasePath : missing value
 		property texBaseName : missing value
@@ -204,8 +207,7 @@ on makeObj(theTargetFile)
 						-- -1700: unknown, result can not be accept
 					else if errNum is 127 then
 						-- maybe comannd name or path setting is not correct
-						set errMsg to "Error in texCompile" & return & errMsg
-						showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
+						showError(errNum, "texCompile", errMsg) of MessageUtility
 						error "Typeset is not executed." number 1250
 					else
 						error errMsg number errNum
