@@ -1,6 +1,7 @@
 global UtilityHandlers
 global PathAnalyzer
 global DefaultsManager
+global MessageUtility
 
 property PDFPreviewIndex : 1 -- 1: open in Finder, 2: Preview.app, 3: Adobe Reader, 4: Acrobat
 property pdfPreviewBox : missing value
@@ -11,6 +12,37 @@ property acrobatPath : ""
 property adobeReaderPath : ""
 property hasAcrobat : false
 property hasReader : false
+
+on controlClicked(theObject)
+	set theName to name of theObject
+	if theName is "PDFPreview" then
+		set theName to name of current cell of theObject
+		--log theName
+		if theName is "AdobeReader" then
+			try
+				findAdobeReaderApp()
+			on error errMsg number -128
+				set current row of theObject to PDFPreviewIndex
+				set theMessage to localized string "PDFPreviewIsInvalid"
+				showMessage(theMessage) of MessageUtility
+				return
+			end try
+		else if theName is "Acrobat" then
+			try
+				findAcrobatApp()
+			on error errMsg number -128
+				set current row of theObject to PDFPreviewIndex
+				set theMessage to localized string "PDFPreviewIsInvalid"
+				showMessage(theMessage) of MessageUtility
+				return
+			end try
+		end if
+		
+		set PDFPreviewIndex to current row of theObject
+		set contents of default entry "PDFPreviewIndex" of user defaults to PDFPreviewIndex
+		setPDFDriver()
+	end if
+end controlClicked
 
 on findCARO() -- find acrobat or adobe reader from creator code
 	try
@@ -84,11 +116,13 @@ on findAdobeReaderApp()
 	--log "end findAdobeReaderApp"
 end findAdobeReaderApp
 
-on loadSettings()
-	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex") of DefaultsManager) as integer
-	set acrobatPath to readDefaultValueWith("AcrobatPath", acrobatPath) of DefaultsManager
-	set adobeReaderPath to readDefaultValueWith("AdobeReaderPath", adobeReaderPath) of DefaultsManager
-	--log "success read default value of PDFPreviewIndex"
+on revertToFactorySetting()
+	set PDFPreviewIndex to (getFactorySetting of DefaultsManager for "PDFPreviewIndex") as integer
+	setPDFDriver()
+	writeSettings()
+end revertToFactorySetting
+
+on checkPDFApp()
 	if PDFPreviewIndex is 3 then
 		try
 			findAdobeReaderApp()
@@ -115,6 +149,14 @@ on loadSettings()
 		end if
 	end try
 	*)
+end checkPDFApp
+
+on loadSettings()
+	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex") of DefaultsManager) as integer
+	set acrobatPath to readDefaultValueWith("AcrobatPath", acrobatPath) of DefaultsManager
+	set adobeReaderPath to readDefaultValueWith("AdobeReaderPath", adobeReaderPath) of DefaultsManager
+	--log "success read default value of PDFPreviewIndex"
+	checkPDFApp()
 	setPDFDriver()
 end loadSettings
 

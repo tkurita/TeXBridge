@@ -18,51 +18,75 @@ global yenmark
 global sQ -- start of quotation character
 global eQ -- end of quotation character
 
-global texCommandsBox
+property texCommandsBox : missing value
 
 property ebbCommand : "/usr/local/bin/ebb"
 property bibtexCommand : "/usr/local/bin/jbibtex"
 property dvipsCommand : "/usr/local/bin/dvips"
 property mendexCommand : "/usr/local/bin/mendex"
 
-property ignoringErrorList : {1200, 1210, 1220, 1230, 1240}
+property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
+property supportedMode : {"TEX", "LaTeX"}
 property visibleRefPalette : false
 
-on setSettingToWindow()
-	tell matrix "Commands" of texCommandsBox
-		set contents of cell "ebb" to ebbCommand
-		set contents of cell "bibtex" to bibtexCommand
-		set contents of cell "dvips" to dvipsCommand
-		set contents of cell "mendex" to mendexCommand
+on endEditing(theObject)
+	set theName to name of theObject
+	set theContents to contents of contents of theObject
+	if theName is "dvipsCommand" then
+		set dvipsCommand to theContents
+	else if theName is "ebbCommand" then
+		set ebbCommand to theContents
+	else if theName is "bibtexCommand" then
+		set bibtexCommand to theContents
+	else if theName is "mendexCommand" then
+		set mendexCommand to theContents
+	end if
+	set contents of default entry theName of user defaults to theContents
+end endEditing
+
+on setSettingToWindow(theView)
+	set texCommandsBox to theView
+	tell texCommandsBox
+		set contents of text field "ebbCommand" to ebbCommand
+		set contents of text field "bibtexCommand" to bibtexCommand
+		set contents of text field "dvipsCommand" to dvipsCommand
+		set contents of text field "mendexCommand" to mendexCommand
 	end tell
-	
 end setSettingToWindow
 
+on revertToFactorySetting()
+	log "start revertToFactorySetting"
+	set dvipsCommand to getFactorySetting of DefaultsManager for "dvipsCommand"
+	set ebbCommand to getFactorySetting of DefaultsManager for "ebbCommand"
+	set bibtexCommand to getFactorySetting of DefaultsManager for "bibtexCommand"
+	set mendexCommand to getFactorySetting of DefaultsManager for "mendexCommand"
+	writeSettings()
+end revertToFactorySetting
+
 on loadSettings()
-	--commands
-	set dvipsCommand to readDefaultValue("dvips") of DefaultsManager
-	set ebbCommand to readDefaultValue("ebb") of DefaultsManager
-	set bibtexCommand to readDefaultValue("bibtex") of DefaultsManager
-	set mendexCommand to readDefaultValue("mendex") of DefaultsManager
+	set dvipsCommand to readDefaultValue("dvipsCommand") of DefaultsManager
+	set ebbCommand to readDefaultValue("ebbCommand") of DefaultsManager
+	set bibtexCommand to readDefaultValue("bibtexCommand") of DefaultsManager
+	set mendexCommand to readDefaultValue("mendexCommand") of DefaultsManager
 	set visibleRefPalette to readDefaultValueWith("visibleRefPalette", visibleRefPalette) of DefaultsManager
 end loadSettings
 
 on writeSettings()
 	tell user defaults
 		--commands
-		set contents of default entry "dvips" to dvipsCommand
-		set contents of default entry "ebb" to ebbCommand
-		set contents of default entry "bibtex" to bibtexCommand
-		set contents of default entry "mendex" to mendexCommand
+		set contents of default entry "dvipsCommand" to dvipsCommand
+		set contents of default entry "ebbCommand" to ebbCommand
+		set contents of default entry "bibtexCommand" to bibtexCommand
+		set contents of default entry "mendexCommand" to mendexCommand
 	end tell
 end writeSettings
 
 on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	tell matrix "Commands" of texCommandsBox
-		set ebbCommand to contents of cell "ebb"
-		set bibtexCommand to contents of cell "bibtex"
-		set dvipsCommand to contents of cell "dvips"
-		set mendexCommand to contents of cell "mendex"
+	tell texCommandsBox
+		set ebbCommand to contents of text field "ebb"
+		set bibtexCommand to contents of text field "bibtex"
+		set dvipsCommand to contents of text field "dvips"
+		set mendexCommand to contents of text field "mendex"
 	end tell
 	
 	writeSettings()
@@ -107,6 +131,12 @@ on checkmifiles given saving:savingFlag
 	try
 		tell application "mi"
 			tell document 1
+				set docname to name
+				if mode is not in supportedMode then
+					set theMessage to getLocalizedString of UtilityHandlers given keyword:"invalidMode", insertTexts:{docname}
+					showMessage(theMessage) of MessageUtility
+					error "The mode of the document is not supported." number 1205
+				end if
 				set theTargetFile to file
 				set theParagraph to index of paragraph 1 of selection object 1
 			end tell
@@ -120,9 +150,6 @@ on checkmifiles given saving:savingFlag
 	try
 		set theTargetFile to theTargetFile as alias
 	on error
-		tell application "mi"
-			set docname to name of document 1
-		end tell
 		set textIsNotSaved to localized string "isNotSaved"
 		set theMessage to textADocument & space & sQ & docname & eQ & space & textIsNotSaved
 		showMessageOnmi(theMessage) of MessageUtility
@@ -305,7 +332,10 @@ on dviPreview()
 	--log "start dviPreview"
 	try
 		set theTexDocObj to checkmifiles without saving
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "dviPreview", errMsg) of MessageUtility
+		end if
 		return
 	end try
 	--log "before lookUpDviFile"
@@ -330,7 +360,10 @@ end dviPreview
 on pdfPreview()
 	try
 		set theTexDocObj to checkmifiles without saving
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "dviPreview", errMsg) of MessageUtility
+		end if
 		return
 	end try
 	
@@ -437,7 +470,10 @@ end typesetAndPDFPreview
 on openOutputHadler(theExtension)
 	try
 		set theTexDocObj to checkmifiles without saving
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "openOutputHadler", errMsg) of MessageUtility
+		end if
 		return
 	end try
 	openOutputFile(theExtension) of theTexDocObj
@@ -450,7 +486,10 @@ end bibTex
 on dviToPDF()
 	try
 		set theTexDocObj to checkmifiles without saving
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "dviToPDF", errMsg) of MessageUtility
+		end if
 		return
 	end try
 	
@@ -478,8 +517,8 @@ on dviToPS()
 	try
 		set theTexDocObj to checkmifiles without saving
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220, 1230} then
-			error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "dviToPS", errMsg) of MessageUtility
 		end if
 		return
 	end try
@@ -501,8 +540,8 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 	try
 		set theTexDocObj to checkmifiles given saving:checkSaved
 	on error errMsg number errNum
-		if errNum is not in {1200, 1210, 1220, 1230} then
-			error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "execTexCommand", errMsg) of MessageUtility
 		end if
 		return
 	end try
@@ -519,8 +558,8 @@ on seekExecEbb()
 	try
 		set theTexDocObj to checkmifiles without saving
 	on error errMsg number errNum
-		if errNum is not in {1220, 1230} then
-			error errMsg number errNum
+		if errNum is not in ignoringErrorList then
+			showError(errNum, "seekExecEbb", errMsg) of MessageUtility
 		end if
 		return
 	end try
