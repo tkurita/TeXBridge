@@ -31,6 +31,7 @@ on makeObj(theTexDocObj)
 		property hyperlist : {}
 		property retryCompile : false
 		property isNoError : true
+		property isNoMessages : false
 		
 		--private property
 		property logtext : missing value
@@ -51,6 +52,7 @@ on makeObj(theTexDocObj)
 			parseFooter(logTree, linePosition, charPosition)
 			setHFSoriginPath(my texBasePath) of PathConverter
 			findErrors(logTree)
+			set isNoMessages to (hyperlist is {})
 		end parseLogFile
 		
 		on findErrors(theLogTree)
