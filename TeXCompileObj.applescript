@@ -26,6 +26,7 @@ property dvipsCommand : "/usr/local/bin/dvips"
 property mendexCommand : "/usr/local/bin/mendex"
 
 property ignoringErrorList : {1200, 1210, 1220, 1230, 1240}
+property visibleRefPalette : false
 
 on setSettingToWindow()
 	tell matrix "Commands" of texCommandsBox
@@ -43,6 +44,7 @@ on loadSettings()
 	set ebbCommand to readDefaultValue("ebb") of DefaultsManager
 	set bibtexCommand to readDefaultValue("bibtex") of DefaultsManager
 	set mendexCommand to readDefaultValue("mendex") of DefaultsManager
+	set visibleRefPalette to readDefaultValueWith("visibleRefPalette", visibleRefPalette) of DefaultsManager
 end loadSettings
 
 on writeSettings()
@@ -282,7 +284,8 @@ on doTypeSet()
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, errMsg) of MessageUtility
+			set errMsg to "Error in doTypeSet" & return & errMsg
+			showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
 		end if
 		return missing value
 	end try
@@ -303,14 +306,21 @@ on doTypeSet()
 end doTypeSet
 
 on dviPreview()
+	--log "start dviPreview"
 	try
 		set theTexDocObj to checkmifiles without saving
 	on error errMsg number 1200
 		return
 	end try
+	--log "before lookUpDviFile"
 	set theDviObj to lookUpDviFile() of theTexDocObj
+	--log "before openDVI"
 	if theDviObj is not missing value then
-		openDVI() of theDviObj
+		try
+			openDVI() of theDviObj
+		on error errMsg number errNum
+			showErrorInFrontmostApp(errNum, errMsg)
+		end try
 	else
 		set textDviFile to localized string "dviFile"
 		set isNotFound to localized string "isNotFound"
@@ -318,6 +328,7 @@ on dviPreview()
 		set theMessage to textDviFile & space & dviName & space & isNotFound
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
+	--log "end dviPreview"
 end dviPreview
 
 on pdfPreview()
@@ -339,14 +350,6 @@ end pdfPreview
 
 on updateReferencePalette(theTexDocObj)
 	--log "start updateReferencePalette"
-	try
-		tell user defaults
-			set visibleRefPalette to contents of default entry "visibleRefPalette"
-		end tell
-	on error
-		return
-	end try
-	
 	if visibleRefPalette then
 		tell main bundle
 			set refPalettePath to path for resource "ReferencePalette" extension "app"
@@ -370,7 +373,8 @@ on quickTypesetAndPreview()
 		set theTexDocObj to prepareTypeSet()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then -- "The document is not saved."
-			showError(errNum, errMsg) of MessageUtility
+			set errMsg to "Error in quickTypesetAndPreview" & return & errMsg
+			showErrorInFrontmostApp(errNum, errMsg) of MessageUtility
 		end if
 		return
 	end try
@@ -388,7 +392,11 @@ on quickTypesetAndPreview()
 	--log "after texCompile in quickTypesetAndPreview"
 	
 	if theDviObj is not missing value then
-		openDVI() of theDviObj
+		try
+			openDVI() of theDviObj
+		on error errMsg number errNum
+			showErrorInFrontmostApp(errNum, errMsg)
+		end try
 	end if
 	
 	--log "after openDVI in quickTypesetAndPreview"
@@ -405,7 +413,11 @@ on typesetAndPreview()
 	set theDviObj to doTypeSet()
 	
 	if theDviObj is not missing value then
-		openDVI() of theDviObj
+		try
+			openDVI() of theDviObj
+		on error errMsg number errNum
+			showErrorInFrontmostApp(errNum, errMsg)
+		end try
 	end if
 end typesetAndPreview
 
@@ -425,7 +437,6 @@ on typesetAndPDFPreview()
 	else
 		openPDFFile() of thePDFObj
 	end if
-	updateReferencePalette(theTexDocObj)
 end typesetAndPDFPreview
 
 on openOutputHadler(theExtension)
