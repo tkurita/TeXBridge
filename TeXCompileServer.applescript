@@ -727,6 +727,9 @@ script dviObj
 	end openDVI
 	
 	on xdviPreview()
+		tell application "X11"
+			activate
+		end tell
 		getSrcSpecialFlag()
 		set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of targetTexDocObj)
 		set dviFileName to getNameWithSuffix(".dvi") of targetTexDocObj
