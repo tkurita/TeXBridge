@@ -32,6 +32,7 @@ on launched theObject
 		set isLaunched to true
 	end if
 	(*debug code*)
+	seekExecEbb()
 	--dviToPDF()
 	--dviPreview()
 	--doTypeSet()
@@ -983,6 +984,7 @@ on seekExecEbb()
 	
 	--find graphic files
 	set noGraphicFlag to true
+	set noNewBBFlag to true
 	repeat with ith from 1 to (count paragraph of theRes)
 		set theParagraph to paragraph ith of theRes
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
@@ -990,12 +992,15 @@ on seekExecEbb()
 			repeat with theExtension in graphicExtensions
 				if graphicFile ends with theExtension then
 					set noGraphicFlag to false
-					execEbb(graphicFile)
+					if execEbb(graphicFile, theExtension) then
+						set noNewBBFlag to false
+					end if
 					exit repeat
 				end if
 			end repeat
 		end if
 	end repeat
+	
 	if noGraphicFlag then
 		set aDocument to localized string "aDocument"
 		set sQ to localized string "startQuote"
@@ -1003,19 +1008,37 @@ on seekExecEbb()
 		set noGraphicFile to localized string "noGraphicFile"
 		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & dQ & space & noGraphicFile
 		showMessageOnmi(theMessage)
+	else if noNewBBFlag then
+		set theMessage to localized string "bbAlreadyCreated"
+		showMessageOnmi(theMessage)
 	end if
 end seekExecEbb
 
-on execEbb(theGraphicPath)
+on execEbb(theGraphicPath, theExtension)
+	set basePath to text 1 thru -((length of theExtension) + 1) of theGraphicPath
+	set bbPath to basePath & ".bb"
+	if isExist(POSIX file bbPath) then
+		set bbAlias to POSIX file bbPath as alias
+		set graphicAlias to POSIX file theGraphicPath as alias
+		tell application "System Events"
+			set bbModDate to modification date of bbAlias
+			set graphicModDate to modification date of graphicAlias
+		end tell
+		if (graphicModDate < bbModDate) then
+			return false
+		end if
+	end if
+	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set fileName to baseName(theGraphicPath, "") of ShellUtils
+	set baseName to baseName(theGraphicPath, theExtension) of ShellUtils
+	set fileName to baseName & theExtension
 	set cdCommand to "cd '" & targetDir & "'"
 	set eddCommand to ebbCommand & space & "'" & fileName & "'"
-	--set allCommand to cdCommand & ";" & eddCommand
 	set allCommand to cdCommand & comDelim & eddCommand
 	doCommands(allCommand) of TerminalCommander
 	waitEndOfCommand(300) of TerminalCommander
+	return true
 end execEbb
 
 on extractFilePath(theCommand, theParagraph)
