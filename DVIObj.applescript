@@ -146,7 +146,9 @@ on makeObj(theTexDocObj)
 		end xdviPreview
 		
 		on dviToPDF()
+			--log "start dviToPDF"
 			set thePDFObj to lookupPDFFile()
+			--log "success lookupPDFFile"
 			--check busy status of pdf file.
 			if thePDFObj is not missing value then
 				if not prepareDVItoPDF() of thePDFObj then
@@ -154,7 +156,7 @@ on makeObj(theTexDocObj)
 				end if
 			end if
 			
-			--convert a DVI file into a PDF file
+			--log "convert a DVI file into a PDF file"
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
 			set allCommand to cdCommand & comDelim & dvipdfmxCommand & space & "'" & targetFileName & "'"
@@ -171,6 +173,7 @@ on makeObj(theTexDocObj)
 				end if
 			end if
 			
+			--log "end of dviToPDF"
 			return thePDFObj
 		end dviToPDF
 		

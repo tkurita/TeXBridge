@@ -100,13 +100,16 @@ on launched theObject
 	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
+	
 	--doTypeSet() of TeXCompileObj
+	
 	--typesetAndPreview() of TeXCompileObj
 	--openRelatedFile with revealOnly
 	--show window "Setting"
 	--debug()
 	--open "quickTypesetAndPreview"
 	--checkmifiles with saving
+	--log "end of launched"
 	(*end of debug code*)
 end launched
 
