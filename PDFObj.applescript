@@ -68,16 +68,21 @@ end script
 
 script AcrobatDriver
 	on prepare(thePDFObj)
+		--log "start prepare of AcrobatDriver"
 		if isRunning(appName of thePDFObj) of UtilityHandlers then
 			closePDFfile(thePDFObj)
 		else
 			set pageNumber of thePDFDriver to missing value
 		end if
+		return true
 	end prepare
 	
 	on closePDFfile(thePDFObj)
+		--log "start closePDFfile of AcrobatDriver"
 		set pageNumber of thePDFObj to missing value
+		--log appName of thePDFObj
 		using terms from application "Acrobat 6.0 Standard"
+			--log pdfFileName of thePDFObj
 			tell application (appName of thePDFObj)
 				if exists document (pdfFileName of thePDFObj) then
 					set theFileAliasPath to file alias of document (pdfFileName of thePDFObj) as Unicode text
@@ -90,12 +95,14 @@ script AcrobatDriver
 					set pageNumber of thePDFObj to missing value
 				end if
 			end tell
+			
 		end using terms from
 	end closePDFfile
 	
 	on openPDF(thePDFObj)
 		using terms from application "Acrobat 6.0 Standard"
 			tell application (appName of thePDFObj)
+				activate
 				open pdfAlias of thePDFObj
 				if pageNumber of thePDFObj is not missing value then
 					set page number of PDF Window 1 to pageNumber of thePDFObj
@@ -197,7 +204,7 @@ end script
 property PDFDriver : AutoDriver
 
 on setPDFDriver()
-	--log "start setPDFDriver()"
+	log "start setPDFDriver()"
 	if PDFPreviewIndex is 1 then
 		set PDFDriver to AutoDriver
 	else if PDFPreviewIndex is 2 then
