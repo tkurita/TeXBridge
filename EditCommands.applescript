@@ -1,6 +1,7 @@
 global PathConverter
 global TeXCompileObj
 global MessageUtility
+global PathAnalyzer
 global yenmark
 
 on extractFilePath(theCommand, theParagraph)
@@ -28,36 +29,84 @@ on openRelatedFile given revealOnly:revealFlag
 	setPOSIXoriginPath(theOriginPath) of PathConverter
 	
 	set commandList to {yenmark & "includegraphics", yenmark & "input", yenmark & "include"}
+	set incGraphicCommand to (yenmark & "includegraphics" as Unicode text)
+	
+	set firstpara to targetParagraph of theTexDocObj
 	tell application "mi"
 		tell document 1
-			set firstpara to targetParagraph of theTexDocObj
 			set paracount to (count paragraphs of selection object 1)
-			repeat with nth from firstpara to firstpara + paracount - 1
-				set theParagraph to paragraph nth
-				if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
-					repeat with theCommand in commandList
-						set fullPath to my extractFilePath(theCommand, theParagraph)
-						if fullPath is not "" then
-							try
-								set fileAlias to (POSIX file fullPath) as alias
-							on error
-								set fileAlias to (POSIX file (fullPath & ".tex")) as alias
-							end try
-							if revealFlag then
-								tell application "Finder"
-									activate
-									reveal fileAlias
-								end tell
-							else
-								tell application "Finder" to open fileAlias
-							end if
-						end if
-					end repeat
-				end if
-			end repeat
 		end tell
 	end tell
+	repeat with nth from firstpara to firstpara + paracount - 1
+		tell application "mi"
+			tell document 1
+				set theParagraph to paragraph nth
+			end tell
+		end tell
+		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
+			repeat with theCommand in commandList
+				set fullPath to my extractFilePath(theCommand, theParagraph)
+				if fullPath is not "" then
+					try
+						set fileAlias to (POSIX file fullPath) as alias
+					on error
+						set fileAlias to (POSIX file (fullPath & ".tex")) as alias
+					end try
+					if revealFlag then
+						tell application "Finder"
+							activate
+							reveal fileAlias
+						end tell
+					else
+						--log theCommand
+						if (theCommand as Unicode text) is incGraphicCommand then
+							--log "is graphic file"
+							openGraphicFile(fileAlias)
+						else
+							tell application "Finder" to open fileAlias
+						end if
+					end if
+					exit repeat
+				end if
+			end repeat
+		end if
+	end repeat
+	
 end openRelatedFile
+
+on openGraphicFile(fileAlias)
+	set pathRecord to do(fileAlias) of PathAnalyzer
+	set theName to name of pathRecord
+	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png", "eps"}
+	set baseName to theName
+	repeat with theSuffix in graphicExtensions
+		if theName ends with theSuffix then
+			set baseName to text 1 thru (-1 * ((length of theSuffix) + 1)) of theName
+			exit repeat
+		end if
+	end repeat
+	
+	set theFolder to folderReference of pathRecord
+	tell application "Finder"
+		set graphicFileNames to name of files of theFolder whose name starts with baseName
+	end tell
+	
+	tell application "mi"
+		set selectedGraphics to choose from list graphicFileNames with prompt "select graphic files"
+		
+	end tell
+	if class of selectedGraphics is not list then
+		return
+	end if
+	
+	tell application "Finder"
+		ignoring application responses
+			repeat with theGraphic in selectedGraphics
+				open file theGraphic of theFolder
+			end repeat
+		end ignoring
+	end tell
+end openGraphicFile
 
 on openParentFile()
 	try
@@ -79,4 +128,27 @@ on openParentFile()
 	end if
 end openParentFile
 
+on doReverseSearch(targetLine)
+	tell application "System Events"
+		tell application process "mi"
+			keystroke "b" using command down
+		end tell
+	end tell
+	--ignoring application responses
+	tell application "mi"
+		select paragraph targetLine of first document
+	end tell
+	--end ignoring
+end doReverseSearch
 
+on showRefPalette()
+	tell main bundle
+		set refPalettePath to path for resource "ReferencePalette" extension "app"
+	end tell
+	ignoring application responses
+		tell application ((POSIX file refPalettePath) as Unicode text)
+			--launch
+			open {commandID:"openRefPalette"}
+		end tell
+	end ignoring
+end showRefPalette
