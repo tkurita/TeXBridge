@@ -163,7 +163,8 @@ on makeObj(theTargetFile)
 			if compileInTerminal then
 				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
 				doCommands of TerminalCommander for allCommand with activation
-				waitEndOfCommand(300) of TerminalCommander
+				copy TerminalCommander to currentTerminal
+				waitEndOfCommand(300) of currentTerminal
 			else
 				set allCommand to cdCommand & "; " & texCommand & space & "'" & texFileName & "'"
 				try
