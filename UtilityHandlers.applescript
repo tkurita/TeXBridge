@@ -7,27 +7,17 @@ on isExists(filePath)
 	end try
 end isExists
 
-on initializeDefaultValue(entryName, defaultValue)
-	tell user defaults
-		if not (exists default entry entryName) then
-			make new default entry at end of default entries with properties {name:entryName, contents:defaultValue}
-		end if
-	end tell
-end initializeDefaultValue
-
-on readDefaultValue(entryName, defaultValue)
-	tell user defaults
-		if exists default entry entryName then
-			return contents of default entry entryName
-		else
-			make new default entry at end of default entries with properties {name:entryName, contents:defaultValue}
-			return defaultValue
-		end if
-	end tell
-end readDefaultValue
-
 on isRunning(appName)
 	tell application "System Events"
 		return exists application process appName
 	end tell
 end isRunning
+
+on copyItem(sourceItem, saveLocation, newName)
+	set tmpFolder to path to temporary items
+	tell application "Finder"
+		set theItem to (duplicate sourceItem to tmpFolder with replacing) as alias
+		set name of theItem to newName
+		return (move theItem to saveLocation with replacing) as alias
+	end tell
+end copyItem
