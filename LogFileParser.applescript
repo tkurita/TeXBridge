@@ -5,11 +5,15 @@ global PathConverter
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 property PathConverter : load script file (LibraryFolder & "PathConverter")
 property yenmark : ASCII character 92
+on run
+	debug()
+end run
+
 on debug()
 	set startTime to current date
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:2004.07 フィードバック試験:入射エネルギーと捕獲軌道:CaputureOrbit(invalid).log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:WorkSpace:シンクロトロン:2004.07 フィードバック試験:入射エネルギーと捕獲軌道:CaputureOrbit(invalid)" as Unicode text
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:WareHouse:Study:制御:My ラプラス変換:LaplaceTransform.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:WareHouse:Study:制御:My ラプラス変換:LaplaceTransform" as Unicode text
 	end script
 	activate
 	set theLogFileParser to makeObj(theTexDocObj)
@@ -37,6 +41,7 @@ on makeObj(theTexDocObj)
 		property logtext : missing value
 		property nLine : missing value
 		--global logTree -- for debug
+		--global loglogTree -- for debug
 		
 		on getLogText()
 			set logtext to (read my logFileRef)
@@ -47,13 +52,43 @@ on makeObj(theTexDocObj)
 			getLogText()
 			set linePosition to skipHeader()
 			set theParagraph to text 2 thru -1 of (paragraph linePosition of logtext)
-			set logTree to {theParagraph}
+			set logTree to {{logContent:theParagraph, lineNumber:linePosition}}
 			set {linePosition, charPosition} to parseBody(logTree, linePosition + 1, 1)
-			parseFooter(logTree, linePosition, charPosition)
+			set loglogTree to {{logContent:my logFileRef, lineNumber:linePosition}}
+			set end of loglogTree to logTree
+			parseFooter(loglogTree, linePosition, charPosition)
 			setHFSoriginPath(my texBasePath) of PathConverter
-			findErrors(logTree)
+			findFristLebelErrors(loglogTree)
 			set isNoMessages to (hyperlist is {})
 		end parseLogFile
+		
+		on findFristLebelErrors(theLogTree)
+			local theLogTree, theTargetFile
+			set nItem to length of theLogTree
+			
+			set theTargetFile to logContent of item 1 of theLogTree
+			
+			repeat with ith from 2 to nItem
+				set theLogItem to item ith of theLogTree
+				--set theClass to class of theItem
+				set theResult to isThisError(theLogTree, nItem, ith)
+				set ith to newPosition of theResult
+				set theErrorRecord to errorRecord of theResult
+				if theErrorRecord is not {} then
+					using terms from application "mi"
+						try -- some records do not have "file" label
+							set file of theErrorRecord to theTargetFile
+						end try
+						try
+							set paragraph of theErrorRecord to lineNumber of theLogItem
+						on error
+							set theErrorRecord to theErrorRecord & {paragraph:lineNumber of theLogItem}
+						end try
+					end using terms from
+					set end of hyperlist to theErrorRecord
+				end if
+			end repeat
+		end findFristLebelErrors
 		
 		on findErrors(theLogTree)
 			local theLogTree, theTargetFile
@@ -85,7 +120,12 @@ on makeObj(theTexDocObj)
 			end repeat
 		end findErrors
 		
-		on resolveTargetFile(theTargetFile)
+		on resolveTargetFile(theLogItem)
+			set theTargetFile to logContent of theLogItem
+			if class of theTargetFile is alias then
+				return theTargetFile
+			end if
+			
 			repeat with theExtension in texFileExtensions
 				if theTargetFile ends with theExtension then
 					exit repeat
@@ -120,18 +160,20 @@ on makeObj(theTexDocObj)
 			if theClass is list then
 				findErrors(theLogItem)
 				return {newPosition:currentPos, errorRecord:hyperrec}
+			else if theClass is record then
+				set theLogContent to logContent of theLogItem
 			end if
 			
-			if (theLogItem starts with "!") then
+			if (theLogContent starts with "!") then
 				set isNoError to false
-				set errMsg to theLogItem
+				set errMsg to theLogContent
 				----get Additional Infomation
 				set thePos to currentPos
 				repeat while (thePos < nItem)
 					set thePos to thePos + 1
 					set theLogItem to item thePos of theLogTree
-					if theLogItem starts with "l." then
-						set tmpstr to text 3 thru -1 of theLogItem
+					if theLogContent starts with "l." then
+						set tmpstr to text 3 thru -1 of theLogContent
 						set errpn to (first word of tmpstr) as integer
 						
 						using terms from application "mi"
@@ -140,7 +182,7 @@ on makeObj(theTexDocObj)
 						
 						set currentPos to thePos
 						exit repeat
-					else if (theLogItem starts with "?") or (theLogItem starts with "Enter file name:") then
+					else if (theLogContent starts with "?") or (theLogContent starts with "Enter file name:") then
 						if hyperrec is {} then
 							using terms from application "mi"
 								set hyperrec to {file:"", comment:errMsg}
@@ -158,55 +200,55 @@ on makeObj(theTexDocObj)
 					set currentPos to currentPos + 1
 				end if
 				
-			else if theLogItem contains "Warning:" then
+			else if theLogContent contains "Warning:" then
 				
-				if theLogItem does not end with "." then
+				if theLogContent does not end with "." then
 					set currentPos to currentPos + 1
-					set theLogItem to theLogItem & (item currentPos of theLogTree)
+					set theLogContent to theLogContent & (logContent of item currentPos of theLogTree)
 				end if
 				
-				if theLogItem contains "Label(s) may have changed. Rerun to get cross-references right." then
+				if theLogContent contains "Label(s) may have changed. Rerun to get cross-references right." then
 					set retryCompile to true
 				end if
 				
-				if word -2 of theLogItem is "line" then
-					set errpn to (last word of theLogItem) as integer
+				if word -2 of theLogContent is "line" then
+					set errpn to (last word of theLogContent) as integer
 					using terms from application "mi"
-						set hyperrec to {file:"", paragraph:errpn, comment:theLogItem}
+						set hyperrec to {file:"", paragraph:errpn, comment:theLogContent}
 					end using terms from
 				else
 					using terms from application "mi"
-						set hyperrec to {file:"", comment:theLogItem}
+						set hyperrec to {file:"", comment:theLogContent}
 					end using terms from
 				end if
 				
-			else if (theLogItem starts with "Overfull") or (theLogItem starts with "Underfull") then
+			else if (theLogContent starts with "Overfull") or (theLogContent starts with "Underfull") then
 				try
-					set errpn to (last word of theLogItem) as integer
+					set errpn to (last word of theLogContent) as integer
 					try
-						set errpn to (word -2 of theLogItem) as integer
+						set errpn to (word -2 of theLogContent) as integer
 					end try
 					using terms from application "mi"
-						set hyperrec to {file:"", paragraph:errpn, comment:theLogItem}
+						set hyperrec to {file:"", paragraph:errpn, comment:theLogContent}
 					end using terms from
 					set currentPos to currentPos + 1
 				on error errMsg number errNum
 					--display dialog errmsg
 					using terms from application "mi"
-						set hyperrec to {file:"", comment:theLogItem}
+						set hyperrec to {file:"", comment:theLogContent}
 					end using terms from
 				end try
-			else if (theLogItem starts with "No file") then
+			else if (theLogContent starts with "No file") then
 				set isNoError to false
 				using terms from application "mi"
-					set hyperrec to {file:"", comment:theLogItem}
+					set hyperrec to {file:"", comment:theLogContent}
 				end using terms from
 				set currentPos to currentPos + 1
-			else if theLogItem is "No pages of output." then
+			else if theLogContent is "No pages of output." then
 				set isDviOutput to false
 				set isNoError to false
 				using terms from application "mi"
-					set hyperrec to {comment:theLogItem}
+					set hyperrec to {comment:theLogContent}
 				end using terms from
 			end if
 			return {newPosition:currentPos, errorRecord:hyperrec}
@@ -264,7 +306,7 @@ on makeObj(theTexDocObj)
 								end if
 							else if theChar is ")" then
 								if charPos > startCharPosition then
-									set end of currentList to text startCharPosition thru (charPos - 1) of theParagraph
+									set end of currentList to {logContent:text startCharPosition thru (charPos - 1) of theParagraph, lineNumber:linePos}
 								end if
 								if charPos is lineLength then
 									return {linePos + 1, 1}
@@ -274,7 +316,7 @@ on makeObj(theTexDocObj)
 							else if theChar is "(" then
 								--log theParagraph
 								if charPos > startCharPosition then
-									set end of currentList to text startCharPosition thru (charPos - 1) of theParagraph
+									set end of currentList to {logContent:text startCharPosition thru (charPos - 1) of theParagraph, lineNumber:linePos}
 								end if
 								set newList to {}
 								set end of currentList to newList
@@ -289,7 +331,7 @@ on makeObj(theTexDocObj)
 								exit repeat
 							else if charPos is lineLength then
 								if charPos is greater than or equal to startCharPosition then
-									set end of currentList to text startCharPosition thru -1 of theParagraph
+									set end of currentList to {logContent:text startCharPosition thru -1 of theParagraph, lineNumber:linePos}
 								end if
 								set linePos to linePos + 1
 								set charPos to 1
@@ -383,7 +425,7 @@ on makeObj(theTexDocObj)
 				end repeat
 				return linePos
 			else if theParagraph starts with "l." then
-				set end of currentList to theParagraph
+				set end of currentList to {logContent:theParagraph, lineNumber:linePos}
 				set linePos to linePos + 1
 				repeat
 					set theLine to paragraph linePos of logtext
@@ -399,7 +441,7 @@ on makeObj(theTexDocObj)
 				if (length of theParagraph is greater than or equal to 79) then
 					--add 2 line to current list
 					set theLine to theParagraph & (paragraph (linePos + 1) of logtext)
-					set end of currentList to theLine
+					set end of currentList to {logContent:theLine, lineNumber:linePos}
 					return linePos + 2
 				end if
 			else
@@ -407,7 +449,7 @@ on makeObj(theTexDocObj)
 				return linePos
 			end if
 			
-			set end of currentList to theParagraph
+			set end of currentList to {logContent:theParagraph, lineNumber:linePos}
 			return linePos + 1
 		end isSpecialLine
 		
@@ -420,15 +462,10 @@ on makeObj(theTexDocObj)
 				set linePosition to linePosition + 1
 			end if
 			repeat with ith from linePosition to nLine
-				set end of theLogTree to (paragraph ith of logtext)
+				set end of theLogTree to {logContent:(paragraph ith of logtext), lineNumber:ith}
 			end repeat
 		end parseFooter
 	end script
 	
 	return LogFileParser
 end makeObj
-
-on run
-	debug()
-end run
-
