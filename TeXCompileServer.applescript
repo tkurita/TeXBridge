@@ -95,13 +95,13 @@ on launched theObject
 	--initialize()
 	--log "end of initialize"
 	(*debug code*)
+	--execmendex() of TeXCompileObj
 	--showToolPalette()
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
 	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
-	
 	--doTypeSet() of TeXCompileObj
 	
 	--typesetAndPreview() of TeXCompileObj

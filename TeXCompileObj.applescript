@@ -436,7 +436,7 @@ on dviToPS()
 end dviToPS
 
 --simply execute TeX command in Terminal
-on execTexCommand(texCommand, theExtension, checkSaved)
+on execTexCommand(texCommand, theSuffix, checkSaved)
 	try
 		set theTexDocObj to checkmifiles given saving:checkSaved
 	on error errMsg number errNum
@@ -447,7 +447,7 @@ on execTexCommand(texCommand, theExtension, checkSaved)
 	end try
 	
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
-	set texCommand to buildCommand(texCommand, theExtension) of theTexDocObj
+	set texCommand to buildCommand(texCommand, theSuffix) of theTexDocObj
 	set allCommand to cdCommand & comDelim & texCommand
 	doCommands of TerminalCommander for allCommand with activation
 end execTexCommand
@@ -528,6 +528,7 @@ end execEbb
 
 
 on execmendex()
+	--log "start execmendex"
 	execTexCommand(mendexCommand, ".idx", false)
 end execmendex
 (* end: execute tex commands called from tools from mi  ====================================*)
