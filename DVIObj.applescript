@@ -55,7 +55,7 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 		--set usexdvi to ((state of cell "UseXdvi" of matrix "PreviewerMode") is on state)
 		set DVIPreviewMode to current row of matrix "PreviewerMode"
 	end tell
-	
+	setDVIDriver()
 	writeSettings()
 end saveSettingsFromWindow
 
@@ -140,7 +140,7 @@ script MxdviDriver
 end script
 
 
-property DVIDriver : MxdviDriver
+property DVIDriver : SimpleDriver
 
 on setDVIDriver()
 	if DVIPreviewMode is 1 then
