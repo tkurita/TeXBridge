@@ -47,6 +47,13 @@
 /*initilize*/
 "disableUIScripting" = "UI element scripting が有効になっていません。\r\"補助機能にアクセスできるようにする\" を ON にして下さい。";
 
+/*pdfPreview:TeXCompileObj*/
+"noPDFfile" = "PDF ファイルがありません。";
+
 /*Others*/
 "whereismiclient" = "miclient はどこですか？";
+"whereisAdobeAcrobat" = "Adobe Acrobat を選択して下さい。";
+"whereisAdobeReader" = "Adobe Reader を選択して下さい。";
+"PDFPreviewIsInvalid" = "PDF プレビューアの設定は無効です。";
+
 
