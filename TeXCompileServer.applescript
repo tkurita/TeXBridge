@@ -1026,6 +1026,7 @@ on typesetAndPDFPreview()
 	if theDviObj is missing value then
 		set theMessage to localized string "DVIisNotGenerated"
 		showMessageOnmi(theMessage)
+		return
 	end if
 	
 	set thePDFObj to dviToPDF() of theDviObj
