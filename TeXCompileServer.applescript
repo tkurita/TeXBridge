@@ -79,6 +79,8 @@ on open theCommandID
 	else if theCommandID is "setting" then
 		activate
 		show window "Setting"
+	else if theCommandID is "Help" then
+		call method "showHelp:"
 	else if theCommandID starts with "." then
 		openOutputHadler(theCommandID)
 	end if
@@ -845,6 +847,8 @@ script PDFObj
 				set previewerName to "Acrobat"
 			else if defAppPath ends with "Acrobat 6.0 Professional.app:" then
 				set previewerName to "Acrobat"
+			else if defAppPath ends with "Acrobat 6.0 Elements.app:" then
+				set previewerName to "Acrobat"
 			else if defAppPath ends with "Acrobat 5.0" then
 				set previewerName to "Acrobat 5.0"
 			else
@@ -882,13 +886,13 @@ script PDFObj
 	
 	on closePDFfile()
 		set pageNumber to missing value
-		using terms from application "Acrobat 5.0"
+		using terms from application "Acrobat 6.0 Standard"
 			tell application previewerName
 				if exists document pdfFileName then
 					set theFileAliasPath to file alias of document pdfFileName as Unicode text
 					if theFileAliasPath is (pdfAlias as Unicode text) then
 						bring to front document pdfFileName
-						set pageNumber to number of PDF Window 1
+						set pageNumber to page number of PDF Window 1
 						close PDF Window 1
 					end if
 				else
@@ -901,9 +905,9 @@ script PDFObj
 	on openPDFFile()
 		openOutputFile(targetTexDocObj, ".pdf")
 		if pageNumber is not missing value then
-			using terms from application "Acrobat 5.0"
+			using terms from application "Acrobat 6.0 Standard"
 				tell application previewerName
-					set number of PDF Window 1 to pageNumber
+					set page number of PDF Window 1 to pageNumber
 				end tell
 			end using terms from
 		end if
