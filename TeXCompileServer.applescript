@@ -1,7 +1,6 @@
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 property ShellUtils : load script file (LibraryFolder & "ShellUtils")
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
-property TerminalCommander : load script file (LibraryFolder & "TerminalCommander")
 property PathConverter : load script file (LibraryFolder & "PathConverter")
 property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary")
 property StringEngine : PathConverter
@@ -33,6 +32,7 @@ property SettingWindowController : missing value
 property LogFileParser : missing value
 property ReplaceInputObj : missing value
 property EditCommands : missing value
+property TerminalCommander : missing value
 property TeXCompileObj : missing value
 property PDFObj : missing value
 property TexDocObj : missing value
@@ -84,6 +84,7 @@ on initialize()
 	set SettingWindowController to importScript("SettingWindowController")
 	set SettingWindowController to makeObj("Setting") of SettingWindowController
 	set ToolPaletteController to makeObj("ToolPalette") of WindowController
+	set TerminalCommander to importScript("TerminalCommander")
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	--log "end of import library"
@@ -122,6 +123,7 @@ on launched theObject
 	end if
 	hide window "Startup"
 	(*debug code*)
+	--set theResult to call method "smartActivate:" with parameter "trmx"
 	--openRelatedFile of EditCommands without revealOnly
 	--open "replaceInput"
 	--openWindow() of ToolPaletteController
