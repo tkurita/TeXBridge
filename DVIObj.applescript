@@ -124,7 +124,7 @@ script XdviDriver
 			
 			if pid is "" then
 				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
-				doCommands of TerminalCommander for allCommand with activation
+				doCommands of TerminalCommander for allCommand without activation
 			else
 				set pid to word 1 of pid
 				do shell script "kill -USR1" & space & pid --reread
