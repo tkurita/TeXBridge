@@ -64,7 +64,7 @@ on makeObj(theTexDocObj)
 			set isNoMessages to (hyperlist is {})
 		end parseLogFile
 		
-		on findFristLebelErrors(theLogTree)
+		on parseLogTreeFirstLevel(theLogTree)
 			local theLogTree, theTargetFile
 			set nItem to length of theLogTree
 			
@@ -92,9 +92,9 @@ on makeObj(theTexDocObj)
 					set end of hyperlist to theErrorRecord
 				end if
 			end repeat
-		end findFristLebelErrors
+		end parseLogTreeFirstLevel
 		
-		on findErrors(theLogTree)
+		on parseLogTree(theLogTree)
 			local theLogTree, theTargetFile
 			set nItem to length of theLogTree
 			
@@ -122,7 +122,7 @@ on makeObj(theTexDocObj)
 					set end of hyperlist to theErrorRecord
 				end if
 			end repeat
-		end findErrors
+		end parseLogTree
 		
 		on resolveTargetFile(theLogItem, theNextItem)
 			--log theLogItem
@@ -164,7 +164,7 @@ on makeObj(theTexDocObj)
 			end if
 		end checkTexFileExtensions
 		
-		on isThisError(theLogTree, nItem, currentPos)
+		on findErros(theLogTree, nItem, currentPos)
 			local theLogItem, theClass, errMsg, hyperrec, theLogTree
 			
 			set errMsg to ""
@@ -175,7 +175,7 @@ on makeObj(theTexDocObj)
 			--log theLogItem
 			--log theClass
 			if theClass is list then
-				findErrors(theLogItem)
+				parseLogTree(theLogItem)
 				return {newPosition:currentPos, errorRecord:hyperrec}
 			else if theClass is record then
 				set theLogContent to logContent of theLogItem
@@ -283,7 +283,7 @@ on makeObj(theTexDocObj)
 				end using terms from
 			end if
 			return {newPosition:currentPos, errorRecord:hyperrec}
-		end isThisError
+		end findErros
 		
 		on skipHeader()
 			repeat with ith from 1 to nLine
