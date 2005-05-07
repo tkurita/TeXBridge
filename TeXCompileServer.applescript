@@ -47,68 +47,6 @@ on importScript(scriptName)
 	return load script POSIX file scriptPath
 end importScript
 
-on initialize()
-	--log "start initialize"
-	set MessageUtility to importScript("MessageUtility")
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
-	
-	showStartupMessage("checking UI Elements Scripting ...")
-	tell application "System Events"
-		set UIScriptFlag to UI elements enabled
-	end tell
-	if not (UIScriptFlag) then
-		set theMessage to localized string "disableUIScripting"
-		tell application "System Preferences"
-			activate
-			set current pane to pane "com.apple.preference.universalaccess"
-			display dialog theMessage buttons {"OK"} default button "OK"
-		end tell
-		quit
-	end if
-	
-	showStartupMessage("Loading Factory Settings ...")
-	set DefaultsManager to importScript("DefaultsManager")
-	registerFactorySetting("FactorySettings") of DefaultsManager
-	
-	showStartupMessage("Loading Scripts ...")
-	set UtilityHandlers to importScript("UtilityHandlers")
-	set AlertManager to importScript("AlertManager")
-	set LogFileParser to importScript("LogFileParser")
-	set EditCommands to importScript("EditCommands")
-	set PDFObj to importScript("PDFObj")
-	set TeXCompileObj to importScript("TeXCompileObj")
-	set TexDocObj to importScript("TeXDocObj")
-	set dviObj to importScript("DVIObj")
-	set WindowController to importScript("WindowController")
-	set SettingWindowController to importScript("SettingWindowController")
-	set SettingWindowController to makeObj("Setting") of SettingWindowController
-	set ToolPaletteController to makeObj("ToolPalette") of WindowController
-	set TerminalCommander to importScript("TerminalCommander")
-	set TerminalSettingObj to importScript("TerminalSettingObj")
-	
-	--log "end of import library"
-	showStartupMessage("Loading Preferences ...")
-	
-	loadSettings() of TeXCompileObj
-	--log "end of setting TeXCompileObj"
-	
-	loadSettings() of TexDocObj
-	loadSettings() of dviObj
-	
-	--log "start of initializeing PDFObj"
-	loadSettings() of PDFObj
-	
-	--log "start of initilizing TerminalSettingObj"
-	loadSettings() of TerminalSettingObj
-	--log "end of setting TerminalSettingObj"
-	
-	loadSettings()
-	
-	set miAppRef to path to application "mi" as alias
-	--log "end of initialize"
-end initialize
-
 (* events of application*)
 on launched theObject
 	--log "start lanunched"
@@ -123,6 +61,7 @@ on launched theObject
 	end if
 	hide window "Startup"
 	(*debug code*)
+	--logParseOnly() of TeXCompileObj
 	--set theResult to call method "smartActivate:" with parameter "trmx"
 	--openRelatedFile of EditCommands without revealOnly
 	--open "replaceInput"
@@ -319,7 +258,63 @@ end will resize
 on will finish launching theObject
 	--activate
 	--log "start will finish launching"
-	initialize()
+	set MessageUtility to importScript("MessageUtility")
+	set sQ to localized string "startQuote"
+	set eQ to localized string "endQuote"
+	
+	showStartupMessage("checking UI Elements Scripting ...")
+	tell application "System Events"
+		set UIScriptFlag to UI elements enabled
+	end tell
+	if not (UIScriptFlag) then
+		set theMessage to localized string "disableUIScripting"
+		tell application "System Preferences"
+			activate
+			set current pane to pane "com.apple.preference.universalaccess"
+			display dialog theMessage buttons {"OK"} default button "OK"
+		end tell
+		quit
+	end if
+	
+	showStartupMessage("Loading Factory Settings ...")
+	set DefaultsManager to importScript("DefaultsManager")
+	registerFactorySetting("FactorySettings") of DefaultsManager
+	
+	showStartupMessage("Loading Scripts ...")
+	set UtilityHandlers to importScript("UtilityHandlers")
+	set AlertManager to importScript("AlertManager")
+	set LogFileParser to importScript("LogFileParser")
+	set EditCommands to importScript("EditCommands")
+	set PDFObj to importScript("PDFObj")
+	set TeXCompileObj to importScript("TeXCompileObj")
+	set TexDocObj to importScript("TeXDocObj")
+	set dviObj to importScript("DVIObj")
+	set WindowController to importScript("WindowController")
+	set SettingWindowController to importScript("SettingWindowController")
+	set SettingWindowController to makeObj("Setting") of SettingWindowController
+	set ToolPaletteController to makeObj("ToolPalette") of WindowController
+	set TerminalCommander to importScript("TerminalCommander")
+	set TerminalSettingObj to importScript("TerminalSettingObj")
+	
+	--log "end of import library"
+	showStartupMessage("Loading Preferences ...")
+	
+	loadSettings() of TeXCompileObj
+	--log "end of setting TeXCompileObj"
+	
+	loadSettings() of TexDocObj
+	loadSettings() of dviObj
+	
+	--log "start of initializeing PDFObj"
+	loadSettings() of PDFObj
+	
+	--log "start of initilizing TerminalSettingObj"
+	loadSettings() of TerminalSettingObj
+	--log "end of setting TerminalSettingObj"
+	
+	loadSettings()
+	
+	set miAppRef to path to application "mi" as alias
 	--log "end sill finish launching"
 end will finish launching
 
@@ -389,6 +384,11 @@ end should selection change
 on alert ended theObject with reply withReply
 	transferToOwner of AlertManager for withReply from theObject
 end alert ended
+
+on should close theObject
+	hide theObject
+	return false
+end should close
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
