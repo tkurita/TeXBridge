@@ -329,6 +329,14 @@ on doTypeSet()
 	return theDviObj
 end doTypeSet
 
+on logParseOnly()
+	--log "start logParseOnly"
+	set theTexDocObj to prepareTypeSet()
+	checkLogFileStatus() of theTexDocObj
+	set theLogFileParser to newLogFileParser(theTexDocObj)
+	parseLogFile() of theLogFileParser
+end logParseOnly
+
 on dviPreview()
 	--log "start dviPreview"
 	try
