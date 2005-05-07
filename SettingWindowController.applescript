@@ -214,6 +214,7 @@ on makeObj(theWindow)
 		end writeSettings
 		
 		on setmiclient()
+			(*
 			set currentSetting to contents of text field "MxdviEditorSetting" of tab view item "PreviewSetting" of tab view "SettingTabs" of my targetWindow
 			if currentSetting ends with "miclient %l %f" then
 				set miclientPath to text 1 thru -7 of currentSetting
@@ -227,6 +228,12 @@ on makeObj(theWindow)
 				set miclientSetting to POSIX path of (prefFolderPath & "mi:mode:TEX:miclient %l %f")
 				saveMxdviEditor(miclientSetting)
 			end if
+			*)
+			tell main bundle
+				set miclientPath to resource path & "/miclient"
+				--set miclientPath to path for resource "miclient"
+			end tell
+			saveMxdviEditor(miclientPath & " -b %l %f")
 		end setmiclient
 		
 		on saveMxdviEditor(theSetting)
