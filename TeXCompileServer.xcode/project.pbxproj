@@ -40,6 +40,7 @@
 //104
 		1058C7A0FEA54F0111CA2CBB = {
 			children = (
+				2C2E545708062E8E0015E9EB,
 				1058C7A1FEA54F0111CA2CBB,
 				DA206CF1015C4E2903C91932,
 			);
@@ -152,6 +153,12 @@
 		};
 		29B97315FDCFA39411CA2CEA = {
 			children = (
+				2CDACD7F0813BE3F000B9086,
+				2CDACD800813BE3F000B9086,
+				2CDACD810813BE3F000B9086,
+				2CDACD820813BE3F000B9086,
+				2C2E5293080625270015E9EB,
+				2C2E5294080625270015E9EB,
 				29B97316FDCFA39411CA2CEA,
 			);
 			isa = PBXGroup;
@@ -176,6 +183,7 @@
 				DA206CF4015C4E8B03C91932,
 				2C9E42BE052215CB00248965,
 				2C771B7706D444ED00275DF1,
+				2CDACE460813EF6B000B9086,
 				2C732C7B07AE666B005ACE75,
 				2C732C7E07AE667D005ACE75,
 			);
@@ -235,8 +243,10 @@
 			);
 			buildSettings = {
 				DEBUGGING_SYMBOLS = NO;
+				DSTROOT = /;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = "$(HOME)/Library/Preferences/mi/mode/TEX";
+				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -261,7 +271,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXCompileServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.8 copyright 2003-2005, Tetsuro KURITA</string>
+	<string>2.9 copyright 2003-2005, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXCompileServer Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -277,11 +287,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.8</string>
+	<string>2.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.8</string>
+	<string>2.9</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
@@ -297,6 +307,9 @@
 		29B97327FDCFA39411CA2CEA = {
 			buildActionMask = 2147483647;
 			files = (
+				2C2E5295080625270015E9EB,
+				2CDACD830813BE3F000B9086,
+				2CDACD840813BE3F000B9086,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +332,7 @@
 				2C54027607CD5AAB00E8CEEB,
 				2C71167F07D177B8008BCAEF,
 				2C71168007D177B8008BCAEF,
+				2CDACE470813EF6B000B9086,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +341,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				29B9732CFDCFA39411CA2CEA,
+				2C2E5296080625270015E9EB,
+				2CDACD850813BE3F000B9086,
+				2CDACD860813BE3F000B9086,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +361,7 @@
 			files = (
 				1058C7A3FEA54F0111CA2CBB,
 				DA206CF2015C4E2903C91932,
+				2C2E545808062E8E0015E9EB,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +442,48 @@
 				ATTRIBUTES = (
 					Debug,
 				);
+			};
+		};
+		2C2E5293080625270015E9EB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = SmartActivate.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C2E5294080625270015E9EB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = SmartActivate.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2C2E5295080625270015E9EB = {
+			fileRef = 2C2E5293080625270015E9EB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C2E5296080625270015E9EB = {
+			fileRef = 2C2E5294080625270015E9EB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2C2E545708062E8E0015E9EB = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = ApplicationServices.framework;
+			path = /System/Library/Frameworks/ApplicationServices.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		2C2E545808062E8E0015E9EB = {
+			fileRef = 2C2E545708062E8E0015E9EB;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		2C329BDD063AB42000C9A56F = {
@@ -558,6 +618,7 @@
 		};
 		2C54FE0A07C9E5AC00E8CEEB = {
 			children = (
+				2CC144FA08067AB000F04B63,
 				2CDA398E07D5500C00A25B91,
 				2C17332A063C1C9D000FEAF8,
 				2C7C492E07960C830026564C,
@@ -583,7 +644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$OBJROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_path=\"$manual_folder/index.html\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/index.html\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$SYMROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_path=\"$manual_folder/index.html\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/index.html\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
 		2C6FB9BD06255005004731C7 = {
 			fileEncoding = 4;
@@ -811,6 +872,23 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		2CC144FA08067AB000F04B63 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.applescript;
+			path = TerminalCommander.applescript;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CC144FB08067AB000F04B63 = {
+			fileRef = 2CC144FA08067AB000F04B63;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+			};
+		};
 		2CCD19FA06BE5DF800B6B166 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -863,6 +941,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				2CDACE4C0813EF77000B9086,
 				2C771B7906D4450600275DF1,
 			);
 			isa = PBXCopyFilesBuildPhase;
@@ -924,6 +1003,82 @@
 				);
 			};
 		};
+		2CDACD7F0813BE3F000B9086 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = LogParser.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CDACD800813BE3F000B9086 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = stringExtra.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CDACD810813BE3F000B9086 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = stringExtra.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CDACD820813BE3F000B9086 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = LogParser.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CDACD830813BE3F000B9086 = {
+			fileRef = 2CDACD7F0813BE3F000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2CDACD840813BE3F000B9086 = {
+			fileRef = 2CDACD800813BE3F000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2CDACD850813BE3F000B9086 = {
+			fileRef = 2CDACD810813BE3F000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2CDACD860813BE3F000B9086 = {
+			fileRef = 2CDACD820813BE3F000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2CDACE460813EF6B000B9086 = {
+			isa = PBXFileReference;
+			lastKnownFileType = "compiled.mach-o.executable";
+			name = miclient;
+			path = "/Users/tkurita/Factories/Script factory/ProjectsX/Scripts for mi/miclient/miclient/build/miclient";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		2CDACE470813EF6B000B9086 = {
+			fileRef = 2CDACE460813EF6B000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		2CDACE4C0813EF77000B9086 = {
+			fileRef = 2CDACE460813EF6B000B9086;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 //2C0
 //2C1
 //2C2
@@ -950,7 +1105,11 @@
 		4A9504CDFFE6A4B311CA0CBA = {
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				DEPLOYMENT_LOCATION = NO;
+				DSTROOT = "";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				INSTALL_MODE_FLAG = "a+rX";
+				INSTALL_PATH = "";
 				OTHER_OSAFLAGS = "-x";
 				ZERO_LINK = NO;
 			};
@@ -1026,6 +1185,7 @@
 				2C7DA39C07AB75F70046A8E1,
 				2C54024107CCEF5000E8CEEB,
 				2CDA398F07D5500C00A25B91,
+				2CC144FB08067AB000F04B63,
 			);
 			isSharedContext = 0;
 			isa = PBXAppleScriptBuildPhase;
