@@ -13,7 +13,6 @@ on loadFactorySettings(fileName)
 end loadFactorySettings
 
 on getFactorySetting for entryName
-	--return call method "valueForKey:" of factorySettingDict with parameter entryName
 	return call method "objectForKey:" of factorySettingDict with parameter entryName
 end getFactorySetting
 
