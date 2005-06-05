@@ -10,34 +10,68 @@ on makeObj(theTexDocObj)
 		property retryCompile : false
 		property isNoError : true
 		property isNoMessages : false
+		property isLabelsChanged : false
+		
 		property myPathConverter : missing value
 		--private property
+		
+		on buildHyperList(parseResult)
+			--log "start buildHyperList"
+			copy PathConverter to myPathConverter
+			setHFSoriginPath(my texBasePath) of myPathConverter
+			--log parseResult
+			repeat with theItem in parseResult
+				set targetFile to |file| of theItem
+				set errorRecordList to |errorRecordList| of theItem
+				
+				if targetFile is not "" then
+					set targetFile to resolveTargetFile(targetFile)
+					
+					repeat with theRecord in errorRecordList
+						using terms from application "mi"
+							set errorRecord to {file:targetFile, comment:|comment| of theRecord}
+							try
+								set errorRecord to errorRecord & {paragraph:|paragraph| of theRecord}
+							end try
+						end using terms from
+						set end of hyperlist to errorRecord
+					end repeat
+				else
+					repeat with theRecord in errorRecordList
+						using terms from application "mi"
+							set errorRecord to {comment:|comment| of theRecord}
+						end using terms from
+						set end of hyperlist to errorRecord
+					end repeat
+				end if
+			end repeat
+			
+			set isNoMessages to (hyperlist is {})
+		end buildHyperList
+		
+		on boolValue(theValue)
+			return theValue is 1
+		end boolValue
+		
+		on parseLog(logParser)
+			set parseResult to call method "parseLog" of logParser
+			--log parseResult
+			set isDviOutput to boolValue(call method "isDviOutput" of logParser)
+			set isLabelsChanged to boolValue(call method "isLabelsChanged" of logParser)
+			call method "release" of logParser
+			buildHyperList(parseResult)
+		end parseLog
+		
+		on parseLogText()
+			set logParser to call method "alloc" of class "LogParser"
+			set logParser to call method "initWithString:" of logParser with parameter my logContents
+			parseLog(logParser)
+		end parseLogText
 		
 		on parseLogFile()
 			set logParser to call method "alloc" of class "LogParser"
 			set logParser to call method "initWithContentsOfFile:" of logParser with parameter (POSIX path of my logFileRef)
-			set parseResult to call method "parseLog" of logParser
-			call method "release" of logParser
-			log parseResult
-			copy PathConverter to myPathConverter
-			setHFSoriginPath(my texBasePath) of myPathConverter
-			log parseResult
-			repeat with theItem in parseResult
-				set targetFile to |file| of theItem
-				set targetFile to resolveTargetFile(targetFile)
-				set errorRecordList to |errorRecordList| of theItem
-				repeat with theRecord in errorRecordList
-					using terms from application "mi"
-						set errorRecord to {file:targetFile, comment:|comment| of theRecord}
-						try
-							set errorRecord to errorRecord & {paragraph:|paragraph| of theRecord}
-						end try
-					end using terms from
-					set end of hyperlist to errorRecord
-				end repeat
-			end repeat
-			
-			set isNoMessages to (hyperlist is {})
+			parseLog(logParser)
 		end parseLogFile
 		
 		on resolveTargetFile(theTargetFile)
