@@ -15,11 +15,19 @@
 	NSArray * texFileExtensions;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path;
+//puclic method
+- (id) initWithContentsOfFile:(NSString *)path;
 
-- (NSString *) skipHeader;
+- (id) initWithString:(NSString *)targetText;
 
 - (NSMutableArray *) parseLog;
+
+- (BOOL) isDviOutput;
+
+-(BOOL) isLabelsChanged;
+
+//internal use
+- (NSString *) skipHeader;
 
 - (NSString *) parseBodyWith:(NSMutableArray *)currentList startText:(NSString *)targetText isWholeLine:(BOOL *)wholeLineFlag;
 

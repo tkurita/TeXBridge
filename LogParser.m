@@ -18,7 +18,18 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 }
 
 @implementation LogParser
-- (id)init{
+- (BOOL) isDviOutput
+{
+	return self->isDviOutput;
+}
+
+- (BOOL) isLabelsChanged
+{
+	return self->isLabelsChanged;
+}
+
+- (id)init
+{
 	[super init];
 	currentLineNumber = 0;
 	newlineCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"\r\n"] retain];
@@ -37,6 +48,16 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	if (logContents != nil) [logContents release];
 	[texFileExtensions release];
 	[super dealloc];
+}
+
+- (id)initWithString:(NSString*)targetText {
+	[self init];
+	logFilePath = @"";
+	[logFilePath retain];
+	logContents = [targetText retain];
+	int length = [logContents length];
+	nextRange = NSMakeRange(0, length);
+	return self;
 }
 
 - (id)initWithContentsOfFile:(NSString *)path {
@@ -98,6 +119,8 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	[loglogTree addObject:logTree];
 	[self parseFooterWith:loglogTree startText:targetText];
 	//NSLog([loglogTree description]);
+	isDviOutput = YES;
+	isLabelsChanged = NO;
 	[self parseLogTreeFirstLevel:loglogTree];
 	//NSLog([errorRecordTree description]);
 	//NSLog(@"end of parseLog");
