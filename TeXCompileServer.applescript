@@ -181,12 +181,14 @@ on clicked theObject
 	else if theTag is 3 then
 		controlClicked(theObject) of dviObj
 	else if theTag is 4 then
-		controlClicked(theObject) of PDFObj
+		controlClicked(theObject) of TeXCompileObj
 	else if theTag is 5 then
 		(* 5: Other Setting *)
 		controlClicked(theObject) of SettingWindowController
 	else if theTag is 6 then
 		controlClicked(theObject) of ReplaceInputObj
+	else if theTag is 7 then
+		controlClicked(theObject) of PDFObj
 	else
 		controlClicked(theObject)
 	end if
