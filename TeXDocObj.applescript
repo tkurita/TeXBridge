@@ -63,6 +63,7 @@ on makeObj(theTargetFile)
 		property targetParagraph : missing value
 		
 		property logFileRef : missing value
+		property logContents : missing value -- used when quick typeset and preview
 		property workingDirectory : folderReference of pathRecord -- if ParentFile exists, it's directory of ParentFile
 		property hasParentFile : false
 		property isSrcSpecial : missing value
@@ -198,12 +199,14 @@ on makeObj(theTargetFile)
 					repeat with ith from 2 to length of commandElements
 						set theItem to item ith of commandElements
 						if theItem starts with "-interaction=" then
-							set item ith of commandElements to "-interaction=batchmode"
+							--set item ith of commandElements to "-interaction=batchmode"
+							set item ith of commandElements to "-interaction=nonstopmode"
 							exit repeat
 						end if
 					end repeat
 				else
-					set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
+					--set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
+					set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=nonstopmode")
 				end if
 				set theTexCommand to joinUTextList of StringEngine for commandElements by space
 				stopStringEngine() of StringEngine
@@ -211,10 +214,12 @@ on makeObj(theTargetFile)
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
 				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
 				try
-					do shell script allCommand
+					set logContents to do shell script allCommand
 				on error errMsg number errNum
-					if errNum is in {1, -1700} then
+					if errNum is 1 then
 						-- 1:general tex error
+						set logContents to errMsg
+					else if errNum is -1700 then
 						-- -1700: unknown, result can not be accept
 					else if errNum is 127 then
 						-- maybe comannd name or path setting is not correct
@@ -228,12 +233,15 @@ on makeObj(theTargetFile)
 			
 			set theDviObj to lookUpDviFile()
 			if theDviObj is not missing value then
+				(*
 				set dviModDate to getModDate() of theDviObj
 				if dviModDate > beforeCompileTime then
 					setSrcSpecialFlag() of theDviObj
 				else
 					set theDviObj to missing value
 				end if
+				*)
+				setSrcSpecialFlag() of theDviObj
 			end if
 			
 			return theDviObj
