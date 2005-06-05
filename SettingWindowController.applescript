@@ -96,6 +96,7 @@ on makeObj(theWindow)
 			--log "start loadOtherSetting"
 			if not isLoadedOtherSetting then
 				set contents of text field "LifeTime" of theView to (lifeTime div 60) as integer
+				
 				if showToolPaletteWhenLaunched then
 					set state of button "ShowToolPaletteWhenLaunched" of theView to 1
 				else
@@ -107,6 +108,13 @@ on makeObj(theWindow)
 				else
 					set state of button "ShowRefPaletteWhenLaunched" of theView to 0
 				end if
+				
+				if autoMultiTypeset of TeXCompileObj then
+					set state of button "AutoMultiTypeset" of theView to 1
+				else
+					set state of button "AutoMultiTypeset" of theView to 0
+				end if
+				
 				set isLoadedOtherSetting to true
 			end if
 			--log "end loadOtherSetting"
