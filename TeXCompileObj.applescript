@@ -28,6 +28,17 @@ property mendexCommand : "/usr/local/bin/mendex"
 property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 property visibleRefPalette : false
+property autoMultiTypeset : false
+
+on controlClicked(theObject)
+	set theName to name of theObject
+	if theName is "AutoMultiTypeset" then
+		set autoMultiTypeset to (state of theObject is 1)
+		tell user defaults
+			set contents of default entry "AutoMultiTypeset" to autoMultiTypeset
+		end tell
+	end if
+end controlClicked
 
 on endEditing(theObject)
 	set theName to name of theObject
@@ -70,6 +81,7 @@ on loadSettings()
 	set bibtexCommand to readDefaultValue("bibtexCommand") of DefaultsManager
 	set mendexCommand to readDefaultValue("mendexCommand") of DefaultsManager
 	set visibleRefPalette to readDefaultValueWith("visibleRefPalette", visibleRefPalette) of DefaultsManager
+	set autoMultiTypeset to readDefaultValue("AutoMultiTypeset") of DefaultsManager
 end loadSettings
 
 on writeSettings()
@@ -125,7 +137,7 @@ on resolveParentFile(theParagraph, theTargetFile)
 	return theTexFile
 end resolveParentFile
 
-on checkmifiles given saving:savingFlag
+on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	--log "start checkmifiles"
 	set textADocument to localized string "aDocument"
 	
@@ -193,13 +205,15 @@ on checkmifiles given saving:savingFlag
 		
 		tell application "mi"
 			if modified of document 1 then
-				set docname to name of document 1
-				try
-					set theResult to display dialog textADocument & space & sQ & docname & eQ & space & textIsModified & return & textDoYouSave with icon note
-					-- if canceld, error number -128
-				on error errMsg number -128
-					error "The documen is modified. Saving the document is canceld by user." number 1210
-				end try
+				if not autosaveFlag then
+					set docname to name of document 1
+					try
+						set theResult to display dialog textADocument & space & sQ & docname & eQ & space & textIsModified & return & textDoYouSave with icon note
+						-- if canceld, error number -128
+					on error errMsg number -128
+						error "The documen is modified. Saving the document is canceld by user." number 1210
+					end try
+				end if
 				save document 1
 			end if
 		end tell
@@ -216,7 +230,7 @@ on prepareTypeSet()
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
 	
-	set theTexDocObj to checkmifiles with saving
+	set theTexDocObj to checkmifiles with saving and autosave
 	--log "end of checkmifiles in prepareTypeSet"
 	if not checkLogFileStatus() of theTexDocObj then
 		set theMessage to textALogfile & return & sQ & (logFileRef of theTexDocObj) & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
@@ -323,10 +337,24 @@ on doTypeSet()
 	end try
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	parseLogFile() of theLogFileParser
+	if (autoMultiTypeset and (isLabelsChanged of theLogFileParser)) then
+		try
+			set theDviObj to texCompile() of theTexDocObj
+		on error number 1250
+			return missing value
+		end try
+		parseLogFile() of theLogFileParser
+	end if
+	
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
 	updateReferencePalette(theTexDocObj)
-	return theDviObj
+	
+	if isDviOutput of theLogFileParser then
+		return theDviObj
+	else
+		return missing value
+	end if
 end doTypeSet
 
 on logParseOnly()
@@ -340,7 +368,7 @@ end logParseOnly
 on dviPreview()
 	--log "start dviPreview"
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
@@ -368,7 +396,7 @@ end dviPreview
 
 on pdfPreview()
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
@@ -428,7 +456,11 @@ on quickTypesetAndPreview()
 	end try
 	--log "after texCompile in quickTypesetAndPreview"
 	
-	if theDviObj is not missing value then
+	set theLogFileParser to newLogFileParser(theTexDocObj)
+	parseLogText() of theLogFileParser
+	--log "after parseLogFile in quickTypesetAndPreview"
+	--if theDviObj is not missing value then
+	if isDviOutput of theLogFileParser then
 		try
 			openDVI() of theDviObj
 		on error errMsg number errNum
@@ -437,10 +469,12 @@ on quickTypesetAndPreview()
 	end if
 	
 	--log "after openDVI in quickTypesetAndPreview"
-	set theLogFileParser to newLogFileParser(theTexDocObj)
+	--set theLogFileParser to newLogFileParser(theTexDocObj)
 	--log "before parseLogFile in quickTypesetAndPreview"
-	parseLogFile() of theLogFileParser
+	--parseLogFile() of theLogFileParser
 	--log "after parseLogFile in quickTypesetAndPreview"
+	
+	--log "before prepareVIewErrorLog"
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
 	updateReferencePalette(theTexDocObj)
@@ -478,7 +512,7 @@ end typesetAndPDFPreview
 
 on openOutputHadler(theExtension)
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "openOutputHadler", errMsg) of MessageUtility
@@ -494,7 +528,7 @@ end bibTex
 
 on dviToPDF()
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviToPDF", errMsg) of MessageUtility
@@ -524,7 +558,7 @@ end dviToPDF
 
 on dviToPS()
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviToPS", errMsg) of MessageUtility
@@ -547,7 +581,7 @@ end dviToPS
 --simply execute TeX command in Terminal
 on execTexCommand(texCommand, theSuffix, checkSaved)
 	try
-		set theTexDocObj to checkmifiles given saving:checkSaved
+		set theTexDocObj to checkmifiles given saving:checkSaved without autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "execTexCommand", errMsg) of MessageUtility
@@ -565,7 +599,7 @@ on seekExecEbb()
 	set graphicCommand to yenmark & "includegraphics"
 	
 	try
-		set theTexDocObj to checkmifiles without saving
+		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "seekExecEbb", errMsg) of MessageUtility
