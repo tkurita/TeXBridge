@@ -153,10 +153,16 @@ script MxdviDriver
 		if isSrcSpecial of theDviObj then
 			set dviFileName to getNameWithSuffix(".dvi") of theDviObj
 			--log "success getNameWithSuffix"
-			set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
+			--set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
-			set allCommand to cdCommand & comDelim & mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & " '" & dviFileName & "' &"
-			doCommands of TerminalCommander for allCommand without activation
+			--set allCommand to cdCommand & comDelim & mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & " '" & dviFileName & "' &"
+			set targetDviPath to quoted form of ((POSIX path of workingDirectory of theDviObj) & dviFileName)
+			set allCommand to mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & space & targetDviPath
+			if compileInTerminal of theDviObj then
+				doCommands of TerminalCommander for allCommand without activation
+			else
+				do shell script allCommand
+			end if
 		else
 			tell application (mxdviApp as Unicode text)
 				open dviFileRef of theDviObj
