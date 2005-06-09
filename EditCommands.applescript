@@ -20,7 +20,7 @@ end extractFilePath
 
 on openRelatedFile given revealOnly:revealFlag
 	try
-		set theTexDocObj to checkmifiles of TeXCompileObj without saving
+		set theTexDocObj to checkmifiles of TeXCompileObj without saving and autosave
 	on error errMsg number 1200
 		return
 	end try
@@ -110,7 +110,7 @@ end openGraphicFile
 
 on openParentFile()
 	try
-		set theTexDocObj to checkmifiles of TeXCompileObj without saving
+		set theTexDocObj to checkmifiles of TeXCompileObj without saving and autosave
 	on error errMsg number 1200
 		return
 	end try
