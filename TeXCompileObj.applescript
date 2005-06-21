@@ -449,6 +449,7 @@ on quickTypesetAndPreview()
 	end if
 	
 	set compileInTerminal of theTexDocObj to false
+	--log "before texCompile in quickTypesetAndPreview"
 	try
 		set theDviObj to texCompile() of theTexDocObj
 	on error number 1250
@@ -457,9 +458,9 @@ on quickTypesetAndPreview()
 	--log "after texCompile in quickTypesetAndPreview"
 	
 	set theLogFileParser to newLogFileParser(theTexDocObj)
+	--log "befor parseLogText in quickTypesetAndPreview"
 	parseLogText() of theLogFileParser
-	--log "after parseLogFile in quickTypesetAndPreview"
-	--if theDviObj is not missing value then
+	--log "after parseLogText in quickTypesetAndPreview"
 	if isDviOutput of theLogFileParser then
 		try
 			openDVI() of theDviObj

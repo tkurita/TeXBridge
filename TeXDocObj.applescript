@@ -214,6 +214,7 @@ on makeObj(theTargetFile)
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
 				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
 				try
+					--log allCommand
 					set logContents to do shell script allCommand
 				on error errMsg number errNum
 					if errNum is 1 then
