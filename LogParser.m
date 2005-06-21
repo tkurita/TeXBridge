@@ -355,13 +355,16 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 	
-	} else if ([targetText startWith:@"Overfull"] || [targetText startWith:@"Underfull"]) {
+	} else if ([targetText startWith:@"Overfull"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		while (! [targetText endsWith:@"[]"]) {
+		while (! ([targetText endsWith:@"[]"]||[targetText endsWith:@"[] "])) {
 			targetText = [self getNextLine];
 		}
 		return [self parseLines:[self getNextLine] withList:currentList];
-	
+
+	} else if ([targetText startWith:@"Underfull"]) {
+		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
+
 	} else if ([targetText startWith:@"Runaway argument?"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
 		while (! [targetText startWith:@"!"]) {
