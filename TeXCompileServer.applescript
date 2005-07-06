@@ -60,6 +60,7 @@ on launched theObject
 		showRefPalette() of EditCommands
 	end if
 	hide window "Startup"
+	
 	(*debug code*)
 	--logParseOnly() of TeXCompileObj
 	--set theResult to call method "smartActivate:" with parameter "trmx"
