@@ -46,7 +46,29 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	writeSettings()
 end saveSettingsFromWindow
 
+on makeObjFromDVIFile(dviFileRef)
+	--log "start makeObjFromDVIFile"
+	local basePath
+	set dviFilePath to dviFileRef as Unicode text
+	if dviFilePath ends with ".dvi" then
+		set basePath to text 1 thru -5 of dviFilePath
+	else
+		set basePath to dviFilePath
+	end if
+	set texFilePath to basePath & ".tex"
+	
+	if isExists(POSIX file texFilePath) of UtilityHandlers then
+		set theTexDocObj to makeObj(POSIX file texFilePath)
+		getHeaderCommandFromFile() of theTexDocObj
+	else
+		set theTexDocObj to makeObj(POSIX file basePath)
+	end if
+	
+	return theTexDocObj
+end makeObjFromDVIFile
+
 on makeObj(theTargetFile)
+	--log "start makeObj in TexDocObj"
 	set pathRecord to do(theTargetFile) of PathAnalyzer
 	
 	script TexDocObj
@@ -70,6 +92,69 @@ on makeObj(theTargetFile)
 		property compileInTerminal : true
 		
 		property texSuffixList : {".tex", ".dtx"}
+		
+		on resolveParentFile(theParagraph)
+			--log "start resolveParentFile"
+			set parentFile to stripHeadTailSpaces(text 13 thru -2 of theParagraph) of UtilityHandlers
+			--log parentFile
+			if parentFile starts with ":" then
+				setHFSoriginPath(targetFileRef) of PathConverter
+				set theTexFile to getAbsolutePath of PathConverter for parentFile
+			else
+				set theTexFile to parentFile
+			end if
+			--tell me to log "theTexFile : " & theTexFile
+			
+			if theTexFile ends with ":" then
+				set textIsInvalid to localized string "isInvalid"
+				set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
+				showMessageOnmi(theMessage) of MessageUtility
+				error "ParentFile is invalid." number 1230
+			end if
+			
+			try
+				set theTexFile to theTexFile as alias
+			on error
+				set textIsNotFound to localized string "isNotFound"
+				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
+				showMessageOnmi(theMessage) of MessageUtility
+				error "ParentFile is not found." number 1220
+			end try
+			
+			--log "end resolveParentFile"
+			return theTexFile
+		end resolveParentFile
+		
+		on getHeaderCommand(theParagraph)
+			ignoring case
+				if theParagraph starts with "%ParentFile" then
+					set theParentFile to resolveParentFile(theParagraph)
+					setTexFileRef(theParentFile) of theTexDocObj
+				else if theParagraph starts with "%Typeset-Command" then
+					set my texCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+				else if theParagraph starts with "%DviToPdf-Command" then
+					set my dvipdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
+				else if theParagraph starts with "%DviToPs-Command" then
+					set my dvipsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+				end if
+			end ignoring
+		end getHeaderCommand
+		
+		on getHeaderCommandFromFile()
+			--log "start getHearderCommandFromFile"
+			set linefeed to ASCII character 10
+			set inputFile to open for access texFileRef
+			set theParagraph to read inputFile before linefeed
+			repeat while (theParagraph starts with "%")
+				getHeaderCommand(theParagraph)
+				try
+					set theParagraph to read inputFile before linefeed
+				on error
+					exit repeat
+				end try
+			end repeat
+			close access inputFile
+		end getHeaderCommandFromFile
 		
 		on setTexFileRef(theTexFile) -- set parent file of targetFileRef
 			set hasParentFile to true
