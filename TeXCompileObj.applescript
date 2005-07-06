@@ -3,6 +3,7 @@ global UtilityHandlers
 global LogFileParser
 global MessageUtility
 global PDFObj
+global dviObj
 global TexDocObj
 global DefaultsManager
 
@@ -181,18 +182,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 			set theParagraph to paragraph ith of document 1
 		end tell
 		if theParagraph starts with "%" then
-			ignoring case
-				if theParagraph starts with "%ParentFile" then
-					set theParentFile to resolveParentFile(theParagraph, theTargetFile)
-					setTexFileRef(theParentFile) of theTexDocObj
-				else if theParagraph starts with "%Typeset-Command" then
-					set texCommand of theTexDocObj to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
-				else if theParagraph starts with "%DviToPdf-Command" then
-					set dvipdfCommand of theTexDocObj to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
-				else if theParagraph starts with "%DviToPs-Command" then
-					set dvipsCommand of theTexDocObj to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
-				end if
-			end ignoring
+			getHeaderCommand(theParagraph) of theTexDocObj
 		else
 			exit repeat
 		end if
@@ -527,7 +517,7 @@ on bibTex()
 	execTexCommand(bibtexCommand, "", true)
 end bibTex
 
-on dviToPDF()
+on lookUpDviFromEditor()
 	try
 		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
@@ -544,6 +534,46 @@ on dviToPDF()
 		set dviName to getNameWithSuffix(".dvi") of theTexDocObj
 		set theMessage to textDviFile & space & dviName & space & isNotFound
 		showMessageOnmi(theMessage) of MessageUtility
+	end if
+	return theDviObj
+end lookUpDviFromEditor
+
+on lookUpDviFromMxdvi()
+	--log "start lookUpDviFromMxdvi"
+	tell application "System Events"
+		tell process "Mxdvi"
+			if exists window 1 then
+				tell window 1
+					set fileURL to value of attribute "AxDocument"
+				end tell
+			else
+				return missing value
+			end if
+		end tell
+	end tell
+	log fileURL
+	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
+	set thePath to call method "path" of theURL
+	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj
+	set theDviObj to lookUpDviFile() of theTexDocObj
+	return theDviObj
+end lookUpDviFromMxdvi
+
+on dviToPDF()
+	--log "start dviToPDF"
+	set appName to (path to frontmost application as Unicode text)
+	if appName ends with "Mxdvi.app:" then
+		set theDviObj to lookUpDviFromMxdvi()
+	else
+		set theDviObj to missing value
+		--set theDviObj to lookUpDviFromMxdvi()
+	end if
+	
+	if theDviObj is missing value then
+		set theDviObj to lookUpDviFromEditor()
+	end if
+	
+	if theDviObj is missing value then
 		return
 	end if
 	
