@@ -186,7 +186,7 @@ on setDVIDriver()
 end setDVIDriver
 
 on makeObj(theTexDocObj)
-	if dvipdfCommand of theTexDocObj is missing value then
+	if (theTexDocObj is missing value) or (dvipdfCommand of theTexDocObj is missing value) then
 		set theCommand to defaultDVIPDFCommand
 	else
 		set theCommand to dvipdfCommand of theTexDocObj
