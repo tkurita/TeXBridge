@@ -612,7 +612,7 @@ end dviToPS
 --simply execute TeX command in Terminal
 on execTexCommand(texCommand, theSuffix, checkSaved)
 	try
-		set theTexDocObj to checkmifiles given saving:checkSaved without autosave
+		set theTexDocObj to checkmifiles without autosave given saving:checkSaved
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "execTexCommand", errMsg) of MessageUtility
