@@ -2,8 +2,8 @@
 #import "stringExtra.h"
 
 @interface LogParser : NSObject {
-	NSString * logFilePath;
-	NSString * logContents, * currentString;
+	NSString *logFilePath;
+	NSString *logContents, * currentString;
 	NSRange range, currentRange, nextRange;
 	unsigned int currentLineNumber;
 	NSCharacterSet *newlineCharacterSet;
@@ -11,8 +11,8 @@
 	BOOL isNoError;
 	BOOL isLabelsChanged;
 	BOOL isDviOutput;
-	NSMutableArray * errorRecordTree;
-	NSArray * texFileExtensions;
+	NSMutableArray *errorRecordTree;
+	NSArray *texFileExtensions;
 }
 
 //puclic method
@@ -42,7 +42,10 @@
 - (void) parseLogTree:(NSMutableArray *) logTree;
 
 - (NSString *) getTargetFilePath:(NSEnumerator *) enumerator;
-
 - (NSString *) checkTexFileExtensions:(NSString *)targetFile;
+
+//accessors
+- (void)setLogContents:(NSString *)logText;
+- (void)setLogFilePath:(NSString *)path;
 
 @end

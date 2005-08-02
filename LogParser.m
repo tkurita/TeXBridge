@@ -44,28 +44,32 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	[newlineCharacterSet release];
 	[whitespaceCharSet release];
 	[errorRecordTree release];
-	if (logFilePath != nil) [logFilePath release];
-	if (logContents != nil) [logContents release];
+	[logFilePath release];
+	[logContents release];
+	[texFileExtensions release];
+	[errorRecordTree release];
 	[texFileExtensions release];
 	[super dealloc];
 }
 
-- (id)initWithString:(NSString*)targetText {
+- (id)initWithString:(NSString*)targetText
+{
 	[self init];
-	logFilePath = @"";
-	[logFilePath retain];
-	logContents = [targetText retain];
+	[self setLogFilePath:@""];
+	[self setLogContents:targetText];
 	int length = [logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path {
+- (id)initWithContentsOfFile:(NSString *)path
+{
 	[self init];
-	logFilePath = path;
-	[logFilePath retain];
-	NSData * logData = [NSData dataWithContentsOfFile:logFilePath];
-	logContents = [[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding];
+	[self setLogFilePath:path];
+	
+	NSData *logData = [NSData dataWithContentsOfFile:logFilePath];
+	[logContents release];
+	[self setLogContents:[[[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding] autorelease]];
 	int length = [logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;
@@ -495,5 +499,20 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	NSRange subRange = NSMakeRange(1,[theLine length]-1);
 	return [theLine substringWithRange:subRange];
 }
-	
+
+#pragma mark accessor methods
+- (void)setLogContents:(NSString *)logText
+{
+	[logText retain];
+	[logContents release];
+	logContents = logText;
+}
+
+- (void)setLogFilePath:(NSString *)path
+{
+	[path retain];
+	[logFilePath release];
+	logFilePath = path;
+}
+
 @end
