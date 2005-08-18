@@ -298,25 +298,15 @@ on makeObj(theTargetFile)
 				
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
 				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1;exit 0"
+				set logContents to do shell script allCommand
 				try
-					--log allCommand
-					set logContents to do shell script allCommand
-					--log logContents
-					--log "no error of typeset"
-				on error errMsg number errNum
-					--log errNum
-					if errNum is 1 then
-						-- 1:general tex error
-						set logContents to errMsg
-					else if errNum is -1700 then
-						-- -1700: unknown, result can not be accept
-					else if errNum is 127 then
-						-- maybe comannd name or path setting is not correct
-						showError(errNum, "texCompile", errMsg) of MessageUtility
+					if logConetns does not start with "This is" then
+						showError("???", "texCompile", errMsg) of MessageUtility
 						error "Typeset is not executed." number 1250
-					else
-						error errMsg number errNum
 					end if
+				on error errMsg number -2753
+					showError("???", "texCompile", "Unknow error. Maybe command  is not correct or file name is invalid. ") of MessageUtility
+					error "Typeset is not executed." number 1250
 				end try
 			end if
 			
