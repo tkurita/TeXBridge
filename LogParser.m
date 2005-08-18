@@ -1,4 +1,5 @@
 #import "LogParser.h"
+#define useLog 0 //Yes:1, No:0
 
 NSMutableDictionary * makeErrorRecord(NSString* errMsg, NSNumber* errpn) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -55,6 +56,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 - (id)initWithString:(NSString*)targetText
 {
 	[self init];
+	isReadFile = NO;
 	[self setLogFilePath:@""];
 	[self setLogContents:targetText];
 	int length = [logContents length];
@@ -66,7 +68,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 {
 	[self init];
 	[self setLogFilePath:path];
-	
+	isReadFile = YES;
 	NSData *logData = [NSData dataWithContentsOfFile:logFilePath];
 	[logContents release];
 	[self setLogContents:[[[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding] autorelease]];
@@ -99,7 +101,14 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	}
 }
 
-- (NSString *) addCurrentLineAndNextLine:(NSMutableArray *)currentList {
+- (void)addCurrentLine:(NSMutableArray*)currentList
+{
+	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber);
+	[currentList addObject:dict];	
+}
+
+- (NSString *)addCurrentLineAndNextLine:(NSMutableArray *)currentList
+{
 	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber);
 	[currentList addObject:dict];
 	return [self getNextLine];
@@ -111,23 +120,35 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 }
 
 - (NSMutableArray *) parseLog{
+#if useLog
+	NSLog(@"start parseLog");
+#endif
 	NSString * targetText = [self skipHeader];
 	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber);
 	NSMutableArray *logTree = [NSMutableArray arrayWithObject:dict];
 	targetText = [self getNextLine];
 	BOOL wholeLineFlag = YES;
+#if useLog
+	NSLog(@"before parseBodyWith");
+#endif
 	targetText = [self parseBodyWith:logTree startText:targetText isWholeLine:&wholeLineFlag];
 	
 	dict = makeLogRecord(logFilePath, 0);
 	NSMutableArray *loglogTree = [NSMutableArray arrayWithObject:dict];
 	[loglogTree addObject:logTree];
+#if useLog
+	NSLog(@"before parseFooterWith");
+#endif
 	[self parseFooterWith:loglogTree startText:targetText];
-	//NSLog([loglogTree description]);
+	NSLog([loglogTree description]);
+
 	isDviOutput = YES;
 	isLabelsChanged = NO;
 	[self parseLogTreeFirstLevel:loglogTree];
-	//NSLog([errorRecordTree description]);
-	//NSLog(@"end of parseLog");
+	NSLog([errorRecordTree description]);
+#if useLog
+	NSLog(@"end of parseLog");
+#endif
 	return errorRecordTree;
 }
 
@@ -176,14 +197,16 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 
 - (void) parseLogTree:(NSMutableArray *) logTree
 {
+	//NSLog(@"start parseLogTree");
 	if ([logTree count] <= 1) {
 		return;
 	}
 	
-	NSEnumerator *enumerator = [logTree objectEnumerator];	
-	NSString * targetFile = [self getTargetFilePath:enumerator];
+	NSEnumerator *enumerator = [logTree objectEnumerator];
+	//NSLog([logTree description]);
+	NSString *targetFile = [self getTargetFilePath:enumerator];
 	NSMutableDictionary * errorRecord;
-	NSMutableArray * errorRecordList = [NSMutableArray array];
+	NSMutableArray *errorRecordList = [NSMutableArray array];
 	id logItem;
 	while (logItem = [enumerator nextObject]) {
 		errorRecord = [self findErrors:logItem withEnumerator:enumerator];
@@ -191,16 +214,19 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 			[errorRecordList addObject:errorRecord];
 		}
 	}
+
 	if ([errorRecordList count]) {
-		NSMutableDictionary * errorRecordDict =
-		[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
+		NSMutableDictionary *errorRecordDict =
+			[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
 		[errorRecordDict setObject:targetFile forKey:@"file"];
 		[errorRecordTree addObject:errorRecordDict];
-	}	
+	}
+	//NSLog(@"end parseLogTree");
 }
 
 - (NSMutableDictionary *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
 {
+	//NSLog(@"start findErrors");
 	NSString * logContent;
 	
 	if ([logTree isKindOfClass: [NSMutableArray class]]) {
@@ -214,7 +240,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	if ([logContent length] < 1) {
 		return nil;
 	}
-	
+
 	int errpInt;
 	NSNumber * errpn = nil;
 	id object;
@@ -293,6 +319,8 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		isDviOutput = NO;
 	}
 	
+	//NSLog(@"end of findErrors");
+	
 	if (errMsg != nil) {
 		return makeErrorRecord(errMsg,errpn);
 	}
@@ -332,10 +360,13 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 }
 
 - (NSString *) parseLines:(NSString *)targetText withList:(NSMutableArray *)currentList {
-	//NSLog(@"start parseLines");
+#if useLog
+	NSLog(@"start parseLines");
+#endif
 	if (targetText == nil) return nil;
-	//NSLog(targetText);
-	
+#if useLog
+	NSLog(targetText);
+#endif
 	if ([targetText startWith:@"LaTeX Font Info:"] 
 			||[targetText startWith:@"Latex Info"]
 			||[targetText startWith:@"\\"]) {
@@ -360,9 +391,12 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		return [self parseLines:[self getNextLine] withList:currentList];
 	
 	} else if ([targetText startWith:@"Overfull"]) {
-		targetText = [self addCurrentLineAndNextLine:currentList];
-		while (! ([targetText endsWith:@"[]"]||[targetText endsWith:@"[] "])) {
-			targetText = [self getNextLine];
+		//targetText = [self addCurrentLineAndNextLine:currentList];
+		[self addCurrentLine:currentList];
+		if (isReadFile) {
+			while (! ([targetText endsWith:@"[]"]||[targetText endsWith:@"[] "])) {
+				targetText = [self getNextLine];
+			}
 		}
 		return [self parseLines:[self getNextLine] withList:currentList];
 
@@ -381,7 +415,8 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		while ([targetText startWith:@" "]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
-		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
+		//return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
+		return [self parseLines:targetText withList:currentList];
 
 	} else if ([targetText startWith:@"!"]) {
 		unsigned int theCurrentLineNumber = currentLineNumber;
@@ -394,14 +429,18 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		return [self parseLines:[self getNextLine] withList:currentList];
 		
 	} else {
-		//NSLog(@"back to parseBody");
+#if useLog
+		NSLog(@"back to parseBody");
+#endif
 		return targetText;
 	}
 }
 
 - (NSString *) parseBodyWith:(NSMutableArray *)currentList startText:(NSString *)targetText isWholeLine:(BOOL *)wholeLineFlag {
-	//NSLog(@"start ParseBody");
-	//NSLog(targetText);
+#if useLog
+	NSLog(@"start ParseBody");
+	NSLog(targetText);
+#endif
 	NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()`"];
 	//NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()"];
 	NSString *scannedText;

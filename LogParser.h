@@ -2,17 +2,24 @@
 #import "stringExtra.h"
 
 @interface LogParser : NSObject {
+	//setting parameters
 	NSString *logFilePath;
-	NSString *logContents, * currentString;
-	NSRange range, currentRange, nextRange;
-	unsigned int currentLineNumber;
-	NSCharacterSet *newlineCharacterSet;
-	NSCharacterSet *whitespaceCharSet;
+	NSString *logContents;
+	NSArray *texFileExtensions;
+	BOOL isReadFile;
+	
+	//show results
 	BOOL isNoError;
 	BOOL isLabelsChanged;
-	BOOL isDviOutput;
+	BOOL isDviOutput;	
+	
+	//internal use
+	NSCharacterSet *newlineCharacterSet;
+	NSCharacterSet *whitespaceCharSet;	
+	unsigned int currentLineNumber;
+	NSString *currentString;
+	NSRange range, currentRange, nextRange;
 	NSMutableArray *errorRecordTree;
-	NSArray *texFileExtensions;
 }
 
 //puclic method
