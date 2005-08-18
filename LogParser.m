@@ -140,8 +140,9 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	NSLog(@"before parseFooterWith");
 #endif
 	[self parseFooterWith:loglogTree startText:targetText];
+#if useLog
 	NSLog([loglogTree description]);
-
+#endif
 	isDviOutput = YES;
 	isLabelsChanged = NO;
 	[self parseLogTreeFirstLevel:loglogTree];
