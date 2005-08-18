@@ -58,19 +58,29 @@ on makeObj(theTexDocObj)
 			--log parseResult
 			set isDviOutput to boolValue(call method "isDviOutput" of logParser)
 			set isLabelsChanged to boolValue(call method "isLabelsChanged" of logParser)
-			call method "release" of logParser
 			buildHyperList(parseResult)
+			call method "release" of logParser
 		end parseLog
 		
 		on parseLogText()
 			--log "start parseLogText"
+			set logParser to call method "alloc" of class "LogParser"
+			set logParser to call method "initWithString:" of logParser with parameter my logContents
+			parseLog(logParser)
+			
+			(*
 			if (count paragraph of my logContents) > 1 then
-				set logParser to call method "alloc" of class "LogParser"
-				set logParser to call method "initWithString:" of logParser with parameter my logContents
-				parseLog(logParser)
+				if my logContents starts with "This is" then
+					set logParser to call method "alloc" of class "LogParser"
+					set logParser to call method "initWithString:" of logParser with parameter my logContents
+					parseLog(logParser)
+				else
+					parseLogFile()
+				end if
 			else
 				parseLogFile()
 			end if
+			*)
 			--log "end parseLogText"
 		end parseLogText
 		

@@ -142,13 +142,13 @@ on makeObj(theTargetFile)
 		
 		on getHeaderCommandFromFile()
 			--log "start getHearderCommandFromFile"
-			set linefeed to ASCII character 10
+			set lineFeed to ASCII character 10
 			set inputFile to open for access texFileRef
-			set theParagraph to read inputFile before linefeed
+			set theParagraph to read inputFile before lineFeed
 			repeat while (theParagraph starts with "%")
 				getHeaderCommand(theParagraph)
 				try
-					set theParagraph to read inputFile before linefeed
+					set theParagraph to read inputFile before lineFeed
 				on error
 					exit repeat
 				end try
@@ -297,11 +297,14 @@ on makeObj(theTargetFile)
 				stopStringEngine() of StringEngine
 				
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
-				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "'"
+				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1;exit 0"
 				try
 					--log allCommand
 					set logContents to do shell script allCommand
+					--log logContents
+					--log "no error of typeset"
 				on error errMsg number errNum
+					--log errNum
 					if errNum is 1 then
 						-- 1:general tex error
 						set logContents to errMsg
