@@ -311,7 +311,7 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>TeXDocObj.applescript</string>
 										<key>bookmark</key>
-										<string>2C2D32CE08B4C63600BB08B7</string>
+										<string>2C2D32D708B4C85A00BB08B7</string>
 										<key>history</key>
 										<array>
 											<string>2C887AA4087B9C0000C972BB</string>
@@ -376,7 +376,7 @@
 										<key>PBXProjectModuleLabel</key>
 										<string>TeXCompileServer.applescript</string>
 										<key>bookmark</key>
-										<string>2C2D32CF08B4C63600BB08B7</string>
+										<string>2C2D32D808B4C85A00BB08B7</string>
 										<key>history</key>
 										<array>
 											<string>2C5BB630082C97350028DAEB</string>
@@ -505,6 +505,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C32DE5306CA420B00FA8E6A</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/tkurita/Factories/Script factory/ProjectsX/TeX Tools for mi/TeXCompileServer/TeXCompileServer.xcode</string>
 	</array>
@@ -537,12 +538,6 @@
 										<string>1CD052900623707200166675</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>LogParser.m</string>
-										<key>bookmark</key>
-										<string>2C2E370C089F3D6F00BD85BC</string>
-										<key>history</key>
-										<array>
-											<string>2C2E36CA089E78F100BD85BC</string>
-										</array>
 									</dict>
 									<key>SplitCount</key>
 									<string>1</string>
@@ -563,6 +558,8 @@
 							<string>139pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -602,7 +599,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C32DE5306CA420B00FA8E6A</string>
-				<string>2C2E36C7089E78E300BD85BC</string>
+				<string>2C2D32D208B4C68B00BB08B7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
