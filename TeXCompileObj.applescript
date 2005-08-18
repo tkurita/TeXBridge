@@ -234,6 +234,7 @@ end prepareTypeSet
 on viewErrorLog(theLogFileParser, theCommand)
 	set textGroup to localized string "group"
 	set docname to texFileName of theLogFileParser
+	--log hyperlist of theLogFileParser
 	if hyperlist of theLogFileParser is not {} then
 		tell application "mi"
 			(*
@@ -551,7 +552,7 @@ on lookUpDviFromMxdvi()
 			end if
 		end tell
 	end tell
-	log fileURL
+	--log fileURL
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
 	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj
