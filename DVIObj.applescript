@@ -2,95 +2,8 @@ global UtilityHandlers
 global TerminalCommander
 global PDFObj
 global PathConverter
-global DefaultsManager
 
 global comDelim
-
-property defaultDVIPDFCommand : "/usr/local/bin/dvipdfmx"
-property dviViewCommand : "xdvi"
-property DVIPreviewMode : 1
-
-property texCommandsBox : missing value
-property dviPreviewBox : missing value
-
-on controlClicked(theObject)
-	--log "controlClicked in DViObj"
-	set DVIPreviewMode to current row of theObject
-	set contents of default entry "DVIPreviewMode" of user defaults to DVIPreviewMode
-	setDVIDriver()
-end controlClicked
-
-on endEditing(theObject)
-	set theName to name of theObject
-	set theCommand to contents of contents of theObject
-	if theName is "dviViewCommand" then
-		set dviViewCommand to theCommand
-		set contents of default entry "dviViewCommand" of user defaults to dviViewCommand
-	else if theName is "dvipdfCommand" then
-		set defaultDVIPDFCommand to theCommand
-		set contents of default entry "dvipdfCommand" of user defaults to defaultDVIPDFCommand
-	end if
-end endEditing
-
-on setSettingToWindow(theViewForCommand, theViewForMode)
-	set texCommandsBox to theViewForCommand
-	tell matrix "Commands" of texCommandsBox
-		set contents of cell "dvipdf" to defaultDVIPDFCommand
-	end tell
-	
-	set dviPreviewBox to theViewForMode
-	tell dviPreviewBox
-		set contents of text field "dviViewCommand" to dviViewCommand
-		set current row of matrix "PreviewerMode" to DVIPreviewMode
-	end tell
-end setSettingToWindow
-
-on revertToFactorySetting()
-	set defaultDVIPDFCommand to getFactorySetting of DefaultsManager for "dvipdfCommand"
-	
-	--DVI Previewer
-	set DVIPreviewMode to (getFactorySetting of DefaultsManager for "DVIPreviewMode") as integer
-	set dviViewCommand to getFactorySetting of DefaultsManager for "dviViewCommand"
-	
-	setDVIDriver()
-	writeSettings()
-end revertToFactorySetting
-
-on loadSettings()
-	--log "start loadSettings of DVIObj"
-	--commands
-	set defaultDVIPDFCommand to readDefaultValue("dvipdfCommand") of DefaultsManager
-	
-	--DVI Previewer
-	set DVIPreviewMode to (readDefaultValue("DVIPreviewMode") of DefaultsManager) as integer
-	set dviViewCommand to readDefaultValue("dviViewCommand") of DefaultsManager
-	
-	setDVIDriver()
-	--log "end of loadSettings of DVIObj"
-end loadSettings
-
-on writeSettings()
-	tell user defaults
-		--commands
-		set contents of default entry "dvipdfCommand" to defaultDVIPDFCommand
-		--DVI previewer
-		set contents of default entry "dviViewCommand" to dviViewCommand
-		set contents of default entry "DVIPreviewMode" to DVIPreviewMode
-	end tell
-end writeSettings
-
-on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	tell matrix "Commands" of texCommandsBox
-		set defaultDVIPDFCommand to contents of text field "dvipdfCommand"
-	end tell
-	
-	tell dviPreviewBox
-		set dviViewCommand to contents of text field "dviViewCommand"
-		set DVIPreviewMode to current row of matrix "PreviewerMode"
-	end tell
-	setDVIDriver()
-	writeSettings()
-end saveSettingsFromWindow
 
 script XdviDriver
 	on openDVI(theDviObj)
@@ -105,6 +18,7 @@ script XdviDriver
 		set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
 		set dviFileName to getNameWithSuffix(".dvi") of theDviObj
 		
+		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
 		if isSrcSpecial of theDviObj then
 			if hasParentFile of theDviObj then
 				setPOSIXoriginPath(POSIX path of texFileRef of theDviObj) of PathConverter
@@ -176,18 +90,22 @@ end script
 property DVIDriver : SimpleDriver
 
 on setDVIDriver()
-	if DVIPreviewMode is 1 then
+	set DVIPreviewMode to contents of default entry "DVIPreviewMode" of user defaults
+	if DVIPreviewMode is 0 then
 		set DVIDriver to SimpleDriver
-	else if DVIPreviewMode is 2 then
+	else if DVIPreviewMode is 1 then
 		set DVIDriver to MxdviDriver
-	else if DVIPreviewMode is 3 then
+	else if DVIPreviewMode is 2 then
 		set DVIDriver to XdviDriver
+	else
+		error "DVI Preview setting is invalid." number 1290
 	end if
 end setDVIDriver
 
 on makeObj(theTexDocObj)
+	setDVIDriver()
 	if (theTexDocObj is missing value) or (dvipdfCommand of theTexDocObj is missing value) then
-		set theCommand to defaultDVIPDFCommand
+		set theCommand to contents of default entry "dvipdfCommand" of user defaults
 	else
 		set theCommand to dvipdfCommand of theTexDocObj
 	end if

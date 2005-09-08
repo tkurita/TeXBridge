@@ -5,7 +5,8 @@ global MessageUtility
 global PDFObj
 global dviObj
 global TexDocObj
-global DefaultsManager
+global appController
+global RefPanelController
 
 --general libs
 global PathAnalyzer
@@ -19,92 +20,10 @@ global yenmark
 global sQ -- start of quotation character
 global eQ -- end of quotation character
 
-property texCommandsBox : missing value
-
-property ebbCommand : "/usr/local/bin/ebb"
-property bibtexCommand : "/usr/local/bin/jbibtex"
-property dvipsCommand : "/usr/local/bin/dvips"
-property mendexCommand : "/usr/local/bin/mendex"
+--property mendexCommand : "/usr/local/bin/mendex"
 
 property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
-property visibleRefPalette : false
-property autoMultiTypeset : false
-
-on controlClicked(theObject)
-	set theName to name of theObject
-	if theName is "AutoMultiTypeset" then
-		set autoMultiTypeset to (state of theObject is 1)
-		tell user defaults
-			set contents of default entry "AutoMultiTypeset" to autoMultiTypeset
-		end tell
-	end if
-end controlClicked
-
-on endEditing(theObject)
-	set theName to name of theObject
-	set theContents to contents of contents of theObject
-	if theName is "dvipsCommand" then
-		set dvipsCommand to theContents
-	else if theName is "ebbCommand" then
-		set ebbCommand to theContents
-	else if theName is "bibtexCommand" then
-		set bibtexCommand to theContents
-	else if theName is "mendexCommand" then
-		set mendexCommand to theContents
-	end if
-	set contents of default entry theName of user defaults to theContents
-end endEditing
-
-on setSettingToWindow(theView)
-	set texCommandsBox to theView
-	tell texCommandsBox
-		set contents of text field "ebbCommand" to ebbCommand
-		set contents of text field "bibtexCommand" to bibtexCommand
-		set contents of text field "dvipsCommand" to dvipsCommand
-		set contents of text field "mendexCommand" to mendexCommand
-	end tell
-end setSettingToWindow
-
-on revertToFactorySetting()
-	--log "start revertToFactorySetting in TeXCompileServer"
-	set dvipsCommand to getFactorySetting of DefaultsManager for "dvipsCommand"
-	set ebbCommand to getFactorySetting of DefaultsManager for "ebbCommand"
-	set bibtexCommand to getFactorySetting of DefaultsManager for "bibtexCommand"
-	set mendexCommand to getFactorySetting of DefaultsManager for "mendexCommand"
-	writeSettings()
-	--log "end revertToFactorySetting in TeXCompileServer"
-end revertToFactorySetting
-
-on loadSettings()
-	set dvipsCommand to readDefaultValue("dvipsCommand") of DefaultsManager
-	set ebbCommand to readDefaultValue("ebbCommand") of DefaultsManager
-	set bibtexCommand to readDefaultValue("bibtexCommand") of DefaultsManager
-	set mendexCommand to readDefaultValue("mendexCommand") of DefaultsManager
-	set visibleRefPalette to readDefaultValueWith("visibleRefPalette", visibleRefPalette) of DefaultsManager
-	set autoMultiTypeset to readDefaultValue("AutoMultiTypeset") of DefaultsManager
-end loadSettings
-
-on writeSettings()
-	tell user defaults
-		--commands
-		set contents of default entry "dvipsCommand" to dvipsCommand
-		set contents of default entry "ebbCommand" to ebbCommand
-		set contents of default entry "bibtexCommand" to bibtexCommand
-		set contents of default entry "mendexCommand" to mendexCommand
-	end tell
-end writeSettings
-
-on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	tell texCommandsBox
-		set ebbCommand to contents of text field "ebb"
-		set bibtexCommand to contents of text field "bibtex"
-		set dvipsCommand to contents of text field "dvips"
-		set mendexCommand to contents of text field "mendex"
-	end tell
-	
-	writeSettings()
-end saveSettingsFromWindow
 
 on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
@@ -328,6 +247,7 @@ on doTypeSet()
 	end try
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	parseLogFile() of theLogFileParser
+	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
 	if (autoMultiTypeset and (isLabelsChanged of theLogFileParser)) then
 		try
 			set theDviObj to texCompile() of theTexDocObj
@@ -339,8 +259,7 @@ on doTypeSet()
 	
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
-	updateReferencePalette(theTexDocObj)
-	
+	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
 	if isDviOutput of theLogFileParser then
 		return theDviObj
 	else
@@ -405,25 +324,6 @@ on pdfPreview()
 	end if
 end pdfPreview
 
-on updateReferencePalette(theTexDocObj)
-	--log "start updateReferencePalette"
-	if visibleRefPalette then
-		tell main bundle
-			set refPalettePath to path for resource "ReferencePalette" extension "app"
-		end tell
-		set theFileRef to texFileRef of theTexDocObj
-		--log "theFileRef : " & (theFileRef as Unicode text)
-		--log "call rebuildLabelsFromAux"
-		tell application ((POSIX file refPalettePath) as Unicode text)
-			ignoring application responses
-				open {commandID:"rebuildLabelsFromAux", argument:theFileRef}
-			end ignoring
-		end tell
-	else
-		--log "rebuildLabesFromAux is not called."
-	end if
-end updateReferencePalette
-
 on quickTypesetAndPreview()
 	--log "start quickTypesetAndPreview"
 	try
@@ -469,7 +369,7 @@ on quickTypesetAndPreview()
 	--log "before prepareVIewErrorLog"
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
-	updateReferencePalette(theTexDocObj)
+	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
 end quickTypesetAndPreview
 
 on typesetAndPreview()
@@ -515,6 +415,7 @@ on openOutputHadler(theExtension)
 end openOutputHadler
 
 on bibTex()
+	set bibtexCommand to contents of default entry "bibtexCommand" of user defaults
 	execTexCommand(bibtexCommand, "", true)
 end bibTex
 
@@ -601,7 +502,7 @@ on dviToPS()
 	if dvipsCommand of theTexDocObj is not missing value then
 		set theCommand to dvipsCommand of theTexDocObj
 	else
-		set theCommand to dvipsCommand
+		set theCommand to contents of default entry "dvipsCommand" of user defaults
 	end if
 	
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
@@ -697,8 +598,8 @@ on execEbb(theGraphicPath, theExtension)
 	set targetDir to dirname(theGraphicPath) of ShellUtils
 	set fileName to baseName(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
-	set eddCommand to ebbCommand & space & "'" & fileName & "'"
-	set allCommand to cdCommand & comDelim & eddCommand
+	set ebbCommand to contents of default entry "ebbCommand" of user defaults
+	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"
 	doCommands of TerminalCommander for allCommand with activation
 	copy TerminalCommander to currentTerminal
 	waitEndOfCommand(300) of currentTerminal
@@ -708,6 +609,7 @@ end execEbb
 
 on execmendex()
 	--log "start execmendex"
+	set mendexCommand to contents of default entry "mendexCommand" of user defaults
 	execTexCommand(mendexCommand, ".idx", false)
 end execmendex
 (* end: execute tex commands called from tools from mi  ====================================*)

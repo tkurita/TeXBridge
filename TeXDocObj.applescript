@@ -4,47 +4,11 @@ global UtilityHandlers
 global TerminalCommander
 global MessageUtility
 global dviObj
-global DefaultsManager
 
 property name : "TeXDocObj"
-property defaultTexCommand : "/usr/local/bin/platex -src-specials -interaction=nonstopmode"
 property logSuffix : ".log"
-property texCommandsBox : missing value
 
 global comDelim
-
-on endEditing(theObject)
-	set defaultTexCommand to contents of contents of theObject
-	tell user defaults
-		set contents of default entry "typesetCommand" to defaultTexCommand
-	end tell
-end endEditing
-
-on setSettingToWindow(theView)
-	set texCommandsBox to theView
-	set contents of text field "typesetCommand" of texCommandsBox to defaultTexCommand
-end setSettingToWindow
-
-on revertToFactorySetting()
-	set defaultTexCommand to getFactorySetting of DefaultsManager for "typesetCommand"
-	writeSettings()
-end revertToFactorySetting
-
-on loadSettings()
-	set defaultTexCommand to readDefaultValue("typesetCommand") of DefaultsManager
-end loadSettings
-
-on writeSettings()
-	tell user defaults
-		set contents of default entry "typesetCommand" to defaultTexCommand
-	end tell
-end writeSettings
-
-on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	set defaultTexCommand to contents of text field "typesetCommand" of texCommandsBox
-	
-	writeSettings()
-end saveSettingsFromWindow
 
 on makeObjFromDVIFile(dviFileRef)
 	--log "start makeObjFromDVIFile"
@@ -73,7 +37,7 @@ on makeObj(theTargetFile)
 	
 	script TexDocObj
 		property texFileRef : theTargetFile -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
-		property texCommand : defaultTexCommand
+		property texCommand : missing value
 		property dvipdfCommand : missing value
 		property dvipsCommand : missing value
 		
@@ -271,6 +235,10 @@ on makeObj(theTargetFile)
 			set beforeCompileTime to current date
 			set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory))
 			
+			if texCommand is missing value then
+				set texCommand to contents of default entry "typesetCommand" of user defaults
+			end if
+			
 			if compileInTerminal then
 				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
 				doCommands of TerminalCommander for allCommand with activation
@@ -297,8 +265,24 @@ on makeObj(theTargetFile)
 				stopStringEngine() of StringEngine
 				
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
-				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1;exit 0"
-				set logContents to do shell script allCommand
+				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1"
+				try
+					set logContents to do shell script allCommand
+				on error errMsg number errNum
+					if errNum is 1 then
+						-- 1:general tex error
+						set logContents to errMsg
+						--else if errNum is -1700 then
+						-- -1700: unknown, result can not be accept
+					else if errNum is 127 then
+						-- maybe comannd name or path setting is not correct
+						showError(errNum, "texCompile", errMsg) of MessageUtility
+						error "Typeset is not executed." number 1250
+					else
+						error errMsg number errNum
+					end if
+				end try
+				(*
 				try
 					if logConetns does not start with "This is" then
 						showError("???", "texCompile", errMsg) of MessageUtility
@@ -308,6 +292,7 @@ on makeObj(theTargetFile)
 					showError("???", "texCompile", "Unknow error. Maybe command  is not correct or file name is invalid. ") of MessageUtility
 					error "Typeset is not executed." number 1250
 				end try
+*)
 			end if
 			
 			set theDviObj to lookUpDviFile()

@@ -146,8 +146,8 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	isDviOutput = YES;
 	isLabelsChanged = NO;
 	[self parseLogTreeFirstLevel:loglogTree];
-	NSLog([errorRecordTree description]);
 #if useLog
+	NSLog([errorRecordTree description]);
 	NSLog(@"end of parseLog");
 #endif
 	return errorRecordTree;

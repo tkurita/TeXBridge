@@ -140,15 +140,3 @@ on doReverseSearch(targetLine)
 	end tell
 	--end ignoring
 end doReverseSearch
-
-on showRefPalette()
-	tell main bundle
-		set refPalettePath to path for resource "ReferencePalette" extension "app"
-	end tell
-	ignoring application responses
-		tell application ((POSIX file refPalettePath) as Unicode text)
-			--launch
-			open {commandID:"openRefPalette"}
-		end tell
-	end ignoring
-end showRefPalette

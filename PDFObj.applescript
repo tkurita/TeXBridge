@@ -2,8 +2,9 @@ global UtilityHandlers
 global PathAnalyzer
 global DefaultsManager
 global MessageUtility
+global appController
 
-property PDFPreviewIndex : 1 -- 1: open in Finder, 2: Preview.app, 3: Adobe Reader, 4: Acrobat
+property PDFPreviewMode : 1 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
 property pdfPreviewBox : missing value
 property defaultProcessName : missing value
 property defaultAppName : missing value
@@ -22,7 +23,7 @@ on controlClicked(theObject)
 			try
 				findAdobeReaderApp()
 			on error errMsg number -128
-				set current row of theObject to PDFPreviewIndex
+				set contents of default entry "PDFPreviewMode" to PDFPreviewIndex
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
@@ -31,7 +32,7 @@ on controlClicked(theObject)
 			try
 				findAcrobatApp()
 			on error errMsg number -128
-				set current row of theObject to PDFPreviewIndex
+				set contents of default entry "PDFPreviewMode" to PDFPreviewIndex
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
@@ -40,7 +41,6 @@ on controlClicked(theObject)
 		
 		set PDFPreviewIndex to current row of theObject
 		set contents of default entry "PDFPreviewIndex" of user defaults to PDFPreviewIndex
-		setPDFDriver()
 	end if
 end controlClicked
 
@@ -116,24 +116,19 @@ on findAdobeReaderApp()
 	--log "end findAdobeReaderApp"
 end findAdobeReaderApp
 
-on revertToFactorySetting()
-	set PDFPreviewIndex to (getFactorySetting of DefaultsManager for "PDFPreviewIndex") as integer
-	setPDFDriver()
-	writeSettings()
-end revertToFactorySetting
-
 on checkPDFApp()
-	if PDFPreviewIndex is 3 then
+	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	if PDFPreviewMode is 2 then
 		try
 			findAdobeReaderApp()
 		on error errMsg number -128
-			set PDFPreviewIndex to 1
+			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
-	else if PDFPreviewIndex is 4 then
+	else if PDFPreviewMode is 3 then
 		try
 			findAcrobatApp()
 		on error errMsg number -128
-			set PDFPreviewIndex to 1
+			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
 	end if
 	
@@ -152,36 +147,11 @@ on checkPDFApp()
 end checkPDFApp
 
 on loadSettings()
-	set PDFPreviewIndex to (readDefaultValue("PDFPreviewIndex") of DefaultsManager) as integer
 	set acrobatPath to readDefaultValueWith("AcrobatPath", acrobatPath) of DefaultsManager
 	set adobeReaderPath to readDefaultValueWith("AdobeReaderPath", adobeReaderPath) of DefaultsManager
 	--log "success read default value of PDFPreviewIndex"
 	checkPDFApp()
-	setPDFDriver()
 end loadSettings
-
-on writeSettings()
-	tell user defaults
-		set contents of default entry "PDFPreviewIndex" to PDFPreviewIndex
-	end tell
-end writeSettings
-
-on saveSettingsFromWindow() -- get all values from and window and save into preference	
-	--log "start of saveSettingsFromWindow of PDFObj"
-	set PDFPreviewIndex to current row of matrix "PDFPreview" of pdfPreviewBox
-	--log "success get value of PDFPreviewIndex"
-	writeSettings()
-	setPDFDriver()
-end saveSettingsFromWindow
-
-on setSettingToWindow()
-	--log "PDFPreviewIndex : " & PDFPreviewIndex
-	set current row of matrix "PDFPreview" of pdfPreviewBox to PDFPreviewIndex
-	--log "current row of matrix PDFPreview"
-	--log (current row of matrix "PDFPreview" of pdfPreviewBox) as string
-	--set enabled of cell "Acrobat" of matrix "PDFPreview" of pdfPreviewBox to hasAcrobat
-	--set enabled of cell "AdobeReader" of matrix "PDFPreview" of pdfPreviewBox to hasReader
-end setSettingToWindow
 
 script GenericDriver
 	on prepare(thePDFObj)
@@ -365,28 +335,32 @@ property PDFDriver : AutoDriver
 
 on setPDFDriver()
 	--log "start setPDFDriver()"
-	if PDFPreviewIndex is 1 then
+	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	if PDFPreviewMode is 0 then
 		set PDFDriver to AutoDriver
-	else if PDFPreviewIndex is 2 then
+	else if PDFPreviewMode is 1 then
 		--log "PreviewDriver is selected"
 		set PDFDriver to PreviewDriver
 		set defaultProcessName to "Preview"
 		set defaultAppName to "Preview"
-	else if PDFPreviewIndex is 3 then
+	else if PDFPreviewMode is 2 then
 		set PDFDriver to PreviewDriver
 		set defaultProcessName to "Adobe Reader"
 		tell application "Finder"
 			set defaultAppName to name of adobeReaderPath
 		end tell
-	else if PDFPreviewIndex is 4 then
+	else if PDFPreviewMode is 3 then
 		set PDFDriver to AcrobatDriver
 		set defaultProcessName to "Acrobat"
 		set defaultAppName to acrobatPath
+	else
+		error "PDF Preview Setting is invalid." number 1280
 	end if
 	--log "end of setPDFDriver()"
 end setPDFDriver
 
 on makeObj(theDviObj)
+	setPDFDriver()
 	script PDFObj
 		property parent : theDviObj
 		property aliasIsResolved : false
