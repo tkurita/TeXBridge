@@ -129,8 +129,6 @@
 		};
 		29B97315FDCFA39411CA2CEA = {
 			children = (
-				2CDACD7F0813BE3F000B9086,
-				2CDACD820813BE3F000B9086,
 				2CDACD800813BE3F000B9086,
 				2CDACD810813BE3F000B9086,
 				2C2E5293080625270015E9EB,
@@ -788,7 +786,7 @@
 			};
 		};
 		2C4E27E2084273B000004A96 = {
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -796,9 +794,9 @@
 			isa = PBXShellScriptBuildPhase;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\n#helpdir=\"$SYMROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_path=\"$manual_folder/index.html\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/index.html\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\n#helpdir=\"$SYMROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
 		2C4E27E3084273B000004A96 = {
 			fileEncoding = 4;
@@ -1261,6 +1259,8 @@
 				2CD5554D08BEC77E007E43D1,
 				2CA3F85D08BEE2AB00F997B9,
 				2CA3F85E08BEE2AB00F997B9,
+				2CDACD7F0813BE3F000B9086,
+				2CDACD820813BE3F000B9086,
 			);
 			isa = PBXGroup;
 			name = Classes;
