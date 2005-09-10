@@ -20,8 +20,6 @@ global yenmark
 global sQ -- start of quotation character
 global eQ -- end of quotation character
 
---property mendexCommand : "/usr/local/bin/mendex"
-
 property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
