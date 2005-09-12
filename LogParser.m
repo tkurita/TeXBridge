@@ -1,5 +1,5 @@
 #import "LogParser.h"
-#define useLog 0 //Yes:1, No:0
+#define useLog 1 //Yes:1, No:0
 
 NSMutableDictionary * makeErrorRecord(NSString* errMsg, NSNumber* errpn) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -269,7 +269,8 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 				errorRecord = makeErrorRecord(errMsg,errpn);
 				break;
 			}
-			else if ([nextLogContent startWith:@"?"] || [nextLogContent startWith:@"Enter file name:"]){
+			else if ([nextLogContent startWith:@"?"] || 
+					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
 				errorRecord = makeErrorRecord(errMsg,errpn);
 				break;
 			}
