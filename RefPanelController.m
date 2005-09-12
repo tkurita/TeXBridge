@@ -8,7 +8,7 @@
 #if useLog
 	NSLog(@"start pushReloadButton");
 #endif
-	if ([[self window] isVisible]) {
+	if ([[self window] isVisible] && ![self isCollapsed]) {
 #if useLog
 		NSLog(@"pushReloadButton action");
 #endif
