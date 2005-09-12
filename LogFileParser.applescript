@@ -39,13 +39,14 @@ on makeObj(theTexDocObj)
 				else
 					repeat with theRecord in errorRecordList
 						using terms from application "mi"
-							set errorRecord to {comment:|comment| of theRecord}
+							set errorRecord to {file:my texFileRef, comment:|comment| of theRecord}
 						end using terms from
 						set end of hyperlist to errorRecord
 					end repeat
 				end if
 			end repeat
 			
+			--log hyperlist
 			set isNoMessages to (hyperlist is {})
 		end buildHyperList
 		
