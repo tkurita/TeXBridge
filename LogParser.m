@@ -1,5 +1,5 @@
 #import "LogParser.h"
-#define useLog 1 //Yes:1, No:0
+#define useLog 0 //Yes:1, No:0
 
 NSMutableDictionary * makeErrorRecord(NSString* errMsg, NSNumber* errpn) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -429,7 +429,13 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber);
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
-		
+
+	} else if ([targetText startWith:@"<argument>"]) {
+		targetText = [self addCurrentLineAndNextLine:currentList];
+		if (([targetText length] >= 79)||([targetText endsWith:@"..."])) {
+			targetText = [self addCurrentLineAndNextLine:currentList];
+		}
+		return [self parseLines:targetText withList:currentList];
 	} else {
 #if useLog
 		NSLog(@"back to parseBody");
