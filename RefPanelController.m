@@ -6,10 +6,12 @@
 - (void)pushReloadButton:(NSTimer *)theTimer
 {
 #if useLog
-	NSLog(@"pushReloadButton");
+	NSLog(@"start pushReloadButton");
 #endif
 	if ([[self window] isVisible]) {
+#if useLog
 		NSLog(@"pushReloadButton action");
+#endif
 		[reloadButton performClick:self];
 	}
 }
