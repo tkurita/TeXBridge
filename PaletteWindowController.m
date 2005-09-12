@@ -155,6 +155,10 @@
 }
 
 #pragma mark methods for collapsing
+- (BOOL)isCollapsed
+{
+	return isCollapsed;
+}
 - (float)titleBarHeight
 {
 	id theWindow = [self window];

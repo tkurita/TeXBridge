@@ -17,6 +17,7 @@
 //accessor methods
 - (void)setFrameName:(NSString *)theName;
 - (void)setApplicationsFloagingOn:(NSArray *)appList;
+- (BOOL)isCollapsed;
 
 //setup behavior
 - (void)bindApplicationsFloatingOnForKey:(NSString *)theKeyPath;
