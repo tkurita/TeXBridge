@@ -159,6 +159,7 @@ on open theObject
 			end tell
 			doReverseSearch(targetLine)
 		end if
+		showStatusMessage("") of ToolPaletteController
 	end if
 	
 	return true

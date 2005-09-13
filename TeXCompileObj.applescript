@@ -290,6 +290,7 @@ on dviPreview()
 		return
 	end try
 	--log "before lookUpDviFile"
+	showStatusMessage("Opening DVI file ...") of ToolPaletteController
 	set theDviObj to lookUpDviFile() of theTexDocObj
 	--log "before openDVI"
 	if theDviObj is not missing value then
@@ -317,7 +318,7 @@ on pdfPreview()
 		end if
 		return
 	end try
-	
+	showStatusMessage("Opening PDF file ...") of ToolPaletteController
 	set thePDFObj to makeObj(theTexDocObj) of PDFObj
 	setPDFObj() of thePDFObj
 	if isExistPDF() of thePDFObj then
@@ -349,7 +350,6 @@ on quickTypesetAndPreview()
 	try
 		set theDviObj to texCompile() of theTexDocObj
 	on error number 1250
-		showStatusMessage("") of ToolPaletteController
 		return
 	end try
 	--log "after texCompile in quickTypesetAndPreview"
@@ -390,7 +390,6 @@ on typesetAndPreview()
 			showError(errNum, "typesetAndPreview", errMsg) of MessageUtility
 		end try
 	end if
-	showStatusMessage("") of ToolPaletteController
 end typesetAndPreview
 
 on typesetAndPDFPreview()
@@ -399,10 +398,8 @@ on typesetAndPDFPreview()
 	if theDviObj is missing value then
 		set theMessage to localized string "DVIisNotGenerated"
 		showMessageOnmi(theMessage) of MessageUtility
-		showStatusMessage("") of ToolPaletteController
 		return
 	end if
-	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
 	set thePDFObj to dviToPDF() of theDviObj
 	showStatusMessage("Opening PDF file ...") of ToolPaletteController
 	if thePDFObj is missing value then
@@ -411,7 +408,6 @@ on typesetAndPDFPreview()
 	else
 		openPDFFile() of thePDFObj
 	end if
-	showStatusMessage("") of ToolPaletteController
 end typesetAndPDFPreview
 
 on openOutputHadler(theExtension)
@@ -475,6 +471,7 @@ end lookUpDviFromMxdvi
 
 on dviToPDF()
 	--log "start dviToPDF"
+	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
 	set appName to (path to frontmost application as Unicode text)
 	if appName ends with "Mxdvi.app:" then
 		set theDviObj to lookUpDviFromMxdvi()
@@ -510,7 +507,7 @@ on dviToPS()
 		end if
 		return
 	end try
-	
+	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
 	if dvipsCommand of theTexDocObj is not missing value then
 		set theCommand to dvipsCommand of theTexDocObj
 	else
