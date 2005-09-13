@@ -11,7 +11,7 @@
 #if useLog
 	NSLog(@"start showWindow");
 #endif
-	id theWindow = [self window];
+	NSWindow *theWindow = [self window];
 	[theWindow center];
 	[theWindow setFrameUsingName:frameName];
 	
@@ -19,7 +19,7 @@
 	[self setDisplayToggleTimer];
 
 	NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
-	[notiCenter addObserver:self selector:@selector(willApplicationQuit:) name:NSApplicationWillTerminateNotification object:nil];	
+	[notiCenter addObserver:self selector:@selector(willApplicationQuit:) name:NSApplicationWillTerminateNotification object:nil];
 }
 
 - (void)dealloc
