@@ -97,7 +97,7 @@ on openWindow()
 	if WindowController is missing value then
 		initilize()
 	end if
-	--activate
+	activate
 	call method "showWindow:" of WindowController
 end openWindow
 
