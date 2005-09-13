@@ -786,7 +786,7 @@
 			};
 		};
 		2C4E27E2084273B000004A96 = {
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -794,7 +794,7 @@
 			isa = PBXShellScriptBuildPhase;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\n#helpdir=\"$SYMROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
