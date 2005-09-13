@@ -52,7 +52,6 @@ on launched theObject
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
 	if showRefPaletteWhenLaunched then
 		showStartupMessage("opening Reference Palette ...")
-		--showRefPalette() of EditCommands
 		openWindow() of RefPanelController
 	end if
 	hide window "Startup"
@@ -62,31 +61,32 @@ on launched theObject
 	--openWindow() of RefPanelController
 	--openWindow() of ToolPaletteController
 	--openWindow() of SettingWindowController
-	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
+	
 	
 	(*exec tex commands*)
+	--open "quickTypesetAndPreview"
 	--logParseOnly() of TeXCompileObj
-	--set theResult to call method "smartActivate:" with parameter "trmx"
 	--openRelatedFile of EditCommands without revealOnly
-	--open "replaceInput"
 	--dviPreview() of TeXCompileObj
 	--pdfPreview() of TeXCompileObj
-	--call method "showHelp:"
 	--execmendex() of TeXCompileObj
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
-	--quickTypesetAndPreview() of TeXCompileObj
 	--dviToPDF() of TeXCompileObj
 	--dviToPS() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
 	--doTypeSet() of TeXCompileObj
-	
 	--typesetAndPreview() of TeXCompileObj
-	--openRelatedFile with revealOnly
-	--show window "Setting"
 	--debug()
-	--open "quickTypesetAndPreview"
 	--checkmifiles with saving
+	
+	(*misc*)
+	--set theResult to call method "smartActivate:" with parameter "trmx"
+	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
+	--openRelatedFile with revealOnly
+	--open "replaceInput"
+	--call method "showHelp:"
+	
 	(*end of debug code*)
 	
 	--log "end of launched"
