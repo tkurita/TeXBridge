@@ -7,6 +7,7 @@ global dviObj
 global TexDocObj
 global appController
 global RefPanelController
+global ToolPaletteController
 
 --general libs
 global PathAnalyzer
@@ -238,26 +239,31 @@ on doTypeSet()
 	if theTexDocObj is missing value then
 		return missing value
 	end if
+	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
 		set theDviObj to texCompile() of theTexDocObj
 	on error number 1250
 		return missing value
 	end try
 	set theLogFileParser to newLogFileParser(theTexDocObj)
+	showStatusMessage("Analyzing log text ...") of ToolPaletteController
 	parseLogFile() of theLogFileParser
 	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
 	if (autoMultiTypeset and (isLabelsChanged of theLogFileParser)) then
+		showStatusMessage("Typeseting...") of ToolPaletteController
 		try
 			set theDviObj to texCompile() of theTexDocObj
 		on error number 1250
 			return missing value
 		end try
+		showStatusMessage("Analyzing log text ...") of ToolPaletteController
 		parseLogFile() of theLogFileParser
 	end if
 	
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
 	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
+	showStatusMessage("") of ToolPaletteController
 	if isDviOutput of theLogFileParser then
 		return theDviObj
 	else
@@ -339,17 +345,20 @@ on quickTypesetAndPreview()
 	
 	set compileInTerminal of theTexDocObj to false
 	--log "before texCompile in quickTypesetAndPreview"
+	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
 		set theDviObj to texCompile() of theTexDocObj
 	on error number 1250
+		showStatusMessage("") of ToolPaletteController
 		return
 	end try
 	--log "after texCompile in quickTypesetAndPreview"
-	
+	showStatusMessage("Analyzing log text ...") of ToolPaletteController
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	--log "befor parseLogText in quickTypesetAndPreview"
 	parseLogText() of theLogFileParser
 	--log "after parseLogText in quickTypesetAndPreview"
+	showStatusMessage("Opening DVI file  ...") of ToolPaletteController
 	if isDviOutput of theLogFileParser then
 		try
 			openDVI() of theDviObj
@@ -368,11 +377,12 @@ on quickTypesetAndPreview()
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
 	viewErrorLog(theLogFileParser, "latex")
 	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
+	showStatusMessage("") of ToolPaletteController
 end quickTypesetAndPreview
 
 on typesetAndPreview()
 	set theDviObj to doTypeSet()
-	
+	showStatusMessage("Opening DVI file ...") of ToolPaletteController
 	if theDviObj is not missing value then
 		try
 			openDVI() of theDviObj
@@ -380,6 +390,7 @@ on typesetAndPreview()
 			showError(errNum, "typesetAndPreview", errMsg) of MessageUtility
 		end try
 	end if
+	showStatusMessage("") of ToolPaletteController
 end typesetAndPreview
 
 on typesetAndPDFPreview()
@@ -388,16 +399,19 @@ on typesetAndPDFPreview()
 	if theDviObj is missing value then
 		set theMessage to localized string "DVIisNotGenerated"
 		showMessageOnmi(theMessage) of MessageUtility
+		showStatusMessage("") of ToolPaletteController
 		return
 	end if
-	
+	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
 	set thePDFObj to dviToPDF() of theDviObj
+	showStatusMessage("Opening PDF file ...") of ToolPaletteController
 	if thePDFObj is missing value then
 		set theMessage to localized string "PDFisNotGenerated"
 		showMessageOnmi(theMessage) of MessageUtility
 	else
 		openPDFFile() of thePDFObj
 	end if
+	showStatusMessage("") of ToolPaletteController
 end typesetAndPDFPreview
 
 on openOutputHadler(theExtension)

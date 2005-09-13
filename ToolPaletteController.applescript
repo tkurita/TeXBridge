@@ -14,3 +14,10 @@ on openWindow()
 	end if
 	call method "showWindow:" of WindowController
 end openWindow
+
+on showStatusMessage(theMessage)
+	if (targetWindow is not missing value) and (visible of targetWindow) then
+		set contents of text field "StatusMessage" of targetWindow to theMessage
+		update targetWindow
+	end if
+end showStatusMessage
