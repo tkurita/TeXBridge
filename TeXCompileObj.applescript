@@ -283,6 +283,7 @@ on dviPreview()
 	--log "start dviPreview"
 	try
 		set theTexDocObj to checkmifiles without saving and autosave
+		set compileInTerminal to false
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
