@@ -16,8 +16,10 @@ on openWindow()
 end openWindow
 
 on showStatusMessage(theMessage)
-	if (targetWindow is not missing value) and (visible of targetWindow) then
-		set contents of text field "StatusMessage" of targetWindow to theMessage
-		update targetWindow
+	if (WindowController is not missing value) then
+		if (call method "isCollapsed" of WindowController) is 0 then
+			set contents of text field "StatusMessage" of targetWindow to theMessage
+			update targetWindow
+		end if
 	end if
 end showStatusMessage
