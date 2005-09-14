@@ -86,35 +86,30 @@ script MxdviDriver
 	end openDVI
 end script
 
-
-property DVIDriver : SimpleDriver
-
-on setDVIDriver()
-	set DVIPreviewMode to contents of default entry "DVIPreviewMode" of user defaults
-	if DVIPreviewMode is 0 then
-		set DVIDriver to SimpleDriver
-	else if DVIPreviewMode is 1 then
-		set DVIDriver to MxdviDriver
-	else if DVIPreviewMode is 2 then
-		set DVIDriver to XdviDriver
-	else
-		error "DVI Preview setting is invalid." number 1290
-	end if
-end setDVIDriver
-
 on makeObj(theTexDocObj)
-	setDVIDriver()
-	if (theTexDocObj is missing value) or (dvipdfCommand of theTexDocObj is missing value) then
-		set theCommand to contents of default entry "dvipdfCommand" of user defaults
-	else
-		set theCommand to dvipdfCommand of theTexDocObj
-	end if
-	
+	--log "start makeObj of DVIObj"
 	script dviObj
 		property parent : theTexDocObj
 		property dviFileRef : missing value
 		property isSrcSpecial : missing value
-		property dvipdfCommand : theCommand
+		property DVIDriver : SimpleDriver
+		
+		on setDVIDriver()
+			--log "start setDVIDriver"
+			set DVIPreviewMode to contents of default entry "DVIPreviewMode" of user defaults
+			--log "after get DVIPreviewMode"
+			if DVIPreviewMode is 0 then
+				set DVIDriver to SimpleDriver
+			else if DVIPreviewMode is 1 then
+				set DVIDriver to MxdviDriver
+			else if DVIPreviewMode is 2 then
+				set DVIDriver to XdviDriver
+			else
+				--log "DVI Preview setting is invalid."
+				error "DVI Preview setting is invalid." number 1290
+			end if
+			--log "end setDVIDriver"
+		end setDVIDriver
 		
 		on getModDate()
 			return modification date of (info for dviFileRef)
@@ -123,14 +118,18 @@ on makeObj(theTexDocObj)
 		on setSrcSpecialFlag()
 			if my texCommand contains "-src" then
 				set my isSrcSpecial to true
-				tell application "Finder"
-					set comment of (dviFileRef) to "Source Specials"
-				end tell
+				ignoring application responses
+					tell application "Finder"
+						set comment of (dviFileRef) to "Source Specials"
+					end tell
+				end ignoring
 			else
 				set my isSrcSpecial to false
-				tell application "Finder"
-					set comment of dviFileRef to ""
-				end tell
+				ignoring application responses
+					tell application "Finder"
+						set comment of dviFileRef to ""
+					end tell
+				end ignoring
 			end if
 		end setSrcSpecialFlag
 		
@@ -159,9 +158,14 @@ on makeObj(theTexDocObj)
 			end if
 			
 			--log "convert a DVI file into a PDF file"
+			if (my dvipdfCommand is missing value) then
+				set theCommand to contents of default entry "dvipdfCommand" of user defaults
+			else
+				set theCommand to my dvipdfCommand of theTexDocObj
+			end if
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
-			set allCommand to cdCommand & comDelim & dvipdfCommand & space & "'" & targetFileName & "'"
+			set allCommand to cdCommand & comDelim & theCommand & space & "'" & targetFileName & "'"
 			
 			doCommands of TerminalCommander for allCommand with activation
 			copy TerminalCommander to currentTerminal
@@ -189,4 +193,8 @@ on makeObj(theTexDocObj)
 			end if
 		end lookupPDFFile
 	end script
+	--log "before  setDVIDriver of DVIObj"
+	setDVIDriver() of dviObj
+	--log "end makeObj of DVIObj"
+	return dviObj
 end makeObj
