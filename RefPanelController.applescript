@@ -9,6 +9,22 @@ property targetWindow : missing value
 global miAppRef
 global yenmark
 
+property isWorkedTimer : missing value
+
+on stopTimer()
+	if WindowController is not missing value then
+		call method "temporaryStopDisplayToggleTimer" of WindowController
+		call method "temporaryStopReloadTimer" of WindowController
+	end if
+end stopTimer
+
+on restartTimer()
+	if WindowController is not missing value then
+		call method "restartStopDisplayToggleTimer" of WindowController
+		call method "restartReloadTimer" of WindowController
+	end if
+end restartTimer
+
 on rebuildLabelsFromAux(theTexDocObj)
 	if WindowController is missing value then
 		return
