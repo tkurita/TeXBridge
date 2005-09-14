@@ -318,7 +318,6 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 		end deleteChildDataItem
 		
 		on updateLabels()
-			activate
 			--log "start updateLabels"
 			set nDataItem to count data item of dataItemRef
 			set nLabelFromAux to length of labelRecordFromAux
