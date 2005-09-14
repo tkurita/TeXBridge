@@ -347,7 +347,6 @@ on quickTypesetAndPreview()
 	
 	set compileInTerminal of theTexDocObj to false
 	--log "before texCompile in quickTypesetAndPreview"
-	activate
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
 		set theDviObj to texCompile() of theTexDocObj
