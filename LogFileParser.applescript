@@ -66,7 +66,11 @@ on makeObj(theTexDocObj)
 		on parseLogText()
 			--log "start parseLogText"
 			set logParser to call method "alloc" of class "LogParser"
-			set logParser to call method "initWithString:" of logParser with parameter (my logContents)
+			if (my logContents starts with "This is") then
+				set logParser to call method "initWithString:" of logParser with parameter (my logContents)
+			else
+				set logParser to call method "initWithContentsOfFile:" of logParser with parameter (POSIX path of my logFileRef)
+			end if
 			parseLog(logParser)
 			--log "end parseLogText"
 		end parseLogText
