@@ -12,6 +12,7 @@
 	NSArray *applicationsFloatingOn;
 	NSString *applicationsFloatingOnKeyPath;
 	NSString *applicationsFloatingOnEntryName;
+	BOOL isWorkedDisplayToggleTimer;
 }
 
 //accessor methods
@@ -25,6 +26,8 @@
 - (void)useWindowCollapse;
 - (void)useFloating;
 - (BOOL)isWorkingDisplayToggleTimer;
+- (void)restartStopDisplayToggleTimer;
+- (void)temporaryStopDisplayToggleTimer;
 
 //methods for override
 - (void)saveDefaults;
@@ -36,5 +39,5 @@
 - (float)titleBarHeight;
 - (void)toggleCollapseWithAnimate:(BOOL)flag;
 - (void)willApplicationQuit:(NSNotification *)aNotification;
-
+- (void)stopDisplayToggleTimer;
 @end
