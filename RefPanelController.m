@@ -23,8 +23,8 @@
 #endif
 	if (reloadTimer != nil) {
 		[reloadTimer invalidate];
+		[reloadTimer release];
 	}
-	[reloadTimer release];
 	reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(pushReloadButton:) userInfo:nil repeats:YES];
 	[reloadTimer retain];
 }
@@ -44,5 +44,16 @@
 	[self useWindowCollapse];
 }
 
+- (BOOL)windowShouldClose:(id)sender
+{
+
+	if (reloadTimer != nil) {
+		[reloadTimer invalidate];
+		[reloadTimer release];
+		reloadTimer = nil;
+	}
+
+	return [super windowShouldClose:sender];
+}
 @end
 
