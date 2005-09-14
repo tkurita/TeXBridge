@@ -237,6 +237,7 @@ on makeObj(theTargetFile)
 		end openOutputFile
 		
 		on texCompile()
+			--log "start texCompile"
 			set beforeCompileTime to current date
 			set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory))
 			
