@@ -123,7 +123,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 #if useLog
 	NSLog(@"start parseLog");
 #endif
-	NSString * targetText = [self skipHeader];
+	NSString *targetText = [self skipHeader];
 	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber);
 	NSMutableArray *logTree = [NSMutableArray arrayWithObject:dict];
 	targetText = [self getNextLine];
@@ -534,16 +534,28 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 }
 
 - (NSString *) skipHeader {
-	NSString * theLine = [self getNextLine];
+#if useLog
+	NSLog(@"start skipHeader");
+#endif
+	NSString *theLine = [self getNextLine];
+#if useLog
+	NSLog(theLine);
+#endif
 	NSRange beginningOne = NSMakeRange(0,1);
 	NSString * fistParenth = @"(";
 	while (theLine != NULL) {
+#if useLog
+	NSLog(theLine);
+#endif
 		if([theLine compare:fistParenth options:nil range:beginningOne] == NSOrderedSame) {
 			break;
 		}
 		theLine = [self getNextLine];
 	}
 	NSRange subRange = NSMakeRange(1,[theLine length]-1);
+#if useLog
+	NSLog(@"end skipHeader");
+#endif	
 	return [theLine substringWithRange:subRange];
 }
 
