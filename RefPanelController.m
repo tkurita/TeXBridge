@@ -16,17 +16,42 @@
 	}
 }
 
+- (void)restartReloadTimer
+{
+	if (isWorkedReloadTimer) {
+		[self setReloadTimer];
+	}
+}
+
+- (void)temporaryStopReloadTimer
+{
+	if (reloadTimer != nil) {
+		[reloadTimer invalidate];
+		[reloadTimer release];
+		reloadTimer = nil;		
+		isWorkedReloadTimer = YES;
+	}
+	else {
+		isWorkedReloadTimer = NO;
+	}
+}
+
 - (void)setReloadTimer
 {
 #if useLog
 	NSLog(@"setReloadTimer");
 #endif
-	if (reloadTimer != nil) {
+	if (reloadTimer == nil) {
+		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(pushReloadButton:) userInfo:nil repeats:YES];
+		[reloadTimer retain];
+
+	} 
+	else if (![reloadTimer isValid]) {
 		[reloadTimer invalidate];
 		[reloadTimer release];
+		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(pushReloadButton:) userInfo:nil repeats:YES];
+		[reloadTimer retain];
 	}
-	reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(pushReloadButton:) userInfo:nil repeats:YES];
-	[reloadTimer retain];
 }
 
 - (IBAction)showWindow:(id)sender
