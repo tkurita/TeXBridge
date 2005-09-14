@@ -4,6 +4,7 @@ global UtilityHandlers
 global TerminalCommander
 global MessageUtility
 global dviObj
+global ToolPaletteController
 
 property name : "TeXDocObj"
 property logSuffix : ".log"
@@ -49,13 +50,17 @@ on makeObj(theTargetFile)
 		property targetParagraph : missing value
 		
 		property logFileRef : missing value
-		property logContents : missing value -- used when quick typeset and preview
+		property logContents : missing value
 		property workingDirectory : folderReference of pathRecord -- if ParentFile exists, it's directory of ParentFile
 		property hasParentFile : false
 		property isSrcSpecial : missing value
 		property compileInTerminal : true
 		
 		property texSuffixList : {".tex", ".dtx"}
+		
+		on getLogContents()
+			return logContetns of logContainer
+		end getLogContents
 		
 		on resolveParentFile(theParagraph)
 			--log "start resolveParentFile"
@@ -282,38 +287,22 @@ on makeObj(theTargetFile)
 						error errMsg number errNum
 					end if
 				end try
-				(*
-				try
-					if logConetns does not start with "This is" then
-						showError("???", "texCompile", errMsg) of MessageUtility
-						error "Typeset is not executed." number 1250
-					end if
-				on error errMsg number -2753
-					showError("???", "texCompile", "Unknow error. Maybe command  is not correct or file name is invalid. ") of MessageUtility
-					error "Typeset is not executed." number 1250
-				end try
-*)
 			end if
-			
+			--log "after Typeset"
 			set theDviObj to lookUpDviFile()
+			--log "after lookUpDviFile"
 			if theDviObj is not missing value then
-				(*
-				set dviModDate to getModDate() of theDviObj
-				if dviModDate > beforeCompileTime then
-					setSrcSpecialFlag() of theDviObj
-				else
-					set theDviObj to missing value
-				end if
-				*)
 				setSrcSpecialFlag() of theDviObj
 			end if
-			
+			--log "end texCompile"
 			return theDviObj
 		end texCompile
 		
 		on lookUpDviFile()
+			--log "start lookUpDviFile"
 			set dviFilePath to getPathWithSuffix(".dvi")
 			if isExists(dviFilePath) of UtilityHandlers then
+				--log "dviFilePath exists"
 				set theDviObj to makeObj(a reference to me) of dviObj
 				set dviFileRef of theDviObj to dviFilePath as alias
 				return theDviObj
