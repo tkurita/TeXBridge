@@ -6,8 +6,6 @@ global appController
 
 property PDFPreviewMode : 1 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
 property pdfPreviewBox : missing value
-property defaultProcessName : missing value
-property defaultAppName : missing value
 property acrobatName : missing value
 property acrobatPath : ""
 property adobeReaderPath : ""
@@ -131,19 +129,6 @@ on checkPDFApp()
 			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
 	end if
-	
-	(*
-	try
-		tell application "Finder"
-			set acrobatName to name of application file id "CARO"
-		end tell
-		if acrobatName contains "Reader" then
-			set hasReader to true
-		else
-			set hasAcrobat to true
-		end if
-	end try
-	*)
 end checkPDFApp
 
 on loadSettings()
@@ -201,6 +186,7 @@ script AcrobatDriver
 			set pageNumber of thePDFObj to missing value
 		end if
 		--log pageNumber of thePDFObj
+		--log "end prepare in AcrobatDriver"
 		return true
 	end prepare
 	
@@ -227,9 +213,11 @@ script AcrobatDriver
 				end if
 			end tell
 		end using terms from
+		--log "end closePDFfile of AcrobatDriver"
 	end closePDFfile
 	
 	on openPDF(thePDFObj)
+		--log "start openPDF in AcrobatDriver"
 		using terms from application "Adobe Acrobat 7.0 Standard"
 			tell application ((appName of thePDFObj) as Unicode text)
 				activate
@@ -239,6 +227,7 @@ script AcrobatDriver
 				end if
 			end tell
 		end using terms from
+		--log "end openPDF in AcrobatDriver"
 	end openPDF
 end script
 
@@ -331,36 +320,7 @@ script AutoDriver
 	end openPDF
 end script
 
-property PDFDriver : AutoDriver
-
-on setPDFDriver()
-	--log "start setPDFDriver()"
-	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
-	if PDFPreviewMode is 0 then
-		set PDFDriver to AutoDriver
-	else if PDFPreviewMode is 1 then
-		--log "PreviewDriver is selected"
-		set PDFDriver to PreviewDriver
-		set defaultProcessName to "Preview"
-		set defaultAppName to "Preview"
-	else if PDFPreviewMode is 2 then
-		set PDFDriver to PreviewDriver
-		set defaultProcessName to "Adobe Reader"
-		tell application "Finder"
-			set defaultAppName to name of adobeReaderPath
-		end tell
-	else if PDFPreviewMode is 3 then
-		set PDFDriver to AcrobatDriver
-		set defaultProcessName to "Acrobat"
-		set defaultAppName to acrobatPath
-	else
-		error "PDF Preview Setting is invalid." number 1280
-	end if
-	--log "end of setPDFDriver()"
-end setPDFDriver
-
 on makeObj(theDviObj)
-	setPDFDriver()
 	script PDFObj
 		property parent : theDviObj
 		property aliasIsResolved : false
@@ -370,10 +330,38 @@ on makeObj(theDviObj)
 		property fileInfo : missing value
 		
 		property targetDriver : missing value
-		property appName : defaultAppName
-		property processName : defaultProcessName -- used for PreviewDriver
+		property appName : missing value
+		property processName : missing value -- used for PreviewDriver
 		property windowNumber : missing value -- used for PreviewDriver
 		property pageNumber : missing value -- used for AcrobatDriver
+		
+		property PDFDriver : AutoDriver
+		
+		on setPDFDriver()
+			--log "start setPDFDriver()"
+			set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+			if PDFPreviewMode is 0 then
+				set PDFDriver to AutoDriver
+			else if PDFPreviewMode is 1 then
+				--log "PreviewDriver is selected"
+				set PDFDriver to PreviewDriver
+				set processName to "Preview"
+				set appName to "Preview"
+			else if PDFPreviewMode is 2 then
+				set PDFDriver to PreviewDriver
+				set processName to "Adobe Reader"
+				tell application "Finder"
+					set appName to name of adobeReaderPath
+				end tell
+			else if PDFPreviewMode is 3 then
+				set PDFDriver to AcrobatDriver
+				set processName to "Acrobat"
+				set appName to acrobatPath
+			else
+				error "PDF Preview Setting is invalid." number 1280
+			end if
+			--log "end of setPDFDriver()"
+		end setPDFDriver
 		
 		on setPDFObj()
 			set pdfFileName to getNameWithSuffix(".pdf")
@@ -396,9 +384,11 @@ on makeObj(theDviObj)
 		end prepareDVItoPDF
 		
 		on openPDFFile()
+			--log "start openPDFFile"
 			openPDF(a reference to me) of PDFDriver
+			--log "end openPDFFile"
 		end openPDFFile
 	end script
-	
+	setPDFDriver() of PDFObj
 	return PDFObj
 end makeObj
