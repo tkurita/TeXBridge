@@ -347,6 +347,7 @@ on quickTypesetAndPreview()
 	
 	set compileInTerminal of theTexDocObj to false
 	--log "before texCompile in quickTypesetAndPreview"
+	activate
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
 		set theDviObj to texCompile() of theTexDocObj
@@ -367,12 +368,6 @@ on quickTypesetAndPreview()
 			showError(errNum, "quickTypesetAndPreview after calling openDVI", errMsg) of MessageUtility
 		end try
 	end if
-	
-	--log "after openDVI in quickTypesetAndPreview"
-	--set theLogFileParser to newLogFileParser(theTexDocObj)
-	--log "before parseLogFile in quickTypesetAndPreview"
-	--parseLogFile() of theLogFileParser
-	--log "after parseLogFile in quickTypesetAndPreview"
 	
 	--log "before prepareVIewErrorLog"
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
