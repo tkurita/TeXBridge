@@ -278,8 +278,6 @@ on makeObj(theTargetFile)
 					if errNum is 1 then
 						-- 1:general tex error
 						set logContents to errMsg
-						--else if errNum is -1700 then
-						-- -1700: unknown, result can not be accept
 					else if errNum is 127 then
 						-- maybe comannd name or path setting is not correct
 						showError(errNum, "texCompile", errMsg) of MessageUtility
