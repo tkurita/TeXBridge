@@ -102,7 +102,7 @@ on openWindow()
 	set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
 	--activate
 	call method "showWindow:" of WindowController
-	if (isFirst or (not isWorkingDisplayToggleTimer)) then
+	if (isFirst or (isWorkingDisplayToggleTimer is 0)) then
 		watchmi() of LabelListObj
 	end if
 end openWindow
