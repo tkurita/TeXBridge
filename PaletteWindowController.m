@@ -5,16 +5,11 @@
 @implementation PaletteWindowController
 
 #pragma mark init and actions
-
 - (IBAction)showWindow:(id)sender
 {
 #if useLog
 	NSLog(@"start showWindow");
 #endif
-	NSWindow *theWindow = [self window];
-	[theWindow center];
-	[theWindow setFrameUsingName:frameName];
-	
 	[super showWindow:sender];
 	[self setDisplayToggleTimer];
 
@@ -141,6 +136,35 @@
 	}
 }
 
+- (void)restartStopDisplayToggleTimer
+{
+	if (isWorkedDisplayToggleTimer) {
+		[self setDisplayToggleTimer];
+	}
+}
+
+- (void)temporaryStopDisplayToggleTimer
+{
+	if (displayToggleTimer != nil) {
+		[displayToggleTimer invalidate];
+		[displayToggleTimer release];
+		displayToggleTimer = nil;		
+		isWorkedDisplayToggleTimer = YES;
+	}
+	else {
+		isWorkedDisplayToggleTimer = NO;
+	}
+}
+
+- (void)stopDisplayToggleTimer
+{
+	if (displayToggleTimer != nil) {
+		[displayToggleTimer invalidate];
+		[displayToggleTimer release];
+		displayToggleTimer = nil;
+	}
+}
+
 - (void)setDisplayToggleTimer
 {
 #if useLog
@@ -213,6 +237,14 @@
 }
 
 #pragma mark delegates and overriding methods
+- (void)windowDidLoad
+{
+	NSWindow *theWindow = [self window];
+	[theWindow center];
+	[theWindow setFrameUsingName:frameName];
+	[super windowDidLoad];
+}
+
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
 {
 	if (isCollapsed) {
@@ -237,11 +269,7 @@
 #if useLog
 	NSLog(@"start windowShouldClose");
 #endif
-	if (displayToggleTimer != nil) {
-		[displayToggleTimer invalidate];
-		[displayToggleTimer release];
-		displayToggleTimer = nil;
-	}
+	[self stopDisplayToggleTimer];
 	[self saveDefaults];
 	return YES;
 }
