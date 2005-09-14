@@ -94,6 +94,8 @@ end launched
 
 on open theObject
 	--log "start open"
+	stopTimer() of ToolPaletteController
+	stopTimer() of RefPanelController
 	if class of theObject is record then
 		set theCommandID to commandID of theObject
 		if theCommandID is "reverseSearch" then
@@ -161,7 +163,8 @@ on open theObject
 		end if
 		showStatusMessage("") of ToolPaletteController
 	end if
-	
+	restartTimer() of ToolPaletteController
+	restartTimer() of RefPanelController
 	return true
 end open
 
