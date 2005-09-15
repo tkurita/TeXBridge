@@ -4,16 +4,13 @@ global PathConverter
 on makeObj(theTexDocObj)
 	script LogFileParser
 		property parent : theTexDocObj
-		--property logFileRef : missing value
 		property isDviOutput : true
 		property hyperlist : {}
 		property retryCompile : false
 		property isNoError : true
 		property isNoMessages : false
 		property isLabelsChanged : false
-		
 		property myPathConverter : missing value
-		--private property
 		
 		on buildHyperList(parseResult)
 			--log "start buildHyperList"
