@@ -4,7 +4,7 @@ global DefaultsManager
 global MessageUtility
 global appController
 
-property PDFPreviewMode : 1 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
+property prePDFPreviewMode : 1 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
 property pdfPreviewBox : missing value
 property acrobatName : missing value
 property acrobatPath : ""
@@ -21,7 +21,7 @@ on controlClicked(theObject)
 			try
 				findAdobeReaderApp()
 			on error errMsg number -128
-				set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
+				set contents of default entry "PDFPreviewMode" of user defaults to prePDFPreviewMode
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
@@ -30,15 +30,15 @@ on controlClicked(theObject)
 			try
 				findAcrobatApp()
 			on error errMsg number -128
-				set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
+				set contents of default entry "PDFPreviewMode" of user defaults to prePDFPreviewMode
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
 			end try
 		end if
 		
-		set PDFPreviewMode to current row of theObject
-		set contents of default entry "PDFPreviewIndex" of user defaults to PDFPreviewMode
+		set prePDFPreviewMode to default entry "PDFPreviewMode" of user defaults
+		--set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
 	end if
 end controlClicked
 
@@ -115,20 +115,21 @@ on findAdobeReaderApp()
 end findAdobeReaderApp
 
 on checkPDFApp()
-	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
-	if PDFPreviewMode is 2 then
+	set prePDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	if prePDFPreviewMode is 2 then
 		try
 			findAdobeReaderApp()
 		on error errMsg number -128
 			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
-	else if PDFPreviewMode is 3 then
+	else if prePDFPreviewMode is 3 then
 		try
 			findAcrobatApp()
 		on error errMsg number -128
 			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
 	end if
+	set prePDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
 end checkPDFApp
 
 on loadSettings()
