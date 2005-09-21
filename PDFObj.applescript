@@ -21,7 +21,7 @@ on controlClicked(theObject)
 			try
 				findAdobeReaderApp()
 			on error errMsg number -128
-				set contents of default entry "PDFPreviewMode" to PDFPreviewIndex
+				set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
@@ -30,15 +30,15 @@ on controlClicked(theObject)
 			try
 				findAcrobatApp()
 			on error errMsg number -128
-				set contents of default entry "PDFPreviewMode" to PDFPreviewIndex
+				set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
 				set theMessage to localized string "PDFPreviewIsInvalid"
 				showMessage(theMessage) of MessageUtility
 				return
 			end try
 		end if
 		
-		set PDFPreviewIndex to current row of theObject
-		set contents of default entry "PDFPreviewIndex" of user defaults to PDFPreviewIndex
+		set PDFPreviewMode to current row of theObject
+		set contents of default entry "PDFPreviewIndex" of user defaults to PDFPreviewMode
 	end if
 end controlClicked
 
