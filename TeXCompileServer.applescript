@@ -143,10 +143,8 @@ on open theObject
 		else if theCommandID is "Help" then
 			call method "showHelp:"
 		else if theCommandID is "ShowToolPalette" then
-			--showToolPalette()
 			openWindow() of ToolPaletteController
 		else if theCommandID is "ShowRefPalette" then
-			--showRefPalette() of EditCommands
 			openWindow() of RefPanelController
 		else if theCommandID starts with "." then
 			openOutputHadler(theCommandID) of TeXCompileObj
@@ -184,21 +182,14 @@ end clicked
 
 on controlClicked(theObject)
 	set theName to name of theObject
-	set windowName to name of window of theObject
-	--log windowName
-	--log "clicked item name :" & theName & " , window name : " & windowName
-	if windowName is "ToolPalette" then
-		open theName
-	else
-		if theName is "Reload" then
-			watchmi() of RefPanelController
-		else if theName is "RevertToDefault" then
-			RevertToDefault() of SettingWindowController
-		else if theName is "usemi" then
-			setmiclient() of SettingWindowController
-		else if theName is "saveMxdviEditor" then
-			saveMxdviEditor(missing value) of SettingWindowController
-		end if
+	if theName is "Reload" then
+		watchmi() of RefPanelController
+	else if theName is "RevertToDefault" then
+		RevertToDefault() of SettingWindowController
+	else if theName is "usemi" then
+		setmiclient() of SettingWindowController
+	else if theName is "saveMxdviEditor" then
+		saveMxdviEditor(missing value) of SettingWindowController
 	end if
 end controlClicked
 
@@ -214,7 +205,6 @@ on choose menu item theObject
 	else if theName is "ShowToolPalette" then
 		openWindow() of ToolPaletteController
 	else if theName is "ShowRefPalette" then
-		--showRefPalette() of EditCommands
 		openWindow() of RefPanelController
 	end if
 end choose menu item
@@ -222,24 +212,10 @@ end choose menu item
 on will finish launching theObject
 	--activate
 	--log "start will finish launching"
-	set appController to call method "delegate"
+	set appController to call method "sharedAppController" of class "AppController"
 	set MessageUtility to importScript("MessageUtility")
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
-	
-	showStartupMessage("checking UI Elements Scripting ...")
-	tell application "System Events"
-		set UIScriptFlag to UI elements enabled
-	end tell
-	if not (UIScriptFlag) then
-		set theMessage to localized string "disableUIScripting"
-		tell application "System Preferences"
-			activate
-			set current pane to pane "com.apple.preference.universalaccess"
-			display dialog theMessage buttons {"OK"} default button "OK"
-		end tell
-		quit
-	end if
 	
 	showStartupMessage("Loading Factory Settings ...")
 	set DefaultsManager to importScript("DefaultsManager")
@@ -304,10 +280,6 @@ end selection changed
 on should selection change theObject
 	return shouldSelectionChange(theObject) of ReplaceInputObj
 end should selection change
-
-on alert ended theObject with reply withReply
-	(*Add your script here.*)
-end alert ended
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
