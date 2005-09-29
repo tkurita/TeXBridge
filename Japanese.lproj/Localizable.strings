@@ -48,7 +48,8 @@
 "bbAlreadyCreated" = "すべての .bb ファイルは、既に生成されています。";
 
 /*initilize*/
-"disableUIScripting" = "UI element scripting が有効になっていません。\r\"補助機能にアクセスできるようにする\" を ON にして下さい。";
+"disableUIScripting" = "UI element scripting が有効になっていません。\rシステム環境設定で \"補助機能にアクセスできるようにする\" を ON にして下さい。";
+"Launch System Preferences" = "システム環境設定を起動";
 
 /*pdfPreview:TeXCompileObj*/
 "noPDFfile" = "PDF ファイルがありません。";
