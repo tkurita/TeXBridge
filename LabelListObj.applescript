@@ -44,6 +44,7 @@ on watchmi()
 		end if
 	end try
 	set theAuxObj to targetAuxObj of resultRecord
+	
 	if theAuxObj is not missing value then
 		if dataItemRef of theAuxObj is missing value then
 			if auxFileRef of theAuxObj is not missing value then
@@ -232,10 +233,11 @@ on findAuxObj(theFileRef, isSaved)
 			setValue of auxObjArray given forKey:auxObjKey, withValue:theAuxObj
 		end if
 	else
+		--log "file is not saved"
 		if unsavedAuxObj is not missing value then
 			deleteDataItem() of unsavedAuxObj
 		end if
-		set unsavedAuxObj to newAuxObj(missing value, missing value, theTexFileRef, isSaved)
+		set unsavedAuxObj to newAuxObj(missing value, missing value, theFileRef, isSaved)
 		set theAuxObj to unsavedAuxObj
 	end if
 	
