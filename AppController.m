@@ -11,10 +11,30 @@
 	NSValueTransformer *transformer = [[[NTYImmutableToMutableArrayOfObjectsTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"NTYImmutableToMutableArrayOfObjects"];
 	
+	sharedObj = nil;
 	/*
 	NSValueTransformer *appNameTransformer = [[[AppNameToIconImageTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:appNameTransformer forName:@"AppNameToIconImage"];
 	 */
+}
+
++ (id)sharedAppController
+{
+	if (sharedObj == nil) {
+		return [[self alloc] init];
+	}
+	return sharedObj;
+}
+
+- (id)init
+{
+	if (self = [super init]) {
+		if (sharedObj == nil) {
+			sharedObj = self;
+		}
+	}
+	
+	return self;
 }
 
 - (void)checkQuit:(NSTimer *)aTimer
@@ -33,7 +53,7 @@
 	}
 	
 	if (! isMiLaunched) {
-		[[NSApplication sharedApplication] terminate:self];
+		[NSApp terminate:self];
 	}
 }
 
@@ -43,7 +63,7 @@
 	NSLog(@"anApplicationIsTerminated");
 #endif
 	NSString *appName = [[aNotification userInfo] objectForKey:@"NSApplicationName"];
-	if ([appName isEqualToString:@"mi"] ) [[NSApplication sharedApplication] terminate:self];
+	if ([appName isEqualToString:@"mi"] ) [NSApp terminate:self];
 }
 
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
@@ -67,10 +87,30 @@
 #if useLog
 	NSLog(@"start applicationWillFinishLaunching");
 #endif
+	/* regist FactorySettings into shared user defaults */
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults registerDefaults:factoryDefaults];	
+	[userDefaults registerDefaults:factoryDefaults];
+	
+	/* checking checking UI Elements Scripting ... */
+	if (!AXAPIEnabled())
+    {
+		int ret = NSRunAlertPanel(NSLocalizedString(@"disableUIScripting", ""), @"", 
+							NSLocalizedString(@"Launch System Preferences", ""),
+							NSLocalizedString(@"Cancel",""), @"");
+		switch (ret)
+        {
+            case NSAlertDefaultReturn:
+                [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/UniversalAccessPref.prefPane"];
+                break;
+			default:
+                break;
+        }
+        
+		[NSApp terminate:self];
+		return;
+    }
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

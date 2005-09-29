@@ -12,5 +12,8 @@
 - (void)checkQuit:(NSTimer *)aTimer;
 - (id)factoryDefaultForKey:(NSString *)theKey;
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey;
++ (id)sharedAppController;
 
 @end
+
+static id sharedObj;
