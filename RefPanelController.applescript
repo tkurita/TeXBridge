@@ -1,4 +1,3 @@
-global DefaultsManager
 global UtilityHandlers
 global SheetManager
 
@@ -104,6 +103,7 @@ on initilize()
 	set WindowController to call method "alloc" of class "RefPanelController"
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
 	set targetWindow to call method "window" of WindowController
+	call method "retain" of targetWindow
 	set LabelListObj to importScript("LabelListObj")
 	initialize(data source "LabelDataSource") of LabelListObj
 	set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
@@ -125,10 +125,12 @@ end openWindow
 
 on displayAlert(theMessage)
 	display alert theMessage attached to targetWindow as warning
+	(*
 	script endOfAlert
 		on sheetEnded(theReply)
 		end sheetEnded
 	end script
 	
 	addSheetRecord of SheetManager given parentWindow:my targetWindow, ownerObject:endOfAlert
+	*)
 end displayAlert
