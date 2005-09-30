@@ -17,10 +17,10 @@ on initilize()
 	set WindowController to call method "alloc" of class "ToolPaletteController"
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ToolPalette"
 	set targetWindow to call method "window" of WindowController
+	call method "retain" of targetWindow
 end initilize
 
 on openWindow()
-	--activate
 	if WindowController is missing value then
 		initilize()
 	end if
