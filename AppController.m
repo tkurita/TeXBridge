@@ -96,6 +96,8 @@
 	/* checking checking UI Elements Scripting ... */
 	if (!AXAPIEnabled())
     {
+		[startupWindow close];
+		[NSApp activateIgnoringOtherApps:YES];
 		int ret = NSRunAlertPanel(NSLocalizedString(@"disableUIScripting", ""), @"", 
 							NSLocalizedString(@"Launch System Preferences", ""),
 							NSLocalizedString(@"Cancel",""), @"");

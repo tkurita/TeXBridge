@@ -6,6 +6,7 @@
 {
 	NSTimer *appQuitTimer;
 	NSDictionary *factoryDefaults;
+	IBOutlet id startupWindow;
 }
 
 - (void)anApplicationIsTerminated:(NSNotification *)aNotification;
