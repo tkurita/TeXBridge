@@ -7,6 +7,7 @@
 	objects = {
 		080E96DDFE201D6D7F000001 = {
 			children = (
+				2CE77AD408E257D200C3AD21,
 				2CA3F88208BEE59500F997B9,
 				DA206CF3015C4E8B03C91932,
 				2C54024007CCEF5000E8CEEB,
@@ -154,10 +155,10 @@
 				2C4E27E3084273B000004A96,
 				2C54027507CD5AAB00E8CEEB,
 				2C7C498707962E380026564C,
-				29B97318FDCFA39411CA2CEA,
 				DA206CF4015C4E8B03C91932,
 				2C9E42BE052215CB00248965,
 				2CDACE460813EF6B000B9086,
+				29B97318FDCFA39411CA2CEA,
 				2C732C7B07AE666B005ACE75,
 				2C732C7E07AE667D005ACE75,
 				2C6CA37508CF54DD005D5612,
@@ -443,6 +444,7 @@
 				2C6CA3AC08CF5572005D5612,
 				2C6CA3C108CF559E005D5612,
 				2C6CA44208CFC6D2005D5612,
+				2CE77AD508E257D200C3AD21,
 			);
 			isSharedContext = 0;
 			isa = PBXAppleScriptBuildPhase;
@@ -796,7 +798,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\n#helpdir=\"$SYMROOT/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\nexport PERL5LIB=\"$HOME/Library/Perl\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a '/Developer/Applications/Utilities/Apple Help Indexing Tool.app' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
 		2C4E27E3084273B000004A96 = {
 			fileEncoding = 4;
@@ -1387,6 +1389,23 @@
 			refType = 0;
 			sourceTree = "<absolute>";
 		};
+		2CE77AD408E257D200C3AD21 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.applescript;
+			path = ToolPaletteButtons.applescript;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2CE77AD508E257D200C3AD21 = {
+			fileRef = 2CE77AD408E257D200C3AD21;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+			};
+		};
 //2C0
 //2C1
 //2C2
@@ -1416,6 +1435,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = /Library/Preferences/mi/mode/TEX;
 				OTHER_OSAFLAGS = "-x";
