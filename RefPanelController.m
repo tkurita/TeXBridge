@@ -78,7 +78,11 @@
 		reloadTimer = nil;
 	}
 
-	return [super windowShouldClose:sender];
+	[super windowShouldClose:sender];
+	
+	/* To support AppleScript Studio of MacOS 10.4 */
+	[[self window] orderOut:self];
+	return NO;
 }
 @end
 

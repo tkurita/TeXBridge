@@ -96,6 +96,13 @@
 	[helpManager openHelpAnchor:tabName inBook:bookName];
 }
 
+- (BOOL)windowShouldClose:(id)sender
+{
+	/* To support AppleScript Studio of MacOS 10.4 */
+	[[self window] orderOut:self];
+	return NO;
+}
+
 - (void)awakeFromNib
 {
 	[[self window] center];
