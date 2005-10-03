@@ -249,6 +249,9 @@ on do()
 		end tell
 	end tell
 	set cursorPositionInPar to cursorPosition - linePos
+	if cursorPositionInPar is 0 then -- cursor is in line head
+		return
+	end if
 	
 	set targetText to text 1 thru cursorPositionInPar of theLine
 	if targetText ends with yenmark then
