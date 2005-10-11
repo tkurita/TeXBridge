@@ -326,7 +326,7 @@ on pdfPreview()
 		openPDFFile() of thePDFObj
 	else
 		set theMessage to localized string "noPDFfile"
-		showMessageOnmi(theMessage)
+		showMessageOnmi(theMessage) of MessageUtility
 	end if
 end pdfPreview
 
