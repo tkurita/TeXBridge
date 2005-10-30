@@ -81,7 +81,7 @@ on launched theObject
 	--checkmifiles with saving
 	
 	(*misc*)
-	--set theResult to call method "smartActivate:" with parameter "trmx"
+	--set theResult to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--openRelatedFile with revealOnly
 	--open "replaceInput"
