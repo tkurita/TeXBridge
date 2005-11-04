@@ -92,53 +92,81 @@ on launched theObject
 	--log "end of launched"
 end launched
 
+on doCompileCommnad(theCommandID)
+	if theCommandID is "typesetOnly" then
+		doTypeSet() of TeXCompileObj
+	else if theCommandID is "typesetAndPreview" then
+		typesetAndPreview() of TeXCompileObj
+	else if theCommandID is "quickTypesetAndPreview" then
+		quickTypesetAndPreview() of TeXCompileObj
+	else if theCommandID is "typesetAndPDFPreview" then
+		typesetAndPDFPreview() of TeXCompileObj
+	else if theCommandID is "dviPreview" then
+		dviPreview() of TeXCompileObj
+	else if theCommandID is "pdfPreview" then
+		pdfPreview() of TeXCompileObj
+	else if theCommandID is "bibTex" then
+		bibTex() of TeXCompileObj
+	else if theCommandID is "dviToPDF" then
+		dviToPDF() of TeXCompileObj
+	else if theCommandID is "seekExecEbb" then
+		seekExecEbb() of TeXCompileObj
+	else if theCommandID is "dvips" then
+		dviToPS() of TeXCompileObj
+	else if theCommandID is "mendex" then
+		execmendex() of TeXCompileObj
+	else
+		showMessage("Unknown commandID : " & theCommandID) of MessageUtility
+	end if
+end doCompileCommnad
+
+on doEditSupportCommand(theCommandID)
+	if theCommandID is "replaceInput" then
+		if ReplaceInputObj is missing value then
+			set ReplaceInputObj to importScript("ReplaceInputObj")
+		end if
+		do() of ReplaceInputObj
+		
+	else if theCommandID is "openRelatedFile" then
+		openRelatedFile of EditCommands without revealOnly
+	else if theCommandID is "revealRelatedFile" then
+		openRelatedFile of EditCommands with revealOnly
+	else if theCommandID is "openParentFile" then
+		openParentFile() of EditCommands
+	else
+		showMessage("Unknown commandID : " & theCommandID) of MessageUtility
+	end if
+end doEditSupportCommand
+
 on open theObject
 	--log "start open"
 	stopTimer() of ToolPaletteController
 	stopTimer() of RefPanelController
 	if class of theObject is record then
+		set theCommandClass to commandClass of theObject
 		set theCommandID to commandID of theObject
-		if theCommandID is "reverseSearch" then
-			doReverseSearch(argument of theObject) of EditCommands
-		end if
 		
+		if theCommandClass is "compile" then
+			try
+				doCompileCommnad(theCommandID)
+			on error errMsg number errNum
+				if errNum is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
+					showError(errNum, "open", errMsg) of MessageUtility
+				else
+					error errMsg number errNum
+				end if
+			end try
+			showStatusMessage("") of ToolPaletteController
+			
+		else if theCommandClass is "editSupport" then
+			doEditSupportCommand(theCommandID)
+		else
+			showMessage("Unknown commandClass : " & theCommandClass) of MessageUtility
+		end if
 	else
 		set theCommandID to theObject
 		
-		if theCommandID is "replaceInput" then
-			if ReplaceInputObj is missing value then
-				set ReplaceInputObj to importScript("ReplaceInputObj")
-			end if
-			do() of ReplaceInputObj
-		else if theCommandID is "typesetOnly" then
-			doTypeSet() of TeXCompileObj
-		else if theCommandID is "typesetAndPreview" then
-			typesetAndPreview() of TeXCompileObj
-		else if theCommandID is "quickTypesetAndPreview" then
-			quickTypesetAndPreview() of TeXCompileObj
-		else if theCommandID is "typesetAndPDFPreview" then
-			typesetAndPDFPreview() of TeXCompileObj
-		else if theCommandID is "dviPreview" then
-			dviPreview() of TeXCompileObj
-		else if theCommandID is "pdfPreview" then
-			pdfPreview() of TeXCompileObj
-		else if theCommandID is "bibTex" then
-			bibTex() of TeXCompileObj
-		else if theCommandID is "dviToPDF" then
-			dviToPDF() of TeXCompileObj
-		else if theCommandID is "seekExecEbb" then
-			seekExecEbb() of TeXCompileObj
-		else if theCommandID is "dvips" then
-			dviToPS() of TeXCompileObj
-		else if theCommandID is "mendex" then
-			execmendex() of TeXCompileObj
-		else if theCommandID is "openRelatedFile" then
-			openRelatedFile of EditCommands without revealOnly
-		else if theCommandID is "revealRelatedFile" then
-			openRelatedFile of EditCommands with revealOnly
-		else if theCommandID is "openParentFile" then
-			openParentFile() of EditCommands
-		else if theCommandID is "setting" then
+		if theCommandID is "setting" then
 			openWindow() of SettingWindowController
 		else if theCommandID is "Help" then
 			call method "showHelp:"
@@ -158,9 +186,12 @@ on open theObject
 				set targetLine to contents of default entry "SourcePosition"
 			end tell
 			doReverseSearch(targetLine)
+		else
+			showMessage("Unknown argument : " & theCommandID) of MessageUtility
 		end if
-		showStatusMessage("") of ToolPaletteController
+		
 	end if
+	
 	restartTimer() of ToolPaletteController
 	restartTimer() of RefPanelController
 	return true
