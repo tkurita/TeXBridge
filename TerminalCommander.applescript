@@ -35,16 +35,31 @@ property defaultObjList : {}
 
 on writeTerminalPref(theKey, theValue)
 	if theValue is not missing value then
-		do shell script "defaults write com.apple.Terminal " & theKey & space & "'" & theValue & "'"
+		try
+			do shell script "defaults write com.apple.Terminal " & theKey & space & "'" & theValue & "'"
+		on error errMsg number errNum
+			set errMsg to "fail to write into com.apple.Terminal.plist" & return & errMsg
+			error errMsg number 1700
+		end try
 	end if
 end writeTerminalPref
 
 on readTerminalPref(theKey)
-	return do shell script "defaults read com.apple.Terminal " & theKey
+	try
+		return do shell script "defaults read com.apple.Terminal " & theKey
+	on error errMsg number errNum
+		set errMsg to "fail to read com.apple.Terminal.plist" & return & errMsg
+		error errMsg number 1710
+	end try
 end readTerminalPref
 
 on deleteTerminalPref(theKey)
-	do shell script "defaults delete com.apple.Terminal " & theKey
+	try
+		do shell script "defaults delete com.apple.Terminal " & theKey
+	on error errMsg number errNum
+		set errMsg to "fail to delete a key in com.apple.Terminal.plist" & return & errMsg
+		error errMsg number 1720
+	end try
 end deleteTerminalPref
 
 on normalizeColor(theColor)
