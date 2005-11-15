@@ -445,11 +445,13 @@ end lookUpDviFromEditor
 
 on lookUpDviFromMxdvi()
 	--log "start lookUpDviFromMxdvi"
+	local fileURL
+	
 	tell application "System Events"
 		tell process "Mxdvi"
 			if exists window 1 then
 				tell window 1
-					set fileURL to value of attribute "AxDocument"
+					set fileURL to (value of attribute "AxDocument")
 				end tell
 			else
 				return missing value
@@ -457,6 +459,7 @@ on lookUpDviFromMxdvi()
 		end tell
 	end tell
 	--log fileURL
+	--log "before call method URLWithString:"
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
 	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj
@@ -468,6 +471,7 @@ on dviToPDF()
 	--log "start dviToPDF"
 	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
 	set appName to (path to frontmost application as Unicode text)
+	--log appName
 	if appName ends with "Mxdvi.app:" then
 		set theDviObj to lookUpDviFromMxdvi()
 	else
