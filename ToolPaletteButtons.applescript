@@ -1,4 +1,8 @@
 on clicked theObject
 	set theName to name of theObject
-	open theName
+	if theName is "setting" then
+		open theName
+	else
+		open {commandClass:"compile", commandID:theName}
+	end if
 end clicked
