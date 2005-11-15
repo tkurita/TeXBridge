@@ -1,4 +1,4 @@
-property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
+property LibraryFolder : "Macintosh HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 property ShellUtils : load script file (LibraryFolder & "ShellUtils")
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
 property PathConverter : load script file (LibraryFolder & "PathConverter")
@@ -64,6 +64,7 @@ on launched theObject
 	
 	
 	(*exec tex commands*)
+	--dviToPDF() of TeXCompileObj
 	--open "quickTypesetAndPreview"
 	--logParseOnly() of TeXCompileObj
 	--openRelatedFile of EditCommands without revealOnly
@@ -72,7 +73,6 @@ on launched theObject
 	--execmendex() of TeXCompileObj
 	--openParentFile() of EditCommands
 	--seekExecEbb() of TeXCompileObj
-	--dviToPDF() of TeXCompileObj
 	--dviToPS() of TeXCompileObj
 	--dviPreview() of TeXCompileObj
 	--doTypeSet() of TeXCompileObj
