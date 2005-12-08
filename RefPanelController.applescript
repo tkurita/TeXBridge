@@ -67,7 +67,9 @@ on doubleClicked(theObject)
 	set selectedData to selected data item of theObject
 	set theLabel to ((contents of data cell "label" of selectedData) as string)
 	set theRef to ((contents of data cell "reference" of selectedData) as string)
-	if theRef is not "" then
+	if theRef is "" then
+		return
+	else
 		if (state of button "useeqref" of targetWindow is 1) then
 			if (theRef starts with "equation") or (theRef starts with "AMS") then
 				set refText to "eqref"
@@ -79,16 +81,37 @@ on doubleClicked(theObject)
 		else
 			set refText to "ref"
 		end if
-		
+	end if
+	
+	tell application "mi"
+		if exists front document then
+			tell front document
+				--set parPosition to index of paragraph 1 of selection object 1
+				set cursorPosition to (index of insertion point 1 of selection object 1)
+				set linePos to index of insertion point 1 of paragraph 1 of selection object 1
+				set currentLine to paragraph 1 of selection object 1
+			end tell
+		else
+			return
+		end if
+	end tell
+	set curPosInLine to cursorPosition - linePos
+	set textBeforeCursor to text 1 thru (cursorPosition - linePos) of currentLine
+	set refCommand to yenmark & refText
+	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
 		tell application "mi"
-			if exists document 1 then
-				tell document 1
-					set selection object 1 to yenmark & refText & "{" & theLabel & "}"
-				end tell
-				my activateFirstmiWindow()
-			end if
+			tell front document
+				set selection object 1 to "{" & theLabel & "}"
+			end tell
+		end tell
+	else
+		tell application "mi"
+			tell front document
+				set selection object 1 to refCommand & "{" & theLabel & "}"
+			end tell
 		end tell
 	end if
+	my activateFirstmiWindow()
 end doubleClicked
 
 on importScript(scriptName)
