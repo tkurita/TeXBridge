@@ -79,7 +79,6 @@
 		2C4E27DB084273B000004A96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		2C4E27DC084273B000004A96 /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
 		2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E545708062E8E0015E9EB /* ApplicationServices.framework */; };
-		2C4E27E0084273B000004A96 /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CDACE460813EF6B000B9086 /* miclient */; };
 		2C59769308CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */; };
 		2C59769408CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */; };
 		2C6CA37708CF54DD005D5612 /* ReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */; };
@@ -96,6 +95,7 @@
 		2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CB63A6D08CF053A002FCC88 /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
+		2CC63D7D093777F200503C26 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC63D7C093777F200503C26 /* LogWindow.nib */; };
 		2CD553EF08BCDEB8007E43D1 /* SettingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */; };
 		2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */; };
 		2CD5554E08BEC77E007E43D1 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD5554C08BEC77E007E43D1 /* AppController.h */; };
@@ -143,19 +143,6 @@
 			name = Deployment;
 		};
 /* End PBXBuildStyle section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		2C4E27DF084273B000004A96 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				2C4E27E0084273B000004A96 /* miclient in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -209,6 +196,7 @@
 		2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
+		2CC63D7C093777F200503C26 /* LogWindow.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = LogWindow.nib; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocObj.applescript; sourceTree = "<group>"; };
 		2CCD1A4A06BE616C00B6B166 /* DVIObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = DVIObj.applescript; sourceTree = "<group>"; };
 		2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
@@ -242,7 +230,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* TeXCompileServer Scripts */ = {
+		080E96DDFE201D6D7F000001 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */,
@@ -259,7 +247,7 @@
 				2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */,
 				2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */,
 			);
-			name = "TeXCompileServer Scripts";
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -293,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD553EC08BCDE96007E43D1 /* Classes */,
-				080E96DDFE201D6D7F000001 /* TeXCompileServer Scripts */,
+				080E96DDFE201D6D7F000001 /* Scripts */,
 				2C54FE0A07C9E5AC00E8CEEB /* Library Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				2C49445407AD219B00B2A8D8 /* Icon Images */,
@@ -320,6 +308,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CC63D7C093777F200503C26 /* LogWindow.nib */,
 				2C4E27E3084273B000004A96 /* Info.plist */,
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
 				2C7C498707962E380026564C /* FactorySettings.plist */,
@@ -437,7 +426,6 @@
 				2C4E27C4084273B000004A96 /* Resources */,
 				2C4E27D5084273B000004A96 /* Sources */,
 				2C4E27DA084273B000004A96 /* Frameworks */,
-				2C4E27DF084273B000004A96 /* CopyFiles */,
 				2C4E27E2084273B000004A96 /* ShellScript */,
 			);
 			buildRules = (
@@ -514,6 +502,7 @@
 				2C4E27D4084273B000004A96 /* miclient in Resources */,
 				2C6CA37708CF54DD005D5612 /* ReferencePalette.nib in Resources */,
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
+				2CC63D7D093777F200503C26 /* LogWindow.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +520,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\nsitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\nexport PERL5LIB=\"$HOME/Library/Perl\"\nperl \"$sitetears_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a 'Help Indexer' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
+			shellScript = "if [ \"$BUILD_STYLE\" = 'Deployment' ]; then\nhelpdir=\"$INSTALL_DIR/$TARGET_NAME.app/Contents/Resources/$TARGET_NAME Help\"\nmkdir -p \"$helpdir\"\n#sitetears_path='/Users/tkurita/Factories/Perl factory/ProjectsX/SiteTears/SiteTears.pl'\nsitetear_path='/usr/local/bin/sitetear'\nmanual_folder='/Users/tkurita/Factories/Websites/scriptfactory folder/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'\nmanual_page=\"index.html\" \nmanual_path=\"$manual_folder/$manual_page\"\n#export PERL5LIB=\"$HOME/Library/Perl\"\nperl \"$sitetear_path\" \"$manual_path\" \"$helpdir/$manual_page\"\nopen -a 'Help Indexer' \"$helpdir\"\niconPath=\"$manual_folder/TeXCompileServerIcon16.png\"\ncp \"$iconPath\" \"$helpdir\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
