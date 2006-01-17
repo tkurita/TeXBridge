@@ -57,7 +57,7 @@ on resolveParentFile(theParagraph, theTargetFile)
 end resolveParentFile
 
 on checkmifiles given saving:savingFlag, autosave:autosaveFlag
-	--log "start checkmifiles"
+	log "start checkmifiles"
 	set textADocument to localized string "aDocument"
 	
 	try
@@ -92,8 +92,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	set theTexDocObj to makeObj(theTargetFile) of TexDocObj
 	--log "success makeObj of TexDocObj"
 	set targetParagraph of theTexDocObj to theParagraph
-	
-	(* finde header commands *)
+	(* find header commands *)
 	set ith to 1
 	repeat
 		tell application "mi"
@@ -106,6 +105,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 		end if
 		set ith to ith + 1
 	end repeat
+	--log "after parse header commands"
 	
 	if savingFlag then
 		set textDoYouSave to localized string "doYouSave"
@@ -126,7 +126,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 			end if
 		end tell
 	end if
-	--log "end of checkmifiles"
+	log "end of checkmifiles"
 	return theTexDocObj
 end checkmifiles
 
@@ -627,8 +627,8 @@ on debug()
 	copy my LogFileParser to theLogFileParser
 	
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ƒeƒXƒg:lecture:Lecture.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ƒeƒXƒg:lecture:Lecture"
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ãƒ†ã‚¹ãƒˆ:lecture:Lecture.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ãƒ†ã‚¹ãƒˆ:lecture:Lecture"
 		property texFileName : "Lecture.tex"
 	end script
 	

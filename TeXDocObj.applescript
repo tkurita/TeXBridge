@@ -1,3 +1,4 @@
+global PathConverter
 global PathAnalyzer
 global StringEngine
 global UtilityHandlers
@@ -98,7 +99,7 @@ on makeObj(theTargetFile)
 			ignoring case
 				if theParagraph starts with "%ParentFile" then
 					set theParentFile to resolveParentFile(theParagraph)
-					setTexFileRef(theParentFile) of theTexDocObj
+					setTexFileRef(theParentFile)
 				else if theParagraph starts with "%Typeset-Command" then
 					set my texCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
 				else if theParagraph starts with "%DviToPdf-Command" then
