@@ -28,8 +28,9 @@ on openRelatedFile given revealOnly:revealFlag
 	set theOriginPath to POSIX path of texFileRef of theTexDocObj
 	setPOSIXoriginPath(theOriginPath) of PathConverter
 	
-	set commandList to {yenmark & "includegraphics", yenmark & "input", yenmark & "include"}
 	set incGraphicCommand to (yenmark & "includegraphics" as Unicode text)
+	set bibCommand to yenmark & "bibliography"
+	set commandList to {yenmark & "includegraphics", yenmark & "input", yenmark & "include", bibCommand}
 	
 	set firstpara to targetParagraph of theTexDocObj
 	tell application "mi"
@@ -50,8 +51,22 @@ on openRelatedFile given revealOnly:revealFlag
 					try
 						set fileAlias to (POSIX file fullPath) as alias
 					on error
-						set fileAlias to (POSIX file (fullPath & ".tex")) as alias
+						if (theCommand as Unicode text) is bibCommand then
+							set pathWithSuffix to fullPath & ".bib"
+						else
+							set pathWithSuffix to fullPath & ".tex"
+						end if
+						try
+							set fileAlias to (POSIX file pathWithSuffix) as alias
+						on error
+							set sQ to localized string "startQuote"
+							set eQ to localized string "endQuote"
+							set theMessage to sQ & pathWithSuffix & eQ & return & return & (localized string "isNotFound")
+							showMessageOnmi(theMessage) of MessageUtility
+							return
+						end try
 					end try
+					
 					if revealFlag then
 						tell application "Finder"
 							activate
