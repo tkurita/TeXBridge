@@ -57,7 +57,7 @@ on resolveParentFile(theParagraph, theTargetFile)
 end resolveParentFile
 
 on checkmifiles given saving:savingFlag, autosave:autosaveFlag
-	log "start checkmifiles"
+	--log "start checkmifiles"
 	set textADocument to localized string "aDocument"
 	
 	try
@@ -126,7 +126,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 			end if
 		end tell
 	end if
-	log "end of checkmifiles"
+	--log "end of checkmifiles"
 	return theTexDocObj
 end checkmifiles
 
@@ -149,47 +149,11 @@ on prepareTypeSet()
 	return theTexDocObj
 end prepareTypeSet
 
-on viewErrorLog(theLogFileParser, theCommand)
-	set textGroup to localized string "group"
-	set docname to texFileName of theLogFileParser
-	--log hyperlist of theLogFileParser
-	if hyperlist of theLogFileParser is not {} then
-		tell application "mi"
-			(*
-			if (compileInTerminal of theLogFileParser) or (not (isNoMessages of theLogFileParser)) then
-				activate
-			end if
-			*)
-			set theDateText to (current date) as string
-			if (indexwindow "TeX Compile Log" exists) then
-				ignoring application responses
-					tell (a reference to (every indexgroup of indexwindow "TeX Compile Log")) to collapse
-					
-					tell (a reference to indexwindow "TeX Compile Log")
-						set index to 1
-						make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
-					end tell
-				end ignoring
-			else
-				make new indexwindow with properties {name:"TeX Compile Log", infoorder:2, fileorder:1, filewidth:200, infowidth:500}
-				tell (a reference to indexwindow "TeX Compile Log")
-					set index to 1
-					make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
-					repeat while (exists indexgroup textGroup)
-						delete indexgroup textGroup
-					end repeat
-					set asksaving to false
-				end tell
-			end if
-		end tell
-	end if
-end viewErrorLog
-
 on prepareVIewErrorLog(theLogFileParser, theDviObj)
 	using terms from application "mi"
 		try
 			set auxFileRef to (getPathWithSuffix(".aux") of theLogFileParser) as alias
-			set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
+			--set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
 			
 			tell application "Finder"
 				ignoring application responses
@@ -199,10 +163,12 @@ on prepareVIewErrorLog(theLogFileParser, theDviObj)
 			end tell
 		end try
 		
+		(*
 		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theLogFileParser}
 		if theDviObj is not missing value then
 			set beginning of hyperlist of theLogFileParser to {file:dviFileRef of theDviObj}
 		end if
+		*)
 	end using terms from
 end prepareVIewErrorLog
 
@@ -261,7 +227,7 @@ on doTypeSet()
 	end if
 	
 	prepareVIewErrorLog(theLogFileParser, theDviObj)
-	viewErrorLog(theLogFileParser, "latex")
+	--viewErrorLog(theLogFileParser, "latex")
 	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
 	showStatusMessage("") of ToolPaletteController
 	if isDviOutput of theLogFileParser then
@@ -369,8 +335,8 @@ on quickTypesetAndPreview()
 	end if
 	
 	--log "before prepareVIewErrorLog"
-	prepareVIewErrorLog(theLogFileParser, theDviObj)
-	viewErrorLog(theLogFileParser, "latex")
+	--prepareVIewErrorLog(theLogFileParser, theDviObj)
+	--viewErrorLog(theLogFileParser, "latex")
 	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
 	showStatusMessage("") of ToolPaletteController
 end quickTypesetAndPreview
@@ -614,12 +580,12 @@ on execEbb(theGraphicPath, theExtension)
 	return true
 end execEbb
 
-
 on execmendex()
 	--log "start execmendex"
 	set mendexCommand to contents of default entry "mendexCommand" of user defaults
 	execTexCommand(mendexCommand, ".idx", false)
 end execmendex
+
 (* end: execute tex commands called from tools from mi  ====================================*)
 
 (*
@@ -650,4 +616,43 @@ on debug()
 	end using terms from
 	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
 end debug
+*)
+
+(* obsolute code *)
+(*
+on viewErrorLog(theLogFileParser, theCommand)
+	set textGroup to localized string "group"
+	set docname to texFileName of theLogFileParser
+	--log hyperlist of theLogFileParser
+	if hyperlist of theLogFileParser is not {} then
+		tell application "mi"
+			(*
+			if (compileInTerminal of theLogFileParser) or (not (isNoMessages of theLogFileParser)) then
+				activate
+			end if
+			*)
+			set theDateText to (current date) as string
+			if (indexwindow "TeX Compile Log" exists) then
+				ignoring application responses
+					tell (a reference to (every indexgroup of indexwindow "TeX Compile Log")) to collapse
+					
+					tell (a reference to indexwindow "TeX Compile Log")
+						set index to 1
+						make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
+					end tell
+				end ignoring
+			else
+				make new indexwindow with properties {name:"TeX Compile Log", infoorder:2, fileorder:1, filewidth:200, infowidth:500}
+				tell (a reference to indexwindow "TeX Compile Log")
+					set index to 1
+					make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
+					repeat while (exists indexgroup textGroup)
+						delete indexgroup textGroup
+					end repeat
+					set asksaving to false
+				end tell
+			end if
+		end tell
+	end if
+end viewErrorLog
 *)
