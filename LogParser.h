@@ -1,4 +1,5 @@
 #import <Cocoa/Cocoa.h>
+#import "ErrorRecord.h"
 #import "stringExtra.h"
 
 @interface LogParser : NSObject {
@@ -7,6 +8,7 @@
 	NSString *logContents;
 	NSArray *texFileExtensions;
 	BOOL isReadFile;
+	NSString *_jobName;
 	
 	//show results
 	BOOL isNoError;
@@ -20,6 +22,7 @@
 	NSString *currentString;
 	NSRange range, currentRange, nextRange;
 	NSMutableArray *errorRecordTree;
+	NSURL *baseURL;
 }
 
 //puclic method
@@ -42,7 +45,7 @@
 
 - (void) parseFooterWith:(NSMutableArray *)currentList startText:(NSString *)targetText;
 
-- (NSMutableDictionary *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator;
+- (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator;
 
 - (void) parseLogTreeFirstLevel:(NSMutableArray *)logTree;
 
@@ -51,8 +54,22 @@
 - (NSString *) getTargetFilePath:(NSEnumerator *) enumerator;
 - (NSString *) checkTexFileExtensions:(NSString *)targetFile;
 
-//accessors
+#pragma mark methos for outlineview
+-(id)child;
+
+-(id) objectForKey:(NSString *)theKey;
+
+-(BOOL)hasChild;
+
+#pragma mark accessor methods
+- (NSString *)logContents;
+
 - (void)setLogContents:(NSString *)logText;
+
 - (void)setLogFilePath:(NSString *)path;
+
+- (void)setBaseURLWithPath:(NSString *)path;
+
+- (NSMutableArray *)errorRecordTree;
 
 @end

@@ -1,24 +1,29 @@
 #import "LogParser.h"
+#import "LogWindowController.h"
+#import "FileRecord.h"
+
 #define useLog 0 //Yes:1, No:0
 
-NSMutableDictionary * makeErrorRecord(NSString* errMsg, NSNumber* errpn) {
-	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-	[dict setObject:errMsg forKey:@"comment"];
-	if (errpn !=nil) {
-		[dict setObject:errpn forKey:@"paragraph"];
-	}
-	return dict;
-}
-
-NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumber) {
+NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber, NSRange theRange) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 	NSNumber * lineNumber = [NSNumber numberWithUnsignedInt:theNumber];
 	[dict setObject:logContents forKey:@"content"];
 	[dict setObject:lineNumber forKey:@"lineNumber"];
+	[dict setObject:[NSValue valueWithRange:theRange] forKey:@"range"];
+
 	return dict;
 }
 
 @implementation LogParser
+
+- (ErrorRecord *) makeErrorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn textRange:(NSValue *)theRange
+{
+	ErrorRecord *theErrorRecord = [ErrorRecord errorRecordWithString: errMsg paragraph:errpn];
+	[theErrorRecord setLogContents:logContents];
+	[theErrorRecord setTextRange:theRange];
+	return theErrorRecord;
+}
+
 - (BOOL) isDviOutput
 {
 	return self->isDviOutput;
@@ -29,6 +34,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	return self->isLabelsChanged;
 }
 
+#pragma mark initilize and dealloc
 - (id)init
 {
 	[super init];
@@ -77,15 +83,15 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	return self;
 }
 
+#pragma mark parse log
 - (NSString *)getNextLine {
-	NSRange subRange;
 	
 	if (nextRange.length > 0) {
-		subRange = [logContents lineRangeForRange:NSMakeRange(nextRange.location, 0)];
-		currentString = [logContents substringWithRange:subRange];
-		currentRange = nextRange;
-		nextRange.location = NSMaxRange(subRange);
-        nextRange.length -= subRange.length;
+		currentRange = [logContents lineRangeForRange:NSMakeRange(nextRange.location, 0)];
+		currentString = [logContents substringWithRange:currentRange];
+		nextRange.location = NSMaxRange(currentRange);
+        nextRange.length -= currentRange.length;
+		
 		currentLineNumber++;
 		
 		if ([currentString length] == 1) {
@@ -103,28 +109,29 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 
 - (void)addCurrentLine:(NSMutableArray*)currentList
 {
-	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber);
+	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber, currentRange);
 	[currentList addObject:dict];	
 }
 
 - (NSString *)addCurrentLineAndNextLine:(NSMutableArray *)currentList
 {
-	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber);
+	NSMutableDictionary * dict = makeLogRecord(currentString, currentLineNumber, currentRange);
 	[currentList addObject:dict];
 	return [self getNextLine];
 }
 
 - (void) appendLogRecordWithString:(NSString *)targetText intoList:(NSMutableArray *)targetList {
-	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber);
+	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber, currentRange);
 	[targetList addObject:dict];
 }
 
-- (NSMutableArray *) parseLog{
+- (NSMutableArray *) parseLog
+{
 #if useLog
 	NSLog(@"start parseLog");
 #endif
 	NSString *targetText = [self skipHeader];
-	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber);
+	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber, currentRange);
 	NSMutableArray *logTree = [NSMutableArray arrayWithObject:dict];
 	targetText = [self getNextLine];
 	BOOL wholeLineFlag = YES;
@@ -133,7 +140,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 #endif
 	targetText = [self parseBodyWith:logTree startText:targetText isWholeLine:&wholeLineFlag];
 	
-	dict = makeLogRecord(logFilePath, 0);
+	dict = makeLogRecord(logFilePath, 0, currentRange);
 	NSMutableArray *loglogTree = [NSMutableArray arrayWithObject:dict];
 	[loglogTree addObject:logTree];
 #if useLog
@@ -143,13 +150,19 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 #if useLog
 	NSLog([loglogTree description]);
 #endif
+	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
 	isDviOutput = YES;
 	isLabelsChanged = NO;
+	if (![logContents endsWith:@"\n"]) {
+		[self setLogContents:logContents];
+	}
 	[self parseLogTreeFirstLevel:loglogTree];
 #if useLog
 	NSLog([errorRecordTree description]);
 	NSLog(@"end of parseLog");
 #endif
+	[[LogWindowController sharedLogManager] addLogRecords:self] ;
+	
 	return errorRecordTree;
 }
 
@@ -198,34 +211,37 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 
 - (void) parseLogTree:(NSMutableArray *) logTree
 {
-	//NSLog(@"start parseLogTree");
+#if useLog
+	NSLog(@"start parseLogTree");
+#endif
 	if ([logTree count] <= 1) {
 		return;
 	}
 	
 	NSEnumerator *enumerator = [logTree objectEnumerator];
-	//NSLog([logTree description]);
 	NSString *targetFile = [self getTargetFilePath:enumerator];
-	NSMutableDictionary * errorRecord;
+	ErrorRecord *theErrorRecord;
 	NSMutableArray *errorRecordList = [NSMutableArray array];
 	id logItem;
 	while (logItem = [enumerator nextObject]) {
-		errorRecord = [self findErrors:logItem withEnumerator:enumerator];
-		if (errorRecord) {
-			[errorRecordList addObject:errorRecord];
+		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
+		if (theErrorRecord) {
+			[errorRecordList addObject:theErrorRecord];
 		}
 	}
 
 	if ([errorRecordList count]) {
-		NSMutableDictionary *errorRecordDict =
-			[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
-		[errorRecordDict setObject:targetFile forKey:@"file"];
-		[errorRecordTree addObject:errorRecordDict];
+		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+		[theFileRecord setBaseURL:baseURL];
+		[theFileRecord setLogContents:logContents];
+		[errorRecordTree addObject:theFileRecord];
 	}
-	//NSLog(@"end parseLogTree");
+#if useLog	
+	NSLog(@"end parseLogTree");
+#endif
 }
 
-- (NSMutableDictionary *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
+- (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
 {
 	//NSLog(@"start findErrors");
 	NSString * logContent;
@@ -246,11 +262,13 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	NSNumber * errpn = nil;
 	id object;
 	NSString * nextLogContent;
-	NSMutableDictionary * errorRecord = nil;
+	//ErrorRecord *theErrorRecord = nil;
 	NSString * errMsg = nil;	
+	
 	if ([logContent startWith:@"!"]) {
 		errMsg = [NSString stringWithString:logContent];
 		isNoError = NO;
+		
 		while(object = [enumerator nextObject]) {
 			if ([object isKindOfClass: [NSMutableDictionary class]]) {
 				nextLogContent = [object objectForKey:@"content"];
@@ -266,19 +284,22 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 					errpInt =  [[scannedText substringWithRange:NSMakeRange(2,[scannedText length]-2)] intValue];
 					errpn = [NSNumber numberWithInt:errpInt];
 				}
-				errorRecord = makeErrorRecord(errMsg,errpn);
+				
+				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 				break;
 			}
 			else if ([nextLogContent startWith:@"?"] || 
 					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
-				errorRecord = makeErrorRecord(errMsg,errpn);
+				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 				break;
 			}
 		}
 		
-		if (errorRecord == nil) {
-			errorRecord = makeErrorRecord(errMsg,errpn);
+		/* 重複している？
+		if (theErrorRecord == nil) {
+			theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn];
 		}
+		 */
 	}
 	else if ([logContent contain:@"Warning:"]) {
 		errMsg = [NSString stringWithString:logContent];	
@@ -298,7 +319,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 			errpInt = [[wordList lastObject] intValue];
 			errpn = [NSNumber numberWithInt:errpInt];
 		}
-		errorRecord = makeErrorRecord(errMsg,errpn);
+		//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 	}
 
 	else if ([logContent startWith:@"Overfull"]||[logContent startWith:@"Underfull"]) {
@@ -321,10 +342,12 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		isDviOutput = NO;
 	}
 	
-	//NSLog(@"end of findErrors");
+#if useLog
+	NSLog(@"end of findErrors");
+#endif
 	
 	if (errMsg != nil) {
-		return makeErrorRecord(errMsg,errpn);
+		return [self makeErrorRecordWithString:errMsg paragraph:errpn textRange:[logTree objectForKey:@"range"]];
 	}
 	else {
 		return nil;
@@ -335,22 +358,24 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 {
 	NSEnumerator *enumerator = [logTree objectEnumerator];
 	NSString * targetFile = [[enumerator nextObject] objectForKey:@"content"];
-	NSMutableDictionary * errorRecord;
+	ErrorRecord *theErrorRecord;
 	NSMutableArray * errorRecordList = [NSMutableArray array];
 	
 	id logItem;
 	while (logItem = [enumerator nextObject]) {
-		errorRecord = [self findErrors:logItem withEnumerator:enumerator];
-		if (errorRecord) {
-			[errorRecord setObject:[logItem objectForKey:@"lineNumber"] forKey:@"paragraph"];
-			[errorRecordList addObject:errorRecord];
+		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
+		if (theErrorRecord) {
+			//[theErrorRecord setObject:[logItem objectForKey:@"lineNumber"] forKey:@"paragraph"];
+			[theErrorRecord setParagraph:[logItem objectForKey:@"lineNumber"]];
+ 			[errorRecordList addObject:theErrorRecord];
 		}
 	}
 	if ([errorRecordList count]) {
-		NSMutableDictionary * errorRecordDict =
-			[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
-		[errorRecordDict setObject:targetFile forKey:@"file"];
-		[errorRecordTree addObject:errorRecordDict];
+//		NSMutableDictionary * errorRecordDict =
+//			[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
+//		[errorRecordDict setObject:targetFile forKey:@"file"];
+		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+		[errorRecordTree addObject:theFileRecord];
 	}
 }
 
@@ -388,7 +413,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 		while (! [targetText endsWith:@"."]) {
 			targetText = [targetText stringByAppendingString:[self getNextLine]];
 		}
-		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber);
+		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber, currentRange);
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 	
@@ -426,7 +451,7 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 			//add two lines into current list
 			targetText = [targetText stringByAppendingString:[self getNextLine]];
 		}
-		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber);
+		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber, currentRange);
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 
@@ -559,7 +584,43 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	return [theLine substringWithRange:subRange];
 }
 
+#pragma mark methos for outlineview
+
+-(BOOL) hasChild
+{
+	return [errorRecordTree count] > 0 ;	
+}
+
+-(id)child
+{
+	return errorRecordTree ;
+}
+
+-(id) objectForKey:(NSString *)theKey
+{
+	id result = nil;
+	if ([theKey isEqualToString:@"first"]) {
+		result = _jobName;
+	}
+	
+	return result;
+}
+
 #pragma mark accessor methods
+- (void)setJobName:(NSString *)jobName
+{
+	NSString *timeStamp = [[NSDate date] descriptionWithCalendarFormat:@" :%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil];
+	NSString *nameWithTimeStamp = [jobName stringByAppendingString:timeStamp];
+	[_jobName release];
+	_jobName = [nameWithTimeStamp retain];
+}
+
+
+- (NSString *)logContents
+{
+	return logContents;
+}
+
 - (void)setLogContents:(NSString *)logText
 {
 	[logText retain];
@@ -572,6 +633,17 @@ NSMutableDictionary * makeLogRecord(NSString* logContents, unsigned int theNumbe
 	[path retain];
 	[logFilePath release];
 	logFilePath = path;
+}
+
+- (void)setBaseURLWithPath:(NSString *)path
+{
+	[baseURL release];
+	baseURL = [[NSURL fileURLWithPath: path] retain];
+}
+
+- (NSMutableArray *)errorRecordTree
+{
+	return errorRecordTree;
 }
 
 @end
