@@ -1,8 +1,8 @@
 property LibraryFolder : "Macintosh HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
-property ShellUtils : load script file (LibraryFolder & "ShellUtils")
-property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
-property PathConverter : load script file (LibraryFolder & "PathConverter")
-property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary")
+property ShellUtils : load script file (LibraryFolder & "ShellUtils.scpt")
+property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
+property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
+property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
 property StringEngine : PathConverter
 property appController : missing value
 
