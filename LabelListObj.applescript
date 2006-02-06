@@ -8,10 +8,10 @@ global PathAnalyzer
 
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
-property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary")
-property StringEngine : load script file (LibraryFolder & "StringEngine")
-property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
-property PathConverter : load script file (LibraryFolder & "PathConverter")
+property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
+property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
+property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
+property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
 *)
 
 property auxObjArray : missing value
