@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXCompileServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>3.0.4 copyright 2003-2006, Tetsuro KURITA</string>
+	<string>3.1 copyright 2003-2006, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>TeXCompileServer Help</string>
+	<string>TeXCompileServerHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>TeX Tools for mi ヘルプ</string>
 	<key>CFBundleIconFile</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3.0.4</string>
+	<string>3.1</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
