@@ -1,8 +1,12 @@
 #import "AppController.h"
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
+
+
 //#import "AppNameToIconImageTransformer.h"
 
 #define useLog 0
+
+static id sharedObj;
 
 @implementation AppController
 
@@ -21,7 +25,7 @@
 + (id)sharedAppController
 {
 	if (sharedObj == nil) {
-		return [[self alloc] init];
+		sharedObj = [[self alloc] init];
 	}
 	return sharedObj;
 }
@@ -125,6 +129,7 @@
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
+	
 }
 
 @end
