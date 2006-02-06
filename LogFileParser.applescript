@@ -52,19 +52,26 @@ on makeObj(theTexDocObj)
 		end boolValue
 		
 		on parseLog(logParser)
+			call method "setBaseURLWithPath:" of logParser with parameter (POSIX path of my texBasePath)
+			set preDelim to AppleScript's text item delimiters
+			set AppleScript's text item delimiters to space
+			set commandName to text item 1 of (my texCommand)
+			set AppleScript's text item delimiters to preDelim
+			call method "setJobName:" of logParser with parameter (commandName & space & my texFileName)
 			set parseResult to call method "parseLog" of logParser
 			--log parseResult
 			set isDviOutput to boolValue(call method "isDviOutput" of logParser)
 			set isLabelsChanged to boolValue(call method "isLabelsChanged" of logParser)
-			buildHyperList(parseResult)
+			--buildHyperList(parseResult)
 			call method "release" of logParser
+			--log "end parseLog"
 		end parseLog
 		
 		on parseLogText()
 			--log "start parseLogText"
 			set logParser to call method "alloc" of class "LogParser"
 			if (my logContents starts with "This is") then
-				set logParser to call method "initWithString:" of logParser with parameter (my logContents)
+				set logParser to call method "initWithString:" of logParser with parameter ((my logContents) & return)
 			else
 				set logParser to call method "initWithContentsOfFile:" of logParser with parameter (POSIX path of my logFileRef)
 			end if
