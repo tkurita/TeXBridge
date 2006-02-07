@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = PaletteWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {contentViewBuffer = id; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = RefPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {reloadButton = id; }; 
+            SUPERCLASS = PaletteWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
