@@ -43,7 +43,7 @@ OSErr selectParagraphOfmi(long parIndex){
 	ProcessSerialNumber psn;	
 	
 	/* check mi process */
-	NSDictionary *pDict = getProcessInfo(@"MMKE", nil, nil);
+	NSDictionary *pDict = (NSDictionary *)getProcessInfo(CFSTR("MMKE"), nil, nil);
 		
 	if (pDict == NULL) {
 		/* mi is not launched. */
