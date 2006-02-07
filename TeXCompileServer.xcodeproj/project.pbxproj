@@ -176,7 +176,7 @@
 		2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DVItoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DVIPreviewIcon.png; sourceTree = "<group>"; };
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
-		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInputObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInputObj.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
 		2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = NTYImmutableToMutableArrayOfObjectsTransformer.m; sourceTree = "<group>"; };
