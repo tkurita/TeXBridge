@@ -270,7 +270,6 @@
 								<string>2CB63A5D08CF038D002FCC88</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>E2644B35053B69B200211256</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
@@ -328,7 +327,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C385C830998F67900C07AFA</string>
+										<string>2C385D1B09998DE700C07AFA</string>
 										<key>history</key>
 										<array>
 											<string>2C8156D0097E32D300FAF593</string>
@@ -370,7 +369,7 @@
 											<string>2C385C700998F63000C07AFA</string>
 											<string>2C385C710998F63000C07AFA</string>
 											<string>2C385C720998F63000C07AFA</string>
-											<string>2C385C730998F63000C07AFA</string>
+											<string>2C385C830998F67900C07AFA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -412,10 +411,6 @@
 											<string>2CC490150996CE00004E4BDE</string>
 											<string>2CC490190996CE00004E4BDE</string>
 											<string>2CC4901B0996CE00004E4BDE</string>
-											<string>2C385C740998F63000C07AFA</string>
-											<string>2C385C750998F63000C07AFA</string>
-											<string>2C385C760998F63000C07AFA</string>
-											<string>2C385C770998F63000C07AFA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -473,9 +468,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C385C790998F63000C07AFA</string>
+				<string>2C385D1809998D2000C07AFA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C385C7A0998F63000C07AFA</string>
+				<string>2C385D1909998D2000C07AFA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -609,11 +604,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>2C5A1CCC09283808008EFB21</string>
 		<string>2C625F590928B0B20045AAF9</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>/Users/tkurita/Factories/Script factory/ProjectsX/TeX Tools for mi/svn/TeXCompileServer/TeXCompileServer.xcodeproj</string>
+		<string>/Users/tkurita/Factories/Script factory/ProjectsX/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>131 113 1112 802 0 0 1440 938 </string>
@@ -637,7 +629,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>EditorClient.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -654,8 +646,6 @@
 							<string>215pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
@@ -697,7 +687,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C625F590928B0B20045AAF9</string>
-				<string>2C385BF50998F5BB00C07AFA</string>
+				<string>2C385D1A09998D2000C07AFA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
