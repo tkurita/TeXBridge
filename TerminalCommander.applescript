@@ -1,5 +1,4 @@
-property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
-property parent : load script file (LibraryFolder & "TerminalCommander.scpt")
+property parent : load("TerminalCommander.scpt") of application "TeXToolsLib"
 
 on activateTerminal()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
