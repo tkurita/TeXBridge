@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>backslash</key>
+	<string>¥</string>
+	<key>beginText</key>
+	<string>¥begin</string>
+	<key>endText</key>
+	<string>¥end</string>
+	<key>figEnvBlock</key>
+	<string>¥begin{figure}[htbp]¥begin{center}
+$1
+¥end{center}¥end{figure}</string>
+	<key>hline</key>
+	<string>¥hline</string>
+	<key>incGraphicBlock</key>
+	<string>¥includegraphics[width = 120mm,keepaspectratio,clip]{$1}¥caption{}¥label{$2}</string>
+	<key>incGraphicCommand</key>
+	<string>¥includegraphics</string>
+	<key>labelText</key>
+	<string>¥label</string>
+	<key>tableBegin</key>
+	<string>¥begin{table}[http]
+¥caption{}
+¥label{}
+¥begin{center}
+¥begin{tabular}{$1}</string>
+	<key>tableEnd</key>
+	<string>¥end{tabular}
+¥end{center}
+¥end{table}</string>
+	<key>texNewLine</key>
+	<string>¥¥</string>
+</dict>
+</plist>
