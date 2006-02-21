@@ -33,15 +33,15 @@ on getKeyValue for entryName from dictionaryValue
 end getKeyValue
 
 on stripHeadTailSpaces(theText)
-	set spaceList to {space,tab, return}
+	set spaceList to {space, tab, return}
 	try
-	if (first character of theText) is in spaceList then
-		set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
-	else if (last character of theText) is in spaceList then
-		set theText to stripHeadTailSpaces(text 1 thru -2 of theText)
-	else
-		return theText
-	end if
+		if (first character of theText) is in spaceList then
+			set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
+		else if (last character of theText) is in spaceList then
+			set theText to stripHeadTailSpaces(text 1 thru -2 of theText)
+		else
+			return theText
+		end if
 	on error msg number errn
 		if length of theText is 1 then
 			return ""
@@ -81,37 +81,34 @@ on copyItem(sourceItem, saveLocation, newName)
 	end tell
 end copyItem
 
-on deleteListItem for theItem from theList
-	set nList to length of theList
+on deleteListItem for theItem from thelist
+	set nList to length of thelist
 	repeat with ith from 1 to nList
-		if theItem is item ith of theList then
+		if theItem is item ith of thelist then
 			if ith is 1 then
-				set theList to rest of theList
+				set thelist to rest of thelist
 				exit repeat
-			else if ith is nList
-				set theList to item 1 thru -2 of theList
+			else if ith is nList then
+				set thelist to items 1 thru -2 of thelist
 				exit repeat
 			else
-				set theList to (item 1 thru (ith -1) of theList)&(item (ith + 1) thru -1 of theList)
+				set thelist to (items 1 thru (ith - 1) of thelist) & (items (ith + 1) thru -1 of thelist)
 				exit repeat
 			end if
 		end if
 	end repeat
-	return theList
+	return thelist
 end deleteListItem
 
 on getLocalizedString given keyword:theKeyword, insertTexts:insertList
 	--log "start getLocalizedString"
 	set theText to localized string theKeyword
 	--log theKeyword & ":" & theText
-	repeat with ith from 1 to (length of insertList)
-		set insertText to item ith of insertList
-		tell StringEngine
-			startStringEngine() of it
-			set theText to uTextReplace of it for theText from "$" & (ith as Unicode text) by insertText
-			stopStringEngine() of it
-		end tell
-	end repeat
+	tell StringEngine
+		startStringEngine() of it
+		set theText to insertTexts of it for insertList into theText
+		stopStringEngine() of it
+	end tell
 	--log "end getLocalizedString"
 	return theText
 end getLocalizedString
