@@ -81,23 +81,23 @@ on copyItem(sourceItem, saveLocation, newName)
 	end tell
 end copyItem
 
-on deleteListItem for theItem from thelist
-	set nList to length of thelist
+on deleteListItem for theItem from theList
+	set nList to length of theList
 	repeat with ith from 1 to nList
-		if theItem is item ith of thelist then
+		if theItem is item ith of theList then
 			if ith is 1 then
-				set thelist to rest of thelist
+				set theList to rest of theList
 				exit repeat
-			else if ith is nList then
-				set thelist to items 1 thru -2 of thelist
+			else if ith is nList
+				set theList to item 1 thru -2 of theList
 				exit repeat
 			else
-				set thelist to (items 1 thru (ith - 1) of thelist) & (items (ith + 1) thru -1 of thelist)
+				set theList to (item 1 thru (ith -1) of theList)&(item (ith + 1) thru -1 of theList)
 				exit repeat
 			end if
 		end if
 	end repeat
-	return thelist
+	return theList
 end deleteListItem
 
 on getLocalizedString given keyword:theKeyword, insertTexts:insertList
@@ -112,3 +112,4 @@ on getLocalizedString given keyword:theKeyword, insertTexts:insertList
 	--log "end getLocalizedString"
 	return theText
 end getLocalizedString
+
