@@ -5,6 +5,7 @@
 
 }
 
-+(BOOL) jumpToFile:(FSRef *)pFileRef paragraph:(NSNumber *)npar;
+-(BOOL) jumpToFile:(FSRef *)pFileRef paragraph:(NSNumber *)npar;
+-(NSString *) currentDocumentMode;
 
 @end

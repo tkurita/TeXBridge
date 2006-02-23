@@ -3,7 +3,10 @@
 #include <unistd.h>
 
 #define useLog 0
+
 const OSType miSignature = 'MMKE';
+
+static AppleEvent event_front_docment_mode;
 
 void typeCommandB() {
 	/* emulate keytype of pressing Cmd-B */
@@ -12,7 +15,6 @@ void typeCommandB() {
 	CGPostKeyboardEvent( (CGCharCode)'B', (CGKeyCode)11, false );
 	CGPostKeyboardEvent( (CGCharCode)0, (CGKeyCode)55, false );
 }
-#import "SmartActivate.h"
 
 OSErr selectParagraphOfmi(long parIndex){
 	/* send AppleEvent to me to select paragrah parIndex in Front document*/
@@ -34,7 +36,65 @@ OSErr selectParagraphOfmi(long parIndex){
 
 @implementation EditorClient
 
-+ (BOOL)jumpToFile:(FSRef *)pFileRef paragraph:(NSNumber *)npar
++ (void)initialize
+{
+	OSErr err;
+	AEBuildError buildError;
+	err = AEBuildAppleEvent(
+							kAECoreSuite, kAEGetData,
+							typeApplSignature, &miSignature, sizeof(miSignature),
+							kAutoGenerateReturnID, kAnyTransactionID,
+							&event_front_docment_mode, /* 作成するイベント */
+							&buildError, /* エラー情報を必要としない */
+							"'----':'obj '{form:prop, want:type(prop),seld:type(pmod),from:'obj '{form:indx,want:type(docu), seld:short(1), from:'null'()}}");
+#if useLog
+	printf("build error error code:%d error pos:%d\n", buildError.fError, buildError.fErrorPos);
+#endif
+	
+}
+
+- (NSString *)currentDocumentMode
+{
+	AppleEvent reply;
+	OSErr err;
+
+	err = AESendMessage(&event_front_docment_mode,&reply,kAEWaitReply ,30);
+
+#if useLog
+	Handle result;
+	OSStatus resultStatus;
+	resultStatus = AEPrintDescToHandle(&reply,&result);
+	printf("%s\n",*result);
+#endif
+	
+	AEDesc givenDesc;
+	err = AEGetParamDesc (&reply, keyDirectObject, typeUnicodeText, &givenDesc);
+	
+	Size theLength = AEGetDescDataSize(&givenDesc);
+	UInt8 *theData = malloc(theLength);
+	if (theLength != 0) {
+		err = AEGetDescData(&givenDesc, theData, theLength);
+	}
+	
+	if (err != noErr) {
+		free(theData);
+		return @"";
+	}
+	
+	NSString *theMode = [NSString stringWithCharacters:(unichar *)theData length:theLength/sizeof(unichar)];
+#if useLog
+	NSLog(theMode);
+#endif
+
+	free(theData);
+
+#if useLog
+	NSLog(@"end of currentDocumentMode");
+#endif
+	return theMode;
+}
+
+- (BOOL)jumpToFile:(FSRef *)pFileRef paragraph:(NSNumber *)npar
 {
 	OSErr err;
 	
