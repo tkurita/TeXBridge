@@ -44,13 +44,13 @@ on launched theObject
 	--log "start lanunched"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
 	if showToolPaletteWhenLaunched then
-		showStartupMessage("opening Tool Palette ...")
+		showStartupMessage("Opening Tool Palette ...")
 		openWindow() of ToolPaletteController
 	end if
 	
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
 	if showRefPaletteWhenLaunched then
-		showStartupMessage("opening Reference Palette ...")
+		showStartupMessage("Opening Reference Palette ...")
 		openWindow() of RefPanelController
 	end if
 	hide window "Startup"
@@ -85,7 +85,7 @@ on launched theObject
 	--openRelatedFile with revealOnly
 	--open "replaceInput"
 	--call method "showHelp:"
-	
+	--call method "currentDocumentMode" of class "EditorClient"
 	(*end of debug code*)
 	
 	--log "end of launched"
@@ -276,7 +276,7 @@ on will finish launching theObject
 	--log "end of setting TerminalSettingObj"
 	
 	set miAppRef to path to application "mi" as alias
-	--log "end sill finish launching"
+	--log "end will finish launching"
 end will finish launching
 
 on awake from nib theObject

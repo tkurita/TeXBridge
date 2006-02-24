@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
 #include <ApplicationServices/ApplicationServices.h>
 
-@interface EditorClient : NSObject {
+@interface miClient : NSObject {
 
 }
 

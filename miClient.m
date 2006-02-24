@@ -1,4 +1,4 @@
-#import "EditorClient.h"
+#import "miClient.h"
 #import "SmartActivate.h"
 #include <unistd.h>
 
@@ -34,7 +34,7 @@ OSErr selectParagraphOfmi(long parIndex){
 	return(err);
 }
 
-@implementation EditorClient
+@implementation miClient
 
 + (void)initialize
 {

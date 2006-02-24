@@ -2,7 +2,6 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {}; 
             CLASS = LogWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {detailText = id; logOutline = id; logSplitView = id; }; 

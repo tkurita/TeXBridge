@@ -1,8 +1,13 @@
+#import "AppController.h"
 #import "RefPanelController.h"
+#import "miClient.h"
 
 #define useLog 0
 
+extern id EditorClient;
+
 @implementation RefPanelController
+
 - (void)pushReloadButton:(NSTimer *)theTimer
 {
 #if useLog
@@ -53,6 +58,17 @@
 		[reloadTimer retain];
 	}
 }
+
+- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName suggestion:(BOOL)shouldShow
+{
+	if ([appName isEqualToString:@"mi"]) {
+		NSString *theMode = [EditorClient currentDocumentMode];
+		shouldShow = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
+				containsObject:theMode];
+	}
+	return shouldShow;
+}
+
 
 - (IBAction)showWindow:(id)sender
 {

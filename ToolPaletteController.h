@@ -6,4 +6,7 @@
 @interface ToolPaletteController : PaletteWindowController
 {
 }
+
+- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName suggestion:(BOOL)shouldShow;
+
 @end

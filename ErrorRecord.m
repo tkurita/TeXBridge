@@ -1,6 +1,8 @@
 #import "ErrorRecord.h"
 #import "FileRecord.h"
-#import "EditorClient.h"
+#import "miClient.h"
+
+extern id EditorClient;
 
 @implementation ErrorRecord
 

@@ -69,6 +69,11 @@
 	<true/>
 	<key>StringEncoding</key>
 	<integer>4</integer>
+	<key>SupportedModes</key>
+	<array>
+		<string>LaTeX</string>
+		<string>TEX</string>
+	</array>
 	<key>TerminalOpaqueness</key>
 	<integer>58100</integer>
 	<key>ToolPaletteApplicationsFloatingOn</key>

@@ -1,6 +1,20 @@
 #import "ToolPaletteController.h"
+#import "miClient.h"
+
+extern id EditorClient;
 
 @implementation ToolPaletteController
+
+- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName suggestion:(BOOL)shouldShow
+{
+	if ([appName isEqualToString:@"mi"]) {
+		NSString *theMode = [EditorClient currentDocumentMode];
+		shouldShow = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
+				containsObject:theMode];
+	}
+
+	return shouldShow;
+}
 
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
 {

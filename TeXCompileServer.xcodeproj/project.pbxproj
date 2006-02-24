@@ -102,8 +102,8 @@
 		2CBFCCF3097CAF2600BCEB43 /* FileRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
 		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
-		2CBFD20B097DFA9200BCEB43 /* EditorClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CBFD209097DFA9200BCEB43 /* EditorClient.h */; };
-		2CBFD20C097DFA9200BCEB43 /* EditorClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD20A097DFA9200BCEB43 /* EditorClient.m */; };
+		2CBFD20B097DFA9200BCEB43 /* miClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CBFD209097DFA9200BCEB43 /* miClient.h */; };
+		2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD20A097DFA9200BCEB43 /* miClient.m */; };
 		2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4852C099040B0004E4BDE /* SmartActivate.c */; };
 		2CD553EF08BCDEB8007E43D1 /* SettingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */; };
 		2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */; };
@@ -112,6 +112,8 @@
 		2CDBE60A097BA7FE00C3300B /* LogWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDBE608097BA7FE00C3300B /* LogWindowController.h */; };
 		2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDBE609097BA7FE00C3300B /* LogWindowController.m */; };
 		2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */; };
+		2CF1023609AA2CAE007DD27C /* ToolSupport216.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -213,8 +215,8 @@
 		2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecord.h; sourceTree = "<group>"; };
 		2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecord.m; sourceTree = "<group>"; };
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
-		2CBFD209097DFA9200BCEB43 /* EditorClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorClient.h; sourceTree = "<group>"; };
-		2CBFD20A097DFA9200BCEB43 /* EditorClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorClient.m; sourceTree = "<group>"; };
+		2CBFD209097DFA9200BCEB43 /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miClient.h; sourceTree = "<group>"; };
+		2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = miClient.m; sourceTree = "<group>"; };
 		2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
 		2CC4852C099040B0004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocObj.applescript; sourceTree = "<group>"; };
@@ -229,10 +231,12 @@
 		2CDACD800813BE3F000B9086 /* stringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringExtra.h; sourceTree = "<group>"; };
 		2CDACD810813BE3F000B9086 /* stringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stringExtra.m; sourceTree = "<group>"; };
 		2CDACD820813BE3F000B9086 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
-		2CDACE460813EF6B000B9086 /* miclient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = miclient; path = "/Users/tkurita/Factories/Script factory/ProjectsX/Scripts for mi/miclient/miclient/build/Deployment/miclient"; sourceTree = "<absolute>"; };
+		2CDACE460813EF6B000B9086 /* miclient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = miclient; path = /Users/tkurita/Dev/Projects/miclient/trunk/build/Release/miclient; sourceTree = "<absolute>"; };
 		2CDBE608097BA7FE00C3300B /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
+		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = ToolSupport.plist; sourceTree = "<group>"; };
+		2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ToolSupport216.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TeXCompileServer.applescript; sourceTree = "<group>"; };
 		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
@@ -307,7 +311,7 @@
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				2C54FE0A07C9E5AC00E8CEEB /* Library Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				2C49445407AD219B00B2A8D8 /* Icon Images */,
+				2C49445407AD219B00B2A8D8 /* images */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				2CB63A5D08CF038D002FCC88 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -333,17 +337,19 @@
 			isa = PBXGroup;
 			children = (
 				2C80445D098DE473001DAF04 /* setuphelp.sh */,
-				2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */,
 				2C4E27E3084273B000004A96 /* Info.plist */,
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
 				2C7C498707962E380026564C /* FactorySettings.plist */,
 				DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
 				2CDACE460813EF6B000B9086 /* miclient */,
+				2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */,
 				29B97318FDCFA39411CA2CEA /* TeXCompileServer.nib */,
 				2C732C7B07AE666B005ACE75 /* Setting.nib */,
 				2C732C7E07AE667D005ACE75 /* ToolPalette.nib */,
 				2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */,
+				2CF1023109AA25A1007DD27C /* ToolSupport.plist */,
+				2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -358,7 +364,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2C49445407AD219B00B2A8D8 /* Icon Images */ = {
+		2C49445407AD219B00B2A8D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
 				2C6CA3A308CF5565005D5612 /* Reload.png */,
@@ -371,7 +377,7 @@
 				2C71167E07D177B8008BCAEF /* minus.png */,
 				2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */,
 			);
-			name = "Icon Images";
+			name = images;
 			sourceTree = "<group>";
 		};
 		2C54FE0A07C9E5AC00E8CEEB /* Library Scripts */ = {
@@ -422,8 +428,8 @@
 				2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */,
 				2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */,
 				2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */,
-				2CBFD209097DFA9200BCEB43 /* EditorClient.h */,
-				2CBFD20A097DFA9200BCEB43 /* EditorClient.m */,
+				2CBFD209097DFA9200BCEB43 /* miClient.h */,
+				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -448,7 +454,7 @@
 				2CDBE60A097BA7FE00C3300B /* LogWindowController.h in Headers */,
 				2CBFCCC8097CA75900BCEB43 /* ErrorRecord.h in Headers */,
 				2CBFCCF3097CAF2600BCEB43 /* FileRecord.h in Headers */,
-				2CBFD20B097DFA9200BCEB43 /* EditorClient.h in Headers */,
+				2CBFD20B097DFA9200BCEB43 /* miClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +547,8 @@
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
 				2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */,
 				2C80445E098DE473001DAF04 /* setuphelp.sh in Resources */,
+				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
+				2CF1023609AA2CAE007DD27C /* ToolSupport216.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,7 +573,7 @@
 				2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */,
 				2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */,
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
-				2CBFD20C097DFA9200BCEB43 /* EditorClient.m in Sources */,
+				2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */,
 				2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,7 +632,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2C6D92DC0928239E005774F8 /* Development */ = {
+		2C6D92DC0928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -653,9 +661,9 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		2C6D92DD0928239E005774F8 /* Deployment */ = {
+		2C6D92DD0928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -683,7 +691,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		2C6D92DE0928239E005774F8 /* SDDebug */ = {
 			isa = XCBuildConfiguration;
@@ -736,16 +744,16 @@
 			};
 			name = Default;
 		};
-		2C6D92E10928239E005774F8 /* Development */ = {
+		2C6D92E10928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Development;
+			name = Debug;
 		};
-		2C6D92E20928239E005774F8 /* Deployment */ = {
+		2C6D92E20928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -757,7 +765,7 @@
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		2C6D92E30928239E005774F8 /* SDDebug */ = {
 			isa = XCBuildConfiguration;
@@ -783,8 +791,8 @@
 		2C6D92DB0928239D005774F8 /* Build configuration list for PBXNativeTarget "TeXCompileServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C6D92DC0928239E005774F8 /* Development */,
-				2C6D92DD0928239E005774F8 /* Deployment */,
+				2C6D92DC0928239E005774F8 /* Debug */,
+				2C6D92DD0928239E005774F8 /* Release */,
 				2C6D92DE0928239E005774F8 /* SDDebug */,
 				2C6D92DF0928239E005774F8 /* Default */,
 			);
@@ -794,8 +802,8 @@
 		2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXCompileServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C6D92E10928239E005774F8 /* Development */,
-				2C6D92E20928239E005774F8 /* Deployment */,
+				2C6D92E10928239E005774F8 /* Debug */,
+				2C6D92E20928239E005774F8 /* Release */,
 				2C6D92E30928239E005774F8 /* SDDebug */,
 				2C6D92E40928239E005774F8 /* Default */,
 			);

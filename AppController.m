@@ -1,11 +1,10 @@
 #import "AppController.h"
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 
-
 //#import "AppNameToIconImageTransformer.h"
 
 #define useLog 0
-
+id EditorClient;
 static id sharedObj;
 
 @implementation AppController
@@ -79,9 +78,6 @@ static id sharedObj;
 
 - (id)factoryDefaultForKey:(NSString *)theKey
 {
-#if useLog
-	NSLog(@"call farcotryDefaultForKey");
-#endif
 	return [factoryDefaults objectForKey:theKey];
 }
 
@@ -117,6 +113,7 @@ static id sharedObj;
 		[NSApp terminate:self];
 		return;
     }
+	EditorClient = [[miClient alloc] init];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
