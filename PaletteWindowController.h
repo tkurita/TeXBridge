@@ -4,7 +4,6 @@
 
 @interface PaletteWindowController : NSWindowController
 {
-	NSTimer *displayToggleTimer;
 	BOOL isCollapsed;
 	NSRect expandedRect;
 	NSString *frameName;
@@ -12,8 +11,12 @@
 	NSArray *applicationsFloatingOn;
 	NSString *applicationsFloatingOnKeyPath;
 	NSString *applicationsFloatingOnEntryName;
-	BOOL isWorkedDisplayToggleTimer;
 }
++ (void)setVisibilityController:(id)theObj;
++ (id)visibilityController;
+
+- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName;
+- (void)setVisibility:(BOOL)shouldShow;
 
 //accessor methods
 - (void)setFrameName:(NSString *)theName;
@@ -25,19 +28,13 @@
 - (void)setApplicationsFloatingOnFromDefaultName:(NSString *)entryName;
 - (void)useWindowCollapse;
 - (void)useFloating;
-- (BOOL)isWorkingDisplayToggleTimer;
-- (void)restartStopDisplayToggleTimer;
-- (void)temporaryStopDisplayToggleTimer;
 
 //methods for override
 - (void)saveDefaults;
 
 //private
 - (void)collapseAction;
-- (void)setDisplayToggleTimer;
-- (void)updateVisibility:(NSTimer *)theTimer;
 - (float)titleBarHeight;
 - (void)toggleCollapseWithAnimate:(BOOL)flag;
 - (void)willApplicationQuit:(NSNotification *)aNotification;
-- (void)stopDisplayToggleTimer;
 @end

@@ -1,4 +1,7 @@
 #import "AppController.h"
+#import "PaletteWindowController.h"
+#import "WindowVisibilityController.h"
+
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 
 //#import "AppNameToIconImageTransformer.h"
@@ -114,6 +117,7 @@ static id sharedObj;
 		return;
     }
 	EditorClient = [[miClient alloc] init];
+	[PaletteWindowController setVisibilityController:[[[WindowVisibilityController alloc] init] autorelease]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

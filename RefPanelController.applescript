@@ -12,14 +12,12 @@ property isWorkedTimer : missing value
 
 on stopTimer()
 	if WindowController is not missing value then
-		call method "temporaryStopDisplayToggleTimer" of WindowController
 		call method "temporaryStopReloadTimer" of WindowController
 	end if
 end stopTimer
 
 on restartTimer()
 	if WindowController is not missing value then
-		call method "restartStopDisplayToggleTimer" of WindowController
 		call method "restartReloadTimer" of WindowController
 	end if
 end restartTimer
@@ -138,10 +136,11 @@ on openWindow()
 		initilize()
 		set isFirst to true
 	end if
-	set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
+	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
 	--activate
 	call method "showWindow:" of WindowController
-	if (isFirst or (isWorkingDisplayToggleTimer is 0)) then
+	--if (isFirst or (isWorkingDisplayToggleTimer is 0)) then
+	if isFirst then
 		watchmi() of LabelListObj
 	end if
 end openWindow

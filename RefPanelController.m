@@ -59,17 +59,6 @@ extern id EditorClient;
 	}
 }
 
-- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName suggestion:(BOOL)shouldShow
-{
-	if ([appName isEqualToString:@"mi"]) {
-		NSString *theMode = [EditorClient currentDocumentMode];
-		shouldShow = [[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
-				containsObject:theMode];
-	}
-	return shouldShow;
-}
-
-
 - (IBAction)showWindow:(id)sender
 {
 	[super showWindow:self];

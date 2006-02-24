@@ -90,6 +90,8 @@
 		2C6CA44208CFC6D2005D5612 /* SheetManager.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C80445E098DE473001DAF04 /* setuphelp.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2C80445D098DE473001DAF04 /* setuphelp.sh */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
+		2C8F4F5709AEF77600997C75 /* WindowVisibilityController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */; };
+		2C8F4F5809AEF77600997C75 /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */; };
 		2CA3F84F08BEE22A00F997B9 /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */; };
 		2CA3F85008BEE22A00F997B9 /* PaletteWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */; };
 		2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */; };
@@ -202,6 +204,8 @@
 		2C80445D098DE473001DAF04 /* setuphelp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setuphelp.sh; sourceTree = "<group>"; };
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXCompileServer.nib; sourceTree = "<group>"; };
+		2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
+		2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
 		2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
@@ -430,6 +434,8 @@
 				2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */,
 				2CBFD209097DFA9200BCEB43 /* miClient.h */,
 				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
+				2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */,
+				2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -455,6 +461,7 @@
 				2CBFCCC8097CA75900BCEB43 /* ErrorRecord.h in Headers */,
 				2CBFCCF3097CAF2600BCEB43 /* FileRecord.h in Headers */,
 				2CBFD20B097DFA9200BCEB43 /* miClient.h in Headers */,
+				2C8F4F5709AEF77600997C75 /* WindowVisibilityController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +582,7 @@
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
 				2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */,
 				2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */,
+				2C8F4F5809AEF77600997C75 /* WindowVisibilityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

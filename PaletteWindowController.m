@@ -2,13 +2,27 @@
 
 #define useLog 0
 
+static id VisibilityController;
+
 @implementation PaletteWindowController
+
++ (void)setVisibilityController:(id)theObj
+{
+	[theObj retain];
+	[VisibilityController release];
+	VisibilityController = theObj;
+}
+
++ (id)visibilityController
+{
+	return VisibilityController;
+}
 
 #pragma mark init and actions
 - (IBAction)showWindow:(id)sender
 {
 	[super showWindow:sender];
-	[self setDisplayToggleTimer];
+	[VisibilityController addWindowController:self];
 	NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
 	[notiCenter addObserver:self selector:@selector(willApplicationQuit:) name:NSApplicationWillTerminateNotification object:nil];
 }
@@ -101,33 +115,14 @@
 }
 
 #pragma mark methods for toggle visibility
-- (BOOL)isWorkingDisplayToggleTimer
+- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName
 {
-	if (displayToggleTimer == nil) return NO;
-	return [displayToggleTimer isValid];
+	return [applicationsFloatingOn containsObject:appName];;
 }
 
-- (BOOL)shouldUpdateVisibilityForApp:(NSString *)appName suggestion:(BOOL)shouldShow {
-	return shouldShow;
-}
-
-- (void)updateVisibility:(NSTimer *)theTimer
+- (void)setVisibility:(BOOL)shouldShow
 {
-#if useLog
-	NSLog(@"updateVisibility:");
-#endif
-	NSString *appName = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSApplicationName"];
-	if (appName == nil) {
-		return;
-	}
-	
 	NSWindow *theWindow = [self window];
-#if useLog
-	NSLog([applicationsFloatingOn description]);
-	NSLog(appName);
-#endif
-	BOOL shouldShow = [applicationsFloatingOn containsObject:appName];
-	shouldShow = [self shouldUpdateVisibilityForApp:appName suggestion:shouldShow];
 	
 	if (shouldShow){
 		if (![theWindow isVisible]) {
@@ -141,48 +136,6 @@
 			}
 		}
 	}
-}
-
-- (void)restartStopDisplayToggleTimer
-{
-	if (isWorkedDisplayToggleTimer) {
-		[self setDisplayToggleTimer];
-	}
-}
-
-- (void)temporaryStopDisplayToggleTimer
-{
-	if (displayToggleTimer != nil) {
-		[displayToggleTimer invalidate];
-		[displayToggleTimer release];
-		displayToggleTimer = nil;		
-		isWorkedDisplayToggleTimer = YES;
-	}
-	else {
-		isWorkedDisplayToggleTimer = NO;
-	}
-}
-
-- (void)stopDisplayToggleTimer
-{
-	if (displayToggleTimer != nil) {
-		[displayToggleTimer invalidate];
-		[displayToggleTimer release];
-		displayToggleTimer = nil;
-	}
-}
-
-- (void)setDisplayToggleTimer
-{
-#if useLog
-	NSLog(@"setDisplayToggleTimer");
-#endif
-	if (displayToggleTimer != nil) {
-		[displayToggleTimer invalidate];
-	}
-	[displayToggleTimer release];
-	displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
-	[displayToggleTimer retain];
 }
 
 #pragma mark methods for collapsing
@@ -268,6 +221,7 @@
 #if useLog
 	NSLog(@"start windowWillClose:");
 #endif
+	[VisibilityController removeWindowController:self];
 	[self saveDefaults];
 }
 
@@ -276,8 +230,8 @@
 #if useLog
 	NSLog(@"start windowShouldClose");
 #endif
-	[self stopDisplayToggleTimer];
 	[self saveDefaults];
+	[VisibilityController removeWindowController:self];
 	return YES;
 }
 

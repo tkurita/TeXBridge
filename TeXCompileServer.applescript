@@ -4,6 +4,7 @@ property PathConverter : load("PathConverter.scpt") of application "TeXToolsLib"
 property KeyValueDictionary : load("KeyValueDictionary.scpt") of application "TeXToolsLib"
 property StringEngine : StringEngine of PathConverter
 property appController : missing value
+property WindowVisibilityController : missing value
 
 property miAppRef : missing value
 
@@ -139,8 +140,9 @@ end doEditSupportCommand
 
 on open theObject
 	--log "start open"
-	stopTimer() of ToolPaletteController
+	--stopTimer() of ToolPaletteController
 	stopTimer() of RefPanelController
+	call method "temporaryStopDisplayToggleTimer" of WindowVisibilityController
 	if class of theObject is record then
 		set theCommandClass to commandClass of theObject
 		set theCommandID to commandID of theObject
@@ -191,8 +193,8 @@ on open theObject
 		
 	end if
 	
-	restartTimer() of ToolPaletteController
 	restartTimer() of RefPanelController
+	call method "restartStopDisplayToggleTimer" of WindowVisibilityController
 	return true
 end open
 
@@ -276,6 +278,8 @@ on will finish launching theObject
 	--log "end of setting TerminalSettingObj"
 	
 	set miAppRef to path to application "mi" as alias
+	
+	set WindowVisibilityController to call method "visibilityController" of class "PaletteWindowController"
 	--log "end will finish launching"
 end will finish launching
 
