@@ -77,7 +77,7 @@ extern id EditorClient;
 	NSEnumerator *enumerator = [_windowControllers objectEnumerator];
 	int showFlag = [self judgeVisibilityForApp:appName];
 	id theObj;
-	BOOL shouldShow;
+	BOOL shouldShow = YES;
 	while(theObj = [enumerator nextObject]) {
 		switch (showFlag) {
 			case -1 : 
