@@ -51,8 +51,29 @@ extern id EditorClient;
 
 - (int)judgeVisibilityForApp:(NSString *)appName
 {
+	/*
+	result = -1 : can't judge in this routine
+		0 : should hide	
+		1: should show
+		2: should not change
+	*/
 	if ([appName isEqualToString:@"mi"]) {
-		NSString *theMode = [EditorClient currentDocumentMode];
+		NSString *theMode;
+		@try{
+			theMode = [EditorClient currentDocumentMode];
+		}
+		@catch(NSException *exception){
+			NSNumber *err = [[exception userInfo] objectForKey:@"result code"];
+			if ([err intValue] == -1704) {
+				// maybe menu is opened
+				return 2;
+			}
+			else {
+				// maybe no documents opened
+				return 0;
+			}	
+		}
+		
 		if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
 				containsObject:theMode]) {
 			return 1;
@@ -89,6 +110,8 @@ extern id EditorClient;
 			case 1 : 
 				shouldShow = YES;
 				break;
+			case 2 :
+				return;
 		}
 		[theObj setVisibility:shouldShow];
 	}

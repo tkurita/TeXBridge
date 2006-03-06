@@ -77,7 +77,16 @@ OSErr selectParagraphOfmi(long parIndex){
 	}
 	
 	if (err != noErr) {
+#if useLog
+		printf("can't get mode with error :%i\n",err);
+#endif
+		//err = -1704 : menu is opened
+		//err = -1701 : No documents
 		free(theData);
+		NSDictionary *info = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:err] forKey:@"result code"];
+		NSException *exception = [NSException exceptionWithName:@"miClientException"
+												reason:@"Can't get document mode" userInfo:info];
+		@throw exception;
 		return @"";
 	}
 	
