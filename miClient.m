@@ -31,6 +31,7 @@ OSErr selectParagraphOfmi(long parIndex){
 							"'----':'obj '{form:indx, want:type(cpar), seld:long(@),from:'obj '{form:indx, want:type(docu), seld:short(1), from:'null'()}}", /* 書式指定文字列 */
 							parIndex); 
 	err = AESendMessage(&event,&reply,kAEWaitReply ,30);
+	AEDisposeDesc(&reply);
 	return(err);
 }
 
@@ -83,6 +84,7 @@ OSErr selectParagraphOfmi(long parIndex){
 		//err = -1704 : menu is opened
 		//err = -1701 : No documents
 		free(theData);
+		AEDisposeDesc(&reply);
 		NSDictionary *info = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:err] forKey:@"result code"];
 		NSException *exception = [NSException exceptionWithName:@"miClientException"
 												reason:@"Can't get document mode" userInfo:info];
@@ -94,7 +96,7 @@ OSErr selectParagraphOfmi(long parIndex){
 #if useLog
 	NSLog(theMode);
 #endif
-
+	AEDisposeDesc(&reply);
 	free(theData);
 
 #if useLog

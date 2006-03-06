@@ -80,6 +80,7 @@ on launched theObject
 	--typesetAndPreview() of TeXCompileObj
 	--debug()
 	--checkmifiles with saving
+	--quickTypesetAndPreview() of TeXCompileObj
 	
 	(*misc*)
 	--set theResult to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"

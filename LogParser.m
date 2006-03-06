@@ -2,7 +2,7 @@
 #import "LogWindowController.h"
 #import "FileRecord.h"
 
-#define useLog 0 //Yes:1, No:0
+#define useLog 1 //Yes:1, No:0
 
 NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber, NSRange theRange) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -50,7 +50,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 -(void)dealloc{
 	[newlineCharacterSet release];
 	[whitespaceCharSet release];
-	[errorRecordTree release];
 	[logFilePath release];
 	[logContents release];
 	[texFileExtensions release];
@@ -83,7 +82,205 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	return self;
 }
 
-#pragma mark parse log
+#pragma mark prepare to view parsed result
+- (NSString *) checkTexFileExtensions:(NSString *)targetFile
+{
+	NSEnumerator * suffixEnumerator = [texFileExtensions objectEnumerator];
+	NSString * theSuffix;
+	while (theSuffix = [suffixEnumerator nextObject]) {
+		if ([targetFile endsWith:theSuffix]) {
+			return targetFile;
+		}
+	}
+	
+	suffixEnumerator = [texFileExtensions objectEnumerator];
+	while (theSuffix = [suffixEnumerator nextObject] ) {
+		theSuffix = [theSuffix stringByAppendingString:@" "];
+		NSRange theRange = [targetFile rangeOfString:theSuffix];
+		if (theRange.length != 0) {
+			return [targetFile substringWithRange:NSMakeRange(0,NSMaxRange(theRange)-1)];
+		}
+	}
+	return nil;
+}
+
+- (void) parseLogTree:(NSMutableArray *) logTree
+{
+#if useLog
+	NSLog(@"start parseLogTree");
+#endif
+	if ([logTree count] <= 1) {
+		return;
+	}
+	
+	NSEnumerator *enumerator = [logTree objectEnumerator];
+	NSString *targetFile = [self getTargetFilePath:enumerator];
+	ErrorRecord *theErrorRecord;
+	NSMutableArray *errorRecordList = [NSMutableArray array];
+	id logItem;
+	while (logItem = [enumerator nextObject]) {
+		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
+		if (theErrorRecord) {
+			[errorRecordList addObject:theErrorRecord];
+		}
+	}
+	
+	if ([errorRecordList count]) {
+		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+		[theFileRecord setBaseURL:baseURL];
+		[theFileRecord setLogContents:logContents];
+		[errorRecordTree addObject:theFileRecord];
+	}
+#if useLog	
+	NSLog(@"end parseLogTree");
+#endif
+}
+
+- (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
+{
+	//NSLog(@"start findErrors");
+	NSString * logContent;
+	
+	if ([logTree isKindOfClass: [NSMutableArray class]]) {
+		[self parseLogTree:logTree];
+		return nil;
+	}
+	else {
+		logContent = [logTree objectForKey:@"content"];
+	}
+	
+	if ([logContent length] < 1) {
+		return nil;
+	}
+	
+	int errpInt;
+	NSNumber * errpn = nil;
+	id object;
+	NSString * nextLogContent;
+	//ErrorRecord *theErrorRecord = nil;
+	NSString * errMsg = nil;	
+	
+	if ([logContent startWith:@"!"]) {
+		errMsg = [NSString stringWithString:logContent];
+		isNoError = NO;
+		
+		while(object = [enumerator nextObject]) {
+			if ([object isKindOfClass: [NSMutableDictionary class]]) {
+				nextLogContent = [object objectForKey:@"content"];
+			}
+			else {
+				nextLogContent = [[object objectAtIndex:0] objectForKey:@"content"];
+			}
+			
+			if ([nextLogContent startWith:@"l."]) {
+				NSScanner * scanner = [NSScanner scannerWithString:nextLogContent];
+				NSString * scannedText;
+				if ([scanner scanUpToCharactersFromSet:whitespaceCharSet intoString:&scannedText]) {
+					errpInt =  [[scannedText substringWithRange:NSMakeRange(2,[scannedText length]-2)] intValue];
+					errpn = [NSNumber numberWithInt:errpInt];
+				}
+				
+				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
+				break;
+			}
+			else if ([nextLogContent startWith:@"?"] || 
+					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
+				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
+				break;
+			}
+		}
+		
+		/* 重複している？
+			if (theErrorRecord == nil) {
+				theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn];
+			}
+		*/
+	}
+	else if ([logContent contain:@"Warning:"]) {
+		errMsg = [NSString stringWithString:logContent];	
+		if (![logContent endsWith:@"."]) {
+			object = [enumerator nextObject];
+			if ([object isKindOfClass: [NSMutableDictionary class]]) {
+				errMsg = [logContent stringByAppendingString:[object objectForKey:@"content"]];
+			}			
+		}
+		
+		if ([errMsg contain:@"Label(s) may have changed. Rerun to get cross-references right."]) {
+			isLabelsChanged = YES;
+		}
+		
+		NSMutableArray *wordList = [errMsg splitWithCharacterSet:whitespaceCharSet];
+		if ([[wordList objectAtIndex:([wordList count] -2)] isEqualToString:@"line"]) {
+			errpInt = [[wordList lastObject] intValue];
+			errpn = [NSNumber numberWithInt:errpInt];
+		}
+		//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
+	}
+	
+	else if ([logContent startWith:@"Overfull"]||[logContent startWith:@"Underfull"]) {
+		errMsg = [NSString stringWithString:logContent];
+		NSMutableArray *wordList = [logContent splitWithCharacterSet:whitespaceCharSet];
+		NSScanner *scanner = [NSScanner scannerWithString:[wordList lastObject]];
+		if ([scanner scanInt:&errpInt]) {
+			errpn = [NSNumber numberWithInt:errpInt];	
+		}
+	}
+	
+	else if ([logContent startWith:@"No file"]) {
+		errMsg = [NSString stringWithString:logContent];
+		isNoError = NO;
+	}
+	
+	else if ([logContent isEqualToString:@"No pages of output."]) {
+		errMsg = [NSString stringWithString:logContent];
+		isNoError = NO;
+		isDviOutput = NO;
+	}
+	
+#if useLog
+	NSLog(@"end of findErrors");
+#endif
+	
+	if (errMsg != nil) {
+		return [self makeErrorRecordWithString:errMsg paragraph:errpn textRange:[logTree objectForKey:@"range"]];
+	}
+	else {
+		return nil;
+	}
+}
+
+- (void) parseLogTreeFirstLevel:(NSMutableArray *)logTree
+{
+	NSEnumerator *enumerator = [logTree objectEnumerator];
+	NSString * targetFile = [[enumerator nextObject] objectForKey:@"content"];
+	BOOL noLogFileRef = [targetFile isEqualToString:@""]; //when parsing STDOUT, thargetFile will be ""
+
+	ErrorRecord *theErrorRecord;
+	NSMutableArray * errorRecordList = [NSMutableArray array];
+
+	id logItem;
+	while (logItem = [enumerator nextObject]) {
+		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
+		if (theErrorRecord) {
+			if (!noLogFileRef) {
+				[theErrorRecord setParagraph:[logItem objectForKey:@"lineNumber"]];
+			}
+ 			[errorRecordList addObject:theErrorRecord];
+		}
+	}
+	
+	if ([errorRecordList count]) {
+		if (noLogFileRef) {
+			[errorRecordTree addObjectsFromArray:errorRecordList];
+		}
+		else {
+			FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+			[errorRecordTree addObject:theFileRecord];
+		}
+	}
+}
+
+#pragma mark parse logout of typeset
 - (NSString *)getNextLine {
 	
 	if (nextRange.length > 0) {
@@ -125,68 +322,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	[targetList addObject:dict];
 }
 
-- (NSMutableArray *) parseLog
-{
-#if useLog
-	NSLog(@"start parseLog");
-#endif
-	NSString *targetText = [self skipHeader];
-	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber, currentRange);
-	NSMutableArray *logTree = [NSMutableArray arrayWithObject:dict];
-	targetText = [self getNextLine];
-	BOOL wholeLineFlag = YES;
-#if useLog
-	NSLog(@"before parseBodyWith");
-#endif
-	targetText = [self parseBodyWith:logTree startText:targetText isWholeLine:&wholeLineFlag];
-	
-	dict = makeLogRecord(logFilePath, 0, currentRange);
-	NSMutableArray *loglogTree = [NSMutableArray arrayWithObject:dict];
-	[loglogTree addObject:logTree];
-#if useLog
-	NSLog(@"before parseFooterWith");
-#endif
-	[self parseFooterWith:loglogTree startText:targetText];
-#if useLog
-	NSLog([loglogTree description]);
-#endif
-	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
-	isDviOutput = YES;
-	isLabelsChanged = NO;
-	if (![logContents endsWith:@"\n"]) {
-		[self setLogContents:logContents];
-	}
-	[self parseLogTreeFirstLevel:loglogTree];
-#if useLog
-	NSLog([errorRecordTree description]);
-	NSLog(@"end of parseLog");
-#endif
-	[[LogWindowController sharedLogManager] addLogRecords:self] ;
-	
-	return errorRecordTree;
-}
-
-- (NSString *) checkTexFileExtensions:(NSString *)targetFile
-{
-	NSEnumerator * suffixEnumerator = [texFileExtensions objectEnumerator];
-	NSString * theSuffix;
-	while (theSuffix = [suffixEnumerator nextObject]) {
-		if ([targetFile endsWith:theSuffix]) {
-			return targetFile;
-		}
-	}
-	
-	suffixEnumerator = [texFileExtensions objectEnumerator];
-	while (theSuffix = [suffixEnumerator nextObject] ) {
-		theSuffix = [theSuffix stringByAppendingString:@" "];
-		NSRange theRange = [targetFile rangeOfString:theSuffix];
-		if (theRange.length != 0) {
-			return [targetFile substringWithRange:NSMakeRange(0,NSMaxRange(theRange)-1)];
-		}
-	}
-	return nil;
-}
-
 - (NSString *) getTargetFilePath:(NSEnumerator *) enumerator
 {
 
@@ -207,176 +342,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 	}
 	return targetFile;
-}
-
-- (void) parseLogTree:(NSMutableArray *) logTree
-{
-#if useLog
-	NSLog(@"start parseLogTree");
-#endif
-	if ([logTree count] <= 1) {
-		return;
-	}
-	
-	NSEnumerator *enumerator = [logTree objectEnumerator];
-	NSString *targetFile = [self getTargetFilePath:enumerator];
-	ErrorRecord *theErrorRecord;
-	NSMutableArray *errorRecordList = [NSMutableArray array];
-	id logItem;
-	while (logItem = [enumerator nextObject]) {
-		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
-		if (theErrorRecord) {
-			[errorRecordList addObject:theErrorRecord];
-		}
-	}
-
-	if ([errorRecordList count]) {
-		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
-		[theFileRecord setBaseURL:baseURL];
-		[theFileRecord setLogContents:logContents];
-		[errorRecordTree addObject:theFileRecord];
-	}
-#if useLog	
-	NSLog(@"end parseLogTree");
-#endif
-}
-
-- (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
-{
-	//NSLog(@"start findErrors");
-	NSString * logContent;
-	
-	if ([logTree isKindOfClass: [NSMutableArray class]]) {
-		[self parseLogTree:logTree];
-		return nil;
-	}
-	else {
-		logContent = [logTree objectForKey:@"content"];
-	}
-	
-	if ([logContent length] < 1) {
-		return nil;
-	}
-
-	int errpInt;
-	NSNumber * errpn = nil;
-	id object;
-	NSString * nextLogContent;
-	//ErrorRecord *theErrorRecord = nil;
-	NSString * errMsg = nil;	
-	
-	if ([logContent startWith:@"!"]) {
-		errMsg = [NSString stringWithString:logContent];
-		isNoError = NO;
-		
-		while(object = [enumerator nextObject]) {
-			if ([object isKindOfClass: [NSMutableDictionary class]]) {
-				nextLogContent = [object objectForKey:@"content"];
-			}
-			else {
-				nextLogContent = [[object objectAtIndex:0] objectForKey:@"content"];
-			}
-			
-			if ([nextLogContent startWith:@"l."]) {
-				NSScanner * scanner = [NSScanner scannerWithString:nextLogContent];
-				NSString * scannedText;
-				if ([scanner scanUpToCharactersFromSet:whitespaceCharSet intoString:&scannedText]) {
-					errpInt =  [[scannedText substringWithRange:NSMakeRange(2,[scannedText length]-2)] intValue];
-					errpn = [NSNumber numberWithInt:errpInt];
-				}
-				
-				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
-				break;
-			}
-			else if ([nextLogContent startWith:@"?"] || 
-					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
-				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
-				break;
-			}
-		}
-		
-		/* 重複している？
-		if (theErrorRecord == nil) {
-			theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn];
-		}
-		 */
-	}
-	else if ([logContent contain:@"Warning:"]) {
-		errMsg = [NSString stringWithString:logContent];	
-		if (![logContent endsWith:@"."]) {
-			object = [enumerator nextObject];
-			if ([object isKindOfClass: [NSMutableDictionary class]]) {
-				errMsg = [logContent stringByAppendingString:[object objectForKey:@"content"]];
-			}			
-		}
-		
-		if ([errMsg contain:@"Label(s) may have changed. Rerun to get cross-references right."]) {
-			isLabelsChanged = YES;
-		}
-		
-		NSMutableArray *wordList = [errMsg splitWithCharacterSet:whitespaceCharSet];
-		if ([[wordList objectAtIndex:([wordList count] -2)] isEqualToString:@"line"]) {
-			errpInt = [[wordList lastObject] intValue];
-			errpn = [NSNumber numberWithInt:errpInt];
-		}
-		//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
-	}
-
-	else if ([logContent startWith:@"Overfull"]||[logContent startWith:@"Underfull"]) {
-		errMsg = [NSString stringWithString:logContent];
-		NSMutableArray *wordList = [logContent splitWithCharacterSet:whitespaceCharSet];
-		NSScanner *scanner = [NSScanner scannerWithString:[wordList lastObject]];
-		if ([scanner scanInt:&errpInt]) {
-			errpn = [NSNumber numberWithInt:errpInt];	
-		}
-	}
-	
-	else if ([logContent startWith:@"No file"]) {
-		errMsg = [NSString stringWithString:logContent];
-		isNoError = NO;
-	}
-	
-	else if ([logContent isEqualToString:@"No pages of output."]) {
-		errMsg = [NSString stringWithString:logContent];
-		isNoError = NO;
-		isDviOutput = NO;
-	}
-	
-#if useLog
-	NSLog(@"end of findErrors");
-#endif
-	
-	if (errMsg != nil) {
-		return [self makeErrorRecordWithString:errMsg paragraph:errpn textRange:[logTree objectForKey:@"range"]];
-	}
-	else {
-		return nil;
-	}
-}
-
-- (void) parseLogTreeFirstLevel:(NSMutableArray *)logTree
-{
-	NSEnumerator *enumerator = [logTree objectEnumerator];
-	NSString * targetFile = [[enumerator nextObject] objectForKey:@"content"];
-	ErrorRecord *theErrorRecord;
-	NSMutableArray * errorRecordList = [NSMutableArray array];
-	
-	id logItem;
-	while (logItem = [enumerator nextObject]) {
-		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
-		if (theErrorRecord) {
-			//[theErrorRecord setObject:[logItem objectForKey:@"lineNumber"] forKey:@"paragraph"];
-			[theErrorRecord setParagraph:[logItem objectForKey:@"lineNumber"]];
- 			[errorRecordList addObject:theErrorRecord];
-		}
-	}
-	if ([errorRecordList count]) {
-//		NSMutableDictionary * errorRecordDict =
-//			[NSMutableDictionary dictionaryWithObject:errorRecordList forKey:@"errorRecordList"];
-//		[errorRecordDict setObject:targetFile forKey:@"file"];
-		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
-		[errorRecordTree addObject:theFileRecord];
-	}
 }
 
 -(void) parseFooterWith:(NSMutableArray *)currentList startText:(NSString *)targetText 
@@ -582,6 +547,48 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSLog(@"end skipHeader");
 #endif	
 	return [theLine substringWithRange:subRange];
+}
+
+#pragma mark starting method to parse log
+- (NSMutableArray *) parseLog
+{
+#if useLog
+	NSLog(@"start parseLog");
+#endif
+	NSString *targetText = [self skipHeader];
+	NSMutableDictionary * dict = makeLogRecord(targetText, currentLineNumber, currentRange);
+	NSMutableArray *logTree = [NSMutableArray arrayWithObject:dict];
+	targetText = [self getNextLine];
+	BOOL wholeLineFlag = YES;
+#if useLog
+	NSLog(@"before parseBodyWith");
+#endif
+	targetText = [self parseBodyWith:logTree startText:targetText isWholeLine:&wholeLineFlag];
+	
+	dict = makeLogRecord(logFilePath, 0, currentRange);
+	NSMutableArray *loglogTree = [NSMutableArray arrayWithObject:dict];
+	[loglogTree addObject:logTree];
+#if useLog
+	NSLog(@"before parseFooterWith");
+#endif
+	[self parseFooterWith:loglogTree startText:targetText];
+#if useLog
+	NSLog([loglogTree description]);
+#endif
+	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
+	isDviOutput = YES;
+	isLabelsChanged = NO;
+	if (![logContents endsWith:@"\n"]) {
+		[self setLogContents:logContents];
+	}
+	[self parseLogTreeFirstLevel:loglogTree];
+#if useLog
+	NSLog([errorRecordTree description]);
+	NSLog(@"end of parseLog");
+#endif
+	[[LogWindowController sharedLogManager] addLogRecords:self] ;
+	
+	return errorRecordTree;
 }
 
 #pragma mark methos for outlineview
