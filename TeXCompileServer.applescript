@@ -15,6 +15,8 @@ property comDelim : return
 property sQ : missing value
 property eQ : missing value
 
+property constantsDict : missing value
+
 (*=== dynamically loaded script objects ===*)
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
@@ -65,7 +67,6 @@ on launched theObject
 	
 	(*exec tex commands*)
 	--dviToPDF() of TeXCompileObj
-	--open "quickTypesetAndPreview"
 	--logParseOnly() of TeXCompileObj
 	--openRelatedFile of EditCommands without revealOnly
 	--dviPreview() of TeXCompileObj
@@ -87,6 +88,7 @@ on launched theObject
 	--open "replaceInput"
 	--call method "showHelp:"
 	--call method "currentDocumentMode" of class "EditorClient"
+	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
 	(*end of debug code*)
 	
 	--log "end of launched"
@@ -121,6 +123,7 @@ on doCompileCommnad(theCommandID)
 end doCompileCommnad
 
 on doEditSupportCommand(theCommandID)
+	--log "start doEditSupportCommand"
 	if theCommandID is "replaceInput" then
 		if ReplaceInputObj is missing value then
 			set ReplaceInputObj to importScript("ReplaceInputObj")
@@ -241,15 +244,39 @@ on choose menu item theObject
 	end if
 end choose menu item
 
+on setUpConstants()
+	set sQ to localized string "startQuote"
+	set eQ to localized string "endQuote"
+	
+	tell application "mi"
+		set miPath to path to it
+	end tell
+	tell application "System Events"
+		set theVer to version of miPath
+	end tell
+	set theVer to word 3 of theVer
+	if theVer is greater than or equal to "2.1.7" then
+		set plistName to "ToolSupport"
+	else
+		set plistName to "ToolSupport216"
+	end if
+	
+	tell main bundle
+		set plistPath to path for resource plistName extension "plist"
+	end tell
+	set constantsDict to call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistPath
+	set yenmark to backslash of constantsDict
+end setUpConstants
+
 on will finish launching theObject
 	--activate
 	--log "start will finish launching"
 	set appController to call method "sharedAppController" of class "AppController"
 	set MessageUtility to importScript("MessageUtility")
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
 	
 	showStartupMessage("Loading Factory Settings ...")
+	setUpConstants()
+	
 	set DefaultsManager to importScript("DefaultsManager")
 	
 	showStartupMessage("Loading Scripts ...")
@@ -318,4 +345,3 @@ end should selection change
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
 end showStartupMessage
-

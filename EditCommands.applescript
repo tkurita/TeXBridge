@@ -19,9 +19,13 @@ on extractFilePath(theCommand, theParagraph)
 end extractFilePath
 
 on openRelatedFile given revealOnly:revealFlag
+	--log "start openRelatedFile"
 	try
 		set theTexDocObj to checkmifiles of TeXCompileObj without saving and autosave
-	on error errMsg number 1200
+	on error errMsg number errNum
+		if errNum is not in ignoringErrorList of TeXCompileObj then
+			showError(errNum, "openRelatedFile", errMsg) of MessageUtility
+		end if
 		return
 	end try
 	

@@ -12,7 +12,6 @@
 			buildActionMask = 2147483647;
 			contextName = "";
 			files = (
-				2C4E27B3084273B000004A96 /* TeXCompileServer.applescript in AppleScript */,
 				2C4E27B4084273B000004A96 /* TeXCompileObj.applescript in AppleScript */,
 				2C4E27B5084273B000004A96 /* EditCommands.applescript in AppleScript */,
 				2C4E27B6084273B000004A96 /* LogFileParser.applescript in AppleScript */,
@@ -32,6 +31,7 @@
 				2C6CA3C108CF559E005D5612 /* LabelListObj.applescript in AppleScript */,
 				2C6CA44208CFC6D2005D5612 /* SheetManager.applescript in AppleScript */,
 				2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */,
+				2C2B7B9309BC172500B6B3F6 /* TeXCompileServer.applescript in AppleScript */,
 			);
 			isSharedContext = 0;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,10 +39,10 @@
 /* End PBXAppleScriptBuildPhase section */
 
 /* Begin PBXBuildFile section */
+		2C2B7B9309BC172500B6B3F6 /* TeXCompileServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27AF084273B000004A96 /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C2E5293080625270015E9EB /* SmartActivate.h */; };
 		2C4E27B0084273B000004A96 /* LogParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDACD7F0813BE3F000B9086 /* LogParser.h */; };
 		2C4E27B1084273B000004A96 /* stringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDACD800813BE3F000B9086 /* stringExtra.h */; };
-		2C4E27B3084273B000004A96 /* TeXCompileServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B4084273B000004A96 /* TeXCompileObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -239,7 +239,7 @@
 		2CDBE608097BA7FE00C3300B /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
-		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = ToolSupport.plist; sourceTree = "<group>"; };
+		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
 		2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ToolSupport216.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TeXCompileServer.applescript; sourceTree = "<group>"; };
