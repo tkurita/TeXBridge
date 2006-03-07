@@ -47,6 +47,7 @@ on watchmi()
 	
 	if theAuxObj is not missing value then
 		if dataItemRef of theAuxObj is missing value then
+			--log "exists item"
 			if auxFileRef of theAuxObj is not missing value then
 				parseAuxFile(theAuxObj)
 			end if
@@ -164,6 +165,7 @@ end findAuxObjFromDoc
 on appendToOutline for theAuxObj below parentDataItem
 	--log "start appendToOutline"
 	if dataItemRef of theAuxObj is missing value then
+		--log "is first append to outline"
 		set titleItem to make new data item at end of data items of parentDataItem
 		set dataItemRef of theAuxObj to titleItem
 		set contents of data cell "label" of titleItem to baseName of theAuxObj
@@ -172,6 +174,7 @@ on appendToOutline for theAuxObj below parentDataItem
 		updateLabels() of theAuxObj
 		return
 	end if
+	
 	--log "before repeat in appendToOutline"
 	repeat with theLabelRecord in {labelRecordFromAux of theAuxObj, labelRecordFromDoc of theAuxObj}
 		repeat with ith from 1 to length of theLabelRecord
@@ -255,6 +258,7 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 		property labelList : {}
 		property baseName : theBaseName
 		--property folderAlias : theFolderAlias
+		property isExpanded : missing value
 		property dataItemRef : missing value
 		
 		on checkAuxFile()
@@ -296,6 +300,7 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 		end addLabelFromDoc
 		
 		on expandDataItem()
+			--log "start expandDataItem"
 			-- when epanded outline, it seems that width of table column is changed uncorrectly.
 			-- fix table column width between before exapand and after expand
 			set currentLabelWidth to width of table column "label" of outlineView
@@ -330,7 +335,6 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 			--log "nLabelFromAux:" & nLabelFromAux
 			--log "nLabelFromDoc:" & nLabelFromDoc
 			
-			--return
 			repeat with ith from 1 to nLabelFromAux
 				if ith is less than or equal to nDataItem then
 					set theDataItem to data item ith of dataItemRef
@@ -372,7 +376,6 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 			repeat (nDataItem - nLabelFromAux - nLabelFromDoc) times
 				delete data item delItemNum of dataItemRef
 			end repeat
-			
 			--log "end of updateLabels"
 		end updateLabels
 		
@@ -454,9 +457,12 @@ on parseAuxFile(theAuxObj)
 	--log "before clearLabelsFromAux in parseAuxFile"
 	clearLabelsFromAux() of theAuxObj
 	--log "start repeat in parseAuxFile"
+	set newlabelText to yenmark & "newlabel{"
+	set inputText to yenmark & "@input{"
 	repeat with ith from 1 to (count paragraph of theContents)
 		set theParagraph to paragraph ith of theContents
-		if theParagraph starts with yenmark & "newlabel{" then
+		if (theParagraph as Unicode text) starts with newlabelText then
+			--log "start with newlabelText"
 			set theParagraph to text 11 thru -2 of theParagraph
 			startStringEngine() of StringEngine
 			set theTextItemList to everyTextItem of StringEngine from theParagraph by "}{"

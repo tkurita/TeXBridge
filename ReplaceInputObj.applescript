@@ -1,5 +1,5 @@
 (* Shared Constants *)
-global yenmark
+global _backslash
 
 (* Shared Libraries *)
 global UtilityHandlers
@@ -254,10 +254,10 @@ on do()
 	end if
 	
 	set targetText to text 1 thru cursorPositionInPar of theLine
-	if targetText ends with yenmark then
+	if targetText ends with _backslash then
 		return
 	end if
-	set lastYenPosition to (offsetLastYenmark(targetText))
+	set lastYenPosition to (offsetLastBackslash(targetText))
 	set keyText to text (lastYenPosition + 1) thru -1 of targetText
 	
 	set newText to missing value
@@ -284,13 +284,13 @@ on do()
 	end tell
 end do
 
-on offsetLastYenmark(theText)
-	set theOffset to offset of yenmark in theText
+on offsetLastBackslash(theText)
+	set theOffset to offset of _backslash in theText
 	if theOffset is 0 then
 		return theOffset
 	else
-		set theNextOffset to offsetLastYenmark(text (theOffset + 1) thru -1 of theText)
+		set theNextOffset to offsetLastBackslash(text (theOffset + 1) thru -1 of theText)
 		return theOffset + theNextOffset
 	end if
-end offsetLastYenmark
+end offsetLastBackslash
 

@@ -2,7 +2,7 @@
 #import "LogWindowController.h"
 #import "FileRecord.h"
 
-#define useLog 1 //Yes:1, No:0
+#define useLog 0 //Yes:1, No:0
 
 NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber, NSRange theRange) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];

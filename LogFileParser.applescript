@@ -1,4 +1,3 @@
-global yenmark
 global PathConverter
 
 on makeObj(theTexDocObj)

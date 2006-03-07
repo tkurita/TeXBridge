@@ -10,6 +10,7 @@ property miAppRef : missing value
 
 (*=== shared constants ===*)
 property dQ : ASCII character 34
+property _backslash : missing value
 property yenmark : ASCII character 92
 property comDelim : return
 property sQ : missing value
@@ -266,7 +267,7 @@ on setUpConstants()
 		set plistPath to path for resource plistName extension "plist"
 	end tell
 	set constantsDict to call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistPath
-	set yenmark to backslash of constantsDict
+	set _backslash to backslash of constantsDict
 end setUpConstants
 
 on will finish launching theObject

@@ -4,9 +4,8 @@ global SheetManager
 property LabelListObj : missing value
 property WindowController : missing value
 property targetWindow : missing value
---property miAppRef : missing value
 global miAppRef
-global yenmark
+global _backslash
 
 property isWorkedTimer : missing value
 
@@ -95,7 +94,7 @@ on doubleClicked(theObject)
 	end tell
 	set curPosInLine to cursorPosition - linePos
 	set textBeforeCursor to text 1 thru (cursorPosition - linePos) of currentLine
-	set refCommand to yenmark & refText
+	set refCommand to _backslash & refText
 	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
 		tell application "mi"
 			tell front document

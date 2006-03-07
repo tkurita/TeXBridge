@@ -2,7 +2,7 @@ global PathConverter
 global TeXCompileObj
 global MessageUtility
 global PathAnalyzer
-global yenmark
+global _backslash
 
 on extractFilePath(theCommand, theParagraph)
 	if theParagraph contains theCommand then
@@ -32,9 +32,9 @@ on openRelatedFile given revealOnly:revealFlag
 	set theOriginPath to POSIX path of texFileRef of theTexDocObj
 	setPOSIXoriginPath(theOriginPath) of PathConverter
 	
-	set incGraphicCommand to (yenmark & "includegraphics" as Unicode text)
-	set bibCommand to yenmark & "bibliography"
-	set commandList to {yenmark & "includegraphics", yenmark & "input", yenmark & "include", bibCommand}
+	set incGraphicCommand to (_backslash & "includegraphics" as Unicode text)
+	set bibCommand to _backslash & "bibliography"
+	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", _backslash}
 	
 	set firstpara to targetParagraph of theTexDocObj
 	tell application "mi"

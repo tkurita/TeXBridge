@@ -26,7 +26,7 @@
 	NSEnumerator *baseEnum = [baseComps objectEnumerator];
 	
 	NSString *baseElement;
-	NSString *targetElement;
+	NSString *targetElement = nil;
 
 	BOOL hasRest = NO;
 	BOOL hasTargetRest = YES;

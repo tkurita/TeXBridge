@@ -17,7 +17,7 @@ global PathConverter
 
 --special values
 global comDelim
-global yenmark
+global _backslash
 global sQ -- start of quotation character
 global eQ -- end of quotation character
 
@@ -503,7 +503,7 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 end execTexCommand
 
 on seekExecEbb()
-	set graphicCommand to yenmark & "includegraphics"
+	set graphicCommand to _backslash & "includegraphics"
 	
 	try
 		set theTexDocObj to checkmifiles without saving and autosave

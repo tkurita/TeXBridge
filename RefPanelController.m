@@ -10,13 +10,7 @@ extern id EditorClient;
 
 - (void)pushReloadButton:(NSTimer *)theTimer
 {
-#if useLog
-	NSLog(@"start pushReloadButton");
-#endif
 	if ([[self window] isVisible] && ![self isCollapsed]) {
-#if useLog
-		NSLog(@"pushReloadButton action");
-#endif
 		[reloadButton performClick:self];
 	}
 }
@@ -63,7 +57,6 @@ extern id EditorClient;
 {
 	[super showWindow:self];
 	[self setReloadTimer];
-
 }
 
 - (void)awakeFromNib
