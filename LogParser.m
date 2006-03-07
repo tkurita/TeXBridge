@@ -127,7 +127,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	
 	if ([errorRecordList count]) {
 		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
-		[theFileRecord setBaseURL:baseURL];
+		[theFileRecord setBaseURL:_baseURL];
 		[theFileRecord setLogContents:logContents];
 		[errorRecordTree addObject:theFileRecord];
 	}
@@ -275,6 +275,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 		else {
 			FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+			[theFileRecord setBaseURL:_baseURL];
+			[theFileRecord setLogContents:logContents];
 			[errorRecordTree addObject:theFileRecord];
 		}
 	}
@@ -644,8 +646,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 
 - (void)setBaseURLWithPath:(NSString *)path
 {
-	[baseURL release];
-	baseURL = [[NSURL fileURLWithPath: path] retain];
+	[_baseURL release];
+	_baseURL = [[NSURL fileURLWithPath: path] retain];
 }
 
 - (NSMutableArray *)errorRecordTree

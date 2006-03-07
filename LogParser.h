@@ -22,7 +22,7 @@
 	NSString *currentString;
 	NSRange range, currentRange, nextRange;
 	NSMutableArray *errorRecordTree;
-	NSURL *baseURL;
+	NSURL *_baseURL;
 }
 
 //puclic method

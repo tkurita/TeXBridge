@@ -1,6 +1,7 @@
 #import "AppController.h"
 #import "PaletteWindowController.h"
 #import "WindowVisibilityController.h"
+#import "PathExtra.h"
 
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 
@@ -90,6 +91,13 @@ static id sharedObj;
 #if useLog
 	NSLog(@"start applicationWillFinishLaunching");
 #endif
+	/*
+	NSString *thePath = @"/usr/local/bin/hello";
+	NSString *basePath = @"/usr/local/bin/yo/";
+	NSArray *pathComps = [basePath pathComponents];
+	NSString *relPath = [thePath relativePathWithBase:basePath];
+	*/
+	
 	/* regist FactorySettings into shared user defaults */
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];

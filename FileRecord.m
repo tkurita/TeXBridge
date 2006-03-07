@@ -1,5 +1,7 @@
 #import "FileRecord.h"
 #import "ErrorRecord.h"
+#import "PathExtra.h"
+
 //#include <CoreFoundation/CoreFoundation.h>
 
 @implementation FileRecord
@@ -7,9 +9,9 @@
 #pragma mark initialize and dealloc
 -(void) dealloc
 {
-	[targetFile release];
+	[_targetFile release];
 	[errorRecords release];
-	[targetURL release];
+	[_targetURL release];
 	[logContents release];
 	DisposeHandle((Handle)aliasHandle);
 	[super dealloc];
@@ -18,19 +20,27 @@
 + (id)fileRecordForPath: (NSString*)path errorRecords:(NSArray *)array
 {
 	id newInstance = [[[self class] alloc] init];
-	[newInstance setTargetFile:path];
 	[newInstance setErrorRecords:array];
+	[newInstance setTargetFile:path];
+	
 	return [newInstance autorelease];
 }
 
 - (BOOL)setBaseURL:(NSURL *)baseURL
 {
-	[targetURL release];
-	targetURL = [[NSURL URLWithString:targetFile relativeToURL:baseURL] retain];
+	[_targetURL release];
+	if ([_targetFile isAbsolutePath]) {
+		_targetURL = [[NSURL fileURLWithPath:_targetFile] retain];
+		NSString *relPath = [_targetFile relativePathWithBase:[baseURL path]];
+		[self setTargetFile: relPath];
+	}
+	else {
+		_targetURL = [[NSURL URLWithString:_targetFile relativeToURL:baseURL] retain];
+	}
 	
 	OSErr theError = noErr;
 	FSRef theReference;
-	CFURLGetFSRef((CFURLRef)targetURL, &theReference);
+	CFURLGetFSRef((CFURLRef)_targetURL, &theReference);
 	theError = FSNewAliasMinimal( &theReference, &aliasHandle );
 	
 	return theError == noErr;
@@ -54,7 +64,7 @@
 {
 	id result = nil;
 	if ([theKey isEqualToString:@"first"]) {
-		result = targetFile;
+		result = _targetFile;
 	}
 	
 	if ([theKey isEqualToString:@"paragraph"]) {
@@ -99,8 +109,8 @@
 -(void) setTargetFile: (NSString *)path
 {
 	[path retain];
-	[targetFile release];
-	targetFile = path;
+	[_targetFile release];
+	_targetFile = path;
 }
 
 @end

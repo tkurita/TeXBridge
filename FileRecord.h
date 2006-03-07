@@ -2,9 +2,9 @@
 
 
 @interface FileRecord : NSObject {
-	NSString *targetFile;
+	NSString *_targetFile;
 	NSArray *errorRecords;
-	NSURL *targetURL;
+	NSURL *_targetURL;
 	AliasHandle aliasHandle;
 	NSString *logContents;
 }
