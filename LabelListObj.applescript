@@ -1,4 +1,5 @@
 global yenmark
+global _backslash
 global RefPanelController
 global UtilityHandlers
 global KeyValueDictionary
@@ -479,7 +480,7 @@ on parseAuxFile(theAuxObj)
 			if not theLabel is "" then
 				addLabelFromAux(theLabel, theRef) of theAuxObj
 			end if
-		else if theParagraph starts with yenmark & "@input{" then
+		else if theParagraph starts with inputText then
 			--log "start @input"
 			set childAuxFile to text 9 thru -2 of theParagraph
 			setPOSIXoriginPath(POSIX path of (auxFileRef of theAuxObj)) of PathConverter
@@ -502,7 +503,7 @@ on findLabelsFromDocument(theAuxObj)
 		set theContents to content of document 1
 	end tell
 	clearLabelsFromDoc() of theAuxObj
-	set labelCommand to yenmark & "label"
+	set labelCommand to _backslash & "label"
 	--log "before repeat"
 	repeat with ith from 1 to (count paragraph of theContents)
 		set theParagraph to paragraph ith of theContents
