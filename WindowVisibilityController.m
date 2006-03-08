@@ -152,7 +152,7 @@ extern id EditorClient;
 		[_displayToggleTimer invalidate];
 	}
 	[_displayToggleTimer release];
-	_displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
+	_displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
 	[_displayToggleTimer retain];
 }
 

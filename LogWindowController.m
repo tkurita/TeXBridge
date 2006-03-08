@@ -3,7 +3,7 @@
 #import "LogWindowController.h"
 #import "LogParser.h"
 
-id static sharedLogManager;
+static id sharedLogManager;
 
 @implementation LogWindowController
 

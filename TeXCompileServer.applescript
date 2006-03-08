@@ -180,6 +180,10 @@ on open theObject
 			openWindow() of ToolPaletteController
 		else if theCommandID is "ShowRefPalette" then
 			openWindow() of RefPanelController
+		else if theCommandID is "ShowLogWindow" then
+			set logManager to call method "sharedLogManager" of class "LogWindowController"
+			call method "showWindow:" of logManager
+			activate
 		else if theCommandID starts with "." then
 			openOutputHadler(theCommandID) of TeXCompileObj
 		else if theCommandID ends with ".tex" then
