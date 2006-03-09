@@ -1,5 +1,4 @@
 #import "ErrorRecord.h"
-#import "FileRecord.h"
 #import "LogWindowController.h"
 #import "LogParser.h"
 
@@ -7,7 +6,7 @@ static id sharedLogManager;
 
 @implementation LogWindowController
 
-- (void)addLogRecords:(id)logRecords
+- (void)addLogRecords:(id <LogWindowItem>)logRecords
 {
 	[rootArray insertObject:logRecords atIndex:0];
 	
@@ -114,8 +113,8 @@ static id sharedLogManager;
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
     id	identifier = [tableColumn identifier];
-		
-	return [item objectForKey:identifier];
+	
+	return [item valueForKey:identifier];
 }
 
 #pragma mark delegate for outlineview

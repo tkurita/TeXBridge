@@ -37,19 +37,14 @@ extern id EditorClient;
 	return nil;
 }
 
--(id) objectForKey:(NSString *) theKey
+-(id) comment
 {
-	id result = nil;
-	
-	if ([theKey isEqualToString:@"first"]) {
-		result = comment;
-	}
+	return comment;
+}
 
-	if ([theKey isEqualToString:@"paragraph"]) {
-		result = paragraph;
-	}
-	
-	return result;
+-(id) paragraph
+{
+	return paragraph;
 }
 
 -(BOOL) hasChild {

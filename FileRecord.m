@@ -56,22 +56,22 @@
 }
 
 #pragma mark medhots for outlineview
+-(BOOL) jumpToFile {
+	return NO;
+}
+
 -(id) child {
 	return errorRecords;
 }
 
--(id) objectForKey:(NSString *) theKey
+-(id) comment
 {
-	id result = nil;
-	if ([theKey isEqualToString:@"first"]) {
-		result = _targetFile;
-	}
-	
-	if ([theKey isEqualToString:@"paragraph"]) {
-		result = nil;
-	}
-	
-	return result;
+	return _targetFile;
+}
+
+-(id) paragraph
+{
+	return nil;
 }
 
 -(BOOL) hasChild {

@@ -99,6 +99,7 @@
 		2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CB09B4C09BF3663008DA844 /* LogWindowItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CB09B4B09BF3663008DA844 /* LogWindowItem.h */; };
 		2CB63A6D08CF053A002FCC88 /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
 		2CBFCCC8097CA75900BCEB43 /* ErrorRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */; };
@@ -216,6 +217,7 @@
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteController.applescript; sourceTree = "<group>"; };
+		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
 		2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorRecord.h; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				2CDACD820813BE3F000B9086 /* LogParser.m */,
 				2CDBE608097BA7FE00C3300B /* LogWindowController.h */,
 				2CDBE609097BA7FE00C3300B /* LogWindowController.m */,
+				2CB09B4B09BF3663008DA844 /* LogWindowItem.h */,
 				2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */,
 				2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */,
 				2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */,
@@ -469,6 +472,7 @@
 				2CBFD20B097DFA9200BCEB43 /* miClient.h in Headers */,
 				2C8F4F5709AEF77600997C75 /* WindowVisibilityController.h in Headers */,
 				2C2B7E4609BD233F00B6B3F6 /* PathExtra.h in Headers */,
+				2CB09B4C09BF3663008DA844 /* LogWindowItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

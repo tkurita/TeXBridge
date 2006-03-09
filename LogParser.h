@@ -1,8 +1,9 @@
 #import <Cocoa/Cocoa.h>
 #import "ErrorRecord.h"
 #import "stringExtra.h"
+#import "LogWindowItem.h"
 
-@interface LogParser : NSObject {
+@interface LogParser : NSObject <LogWindowItem>{
 	//setting parameters
 	NSString *logFilePath;
 	NSString *logContents;
@@ -53,13 +54,6 @@
 
 - (NSString *) getTargetFilePath:(NSEnumerator *) enumerator;
 - (NSString *) checkTexFileExtensions:(NSString *)targetFile;
-
-#pragma mark methos for outlineview
--(id)child;
-
--(id) objectForKey:(NSString *)theKey;
-
--(BOOL)hasChild;
 
 #pragma mark accessor methods
 - (NSString *)logContents;

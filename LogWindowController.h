@@ -1,6 +1,5 @@
-/* LogWindowController */
-
 #import <Cocoa/Cocoa.h>
+#import "LogWindowItem.h"
 
 @interface LogWindowController : NSWindowController
 {
@@ -13,7 +12,7 @@
 }
 
 + (id)sharedLogManager;
-- (void)addLogRecords:(id)logRecords;
+- (void)addLogRecords:(id <LogWindowItem>)logRecords;
 - (BOOL)jumpToFile:(id)sender;
 
 #pragma mark accessor methods

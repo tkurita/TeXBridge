@@ -594,6 +594,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 }
 
 #pragma mark methos for outlineview
+-(BOOL) jumpToFile
+{
+	return NO;
+}
 
 -(BOOL) hasChild
 {
@@ -605,14 +609,14 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	return errorRecordTree ;
 }
 
--(id) objectForKey:(NSString *)theKey
+-(id) comment
 {
-	id result = nil;
-	if ([theKey isEqualToString:@"first"]) {
-		result = _jobName;
-	}
-	
-	return result;
+	return _jobName;
+}
+
+-(id) paragraph
+{
+	return nil;
 }
 
 #pragma mark accessor methods

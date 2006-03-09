@@ -1,7 +1,7 @@
 #import <Cocoa/Cocoa.h>
+#import "LogWindowItem.h"
 
-
-@interface FileRecord : NSObject {
+@interface FileRecord : NSObject <LogWindowItem>{
 	NSString *_targetFile;
 	NSArray *errorRecords;
 	NSURL *_targetURL;
@@ -9,28 +9,23 @@
 	NSString *logContents;
 }
 
-- (BOOL)getFSRef:(FSRef *)theRef;
-
+-(BOOL) getFSRef:(FSRef *)theRef;
 +(id) fileRecordForPath: (NSString*)path errorRecords:(NSArray *)array;
-
--(BOOL) hasChild ;
-
 -(void) setLogContents:(NSString *)string;
+-(BOOL) setBaseURL:(NSURL *)baseURL;
 
+#pragma mark methods for oulineview
+/*
+-(id) paragraph;
 -(id) child;
-
-- (id)objectForKey:(NSString *) theKey;
-
-- (BOOL)setBaseURL:(NSURL *)baseURL;
+-(BOOL) hasChild;
+-(id) comment;
+*/
 
 #pragma mark accesor methods
-
 -(NSString *) logContents;
-
 -(void) setErrorRecords:(NSArray *)array;
-
 -(void) setLogContents:(NSString *)string;
-
 -(void) setTargetFile: (NSString *)path;
 
 @end
