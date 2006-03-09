@@ -3,52 +3,25 @@ global PathConverter
 on makeObj(theTexDocObj)
 	script LogFileParser
 		property parent : theTexDocObj
-		property isDviOutput : true
+		property _isDviOutput : true
+		property _isNoError : true
 		property hyperlist : {}
 		property retryCompile : false
-		property isNoError : true
 		property isNoMessages : false
 		property isLabelsChanged : false
 		property myPathConverter : missing value
 		
-		on buildHyperList(parseResult)
-			--log "start buildHyperList"
-			copy PathConverter to myPathConverter
-			setHFSoriginPath(my texBasePath) of myPathConverter
-			--log parseResult
-			repeat with theItem in parseResult
-				set targetFile to |file| of theItem
-				set errorRecordList to |errorRecordList| of theItem
-				
-				if targetFile is not "" then
-					set targetFile to resolveTargetFile(targetFile)
-					
-					repeat with theRecord in errorRecordList
-						using terms from application "mi"
-							set errorRecord to {file:targetFile, comment:|comment| of theRecord}
-							try
-								set errorRecord to errorRecord & {paragraph:|paragraph| of theRecord}
-							end try
-						end using terms from
-						set end of hyperlist to errorRecord
-					end repeat
-				else
-					repeat with theRecord in errorRecordList
-						using terms from application "mi"
-							set errorRecord to {file:my texFileRef, comment:|comment| of theRecord}
-						end using terms from
-						set end of hyperlist to errorRecord
-					end repeat
-				end if
-			end repeat
-			
-			--log hyperlist
-			set isNoMessages to (hyperlist is {})
-		end buildHyperList
-		
 		on boolValue(theValue)
 			return theValue is 1
 		end boolValue
+		
+		on isDviOutput()
+			return _isDviOutput
+		end isDviOutput
+		
+		on isNoError()
+			return _isNoError
+		end isNoError
 		
 		on parseLog(logParser)
 			call method "setBaseURLWithPath:" of logParser with parameter (POSIX path of my texBasePath)
@@ -59,7 +32,8 @@ on makeObj(theTexDocObj)
 			call method "setJobName:" of logParser with parameter (commandName & space & my texFileName)
 			set parseResult to call method "parseLog" of logParser
 			--log parseResult
-			set isDviOutput to boolValue(call method "isDviOutput" of logParser)
+			set _isDviOutput to boolValue(call method "isDviOutput" of logParser)
+			set _isNoError to boolValue(call method "isNoError" of logParser)
 			set isLabelsChanged to boolValue(call method "isLabelsChanged" of logParser)
 			--buildHyperList(parseResult)
 			call method "release" of logParser

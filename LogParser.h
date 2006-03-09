@@ -33,8 +33,6 @@
 
 - (NSMutableArray *) parseLog;
 
-- (BOOL) isDviOutput;
-
 -(BOOL) isLabelsChanged;
 
 //internal use
@@ -56,14 +54,12 @@
 - (NSString *) checkTexFileExtensions:(NSString *)targetFile;
 
 #pragma mark accessor methods
-- (NSString *)logContents;
-
-- (void)setLogContents:(NSString *)logText;
-
-- (void)setLogFilePath:(NSString *)path;
-
-- (void)setBaseURLWithPath:(NSString *)path;
-
-- (NSMutableArray *)errorRecordTree;
+-(NSString *) logContents;
+-(void) setLogContents:(NSString *)logText;
+-(void) setLogFilePath:(NSString *)path;
+-(void) setBaseURLWithPath:(NSString *)path;
+-(NSMutableArray *) errorRecordTree;
+-(BOOL) isDviOutput;
+-(BOOL) isNoError;
 
 @end

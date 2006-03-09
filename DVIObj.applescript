@@ -6,7 +6,7 @@ global PathConverter
 global comDelim
 
 script XdviDriver
-	on openDVI(theDviObj)
+	on openDVI given sender:theDviObj, activation:aFlag
 		set x11AppName to "X11"
 		if not (isRunning(x11AppName) of UtilityHandlers) then
 			tell application x11AppName
@@ -48,13 +48,13 @@ script XdviDriver
 end script
 
 script SimpleDriver
-	on openDVI(theDviObj)
+	on openDVI given sender:theDviObj, activation:aFlag
 		openOutputFile(".dvi") of theDviObj
 	end openDVI
 end script
 
 script MxdviDriver
-	on openDVI(theDviObj)
+	on openDVI given sender:theDviObj, activation:aFlag
 		--log "start openDVI of MxdviDriver"
 		try
 			set mxdviApp to path to application "Mxdvi" as alias
@@ -142,8 +142,8 @@ on makeObj(theTexDocObj)
 			end if
 		end getSrcSpecialFlag
 		
-		on openDVI()
-			openDVI(a reference to me) of DVIDriver
+		on openDVI given activation:aFlag
+			openDVI of DVIDriver given sender:a reference to me, activation:aFlag
 		end openDVI
 		
 		on dviToPDF()

@@ -6,6 +6,11 @@ static id sharedLogManager;
 
 @implementation LogWindowController
 
+-(void) bringToFront
+{
+	[[self window] orderFront:self];
+}
+
 - (void)addLogRecords:(id <LogWindowItem>)logRecords
 {
 	[rootArray insertObject:logRecords atIndex:0];

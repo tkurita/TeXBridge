@@ -24,11 +24,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	return theErrorRecord;
 }
 
-- (BOOL) isDviOutput
-{
-	return self->isDviOutput;
-}
-
 - (BOOL) isLabelsChanged
 {
 	return self->isLabelsChanged;
@@ -138,7 +133,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 
 - (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator
 {
-	//NSLog(@"start findErrors");
+#if useLog
+	NSLog(@"start findErrors");
+#endif
 	NSString * logContent;
 	
 	if ([logTree isKindOfClass: [NSMutableArray class]]) {
@@ -154,11 +151,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	
 	int errpInt;
-	NSNumber * errpn = nil;
+	NSNumber *errpn = nil;
 	id object;
-	NSString * nextLogContent;
-	//ErrorRecord *theErrorRecord = nil;
-	NSString * errMsg = nil;	
+	NSString *nextLogContent;
+	NSString *errMsg = nil;	
 	
 	if ([logContent startWith:@"!"]) {
 		errMsg = [NSString stringWithString:logContent];
@@ -180,21 +176,14 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 					errpn = [NSNumber numberWithInt:errpInt];
 				}
 				
-				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 				break;
 			}
 			else if ([nextLogContent startWith:@"?"] || 
 					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
-				//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 				break;
 			}
 		}
-		
-		/* 重複している？
-			if (theErrorRecord == nil) {
-				theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn];
-			}
-		*/
+
 	}
 	else if ([logContent contain:@"Warning:"]) {
 		errMsg = [NSString stringWithString:logContent];	
@@ -214,7 +203,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 			errpInt = [[wordList lastObject] intValue];
 			errpn = [NSNumber numberWithInt:errpInt];
 		}
-		//theErrorRecord = [self makeErrorRecordWithString:errMsg paragraph:errpn]; 重複している？
 	}
 	
 	else if ([logContent startWith:@"Overfull"]||[logContent startWith:@"Underfull"]) {
@@ -593,7 +581,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	return errorRecordTree;
 }
 
-#pragma mark methos for outlineview
+#pragma mark methos for LogWindowItem
 -(BOOL) jumpToFile
 {
 	return NO;
@@ -657,6 +645,16 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 - (NSMutableArray *)errorRecordTree
 {
 	return errorRecordTree;
+}
+
+-(BOOL) isDviOutput
+{
+	return self->isDviOutput;
+}
+
+-(BOOL) isNoError
+{
+	return self->isNoError;
 }
 
 @end

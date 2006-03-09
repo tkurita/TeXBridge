@@ -262,7 +262,7 @@ on dviPreview()
 	--log "before openDVI"
 	if theDviObj is not missing value then
 		try
-			openDVI() of theDviObj
+			openDVI of theDviObj with activation
 		on error errMsg number errNum
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
 		end try
@@ -326,12 +326,19 @@ on quickTypesetAndPreview()
 	parseLogText() of theLogFileParser
 	--log "after parseLogText in quickTypesetAndPreview"
 	showStatusMessage("Opening DVI file  ...") of ToolPaletteController
-	if isDviOutput of theLogFileParser then
+	set aFlag to isNoError() of theLogFileParser
+	if isDviOutput() of theLogFileParser then
 		try
-			openDVI() of theDviObj
+			openDVI of theDviObj given activation:aFlag
 		on error errMsg number errNum
 			showError(errNum, "quickTypesetAndPreview after calling openDVI", errMsg) of MessageUtility
 		end try
+	end if
+	
+	if not aFlag then
+		set logManager to call method "sharedLogManager" of class "LogWindowController"
+		call method "bringToFront" of logManager
+		activate
 	end if
 	
 	--log "before prepareVIewErrorLog"
@@ -346,7 +353,7 @@ on typesetAndPreview()
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
 	if theDviObj is not missing value then
 		try
-			openDVI() of theDviObj
+			openDVI of theDviObj given activation:missing value
 		on error errMsg number errNum
 			showError(errNum, "typesetAndPreview", errMsg) of MessageUtility
 		end try
@@ -616,43 +623,4 @@ on debug()
 	end using terms from
 	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
 end debug
-*)
-
-(* obsolute code *)
-(*
-on viewErrorLog(theLogFileParser, theCommand)
-	set textGroup to localized string "group"
-	set docname to texFileName of theLogFileParser
-	--log hyperlist of theLogFileParser
-	if hyperlist of theLogFileParser is not {} then
-		tell application "mi"
-			(*
-			if (compileInTerminal of theLogFileParser) or (not (isNoMessages of theLogFileParser)) then
-				activate
-			end if
-			*)
-			set theDateText to (current date) as string
-			if (indexwindow "TeX Compile Log" exists) then
-				ignoring application responses
-					tell (a reference to (every indexgroup of indexwindow "TeX Compile Log")) to collapse
-					
-					tell (a reference to indexwindow "TeX Compile Log")
-						set index to 1
-						make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
-					end tell
-				end ignoring
-			else
-				make new indexwindow with properties {name:"TeX Compile Log", infoorder:2, fileorder:1, filewidth:200, infowidth:500}
-				tell (a reference to indexwindow "TeX Compile Log")
-					set index to 1
-					make new indexgroup at before first indexgroup with properties {comment:theCommand & " : " & docname & " : " & theDateText, content:hyperlist of theLogFileParser}
-					repeat while (exists indexgroup textGroup)
-						delete indexgroup textGroup
-					end repeat
-					set asksaving to false
-				end tell
-			end if
-		end tell
-	end if
-end viewErrorLog
 *)

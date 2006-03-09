@@ -14,6 +14,7 @@
 + (id)sharedLogManager;
 - (void)addLogRecords:(id <LogWindowItem>)logRecords;
 - (BOOL)jumpToFile:(id)sender;
+-(void) bringToFront;
 
 #pragma mark accessor methods
 
