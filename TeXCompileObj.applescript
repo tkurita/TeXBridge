@@ -230,7 +230,7 @@ on doTypeSet()
 	--viewErrorLog(theLogFileParser, "latex")
 	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
 	showStatusMessage("") of ToolPaletteController
-	if isDviOutput of theLogFileParser then
+	if (isDviOutput() of theLogFileParser) then
 		return theDviObj
 	else
 		return missing value
