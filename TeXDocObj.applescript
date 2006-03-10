@@ -305,6 +305,7 @@ on makeObj(theTargetFile)
 				--log "dviFilePath exists"
 				set theDviObj to makeObj(a reference to me) of dviObj
 				set dviFileRef of theDviObj to dviFilePath as alias
+				setFileType() of theDviObj
 				return theDviObj
 			else
 				return missing value

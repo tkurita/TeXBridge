@@ -6,6 +6,10 @@ global PathConverter
 global comDelim
 
 script XdviDriver
+	on setFileType(dviFileRef)
+		-- do nothing
+	end setFileType
+	
 	on openDVI given sender:theDviObj, activation:aFlag
 		set x11AppName to "X11"
 		if not (isRunning(x11AppName) of UtilityHandlers) then
@@ -48,12 +52,23 @@ script XdviDriver
 end script
 
 script SimpleDriver
+	on setFileType(dviFileRef)
+		-- do nothing
+	end setFileType
+	
 	on openDVI given sender:theDviObj, activation:aFlag
 		openOutputFile(".dvi") of theDviObj
 	end openDVI
 end script
 
 script MxdviDriver
+	on setFileType(dviFileRef)
+		tell application "Finder"
+			set creator type of dviFileRef to "Mxdv"
+			set file type of dviFileRef to "JDVI"
+		end tell
+	end setFileType
+	
 	on openDVI given sender:theDviObj, activation:aFlag
 		--log "start openDVI of MxdviDriver"
 		try
@@ -65,12 +80,11 @@ script MxdviDriver
 		getSrcSpecialFlag() of theDviObj
 		--log "success getSrcSpecialFlag"
 		if isSrcSpecial of theDviObj then
-			set dviFileName to getNameWithSuffix(".dvi") of theDviObj
-			--log "success getNameWithSuffix"
-			--set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
 			--set allCommand to cdCommand & comDelim & mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & " '" & dviFileName & "' &"
-			set targetDviPath to quoted form of ((POSIX path of workingDirectory of theDviObj) & dviFileName)
+			--set dviFileName to getNameWithSuffix(".dvi") of theDviObj
+			--set targetDviPath to quoted form of ((POSIX path of workingDirectory of theDviObj) & dviFileName)
+			set targetDviPath to quoted form of (POSIX path of (dviFileRef of theDviObj))
 			set allCommand to mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & space & targetDviPath
 			if compileInTerminal of theDviObj then
 				doCommands of TerminalCommander for allCommand without activation
@@ -93,6 +107,10 @@ on makeObj(theTexDocObj)
 		property dviFileRef : missing value
 		property isSrcSpecial : missing value
 		property DVIDriver : SimpleDriver
+		
+		on setFileType()
+			setFileType(my dviFileRef) of DVIDriver
+		end setFileType
 		
 		on setDVIDriver()
 			--log "start setDVIDriver"

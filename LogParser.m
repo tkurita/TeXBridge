@@ -39,6 +39,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	isLabelsChanged = NO;
 	errorRecordTree = [[NSMutableArray array] retain];
 	texFileExtensions = [[NSArray arrayWithObjects:@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind",nil] retain];
+	isNoError = YES;
 	return self;
 }
 

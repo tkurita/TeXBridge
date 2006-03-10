@@ -2,7 +2,7 @@
 
 TARGET_NAME="TeXCompileServer"
 sitetear_path='/usr/local/bin/sitetear'
-manual_folder='/Users/tkurita/Factories/Websites/scriptfactory/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsformi/manual'
+manual_folder='/Users/tkurita/Factories/Websites/scriptfactory/scriptfactory/ScriptGallery/TheOtherScripts/TeXToolsFormi/manual'
 iconPath="$manual_folder/TeXCompileServerIcon16.png"
 
 copyHelp() {
