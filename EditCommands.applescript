@@ -34,7 +34,7 @@ on openRelatedFile given revealOnly:revealFlag
 	
 	set incGraphicCommand to (_backslash & "includegraphics" as Unicode text)
 	set bibCommand to _backslash & "bibliography"
-	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", _backslash}
+	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
 	set firstpara to targetParagraph of theTexDocObj
 	tell application "mi"
@@ -73,11 +73,10 @@ on openRelatedFile given revealOnly:revealFlag
 					
 					if revealFlag then
 						tell application "Finder"
-							activate
 							reveal fileAlias
 						end tell
+						call method "activateAppOfIdentifer:" of class "SmartActivate" with parameter "com.apple.finder"
 					else
-						--log theCommand
 						if (theCommand as Unicode text) is incGraphicCommand then
 							--log "is graphic file"
 							openGraphicFile(fileAlias)
