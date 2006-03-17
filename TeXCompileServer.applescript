@@ -1,7 +1,11 @@
-property ShellUtils : load("ShellUtils.scpt") of application "TeXToolsLib"
-property PathAnalyzer : load("PathAnalyzer.scpt") of application "TeXToolsLib"
-property PathConverter : load("PathConverter.scpt") of application "TeXToolsLib"
-property KeyValueDictionary : load("KeyValueDictionary.scpt") of application "TeXToolsLib"
+on loadLib(theName)
+	return loadLib(theName) of application (get "TeXToolsLib")
+end loadLib
+
+property ShellUtils : loadLib("ShellUtils")
+property PathAnalyzer : loadLib("PathAnalyzer")
+property PathConverter : loadLib("PathConverter")
+property KeyValueDictionary : loadLib("KeyValueDictionary")
 property StringEngine : StringEngine of PathConverter
 property appController : missing value
 property WindowVisibilityController : missing value
