@@ -1,4 +1,4 @@
-property parent : load("TerminalCommander.scpt") of application "TeXToolsLib"
+property parent : loadLib("TerminalCommander") of application (get "TeXToolsLib")
 
 on activateTerminal()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
