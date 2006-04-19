@@ -197,7 +197,7 @@
 		2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = RefPanelController.applescript; sourceTree = "<group>"; };
 		2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = LabelListObj.applescript; sourceTree = "<group>"; };
 		2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = SheetManager.applescript; sourceTree = "<group>"; };
-		2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXCompileObj.applescript; sourceTree = "<group>"; };
+		2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TeXCompileObj.applescript; sourceTree = "<group>"; };
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
 		2C71167D07D177B8008BCAEF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		2C71167E07D177B8008BCAEF /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = images/minus.png; sourceTree = "<group>"; };
@@ -283,6 +283,8 @@
 				2C7C493607960CCD0026564C /* SettingWindowController.applescript */,
 				2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */,
 				2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */,
+				2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */,
+				2C7C492E07960C830026564C /* DefaultsManager.applescript */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -317,9 +319,9 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2C1DAE3709F5F7EE00139324 /* LibraryScripts */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
-				2C54FE0A07C9E5AC00E8CEEB /* Library Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				2C49445407AD219B00B2A8D8 /* images */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -376,6 +378,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C1DAE3709F5F7EE00139324 /* LibraryScripts */ = {
+			isa = PBXGroup;
+			children = (
+				2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */,
+				2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */,
+				2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */,
+				2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */,
+				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
+			);
+			path = LibraryScripts;
+			sourceTree = "<group>";
+		};
 		2C49445407AD219B00B2A8D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,20 +404,6 @@
 				2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */,
 			);
 			name = images;
-			sourceTree = "<group>";
-		};
-		2C54FE0A07C9E5AC00E8CEEB /* Library Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */,
-				2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */,
-				2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */,
-				2C7C492E07960C830026564C /* DefaultsManager.applescript */,
-				2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */,
-				2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */,
-				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
-			);
-			name = "Library Scripts";
 			sourceTree = "<group>";
 		};
 		2CB63A5D08CF038D002FCC88 /* Unused */ = {
