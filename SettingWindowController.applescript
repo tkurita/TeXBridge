@@ -1,7 +1,6 @@
 global ScriptImporter
 global TerminalSettingObj
 global ReplaceInputObj
-global UtilityHandlers
 global appController
 
 (* shared variable *)
