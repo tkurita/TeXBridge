@@ -319,7 +319,7 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2C1DB15709F687D000139324 /* SmartActivteTmp */,
+				2C1DB15709F687D000139324 /* SmartActivate */,
 				2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
@@ -388,14 +388,14 @@
 			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
-		2C1DB15709F687D000139324 /* SmartActivteTmp */ = {
+		2C1DB15709F687D000139324 /* SmartActivate */ = {
 			isa = PBXGroup;
 			children = (
 				2C2E5293080625270015E9EB /* SmartActivate.h */,
 				2CC4852C099040B0004E4BDE /* SmartActivate.c */,
 				2C2E5294080625270015E9EB /* SmartActivate.m */,
 			);
-			name = SmartActivteTmp;
+			path = SmartActivate;
 			sourceTree = "<group>";
 		};
 		2C49445407AD219B00B2A8D8 /* images */ = {

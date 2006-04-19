@@ -272,7 +272,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -315,19 +314,13 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SmartActivate.h</string>
+								<string>&lt;エディタがありません&gt;</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
-										<key>PBXProjectModuleLabel</key>
-										<string>SmartActivate.h</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>2C1DB15A09F687F200139324</string>
 										<key>history</key>
 										<array>
 											<string>2C92F45209C19E5500D5EA67</string>
@@ -337,8 +330,6 @@
 											<string>2C92F45809C19E5500D5EA67</string>
 											<string>2C785CD009C97B9400CF3365</string>
 											<string>2C785CD609C97C0C00CF3365</string>
-											<string>2C785CD709C97C0C00CF3365</string>
-											<string>2C1DB0A309F65C1700139324</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -349,7 +340,6 @@
 											<string>2C92F46309C19E5500D5EA67</string>
 											<string>2C92F46709C19E5500D5EA67</string>
 											<string>2C785CD909C97C0C00CF3365</string>
-											<string>2C785CDA09C97C0C00CF3365</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -376,7 +366,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SmartActivate.h</string>
+								<string>TeXCompileServer.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -384,11 +374,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SmartActivate.h</string>
+										<string>TeXCompileServer.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C1DB15E09F687F200139324</string>
+										<string>2C1DB16309F6894200139324</string>
 										<key>history</key>
 										<array>
 											<string>2C92F45809C19E5500D5EA67</string>
@@ -414,8 +404,7 @@
 											<string>2C1DACAB09F5F63800139324</string>
 											<string>2C1DAE5209F5FC9300139324</string>
 											<string>2C1DAE5309F5FC9300139324</string>
-											<string>2C1DB15B09F687F200139324</string>
-											<string>2C1DB15C09F687F200139324</string>
+											<string>2C1DB15D09F687F200139324</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -443,7 +432,6 @@
 											<string>2CFE433F09E96E4000074D29</string>
 											<string>2C76E2CC09EA2485000CC37E</string>
 											<string>2C1DAE5609F5FC9300139324</string>
-											<string>2C1DB15D09F687F200139324</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
