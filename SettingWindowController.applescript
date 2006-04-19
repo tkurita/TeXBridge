@@ -1,3 +1,4 @@
+global ScriptImporter
 global TerminalSettingObj
 global ReplaceInputObj
 global UtilityHandlers
@@ -68,7 +69,7 @@ on loadReplaceInputSetting(theView)
 	if not isLoadedReplaceInputSetting then
 		if ReplaceInputObj is missing value then
 			--log "load ReplaceInputObj"
-			set ReplaceInputObj to importScript("ReplaceInputObj") of UtilityHandlers
+			set ReplaceInputObj to ScriptImporter's do("ReplaceInputObj")
 		end if
 		setSettingToWindow(theView) of ReplaceInputObj
 		set isLoadedReplaceInputSetting to true

@@ -49,6 +49,12 @@ on importScript(scriptName)
 	return load script POSIX file scriptPath
 end importScript
 
+script ScriptImporter
+	on do(scriptName)
+		return importScript(scriptName)
+	end do
+end script
+
 (* events of application*)
 on launched theObject
 	--log "start lanunched"

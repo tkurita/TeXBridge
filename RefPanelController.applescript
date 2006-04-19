@@ -1,5 +1,6 @@
 global UtilityHandlers
 global SheetManager
+global ScriptImporter
 
 property LabelListObj : missing value
 property WindowController : missing value
@@ -111,20 +112,13 @@ on doubleClicked(theObject)
 	my activateFirstmiWindow()
 end doubleClicked
 
-on importScript(scriptName)
-	tell main bundle
-		set scriptPath to path for script scriptName extension "scpt"
-	end tell
-	return load script POSIX file scriptPath
-end importScript
-
 on initilize()
 	--set miAppRef to path to application "mi" as alias
 	set WindowController to call method "alloc" of class "RefPanelController"
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
 	set targetWindow to call method "window" of WindowController
 	call method "retain" of targetWindow
-	set LabelListObj to importScript("LabelListObj")
+	set LabelListObj to ScriptImpoter's do("LabelListObj")
 	initialize(data source "LabelDataSource") of LabelListObj
 	set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
 end initilize
