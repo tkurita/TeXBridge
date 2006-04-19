@@ -224,8 +224,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -264,8 +262,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>2C1DAE3709F5F7EE00139324</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>2C54FE0A07C9E5AC00E8CEEB</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>2C49445407AD219B00B2A8D8</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
@@ -275,23 +273,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
 									<integer>11</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>15</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>23</integer>
-									<integer>16</integer>
+									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -317,7 +300,7 @@
 							<real>258</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>163 151 977 786 0 0 1440 938 </string>
+						<string>227 152 977 786 0 0 1440 938 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -345,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C1DACB209F5F69500139324</string>
+										<string>2C1DAE5109F5FC9300139324</string>
 										<key>history</key>
 										<array>
 											<string>2C92F45209C19E5500D5EA67</string>
@@ -356,7 +339,7 @@
 											<string>2C785CD009C97B9400CF3365</string>
 											<string>2C785CD609C97C0C00CF3365</string>
 											<string>2C785CD709C97C0C00CF3365</string>
-											<string>2C80076509ED225300E9B3AC</string>
+											<string>2C1DACB209F5F69500139324</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -381,7 +364,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {675, 368}}</string>
 								<key>RubberWindowFrame</key>
-								<string>163 151 977 786 0 0 1440 938 </string>
+								<string>227 152 977 786 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -389,12 +372,14 @@
 							<string>368pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TeXCompileObj.applescript</string>
+								<string>TeXCompileServer.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -402,11 +387,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TeXCompileObj.applescript</string>
+										<string>TeXCompileServer.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C1DACB909F5F69500139324</string>
+										<string>2C1DAE5909F5FC9300139324</string>
 										<key>history</key>
 										<array>
 											<string>2C92F45809C19E5500D5EA67</string>
@@ -429,11 +414,10 @@
 											<string>2C76E2C909EA2485000CC37E</string>
 											<string>2C76E2D909EA2703000CC37E</string>
 											<string>2C76E2DA09EA2703000CC37E</string>
-											<string>2C8006BF09EC980100E9B3AC</string>
-											<string>2C1DAC9E09F5F5F400139324</string>
 											<string>2C1DACAB09F5F63800139324</string>
-											<string>2C1DACB309F5F69500139324</string>
-											<string>2C1DACB509F5F69500139324</string>
+											<string>2C1DAE5209F5FC9300139324</string>
+											<string>2C1DAE5309F5FC9300139324</string>
+											<string>2C1DAE5409F5FC9300139324</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -458,14 +442,12 @@
 											<string>2C9F4FDA09D9659B009C495B</string>
 											<string>2C9F526D09D9705F009C495B</string>
 											<string>2C9F526E09D9705F009C495B</string>
-											<string>2CA4C04409E22F3400D9C9D6</string>
-											<string>2CFE433E09E96E4000074D29</string>
 											<string>2CFE433F09E96E4000074D29</string>
 											<string>2C76E2CC09EA2485000CC37E</string>
-											<string>2C1DACA009F5F5F400139324</string>
-											<string>2C1DACAD09F5F63800139324</string>
-											<string>2C1DACB609F5F69500139324</string>
-											<string>2C1DACB709F5F69500139324</string>
+											<string>2C1DAE5509F5FC9300139324</string>
+											<string>2C1DAE5609F5FC9300139324</string>
+											<string>2C1DAE5709F5FC9300139324</string>
+											<string>2C1DAE5809F5FC9300139324</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -479,7 +461,7 @@
 								<key>Frame</key>
 								<string>{{0, 373}, {675, 368}}</string>
 								<key>RubberWindowFrame</key>
-								<string>163 151 977 786 0 0 1440 938 </string>
+								<string>227 152 977 786 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -499,7 +481,7 @@
 								<key>Frame</key>
 								<string>{{0, 746}, {675, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>163 151 977 786 0 0 1440 938 </string>
+								<string>227 152 977 786 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -524,9 +506,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C1DACA209F5F5F400139324</string>
+				<string>2C1DAE5A09F5FC9300139324</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C1DACA309F5F5F400139324</string>
+				<string>2C1DAE5B09F5FC9300139324</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -669,10 +651,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C92F43609C1219A00D5EA67</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>163 151 977 786 0 0 1440 938 </string>
+	<string>227 152 977 786 0 0 1440 938 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -751,7 +734,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C92F43609C1219A00D5EA67</string>
-				<string>2C8006C209EC980100E9B3AC</string>
+				<string>2C1DAE5C09F5FC9300139324</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

@@ -319,7 +319,7 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2C1DAE3709F5F7EE00139324 /* LibraryScripts */,
+				2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -378,7 +378,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2C1DAE3709F5F7EE00139324 /* LibraryScripts */ = {
+		2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */ = {
 			isa = PBXGroup;
 			children = (
 				2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */,
@@ -387,7 +387,7 @@
 				2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */,
 				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
 			);
-			path = LibraryScripts;
+			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
 		2C49445407AD219B00B2A8D8 /* images */ = {

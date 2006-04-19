@@ -7,6 +7,8 @@ property PathAnalyzer : loadLib("PathAnalyzer")
 property PathConverter : loadLib("PathConverter")
 property KeyValueDictionary : loadLib("KeyValueDictionary")
 property StringEngine : StringEngine of PathConverter
+property TerminalCommanderBase : loadLib("TerminalCommander")
+
 property appController : missing value
 property WindowVisibilityController : missing value
 
@@ -299,7 +301,7 @@ on will finish launching theObject
 	set dviObj to importScript("DVIObj")
 	set SettingWindowController to importScript("SettingWindowController")
 	set ToolPaletteController to importScript("ToolPaletteController")
-	set TerminalCommander to importScript("TerminalCommander")
+	set TerminalCommander to makeObj() of (importScript("TerminalCommander"))
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	set RefPanelController to importScript("RefPanelController")
 	set SheetManager to importScript("SheetManager")
