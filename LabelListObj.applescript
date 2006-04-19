@@ -1,7 +1,6 @@
 global yenmark
 global _backslash
 global RefPanelController
-global UtilityHandlers
 global KeyValueDictionary
 global StringEngine
 global PathConverter
@@ -123,7 +122,7 @@ on findAuxObjFromDoc()
 			set theParagraph to paragraph ith of document 1
 			if theParagraph starts with "%" then
 				if theParagraph starts with "%ParentFile" then
-					set parentFile to stripHeadTailSpaces(text 13 thru -2 of theParagraph) of UtilityHandlers
+					set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
 					exit repeat
 				end if
 				set ith to ith + 1
@@ -465,9 +464,9 @@ on parseAuxFile(theAuxObj)
 		if (theParagraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
 			set theParagraph to text 11 thru -2 of theParagraph
-			startStringEngine() of StringEngine
+			storeDelimiter() of StringEngine
 			set theTextItemList to everyTextItem of StringEngine from theParagraph by "}{"
-			stopStringEngine() of StringEngine
+			restoreDelimiter() of StringEngine
 			try
 				set theRef to ((item -2 of theTextItemList) as string)
 			on error

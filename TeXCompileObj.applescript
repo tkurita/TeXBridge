@@ -14,6 +14,7 @@ global PathAnalyzer
 global ShellUtils
 global TerminalCommander
 global PathConverter
+global StringEngine
 
 --special values
 global comDelim
@@ -26,7 +27,7 @@ property supportedMode : {"TEX", "LaTeX"}
 
 on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
-	set parentFile to stripHeadTailSpaces(text 13 thru -2 of theParagraph) of UtilityHandlers
+	set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
 	--log parentFile
 	if parentFile starts with ":" then
 		setHFSoriginPath(theTargetFile) of PathConverter
@@ -577,7 +578,7 @@ on execEbb(theGraphicPath, theExtension)
 	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set fileName to baseName(theGraphicPath, "") of ShellUtils
+	set fileName to basename(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"
@@ -600,8 +601,8 @@ on debug()
 	copy my LogFileParser to theLogFileParser
 	
 	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ãƒ†ã‚¹ãƒˆ:lecture:Lecture.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ãƒ†ã‚¹ãƒˆ:lecture:Lecture"
+		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ƒeƒXƒg:lecture:Lecture.log" as Unicode text)
+		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:ƒeƒXƒg:lecture:Lecture"
 		property texFileName : "Lecture.tex"
 	end script
 	

@@ -65,7 +65,7 @@ on makeObj(theTargetFile)
 		
 		on resolveParentFile(theParagraph)
 			--log "start resolveParentFile"
-			set parentFile to stripHeadTailSpaces(text 13 thru -2 of theParagraph) of UtilityHandlers
+			set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
 			--log parentFile
 			if parentFile starts with ":" then
 				setHFSoriginPath(targetFileRef) of PathConverter
@@ -101,11 +101,11 @@ on makeObj(theTargetFile)
 					set theParentFile to resolveParentFile(theParagraph)
 					setTexFileRef(theParentFile)
 				else if theParagraph starts with "%Typeset-Command" then
-					set my texCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+					set my texCommand to StringEngine's stripHeadTailSpaces(text 18 thru -2 of theParagraph)
 				else if theParagraph starts with "%DviToPdf-Command" then
-					set my dvipdfCommand to stripHeadTailSpaces(text 19 thru -2 of theParagraph) of UtilityHandlers
+					set my dvipdfCommand to StringEngine's stripHeadTailSpaces(text 19 thru -2 of theParagraph)
 				else if theParagraph starts with "%DviToPs-Command" then
-					set my dvipsCommand to stripHeadTailSpaces(text 18 thru -2 of theParagraph) of UtilityHandlers
+					set my dvipsCommand to StringEngine's stripHeadTailSpaces(text 18 thru -2 of theParagraph)
 				end if
 			end ignoring
 		end getHeaderCommand
@@ -151,9 +151,9 @@ on makeObj(theTargetFile)
 			-- replace %s in theCommand with texBaseName. if %s is not in theCommand, texBaseName+theSuffix is added end of theCommand
 			if "%s" is in theCommand then
 				set theBaseName to getBaseName()
-				startStringEngine() of StringEngine
+				storeDelimiter() of StringEngine
 				set theCommand to uTextReplace of StringEngine for theCommand from "%s" by theBaseName
-				stopStringEngine() of StringEngine
+				restoreDelimiter() of StringEngine
 				return theCommand
 			else
 				set targetFileName to getNameWithSuffix(theSuffix)
@@ -253,7 +253,7 @@ on makeObj(theTargetFile)
 				delay 1
 				waitEndOfCommand(300) of currentTerminal
 			else
-				startStringEngine() of StringEngine
+				storeDelimiter() of StringEngine
 				set commandElements to everyTextItem of StringEngine from texCommand by space
 				if "-interaction=" is in texCommand then
 					repeat with ith from 2 to length of commandElements
@@ -269,7 +269,7 @@ on makeObj(theTargetFile)
 					set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=nonstopmode")
 				end if
 				set theTexCommand to joinUTextList of StringEngine for commandElements by space
-				stopStringEngine() of StringEngine
+				restoreDelimiter() of StringEngine
 				
 				set pathCommand to "export PATH=/usr/local/bin:$PATH"
 				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1"
