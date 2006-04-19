@@ -2,6 +2,7 @@ property parent : loadLib("TerminalCommander") of application (get "TeXToolsLib"
 
 on activateTerminal()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
+	return true
 end activateTerminal
 
 on getExecutionString()
