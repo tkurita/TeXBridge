@@ -117,7 +117,7 @@ on initilize()
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
 	set targetWindow to call method "window" of WindowController
 	call method "retain" of targetWindow
-	set LabelListObj to ScriptImpoter's do("LabelListObj")
+	set LabelListObj to ScriptImporter's do("LabelListObj")
 	initialize(data source "LabelDataSource") of LabelListObj
 	set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
 end initilize

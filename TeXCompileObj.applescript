@@ -490,7 +490,8 @@ on dviToPS()
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set theCommand to buildCommand(theCommand, ".dvi") of theTexDocObj
 	set allCommand to cdCommand & comDelim & theCommand
-	doCommands of TerminalCommander for allCommand with activation
+	--doCommands of TerminalCommander for allCommand with activation
+	sendCommands of TerminalCommander for allCommand
 end dviToPS
 
 --simply execute TeX command in Terminal
@@ -507,7 +508,8 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
 	set texCommand to buildCommand(texCommand, theSuffix) of theTexDocObj
 	set allCommand to cdCommand & comDelim & texCommand
-	doCommands of TerminalCommander for allCommand with activation
+	--doCommands of TerminalCommander for allCommand with activation
+	sendCommands of TerminalCommander for allCommand
 end execTexCommand
 
 on seekExecEbb()
@@ -582,7 +584,8 @@ on execEbb(theGraphicPath, theExtension)
 	set cdCommand to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"
-	doCommands of TerminalCommander for allCommand with activation
+	--doCommands of TerminalCommander for allCommand with activation
+	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal
 	waitEndOfCommand(300) of currentTerminal
 	return true
