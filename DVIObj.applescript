@@ -32,8 +32,7 @@ script XdviDriver
 			end if
 			
 			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (targetParagraph of theDviObj) & space & sourceFile & "' '" & dviFileName & "' &"
-			--doCommands of TerminalCommander for allCommand without activation
-			sendCommands of TerminalCommander for allCommand
+			doCommands of TerminalCommander for allCommand without activation
 		else
 			try
 				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
@@ -43,8 +42,7 @@ script XdviDriver
 			
 			if pid is "" then
 				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
-				--doCommands of TerminalCommander for allCommand without activation
-				sendCommands of TerminalCommander for allCommand
+				doCommands of TerminalCommander for allCommand without activation
 			else
 				set pid to word 1 of pid
 				do shell script "kill -USR1" & space & pid --reread
@@ -89,8 +87,7 @@ script MxdviDriver
 			set targetDviPath to quoted form of (POSIX path of (dviFileRef of theDviObj))
 			set allCommand to mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & space & targetDviPath
 			if compileInTerminal of theDviObj then
-				--doCommands of TerminalCommander for allCommand without activation
-				sendCommands of TerminalCommander for allCommand
+				doCommands of TerminalCommander for allCommand without activation
 			else
 				do shell script allCommand
 			end if
