@@ -283,8 +283,6 @@
 				2C7C493607960CCD0026564C /* SettingWindowController.applescript */,
 				2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */,
 				2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */,
-				2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */,
-				2C7C492E07960C830026564C /* DefaultsManager.applescript */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -384,6 +382,8 @@
 				2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */,
 				2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */,
 				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
+				2C7C492E07960C830026564C /* DefaultsManager.applescript */,
+				2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */,
 			);
 			path = ASStudioScriptLib;
 			sourceTree = "<group>";
