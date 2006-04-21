@@ -317,7 +317,8 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2C1DB15709F687D000139324 /* SmartActivate */,
+				2C1656E209F90C3200CE5422 /* miClientLib */,
+				2C1DB15709F687D000139324 /* SmartActivateLib */,
 				2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
@@ -374,6 +375,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C1656E209F90C3200CE5422 /* miClientLib */ = {
+			isa = PBXGroup;
+			children = (
+				2CBFD209097DFA9200BCEB43 /* miClient.h */,
+				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
+			);
+			path = miClientLib;
+			sourceTree = "<group>";
+		};
 		2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,14 +398,14 @@
 			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
-		2C1DB15709F687D000139324 /* SmartActivate */ = {
+		2C1DB15709F687D000139324 /* SmartActivateLib */ = {
 			isa = PBXGroup;
 			children = (
 				2C2E5293080625270015E9EB /* SmartActivate.h */,
 				2CC4852C099040B0004E4BDE /* SmartActivate.c */,
 				2C2E5294080625270015E9EB /* SmartActivate.m */,
 			);
-			path = SmartActivate;
+			path = SmartActivateLib;
 			sourceTree = "<group>";
 		};
 		2C49445407AD219B00B2A8D8 /* images */ = {
@@ -449,8 +459,6 @@
 				2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */,
 				2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */,
 				2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */,
-				2CBFD209097DFA9200BCEB43 /* miClient.h */,
-				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
 				2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */,
 				2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */,
 			);
