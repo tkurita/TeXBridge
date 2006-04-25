@@ -1,3 +1,4 @@
+#import <Carbon/Carbon.h>
 #import "WindowVisibilityController.h"
 #import "miClient.h"
 #import "PaletteWindowController.h"
@@ -6,6 +7,14 @@
 
 static id sharedObj;
 extern id EditorClient;
+
+#define TIMERINVERVAL 1
+
+static OSStatus appSwitched(EventHandlerCallRef nextHandler, EventRef theEvent, void* userData)
+{
+    [(id)userData updateVisibility];
+	return(CallNextEventHandler(nextHandler, theEvent));
+}
 
 @implementation WindowVisibilityController
 
@@ -18,11 +27,12 @@ extern id EditorClient;
 	if (sharedObj == nil) {
 		sharedObj = self;
 	}
-	
+	_installedAppSwitchEvent = NO;
 	return self;
 }
 
-- (void) dealloc {
+- (void) dealloc
+{
 	[_windowControllers release];
 	[super dealloc];
 }
@@ -31,7 +41,14 @@ extern id EditorClient;
 {
 	if (_displayToggleTimer == nil) {
 		[self setDisplayToggleTimer];
+		[self setupAppChangeEvent];
+		_installedAppSwitchEvent = YES;
 	}
+
+/*	if (!_installedAppSwitchEvent) {
+		[self setupAppChangeEvent];
+		_installedAppSwitchEvent = YES;
+	}*/
 	[_windowControllers addObject:windowController];
 }
 
@@ -57,7 +74,7 @@ extern id EditorClient;
 		1: should show
 		2: should not change
 	*/
-	if ([appName isEqualToString:@"mi"]) {
+	if ([appName isEqualToString:[EditorClient name]]) {
 		NSString *theMode;
 		@try{
 			theMode = [EditorClient currentDocumentMode];
@@ -85,7 +102,12 @@ extern id EditorClient;
 	return -1;
 }
 
-- (void)updateVisibility:(NSTimer *)theTimer
+- (void)updateVisibilityWithTimer:(NSTimer *)theTimer
+{
+	[self updateVisibility];
+}
+
+- (void)updateVisibility
 {
 #if useLog
 	NSLog(@"updateVisibility:");
@@ -152,8 +174,15 @@ extern id EditorClient;
 		[_displayToggleTimer invalidate];
 	}
 	[_displayToggleTimer release];
-	_displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
+	_displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:TIMERINVERVAL target:self selector:@selector(updateVisibilityWithTimer:) userInfo:nil repeats:YES];
 	[_displayToggleTimer retain];
 }
 
+- (void)setupAppChangeEvent {
+    EventTypeSpec spec = { kEventClassApplication,  kEventAppFrontSwitched };
+	EventHandlerUPP handlerUPP = NewEventHandlerUPP(appSwitched);
+    OSStatus err = InstallApplicationEventHandler(handlerUPP, 1, &spec, (void*)self, NULL);
+	if (err != noErr) NSLog(@"fail to InstallApplicationEventHandler");
+	DisposeEventHandlerUPP(handlerUPP);
+}
 @end

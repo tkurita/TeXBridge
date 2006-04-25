@@ -114,6 +114,7 @@
 		2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */; };
 		2CD5554E08BEC77E007E43D1 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD5554C08BEC77E007E43D1 /* AppController.h */; };
 		2CD5554F08BEC77F007E43D1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */; };
+		2CDB471309F951AD00F1ABA4 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */; };
 		2CDBE60A097BA7FE00C3300B /* LogWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDBE608097BA7FE00C3300B /* LogWindowController.h */; };
 		2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDBE609097BA7FE00C3300B /* LogWindowController.m */; };
 		2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -242,6 +243,7 @@
 		2CDACD810813BE3F000B9086 /* stringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stringExtra.m; sourceTree = "<group>"; };
 		2CDACD820813BE3F000B9086 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
 		2CDACE460813EF6B000B9086 /* miclient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = miclient; path = /Users/tkurita/Dev/Projects/miclient/trunk/build/Release/miclient; sourceTree = "<absolute>"; };
+		2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		2CDBE608097BA7FE00C3300B /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				2C4E27DC084273B000004A96 /* AppleScriptKit.framework in Frameworks */,
 				2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */,
 				2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */,
+				2CDB471309F951AD00F1ABA4 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +371,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */,
 				2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
