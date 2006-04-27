@@ -226,6 +226,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		isDviOutput = NO;
 	}
 	
+	else if ([logContent hasPrefix:@"Output written on"]) {
+		isDviOutput = YES;
+	}
+	
 #if useLog
 	NSLog(@"end of findErrors");
 #endif
@@ -475,7 +479,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 					*wholeLineFlag = NO;
 				}
 				targetText = [self parseBodyWith:newList startText:targetText isWholeLine:wholeLineFlag];
-			}else if ([targetText compare:@")" options:nil range:subRange] == NSOrderedSame) {
+			}
+			else if ([targetText compare:@")" options:nil range:subRange] == NSOrderedSame) {
 				if (scanResult) {
 					[self appendLogRecordWithString:scannedText intoList:currentList];
 				}
@@ -488,7 +493,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 					*wholeLineFlag = NO;
 				}
 				return targetText;
-			}else if ([targetText compare:@"`" options:nil range:subRange] == NSOrderedSame) {
+			}
+			else if ([targetText compare:@"`" options:nil range:subRange] == NSOrderedSame) {
 				//this block for ignoring "(" and ")" in between "`" and "'"
 				scanResult = [scanner scanUpToString:@"'" intoString:&scannedText];
 				matchLength += ([scannedText length]+1);
@@ -503,7 +509,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 					[self appendLogRecordWithString:scannedText intoList:currentList];
 					targetText = [self getNextLine];
 					*wholeLineFlag = YES;
-				}else {
+				}
+				else {
 					subRange = NSMakeRange(matchLength, [targetText length]-matchLength);
 					targetText = [targetText substringWithRange:subRange];
 					*wholeLineFlag = NO;
@@ -567,7 +574,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSLog([loglogTree description]);
 #endif
 	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
-	isDviOutput = YES;
+	isDviOutput = NO;
 	isLabelsChanged = NO;
 	if (![logContents endsWith:@"\n"]) {
 		[self setLogContents:logContents];
