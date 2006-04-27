@@ -59,12 +59,20 @@ end script
 on launched theObject
 	--log "start lanunched"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
+	set IsOpenedToolPalette to readDefaultValueWith("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
+	if not showToolPaletteWhenLaunched then
+		set showToolPaletteWhenLaunched to IsOpenedToolPalette
+	end if
 	if showToolPaletteWhenLaunched then
 		showStartupMessage("Opening Tool Palette ...")
 		openWindow() of ToolPaletteController
 	end if
 	
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
+	set IsOpenedRefPalette to readDefaultValueWith("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
+	if not showRefPaletteWhenLaunched then
+		set showRefPaletteWhenLaunched to IsOpenedRefPalette
+	end if
 	if showRefPaletteWhenLaunched then
 		showStartupMessage("Opening Reference Palette ...")
 		openWindow() of RefPanelController
@@ -359,6 +367,13 @@ end selection changed
 on should selection change theObject
 	return shouldSelectionChange(theObject) of ReplaceInputObj
 end should selection change
+
+on will quit theObject
+	tell user defaults
+		set contents of default entry "IsOpenedToolPalette" to isOpened() of ToolPaletteController
+		set contents of default entry "IsOpenedRefPalette" to isOpened() of RefPanelController
+	end tell
+end will quit
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage

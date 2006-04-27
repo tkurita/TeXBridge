@@ -11,6 +11,7 @@
 	NSArray *applicationsFloatingOn;
 	NSString *applicationsFloatingOnKeyPath;
 	NSString *applicationsFloatingOnEntryName;
+	BOOL _isOpened;
 }
 + (void)setVisibilityController:(id)theObj;
 + (id)visibilityController;
@@ -22,6 +23,7 @@
 - (void)setFrameName:(NSString *)theName;
 - (void)setApplicationsFloagingOn:(NSArray *)appList;
 - (BOOL)isCollapsed;
+- (BOOL)isOpened;
 
 //setup behavior
 - (void)bindApplicationsFloatingOnForKey:(NSString *)theKeyPath;

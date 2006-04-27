@@ -23,3 +23,11 @@ on showStatusMessage(theMessage)
 		end if
 	end if
 end showStatusMessage
+
+on isOpened()
+	if WindowController is missing value then
+		return false
+	end if
+	set theResult to call method "isOpened" of WindowController
+	return (theResult is 1)
+end isOpened

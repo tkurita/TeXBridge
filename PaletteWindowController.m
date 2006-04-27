@@ -23,6 +23,7 @@ static id VisibilityController;
 {
 	[super showWindow:sender];
 	[VisibilityController addWindowController:self];
+	_isOpened = YES;
 	NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
 	[notiCenter addObserver:self selector:@selector(willApplicationQuit:) name:NSApplicationWillTerminateNotification object:nil];
 }
@@ -102,6 +103,11 @@ static id VisibilityController;
 }
 
 #pragma mark methods for others
+- (BOOL)isOpened
+{
+	return _isOpened;
+}
+
 - (void)willApplicationQuit:(NSNotification *)aNotification
 {
 	[self saveDefaults];
@@ -221,6 +227,7 @@ static id VisibilityController;
 #if useLog
 	NSLog(@"start windowWillClose:");
 #endif
+	_isOpened = NO;
 	[VisibilityController removeWindowController:self];
 	[self saveDefaults];
 }
@@ -230,6 +237,7 @@ static id VisibilityController;
 #if useLog
 	NSLog(@"start windowShouldClose");
 #endif
+	_isOpened = NO;
 	[self saveDefaults];
 	[VisibilityController removeWindowController:self];
 	return YES;

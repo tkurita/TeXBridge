@@ -234,6 +234,8 @@ on doTypeSet()
 	if (isDviOutput() of theLogFileParser) then
 		return theDviObj
 	else
+		set theMessage to localized string "DVIisNotGenerated"
+		showMessage(theMessage) of MessageUtility
 		return missing value
 	end if
 end doTypeSet
@@ -334,6 +336,9 @@ on quickTypesetAndPreview()
 		on error errMsg number errNum
 			showError(errNum, "quickTypesetAndPreview after calling openDVI", errMsg) of MessageUtility
 		end try
+	else
+		set theMessage to localized string "DVIisNotGenerated"
+		showMessage(theMessage) of MessageUtility
 	end if
 	
 	if not aFlag then
@@ -365,15 +370,13 @@ on typesetAndPDFPreview()
 	set theDviObj to doTypeSet()
 	
 	if theDviObj is missing value then
-		set theMessage to localized string "DVIisNotGenerated"
-		showMessageOnmi(theMessage) of MessageUtility
 		return
 	end if
 	set thePDFObj to dviToPDF() of theDviObj
 	showStatusMessage("Opening PDF file ...") of ToolPaletteController
 	if thePDFObj is missing value then
 		set theMessage to localized string "PDFisNotGenerated"
-		showMessageOnmi(theMessage) of MessageUtility
+		showMessage(theMessage) of MessageUtility
 	else
 		openPDFFile() of thePDFObj
 	end if
@@ -580,7 +583,7 @@ on execEbb(theGraphicPath, theExtension)
 	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set fileName to basename(theGraphicPath, "") of ShellUtils
+	set fileName to baseName(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"

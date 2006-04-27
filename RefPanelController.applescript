@@ -137,6 +137,14 @@ on openWindow()
 	end if
 end openWindow
 
+on isOpened()
+	if WindowController is missing value then
+		return false
+	end if
+	set theResult to call method "isOpened" of WindowController
+	return (theResult is 1)
+end isOpened
+
 on displayAlert(theMessage)
 	display alert theMessage attached to targetWindow as warning
 	(*

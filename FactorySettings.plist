@@ -40,6 +40,10 @@
 	<true/>
 	<key>IsChangeSelection</key>
 	<false/>
+	<key>IsOpenedRefPalette</key>
+	<true/>
+	<key>IsOpenedToolPalette</key>
+	<true/>
 	<key>NormalTextColor</key>
 	<array>
 		<integer>0</integer>
