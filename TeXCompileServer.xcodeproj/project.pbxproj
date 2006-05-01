@@ -503,6 +503,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C6D92DB0928239D005774F8 /* Build configuration list for PBXNativeTarget "TeXCompileServer" */;
 			buildPhases = (
+				2C1B7D500A05B59600C2CE00 /* ShellScript */,
 				2C4E27AE084273B000004A96 /* Headers */,
 				2C4E27B2084273B000004A96 /* AppleScript */,
 				2C4E27C4084273B000004A96 /* Resources */,
@@ -591,6 +592,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2C1B7D500A05B59600C2CE00 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = printenv;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C4E27D5084273B000004A96 /* Sources */ = {
@@ -708,7 +725,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = "$(HOME)";
+				DSTROOT = "/Users/$(USER)";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
