@@ -186,7 +186,7 @@
 		2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVItoPDFIcon.png; path = images/DVItoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVIPreviewIcon.png; path = images/DVIPreviewIcon.png; sourceTree = "<group>"; };
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
-		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInputObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInputObj.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
 		2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = NTYImmutableToMutableArrayOfObjectsTransformer.m; sourceTree = "<group>"; };
@@ -503,7 +503,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C6D92DB0928239D005774F8 /* Build configuration list for PBXNativeTarget "TeXCompileServer" */;
 			buildPhases = (
-				2C1B7D500A05B59600C2CE00 /* ShellScript */,
 				2C4E27AE084273B000004A96 /* Headers */,
 				2C4E27B2084273B000004A96 /* AppleScript */,
 				2C4E27C4084273B000004A96 /* Resources */,
@@ -592,22 +591,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		2C1B7D500A05B59600C2CE00 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = printenv;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C4E27D5084273B000004A96 /* Sources */ = {
@@ -725,7 +708,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = "/Users/$(USER)";
+				DSTROOT = "$(HOME)";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
