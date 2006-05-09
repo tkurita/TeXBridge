@@ -2,6 +2,7 @@
 #import "PaletteWindowController.h"
 #import "WindowVisibilityController.h"
 #import "PathExtra.h"
+#import "DonationReminder.h"
 
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 
@@ -138,7 +139,8 @@ static id sharedObj;
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
-	
+
+	[DonationReminder remindDonation];
 }
 
 @end

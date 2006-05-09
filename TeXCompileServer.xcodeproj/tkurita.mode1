@@ -483,23 +483,24 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>2C1656E209F90C3200CE5422</string>
 								<string>2C1DAE3709F5F7EE00139324</string>
-								<string>080E96DDFE201D6D7F000001</string>
+								<string>2CD553EC08BCDE96007E43D1</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>2C9E42BE052215CB00248965</string>
 								<string>29B97318FDCFA39411CA2CEA</string>
-								<string>2C732C7B07AE666B005ACE75</string>
-								<string>2CB63A5D08CF038D002FCC88</string>
-								<string>29B97323FDCFA39411CA2CEA</string>
-								<string>1058C7A0FEA54F0111CA2CBB</string>
-								<string>1058C7A2FEA54F0111CA2CBB</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>2C8624290A1032DD004855E4</string>
+								<string>2C86242A0A1032DD004855E4</string>
+								<string>2C86242B0A1032DD004855E4</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>63</integer>
+									<integer>50</integer>
+									<integer>49</integer>
+									<integer>42</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -543,7 +544,7 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C6950390A06E6D2008277ED</string>
+				<string>2C8624000A1031B5004855E4</string>
 				<string>11E0B1FE06471DED0097A5F4</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -574,6 +575,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C92F43609C1219A00D5EA67</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -598,7 +600,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PaletteWindowController.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -658,7 +660,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C92F43609C1219A00D5EA67</string>
-				<string>2C1B7BC90A011DF400C2CE00</string>
+				<string>2C8624280A1032D7004855E4</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
