@@ -179,7 +179,7 @@ on makeObj(theTexDocObj)
 			if (my dvipdfCommand is missing value) then
 				set theCommand to contents of default entry "dvipdfCommand" of user defaults
 			else
-				set theCommand to my dvipdfCommand of theTexDocObj
+				set theCommand to my dvipdfCommand
 			end if
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
