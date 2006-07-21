@@ -101,11 +101,13 @@ on makeObj(theTargetFile)
 					set theParentFile to resolveParentFile(theParagraph)
 					setTexFileRef(theParentFile)
 				else if theParagraph starts with "%Typeset-Command" then
-					set my texCommand to StringEngine's stripHeadTailSpaces(text 18 thru -2 of theParagraph)
+					set my texCommand to StringEngine's stripHeadTailSpaces(text 18 thru -1 of theParagraph)
 				else if theParagraph starts with "%DviToPdf-Command" then
-					set my dvipdfCommand to StringEngine's stripHeadTailSpaces(text 19 thru -2 of theParagraph)
+					set my dvipdfCommand to StringEngine's stripHeadTailSpaces(text 19 thru -1 of theParagraph)
+					log theParagraph
+					log dvipdfCommand
 				else if theParagraph starts with "%DviToPs-Command" then
-					set my dvipsCommand to StringEngine's stripHeadTailSpaces(text 18 thru -2 of theParagraph)
+					set my dvipsCommand to StringEngine's stripHeadTailSpaces(text 18 thru -1 of theParagraph)
 				end if
 			end ignoring
 		end getHeaderCommand

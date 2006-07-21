@@ -181,6 +181,7 @@ on makeObj(theTexDocObj)
 			else
 				set theCommand to my dvipdfCommand
 			end if
+			log theCommand
 			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
 			set targetFileName to getNameWithSuffix(".dvi")
 			set allCommand to cdCommand & comDelim & theCommand & space & "'" & targetFileName & "'"

@@ -34,8 +34,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 175007626;
-			PBXWorkspaceStateSaveDate = 175007626;
+			PBXPerProjectTemplateStateSaveDate = 175187738;
+			PBXWorkspaceStateSaveDate = 175187738;
 		};
 		sourceControlManager = 2C69503A0A06E6D3008277ED /* Source Control */;
 		userBuildSettings = {
@@ -129,6 +129,21 @@
 			sepNavSelRange = "{115, 17}";
 			sepNavVisRect = "{{0, 0}, {1165, 701}}";
 			sepNavWindowFrame = "{{574, 97}, {1210, 799}}";
+		};
+	};
+	2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {592, 2912}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {592, 593}}";
+			sepNavWindowFrame = "{{153, 116}, {637, 691}}";
+		};
+	};
+	2CCD1A4A06BE616C00B6B166 /* DVIObj.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 3774}}";
+			sepNavSelRange = "{6779, 0}";
+			sepNavVisRect = "{{0, 2989}, {792, 490}}";
 		};
 	};
 	2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */ = {
