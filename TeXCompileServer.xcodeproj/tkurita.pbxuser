@@ -37,6 +37,14 @@
 			PBXPerProjectTemplateStateSaveDate = 175701953;
 			PBXWorkspaceStateSaveDate = 175701953;
 		};
+		perUserProjectItems = {
+			2CEC45580A791962009B1B3B /* PBXBookmark */ = 2CEC45580A791962009B1B3B /* PBXBookmark */;
+			2CEC45590A791A16009B1B3B /* PBXBookmark */ = 2CEC45590A791A16009B1B3B /* PBXBookmark */;
+			2CEC45610A791ABC009B1B3B /* PBXTextBookmark */ = 2CEC45610A791ABC009B1B3B /* PBXTextBookmark */;
+			2CEC45620A791ABC009B1B3B /* PBXTextBookmark */ = 2CEC45620A791ABC009B1B3B /* PBXTextBookmark */;
+			2CEC45680A791ABF009B1B3B /* PBXTextBookmark */ = 2CEC45680A791ABF009B1B3B /* PBXTextBookmark */;
+			2CEC456B0A791ABF009B1B3B /* PBXTextBookmark */ = 2CEC456B0A791ABF009B1B3B /* PBXTextBookmark */;
+		};
 		sourceControlManager = 2C69503A0A06E6D3008277ED /* Source Control */;
 		userBuildSettings = {
 		};
@@ -60,6 +68,14 @@
 		executables = (
 			2C6950330A06E6C9008277ED /* TeXCompileServer */,
 		);
+	};
+	2C4E27E3084273B000004A96 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 624}}";
+			sepNavSelRange = "{960, 0}";
+			sepNavVisRect = "{{0, 246}, {905, 378}}";
+			sepNavWindowFrame = "{{176, 310}, {950, 476}}";
+		};
 	};
 	2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {
 		uiCtxt = {
@@ -121,11 +137,27 @@
 			sepNavWindowFrame = "{{465, 220}, {725, 475}}";
 		};
 	};
+	2C86240E0A10320C004855E4 /* DonationReminder.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {905, 378}}";
+			sepNavSelRange = "{287, 0}";
+			sepNavVisRect = "{{0, 0}, {905, 378}}";
+			sepNavWindowFrame = "{{413, 334}, {950, 476}}";
+		};
+	};
+	2C86240F0A10320C004855E4 /* DonationReminder.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {844, 1070}}";
+			sepNavSelRange = "{1752, 0}";
+			sepNavVisRect = "{{0, 488}, {844, 582}}";
+			sepNavWindowFrame = "{{362, 176}, {889, 680}}";
+		};
+	};
 	2C9E42C1052215F000248965 /* Japanese */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {671, 1162}}";
-			sepNavSelRange = "{1994, 0}";
-			sepNavVisRect = "{{0, 407}, {671, 741}}";
+			sepNavIntBoundsRect = "{{0, 0}, {671, 1274}}";
+			sepNavSelRange = "{1888, 0}";
+			sepNavVisRect = "{{0, 573}, {671, 701}}";
 			sepNavWindowFrame = "{{420, 116}, {716, 799}}";
 		};
 	};
@@ -169,10 +201,56 @@
 	};
 	2CD5554D08BEC77E007E43D1 /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {671, 2142}}";
-			sepNavSelRange = "{345, 484}";
-			sepNavVisRect = "{{0, 0}, {671, 701}}";
+			sepNavIntBoundsRect = "{{0, 0}, {671, 2348}}";
+			sepNavSelRange = "{4096, 0}";
+			sepNavVisRect = "{{0, 1631}, {671, 701}}";
 			sepNavWindowFrame = "{{362, 104}, {716, 799}}";
 		};
+	};
+	2CEC45580A791962009B1B3B /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C86240F0A10320C004855E4 /* DonationReminder.m */;
+	};
+	2CEC45590A791A16009B1B3B /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+	};
+	2CEC45610A791ABC009B1B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: ‘reminderWindow’ undeclared (first use in this function)";
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		rLen = 1;
+		rLoc = 136;
+		rType = 1;
+	};
+	2CEC45620A791ABC009B1B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 136";
+		rLen = 0;
+		rLoc = 4030;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 3370;
+	};
+	2CEC45680A791ABF009B1B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 137";
+		rLen = 0;
+		rLoc = 4096;
+		rType = 0;
+		vrLen = 1450;
+		vrLoc = 2693;
+	};
+	2CEC456B0A791ABF009B1B3B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C86240F0A10320C004855E4 /* DonationReminder.m */;
+		name = "DonationReminder.m: 63";
+		rLen = 0;
+		rLoc = 1752;
+		rType = 0;
+		vrLen = 889;
+		vrLoc = 872;
 	};
 }

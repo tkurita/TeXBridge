@@ -91,14 +91,7 @@ static id sharedObj;
 {
 #if useLog
 	NSLog(@"start applicationWillFinishLaunching");
-#endif
-	/*
-	NSString *thePath = @"/usr/local/bin/hello";
-	NSString *basePath = @"/usr/local/bin/yo/";
-	NSArray *pathComps = [basePath pathComponents];
-	NSString *relPath = [thePath relativePathWithBase:basePath];
-	*/
-	
+#endif	
 	/* regist FactorySettings into shared user defaults */
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
@@ -140,7 +133,8 @@ static id sharedObj;
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
 
-	[DonationReminder remindDonation];
+	id reminderWindow = [DonationReminder remindDonation];
+	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
 }
 
 @end
