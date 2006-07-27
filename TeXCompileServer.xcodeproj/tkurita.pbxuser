@@ -5,8 +5,8 @@
 		activeExecutable = 2C6950330A06E6C9008277ED /* TeXCompileServer */;
 		activeTarget = 2C4E27AD084273B000004A96 /* TeXCompileServer */;
 		addToTargets = (
-			2C4E27AD084273B000004A96 /* TeXCompileServer */,
 		);
+		breakpointsGroup = 2C47F6090A75C652001809FA /* XCBreakpointsBucket */;
 		codeSenseManager = 2C69503B0A06E6D3008277ED /* Code sense */;
 		executables = (
 			2C6950330A06E6C9008277ED /* TeXCompileServer */,
@@ -34,11 +34,25 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 175187738;
-			PBXWorkspaceStateSaveDate = 175187738;
+			PBXPerProjectTemplateStateSaveDate = 175701953;
+			PBXWorkspaceStateSaveDate = 175701953;
 		};
 		sourceControlManager = 2C69503A0A06E6D3008277ED /* Source Control */;
 		userBuildSettings = {
+		};
+	};
+	2C47F6090A75C652001809FA /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = TeXCompileServer;
+		objects = (
+		);
+	};
+	2C47F6EF0A7618B6001809FA /* History */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {724, 6100}}";
+			sepNavSelRange = "{296, 0}";
+			sepNavVisRect = "{{0, 0}, {724, 606}}";
+			sepNavWindowFrame = "{{466, 234}, {769, 704}}";
 		};
 	};
 	2C4E27AD084273B000004A96 /* TeXCompileServer */ = {

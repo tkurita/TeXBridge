@@ -2,6 +2,12 @@
 
 @implementation DonationReminder
 
++ (void)goToDonation
+{
+	NSString *urlString = [[NSUserDefaults standardUserDefaults] stringForKey:@"donationURL"];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+}
+
 - (IBAction)cancelDonation:(id)sender
 {
 	[[self window] close];
@@ -23,8 +29,7 @@
 
 - (IBAction)makeDonation:(id)sender
 {
-	NSString *urlString = NSLocalizedString(@"DonationURL", @"");
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
+	[[self class] goToDonation];
 	[[self window] close];
 }
 
@@ -37,6 +42,7 @@
 
 + (id)remindDonation
 {
+	//return [self displayReminder];
 	NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSArray *verList = [userDefaults objectForKey:@"DonatedVersions"];
@@ -53,7 +59,7 @@
 - (void)awakeFromNib
 {
 	NSString *theMessage = [_productMessage stringValue];
-	[_productMessage setStringValue: [NSString stringWithFormat:theMessage,NSLocalizedString(@"ProductName",@"")]];
+	[_productMessage setStringValue: [NSString stringWithFormat:theMessage,NSLocalizedString(@"this software",@"")]];
 	[[self window] center];
 }
 

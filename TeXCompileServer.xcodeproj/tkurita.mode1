@@ -482,6 +482,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>2C1656E209F90C3200CE5422</string>
+								<string>2C1DB15709F687D000139324</string>
 								<string>2C1DAE3709F5F7EE00139324</string>
 								<string>2CD553EC08BCDE96007E43D1</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
@@ -494,13 +495,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>13</integer>
+									<integer>51</integer>
+									<integer>46</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {474, 730}}</string>
+							<string>{{0, 754}, {474, 606}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -512,7 +513,7 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {491, 748}}</string>
+						<string>{{0, 0}, {491, 624}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>SCMStatusColumn</string>
@@ -521,7 +522,7 @@
 							<real>452</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>102 149 491 789 0 0 1440 938 </string>
+						<string>126 213 491 665 0 0 1440 938 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -540,7 +541,7 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C47F52E0A712734001809FA</string>
+				<string>2CEC44FD0A78FFE0009B1B3B</string>
 				<string>11E0B1FE06471DED0097A5F4</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -574,7 +575,7 @@
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>102 149 491 789 0 0 1440 938 </string>
+	<string>126 213 491 665 0 0 1440 938 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -653,7 +654,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C92F43609C1219A00D5EA67</string>
-				<string>2C4748BC0A70B1D700096E8A</string>
+				<string>2C47F6080A75C652001809FA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -695,8 +696,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {340, 252}}</string>
-											<string>{{340, 0}, {477, 252}}</string>
+											<string>{{0, 0}, {339, 289}}</string>
+											<string>{{339, 0}, {478, 289}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -711,8 +712,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {817, 252}}</string>
-											<string>{{0, 252}, {817, 360}}</string>
+											<string>{{0, 0}, {817, 289}}</string>
+											<string>{{0, 289}, {817, 323}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -759,14 +760,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C1B788709FDC5E100C2CE00</string>
+				<string>2C47F5360A712759001809FA</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C1B788809FDC5E100C2CE00</string>
-				<string>2C1B788909FDC5E100C2CE00</string>
-				<string>2C1B788A09FDC5E100C2CE00</string>
-				<string>2C1B788B09FDC5E100C2CE00</string>
-				<string>2C1B788C09FDC5E100C2CE00</string>
-				<string>2C1B788D09FDC5E100C2CE00</string>
+				<string>2C47F5370A712759001809FA</string>
+				<string>2C47F5380A712759001809FA</string>
+				<string>2C47F5390A712759001809FA</string>
+				<string>2C47F53A0A712759001809FA</string>
+				<string>2C47F53B0A712759001809FA</string>
+				<string>2C47F53C0A712759001809FA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debug</string>
@@ -1291,8 +1292,8 @@
 			<true/>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C92AB0509C009EA00D5EA67</string>
-				<string>2C92AB0609C009EA00D5EA67</string>
+				<string>2C47F5320A712750001809FA</string>
+				<string>2C47F5330A712750001809FA</string>
 				<string>2C92AB0309C009EA00D5EA67</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1300,7 +1301,7 @@
 			<key>WindowString</key>
 			<string>259 360 700 500 0 0 1440 938 </string>
 			<key>WindowToolGUID</key>
-			<string>2C92AB0509C009EA00D5EA67</string>
+			<string>2C47F5320A712750001809FA</string>
 			<key>WindowToolIsVisible</key>
 			<false/>
 		</dict>
