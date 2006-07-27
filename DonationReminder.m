@@ -61,6 +61,7 @@
 	NSString *theMessage = [_productMessage stringValue];
 	[_productMessage setStringValue: [NSString stringWithFormat:theMessage,NSLocalizedString(@"this software",@"")]];
 	[[self window] center];
+	[NSApp activateIgnoringOtherApps:YES];
 }
 
 @end
