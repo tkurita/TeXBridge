@@ -84,7 +84,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSEnumerator * suffixEnumerator = [texFileExtensions objectEnumerator];
 	NSString * theSuffix;
 	while (theSuffix = [suffixEnumerator nextObject]) {
-		if ([targetFile endsWith:theSuffix]) {
+		if ([targetFile hasSuffix:theSuffix]) {
 			return targetFile;
 		}
 	}
@@ -157,7 +157,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSString *nextLogContent;
 	NSString *errMsg = nil;	
 	
-	if ([logContent startWith:@"!"]) {
+	if ([logContent hasPrefix:@"!"]) {
 		errMsg = [NSString stringWithString:logContent];
 		isNoError = NO;
 		
@@ -169,7 +169,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				nextLogContent = [[object objectAtIndex:0] objectForKey:@"content"];
 			}
 			
-			if ([nextLogContent startWith:@"l."]) {
+			if ([nextLogContent hasSuffix:@"l."]) {
 				NSScanner * scanner = [NSScanner scannerWithString:nextLogContent];
 				NSString * scannedText;
 				if ([scanner scanUpToCharactersFromSet:whitespaceCharSet intoString:&scannedText]) {
@@ -179,8 +179,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				
 				break;
 			}
-			else if ([nextLogContent startWith:@"?"] || 
-					 [nextLogContent startWith:@"Enter file name:"] || [nextLogContent startWith:@"<*>"]){
+			else if ([nextLogContent hasSuffix:@"?"] || 
+					 [nextLogContent hasSuffix:@"Enter file name:"] || [nextLogContent hasSuffix:@"<*>"]){
 				break;
 			}
 		}
@@ -188,7 +188,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	else if ([logContent contain:@"Warning:"]) {
 		errMsg = [NSString stringWithString:logContent];	
-		if (![logContent endsWith:@"."]) {
+		if (![logContent hasSuffix:@"."]) {
 			object = [enumerator nextObject];
 			if ([object isKindOfClass: [NSMutableDictionary class]]) {
 				errMsg = [logContent stringByAppendingString:[object objectForKey:@"content"]];
@@ -206,7 +206,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 	}
 	
-	else if ([logContent startWith:@"Overfull"]||[logContent startWith:@"Underfull"]) {
+	else if ([logContent hasSuffix:@"Overfull"]||[logContent hasSuffix:@"Underfull"]) {
 		errMsg = [NSString stringWithString:logContent];
 		NSMutableArray *wordList = [logContent splitWithCharacterSet:whitespaceCharSet];
 		NSScanner *scanner = [NSScanner scannerWithString:[wordList lastObject]];
@@ -215,7 +215,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 	}
 	
-	else if ([logContent startWith:@"No file"]) {
+	else if ([logContent hasSuffix:@"No file"]) {
 		errMsg = [NSString stringWithString:logContent];
 		isNoError = NO;
 	}
@@ -354,58 +354,58 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #if useLog
 	NSLog(targetText);
 #endif
-	if ([targetText startWith:@"LaTeX Font Info:"] 
-			||[targetText startWith:@"Latex Info"]
-			||[targetText startWith:@"\\"]) {
+	if ([targetText hasSuffix:@"LaTeX Font Info:"] 
+			||[targetText hasSuffix:@"Latex Info"]
+			||[targetText hasSuffix:@"\\"]) {
 		//skip this line
 		return [self parseLines:[self getNextLine] withList:currentList];
 		
-	} else if ([targetText startWith:@"LaTeX Font"]
-			   ||[targetText startWith:@"(FONT)"]
-			   ||[targetText startWith:@"Package hyperref"]
-			   ||[targetText startWith:@"(hyperref)"]) {
-			  // ||[targetText startWith:@"Package:"]) {
+	} else if ([targetText hasSuffix:@"LaTeX Font"]
+			   ||[targetText hasSuffix:@"(FONT)"]
+			   ||[targetText hasSuffix:@"Package hyperref"]
+			   ||[targetText hasSuffix:@"(hyperref)"]) {
+			  // ||[targetText hasSuffix:@"Package:"]) {
 		//just add this line into currentList
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 		
 	} else if ([targetText contain:@"Warning:"]){
 		unsigned int theCurrentLineNumber = currentLineNumber;
-		while (! [targetText endsWith:@"."]) {
+		while (! [targetText hasSuffix:@"."]) {
 			targetText = [targetText stringByAppendingString:[self getNextLine]];
 		}
 		NSMutableDictionary * dict = makeLogRecord(targetText, theCurrentLineNumber, currentRange);
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 	
-	} else if ([targetText startWith:@"Overfull"]) {
+	} else if ([targetText hasSuffix:@"Overfull"]) {
 		//targetText = [self addCurrentLineAndNextLine:currentList];
 		[self addCurrentLine:currentList];
 		if (isReadFile) {
-			while (! ([targetText endsWith:@"[]"]||[targetText endsWith:@"[] "])) {
+			while (! ([targetText hasSuffix:@"[]"]||[targetText hasSuffix:@"[] "])) {
 				targetText = [self getNextLine];
 			}
 		}
 		return [self parseLines:[self getNextLine] withList:currentList];
 
-	} else if ([targetText startWith:@"Underfull"]) {
+	} else if ([targetText hasSuffix:@"Underfull"]) {
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 
-	} else if ([targetText startWith:@"Runaway argument?"]) {
+	} else if ([targetText hasSuffix:@"Runaway argument?"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		while (! [targetText startWith:@"!"]) {
+		while (! [targetText hasSuffix:@"!"]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 
-	} else if ([targetText startWith:@"l."]) {
+	} else if ([targetText hasSuffix:@"l."]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		while ([targetText startWith:@" "]) {
+		while ([targetText hasSuffix:@" "]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		//return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 		return [self parseLines:targetText withList:currentList];
 
-	} else if ([targetText startWith:@"!"]) {
+	} else if ([targetText hasSuffix:@"!"]) {
 		unsigned int theCurrentLineNumber = currentLineNumber;
 		if ([targetText length] >= 79) {
 			//add two lines into current list
@@ -415,9 +415,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 
-	} else if ([targetText startWith:@"<argument>"]) {
+	} else if ([targetText hasSuffix:@"<argument>"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		if (([targetText length] >= 79)||([targetText endsWith:@"..."])) {
+		if (([targetText length] >= 79)||([targetText hasSuffix:@"..."])) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		return [self parseLines:targetText withList:currentList];
@@ -576,7 +576,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
 	isDviOutput = NO;
 	isLabelsChanged = NO;
-	if (![logContents endsWith:@"\n"]) {
+	if (![logContents hasSuffix:@"\n"]) {
 		[self setLogContents:logContents];
 	}
 	[self parseLogTreeFirstLevel:loglogTree];

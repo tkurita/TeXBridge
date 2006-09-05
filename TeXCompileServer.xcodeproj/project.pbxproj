@@ -97,7 +97,6 @@
 		2C6CA3AC08CF5572005D5612 /* RefPanelController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C6CA3C108CF559E005D5612 /* LabelListObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C6CA44208CFC6D2005D5612 /* SheetManager.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		2C80445E098DE473001DAF04 /* setuphelp.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2C80445D098DE473001DAF04 /* setuphelp.sh */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
@@ -170,7 +169,7 @@
 		2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVItoPDFIcon.png; path = images/DVItoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVIPreviewIcon.png; path = images/DVIPreviewIcon.png; sourceTree = "<group>"; };
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
-		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInputObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInputObj.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
 		2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = NTYImmutableToMutableArrayOfObjectsTransformer.m; sourceTree = "<group>"; };
@@ -191,7 +190,6 @@
 		2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = DefaultsManager.applescript; sourceTree = "<group>"; };
 		2C7C493607960CCD0026564C /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
-		2C80445D098DE473001DAF04 /* setuphelp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setuphelp.sh; sourceTree = "<group>"; };
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C86240E0A10320C004855E4 /* DonationReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationReminder.h; sourceTree = "<group>"; };
 		2C86240F0A10320C004855E4 /* DonationReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationReminder.m; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2C80445D098DE473001DAF04 /* setuphelp.sh */,
 				2C0315700AAD154A005B592F /* HelpSetup.plist */,
 				2C4E27E3084273B000004A96 /* Info.plist */,
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
@@ -552,7 +549,6 @@
 				2C6CA37708CF54DD005D5612 /* ReferencePalette.nib in Resources */,
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
 				2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */,
-				2C80445E098DE473001DAF04 /* setuphelp.sh in Resources */,
 				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
 				2CF1023609AA2CAE007DD27C /* ToolSupport216.plist in Resources */,
 				2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */,
