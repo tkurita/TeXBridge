@@ -18,6 +18,8 @@ $1
 	<string>¥includegraphics[width = 120mm,keepaspectratio,clip]{$1}¥caption{}¥label{$2}</string>
 	<key>incGraphicCommand</key>
 	<string>¥includegraphics</string>
+	<key>itemHead</key>
+	<string>¥item</string>
 	<key>labelText</key>
 	<string>¥label</string>
 	<key>tableBegin</key>

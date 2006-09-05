@@ -1,6 +1,6 @@
 #import <Cocoa/Cocoa.h>
 #import "ErrorRecord.h"
-#import "stringExtra.h"
+#import "StringExtra.h"
 #import "LogWindowItem.h"
 
 @interface LogParser : NSObject <LogWindowItem>{

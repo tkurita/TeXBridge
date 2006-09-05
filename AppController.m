@@ -1,7 +1,7 @@
 #import "AppController.h"
 #import "PaletteWindowController.h"
-#import "WindowVisibilityController.h"
 #import "PathExtra.h"
+#import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder.h"
 
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
@@ -86,6 +86,41 @@ static id sharedObj;
 	return [factoryDefaults objectForKey:theKey];
 }
 
+- (int)judgeVisibilityForApp:(NSString *)appName
+{
+	/*
+	 result = -1 : can't judge in this routine
+	 0 : should hide	
+	 1: should show
+	 2: should not change
+	 */
+	 if ([appName isEqualToString:[EditorClient name]]) {
+		 NSString *theMode;
+		 @try{
+			 theMode = [EditorClient currentDocumentMode];
+		 }
+		 @catch(NSException *exception){
+			 NSNumber *err = [[exception userInfo] objectForKey:@"result code"];
+			 if ([err intValue] == -1704) {
+				 // maybe menu is opened
+				 return 2;
+			 }
+			 else {
+				 // maybe no documents opened
+				 return 0;
+			 }	
+		 }
+		 
+		 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
+				containsObject:theMode]) {
+			 return 1;
+		 } else {
+			 return 0;
+		 }
+	 }
+	return -1;
+}
+
 #pragma mark delegate of NSApplication
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
@@ -119,7 +154,10 @@ static id sharedObj;
 		return;
     }
 	EditorClient = [[miClient alloc] init];
-	[PaletteWindowController setVisibilityController:[[[WindowVisibilityController alloc] init] autorelease]];
+	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
+	[wvController setDelegate:self];
+	[wvController setUseTimer:YES];
+	[PaletteWindowController setVisibilityController:[wvController autorelease]];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

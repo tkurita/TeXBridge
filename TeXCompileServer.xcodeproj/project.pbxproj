@@ -39,12 +39,17 @@
 /* End PBXAppleScriptBuildPhase section */
 
 /* Begin PBXBuildFile section */
+		2C0311A90AACA0F2005B592F /* PaletteWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0311A10AACA0F2005B592F /* PaletteWindowController.h */; };
+		2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A20AACA0F2005B592F /* PaletteWindowController.m */; };
+		2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A40AACA0F2005B592F /* PathExtra.m */; };
+		2C0311AD0AACA0F2005B592F /* StringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0311A50AACA0F2005B592F /* StringExtra.h */; };
+		2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */; };
+		2C0311AF0AACA0F2005B592F /* WindowVisibilityController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */; };
+		2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */; };
+		2C0311F90AACAD81005B592F /* PathExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0311A30AACA0F2005B592F /* PathExtra.h */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXCompileServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		2C2B7E4609BD233F00B6B3F6 /* PathExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C2B7E4409BD233F00B6B3F6 /* PathExtra.h */; };
-		2C2B7E4709BD233F00B6B3F6 /* PathExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B7E4509BD233F00B6B3F6 /* PathExtra.m */; };
 		2C4E27AF084273B000004A96 /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C2E5293080625270015E9EB /* SmartActivate.h */; };
 		2C4E27B0084273B000004A96 /* LogParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDACD7F0813BE3F000B9086 /* LogParser.h */; };
-		2C4E27B1084273B000004A96 /* stringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CDACD800813BE3F000B9086 /* stringExtra.h */; };
 		2C4E27B4084273B000004A96 /* TeXCompileObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -76,7 +81,6 @@
 		2C4E27D4084273B000004A96 /* miclient in Resources */ = {isa = PBXBuildFile; fileRef = 2CDACE460813EF6B000B9086 /* miclient */; };
 		2C4E27D6084273B000004A96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		2C4E27D7084273B000004A96 /* SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E5294080625270015E9EB /* SmartActivate.m */; };
-		2C4E27D8084273B000004A96 /* stringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDACD810813BE3F000B9086 /* stringExtra.m */; };
 		2C4E27D9084273B000004A96 /* LogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDACD820813BE3F000B9086 /* LogParser.m */; };
 		2C4E27DB084273B000004A96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		2C4E27DC084273B000004A96 /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
@@ -95,10 +99,6 @@
 		2C8624030A1031DE004855E4 /* DonationReminder.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8624010A1031DE004855E4 /* DonationReminder.nib */; };
 		2C8624100A10320C004855E4 /* DonationReminder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C86240E0A10320C004855E4 /* DonationReminder.h */; };
 		2C8624110A10320C004855E4 /* DonationReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C86240F0A10320C004855E4 /* DonationReminder.m */; };
-		2C8F4F5709AEF77600997C75 /* WindowVisibilityController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */; };
-		2C8F4F5809AEF77600997C75 /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */; };
-		2CA3F84F08BEE22A00F997B9 /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */; };
-		2CA3F85008BEE22A00F997B9 /* PaletteWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */; };
 		2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -130,6 +130,14 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2C0311A10AACA0F2005B592F /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
+		2C0311A20AACA0F2005B592F /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
+		2C0311A30AACA0F2005B592F /* PathExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathExtra.h; sourceTree = "<group>"; };
+		2C0311A40AACA0F2005B592F /* PathExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathExtra.m; sourceTree = "<group>"; };
+		2C0311A50AACA0F2005B592F /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
+		2C0311A60AACA0F2005B592F /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
+		2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
+		2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
 		2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
@@ -142,7 +150,7 @@
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
-		2C47F6EF0A7618B6001809FA /* History */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History; path = ../History; sourceTree = SOURCE_ROOT; };
+		2C47F6EF0A7618B6001809FA /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; };
 		2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoPDFIcon.png; path = images/TeXtoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoDVIIcon.png; path = images/TeXtoDVIIcon.png; sourceTree = "<group>"; };
 		2C49445C07AD21E900B2A8D8 /* generalpref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = generalpref.png; path = images/generalpref.png; sourceTree = "<group>"; };
@@ -176,8 +184,6 @@
 		2C86240E0A10320C004855E4 /* DonationReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationReminder.h; sourceTree = "<group>"; };
 		2C86240F0A10320C004855E4 /* DonationReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationReminder.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXCompileServer.nib; sourceTree = "<group>"; };
-		2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
-		2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
 		2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
@@ -213,8 +219,8 @@
 		2CDBE608097BA7FE00C3300B /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
-		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
-		2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ToolSupport216.plist; sourceTree = "<group>"; };
+		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
+		2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport216.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TeXCompileServer.applescript; sourceTree = "<group>"; };
 		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
@@ -286,10 +292,11 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				2C47F6EF0A7618B6001809FA /* History */,
+				2C47F6EF0A7618B6001809FA /* History.rd */,
 				2C1656E209F90C3200CE5422 /* miClientLib */,
 				2C1DB15709F687D000139324 /* SmartActivateLib */,
 				2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */,
+				2C0311A00AACA0F2005B592F /* CocoaLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -345,6 +352,21 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C0311A00AACA0F2005B592F /* CocoaLib */ = {
+			isa = PBXGroup;
+			children = (
+				2C0311A10AACA0F2005B592F /* PaletteWindowController.h */,
+				2C0311A20AACA0F2005B592F /* PaletteWindowController.m */,
+				2C0311A30AACA0F2005B592F /* PathExtra.h */,
+				2C0311A40AACA0F2005B592F /* PathExtra.m */,
+				2C0311A50AACA0F2005B592F /* StringExtra.h */,
+				2C0311A60AACA0F2005B592F /* StringExtra.m */,
+				2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */,
+				2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */,
+			);
+			path = CocoaLib;
 			sourceTree = "<group>";
 		};
 		2C1656E209F90C3200CE5422 /* miClientLib */ = {
@@ -433,8 +455,6 @@
 				2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */,
 				2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */,
 				2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */,
-				2C8F4F5509AEF77600997C75 /* WindowVisibilityController.h */,
-				2C8F4F5609AEF77600997C75 /* WindowVisibilityController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -448,10 +468,8 @@
 			files = (
 				2C4E27AF084273B000004A96 /* SmartActivate.h in Headers */,
 				2C4E27B0084273B000004A96 /* LogParser.h in Headers */,
-				2C4E27B1084273B000004A96 /* stringExtra.h in Headers */,
 				2CD553EF08BCDEB8007E43D1 /* SettingWindowController.h in Headers */,
 				2CD5554E08BEC77E007E43D1 /* AppController.h in Headers */,
-				2CA3F85008BEE22A00F997B9 /* PaletteWindowController.h in Headers */,
 				2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */,
 				2C59769408CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h in Headers */,
 				2CB63A6D08CF053A002FCC88 /* TitlelessWindow.h in Headers */,
@@ -460,10 +478,12 @@
 				2CBFCCC8097CA75900BCEB43 /* ErrorRecord.h in Headers */,
 				2CBFCCF3097CAF2600BCEB43 /* FileRecord.h in Headers */,
 				2CBFD20B097DFA9200BCEB43 /* miClient.h in Headers */,
-				2C8F4F5709AEF77600997C75 /* WindowVisibilityController.h in Headers */,
-				2C2B7E4609BD233F00B6B3F6 /* PathExtra.h in Headers */,
 				2CB09B4C09BF3663008DA844 /* LogWindowItem.h in Headers */,
 				2C8624100A10320C004855E4 /* DonationReminder.h in Headers */,
+				2C0311A90AACA0F2005B592F /* PaletteWindowController.h in Headers */,
+				2C0311AD0AACA0F2005B592F /* StringExtra.h in Headers */,
+				2C0311AF0AACA0F2005B592F /* WindowVisibilityController.h in Headers */,
+				2C0311F90AACAD81005B592F /* PathExtra.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,11 +564,9 @@
 			files = (
 				2C4E27D6084273B000004A96 /* main.m in Sources */,
 				2C4E27D7084273B000004A96 /* SmartActivate.m in Sources */,
-				2C4E27D8084273B000004A96 /* stringExtra.m in Sources */,
 				2C4E27D9084273B000004A96 /* LogParser.m in Sources */,
 				2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */,
 				2CD5554F08BEC77F007E43D1 /* AppController.m in Sources */,
-				2CA3F84F08BEE22A00F997B9 /* PaletteWindowController.m in Sources */,
 				2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */,
 				2C59769308CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m in Sources */,
 				2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */,
@@ -558,9 +576,11 @@
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
 				2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */,
 				2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */,
-				2C8F4F5809AEF77600997C75 /* WindowVisibilityController.m in Sources */,
-				2C2B7E4709BD233F00B6B3F6 /* PathExtra.m in Sources */,
 				2C8624110A10320C004855E4 /* DonationReminder.m in Sources */,
+				2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */,
+				2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */,
+				2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */,
+				2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

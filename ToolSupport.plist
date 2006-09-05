@@ -6,6 +6,8 @@
 	<string>\</string>
 	<key>beginText</key>
 	<string>\begin</string>
+	<key>captionText</key>
+	<string>\caption</string>
 	<key>endText</key>
 	<string>\end</string>
 	<key>figEnvBlock</key>
@@ -18,6 +20,8 @@ $1
 	<string>\includegraphics[width = 120mm,keepaspectratio,clip]{$1}\caption{}\label{$2}</string>
 	<key>incGraphicCommand</key>
 	<string>\includegraphics</string>
+	<key>itemHead</key>
+	<string>\item</string>
 	<key>labelText</key>
 	<string>\label</string>
 	<key>tableBegin</key>
@@ -30,6 +34,12 @@ $1
 	<string>\end{tabular}
 \end{center}
 \end{table}</string>
+	<key>tabularEnvBlock</key>
+	<string>\caption{}\label{}\begin{tabular}{$1}$2\end{tabular}</string>
+	<key>tblEnvBlock</key>
+	<string>\begin{table}[http]\begin{center}
+$1
+\end{center}\end{table}</string>
 	<key>texNewLine</key>
 	<string>\\</string>
 </dict>
