@@ -1,8 +1,8 @@
 #import "AppController.h"
-#import "PaletteWindowController.h"
-#import "PathExtra.h"
+#import "CocoaLib/PaletteWindowController.h"
+#import "CocoaLib/PathExtra.h"
 #import "CocoaLib/WindowVisibilityController.h"
-#import "DonationReminder.h"
+#import "DonationReminder/DonationReminder.h"
 
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 

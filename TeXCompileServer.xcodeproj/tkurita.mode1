@@ -264,27 +264,28 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>2C1656E209F90C3200CE5422</string>
-								<string>2C1DB15709F687D000139324</string>
-								<string>2C1DAE3709F5F7EE00139324</string>
-								<string>2C0311A00AACA0F2005B592F</string>
-								<string>2CD553EC08BCDE96007E43D1</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>2C9E42BE052215CB00248965</string>
+								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>1058C7A0FEA54F0111CA2CBB</string>
+								<string>1058C7A2FEA54F0111CA2CBB</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>2C0311E30AACAC5F005B592F</string>
-								<string>2C0312F00AAD0956005B592F</string>
-								<string>2C0312F10AAD0956005B592F</string>
+								<string>2C0313750AAD0F47005B592F</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
+									<integer>11</integer>
+									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 146}, {417, 661}}</string>
+							<string>{{0, 0}, {417, 661}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -321,7 +322,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>StringExtra.h</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,20 +330,30 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>StringExtra.h</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C0313080AAD0956005B592F</string>
+										<string>2C0315440AAD116F005B592F</string>
 										<key>history</key>
 										<array>
-											<string>2C0312F20AAD0956005B592F</string>
 											<string>2C0312F30AAD0956005B592F</string>
 											<string>2C0312F40AAD0956005B592F</string>
 											<string>2C0312F50AAD0956005B592F</string>
 											<string>2C0312F70AAD0956005B592F</string>
 											<string>2C0312F80AAD0956005B592F</string>
-											<string>2C0312F90AAD0956005B592F</string>
+											<string>2C03133C0AAD0DE9005B592F</string>
+											<string>2C03133D0AAD0DE9005B592F</string>
+											<string>2C03133E0AAD0DE9005B592F</string>
+											<string>2C03133F0AAD0DE9005B592F</string>
+											<string>2C0314540AAD0FD9005B592F</string>
+											<string>2C0314550AAD0FD9005B592F</string>
+											<string>2C0314560AAD0FD9005B592F</string>
+											<string>2C0314570AAD0FD9005B592F</string>
+											<string>2C0315330AAD111F005B592F</string>
+											<string>2C0315340AAD111F005B592F</string>
+											<string>2C0315410AAD116F005B592F</string>
+											<string>2C0315420AAD116F005B592F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -357,6 +368,17 @@
 											<string>2C0313050AAD0956005B592F</string>
 											<string>2C0313060AAD0956005B592F</string>
 											<string>2C0313070AAD0956005B592F</string>
+											<string>2C0313410AAD0DE9005B592F</string>
+											<string>2C0313420AAD0DE9005B592F</string>
+											<string>2C0313430AAD0DE9005B592F</string>
+											<string>2C0313440AAD0DE9005B592F</string>
+											<string>2C0314590AAD0FD9005B592F</string>
+											<string>2C03145A0AAD0FD9005B592F</string>
+											<string>2C03145B0AAD0FD9005B592F</string>
+											<string>2C03145C0AAD0FD9005B592F</string>
+											<string>2C0315360AAD111F005B592F</string>
+											<string>2C0315370AAD111F005B592F</string>
+											<string>2C0315430AAD116F005B592F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -368,14 +390,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {0, 0}}</string>
+								<string>{{0, 0}, {0, 345}}</string>
 								<key>RubberWindowFrame</key>
 								<string>44 183 439 720 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>0pt</string>
+							<string>345pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -402,14 +424,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 5}, {0, 588}}</string>
+								<string>{{0, 350}, {0, 243}}</string>
 								<key>RubberWindowFrame</key>
 								<string>44 183 439 720 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>588pt</string>
+							<string>243pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -611,6 +633,7 @@
 	<array>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>2C92F43609C1219A00D5EA67</string>
+		<string>2C92AB0709C00A1900D5EA67</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -630,6 +653,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -652,8 +677,6 @@
 							<string>534pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
@@ -838,12 +861,14 @@
 									<key>Dock</key>
 									<array>
 										<dict>
+											<key>BecomeActive</key>
+											<true/>
 											<key>ContentConfiguration</key>
 											<dict>
 												<key>PBXProjectModuleGUID</key>
 												<string>1CDD528C0622207200134675</string>
 												<key>PBXProjectModuleLabel</key>
-												<string>stringExtra.h</string>
+												<string>AppController.m</string>
 												<key>StatusBarVisibility</key>
 												<true/>
 											</dict>
@@ -890,8 +915,6 @@
 							<string>444pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1090,9 +1113,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C92AB0709C00A1900D5EA67</string>
-				<string>2CEC45640A791ABC009B1B3B</string>
+				<string>2C0313300AAD0DB8005B592F</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>2CEC45650A791ABC009B1B3B</string>
+				<string>2C0313310AAD0DB8005B592F</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -1101,7 +1124,7 @@
 			<key>WindowToolGUID</key>
 			<string>2C92AB0709C00A1900D5EA67</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
