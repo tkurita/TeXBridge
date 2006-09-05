@@ -185,8 +185,6 @@
 		2C86240F0A10320C004855E4 /* DonationReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationReminder.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXCompileServer.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
-		2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteController.applescript; sourceTree = "<group>"; };
@@ -438,8 +436,6 @@
 				2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */,
 				2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */,
 				2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */,
-				2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */,
-				2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */,
 				2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */,
 				2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */,
 				2CD5554C08BEC77E007E43D1 /* AppController.h */,

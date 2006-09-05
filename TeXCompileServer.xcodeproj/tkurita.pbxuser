@@ -816,22 +816,6 @@
 			sepNavWindowFrame = "{{420, 116}, {716, 799}}";
 		};
 	};
-	2CA3F84D08BEE22A00F997B9 /* PaletteWindowController.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {706, 4032}}";
-			sepNavSelRange = "{654, 0}";
-			sepNavVisRect = "{{0, 0}, {706, 643}}";
-			sepNavWindowFrame = "{{460, 81}, {751, 741}}";
-		};
-	};
-	2CA3F84E08BEE22A00F997B9 /* PaletteWindowController.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1165, 701}}";
-			sepNavSelRange = "{115, 17}";
-			sepNavVisRect = "{{0, 0}, {1165, 701}}";
-			sepNavWindowFrame = "{{574, 97}, {1210, 799}}";
-		};
-	};
 	2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 311}}";
