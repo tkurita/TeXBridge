@@ -156,7 +156,7 @@
 	};
 	2C0311A50AACA0F2005B592F /* StringExtra.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {0, 328}}";
+			sepNavIntBoundsRect = "{{0, 0}, {0, 0}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{84, 88}, {545, 782}}";
@@ -899,6 +899,12 @@
 		};
 	};
 	2CDACD800813BE3F000B9086 /* stringExtra.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = stringExtra.h;
+		path = "/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/stringExtra.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 238}}";
 			sepNavSelRange = "{47, 11}";

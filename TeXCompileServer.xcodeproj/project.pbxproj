@@ -209,8 +209,6 @@
 		2CD5AA9506CCD9B500967BE0 /* TeXCompileServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXCompileServer.icns; path = images/TeXCompileServer.icns; sourceTree = "<group>"; };
 		2CDA10AA069404FE00467991 /* PDFObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = PDFObj.applescript; sourceTree = "<group>"; };
 		2CDACD7F0813BE3F000B9086 /* LogParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogParser.h; sourceTree = "<group>"; };
-		2CDACD800813BE3F000B9086 /* stringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringExtra.h; sourceTree = "<group>"; };
-		2CDACD810813BE3F000B9086 /* stringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stringExtra.m; sourceTree = "<group>"; };
 		2CDACD820813BE3F000B9086 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
 		2CDACE460813EF6B000B9086 /* miclient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = miclient; path = /Users/tkurita/Dev/Projects/miclient/trunk/build/Release/miclient; sourceTree = "<absolute>"; };
 		2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -310,8 +308,6 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2CDACD800813BE3F000B9086 /* stringExtra.h */,
-				2CDACD810813BE3F000B9086 /* stringExtra.m */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				2C2B7E4409BD233F00B6B3F6 /* PathExtra.h */,
 				2C2B7E4509BD233F00B6B3F6 /* PathExtra.m */,
