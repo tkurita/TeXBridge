@@ -1,5 +1,6 @@
 global SheetManager
 global ScriptImporter
+global EditorClient
 
 property LabelListObj : missing value
 property WindowController : missing value
@@ -80,33 +81,23 @@ on doubleClicked(theObject)
 		end if
 	end if
 	
-	tell application "mi"
-		if exists front document then
-			tell front document
-				--set parPosition to index of paragraph 1 of selection object 1
-				set cursorPosition to (index of insertion point 1 of selection object 1)
-				set linePos to index of insertion point 1 of paragraph 1 of selection object 1
-				set currentLine to paragraph 1 of selection object 1
-			end tell
-		else
-			return
-		end if
-	end tell
-	set curPosInLine to cursorPosition - linePos
-	set textBeforeCursor to text 1 thru (cursorPosition - linePos) of currentLine
+	try
+		set selectionRecord to getSelectionRecord() of EditorClient
+	on error
+		return
+	end try
+	
+	set posInLine to cursorInParagraph of selectionRecord
+	if (posInLine > 0) then
+		set textBeforeCursor to text 1 thru posInLine of currentParagraph of selectionRecord
+	else
+		set textBeforeCursor to ""
+	end if
 	set refCommand to _backslash & refText
 	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
-		tell application "mi"
-			tell front document
-				set selection object 1 to "{" & theLabel & "}"
-			end tell
-		end tell
+		EditorClient's insertText("{" & theLabel & "}")
 	else
-		tell application "mi"
-			tell front document
-				set selection object 1 to refCommand & "{" & theLabel & "}"
-			end tell
-		end tell
+		EditorClient's insertText(refCommand & "{" & theLabel & "}")
 	end if
 	my activateFirstmiWindow()
 end doubleClicked
