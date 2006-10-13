@@ -8,6 +8,7 @@ property PathConverter : loadLib("PathConverter")
 property KeyValueDictionary : loadLib("KeyValueDictionary")
 property StringEngine : StringEngine of PathConverter
 property TerminalCommanderBase : loadLib("TerminalCommander")
+property EditorClient : loadLib("miClient")
 
 property appController : missing value
 --property WindowVisibilityController : missing value
