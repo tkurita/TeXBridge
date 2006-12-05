@@ -262,7 +262,9 @@ script PreviewDriver
 			if windowNumber of thePDFObj is currentWinNumber then
 				tell application "System Events"
 					tell application process (processName of thePDFObj)
-						keystroke "w" using command down
+						set closeButton to buttons of window 1 whose subrole is "AXCloseButton"
+						perform action "AXPress" of item 1 of closeButton
+						--keystroke "w" using command down
 					end tell
 				end tell
 				delay 1
