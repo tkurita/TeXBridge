@@ -88,8 +88,6 @@
 		2C4E27DB084273B000004A96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		2C4E27DC084273B000004A96 /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
 		2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E545708062E8E0015E9EB /* ApplicationServices.framework */; };
-		2C59769308CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */; };
-		2C59769408CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */; };
 		2C6CA37708CF54DD005D5612 /* ReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */; };
 		2C6CA39808CF5558005D5612 /* RefPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA39608CF5558005D5612 /* RefPanelController.m */; };
 		2C6CA39908CF5558005D5612 /* RefPanelController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C6CA39708CF5558005D5612 /* RefPanelController.h */; };
@@ -162,7 +160,7 @@
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
-		2C47F6EF0A7618B6001809FA /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; };
+		2C47F6EF0A7618B6001809FA /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
 		2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoPDFIcon.png; path = images/TeXtoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoDVIIcon.png; path = images/TeXtoDVIIcon.png; sourceTree = "<group>"; };
 		2C49445C07AD21E900B2A8D8 /* generalpref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = generalpref.png; path = images/generalpref.png; sourceTree = "<group>"; };
@@ -171,7 +169,7 @@
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
 		2C4E27E4084273B000004A96 /* TeXCompileServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXCompileServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInputObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInputObj.applescript; sourceTree = "<group>"; };
-		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
+		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
 		2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = NTYImmutableToMutableArrayOfObjectsTransformer.m; sourceTree = "<group>"; };
 		2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = NTYImmutableToMutableArrayOfObjectsTransformer.h; sourceTree = "<group>"; };
 		2C6CA37608CF54DD005D5612 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ReferencePalette.nib; sourceTree = "<group>"; };
@@ -191,8 +189,6 @@
 		2C7C493607960CCD0026564C /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
-		2C86240E0A10320C004855E4 /* DonationReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationReminder.h; sourceTree = "<group>"; };
-		2C86240F0A10320C004855E4 /* DonationReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationReminder.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXCompileServer.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
@@ -424,6 +420,8 @@
 		2CB63A5D08CF038D002FCC88 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */,
+				2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */,
 				2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */,
 				2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */,
 			);
@@ -433,14 +431,10 @@
 		2CD553EC08BCDE96007E43D1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2C86240E0A10320C004855E4 /* DonationReminder.h */,
-				2C86240F0A10320C004855E4 /* DonationReminder.m */,
 				2C6CA39608CF5558005D5612 /* RefPanelController.m */,
 				2C6CA39708CF5558005D5612 /* RefPanelController.h */,
 				2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */,
 				2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */,
-				2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */,
-				2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */,
 				2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */,
 				2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */,
 				2CD5554C08BEC77E007E43D1 /* AppController.h */,
@@ -472,7 +466,6 @@
 				2CD553EF08BCDEB8007E43D1 /* SettingWindowController.h in Headers */,
 				2CD5554E08BEC77E007E43D1 /* AppController.h in Headers */,
 				2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */,
-				2C59769408CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h in Headers */,
 				2CB63A6D08CF053A002FCC88 /* TitlelessWindow.h in Headers */,
 				2C6CA39908CF5558005D5612 /* RefPanelController.h in Headers */,
 				2CDBE60A097BA7FE00C3300B /* LogWindowController.h in Headers */,
@@ -568,7 +561,6 @@
 				2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */,
 				2CD5554F08BEC77F007E43D1 /* AppController.m in Sources */,
 				2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */,
-				2C59769308CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m in Sources */,
 				2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */,
 				2C6CA39808CF5558005D5612 /* RefPanelController.m in Sources */,
 				2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */,

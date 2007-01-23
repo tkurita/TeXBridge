@@ -30,8 +30,8 @@ on saveUserDict()
 	if isChangedUserDict then
 		--log "user dict will be saved"
 		tell user defaults
-			set contents of default entry "ReplaceInput_KeyList" to keyList of userReplaceDict
-			set contents of default entry "ReplaceInput_ValueList" to valueList of userReplaceDict
+			set contents of default entry "ReplaceInput_KeyList" to keyList() of userReplaceDict
+			set contents of default entry "ReplaceInput_ValueList" to valueList() of userReplaceDict
 		end tell
 		set isChangedUserDict to false
 	end if
@@ -39,7 +39,10 @@ end saveUserDict
 
 on addToUserDict given keyword:keywordText, replace:replaceText
 	--log "start addToUserDict"
-	if keywordText is in userKeywordList then
+	considering case
+		set is_defined to keywordText is in userKeywordList
+	end considering
+	if is_defined then
 		--log userKeywordList
 		set theMessage to getLocalizedString of UtilityHandlers given keyword:"keywordStillDefined", insertTexts:{keywordText}
 		displayAlert(theMessage) of SettingWindowController
@@ -144,9 +147,10 @@ end controlClicked
 
 on initialize()
 	if userReplaceDict is missing value then
-		set userReplaceDict to makeObj() of KeyValueDictionary
-		set keyList of userReplaceDict to readDefaultValueWith("ReplaceInput_KeyList", {}) of DefaultsManager
-		set valueList of userReplaceDict to readDefaultValueWith("ReplaceInput_ValueList", {}) of DefaultsManager
+		--set userReplaceDict to makeObj() of KeyValueDictionary
+		set key_list to readDefaultValueWith("ReplaceInput_KeyList", {}) of DefaultsManager
+		set value_list to readDefaultValueWith("ReplaceInput_ValueList", {}) of DefaultsManager
+		set userReplaceDict to KeyValueDictionary's makeObjWithKeysAndValues(key_list, value_list)
 	end if
 	
 	if internalReplaceDict is missing value then
@@ -195,13 +199,14 @@ on setSettingToWindow(theView)
 	end repeat
 	
 	--log "set user-defined keywords"
-	copy keyList of userReplaceDict to userKeywordList
+	copy (keyList() of userReplaceDict) to userKeywordList
+	--set userKeywordList to copy_key_list() of userReplaceDict
 	set numUserKeyword to length of userKeywordList
-	
+	set value_list to valueList() of userReplaceDict
 	if numUserKeyword > 0 then
 		repeat with ith from 1 to numUserKeyword
 			set theKeyword to item ith of userKeywordList
-			set replaceText to item ith of valueList of userReplaceDict
+			set replaceText to item ith of value_list
 			set theDataItem to make new data row at end of data rows of userReplaceDataSource
 			set contents of data cell "keyword" of theDataItem to theKeyword
 			set contents of data cell "replace" of theDataItem to replaceText

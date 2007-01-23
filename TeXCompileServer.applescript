@@ -1,5 +1,7 @@
+property loader : makeLoader() of application (get "TeXToolsLib")
+
 on loadLib(theName)
-	return loadLib(theName) of application (get "TeXToolsLib")
+	return loader's loadLib(theName)
 end loadLib
 
 property ShellUtils : loadLib("ShellUtils")
