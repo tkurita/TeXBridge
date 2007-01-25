@@ -5,6 +5,7 @@ global KeyValueDictionary
 global StringEngine
 global PathConverter
 global PathAnalyzer
+global EditorClient
 
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
@@ -66,9 +67,12 @@ on watchmi()
 				set theAuxObj to findAuxObj(currentTexFile of resultRecord, isSaved of resultRecord)
 			end if
 			--log "before findLabelsFromDocument"
-			findLabelsFromDocument(theAuxObj)
-			--log "before updateLabelsFromDoc"
-			updateLabelsFromDoc() of theAuxObj
+			if findLabelsFromDocument(theAuxObj) then
+				--log "before updateLabelsFromDoc"
+				updateLabelsFromDoc() of theAuxObj
+			else
+				--log "skip updateLabelsFromDoc"
+			end if
 			
 		end if
 	end if
@@ -105,9 +109,7 @@ on findAuxObjFromDoc()
 		set saveFlag to true
 		set isSaved of resultRecord to saveFlag
 	on error
-		tell application "mi"
-			set texFile to name of document 1
-		end tell
+		set texFile to EditorClient's document_name()
 		set saveFlag to false
 		set targetAuxObj of resultRecord to findAuxObj(texFile, saveFlag)
 		return resultRecord
@@ -116,21 +118,19 @@ on findAuxObjFromDoc()
 	
 	--find ParentFile
 	set parentFile to missing value
-	tell application "mi"
-		set ith to 1
-		repeat
-			set theParagraph to paragraph ith of document 1
-			if theParagraph starts with "%" then
-				if theParagraph starts with "%ParentFile" then
-					set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
-					exit repeat
-				end if
-				set ith to ith + 1
-			else
+	set ith to 1
+	repeat
+		set theParagraph to paragraph_at_index(ith) of EditorClient
+		if theParagraph starts with "%" then
+			if theParagraph starts with "%ParentFile" then
+				set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
 				exit repeat
 			end if
-		end repeat
-	end tell
+			set ith to ith + 1
+		else
+			exit repeat
+		end if
+	end repeat
 	
 	if parentFile is missing value then
 		set targetAuxObj of resultRecord to findAuxObj(texFile, saveFlag)
@@ -260,6 +260,25 @@ on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
 		--property folderAlias : theFolderAlias
 		property isExpanded : missing value
 		property dataItemRef : missing value
+		property _checkedTime : current date
+		property _document_size : missing value
+		
+		on is_texfile_updated()
+			set mod_date to modification date of (info for my texFileRef)
+			return mod_date > my _checkedTime
+		end is_texfile_updated
+		
+		on document_size()
+			return _document_size
+		end document_size
+		
+		on set_document_size(doc_size)
+			set _document_size to doc_size
+		end set_document_size
+		
+		on update_checked_time()
+			set _checkdTime to current date
+		end update_checked_time
 		
 		on checkAuxFile()
 			if auxFileRef is missing value then
@@ -498,14 +517,29 @@ end parseAuxFile
 
 on findLabelsFromDocument(theAuxObj)
 	--log "start findLabelsFromDocument"
-	tell application "mi"
-		set theContents to content of document 1
-	end tell
-	clearLabelsFromDoc() of theAuxObj
+	set theContents to EditorClient's document_content()
+	
 	set labelCommand to _backslash & "label"
 	--log "before repeat"
-	repeat with ith from 1 to (count paragraph of theContents)
-		set theParagraph to paragraph ith of theContents
+	script ListContainer
+		property contents : every paragraph of theContents
+		property num_lines : length of contents
+	end script
+	
+	if not is_texfile_updated() of theAuxObj then
+		--log "document is not updated"
+		if (num_lines of ListContainer) is (theAuxObj's document_size()) then
+			--log "document size is same"
+			return false
+		end if
+		--	else
+		--		log "document is updated"
+	end if
+	
+	clearLabelsFromDoc() of theAuxObj
+	repeat with ith from 1 to (ListContainer's num_lines)
+		set theParagraph to item ith of contents of ListContainer
+		--set theParagraph to paragraph ith of theContents
 		--log theParagraph
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
 			repeat while (theParagraph contains labelCommand)
@@ -527,7 +561,10 @@ on findLabelsFromDocument(theAuxObj)
 			end repeat
 		end if
 	end repeat
-	--log "end findLabelsFromDocument"
+	theAuxObj's update_checked_time()
+	theAuxObj's set_document_size(ListContainer's num_lines)
+	--log "end findLabelsFromDocument"	
+	return true
 end findLabelsFromDocument
 
 on rebuildLabelsFromAux(theTexFileRef)
