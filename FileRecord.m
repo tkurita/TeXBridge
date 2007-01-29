@@ -1,8 +1,9 @@
 #import "FileRecord.h"
 #import "ErrorRecord.h"
 #import "PathExtra.h"
+#import "miClient.h"
 
-//#include <CoreFoundation/CoreFoundation.h>
+extern id EditorClient;
 
 @implementation FileRecord
 
@@ -17,7 +18,14 @@
 	[super dealloc];
 }
 
-+ (id)fileRecordForPath: (NSString*)path errorRecords:(NSArray *)array
++ (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array parent:(id <LogWindowItem>)parent
+{
+	id newInstance = [[self class] fileRecordForPath:path errorRecords:array];
+	[newInstance setParent:parent];
+	return newInstance;
+}
+
++ (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array
 {
 	id newInstance = [[[self class] alloc] init];
 	[newInstance setErrorRecords:array];
@@ -56,8 +64,16 @@
 }
 
 #pragma mark medhots for outlineview
+- (id)jobRecord
+{
+	return [_parent jobRecord];
+}
+
 -(BOOL) jumpToFile {
-	return NO;
+	//return NO;
+	FSRef fileRef;
+	[self getFSRef:&fileRef];
+	return [EditorClient jumpToFile:&fileRef paragraph:nil];
 }
 
 -(id) child {
@@ -79,6 +95,11 @@
 }
 
 #pragma mark accesor methods
+
+- (void)setParent:(id <LogWindowItem>)parent
+{
+	_parent = parent;
+}
 
 -(void) setErrorRecords:(NSArray *)array
 {

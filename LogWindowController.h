@@ -9,6 +9,7 @@
 	
 	NSDictionary *rootItem;
 	NSMutableArray *rootArray;
+	id _detailTextOwner;
 }
 
 + (id)sharedLogManager;
@@ -21,6 +22,7 @@
 - (void)initRootItem;
 - (void)setRootArray:(NSMutableArray *)logArray;
 - (void)setRootItem:(NSDictionary *)logItem;
+- (void)setDetailTextOwner:(id)jobRecord;
 
 @end
 

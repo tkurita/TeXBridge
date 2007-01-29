@@ -6,16 +6,10 @@
 	NSString *comment;
 	NSNumber *paragraph;
 	NSValue *textRange;
-	id _parent;
+	id <LogWindowItem> _parent;
 }
 
--(BOOL) jumpToFile;
-
 +(id) errorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn;
-
--(BOOL) hasChild;
-
--(id) child;
 
 #pragma mark accesor methods
 
@@ -33,6 +27,6 @@
 -(void) setParagraph:(NSNumber *)lineNumber;
 -(id) paragraph;
 
--(void)setParent:(id)parentItem;
+- (void)setParent:(id <LogWindowItem>)parent;
 
 @end

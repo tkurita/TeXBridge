@@ -422,21 +422,23 @@ end lookUpDviFromEditor
 
 on lookUpDviFromMxdvi()
 	--log "start lookUpDviFromMxdvi"
-	local fileURL
-	
+	set fileURL to missing value
 	tell application "System Events"
 		tell process "Mxdvi"
-			if exists window 1 then
-				tell window 1
-					set fileURL to (value of attribute "AxDocument")
+			set n_wind to count windows
+			repeat with ith from 1 to (count windows)
+				tell window ith
+					if (subrole of it is "AXStandardWindow") then
+						set fileURL to (value of attribute "AxDocument" of it)
+						exit repeat
+					end if
 				end tell
-			else
-				return missing value
-			end if
+			end repeat
 		end tell
 	end tell
-	--log fileURL
-	--log "before call method URLWithString:"
+	if fileURL is missing value then
+		return missing value
+	end if
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
 	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj

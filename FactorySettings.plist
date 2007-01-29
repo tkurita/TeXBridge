@@ -28,6 +28,8 @@
 	<string>* TeX Console *</string>
 	<key>DVIPreviewMode</key>
 	<integer>0</integer>
+	<key>DonationURL</key>
+	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
 	<key>ExecutionString</key>
 	<string>source ~/Library/Preferences/mi/mode/TEX/initialize.sh</string>
 	<key>IsChangeBackground</key>
@@ -56,6 +58,8 @@
 	<array>
 		<dict>
 			<key>appName</key>
+			<string>mi</string>
+			<key>identifier</key>
 			<string>mi</string>
 		</dict>
 	</array>
@@ -2164,6 +2168,8 @@
 			</data>
 			<key>appName</key>
 			<string>mi</string>
+			<key>identifier</key>
+			<string>mi</string>
 		</dict>
 		<dict>
 			<key>appIcon</key>
@@ -4003,6 +4009,8 @@
 			</data>
 			<key>appName</key>
 			<string>Preview</string>
+			<key>identifier</key>
+			<string>com.apple.Preview</string>
 		</dict>
 		<dict>
 			<key>appIcon</key>
@@ -5842,6 +5850,8 @@
 			</data>
 			<key>appName</key>
 			<string>X11</string>
+			<key>identifier</key>
+			<string>com.apple.x11</string>
 		</dict>
 		<dict>
 			<key>appIcon</key>
@@ -7923,6 +7933,8 @@
 			</data>
 			<key>appName</key>
 			<string>pTeX previwer for Mac OS X</string>
+			<key>identifier</key>
+			<string>mi</string>
 		</dict>
 		<dict>
 			<key>appIcon</key>
@@ -10004,6 +10016,8 @@
 			</data>
 			<key>appName</key>
 			<string>Adobe Reader</string>
+			<key>identifier</key>
+			<string>com.adobe.Reader</string>
 		</dict>
 		<dict>
 			<key>appIcon</key>
@@ -12085,14 +12099,14 @@
 			</data>
 			<key>appName</key>
 			<string>Acrobat</string>
+			<key>identifier</key>
+			<string>com.adobe.Acrobat</string>
 		</dict>
 	</array>
 	<key>UseCtrlVEscapes</key>
 	<string>NO</string>
 	<key>bibtexCommand</key>
 	<string>/usr/local/bin/jbibtex</string>
-	<key>DonationURL</key>
-	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
 	<key>dviViewCommand</key>
 	<string>xdvi -postscript 0</string>
 	<key>dvipdfCommand</key>

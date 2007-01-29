@@ -40,31 +40,41 @@
         return;
     }
     else if(returnCode == NSOKButton) {
-		NSEnumerator *appEnumerator = [[sheet filenames] objectEnumerator];
-		NSString *appPath;
+		NSEnumerator *enumerator = [[sheet filenames] objectEnumerator];
+		NSString *app_path;
 		NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-		NSArray *appNameList = [[appArrayController arrangedObjects] valueForKey:@"appName"];
-		while(appPath = [appEnumerator nextObject]) {
-			NSString *appName = nil;
-			if ([workspace isFilePackageAtPath:appPath]) {
-				NSBundle *appBundle = [NSBundle bundleWithPath:appPath];
-				NSDictionary *infoDict = [appBundle infoDictionary];
-				appName = [infoDict objectForKey:@"CFBundleName"];
-				if (appName == nil) {
-					appName = [infoDict objectForKey:@"CFBundleExecutable"];
-				}
+		NSArray *app_name_list = [[appArrayController arrangedObjects] valueForKey:@"appName"];
+		NSArray *identifier_list = [[appArrayController arrangedObjects] valueForKey:@"identifier"];
+		while(app_path = [enumerator nextObject]) {
+			NSString *app_name = nil;
+			NSString *app_identifier = nil;
+			if ([workspace isFilePackageAtPath:app_path]) {
+				NSBundle *appBundle = [NSBundle bundleWithPath:app_path];
+				NSDictionary *loc_info_dict = [appBundle localizedInfoDictionary];
+				NSDictionary *info_dict = [appBundle infoDictionary];
+				app_name = [loc_info_dict objectForKey:@"CFBundleName"];				
+				if (app_name == nil)
+					app_name = [info_dict objectForKey:@"CFBundleName"];
+				if (app_name == nil)
+					app_name = [info_dict objectForKey:@"CFBundleExecutable"];
+				
+				app_identifier = [info_dict objectForKey:@"CFBundleIdentifier"];
 			}
 			
-			if (appName == nil) {
-				appName = [[appPath lastPathComponent] stringByDeletingPathExtension];
-			}
-			if (![appNameList containsObject:appName]) {
-				NSImage *appIcon = [self convertToSize16Image:[workspace iconForFile:appPath]];
-				NSData *iconData = [NSArchiver archivedDataWithRootObject:appIcon];
-				[appArrayController addObject:
-					[NSMutableDictionary dictionaryWithObjectsAndKeys:appName,@"appName",iconData,@"appIcon",nil]];
-				//[appArrayController addObject:
-					//[NSMutableDictionary dictionaryWithObjectsAndKeys:appName,@"appName",nil]];
+			if (app_name == nil)
+				app_name = [[app_path lastPathComponent] stringByDeletingPathExtension];
+			
+			if ((app_identifier != nil) && ([identifier_list containsObject:app_identifier]))
+				return;
+			
+			if (![app_name_list containsObject:app_name]) {
+				NSImage *app_icon = [self convertToSize16Image:[workspace iconForFile:app_path]];
+				NSData *icon_data = [NSArchiver archivedDataWithRootObject:app_icon];
+				NSMutableDictionary *new_entry = [NSMutableDictionary dictionaryWithCapacity:3];
+				[new_entry setObject:app_name forKey:@"appName"];
+				[new_entry setObject:icon_data forKey:@"appIcon"];
+				if (app_identifier != nil) [new_entry setObject:app_identifier forKey:@"identifier"];
+				[appArrayController addObject:new_entry];
 			}
 		}
     }
@@ -85,15 +95,18 @@
 #if useLog
 	NSLog(@"start showSettingHelp");
 #endif
-	NSString *tabName = [[tabView selectedTabViewItem] identifier];
+	NSString *tab_name = [[tabView selectedTabViewItem] identifier];
 #if useLog
 	NSLog(tabName);
 #endif
-	NSHelpManager *helpManager = [NSHelpManager sharedHelpManager];
-	NSDictionary *theDict = [[NSBundle mainBundle] infoDictionary];
-	NSString *bookName = [theDict objectForKey:@"CFBundleHelpBookName"];
+	NSHelpManager *help_manager = [NSHelpManager sharedHelpManager];
+	NSBundle *main_bundle = [NSBundle mainBundle];
+	NSDictionary *info_dict = [main_bundle localizedInfoDictionary];
+	NSString *book_name = [info_dict objectForKey:@"CFBundleHelpBookName"];
+	if (book_name == nil)
+		book_name = [[main_bundle infoDictionary] objectForKey:@"CFBundleHelpBookName"];
 	
-	[helpManager openHelpAnchor:tabName inBook:bookName];
+	[help_manager openHelpAnchor:tab_name inBook:book_name];
 }
 
 - (BOOL)windowShouldClose:(id)sender

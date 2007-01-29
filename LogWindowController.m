@@ -48,6 +48,7 @@ static id sharedLogManager;
 {
 	[rootItem release];
 	[rootArray release];
+	[_detailTextOwner release];
 	[super dealloc];
 }
 
@@ -125,14 +126,28 @@ static id sharedLogManager;
 #pragma mark delegate for outlineview
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 {
-	NSString *logContents = [item logContents];
-	if (![[detailText string] isEqual: logContents]) {
+	//NSString *logContents = [item logContents];
+	//NSString *currentText = [detailText string];
+	//BOOL isTextShouldChanged = ![currentText isEqualToString: logContents];
+	//BOOL isTextShouldChanged = (logContents != currentText);
+	id jobRecord = [item jobRecord];
+	NSAssert(jobRecord != nil, @"can't obtain jobRecord");
+	
+	BOOL isTextShouldChanged = (_detailTextOwner != jobRecord);
+	if (isTextShouldChanged) {
 		[detailText setString:[item logContents]];
+		[self setDetailTextOwner:jobRecord];
 	}
 
 	if ([item respondsToSelector:@selector(textRange)]) {
 		[detailText setSelectedRange:[item textRange]];
 		[detailText scrollRangeToVisible:[item textRange]];
+	}
+	else {
+		if (isTextShouldChanged) {
+			NSRange beginRange = NSMakeRange(0,1);
+			[detailText scrollRangeToVisible:beginRange];
+		}
 	}
 	return YES;
 }
@@ -145,6 +160,12 @@ static id sharedLogManager;
 }
 
 #pragma mark accessor methods
+- (void)setDetailTextOwner:(id)jobRecord
+{
+	[_detailTextOwner release];
+	[jobRecord retain];
+	_detailTextOwner = jobRecord;
+}
 
 - (void)initRootItem
 {

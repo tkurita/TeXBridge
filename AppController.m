@@ -6,9 +6,8 @@
 
 #import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
 
-//#import "AppNameToIconImageTransformer.h"
-
 #define useLog 0
+
 id EditorClient;
 static id sharedObj;
 
@@ -16,8 +15,10 @@ static id sharedObj;
 
 + (void)initialize	// Early initialization
 {	
+	/*
 	NSValueTransformer *transformer = [[[NTYImmutableToMutableArrayOfObjectsTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"NTYImmutableToMutableArrayOfObjects"];
+	*/
 	
 	sharedObj = nil;
 	/*
@@ -86,7 +87,7 @@ static id sharedObj;
 	return [factoryDefaults objectForKey:theKey];
 }
 
-- (int)judgeVisibilityForApp:(NSString *)appName
+- (int)judgeVisibilityForApp:(NSDictionary *)appDict
 {
 	/*
 	 result = -1 : can't judge in this routine
@@ -94,31 +95,39 @@ static id sharedObj;
 	 1: should show
 	 2: should not change
 	 */
-	 if ([appName isEqualToString:[EditorClient name]]) {
+	NSString *app_name = [appDict objectForKey:@"NSApplicationName"];
+
+	 if ([app_name isEqualToString:[EditorClient name]]) {
 		 NSString *theMode;
 		 @try{
 			 theMode = [EditorClient currentDocumentMode];
 		 }
 		 @catch(NSException *exception){
+			#if useLog
+			NSLog([exception description]);
+			#endif
 			 NSNumber *err = [[exception userInfo] objectForKey:@"result code"];
 			 if ([err intValue] == -1704) {
 				 // maybe menu is opened
-				 return 2;
+				 return kShouldNotChange;
 			 }
 			 else {
 				 // maybe no documents opened
-				 return 0;
+				 return kShouldHide;
 			 }	
 		 }
+		 #if useLog
+		 NSLog([NSString stringWithFormat:@"current mode : %@", theMode]);
+		 #endif
 		 
 		 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
 				containsObject:theMode]) {
-			 return 1;
+			 return kShouldShow;
 		 } else {
-			 return 0;
+			 return kShouldHide;
 		 }
 	 }
-	return -1;
+	return kShouldPostController;
 }
 
 #pragma mark delegate of NSApplication
@@ -156,7 +165,8 @@ static id sharedObj;
 	EditorClient = [[miClient alloc] init];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
-	[wvController setUseTimer:YES];
+	//[wvController setUseTimer:YES];
+	[wvController setFocusWatchApplication:@"mi"];
 	[PaletteWindowController setVisibilityController:[wvController autorelease]];
 }
 

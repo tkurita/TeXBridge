@@ -104,6 +104,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 {
 #if useLog
 	NSLog(@"start parseLogTree");
+	NSLog([logTree description]);
 #endif
 	if ([logTree count] <= 1) {
 		return;
@@ -122,7 +123,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	
 	if ([errorRecordList count]) {
-		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+		FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList parent:self];
 		[theFileRecord setBaseURL:_baseURL];
 		[theFileRecord setLogContents:logContents];
 		[errorRecordTree addObject:theFileRecord];
@@ -146,7 +147,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	else {
 		logContent = [logTree objectForKey:@"content"];
 	}
-	
+
 	if ([logContent length] < 1) {
 		return nil;
 	}
@@ -169,7 +170,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				nextLogContent = [[object objectAtIndex:0] objectForKey:@"content"];
 			}
 			
-			if ([nextLogContent hasSuffix:@"l."]) {
+			if ([nextLogContent hasPrefix:@"l."]) {
 				NSScanner * scanner = [NSScanner scannerWithString:nextLogContent];
 				NSString * scannedText;
 				if ([scanner scanUpToCharactersFromSet:whitespaceCharSet intoString:&scannedText]) {
@@ -179,8 +180,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				
 				break;
 			}
-			else if ([nextLogContent hasSuffix:@"?"] || 
-					 [nextLogContent hasSuffix:@"Enter file name:"] || [nextLogContent hasSuffix:@"<*>"]){
+			else if ([nextLogContent hasPrefix:@"?"] || 
+					 [nextLogContent hasPrefix:@"Enter file name:"] || [nextLogContent hasPrefix:@"<*>"]){
 				break;
 			}
 		}
@@ -206,7 +207,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 	}
 	
-	else if ([logContent hasSuffix:@"Overfull"]||[logContent hasSuffix:@"Underfull"]) {
+	else if ([logContent hasPrefix:@"Overfull"]||[logContent hasPrefix:@"Underfull"]) {
 		errMsg = [NSString stringWithString:logContent];
 		NSMutableArray *wordList = [logContent splitWithCharacterSet:whitespaceCharSet];
 		NSScanner *scanner = [NSScanner scannerWithString:[wordList lastObject]];
@@ -215,7 +216,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 	}
 	
-	else if ([logContent hasSuffix:@"No file"]) {
+	else if ([logContent hasPrefix:@"No file"]) {
 		errMsg = [NSString stringWithString:logContent];
 		isNoError = NO;
 	}
@@ -246,7 +247,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 {
 	NSEnumerator *enumerator = [logTree objectEnumerator];
 	NSString * targetFile = [[enumerator nextObject] objectForKey:@"content"];
-	BOOL noLogFileRef = [targetFile isEqualToString:@""]; //when parsing STDOUT, thargetFile will be ""
+	BOOL noLogFileRef = [targetFile isEqualToString:@""]; //when parsing STDOUT, targetFile will be ""
 
 	ErrorRecord *theErrorRecord;
 	NSMutableArray * errorRecordList = [NSMutableArray array];
@@ -258,7 +259,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 			if (!noLogFileRef) {
 				[theErrorRecord setParagraph:[logItem objectForKey:@"lineNumber"]];
 			}
- 			[errorRecordList addObject:theErrorRecord];
+ 			[theErrorRecord setParent:self];
+			[errorRecordList addObject:theErrorRecord];
 		}
 	}
 	
@@ -267,7 +269,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 			[errorRecordTree addObjectsFromArray:errorRecordList];
 		}
 		else {
-			FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList];
+			FileRecord *theFileRecord = [FileRecord fileRecordForPath:targetFile errorRecords:errorRecordList parent:self];
 			[theFileRecord setBaseURL:_baseURL];
 			[theFileRecord setLogContents:logContents];
 			[errorRecordTree addObject:theFileRecord];
@@ -354,17 +356,17 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #if useLog
 	NSLog(targetText);
 #endif
-	if ([targetText hasSuffix:@"LaTeX Font Info:"] 
-			||[targetText hasSuffix:@"Latex Info"]
-			||[targetText hasSuffix:@"\\"]) {
+	if ([targetText hasPrefix:@"LaTeX Font Info:"] 
+			||[targetText hasPrefix:@"Latex Info"]
+			||[targetText hasPrefix:@"\\"]) {
 		//skip this line
 		return [self parseLines:[self getNextLine] withList:currentList];
 		
-	} else if ([targetText hasSuffix:@"LaTeX Font"]
-			   ||[targetText hasSuffix:@"(FONT)"]
-			   ||[targetText hasSuffix:@"Package hyperref"]
-			   ||[targetText hasSuffix:@"(hyperref)"]) {
-			  // ||[targetText hasSuffix:@"Package:"]) {
+	} else if ([targetText hasPrefix:@"LaTeX Font"]
+			   ||[targetText hasPrefix:@"(FONT)"]
+			   ||[targetText hasPrefix:@"Package hyperref"]
+			   ||[targetText hasPrefix:@"(hyperref)"]) {
+			  // ||[targetText hasPrefix:@"Package:"]) {
 		//just add this line into currentList
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 		
@@ -377,7 +379,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 	
-	} else if ([targetText hasSuffix:@"Overfull"]) {
+	} else if ([targetText hasPrefix:@"Overfull"]) {
 		//targetText = [self addCurrentLineAndNextLine:currentList];
 		[self addCurrentLine:currentList];
 		if (isReadFile) {
@@ -387,25 +389,25 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 		return [self parseLines:[self getNextLine] withList:currentList];
 
-	} else if ([targetText hasSuffix:@"Underfull"]) {
+	} else if ([targetText hasPrefix:@"Underfull"]) {
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 
-	} else if ([targetText hasSuffix:@"Runaway argument?"]) {
+	} else if ([targetText hasPrefix:@"Runaway argument?"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		while (! [targetText hasSuffix:@"!"]) {
+		while (! [targetText hasPrefix:@"!"]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 
-	} else if ([targetText hasSuffix:@"l."]) {
+	} else if ([targetText hasPrefix:@"l."]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
-		while ([targetText hasSuffix:@" "]) {
+		while ([targetText hasPrefix:@" "]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		//return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 		return [self parseLines:targetText withList:currentList];
 
-	} else if ([targetText hasSuffix:@"!"]) {
+	} else if ([targetText hasPrefix:@"!"]) {
 		unsigned int theCurrentLineNumber = currentLineNumber;
 		if ([targetText length] >= 79) {
 			//add two lines into current list
@@ -415,7 +417,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		[currentList addObject:dict];
 		return [self parseLines:[self getNextLine] withList:currentList];
 
-	} else if ([targetText hasSuffix:@"<argument>"]) {
+	} else if ([targetText hasPrefix:@"<argument>"]) {
 		targetText = [self addCurrentLineAndNextLine:currentList];
 		if (([targetText length] >= 79)||([targetText hasSuffix:@"..."])) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
@@ -613,6 +615,11 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 -(id) paragraph
 {
 	return nil;
+}
+
+- (id)jobRecord;
+{
+	return self;
 }
 
 #pragma mark accessor methods

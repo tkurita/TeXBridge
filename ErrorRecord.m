@@ -9,7 +9,7 @@ extern id EditorClient;
 - (BOOL)jumpToFile
 {
 	FSRef fileRef;
-	[_parent getFSRef:&fileRef];
+	[(FileRecord *)_parent getFSRef:&fileRef];
 	return [EditorClient jumpToFile:&fileRef paragraph:paragraph];
 }
 
@@ -19,7 +19,6 @@ extern id EditorClient;
 	[logContents release];
 	[comment release];
 	[paragraph release];
-	[_parent release];
 	[super dealloc];
 }
 
@@ -33,6 +32,11 @@ extern id EditorClient;
 }
 
 #pragma mark methods for outlineview
+- (id)jobRecord
+{
+	return [_parent jobRecord];
+}
+
 -(id) child {
 	return nil;
 }
@@ -91,10 +95,10 @@ extern id EditorClient;
 	paragraph = lineNumber;
 }
 
-- (void)setParent:(id)parentItem
+- (void)setParent:(id <LogWindowItem>)parentItem
 {
-	[parentItem retain];
-	[_parent release];
+//	[parentItem retain];
+//	[_parent release];
 	_parent = parentItem;
 }
 

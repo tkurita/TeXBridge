@@ -44,14 +44,14 @@
 
 - (void) parseFooterWith:(NSMutableArray *)currentList startText:(NSString *)targetText;
 
-- (ErrorRecord *) findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator;
+- (ErrorRecord *)findErrors:(id)logTree withEnumerator:(NSEnumerator *)enumerator;
 
-- (void) parseLogTreeFirstLevel:(NSMutableArray *)logTree;
+- (void)parseLogTreeFirstLevel:(NSMutableArray *)logTree;
 
-- (void) parseLogTree:(NSMutableArray *) logTree;
+- (void)parseLogTree:(NSMutableArray *) logTree;
 
-- (NSString *) getTargetFilePath:(NSEnumerator *) enumerator;
-- (NSString *) checkTexFileExtensions:(NSString *)targetFile;
+- (NSString *)getTargetFilePath:(NSEnumerator *) enumerator;
+- (NSString *)checkTexFileExtensions:(NSString *)targetFile;
 
 #pragma mark accessor methods
 -(NSString *) logContents;

@@ -5,6 +5,6 @@
 -(BOOL) jumpToFile;
 -(id) comment;
 -(id) paragraph;
-
+-(id) jobRecord;
 @end
 
