@@ -277,11 +277,8 @@ on setUpConstants()
 	set sQ to localized string "startQuote"
 	set eQ to localized string "endQuote"
 	
-	tell application "mi"
-		set miPath to path to it
-	end tell
 	tell application "System Events"
-		set theVer to version of miPath
+		set theVer to version of miAppRef
 	end tell
 	set theVer to word 3 of theVer
 	if theVer is greater than or equal to "2.1.7" then
@@ -304,6 +301,7 @@ on will finish launching theObject
 	set MessageUtility to importScript("MessageUtility")
 	
 	showStartupMessage("Loading Factory Settings ...")
+	set miAppRef to path to application "mi" as alias
 	setUpConstants()
 	
 	set DefaultsManager to importScript("DefaultsManager")
@@ -333,7 +331,6 @@ on will finish launching theObject
 	loadSettings() of TerminalSettingObj
 	--log "end of setting TerminalSettingObj"
 	
-	set miAppRef to path to application "mi" as alias
 	
 	--set WindowVisibilityController to call method "visibilityController" of class "PaletteWindowController"
 	--log "end will finish launching"

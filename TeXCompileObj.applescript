@@ -8,6 +8,7 @@ global TexDocObj
 global appController
 global RefPanelController
 global ToolPaletteController
+global EditorClient
 
 --general libs
 global PathAnalyzer
@@ -532,9 +533,8 @@ on seekExecEbb()
 	set theOriginPath to POSIX path of texFileRef of theTexDocObj
 	setPOSIXoriginPath(theOriginPath) of PathConverter
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
-	tell application "mi"
-		set theRes to content of document 1
-	end tell
+	
+	set theRes to EditorClient's document_content()
 	
 	--find graphic files
 	set noGraphicFlag to true

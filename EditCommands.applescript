@@ -2,6 +2,8 @@ global PathConverter
 global TeXCompileObj
 global MessageUtility
 global PathAnalyzer
+global EditorClient
+
 global _backslash
 
 on extractFilePath(theCommand, theParagraph)
@@ -37,17 +39,9 @@ on openRelatedFile given revealOnly:revealFlag
 	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
 	set firstpara to targetParagraph of theTexDocObj
-	tell application "mi"
-		tell document 1
-			set paracount to (count paragraphs of selection object 1)
-		end tell
-	end tell
+	set parcount to EditorClient's count_paragraph()
 	repeat with nth from firstpara to firstpara + paracount - 1
-		tell application "mi"
-			tell document 1
-				set theParagraph to paragraph nth
-			end tell
-		end tell
+		set theParagraph to EditorClient's paragraph_at_index(nth)
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
 			repeat with theCommand in commandList
 				set fullPath to my extractFilePath(theCommand, theParagraph)

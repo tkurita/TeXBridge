@@ -40,13 +40,7 @@ on watchmi()
 end watchmi
 
 on activateFirstmiWindow()
-	tell application "mi"
-		try
-			set theFile to (file of document 1) as alias
-		on error
-			set theFile to missing value
-		end try
-	end tell
+	set theFile to EditorClient's document_file_as_alias()
 	
 	if theFile is not missing value then
 		ignoring application responses
@@ -82,7 +76,7 @@ on doubleClicked(theObject)
 	end if
 	
 	try
-		set selectionRecord to getSelectionRecord() of EditorClient
+		set selectionRecord to selection_info() of EditorClient
 	on error
 		return
 	end try
@@ -95,9 +89,9 @@ on doubleClicked(theObject)
 	end if
 	set refCommand to _backslash & refText
 	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
-		EditorClient's insertText("{" & theLabel & "}")
+		EditorClient's insert_text("{" & theLabel & "}")
 	else
-		EditorClient's insertText(refCommand & "{" & theLabel & "}")
+		EditorClient's insert_text(refCommand & "{" & theLabel & "}")
 	end if
 	my activateFirstmiWindow()
 end doubleClicked
