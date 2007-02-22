@@ -90,19 +90,23 @@ static id sharedObj;
 - (int)judgeVisibilityForApp:(NSDictionary *)appDict
 {
 	/*
-	 result = -1 : can't judge in this routine
-	 0 : should hide	
-	 1: should show
-	 2: should not change
-	 */
+	result = -1 : can't judge in this routine
+	0 : should hide	
+	1: should show
+	2: should not change
+	*/
+	if (! appDict) {
+		return kShouldHide;
+	}
+	
 	NSString *app_name = [appDict objectForKey:@"NSApplicationName"];
 
-	 if ([app_name isEqualToString:[EditorClient name]]) {
-		 NSString *theMode;
-		 @try{
-			 theMode = [EditorClient currentDocumentMode];
-		 }
-		 @catch(NSException *exception){
+	if ([app_name isEqualToString:[EditorClient name]]) {
+		NSString *theMode;
+		@try{
+			theMode = [EditorClient currentDocumentMode];
+		}
+		@catch(NSException *exception){
 			#if useLog
 			NSLog([exception description]);
 			#endif
