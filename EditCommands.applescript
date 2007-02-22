@@ -13,7 +13,7 @@ on extractFilePath(theCommand, theParagraph)
 		set pos1 to offset of "{" in theParagraph
 		set pos2 to offset of "}" in theParagraph
 		set thePath to text (pos1 + 1) thru (pos2 - 1) of theParagraph
-		set fullPath to getAbsolutePath of PathConverter for thePath
+		set fullPath to absolute_path of PathConverter for thePath
 	else
 		set fullPath to ""
 	end if
@@ -32,14 +32,15 @@ on openRelatedFile given revealOnly:revealFlag
 	end try
 	
 	set theOriginPath to POSIX path of texFileRef of theTexDocObj
-	setPOSIXoriginPath(theOriginPath) of PathConverter
+	--setPOSIXoriginPath(theOriginPath) of PathConverter
+	set_base_path(theOriginPath) of PathConverter
 	
 	set incGraphicCommand to (_backslash & "includegraphics" as Unicode text)
 	set bibCommand to _backslash & "bibliography"
 	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
 	set firstpara to targetParagraph of theTexDocObj
-	set parcount to EditorClient's count_paragraph()
+	set paracount to EditorClient's count_paragraph()
 	repeat with nth from firstpara to firstpara + paracount - 1
 		set theParagraph to EditorClient's paragraph_at_index(nth)
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then

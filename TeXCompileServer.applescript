@@ -1,16 +1,16 @@
-property loader : makeLoader() of application (get "TeXToolsLib")
+property loader : proxy() of application (get "TeXToolsLib")
 
-on loadLib(theName)
-	return loader's loadLib(theName)
-end loadLib
+on load(theName)
+	return loader's load(theName)
+end load
 
-property ShellUtils : loadLib("ShellUtils")
-property PathAnalyzer : loadLib("PathAnalyzer")
-property PathConverter : loadLib("PathConverter")
-property KeyValueDictionary : loadLib("KeyValueDictionary")
+property ShellUtils : load("ShellUtils")
+property PathAnalyzer : load("PathAnalyzer")
+property PathConverter : load("PathConverter")
+property KeyValueDictionary : load("KeyValueDictionary")
 property StringEngine : StringEngine of PathConverter
-property TerminalCommanderBase : loadLib("TerminalCommander")
-property EditorClient : loadLib("miClient")
+property TerminalCommanderBase : load("TerminalCommander")
+property EditorClient : load("miClient")
 
 property appController : missing value
 --property WindowVisibilityController : missing value

@@ -28,11 +28,12 @@ property supportedMode : {"TEX", "LaTeX"}
 
 on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
-	set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
+	set parentFile to StringEngine's strip_head_tail_spaces(text 13 thru -2 of theParagraph)
 	--log parentFile
 	if parentFile starts with ":" then
-		setHFSoriginPath(theTargetFile) of PathConverter
-		set theTexFile to getAbsolutePath of PathConverter for parentFile
+		--setHFSoriginPath(theTargetFile) of PathConverter
+		set_base_path(theTargetFile) of PathConverter
+		set theTexFile to absolute_path of PathConverter for parentFile
 	else
 		set theTexFile to parentFile
 	end if
@@ -531,7 +532,7 @@ on seekExecEbb()
 	end try
 	
 	set theOriginPath to POSIX path of texFileRef of theTexDocObj
-	setPOSIXoriginPath(theOriginPath) of PathConverter
+	set_base_path(theOriginPath) of PathConverter
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
 	set theRes to EditorClient's document_content()

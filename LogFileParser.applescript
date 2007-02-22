@@ -60,8 +60,8 @@ on makeObj(theTexDocObj)
 		
 		on resolveTargetFile(theTargetFile)
 			if (theTargetFile starts with "./") or (theTargetFile starts with "../") then
-				set theTargetFile to getHFSfromPOSIXpath of myPathConverter for theTargetFile
-				set theTargetFile to getAbsolutePath of myPathConverter for theTargetFile
+				set theTargetFile to hfs_from_posix(theTargetFile) of myPathConverter
+				set theTargetFile to absolute_path of myPathConverter for theTargetFile
 				set theTargetFile to theTargetFile as alias
 			else
 				set theTargetFile to (POSIX file theTargetFile) as alias

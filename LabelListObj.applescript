@@ -123,7 +123,7 @@ on findAuxObjFromDoc()
 		set theParagraph to paragraph_at_index(ith) of EditorClient
 		if theParagraph starts with "%" then
 			if theParagraph starts with "%ParentFile" then
-				set parentFile to StringEngine's stripHeadTailSpaces(text 13 thru -2 of theParagraph)
+				set parentFile to StringEngine's strip_head_tail_spaces(text 13 thru -2 of theParagraph)
 				exit repeat
 			end if
 			set ith to ith + 1
@@ -140,8 +140,8 @@ on findAuxObjFromDoc()
 	set hasParentFile of resultRecord to true
 	--tell me to log parentFile
 	if parentFile starts with ":" then
-		setHFSoriginPath(texFile) of PathConverter
-		set texFile to getAbsolutePath of PathConverter for parentFile
+		set_base_path(texFile) of PathConverter
+		set texFile to absolute_path of PathConverter for parentFile
 	else
 		set texFile to parentFile
 	end if
@@ -483,9 +483,9 @@ on parseAuxFile(theAuxObj)
 		if (theParagraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
 			set theParagraph to text 11 thru -2 of theParagraph
-			storeDelimiter() of StringEngine
-			set theTextItemList to everyTextItem of StringEngine from theParagraph by "}{"
-			restoreDelimiter() of StringEngine
+			store_delimiters() of StringEngine
+			set theTextItemList to split of StringEngine for theParagraph by "}{"
+			restore_delimiters() of StringEngine
 			try
 				set theRef to ((item -2 of theTextItemList) as string)
 			on error
@@ -501,8 +501,8 @@ on parseAuxFile(theAuxObj)
 		else if theParagraph starts with inputText then
 			--log "start @input"
 			set childAuxFile to text 9 thru -2 of theParagraph
-			setPOSIXoriginPath(POSIX path of (auxFileRef of theAuxObj)) of PathConverter
-			set theAuxFile to getAbsolutePath of PathConverter for childAuxFile
+			set_base_path(POSIX path of (auxFileRef of theAuxObj)) of PathConverter
+			set theAuxFile to absolute_path of PathConverter for childAuxFile
 			set theAuxFile to (POSIX file theAuxFile) as alias
 			set childAuxObj to findAuxObj(theAuxFile, true)
 			if childAuxObj is not missing value then

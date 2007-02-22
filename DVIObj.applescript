@@ -25,8 +25,8 @@ script XdviDriver
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
 		if isSrcSpecial of theDviObj then
 			if hasParentFile of theDviObj then
-				setPOSIXoriginPath(POSIX path of texFileRef of theDviObj) of PathConverter
-				set sourceFile to getRelativePath of PathConverter for (POSIX path of targetFileRef of theDviObj)
+				set_base_path(POSIX path of texFileRef of theDviObj) of PathConverter
+				set sourceFile to relative_path of PathConverter for (POSIX path of targetFileRef of theDviObj)
 			else
 				set sourceFile to texFileName of theDviObj
 			end if
