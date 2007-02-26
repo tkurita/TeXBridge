@@ -201,6 +201,8 @@ on open theObject
 			call method "showHelp:"
 		else if theCommandID is "ShowToolPalette" then
 			openWindow() of ToolPaletteController
+		else if theCommandID is "ToggleRefPalette" then
+			toggle_visibility() of RefPanelController
 		else if theCommandID is "ShowRefPalette" then
 			openWindow() of RefPanelController
 		else if theCommandID is "ShowLogWindow" then

@@ -40,12 +40,12 @@ on watchmi()
 end watchmi
 
 on activateFirstmiWindow()
-	set theFile to EditorClient's document_file_as_alias()
+	set a_file to EditorClient's document_file_as_alias()
 	
-	if theFile is not missing value then
+	if a_file is not missing value then
 		ignoring application responses
 			tell application "Finder"
-				open theFile using miAppRef
+				open a_file using miAppRef
 			end tell
 		end ignoring
 	else
@@ -107,17 +107,31 @@ on initilize()
 	set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
 end initilize
 
+on toggle_visibility()
+	if WindowController is missing value then
+		openWindow()
+		call method "activateSelf" of class "SmartActivate"
+	end if
+	
+	if (visible of targetWindow) then
+		close targetWindow
+	else
+		openWindow()
+		call method "activateSelf" of class "SmartActivate"
+	end if
+end toggle_visibility
+
 on openWindow()
-	set isFirst to false
+	set is_first to false
 	if WindowController is missing value then
 		initilize()
-		set isFirst to true
+		set is_first to true
 	end if
 	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
 	--activate
 	call method "showWindow:" of WindowController
-	--if (isFirst or (isWorkingDisplayToggleTimer is 0)) then
-	if isFirst then
+	--if (is_first or (isWorkingDisplayToggleTimer is 0)) then
+	if is_first then
 		watchmi() of LabelListObj
 	end if
 end openWindow

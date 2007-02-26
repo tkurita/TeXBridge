@@ -248,9 +248,9 @@
 		080E96DDFE201D6D7F000001 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */,
 				2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */,
 				2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */,
-				DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */,
 				2C54024007CCEF5000E8CEEB /* ReplaceInputObj.applescript */,
 				2C329BDD063AB42000C9A56F /* LogFileParser.applescript */,
 				2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */,
