@@ -3,7 +3,7 @@ global UtilityHandlers
 global LogFileParser
 global MessageUtility
 global PDFObj
-global dviObj
+global DviObj
 global TexDocObj
 global appController
 global RefPanelController
@@ -28,7 +28,7 @@ property supportedMode : {"TEX", "LaTeX"}
 
 on resolveParentFile(theParagraph, theTargetFile)
 	--log "start resolveParentFile"
-	set parentFile to StringEngine's strip_head_tail_spaces(text 13 thru -2 of theParagraph)
+	set parentFile to StringEngine's strip(text 13 thru -2 of theParagraph)
 	--log parentFile
 	if parentFile starts with ":" then
 		--setHFSoriginPath(theTargetFile) of PathConverter
@@ -155,7 +155,7 @@ end prepareTypeSet
 on prepareVIewErrorLog(theLogFileParser, theDviObj)
 	using terms from application "mi"
 		try
-			set auxFileRef to (getPathWithSuffix(".aux") of theLogFileParser) as alias
+			set auxFileRef to (path_for_suffix(".aux") of theLogFileParser) as alias
 			--set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
 			
 			tell application "Finder"
@@ -261,9 +261,9 @@ on dviPreview()
 		end if
 		return
 	end try
-	--log "before lookUpDviFile"
+	--log "before lookup_dvi"
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
-	set theDviObj to lookUpDviFile() of theTexDocObj
+	set theDviObj to lookup_dvi() of theTexDocObj
 	--log "before openDVI"
 	if theDviObj is not missing value then
 		try
@@ -384,7 +384,7 @@ on typesetAndPDFPreview()
 	end if
 end typesetAndPDFPreview
 
-on openOutputHadler(theExtension)
+on openOutputHadler(an_extension)
 	try
 		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
@@ -393,7 +393,7 @@ on openOutputHadler(theExtension)
 		end if
 		return
 	end try
-	openOutputFile(theExtension) of theTexDocObj
+	open_outfile(an_extension) of theTexDocObj
 end openOutputHadler
 
 on bibTex()
@@ -411,7 +411,7 @@ on lookUpDviFromEditor()
 		return
 	end try
 	
-	set theDviObj to lookUpDviFile() of theTexDocObj
+	set theDviObj to lookup_dvi() of theTexDocObj
 	if theDviObj is missing value then
 		set textDviFile to localized string "dviFile"
 		set isNotFound to localized string "isNotFound"
@@ -444,7 +444,7 @@ on lookUpDviFromMxdvi()
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
 	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj
-	set theDviObj to lookUpDviFile() of theTexDocObj
+	set theDviObj to lookup_dvi() of theTexDocObj
 	return theDviObj
 end lookUpDviFromMxdvi
 
@@ -544,10 +544,10 @@ on seekExecEbb()
 		set theParagraph to paragraph ith of theRes
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
 			set graphicFile to extractFilePath(graphicCommand, theParagraph) of EditCommands
-			repeat with theExtension in graphicExtensions
-				if graphicFile ends with theExtension then
+			repeat with an_extension in graphicExtensions
+				if graphicFile ends with an_extension then
 					set noGraphicFlag to false
-					if execEbb(graphicFile, theExtension) then
+					if execEbb(graphicFile, an_extension) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -569,9 +569,9 @@ on seekExecEbb()
 	end if
 end seekExecEbb
 
-on execEbb(theGraphicPath, theExtension)
-	set basePath to text 1 thru -((length of theExtension) + 1) of theGraphicPath
-	set bbPath to basePath & ".bb"
+on execEbb(theGraphicPath, an_extension)
+	set basepath to text 1 thru -((length of an_extension) + 1) of theGraphicPath
+	set bbPath to basepath & ".bb"
 	if isExists(POSIX file bbPath) of UtilityHandlers then
 		set bbAlias to POSIX file bbPath as alias
 		set graphicAlias to POSIX file theGraphicPath as alias
@@ -619,7 +619,7 @@ on debug()
 	
 	using terms from application "mi"
 		try
-			set auxFileRef to (getPathWithSuffix(".aux") of theTexDocObj) as alias
+			set auxFileRef to (path_for_suffix(".aux") of theTexDocObj) as alias
 			set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
 			
 			tell application "Finder"

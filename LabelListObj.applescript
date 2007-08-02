@@ -1,7 +1,7 @@
 global yenmark
 global _backslash
 global RefPanelController
-global KeyValueDictionary
+global XDict
 global StringEngine
 global PathConverter
 global PathAnalyzer
@@ -9,7 +9,7 @@ global EditorClient
 
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
-property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
+property XDict : load script file (LibraryFolder & "XDict.scpt")
 property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
 property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
@@ -23,7 +23,7 @@ property outlineView : missing value
 property ignoringErrors : {1230, 1500}
 
 on initialize(theDataSource)
-	set auxObjArray to makeObj() of KeyValueDictionary
+	set auxObjArray to makeObj() of XDict
 	set labelDataSource to theDataSource
 	tell labelDataSource
 		make new data column at the end of the data columns with properties {name:"label"}
@@ -123,7 +123,7 @@ on findAuxObjFromDoc()
 		set theParagraph to paragraph_at_index(ith) of EditorClient
 		if theParagraph starts with "%" then
 			if theParagraph starts with "%ParentFile" then
-				set parentFile to StringEngine's strip_head_tail_spaces(text 13 thru -2 of theParagraph)
+				set parentFile to StringEngine's strip(text 13 thru -2 of theParagraph)
 				exit repeat
 			end if
 			set ith to ith + 1
@@ -233,7 +233,8 @@ on findAuxObj(theFileRef, isSaved)
 		if theAuxObj is missing value then
 			--log "new auxObj is registered"
 			set theAuxObj to newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
-			setValue of auxObjArray given forKey:auxObjKey, withValue:theAuxObj
+			--setValue of auxObjArray given forKey:auxObjKey, withValue:theAuxObj
+			auxObjArray's set_value(auxObjKey, theAuxObj)
 		end if
 	else
 		--log "file is not saved"

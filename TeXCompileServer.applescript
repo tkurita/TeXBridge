@@ -7,7 +7,7 @@ end load
 property ShellUtils : load("ShellUtils")
 property PathAnalyzer : load("PathAnalyzer")
 property PathConverter : load("PathConverter")
-property KeyValueDictionary : load("KeyValueDictionary")
+property XDict : load("XDict")
 property StringEngine : StringEngine of PathConverter
 property TerminalCommanderBase : load("TerminalCommander")
 property EditorClient : load("miClient")
@@ -41,7 +41,7 @@ property TerminalCommander : missing value
 property TeXCompileObj : missing value
 property PDFObj : missing value
 property TexDocObj : missing value
-property dviObj : missing value
+property DviObj : missing value
 property RefPanelController : missing value
 property SheetManager : missing value
 
@@ -113,7 +113,7 @@ on launched theObject
 	--open "replaceInput"
 	--call method "showHelp:"
 	--call method "currentDocumentMode" of class "EditorClient"
-	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
+	open {commandClass:"editSupport", commandID:"openRelatedFile"}
 	(*end of debug code*)
 	
 	--log "end of launched"
@@ -315,10 +315,10 @@ on will finish launching theObject
 	set PDFObj to importScript("PDFObj")
 	set TeXCompileObj to importScript("TeXCompileObj")
 	set TexDocObj to importScript("TeXDocObj")
-	set dviObj to importScript("DVIObj")
+	set DviObj to importScript("DVIObj")
 	set SettingWindowController to importScript("SettingWindowController")
 	set ToolPaletteController to importScript("ToolPaletteController")
-	set TerminalCommander to makeObj() of (importScript("TerminalCommander"))
+	set TerminalCommander to make_obj() of (importScript("TerminalCommander"))
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	set RefPanelController to importScript("RefPanelController")
 	set SheetManager to importScript("SheetManager")

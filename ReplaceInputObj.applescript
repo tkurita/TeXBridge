@@ -4,7 +4,7 @@ global _backslash
 (* Shared Libraries *)
 global UtilityHandlers
 global SettingWindowController
-global KeyValueDictionary
+global XDict
 global DefaultsManager
 
 (* references to the GUI *)
@@ -48,7 +48,8 @@ on addToUserDict given keyword:keywordText, replace:replaceText
 		displayAlert(theMessage) of SettingWindowController
 		return false
 	else
-		setValue of userReplaceDict given forKey:keywordText, withValue:replaceText
+		--setValue of userReplaceDict given forKey:keywordText, withValue:replaceText
+		userReplaceDict's set_value(keywordText, replaceText)
 		set end of userKeywordList to keywordText
 		set isChangedUserDict to true
 		saveUserDict()
@@ -147,10 +148,10 @@ end controlClicked
 
 on initialize()
 	if userReplaceDict is missing value then
-		--set userReplaceDict to makeObj() of KeyValueDictionary
+		--set userReplaceDict to makeObj() of XDict
 		set key_list to readDefaultValueWith("ReplaceInput_KeyList", {}) of DefaultsManager
 		set value_list to readDefaultValueWith("ReplaceInput_ValueList", {}) of DefaultsManager
-		set userReplaceDict to KeyValueDictionary's makeObjWithKeysAndValues(key_list, value_list)
+		set userReplaceDict to XDict's makeObjWithKeysAndValues(key_list, value_list)
 	end if
 	
 	if internalReplaceDict is missing value then

@@ -4,33 +4,83 @@ global StringEngine
 global UtilityHandlers
 global TerminalCommander
 global MessageUtility
-global dviObj
+global DviObj
 global ToolPaletteController
 
 property name : "TeXDocObj"
 property logSuffix : ".log"
+property texSuffixList : {".tex", ".dtx"}
 
 global comDelim
 
-on makeObjFromDVIFile(dviFileRef)
+(*== Private Methods *)
+on remove_suffix(a_text)
+	repeat with ith from 1 to length of my texSuffixList
+		set a_suffix to item ith of my texSuffixList
+		if a_text ends with a_suffix then
+			set suffix_len to length of a_suffix
+			set a_text to text 1 thru (-1 * (suffix_len + 1)) of a_text
+			exit repeat
+		end if
+	end repeat
+	return a_text
+end remove_suffix
+
+(*== Instance methods *)
+on path_for_suffix(an_extension)
+	if my texBasePath is missing value then
+		set my texBasePath to my texFileRef as Unicode text
+		set my texBasePath to remove_suffix(my texBasePath)
+	end if
+	return my texBasePath & an_extension
+end path_for_suffix
+
+on open_outfile(an_extension)
+	set file_path to path_for_suffix(an_extension)
+	try
+		tell application "Finder"
+			open (file_path as alias)
+		end tell
+	on error msg number errno
+		activate
+		display alert msg message "Error Number : " & errno
+	end try
+end open_outfile
+
+on lookup_dvi()
+	--log "start lookup_dvi"
+	set dvi_path to path_for_suffix(".dvi")
+	if isExists(dvi_path) of UtilityHandlers then
+		--log "dviFilePath exists"
+		set a_dvi_obj to makeObj(me) of DviObj
+		set dviFileRef of a_dvi_obj to dvi_path as alias
+		set_file_type() of a_dvi_obj
+		return a_dvi_obj
+	else
+		return missing value
+	end if
+end lookup_dvi
+
+(*== Constructors *)
+on makeObjFromDVIFile(dvi_file_ref)
 	--log "start makeObjFromDVIFile"
-	local basePath
-	set dviFilePath to dviFileRef as Unicode text
-	if dviFilePath ends with ".dvi" then
-		set basePath to text 1 thru -5 of dviFilePath
+	local basepath
+	set dvi_path to dvi_file_ref as Unicode text
+	if dvi_path ends with ".dvi" then
+		set basepath to text 1 thru -5 of dvi_path
 	else
-		set basePath to dviFilePath
+		set basepath to dvi_path
 	end if
-	set texFilePath to basePath & ".tex"
+	set tex_path to basepath & ".tex"
 	
-	if isExists(POSIX file texFilePath) of UtilityHandlers then
-		set theTexDocObj to makeObj(POSIX file texFilePath)
-		getHeaderCommandFromFile() of theTexDocObj
+	if isExists(POSIX file tex_path) of UtilityHandlers then
+		set tex_doc_obj to makeObj(POSIX file tex_path)
+		getHeaderCommandFromFile() of tex_doc_obj
 	else
-		set theTexDocObj to makeObj(POSIX file basePath)
+		set tex_doc_obj to makeObj(POSIX file basepath)
 	end if
 	
-	return theTexDocObj
+	return tex_doc_obj
 end makeObjFromDVIFile
 
 on makeObj(theTargetFile)
@@ -57,15 +107,15 @@ on makeObj(theTargetFile)
 		property isSrcSpecial : missing value
 		property compileInTerminal : true
 		
-		property texSuffixList : {".tex", ".dtx"}
-		
+		(*
 		on getLogContents()
 			return logContetns of logContainer
 		end getLogContents
+		*)
 		
-		on resolveParentFile(theParagraph)
+		on resolveParentFile(a_paragraph)
 			--log "start resolveParentFile"
-			set parentFile to StringEngine's strip_head_tail_spaces(text 13 thru -2 of theParagraph)
+			set parentFile to StringEngine's strip(text 13 thru -2 of a_paragraph)
 			--log parentFile
 			if parentFile starts with ":" then
 				set_base_path(targetFileRef) of PathConverter
@@ -95,17 +145,17 @@ on makeObj(theTargetFile)
 			return theTexFile
 		end resolveParentFile
 		
-		on getHeaderCommand(theParagraph)
+		on getHeaderCommand(a_paragraph)
 			ignoring case
-				if theParagraph starts with "%ParentFile" then
-					set theParentFile to resolveParentFile(theParagraph)
+				if a_paragraph starts with "%ParentFile" then
+					set theParentFile to resolveParentFile(a_paragraph)
 					setTexFileRef(theParentFile)
-				else if theParagraph starts with "%Typeset-Command" then
-					set my texCommand to StringEngine's strip_head_tail_spaces(text 18 thru -1 of theParagraph)
-				else if theParagraph starts with "%DviToPdf-Command" then
-					set my dvipdfCommand to StringEngine's strip_head_tail_spaces(text 19 thru -1 of theParagraph)
-				else if theParagraph starts with "%DviToPs-Command" then
-					set my dvipsCommand to StringEngine's strip_head_tail_spaces(text 18 thru -1 of theParagraph)
+				else if a_paragraph starts with "%Typeset-Command" then
+					set my texCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
+				else if a_paragraph starts with "%DviToPdf-Command" then
+					set my dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
+				else if a_paragraph starts with "%DviToPs-Command" then
+					set my dvipsCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
 				end if
 			end ignoring
 		end getHeaderCommand
@@ -114,11 +164,11 @@ on makeObj(theTargetFile)
 			--log "start getHearderCommandFromFile"
 			set lineFeed to ASCII character 10
 			set inputFile to open for access texFileRef
-			set theParagraph to read inputFile before lineFeed
-			repeat while (theParagraph starts with "%")
-				getHeaderCommand(theParagraph)
+			set a_paragraph to read inputFile before lineFeed
+			repeat while (a_paragraph starts with "%")
+				getHeaderCommand(a_paragraph)
 				try
-					set theParagraph to read inputFile before lineFeed
+					set a_paragraph to read inputFile before lineFeed
 				on error
 					exit repeat
 				end try
@@ -140,11 +190,11 @@ on makeObj(theTargetFile)
 		end getNameWithSuffix
 		
 		on getBaseName()
-			if texBaseName is missing value then
-				set texBaseName to texFileName as Unicode text
-				set texBaseName to removeSuffix(texBaseName)
+			if my texBaseName is missing value then
+				set my texBaseName to my texFileName as Unicode text
+				set my texBaseName to remove_suffix(my texBaseName)
 			end if
-			return texBaseName
+			return my texBaseName
 		end getBaseName
 		
 		on buildCommand(theCommand, theSuffix)
@@ -161,26 +211,6 @@ on makeObj(theTargetFile)
 			end if
 		end buildCommand
 		
-		on getPathWithSuffix(theSuffix)
-			if texBasePath is missing value then
-				set texBasePath to texFileRef as Unicode text
-				set texBasePath to removeSuffix(texBasePath)
-			end if
-			return texBasePath & theSuffix
-		end getPathWithSuffix
-		
-		on removeSuffix(theText)
-			repeat with ith from 1 to length of texSuffixList
-				set theSuffix to item ith of texSuffixList
-				if theText ends with theSuffix then
-					set suffixLength to length of theSuffix
-					set theText to text 1 thru (-1 * (suffixLength + 1)) of theText
-					exit repeat
-				end if
-			end repeat
-			return theText
-		end removeSuffix
-		
 		on checkLogFileStatus()
 			set textALogfile to localized string "aLogfile"
 			set textHasBeenOpend to localized string "hasBeenOpend"
@@ -188,7 +218,7 @@ on makeObj(theTargetFile)
 			set textCancel to localized string "Cancel"
 			set textClose to localized string "Close"
 			
-			set theLogFile to getPathWithSuffix(logSuffix)
+			set theLogFile to path_for_suffix(logSuffix)
 			set logFileReady to false
 			if isExists(theLogFile) of UtilityHandlers then
 				if busy status of (info for file theLogFile) then
@@ -225,18 +255,6 @@ on makeObj(theTargetFile)
 			return logFileReady
 		end checkLogFileStatus
 		
-		on openOutputFile(theExtension)
-			set ouputFilePath to getPathWithSuffix(theExtension)
-			try
-				tell application "Finder"
-					open (ouputFilePath as alias)
-				end tell
-			on error errMsg number errNum
-				activate
-				display dialog errMsg buttons {"OK"} default button "OK"
-			end try
-		end openOutputFile
-		
 		on texCompile()
 			--log "start texCompile"
 			set beforeCompileTime to current date
@@ -272,8 +290,10 @@ on makeObj(theTargetFile)
 				set theTexCommand to join of StringEngine for commandElements by space
 				restore_delimiters() of StringEngine
 				
-				set pathCommand to "export PATH=/usr/local/bin:$PATH"
-				set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1"
+				--set pathCommand to "export PATH=/usr/local/bin:$PATH"
+				--set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1"
+				set shell_path to getShellPath() of TerminalCommander
+				set allCommand to cdCommand & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of texFileName) & " 2>&1" & quote
 				try
 					set logContents to do shell script allCommand
 				on error errMsg number errNum
@@ -290,8 +310,8 @@ on makeObj(theTargetFile)
 				end try
 			end if
 			--log "after Typeset"
-			set theDviObj to lookUpDviFile()
-			--log "after lookUpDviFile"
+			set theDviObj to lookup_dvi()
+			--log "after lookup_dvi"
 			if theDviObj is not missing value then
 				setSrcSpecialFlag() of theDviObj
 			end if
@@ -299,18 +319,6 @@ on makeObj(theTargetFile)
 			return theDviObj
 		end texCompile
 		
-		on lookUpDviFile()
-			--log "start lookUpDviFile"
-			set dviFilePath to getPathWithSuffix(".dvi")
-			if isExists(dviFilePath) of UtilityHandlers then
-				--log "dviFilePath exists"
-				set theDviObj to makeObj(a reference to me) of dviObj
-				set dviFileRef of theDviObj to dviFilePath as alias
-				setFileType() of theDviObj
-				return theDviObj
-			else
-				return missing value
-			end if
-		end lookUpDviFile
+		
 	end script
 end makeObj
