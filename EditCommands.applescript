@@ -40,7 +40,7 @@ on openRelatedFile given revealOnly:revealFlag
 	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
 	set firstpara to targetParagraph of theTexDocObj
-	set paracount to EditorClient's count_paragraph()
+	set paracount to count paragraphs of contents of selection_ref() of EditorClient
 	repeat with nth from firstpara to firstpara + paracount - 1
 		set theParagraph to EditorClient's paragraph_at_index(nth)
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
@@ -88,6 +88,8 @@ on openRelatedFile given revealOnly:revealFlag
 end openRelatedFile
 
 on openGraphicFile(fileAlias)
+	--log "start openGraphicFile"
+	--log fileAlias
 	set pathRecord to do(fileAlias) of PathAnalyzer
 	set theName to name of pathRecord
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png", "eps"}

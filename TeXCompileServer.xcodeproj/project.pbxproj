@@ -669,8 +669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = "$(HOME)";
+				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
@@ -684,7 +683,7 @@
 				INSTALL_PATH = /Library/Preferences/mi/mode/TEX;
 				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_OSAFLAGS = "-x";

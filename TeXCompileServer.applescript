@@ -113,7 +113,7 @@ on launched theObject
 	--open "replaceInput"
 	--call method "showHelp:"
 	--call method "currentDocumentMode" of class "EditorClient"
-	open {commandClass:"editSupport", commandID:"openRelatedFile"}
+	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
 	(*end of debug code*)
 	
 	--log "end of launched"
