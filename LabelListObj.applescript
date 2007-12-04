@@ -1,11 +1,16 @@
-global yenmark
 global _backslash
-global RefPanelController
+
 global XDict
 global StringEngine
 global PathConverter
 global PathAnalyzer
+global XList
+
+global RefPanelController
 global EditorClient
+global TexDocObj
+global AuxData
+global TeXCompileObj
 
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
@@ -23,7 +28,7 @@ property outlineView : missing value
 property ignoringErrors : {1230, 1500}
 
 on initialize(theDataSource)
-	set auxObjArray to makeObj() of XDict
+	set auxObjArray to make XDict
 	set labelDataSource to theDataSource
 	tell labelDataSource
 		make new data column at the end of the data columns with properties {name:"label"}
@@ -32,98 +37,129 @@ on initialize(theDataSource)
 end initialize
 
 on watchmi()
-	--log "start watchmi"
+	log "start watchmi in LabelListObj"
 	try
-		set resultRecord to findAuxObjFromDoc()
+		set an_auxdata to findAuxObjFromDoc()
 	on error errMsg number errNum
 		if errNum is in {1230, 1500} then
 			-- 1230 : ParentFile is invalid.
 			-- 1500 : Unsupported File.
 			return
 		else
-			error errMsg number errNum
+			error "Fail to findAuxObjFromDoc in watchmi of LabelListObj." & return & errMsg number errNum
 		end if
 	end try
-	set theAuxObj to targetAuxObj of resultRecord
 	
-	if theAuxObj is not missing value then
-		if dataItemRef of theAuxObj is missing value then
-			--log "exists item"
-			if auxFileRef of theAuxObj is not missing value then
-				parseAuxFile(theAuxObj)
-			end if
-			if hasParentFile of resultRecord then
-				--log "has ParentFile"
-				set auxObjofDoc to findAuxObj(currentTexFile of resultRecord, isSaved of resultRecord)
-				findLabelsFromDocument(auxObjofDoc)
-				--appendToOutline for auxObjofDoc below labelDataSource
-			else
-				--log "no ParentFile"
-				findLabelsFromDocument(theAuxObj)
-			end if
-			appendToOutline for theAuxObj below labelDataSource
-		else
-			if hasParentFile of resultRecord then
-				set theAuxObj to findAuxObj(currentTexFile of resultRecord, isSaved of resultRecord)
-			end if
-			--log "before findLabelsFromDocument"
-			if findLabelsFromDocument(theAuxObj) then
-				--log "before updateLabelsFromDoc"
-				updateLabelsFromDoc() of theAuxObj
-			else
-				--log "skip updateLabelsFromDoc"
-			end if
-			
+	if an_auxdata is missing value then
+		return
+	end if
+	
+	--set theAuxObj to targetAuxObj of resultRecord
+	
+	if an_auxdata's data_item() is missing value then
+		--log "no data item"
+		if an_auxdata's aux_file() is not missing value then
+			parseAuxFile(an_auxdata)
 		end if
+		findLabelsFromDocument(an_auxdata)
+		if an_auxdata's has_parent() then
+			--log "has ParentFile"
+			--set auxObjofDoc to findAuxObj(tex_file of resultRecord, is_saved of resultRecord)
+			
+			set a_parentdoc to TexDocObj's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
+			set a_parentaux to auxdata_for_texdoc(a_parentdoc)
+			if a_parentaux's data_item() is missing value then
+				if (check_auxfile() of a_parentaux) then
+					parseAuxFile(a_parentaux)
+				end if
+			end if
+			--findLabelsFromDocument(theAuxObj)
+			--set auxObjofDoc to auxdata_for_texdoc(a_parentdoc)
+			--findLabelsFromDocument(auxObjofDoc)
+			--appendToOutline for auxObjofDoc below labelDataSource
+			appendToOutline for a_parentaux below labelDataSource
+			an_auxdata's expandDataItem()
+		else
+			--log "no ParentFile"
+			--findLabelsFromDocument(an_auxdata)
+			appendToOutline for an_auxdata below labelDataSource
+		end if
+		
+		
+	else
+		(*
+		if an_auxdata's has_parent() then
+			--set theAuxObj to findAuxObj(tex_file of resultRecord, is_saved of resultRecord)
+			set a_parentdoc to TexDocObj's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
+			set an_auxdata to auxdata_for_texdoc(a_parentdoc)
+			--set theAuxObj to findAuxObj(resultRecord)
+		end if
+		*)
+		--log "before findLabelsFromDocument"
+		if findLabelsFromDocument(an_auxdata) then
+			--log "before updateLabelsFromDoc"
+			updateLabelsFromDoc() of an_auxdata
+		else
+			--log "skip updateLabelsFromDoc"
+		end if
+		
 	end if
 	--log "end of watchmi"
 end watchmi
 
 on findAuxObjFromDoc()
 	--log "start findAuxObjFromDoc"
-	set resultRecord to {hasParentFile:false, targetAuxObj:missing value, currentTexFile:missing value, isSaved:false}
-	try
-		tell application "mi"
-			tell document 1
-				set texFile to file
-				if mode is not "TEX" then
-					--log "front window is not supported mode"
-					return resultRecord
-				end if
-			end tell
-		end tell
-	on error errMsg number -1728
-		--log "No opend window"
-		(*
-		set theMessage to localized string "noDocument"
-		showMessage(theMessage) of MessageUtility
-		error "No opened documents." number 1240
-		*)
-		return resultRecord
-	end try
+	set a_texdoc to texdoc_for_firstdoc of TeXCompileObj without showing_message and need_file
+	if a_texdoc is missing value then
+		return missing value
+	end if
+	(*
+	if EditorClient's exists_document() then
+		set a_tex_file to EditorClient's document_file_as_alias()
+		if (EditorClient's document_mode() is not "TEX") then
+			return missing value
+		end if
+	else
+		return missing value
+	end if
+	
+	
+	set resultRecord to {hasParentFile:false, targetAuxObj:missing value, tex_file:missing value, is_saved:false, text_encoding:missing value}
 	--log "after getting mi file in findAuxObjFromDoc"
 	
-	try
-		set texFile to texFile as alias
-		set currentTexFile of resultRecord to texFile
-		set saveFlag to true
-		set isSaved of resultRecord to saveFlag
-	on error
-		set texFile to EditorClient's document_name()
-		set saveFlag to false
-		set targetAuxObj of resultRecord to findAuxObj(texFile, saveFlag)
+	if a_tex_file is not missing value then
+		set tex_file of resultRecord to a_tex_file
+		set is_saved of resultRecord to true
+		set text_encoding of resultRecord to EditorClient's text_encoding()
+	else
+		set tex_file of resultRecord to EditorClient's document_name()
+		set is_saved of resultRecord to false
+		set targetAuxObj of resultRecord to findAuxObj(resultRecord)
 		return resultRecord
-	end try
+	end if
 	--log "after checking mi file status"
+	*)
+	if (not a_texdoc's has_file()) then
+		return auxdata_for_texdoc(a_texdoc)
+	end if
 	
-	--find ParentFile
+	--log "start finding ParentFile"
 	set parentFile to missing value
 	set ith to 1
 	repeat
-		set theParagraph to paragraph_at_index(ith) of EditorClient
-		if theParagraph starts with "%" then
-			if theParagraph starts with "%ParentFile" then
-				set parentFile to StringEngine's strip(text 13 thru -2 of theParagraph)
+		set a_paragraph to paragraph_at_index(ith) of EditorClient
+		if a_paragraph starts with "%" then
+			if a_paragraph starts with "%ParentFile" then
+				try
+					set a_file to a_texdoc's resolve_parent(a_paragraph)
+				on error msg number errno
+					if errno is 1230 then
+						RefPanelController's displayAlert(msg)
+					end if
+					error msg number errno
+				end try
+				a_texdoc's update_with_parent(a_file)
+				
 				exit repeat
 			end if
 			set ith to ith + 1
@@ -131,44 +167,19 @@ on findAuxObjFromDoc()
 			exit repeat
 		end if
 	end repeat
+	--log "end finding ParentFile"
 	
-	if parentFile is missing value then
-		set targetAuxObj of resultRecord to findAuxObj(texFile, saveFlag)
-		return resultRecord
-	end if
-	
-	set hasParentFile of resultRecord to true
-	--tell me to log parentFile
-	if parentFile starts with ":" then
-		set_base_path(texFile) of PathConverter
-		set texFile to absolute_path of PathConverter for parentFile
-	else
-		set texFile to parentFile
-	end if
-	
-	--tell me to log "theTexFile : " & theTexFile
-	if texFile ends with ":" then
-		set sQ to localized string "startQuote"
-		set eQ to localized string "endQuote"
-		set textIsInvalid to localized string "isInvalid"
-		set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-		displayAlert(theMessage) of RefPanelController
-		--showMessageOnmi(theMessage) of MessageUtility
-		error "ParentFile is invalid." number 1230
-	end if
-	
-	set targetAuxObj of resultRecord to findAuxObj(texFile, saveFlag)
 	--log "end  findAuxObjFromDoc"
-	return resultRecord
+	return auxdata_for_texdoc(a_texdoc)
 end findAuxObjFromDoc
 
 on appendToOutline for theAuxObj below parentDataItem
 	--log "start appendToOutline"
-	if dataItemRef of theAuxObj is missing value then
+	if theAuxObj's data_item() is missing value then
 		--log "is first append to outline"
 		set titleItem to make new data item at end of data items of parentDataItem
-		set dataItemRef of theAuxObj to titleItem
-		set contents of data cell "label" of titleItem to baseName of theAuxObj
+		theAuxObj's set_data_item(titleItem)
+		set contents of data cell "label" of titleItem to theAuxObj's basename()
 	else
 		--log "before updateLabels in appendToOutline"
 		updateLabels() of theAuxObj
@@ -176,7 +187,8 @@ on appendToOutline for theAuxObj below parentDataItem
 	end if
 	
 	--log "before repeat in appendToOutline"
-	repeat with theLabelRecord in {labelRecordFromAux of theAuxObj, labelRecordFromDoc of theAuxObj}
+	--repeat with theLabelRecord in {labelRecordFromAux of theAuxObj, labelRecordFromDoc of theAuxObj}
+	repeat with theLabelRecord in theAuxObj's all_label_records()
 		repeat with ith from 1 to length of theLabelRecord
 			set theItem to item ith of theLabelRecord
 			set theClass to class of theItem
@@ -194,17 +206,16 @@ on appendToOutline for theAuxObj below parentDataItem
 	--log "end appndToOutline"
 end appendToOutline
 
-on findAuxObj(theFileRef, isSaved)
-	--log "start findAuxObj"
-	set theFilePath to theFileRef as Unicode text
-	
-	if isSaved then
+on auxdata_for_texdoc(a_texdoc)
+	--log "start auxdata_for_texdoc"
+	if a_texdoc's has_file() then
 		--log "file is saved"
-		set pathRecord to do(theFileRef) of PathAnalyzer
+		(*
+		set pathRecord to do(file_ref) of PathAnalyzer
 		set nameWithSuffix to name of pathRecord
 		if nameWithSuffix ends with ".tex" then
 			set theBaseName to text 1 thru -5 of nameWithSuffix
-			set theTexFileRef to theFileRef
+			set theTexFileRef to file_ref
 			try
 				set theAuxFileRef to ((folderReference of pathRecord as Unicode text) & theBaseName & ".aux") as alias
 			on error
@@ -213,13 +224,13 @@ on findAuxObj(theFileRef, isSaved)
 			end try
 		else if nameWithSuffix ends with ".aux" then
 			set theBaseName to text 1 thru -5 of nameWithSuffix
-			set theAuxFileRef to theFileRef
+			set theAuxFileRef to file_ref
 			set theTexFileRef to missing value
 		else
 			--log "unknow suffix"
 			--error "Unsupported File." number 1500
 			set theBaseName to nameWithSuffix
-			set theTexFileRef to theFileRef
+			set theTexFileRef to file_ref
 			try
 				set theAuxFileRef to ((folderReference of pathRecord as Unicode text) & theBaseName & ".aux") as alias
 			on error
@@ -229,258 +240,44 @@ on findAuxObj(theFileRef, isSaved)
 		end if
 		
 		set auxObjKey to (folderReference of pathRecord as Unicode text) & theBaseName
-		set theAuxObj to getValue of auxObjArray given forKey:auxObjKey
-		if theAuxObj is missing value then
-			--log "new auxObj is registered"
-			set theAuxObj to newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
-			--setValue of auxObjArray given forKey:auxObjKey, withValue:theAuxObj
-			auxObjArray's set_value(auxObjKey, theAuxObj)
+		*)
+		--set a_key to a_texdoc's no_suffix_posix_path()
+		set a_key to a_texdoc's no_suffix_target_path()
+		--log "auxdata key: " & a_key
+		set an_auxdata to auxObjArray's value_for_key(a_key)
+		if an_auxdata is missing value then
+			--log "new auxdata will be registered"
+			--set an_auxdata to newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, is_saved, text_encoding of source_info)
+			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
+			auxObjArray's set_value(a_key, an_auxdata)
+		else
+			an_auxdata's set_texdoc(a_texdoc) -- update for text encoding
 		end if
 	else
 		--log "file is not saved"
 		if unsavedAuxObj is not missing value then
 			deleteDataItem() of unsavedAuxObj
 		end if
-		set unsavedAuxObj to newAuxObj(missing value, missing value, theFileRef, isSaved)
-		set theAuxObj to unsavedAuxObj
+		--set unsavedAuxObj to newAuxObj(missing value, missing value, file_ref, is_saved, text_encoding of source_info)
+		set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
+		--set theAuxObj to unsavedAuxObj
 	end if
 	
-	--log "end findAuxObj"
-	return theAuxObj
-end findAuxObj
-
-on newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, isSaved)
-	--log "start newAuxObj"
-	script AuxObj
-		property texFileRef : theTexFileRef
-		property auxFileRef : theAuxFileRef
-		property labelRecordFromAux : {}
-		property labelRecordFromDoc : {}
-		property labelList : {}
-		property baseName : theBaseName
-		--property folderAlias : theFolderAlias
-		property isExpanded : missing value
-		property dataItemRef : missing value
-		property _checkedTime : current date
-		property _document_size : missing value
-		
-		on is_texfile_updated()
-			set mod_date to modification date of (info for my texFileRef)
-			return mod_date > my _checkedTime
-		end is_texfile_updated
-		
-		on document_size()
-			return _document_size
-		end document_size
-		
-		on set_document_size(doc_size)
-			set _document_size to doc_size
-		end set_document_size
-		
-		on update_checked_time()
-			set _checkdTime to current date
-		end update_checked_time
-		
-		on checkAuxFile()
-			if auxFileRef is missing value then
-				set texFilePath to texFileRef as Unicode text
-				if texFilePath ends with ".tex" then
-					set pathWithoutSuffx to text 1 thru -5 of texFilePath
-				end if
-				try
-					set auxFileRef to pathWithoutSuffx & ".aux" as alias
-					return true
-				on error
-					set theMessage to localized string "auxFileIsNotFound"
-					displayAlert(theMessage) of RefPanelController
-					return false
-				end try
-			else
-				return true
-			end if
-		end checkAuxFile
-		
-		on getFileContents()
-			return read auxFileRef
-		end getFileContents
-		
-		on addLabelFromAux(theLabel, theRef)
-			set end of labelRecordFromAux to {|label|:theLabel, |reference|:theRef}
-			set end of labelList to theLabel
-		end addLabelFromAux
-		
-		on addChildAuxObj(theAuxObj)
-			set end of labelRecordFromAux to theAuxObj
-		end addChildAuxObj
-		
-		on addLabelFromDoc(theLabel)
-			--log "start addLabelFromDoc"
-			set end of labelRecordFromDoc to {|label|:theLabel, |reference|:"--"}
-			--log "end addLabelFromDoc"
-		end addLabelFromDoc
-		
-		on expandDataItem()
-			--log "start expandDataItem"
-			-- when epanded outline, it seems that width of table column is changed uncorrectly.
-			-- fix table column width between before exapand and after expand
-			set currentLabelWidth to width of table column "label" of outlineView
-			set currentRefWidth to width of table column "reference" of outlineView
-			call method "expandItem:" of outlineView with parameter dataItemRef
-			set width of table column "label" of outlineView to currentLabelWidth
-			set width of table column "reference" of outlineView to currentRefWidth
-		end expandDataItem
-		
-		on deleteDataItem()
-			set labelRecordFromAux to {}
-			set labelRecordFromDoc to {}
-			delete dataItemRef
-		end deleteDataItem
-		
-		on deleteChildDataItem()
-			if dataItemRef is not missing value then
-				set labelRecordFromAux to {}
-				set labelRecordFromDoc to {}
-				delete (every data item of dataItemRef)
-			end if
-		end deleteChildDataItem
-		
-		on updateLabels()
-			--log "start updateLabels"
-			set nDataItem to count data item of dataItemRef
-			set nLabelFromAux to length of labelRecordFromAux
-			set nLabelFromDoc to length of labelRecordFromDoc
-			set dItemCounter to 1
-			--log "before repeat 1"
-			--log "nDataItem:" & nDataItem
-			--log "nLabelFromAux:" & nLabelFromAux
-			--log "nLabelFromDoc:" & nLabelFromDoc
-			
-			repeat with ith from 1 to nLabelFromAux
-				if ith is less than or equal to nDataItem then
-					set theDataItem to data item ith of dataItemRef
-				else
-					set theDataItem to make new data item at end of data items of dataItemRef
-				end if
-				
-				set theItem to item ith of labelRecordFromAux
-				set theClass to class of theItem
-				if theClass is record then
-					set contents of data cell "label" of theDataItem to |label| of theItem
-					set contents of data cell "reference" of theDataItem to |reference| of theItem
-					if has data items of theDataItem then
-						delete every data item of theDataItem
-					end if
-				else if theClass is script then
-					set dataItemRef of theItem to theDataItem
-					set contents of data cell "label" of theDataItem to baseName of theItem
-					set contents of data cell "reference" of theDataItem to ""
-					updateLabels() of theItem
-				end if
-			end repeat
-			
-			--log "start second repeat"
-			repeat with ith from 1 to nLabelFromDoc
-				if (ith + nLabelFromAux) is less than or equal to nDataItem then
-					set theDataItem to data item ith of dataItemRef
-				else
-					set theDataItem to make new data item at end of data items of dataItemRef
-				end if
-				
-				set theItem to item ith of nLabelFromDoc
-				set contents of data cell "label" of theDataItem to |label| of theItem
-				set contents of data cell "reference" of theDataItem to |reference| of theItem
-			end repeat
-			
-			--log "start third repeat"
-			set delItemNum to (nLabelFromAux + nLabelFromDoc + 1)
-			repeat (nDataItem - nLabelFromAux - nLabelFromDoc) times
-				delete data item delItemNum of dataItemRef
-			end repeat
-			--log "end of updateLabels"
-		end updateLabels
-		
-		on updateLabelsFromDoc()
-			set nDataItem to count data item of dataItemRef
-			set nLabelFromAux to length of labelRecordFromAux
-			set nLabelFromDoc to length of labelRecordFromDoc
-			
-			set labCounter to 1
-			(*
-			--log "before repeat 1"
-			--log "nDataItem:" & nDataItem
-			--log "nLabelFromAux:" & nLabelFromAux
-			--log "nLabelFromDoc:" & nLabelFromDoc
-			*)
-			repeat with ith from (nLabelFromAux + 1) to nDataItem
-				--log "in repeat 1"
-				set theDataItem to data item ith of dataItemRef
-				
-				if labCounter is less than or equal to nLabelFromDoc then
-					set theItem to item labCounter of labelRecordFromDoc
-					set contents of data cell "label" of theDataItem to |label| of theItem
-					set contents of data cell "reference" of theDataItem to |reference| of theItem
-				else
-					delete theDataItem
-				end if
-				set labCounter to labCounter + 1
-			end repeat
-			
-			--log "before repeat 2"
-			repeat with ith from labCounter to nLabelFromDoc
-				--log "in repeat 2"
-				set theItem to item ith of labelRecordFromDoc
-				set theDataItem to make new data item at end of data items of dataItemRef
-				set contents of data cell "label" of theDataItem to |label| of theItem
-				set contents of data cell "reference" of theDataItem to |reference| of theItem
-			end repeat
-		end updateLabelsFromDoc
-		
-		on clearLabelsFromDoc()
-			--log "start clearLabelsFromDoc"
-			set labelRecordFromDoc to {}
-			repeat with theLabelRecord in labelRecordFromAux
-				if class of theLabelRecord is script then
-					clearLabelsFromDoc() of theLabelRecord
-				end if
-			end repeat
-			--log "end clearLabelsFromDoc"
-		end clearLabelsFromDoc
-		
-		on clearLabelsFromAux()
-			(*
-			repeat with theLabelRecord in labelRecordFromAux
-				if class of theLabelRecord is script then
-					clearLabelsFromAux() of theLabelRecord
-					set dataItemRef of theLabelRecord to missing value
-				end if
-			end repeat
-			*)
-			set labelRecordFromAux to {}
-		end clearLabelsFromAux
-		
-		on appendLabelsFromDoc()
-			repeat with ith from 1 to length of labelRecordFromDoc
-				set theItem to item ith of labelRecordFromDoc
-				set theDataItem to make new data item at end of data items of dataItemRef
-				set contents of data cell "label" of theDataItem to |label| of theItem
-				set contents of data cell "reference" of theDataItem to |reference| of theItem
-			end repeat
-		end appendLabelsFromDoc
-	end script
-	--log "end newAuxObj"
-	return AuxObj
-end newAuxObj
+	--log "end auxdata_for_texdoc"
+	return an_auxdata
+end auxdata_for_texdoc
 
 on parseAuxFile(theAuxObj)
 	--log "start parseAuxFile"
-	set theContents to getFileContents() of theAuxObj
+	set theContents to read_aux_file() of theAuxObj
 	--log "before clearLabelsFromAux in parseAuxFile"
 	clearLabelsFromAux() of theAuxObj
 	--log "start repeat in parseAuxFile"
-	set newlabelText to yenmark & "newlabel{"
-	set inputText to yenmark & "@input{"
+	set newlabelText to _backslash & "newlabel{"
+	set inputText to _backslash & "@input{"
 	repeat with ith from 1 to (count paragraph of theContents)
 		set theParagraph to paragraph ith of theContents
+		--log theParagraph
 		if (theParagraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
 			set theParagraph to text 11 thru -2 of theParagraph
@@ -500,18 +297,21 @@ on parseAuxFile(theAuxObj)
 				addLabelFromAux(theLabel, theRef) of theAuxObj
 			end if
 		else if theParagraph starts with inputText then
-			--log "start @input"
+			log "start @input"
 			set childAuxFile to text 9 thru -2 of theParagraph
-			set_base_path(POSIX path of (auxFileRef of theAuxObj)) of PathConverter
+			set_base_path(theAuxObj's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile
 			set theAuxFile to (POSIX file theAuxFile) as alias
-			set childAuxObj to findAuxObj(theAuxFile, true)
+			set a_texdoc to TexDocObj's make_with(theAuxFile, theAuxObj's text_encoding())
+			set childAuxObj to auxdata_for_texdoc(a_texdoc)
+			--set childAuxObj to findAuxObj(theAuxFile, true)
 			if childAuxObj is not missing value then
 				parseAuxFile(childAuxObj)
 				addChildAuxObj(childAuxObj) of theAuxObj
 			end if
 			--log "end @input"
 		end if
+		--log "end loop"
 	end repeat
 	--log "end of parseAuxFile"
 end parseAuxFile
@@ -522,14 +322,11 @@ on findLabelsFromDocument(theAuxObj)
 	
 	set labelCommand to _backslash & "label"
 	--log "before repeat"
-	script ListContainer
-		property contents : every paragraph of theContents
-		property num_lines : length of contents
-	end script
 	
+	set a_xlist to XList's make_with(get every paragraph of theContents)
 	if not is_texfile_updated() of theAuxObj then
 		--log "document is not updated"
-		if (num_lines of ListContainer) is (theAuxObj's document_size()) then
+		if (a_xlist's count_items()) is (theAuxObj's document_size()) then
 			--log "document size is same"
 			return false
 		end if
@@ -538,8 +335,8 @@ on findLabelsFromDocument(theAuxObj)
 	end if
 	
 	clearLabelsFromDoc() of theAuxObj
-	repeat with ith from 1 to (ListContainer's num_lines)
-		set theParagraph to item ith of contents of ListContainer
+	repeat while (a_xlist's has_next())
+		set theParagraph to a_xlist's next()
 		--set theParagraph to paragraph ith of theContents
 		--log theParagraph
 		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
@@ -551,7 +348,8 @@ on findLabelsFromDocument(theAuxObj)
 				set pos2 to offset of "}" in theParagraph
 				if pos2 is 0 then exit repeat
 				set theLabel to text (pos1 + 1) thru (pos2 - 1) of theParagraph
-				if theLabel is not in labelList of theAuxObj then
+				--if theLabel is not in labelList of theAuxObj then
+				if not theAuxObj's has_label(theLabel) then
 					addLabelFromDoc(theLabel) of theAuxObj
 				end if
 				try
@@ -563,21 +361,24 @@ on findLabelsFromDocument(theAuxObj)
 		end if
 	end repeat
 	theAuxObj's update_checked_time()
-	theAuxObj's set_document_size(ListContainer's num_lines)
+	theAuxObj's set_document_size(a_xlist's count_items())
 	--log "end findLabelsFromDocument"	
 	return true
 end findLabelsFromDocument
 
-on rebuildLabelsFromAux(theTexFileRef)
+on rebuildLabelsFromAux(a_texdoc)
 	--log "start rebuildLabelsFromAux"
-	set theAuxObj to findAuxObj(theTexFileRef, true)
-	if not (checkAuxFile() of theAuxObj) then
+	--set source_info to {hasParentFile:false, targetAuxObj:missing value, tex_file:a_tex_source's file_ref()'s as_alias(), is_saved:true, text_encoding:a_tex_source's text_encoding()}
+	--set theAuxObj to findAuxObj(source_info)
+	set an_auxdata to auxdata_for_texdoc(a_texdoc)
+	--log "after auxdata_for_texdoc in rebuildLabelsFromAux"
+	if not (check_auxfile() of an_auxdata) then
+		--log "check_auxfile is false"
 		return
 	end if
-	--log "before parseAuxFile in rebuildLabelsFromAux"
-	parseAuxFile(theAuxObj)
-	--log "before clearLabelsFromDoc in rebuildLabelsFromAux"
-	clearLabelsFromDoc() of theAuxObj
-	appendToOutline for theAuxObj below labelDataSource
+	parseAuxFile(an_auxdata)
+	clearLabelsFromDoc() of an_auxdata
+	appendToOutline for an_auxdata below labelDataSource
 	--log "end of rebuildLabelsFromAux"
 end rebuildLabelsFromAux
+

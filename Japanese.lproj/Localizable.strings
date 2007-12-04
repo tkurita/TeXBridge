@@ -6,12 +6,16 @@
 "aDocument" = "書類";
 "isNotFound" = "が見つかりません。";
 
-/*checkLogFileStatus*/
+/*check_logfile*/
 "shouldClose" = "タイプセットの前に閉じる必要があります。";
 "Cancel" = "キャンセル";
 "Close" = "閉じる";
 
 /*** TeXCompileObj ***/
+/*texdoc_for_firstdoc*/
+"DocumentIsNotSaved" = "書類 “$1” は保存されていません。";
+"closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
+
 /*doTypeSet*/
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 

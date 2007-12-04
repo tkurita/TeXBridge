@@ -1,3 +1,4 @@
+--property loader : proxy_with({autocollect:true}) of application (get "TeXToolsLib")
 property loader : proxy() of application (get "TeXToolsLib")
 
 on load(theName)
@@ -5,12 +6,14 @@ on load(theName)
 end load
 
 property ShellUtils : load("ShellUtils")
-property PathAnalyzer : load("PathAnalyzer")
 property PathConverter : load("PathConverter")
 property XDict : load("XDict")
-property StringEngine : StringEngine of PathConverter
+property XFile : load("XFile")
+property XList : XDict's XList
+property XText : load("XText")
+property PathAnalyzer : XFile's PathAnalyzer
+property StringEngine : PathConverter's StringEngine
 property TerminalCommanderBase : load("TerminalCommander")
-property EditorClient : load("miClient")
 
 property appController : missing value
 --property WindowVisibilityController : missing value
@@ -44,6 +47,8 @@ property TexDocObj : missing value
 property DviObj : missing value
 property RefPanelController : missing value
 property SheetManager : missing value
+property AuxData : missing value
+property EditorClient : missing value
 
 on importScript(scriptName)
 	tell main bundle
@@ -322,6 +327,8 @@ on will finish launching theObject
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	set RefPanelController to importScript("RefPanelController")
 	set SheetManager to importScript("SheetManager")
+	set AuxData to importScript("AuxData")
+	set EditorClient to importScript("EditorClient")
 	
 	--log "end of import library"
 	showStartupMessage("Loading Preferences ...")

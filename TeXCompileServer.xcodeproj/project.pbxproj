@@ -32,6 +32,8 @@
 				2C6CA44208CFC6D2005D5612 /* SheetManager.applescript in AppleScript */,
 				2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */,
 				2C2B7B9309BC172500B6B3F6 /* TeXCompileServer.applescript in AppleScript */,
+				2C77C4960D03CCB900C4E9D3 /* AuxData.applescript in AppleScript */,
+				2C77C6DE0D041C7200C4E9D3 /* EditorClient.applescript in AppleScript */,
 			);
 			isSharedContext = 0;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +97,9 @@
 		2C6CA3AC08CF5572005D5612 /* RefPanelController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C6CA3C108CF559E005D5612 /* LabelListObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C6CA44208CFC6D2005D5612 /* SheetManager.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */; };
+		2C77C4960D03CCB900C4E9D3 /* AuxData.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2C77C6DE0D041C7200C4E9D3 /* EditorClient.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2CA3F85F08BEE2AB00F997B9 /* ToolPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
@@ -177,7 +182,7 @@
 		2C6CA39708CF5558005D5612 /* RefPanelController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = RefPanelController.h; sourceTree = "<group>"; };
 		2C6CA3A308CF5565005D5612 /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = images/Reload.png; sourceTree = "<group>"; };
 		2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = RefPanelController.applescript; sourceTree = "<group>"; };
-		2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = LabelListObj.applescript; sourceTree = "<group>"; };
+		2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; path = LabelListObj.applescript; sourceTree = "<group>"; };
 		2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = SheetManager.applescript; sourceTree = "<group>"; };
 		2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TeXCompileObj.applescript; sourceTree = "<group>"; };
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
@@ -185,6 +190,9 @@
 		2C71167E07D177B8008BCAEF /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = images/minus.png; sourceTree = "<group>"; };
 		2C732C7C07AE666B005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
 		2C732C7F07AE667D005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ToolPalette.nib; sourceTree = "<group>"; };
+		2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = AuxData.applescript; sourceTree = "<group>"; };
+		2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = DefaultsManager.applescript; sourceTree = "<group>"; };
 		2C7C493607960CCD0026564C /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
@@ -239,6 +247,7 @@
 				2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */,
 				2CDB471309F951AD00F1ABA4 /* Carbon.framework in Frameworks */,
 				2C03136F0AAD0F21005B592F /* DonationReminder.framework in Frameworks */,
+				2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,7 @@
 		080E96DDFE201D6D7F000001 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */,
 				DA206CF3015C4E8B03C91932 /* TeXCompileServer.applescript */,
 				2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */,
 				2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */,
@@ -261,6 +271,7 @@
 				2C7C493607960CCD0026564C /* SettingWindowController.applescript */,
 				2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */,
 				2C6CA3C008CF559E005D5612 /* LabelListObj.applescript */,
+				2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -268,6 +279,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */,
 				2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */,
 				2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */,
 				2C03136E0AAD0F21005B592F /* DonationReminder.framework */,

@@ -1,6 +1,7 @@
 global SheetManager
 global ScriptImporter
 global EditorClient
+global AuxData
 
 property LabelListObj : missing value
 property WindowController : missing value
@@ -28,8 +29,7 @@ on rebuildLabelsFromAux(theTexDocObj)
 	end if
 	
 	if visible of targetWindow then
-		set theTexFileRef to texFileRef of theTexDocObj
-		rebuildLabelsFromAux(theTexFileRef) of LabelListObj
+		rebuildLabelsFromAux(theTexDocObj) of LabelListObj
 	end if
 end rebuildLabelsFromAux
 
@@ -97,14 +97,16 @@ on doubleClicked(theObject)
 end doubleClicked
 
 on initilize()
-	--set miAppRef to path to application "mi" as alias
+	--log "start initialize in RefPanelController"
 	set WindowController to call method "alloc" of class "RefPanelController"
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
 	set targetWindow to call method "window" of WindowController
 	call method "retain" of targetWindow
 	set LabelListObj to ScriptImporter's do("LabelListObj")
 	initialize(data source "LabelDataSource") of LabelListObj
-	set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
+	--set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
+	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
+	--log "end initialize in RefPanelController"
 end initilize
 
 on toggle_visibility()
@@ -122,6 +124,7 @@ on toggle_visibility()
 end toggle_visibility
 
 on openWindow()
+	--log "start openWindow in RefPanelController"
 	set is_first to false
 	if WindowController is missing value then
 		initilize()
@@ -130,10 +133,12 @@ on openWindow()
 	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
 	--activate
 	call method "showWindow:" of WindowController
+	--log "after showWIndow"
 	--if (is_first or (isWorkingDisplayToggleTimer is 0)) then
 	if is_first then
 		watchmi() of LabelListObj
 	end if
+	--log "end openWindow in RefPanelController"
 end openWindow
 
 on isOpened()

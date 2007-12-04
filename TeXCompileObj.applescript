@@ -26,50 +26,57 @@ global eQ -- end of quotation character
 property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
-on resolveParentFile(theParagraph, theTargetFile)
-	--log "start resolveParentFile"
-	set parentFile to StringEngine's strip(text 13 thru -2 of theParagraph)
-	--log parentFile
-	if parentFile starts with ":" then
-		--setHFSoriginPath(theTargetFile) of PathConverter
-		set_base_path(theTargetFile) of PathConverter
-		set theTexFile to absolute_path of PathConverter for parentFile
+on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
+	if EditorClient's exists_document() then
+		set a_tex_file to EditorClient's document_file_as_alias()
+		if (a_tex_file is missing value) then
+			if (need_file_flag) then
+				if message_flag then
+					set docname to EditorClient's document_name()
+					set a_message to UtilityHandlers's localized_string("DocumentIsNotSaved", {docname})
+					EditorClient's show_message(a_message)
+					error "The document is not saved." number 1200
+				end if
+				return missing value
+			end if
+		end if
+		
+		if (EditorClient's document_mode() is not in supportedMode) then
+			if message_flag then
+				set docname to EditorClient's document_name()
+				set theMessage to UtilityHandlers's localized_string("invalidMode", {docname})
+				showMessage(theMessage) of MessageUtility
+				error "The mode of the document is not supported." number 1205
+			end if
+			return missing value
+		end if
 	else
-		set theTexFile to parentFile
-	end if
-	--tell me to log "theTexFile : " & theTexFile
-	
-	if theTexFile ends with ":" then
-		set textIsInvalid to localized string "isInvalid"
-		set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-		showMessageOnmi(theMessage) of MessageUtility
-		error "ParentFile is invalid." number 1230
+		if message_flag then
+			set theMessage to localized string "noDocument"
+			showMessage(theMessage) of MessageUtility
+			error "No opened documents." number 1240
+		end if
+		return missing value
 	end if
 	
-	try
-		set theTexFile to theTexFile as alias
-	on error
-		set textIsNotFound to localized string "isNotFound"
-		set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
-		showMessageOnmi(theMessage) of MessageUtility
-		error "ParentFile is not found." number 1220
-	end try
-	
-	--log "end resolveParentFile"
-	return theTexFile
-end resolveParentFile
+	set a_texdoc to TexDocObj's make_with(a_tex_file, EditorClient's text_encoding())
+	if a_tex_file is missing value then
+		a_texdoc's set_filename(EditorClient's document_name())
+	end if
+	return a_texdoc
+end texdoc_for_firstdoc
 
 on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	--log "start checkmifiles"
-	set textADocument to localized string "aDocument"
 	
+	(*
 	try
 		tell application "mi"
 			tell document 1
 				set docname to name
 				if mode is not in supportedMode then
-					set theMessage to getLocalizedString of UtilityHandlers given keyword:"invalidMode", insertTexts:{docname}
-					showMessage(theMessage) of MessageUtility
+					set a_message to UtilityHandlers's localized_string("invalidMode", {docname})
+					showMessage(a_message) of MessageUtility
 					error "The mode of the document is not supported." number 1205
 				end if
 				set theTargetFile to file
@@ -85,24 +92,32 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	try
 		set theTargetFile to theTargetFile as alias
 	on error
-		set textIsNotSaved to localized string "isNotSaved"
-		set theMessage to textADocument & space & sQ & docname & eQ & space & textIsNotSaved
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_message to UtilityHandlers's localized_string("DocumentIsNotSaved", {docname})
+		showMessageOnmi(a_message) of MessageUtility
 		error "The document is not saved." number 1200
 	end try
 	
 	--log "before makeObj of TexDocObj"
-	set theTexDocObj to makeObj(theTargetFile) of TexDocObj
-	--log "success makeObj of TexDocObj"
+	set theTexDocObj to TexDocObj's make_with(theTargetFile, EditorClient's text_encoding())
+	--log "success make of TexDocObj"
+	*)
+	set theTexDocObj to texdoc_for_firstdoc with showing_message and need_file
+	if theTexDocObj is missing value then return
+	
 	set targetParagraph of theTexDocObj to theParagraph
 	(* find header commands *)
 	set ith to 1
 	repeat
-		tell application "mi"
-			set theParagraph to paragraph ith of document 1
-		end tell
+		set theParagraph to EditorClient's paragraph_at_index(ith)
 		if theParagraph starts with "%" then
-			getHeaderCommand(theParagraph) of theTexDocObj
+			try
+				theTexDocObj's lookup_header_command(theParagraph)
+			on error errMsg number errno
+				if errno is in {1220, 1230} then
+					EditorClient's show_message(errMsg)
+				end if
+				error errMsg number errno
+			end try
 		else
 			exit repeat
 		end if
@@ -113,6 +128,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	if savingFlag then
 		set textDoYouSave to localized string "doYouSave"
 		set textIsModified to localized string "isModified"
+		set textADocument to localized string "aDocument"
 		
 		tell application "mi"
 			if modified of document 1 then
@@ -143,8 +159,9 @@ on prepareTypeSet()
 	
 	set theTexDocObj to checkmifiles with saving and autosave
 	--log "end of checkmifiles in prepareTypeSet"
-	if not checkLogFileStatus() of theTexDocObj then
-		set theMessage to textALogfile & return & sQ & (logFileRef of theTexDocObj) & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
+	if not (theTexDocObj's check_logfile()) then
+		set a_path to theTexDocObj's logfile()'s hfs_path()
+		set theMessage to textALogfile & return & sQ & a_path & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
 		showMessageOnmi(theMessage) of MessageUtility
 		return missing value
 	end if
@@ -156,7 +173,6 @@ on prepareVIewErrorLog(theLogFileParser, theDviObj)
 	using terms from application "mi"
 		try
 			set auxFileRef to (path_for_suffix(".aux") of theLogFileParser) as alias
-			--set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
 			
 			tell application "Finder"
 				ignoring application responses
@@ -166,33 +182,16 @@ on prepareVIewErrorLog(theLogFileParser, theDviObj)
 			end tell
 		end try
 		
-		(*
-		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theLogFileParser}
-		if theDviObj is not missing value then
-			set beginning of hyperlist of theLogFileParser to {file:dviFileRef of theDviObj}
-		end if
-		*)
 	end using terms from
 end prepareVIewErrorLog
 
 (* end: intaract with mi and prepare typesetting and parsing log file ====================================*)
 
 (* execute tex commands called from tools from mi  ====================================*)
-on newLogFileParser(theTexDocObj)
+on newLogFileParser(a_texdoc)
 	--log "start newLogFileParser"
-	set theLogFile to logFileRef of theTexDocObj
-	set theLogFile to theLogFile as alias
-	set logFileRef of theTexDocObj to theLogFile
-	
-	tell application "Finder"
-		ignoring application responses
-			set creator type of theLogFile to "MMKE"
-			set file type of theLogFile to "TEXT"
-		end ignoring
-	end tell
-	
-	--log "end of newLogFileParser"
-	return makeObj(theTexDocObj) of LogFileParser
+	a_texdoc's logfile()'s set_types("MMKE", "TEXT")
+	return LogFileParser's make_with(a_texdoc)
 end newLogFileParser
 
 on doTypeSet()
@@ -210,7 +209,7 @@ on doTypeSet()
 	end if
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
-		set theDviObj to texCompile() of theTexDocObj
+		set theDviObj to typeset() of theTexDocObj
 	on error number 1250
 		return missing value
 	end try
@@ -218,10 +217,10 @@ on doTypeSet()
 	showStatusMessage("Analyzing log text ...") of ToolPaletteController
 	parseLogFile() of theLogFileParser
 	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
-	if (autoMultiTypeset and (isLabelsChanged of theLogFileParser)) then
+	if (autoMultiTypeset and (theLogFileParser's labels_changed())) then
 		showStatusMessage("Typeseting...") of ToolPaletteController
 		try
-			set theDviObj to texCompile() of theTexDocObj
+			set theDviObj to typeset() of theTexDocObj
 		on error number 1250
 			return missing value
 		end try
@@ -245,7 +244,7 @@ end doTypeSet
 on logParseOnly()
 	--log "start logParseOnly"
 	set theTexDocObj to prepareTypeSet()
-	checkLogFileStatus() of theTexDocObj
+	theTexDocObj's check_logfile()
 	set theLogFileParser to newLogFileParser(theTexDocObj)
 	parseLogFile() of theLogFileParser
 end logParseOnly
@@ -254,7 +253,7 @@ on dviPreview()
 	--log "start dviPreview"
 	try
 		set theTexDocObj to checkmifiles without saving and autosave
-		set compileInTerminal of theTexDocObj to false
+		theTexDocObj's set_use_term(false)
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
@@ -274,7 +273,7 @@ on dviPreview()
 	else
 		set textDviFile to localized string "dviFile"
 		set isNotFound to localized string "isNotFound"
-		set dviName to getNameWithSuffix(".dvi") of theTexDocObj
+		set dviName to name_for_suffix(".dvi") of theTexDocObj
 		set theMessage to textDviFile & space & dviName & space & isNotFound
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
@@ -316,11 +315,11 @@ on quickTypesetAndPreview()
 		return
 	end if
 	
-	set compileInTerminal of theTexDocObj to false
+	theTexDocObj's set_use_term(false)
 	--log "before texCompile in quickTypesetAndPreview"
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
-		set theDviObj to texCompile() of theTexDocObj
+		set theDviObj to typeset() of theTexDocObj
 	on error number 1250
 		return
 	end try
@@ -402,6 +401,7 @@ on bibTex()
 end bibTex
 
 on lookUpDviFromEditor()
+	--log "start lookUpDviFromEditor"
 	try
 		set theTexDocObj to checkmifiles without saving and autosave
 	on error errMsg number errNum
@@ -415,10 +415,12 @@ on lookUpDviFromEditor()
 	if theDviObj is missing value then
 		set textDviFile to localized string "dviFile"
 		set isNotFound to localized string "isNotFound"
-		set dviName to getNameWithSuffix(".dvi") of theTexDocObj
+		set dviName to theTexDocObj's name_for_suffix(".dvi")
 		set theMessage to textDviFile & space & dviName & space & isNotFound
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
+	
+	--log "end lookUpDviFromEditor"
 	return theDviObj
 end lookUpDviFromEditor
 
@@ -443,7 +445,7 @@ on lookUpDviFromMxdvi()
 	end if
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
-	set theTexDocObj to makeObjFromDVIFile(thePath) of TexDocObj
+	set theTexDocObj to TexDocObj's make_with_dvifile(thePath)
 	set theDviObj to lookup_dvi() of theTexDocObj
 	return theDviObj
 end lookUpDviFromMxdvi
@@ -494,7 +496,8 @@ on dviToPS()
 		set theCommand to contents of default entry "dvipsCommand" of user defaults
 	end if
 	
-	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
+	--set cdCommand to "cd " & (quoted form of POSIX path of (theTexDocObj's pwd()))
+	set cdCommand to "cd " & (quoted form of (theTexDocObj's pwd()'s posix_path()))
 	set theCommand to buildCommand(theCommand, ".dvi") of theTexDocObj
 	set allCommand to cdCommand & comDelim & theCommand
 	--doCommands of TerminalCommander for allCommand with activation
@@ -512,7 +515,8 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 		return
 	end try
 	
-	set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory of theTexDocObj))
+	--set cdCommand to "cd " & (quoted form of POSIX path of (theTexDocObj's pwd()))
+	set cdCommand to "cd " & (quoted form of (theTexDocObj's pwd()'s posix_path()))
 	set texCommand to buildCommand(texCommand, theSuffix) of theTexDocObj
 	set allCommand to cdCommand & comDelim & texCommand
 	--doCommands of TerminalCommander for allCommand with activation
@@ -531,7 +535,8 @@ on seekExecEbb()
 		return
 	end try
 	
-	set theOriginPath to POSIX path of texFileRef of theTexDocObj
+	--set theOriginPath to POSIX path of (theTexDocObj's file_ref())
+	set theOriginPath to (theTexDocObj's file_ref()'s posix_path())
 	set_base_path(theOriginPath) of PathConverter
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
@@ -561,7 +566,7 @@ on seekExecEbb()
 		set sQ to localized string "startQuote"
 		set eQ to localized string "endQuote"
 		set noGraphicFile to localized string "noGraphicFile"
-		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & eQ & space & noGraphicFile
+		set theMessage to aDocument & space & sQ & (theTexDocObj's fileName()) & eQ & space & noGraphicFile
 		showMessageOnmi(theMessage) of MessageUtility
 	else if noNewBBFlag then
 		set theMessage to localized string "bbAlreadyCreated"
@@ -586,7 +591,7 @@ on execEbb(theGraphicPath, an_extension)
 	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set fileName to baseName(theGraphicPath, "") of ShellUtils
+	set fileName to basename(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"
@@ -602,35 +607,3 @@ on execmendex()
 	set mendexCommand to contents of default entry "mendexCommand" of user defaults
 	execTexCommand(mendexCommand, ".idx", false)
 end execmendex
-
-(* end: execute tex commands called from tools from mi  ====================================*)
-
-(*
-on debug()
-	copy my LogFileParser to theLogFileParser
-	
-	script theTexDocObj
-		property logFileRef : alias ("IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:テスト:lecture:Lecture.log" as Unicode text)
-		property texBasePath : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:テスト:lecture:Lecture"
-		property texFileName : "Lecture.tex"
-	end script
-	
-	parseLogFile(theTexDocObj) of theLogFileParser
-	
-	using terms from application "mi"
-		try
-			set auxFileRef to (path_for_suffix(".aux") of theTexDocObj) as alias
-			set beginning of hyperlist of theLogFileParser to {file:auxFileRef}
-			
-			tell application "Finder"
-				ignoring application responses
-					set creator type of auxFileRef to "MMKE"
-					set file type of auxFileRef to "TEXT"
-				end ignoring
-			end tell
-		end try
-		set beginning of hyperlist of theLogFileParser to {file:logFileRef of theTexDocObj}
-	end using terms from
-	viewErrorLog(texFileName of theTexDocObj, hyperlist of theLogFileParser, "latex")
-end debug
-*)

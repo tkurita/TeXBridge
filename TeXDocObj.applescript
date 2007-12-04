@@ -1,6 +1,8 @@
 global PathConverter
 global PathAnalyzer
 global StringEngine
+global XFile
+
 global UtilityHandlers
 global TerminalCommander
 global MessageUtility
@@ -12,28 +14,306 @@ property logSuffix : ".log"
 property texSuffixList : {".tex", ".dtx"}
 
 global comDelim
+global sQ
+global eQ
 
 (*== Private Methods *)
-on remove_suffix(a_text)
-	repeat with ith from 1 to length of my texSuffixList
-		set a_suffix to item ith of my texSuffixList
-		if a_text ends with a_suffix then
-			set suffix_len to length of a_suffix
-			set a_text to text 1 thru (-1 * (suffix_len + 1)) of a_text
-			exit repeat
-		end if
-	end repeat
-	return a_text
-end remove_suffix
+on resolve_parent(a_paragraph)
+	--log "start resolveParentFile"
+	set parentFile to StringEngine's strip(text 13 thru -2 of a_paragraph)
+	--log parentFile
+	if parentFile starts with ":" then
+		set_base_path(my _targetFileRef's hfs_path()) of PathConverter
+		set theTexFile to absolute_path of PathConverter for parentFile
+	else
+		set theTexFile to parentFile
+	end if
+	--tell me to log "theTexFile : " & theTexFile
+	
+	if theTexFile ends with ":" then
+		set textIsInvalid to localized string "isInvalid"
+		set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
+		error theMessage number 1230
+	end if
+	
+	try
+		set theTexFile to theTexFile as alias
+	on error
+		set textIsNotFound to localized string "isNotFound"
+		set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
+		error theMessage number 1220
+	end try
+	
+	--log "end resolveParentFile"
+	return theTexFile
+end resolve_parent
+
+(*== accessors *)
+on has_file()
+	return my _file_ref is not missing value
+end has_file
+
+on has_parent()
+	return my _hasParentFile
+end has_parent
+
+on log_contents()
+	return my _logContents
+end log_contents
+
+on set_use_term(a_flag)
+	set my _use_term to a_flag
+end set_use_term
+
+on is_use_term()
+	return my _use_term
+end is_use_term
+
+on set_typeset_command(a_command)
+	set my _typesetCommand to a_command
+end set_typeset_command
+
+on typeset_command()
+	if my _typesetCommand is missing value then
+		set my _typesetCommand to contents of default entry "typesetCommand" of user defaults
+	end if
+	return my _typesetCommand
+end typeset_command
+
+on logfile()
+	return my _logFileRef
+end logfile
+
+on text_encoding()
+	return my _text_encoding
+end text_encoding
+
+on tex_file()
+	return my _file_ref
+end tex_file
+
+on file_ref()
+	return my _file_ref
+end file_ref
+
+on update_with_parent(a_parent_file)
+	set my _hasParentFile to true
+	set my _file_ref to XFile's make_with(a_parent_file)
+	--set pathRecord to do(theTexFile) of PathAnalyzer
+	--set my _workingDirectory to folderReference of pathRecord
+	set my _workingDirectory to my _file_ref's parent_folder()
+	--set my _texFileName to name of pathRecord
+	set my _texFileName to my _file_ref's item_name()
+end update_with_parent
+
+on set_filename(a_name)
+	set my _texFileName to a_name
+end set_filename
+
+on fileName()
+	return my _texFileName
+end fileName
+
+on no_suffix_posix_path()
+	--return my _texBasePath
+	return my _file_ref's change_path_extension("")'s posix_path()
+end no_suffix_posix_path
+
+on no_suffix_target_path()
+	return my _targetFileRef's change_path_extension("")'s posix_path()
+end no_suffix_target_path
+
+on basename()
+	(*
+	if my _texBaseName is missing value then
+		set my _texBaseName to my _texFileName as Unicode text
+		set my _texBaseName to remove_suffix(my _texBaseName)
+	end if
+	return my _texBaseName
+	*)
+	return my _file_ref's basename()
+end basename
+
+on target_file()
+	return my _targetFileRef
+end target_file
+
+on pwd()
+	return my _workingDirectory
+end pwd
+
+on working_directory()
+	return my _workingDirectory
+end working_directory
 
 (*== Instance methods *)
-on path_for_suffix(an_extension)
-	if my texBasePath is missing value then
-		set my texBasePath to my texFileRef as Unicode text
-		set my texBasePath to remove_suffix(my texBasePath)
+on typeset()
+	--log "start texCompile"
+	set beforeCompileTime to current date
+	--set cdCommand to "cd " & (quoted form of POSIX path of (my _workingDirectory))
+	set cdCommand to "cd " & (quoted form of (my _workingDirectory's posix_path()))
+	
+	set texCommand to typeset_command()
+	
+	if my _use_term then
+		set allCommand to cdCommand & comDelim & texCommand & space & "'" & my _texFileName & "'"
+		--doCommands of TerminalCommander for allCommand with activation
+		sendCommands of TerminalCommander for allCommand
+		copy TerminalCommander to currentTerminal
+		delay 1
+		waitEndOfCommand(300) of currentTerminal
+	else
+		store_delimiters() of StringEngine
+		set commandElements to split of StringEngine for texCommand by space
+		if "-interaction=" is in texCommand then
+			repeat with ith from 2 to length of commandElements
+				set theItem to item ith of commandElements
+				if theItem starts with "-interaction=" then
+					--set item ith of commandElements to "-interaction=batchmode"
+					set item ith of commandElements to "-interaction=nonstopmode"
+					exit repeat
+				end if
+			end repeat
+		else
+			--set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
+			set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=nonstopmode")
+		end if
+		set theTexCommand to join of StringEngine for commandElements by space
+		restore_delimiters() of StringEngine
+		
+		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
+		--set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
+		set shell_path to getShellPath() of TerminalCommander
+		set allCommand to cdCommand & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of my _texFileName) & " 2>&1" & quote
+		try
+			set my _logContents to do shell script allCommand
+		on error errMsg number errNum
+			if errNum is 1 then
+				-- 1:general tex error
+				set my _logContents to errMsg
+			else if errNum is 127 then
+				-- maybe comannd name or path setting is not correct
+				showError(errNum, "texCompile", errMsg) of MessageUtility
+				error "Typeset is not executed." number 1250
+			else
+				error errMsg number errNum
+			end if
+		end try
 	end if
-	return my texBasePath & an_extension
+	--log "after Typeset"
+	set theDviObj to lookup_dvi()
+	--log "after lookup_dvi"
+	if theDviObj is not missing value then
+		setSrcSpecialFlag() of theDviObj
+	end if
+	--log "end texCompile"
+	return theDviObj
+end typeset
+
+on check_logfile()
+	set textALogfile to localized string "aLogfile"
+	set textHasBeenOpend to localized string "hasBeenOpend"
+	set textShouldClose to localized string "shouldClose"
+	set textCancel to localized string "Cancel"
+	set textClose to localized string "Close"
+	
+	set a_logfile to XFile's make_with(path_for_suffix(logSuffix))
+	set logFileReady to false
+	if a_logfile's item_exists() then
+		if busy status of (a_logfile's info()) then
+			set logfile_path to a_logfile's hfs_path()
+			tell application "mi"
+				set nDoc to count document
+				repeat with ith from 1 to nDoc
+					set theFilePath to file of document ith as Unicode text
+					if theFilePath is logfile_path then
+						try
+							set theResult to display dialog textALogfile & return & logfile_path & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
+						on error errMsg number -128 --if canceld, error number -128
+							set logFileReady to false
+							exit repeat
+						end try
+						
+						if button returned of theResult is textClose then
+							close document ith without saving
+							set logFileReady to true
+							exit repeat
+						end if
+					end if
+				end repeat
+			end tell
+		else
+			set logFileReady to true
+		end if
+	else
+		set logFileReady to true
+	end if
+	
+	if logFileReady then
+		set my _logFileRef to a_logfile
+	end if
+	return logFileReady
+end check_logfile
+
+on build_command(a_command, a_suffix)
+	-- replace %s in a_command with texBaseName. if %s is not in a_command, texBaseName+a_suffix is added end of a_command
+	if "%s" is in a_command then
+		set theBaseName to basename()
+		store_delimiters() of StringEngine
+		set a_command to replace of StringEngine for a_command from "%s" by theBaseName
+		restore_delimiters() of StringEngine
+		return a_command
+	else
+		set targetFileName to name_for_suffix(a_suffix)
+		return (a_command & space & "'" & targetFileName & "'")
+	end if
+end build_command
+
+on lookup_header_command(a_paragraph)
+	ignoring case
+		if a_paragraph starts with "%ParentFile" then
+			set theParentFile to resolve_parent(a_paragraph)
+			update_with_parent(theParentFile)
+		else if a_paragraph starts with "%Typeset-Command" then
+			set_typeset_command(StringEngine's strip(text 18 thru -1 of a_paragraph))
+		else if a_paragraph starts with "%DviToPdf-Command" then
+			set my dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
+		else if a_paragraph starts with "%DviToPs-Command" then
+			set my dvipsCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
+		end if
+	end ignoring
+end lookup_header_command
+
+on lookup_header_commands_from_file()
+	--log "start getHearderCommandFromFile"
+	set lineFeed to ASCII character 10
+	set inputFile to open for access (my _file_ref's as_alias())
+	set a_paragraph to read inputFile before lineFeed
+	repeat while (a_paragraph starts with "%")
+		lookup_header_command(a_paragraph)
+		try
+			set a_paragraph to read inputFile before lineFeed
+		on error
+			exit repeat
+		end try
+	end repeat
+	close access inputFile
+end lookup_header_commands_from_file
+
+on path_for_suffix(an_extension)
+	(*
+	if my _texBasePath is missing value then
+		--set my _texBasePath to remove_suffix((file_ref()) as Unicode text)
+		--set my _texBase
+	end if
+	return my _texBasePath & an_extension
+	*)
+	return my _file_ref's change_path_extension(an_extension)'s hfs_path()
 end path_for_suffix
+
+on name_for_suffix(a_suffix)
+	return (basename()) & a_suffix
+end name_for_suffix
 
 on open_outfile(an_extension)
 	set file_path to path_for_suffix(an_extension)
@@ -62,7 +342,7 @@ on lookup_dvi()
 end lookup_dvi
 
 (*== Constructors *)
-on makeObjFromDVIFile(dvi_file_ref)
+on make_with_dvifile(dvi_file_ref)
 	--log "start makeObjFromDVIFile"
 	local basepath
 	set dvi_path to dvi_file_ref as Unicode text
@@ -74,251 +354,84 @@ on makeObjFromDVIFile(dvi_file_ref)
 	set tex_path to basepath & ".tex"
 	
 	if isExists(POSIX file tex_path) of UtilityHandlers then
-		set tex_doc_obj to makeObj(POSIX file tex_path)
-		getHeaderCommandFromFile() of tex_doc_obj
+		set tex_doc_obj to make_with(POSIX file tex_path, missing value)
+		tex_doc_obj's lookup_header_commands_from_file()
 	else
-		set tex_doc_obj to makeObj(POSIX file basepath)
+		set tex_doc_obj to make_with(POSIX file basepath, missing value)
 	end if
 	
 	return tex_doc_obj
-end makeObjFromDVIFile
+end make_with_dvifile
 
-on makeObj(theTargetFile)
-	--log "start makeObj in TexDocObj"
-	set pathRecord to do(theTargetFile) of PathAnalyzer
+on make_with(a_xfile, an_encoding)
+	--log "start make_with in TexDocObj"
+	--set pathRecord to do(theTargetFile) of PathAnalyzer
 	
 	script TexDocObj
-		property texFileRef : theTargetFile -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
-		property texCommand : missing value
+		property _file_ref : missing value -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
+		property _typesetCommand : missing value
 		property dvipdfCommand : missing value
 		property dvipsCommand : missing value
+		property _text_encoding : an_encoding
 		
-		property texFileName : name of pathRecord
-		property texBasePath : missing value
-		property texBaseName : missing value
+		property _texFileName : missing value
+		property _texBasePath : missing value
+		property _texBaseName : missing value
 		
-		property targetFileRef : theTargetFile -- a document applied tools. alias class
+		property _targetFileRef : missing value -- a document applied tools. alias class
 		property targetParagraph : missing value
 		
-		property logFileRef : missing value
-		property logContents : missing value
-		property workingDirectory : folderReference of pathRecord -- if ParentFile exists, it's directory of ParentFile
-		property hasParentFile : false
-		property isSrcSpecial : missing value
-		property compileInTerminal : true
-		
-		(*
-		on getLogContents()
-			return logContetns of logContainer
-		end getLogContents
-		*)
-		
-		on resolveParentFile(a_paragraph)
-			--log "start resolveParentFile"
-			set parentFile to StringEngine's strip(text 13 thru -2 of a_paragraph)
-			--log parentFile
-			if parentFile starts with ":" then
-				set_base_path(targetFileRef) of PathConverter
-				set theTexFile to absolute_path of PathConverter for parentFile
-			else
-				set theTexFile to parentFile
-			end if
-			--tell me to log "theTexFile : " & theTexFile
-			
-			if theTexFile ends with ":" then
-				set textIsInvalid to localized string "isInvalid"
-				set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-				showMessageOnmi(theMessage) of MessageUtility
-				error "ParentFile is invalid." number 1230
-			end if
-			
-			try
-				set theTexFile to theTexFile as alias
-			on error
-				set textIsNotFound to localized string "isNotFound"
-				set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
-				showMessageOnmi(theMessage) of MessageUtility
-				error "ParentFile is not found." number 1220
-			end try
-			
-			--log "end resolveParentFile"
-			return theTexFile
-		end resolveParentFile
-		
-		on getHeaderCommand(a_paragraph)
-			ignoring case
-				if a_paragraph starts with "%ParentFile" then
-					set theParentFile to resolveParentFile(a_paragraph)
-					setTexFileRef(theParentFile)
-				else if a_paragraph starts with "%Typeset-Command" then
-					set my texCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
-				else if a_paragraph starts with "%DviToPdf-Command" then
-					set my dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
-				else if a_paragraph starts with "%DviToPs-Command" then
-					set my dvipsCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
-				end if
-			end ignoring
-		end getHeaderCommand
-		
-		on getHeaderCommandFromFile()
-			--log "start getHearderCommandFromFile"
-			set lineFeed to ASCII character 10
-			set inputFile to open for access texFileRef
-			set a_paragraph to read inputFile before lineFeed
-			repeat while (a_paragraph starts with "%")
-				getHeaderCommand(a_paragraph)
-				try
-					set a_paragraph to read inputFile before lineFeed
-				on error
-					exit repeat
-				end try
-			end repeat
-			close access inputFile
-		end getHeaderCommandFromFile
-		
-		on setTexFileRef(theTexFile) -- set parent file of targetFileRef
-			set hasParentFile to true
-			set texFileRef to theTexFile
-			set pathRecord to do(theTexFile) of PathAnalyzer
-			set workingDirectory to folderReference of pathRecord
-			set texFileName to name of pathRecord
-		end setTexFileRef
-		
-		on getNameWithSuffix(theSuffix)
-			set theBaseName to getBaseName()
-			return theBaseName & theSuffix
-		end getNameWithSuffix
-		
-		on getBaseName()
-			if my texBaseName is missing value then
-				set my texBaseName to my texFileName as Unicode text
-				set my texBaseName to remove_suffix(my texBaseName)
-			end if
-			return my texBaseName
-		end getBaseName
-		
-		on buildCommand(theCommand, theSuffix)
-			-- replace %s in theCommand with texBaseName. if %s is not in theCommand, texBaseName+theSuffix is added end of theCommand
-			if "%s" is in theCommand then
-				set theBaseName to getBaseName()
-				store_delimiters() of StringEngine
-				set theCommand to replace of StringEngine for theCommand from "%s" by theBaseName
-				restore_delimiters() of StringEngine
-				return theCommand
-			else
-				set targetFileName to getNameWithSuffix(theSuffix)
-				return (theCommand & space & "'" & targetFileName & "'")
-			end if
-		end buildCommand
-		
-		on checkLogFileStatus()
-			set textALogfile to localized string "aLogfile"
-			set textHasBeenOpend to localized string "hasBeenOpend"
-			set textShouldClose to localized string "shouldClose"
-			set textCancel to localized string "Cancel"
-			set textClose to localized string "Close"
-			
-			set theLogFile to path_for_suffix(logSuffix)
-			set logFileReady to false
-			if isExists(theLogFile) of UtilityHandlers then
-				if busy status of (info for file theLogFile) then
-					tell application "mi"
-						set nDoc to count document
-						repeat with ith from 1 to nDoc
-							set theFilePath to file of document ith as Unicode text
-							if theFilePath is theLogFile then
-								try
-									set theResult to display dialog textALogfile & return & theLogFile & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
-								on error errMsg number -128 --if canceld, error number -128
-									set logFileReady to false
-									exit repeat
-								end try
-								
-								if button returned of theResult is textClose then
-									close document ith without saving
-									set logFileReady to true
-									exit repeat
-								end if
-							end if
-						end repeat
-					end tell
-				else
-					set logFileReady to true
-				end if
-			else
-				set logFileReady to true
-			end if
-			
-			if logFileReady then
-				set logFileRef to theLogFile
-			end if
-			return logFileReady
-		end checkLogFileStatus
-		
-		on texCompile()
-			--log "start texCompile"
-			set beforeCompileTime to current date
-			set cdCommand to "cd " & (quoted form of POSIX path of (workingDirectory))
-			
-			if texCommand is missing value then
-				set texCommand to contents of default entry "typesetCommand" of user defaults
-			end if
-			
-			if compileInTerminal then
-				set allCommand to cdCommand & comDelim & texCommand & space & "'" & texFileName & "'"
-				--doCommands of TerminalCommander for allCommand with activation
-				sendCommands of TerminalCommander for allCommand
-				copy TerminalCommander to currentTerminal
-				delay 1
-				waitEndOfCommand(300) of currentTerminal
-			else
-				store_delimiters() of StringEngine
-				set commandElements to split of StringEngine for texCommand by space
-				if "-interaction=" is in texCommand then
-					repeat with ith from 2 to length of commandElements
-						set theItem to item ith of commandElements
-						if theItem starts with "-interaction=" then
-							--set item ith of commandElements to "-interaction=batchmode"
-							set item ith of commandElements to "-interaction=nonstopmode"
-							exit repeat
-						end if
-					end repeat
-				else
-					--set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
-					set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=nonstopmode")
-				end if
-				set theTexCommand to join of StringEngine for commandElements by space
-				restore_delimiters() of StringEngine
-				
-				--set pathCommand to "export PATH=/usr/local/bin:$PATH"
-				--set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & texFileName & "' 2>&1"
-				set shell_path to getShellPath() of TerminalCommander
-				set allCommand to cdCommand & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of texFileName) & " 2>&1" & quote
-				try
-					set logContents to do shell script allCommand
-				on error errMsg number errNum
-					if errNum is 1 then
-						-- 1:general tex error
-						set logContents to errMsg
-					else if errNum is 127 then
-						-- maybe comannd name or path setting is not correct
-						showError(errNum, "texCompile", errMsg) of MessageUtility
-						error "Typeset is not executed." number 1250
-					else
-						error errMsg number errNum
-					end if
-				end try
-			end if
-			--log "after Typeset"
-			set theDviObj to lookup_dvi()
-			--log "after lookup_dvi"
-			if theDviObj is not missing value then
-				setSrcSpecialFlag() of theDviObj
-			end if
-			--log "end texCompile"
-			return theDviObj
-		end texCompile
-		
+		property _logFileRef : missing value
+		property _logContents : missing value
+		property _workingDirectory : missing value -- if ParentFile exists, it's directory of ParentFile
+		property _hasParentFile : false
+		--property _isSrcSpecial : missing value
+		property _use_term : true
 		
 	end script
-end makeObj
+	
+	if a_xfile is missing value then
+		return TexDocObj
+	end if
+	
+	if class of a_xfile is not script then
+		set a_xfile to XFile's make_with(a_xfile)
+	end if
+	
+	set TexDocObj's _file_ref to a_xfile
+	set TexDocObj's _targetFileRef to a_xfile
+	set TexDocObj's _texFileName to a_xfile's item_name()
+	set TexDocObj's _workingDirectory to a_xfile's parent_folder()
+	return TexDocObj
+end make_with
+
+(*== deprecated *)
+(*
+on setTexFileRef(a_file) -- set parent file of targetFileRef. Use update_with_paren
+	update_with_parent(a_file)
+end setTexFileRef
+
+on getBaseName()
+	return basename()
+end getBaseName
+
+on getHeaderCommand(a_paragraph)
+	lookup_header_command(a_paragraph)
+end getHeaderCommand
+
+on getNameWithSuffix(a_suffix)
+	return name_for_suffix(a_suffix)
+end getNameWithSuffix
+
+on getHeaderCommandFromFile()
+	return lookup_header_commands_from_file()
+end getHeaderCommandFromFile
+
+on buildCommand(a_command, a_suffix)
+	build_command(a_command, a_suffix)
+end buildCommand
+
+on checkLogFileStatus()
+	return check_logfile()
+end checkLogFileStatus
+*)

@@ -31,8 +31,7 @@ on openRelatedFile given revealOnly:revealFlag
 		return
 	end try
 	
-	set theOriginPath to POSIX path of texFileRef of theTexDocObj
-	--setPOSIXoriginPath(theOriginPath) of PathConverter
+	set theOriginPath to theTexDocObj's file_ref()'s posix_path()
 	set_base_path(theOriginPath) of PathConverter
 	
 	set incGraphicCommand to (_backslash & "includegraphics" as Unicode text)
@@ -93,17 +92,17 @@ on openGraphicFile(fileAlias)
 	set pathRecord to do(fileAlias) of PathAnalyzer
 	set theName to name of pathRecord
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png", "eps"}
-	set baseName to theName
+	set basename to theName
 	repeat with theSuffix in graphicExtensions
 		if theName ends with theSuffix then
-			set baseName to text 1 thru (-1 * ((length of theSuffix) + 1)) of theName
+			set basename to text 1 thru (-1 * ((length of theSuffix) + 1)) of theName
 			exit repeat
 		end if
 	end repeat
 	
 	set theFolder to folderReference of pathRecord
 	tell application "Finder"
-		set graphicFileNames to name of files of theFolder whose name starts with baseName
+		set graphicFileNames to name of files of theFolder whose name starts with basename
 	end tell
 	
 	set selectGraphicFileText to localized string "selectGraphicFile"
@@ -129,16 +128,16 @@ on openParentFile()
 	on error errMsg number 1200
 		return
 	end try
-	if hasParentFile of theTexDocObj then
+	if theTexDocObj's has_parent() then
 		tell application "Finder"
-			open texFileRef of theTexDocObj
+			open (theTexDocObj's file_ref()'s as_alias())
 		end tell
 	else
 		set aDocument to localized string "aDocument"
 		set noParentFile to localized string "noParentFile"
 		set sQ to localized string "startQuote"
 		set eQ to localized string "endQuote"
-		set theMessage to aDocument & space & sQ & (texFileName of theTexDocObj) & eQ & space & noParentFile
+		set theMessage to aDocument & space & sQ & (theTexDocObj's fileName()) & eQ & space & noParentFile
 		showMessageOnmi(theMessage) of MessageUtility
 	end if
 end openParentFile
