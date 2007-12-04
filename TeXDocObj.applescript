@@ -18,6 +18,14 @@ global sQ
 global eQ
 
 (*== Private Methods *)
+on doc_position()
+	return my _doc_position
+end doc_position
+
+on set_doc_position(an_index)
+	set my _doc_position to an_index
+end set_doc_position
+
 on resolve_parent(a_paragraph)
 	--log "start resolveParentFile"
 	set parentFile to StringEngine's strip(text 13 thru -2 of a_paragraph)
@@ -31,17 +39,15 @@ on resolve_parent(a_paragraph)
 	--tell me to log "theTexFile : " & theTexFile
 	
 	if theTexFile ends with ":" then
-		set textIsInvalid to localized string "isInvalid"
-		set theMessage to "ParentFile" & space & sQ & parentFile & eQ & return & textIsInvalid
-		error theMessage number 1230
+		set a_msg to UtilityHandlers's localized_string("ParentFIleIsInvalid", parentFile)
+		error a_msg number 1230
 	end if
 	
 	try
 		set theTexFile to theTexFile as alias
 	on error
-		set textIsNotFound to localized string "isNotFound"
-		set theMessage to "ParentFile" & space & sQ & theTexFile & eQ & return & textIsNotFound
-		error theMessage number 1220
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", theTexFile)
+		error a_msg number 1220
 	end try
 	
 	--log "end resolveParentFile"
@@ -301,13 +307,6 @@ on lookup_header_commands_from_file()
 end lookup_header_commands_from_file
 
 on path_for_suffix(an_extension)
-	(*
-	if my _texBasePath is missing value then
-		--set my _texBasePath to remove_suffix((file_ref()) as Unicode text)
-		--set my _texBase
-	end if
-	return my _texBasePath & an_extension
-	*)
 	return my _file_ref's change_path_extension(an_extension)'s hfs_path()
 end path_for_suffix
 
@@ -379,7 +378,7 @@ on make_with(a_xfile, an_encoding)
 		property _texBaseName : missing value
 		
 		property _targetFileRef : missing value -- a document applied tools. alias class
-		property targetParagraph : missing value
+		property _doc_position : missing value
 		
 		property _logFileRef : missing value
 		property _logContents : missing value

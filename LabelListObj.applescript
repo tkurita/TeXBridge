@@ -37,7 +37,7 @@ on initialize(theDataSource)
 end initialize
 
 on watchmi()
-	log "start watchmi in LabelListObj"
+	--log "start watchmi in LabelListObj"
 	try
 		set an_auxdata to findAuxObjFromDoc()
 	on error errMsg number errNum

@@ -104,7 +104,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	set theTexDocObj to texdoc_for_firstdoc with showing_message and need_file
 	if theTexDocObj is missing value then return
 	
-	set targetParagraph of theTexDocObj to theParagraph
+	theTexDocObj's set_doc_position(EditorClient's index_current_paragraph())
 	(* find header commands *)
 	set ith to 1
 	repeat
@@ -126,15 +126,26 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	--log "after parse header commands"
 	
 	if savingFlag then
-		set textDoYouSave to localized string "doYouSave"
-		set textIsModified to localized string "isModified"
-		set textADocument to localized string "aDocument"
+		if EditorClient's is_modified() then
+			if not autosaveFlag then
+				if not EditorClient's save_with_asking(localized string "DocumentIsModified_AskSave") then
+					return
+				end if
+			else
+				EditorClient's save_document()
+			end if
+		end if
 		
+		--set textDoYouSave to localized string "doYouSave"
+		--set textIsModified to localized string "isModified"
+		--set textADocument to localized string "aDocument"
+		(*				
 		tell application "mi"
 			if modified of document 1 then
 				if not autosaveFlag then
 					set docname to name of document 1
 					try
+						
 						set theResult to display dialog textADocument & space & sQ & docname & eQ & space & textIsModified & return & textDoYouSave with icon note
 						-- if canceld, error number -128
 					on error errMsg number -128
@@ -144,25 +155,20 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 				save document 1
 			end if
 		end tell
+		*)
 	end if
 	--log "end of checkmifiles"
 	return theTexDocObj
 end checkmifiles
 
 on prepareTypeSet()
-	--log "start prepareTypeSet"
-	set textALogfile to localized string "aLogfile"
-	set textHasBeenOpend to localized string "hasBeenOpend"
-	set textCloseBeforeTypeset to localized string "saveBeforeTypeset"
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
-	
+	--log "start prepareTypeSet"	
 	set theTexDocObj to checkmifiles with saving and autosave
 	--log "end of checkmifiles in prepareTypeSet"
 	if not (theTexDocObj's check_logfile()) then
-		set a_path to theTexDocObj's logfile()'s hfs_path()
-		set theMessage to textALogfile & return & sQ & a_path & eQ & return & textHasBeenOpend & return & textCloseBeforeTypeset
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_path to theTexDocObj's logfile()'s posix_path()
+		set a_msg to UtilityHandlers's localized_string("LogFileIsOpened", a_path)
+		EditorClient's show_message(a_msg)
 		return missing value
 	end if
 	--log "end of prepareTypeSet"
@@ -562,12 +568,8 @@ on seekExecEbb()
 	end repeat
 	
 	if noGraphicFlag then
-		set aDocument to localized string "aDocument"
-		set sQ to localized string "startQuote"
-		set eQ to localized string "endQuote"
-		set noGraphicFile to localized string "noGraphicFile"
-		set theMessage to aDocument & space & sQ & (theTexDocObj's fileName()) & eQ & space & noGraphicFile
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_message to UtilityHandlers's localized_string("noGraphicFile", theTexDocObj's fileName())
+		showMessageOnmi(a_message) of MessageUtility
 	else if noNewBBFlag then
 		set theMessage to localized string "bbAlreadyCreated"
 		showMessageOnmi(theMessage) of MessageUtility

@@ -6,9 +6,9 @@ global PathConverter
 global comDelim
 
 script XdviDriver
-	on setFileType(dviFileRef)
+	on set_file_type(dviFileRef)
 		-- do nothing
-	end setFileType
+	end set_file_type
 	
 	on openDVI given sender:theDviObj, activation:aFlag
 		set x11AppName to "X11"
@@ -19,19 +19,20 @@ script XdviDriver
 		end if
 		
 		getSrcSpecialFlag() of theDviObj
-		set cdCommand to "cd " & (quoted form of POSIX path of workingDirectory of theDviObj)
-		set dviFileName to getNameWithSuffix(".dvi") of theDviObj
+		set cdCommand to "cd " & (quoted form of (theDviObj's pwd()'s posix_path()))
+		set dviFileName to theDviObj's name_for_suffix(".dvi")
 		
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
-		if isSrcSpecial of theDviObj then
-			if hasParentFile of theDviObj then
-				set_base_path(POSIX path of texFileRef of theDviObj) of PathConverter
-				set sourceFile to relative_path of PathConverter for (POSIX path of targetFileRef of theDviObj)
+		if theDviObj's src_special() then
+			if theDviObj's has_parent() then
+				--set_base_path(POSIX path of (theDviObj's file_ref())) of PathConverter
+				set_base_path(theDviObj's file_ref()'s posix_path()) of PathConverter
+				set sourceFile to relative_path of PathConverter for (theDviObj's target_file()'s posix_path())
 			else
-				set sourceFile to texFileName of theDviObj
+				set sourceFile to theDviObj's fileName()
 			end if
 			
-			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (targetParagraph of theDviObj) & space & sourceFile & "' '" & dviFileName & "' &"
+			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (theDviObj's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
 			doCommands of TerminalCommander for allCommand without activation
 		else
 			try
@@ -52,22 +53,22 @@ script XdviDriver
 end script
 
 script SimpleDriver
-	on setFileType(dviFileRef)
+	on set_file_type(dviFileRef)
 		-- do nothing
-	end setFileType
+	end set_file_type
 	
 	on openDVI given sender:theDviObj, activation:aFlag
-		openOutputFile(".dvi") of theDviObj
+		open_outfile(".dvi") of theDviObj
 	end openDVI
 end script
 
 script MxdviDriver
-	on setFileType(dviFileRef)
+	on set_file_type(dviFileRef)
 		tell application "Finder"
 			set creator type of dviFileRef to "Mxdv"
 			set file type of dviFileRef to "JDVI"
 		end tell
-	end setFileType
+	end set_file_type
 	
 	on openDVI given sender:theDviObj, activation:aFlag
 		--log "start openDVI of MxdviDriver"
@@ -79,14 +80,12 @@ script MxdviDriver
 		end try
 		getSrcSpecialFlag() of theDviObj
 		--log "success getSrcSpecialFlag"
-		if isSrcSpecial of theDviObj then
+		if theDviObj's src_special() then
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
-			--set allCommand to cdCommand & comDelim & mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & " '" & dviFileName & "' &"
-			--set dviFileName to getNameWithSuffix(".dvi") of theDviObj
-			--set targetDviPath to quoted form of ((POSIX path of workingDirectory of theDviObj) & dviFileName)
 			set targetDviPath to quoted form of (POSIX path of (dviFileRef of theDviObj))
-			set allCommand to mxdviPath & "  -sourceposition " & (targetParagraph of theDviObj) & space & targetDviPath
-			if compileInTerminal of theDviObj then
+			set allCommand to mxdviPath & "  -sourceposition " & (theDviObj's doc_position()) & space & targetDviPath
+			log allCommand
+			if theDviObj's is_use_term() then
 				doCommands of TerminalCommander for allCommand without activation
 			else
 				do shell script allCommand
@@ -102,15 +101,23 @@ end script
 
 on makeObj(theTexDocObj)
 	--log "start makeObj of DVIObj"
-	script dviObj
+	script DviObj
 		property parent : theTexDocObj
 		property dviFileRef : missing value
-		property isSrcSpecial : missing value
+		property _isSrcSpecial : missing value
 		property DVIDriver : SimpleDriver
 		
-		on setFileType()
-			setFileType(my dviFileRef) of DVIDriver
-		end setFileType
+		on set_src_special(a_flag)
+			set my _isSrcSpecial to a_flag
+		end set_src_special
+		
+		on src_special()
+			return my _isSrcSpecial
+		end src_special
+		
+		on set_file_type()
+			set_file_type(my dviFileRef) of my DVIDriver
+		end set_file_type
 		
 		on setDVIDriver()
 			--log "start setDVIDriver"
@@ -134,15 +141,15 @@ on makeObj(theTexDocObj)
 		end getModDate
 		
 		on setSrcSpecialFlag()
-			if my texCommand contains "-src" then
-				set my isSrcSpecial to true
+			if (typeset_command()) contains "-src" then
+				set_src_special(true)
 				ignoring application responses
 					tell application "Finder"
 						set comment of (dviFileRef) to "Source Specials"
 					end tell
 				end ignoring
 			else
-				set my isSrcSpecial to false
+				set_src_special(false)
 				ignoring application responses
 					tell application "Finder"
 						set comment of dviFileRef to ""
@@ -152,11 +159,11 @@ on makeObj(theTexDocObj)
 		end setSrcSpecialFlag
 		
 		on getSrcSpecialFlag()
-			if my isSrcSpecial is missing value then
+			if src_special() is missing value then
 				tell application "Finder"
 					set theComment to comment of (dviFileRef)
 				end tell
-				set isSrcSpecial to (theComment starts with "Source Special")
+				set_src_special(theComment starts with "Source Special")
 			end if
 		end getSrcSpecialFlag
 		
@@ -181,12 +188,10 @@ on makeObj(theTexDocObj)
 			else
 				set theCommand to my dvipdfCommand
 			end if
-			log theCommand
-			set cdCommand to "cd" & space & (quoted form of POSIX path of (my workingDirectory))
-			set targetFileName to getNameWithSuffix(".dvi")
+			set cdCommand to "cd" & space & (quoted form of (pwd()'s posix_path()))
+			set targetFileName to name_for_suffix(".dvi")
 			set allCommand to cdCommand & comDelim & theCommand & space & "'" & targetFileName & "'"
 			
-			--doCommands of TerminalCommander for allCommand with activation
 			sendCommands of TerminalCommander for allCommand
 			copy TerminalCommander to currentTerminal
 			waitEndOfCommand(300) of currentTerminal
@@ -204,6 +209,7 @@ on makeObj(theTexDocObj)
 		end dviToPDF
 		
 		on lookupPDFFile()
+			--log "start lookupPDFFile"
 			set thePDFObj to makeObj(a reference to me) of PDFObj
 			setPDFObj() of thePDFObj
 			if isExistPDF() of thePDFObj then
@@ -213,8 +219,9 @@ on makeObj(theTexDocObj)
 			end if
 		end lookupPDFFile
 	end script
+	
 	--log "before  setDVIDriver of DVIObj"
-	setDVIDriver() of dviObj
+	setDVIDriver() of DviObj
 	--log "end makeObj of DVIObj"
-	return dviObj
+	return DviObj
 end makeObj

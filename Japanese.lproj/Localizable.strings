@@ -4,7 +4,8 @@
 "startQuote" ="“";
 "endQuote" ="”";
 "aDocument" = "書類";
-"isNotFound" = "が見つかりません。";
+"FileIsNotFound" = "ファイル “$1”\nが見つかりません。";
+"LogFileIsOpened" = "ログファイル “$1” は開かれています。\nタイプセットの前に閉じる必要があります。";
 
 /*check_logfile*/
 "shouldClose" = "タイプセットの前に閉じる必要があります。";
@@ -30,9 +31,10 @@
 "DVIisNotGenerated" = "DVI ファイルは生成されませんでした。";
 
 /* checkmifiles */
-"isNotSaved" = "は保存されていません。";
-"isModified" = "は修正されています。";
-"doYouSave" = "実行前に保存しますか？";
+"DocumentIsModified_AskSave" = "書類 “$1” は修正されています。\n実行前に保存しますか？";
+/*"isNotSaved" = "は保存されていません。";*/
+/*"isModified" = "は修正されています。";*/
+/*"doYouSave" = "実行前に保存しますか？";*/
 "isInvalid" = "は正しい設定ではありません。";
 "noDocument" = "mi で開かれているファイルはありません。";
 "invalidMode" = "書類 “$1” のモード設定が正しくありません。";
@@ -45,10 +47,10 @@
 "errorLabel" = "エラー :";
 
 /*openParentFile*/
-"noParentFile" = "は ParentFile を持っていません。";
+"noParentFile" = "書類 “$1” には ParentFile が設定されていません。";
 
 /*seekExecEbb*/
-"noGraphicFile" = "は グラフィックファイルを取り込んでいません。";
+"noGraphicFile" = "書類 “$1” にはグラフィックファイルがありません。";
 "bbAlreadyCreated" = "すべての .bb ファイルは、既に生成されています。";
 
 /*initilize*/
@@ -82,3 +84,7 @@
 "auxFileIsNotFound" = "aux ファイルが見つかりません。";
 
 "this software" = "TeX Tools for mi";
+
+/*TeXDocObj*/
+"ParentFileIsInvalid" = "ParentFile “$1”\nは正しい設定ではありません。";
+"ParentFileIsNotFound" = "ParentFile “$1”\nが見つかりません。";

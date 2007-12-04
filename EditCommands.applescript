@@ -3,6 +3,7 @@ global TeXCompileObj
 global MessageUtility
 global PathAnalyzer
 global EditorClient
+global UtilityHandlers
 
 global _backslash
 
@@ -38,7 +39,7 @@ on openRelatedFile given revealOnly:revealFlag
 	set bibCommand to _backslash & "bibliography"
 	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
-	set firstpara to targetParagraph of theTexDocObj
+	set firstpara to theTexDocObj's doc_position()
 	set paracount to count paragraphs of contents of selection_ref() of EditorClient
 	repeat with nth from firstpara to firstpara + paracount - 1
 		set theParagraph to EditorClient's paragraph_at_index(nth)
@@ -57,10 +58,13 @@ on openRelatedFile given revealOnly:revealFlag
 						try
 							set fileAlias to (POSIX file pathWithSuffix) as alias
 						on error
+							(*
 							set sQ to localized string "startQuote"
 							set eQ to localized string "endQuote"
 							set theMessage to sQ & pathWithSuffix & eQ & return & return & (localized string "isNotFound")
-							showMessageOnmi(theMessage) of MessageUtility
+							*)
+							set a_msg to UtilityHandlers's localized_string("FileIsNotFound", pathWithSuffix)
+							showMessageOnmi(a_msg) of MessageUtility
 							return
 						end try
 					end try
@@ -133,12 +137,8 @@ on openParentFile()
 			open (theTexDocObj's file_ref()'s as_alias())
 		end tell
 	else
-		set aDocument to localized string "aDocument"
-		set noParentFile to localized string "noParentFile"
-		set sQ to localized string "startQuote"
-		set eQ to localized string "endQuote"
-		set theMessage to aDocument & space & sQ & (theTexDocObj's fileName()) & eQ & space & noParentFile
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_msg to UtilityHandlers's localized_string("noParentFile", theTexDocObj's fileName())
+		showMessageOnmi(a_msg) of MessageUtility
 	end if
 end openParentFile
 
