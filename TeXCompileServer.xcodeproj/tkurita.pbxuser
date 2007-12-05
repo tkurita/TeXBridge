@@ -213,6 +213,20 @@
 			2C4E29FC0D061F010012372E /* PBXTextBookmark */ = 2C4E29FC0D061F010012372E /* PBXTextBookmark */;
 			2C4E29FD0D061F010012372E /* PBXTextBookmark */ = 2C4E29FD0D061F010012372E /* PBXTextBookmark */;
 			2C4E29FE0D061F010012372E /* PBXTextBookmark */ = 2C4E29FE0D061F010012372E /* PBXTextBookmark */;
+			2C4E2A020D061F520012372E /* PBXTextBookmark */ = 2C4E2A020D061F520012372E /* PBXTextBookmark */;
+			2C4E2A030D061F520012372E /* PBXTextBookmark */ = 2C4E2A030D061F520012372E /* PBXTextBookmark */;
+			2C4E2A040D061F520012372E /* PBXTextBookmark */ = 2C4E2A040D061F520012372E /* PBXTextBookmark */;
+			2C4E2A050D061F520012372E /* PBXTextBookmark */ = 2C4E2A050D061F520012372E /* PBXTextBookmark */;
+			2C4E2A060D061F520012372E /* PBXTextBookmark */ = 2C4E2A060D061F520012372E /* PBXTextBookmark */;
+			2C4E2A070D061F520012372E /* PBXTextBookmark */ = 2C4E2A070D061F520012372E /* PBXTextBookmark */;
+			2C4E2A080D061F520012372E /* PBXTextBookmark */ = 2C4E2A080D061F520012372E /* PBXTextBookmark */;
+			2C4E2A090D061F520012372E /* PBXTextBookmark */ = 2C4E2A090D061F520012372E /* PBXTextBookmark */;
+			2C4E2A0B0D061F900012372E /* PBXBookmark */ = 2C4E2A0B0D061F900012372E /* PBXBookmark */;
+			2C4E2A210D0621E60012372E /* PBXTextBookmark */ = 2C4E2A210D0621E60012372E /* PBXTextBookmark */;
+			2C4E2A240D0621E60012372E /* PBXTextBookmark */ = 2C4E2A240D0621E60012372E /* PBXTextBookmark */;
+			2C4E2A250D0621E60012372E /* PBXTextBookmark */ = 2C4E2A250D0621E60012372E /* PBXTextBookmark */;
+			2C4E2A260D0621E60012372E /* PBXTextBookmark */ = 2C4E2A260D0621E60012372E /* PBXTextBookmark */;
+			2C4E2A270D0621E60012372E /* PBXTextBookmark */ = 2C4E2A270D0621E60012372E /* PBXTextBookmark */;
 			2C736FC90C61BA0200328CF4 = 2C736FC90C61BA0200328CF4 /* PBXTextBookmark */;
 			2C736FCD0C61BA0200328CF4 = 2C736FCD0C61BA0200328CF4 /* PBXTextBookmark */;
 			2C73717C0C61BBB600328CF4 = 2C73717C0C61BBB600328CF4 /* PBXTextBookmark */;
@@ -355,7 +369,7 @@
 		fRef = 2C9E42C1052215F000248965 /* Japanese */;
 		name = "Japanese: 31";
 		rLen = 0;
-		rLoc = 926;
+		rLoc = 961;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 0;
@@ -388,6 +402,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {992, 476}}";
 			sepNavSelRange = "{979, 15}";
 			sepNavVisRect = "{{0, 289}, {982, 182}}";
+			sepNavWindowFrame = "{{38, 80}, {967, 832}}";
 		};
 	};
 	2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */ = {
@@ -403,7 +418,7 @@
 		fRef = 2C9E42C1052215F000248965 /* Japanese */;
 		name = "Japanese: 43";
 		rLen = 0;
-		rLoc = 1147;
+		rLoc = 1182;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 690;
@@ -736,7 +751,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 610";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 552;
 		vrLoc = 1118;
@@ -756,7 +771,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 610";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 47;
 		vrLoc = 1118;
@@ -766,7 +781,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 610";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 1221;
 		vrLoc = 2432;
@@ -834,7 +849,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = aDocument;
 		rLen = 0;
-		rLoc = 17795;
+		rLoc = 17521;
 		rType = 0;
 		vrLen = 789;
 		vrLoc = 18034;
@@ -843,7 +858,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		rLen = 0;
-		rLoc = 4415;
+		rLoc = 4409;
 		rType = 0;
 	};
 	2C4E297E0D05ADCC0012372E /* PBXTextBookmark */ = {
@@ -891,7 +906,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = aDocument;
 		rLen = 0;
-		rLoc = 17795;
+		rLoc = 17521;
 		rType = 0;
 		vrLen = 686;
 		vrLoc = 18017;
@@ -901,7 +916,7 @@
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		name = aDocument;
 		rLen = 0;
-		rLoc = 4415;
+		rLoc = 4409;
 		rType = 0;
 		vrLen = 698;
 		vrLoc = 4141;
@@ -911,7 +926,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = aDocument;
 		rLen = 0;
-		rLoc = 17795;
+		rLoc = 17521;
 		rType = 0;
 		vrLen = 789;
 		vrLoc = 18034;
@@ -921,7 +936,7 @@
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		name = "EditCommands.applescript: 143";
 		rLen = 0;
-		rLoc = 4507;
+		rLoc = 4501;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 4141;
@@ -961,7 +976,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 715;
 		vrLoc = 2992;
@@ -988,7 +1003,7 @@
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		name = "EditCommands.applescript: 137";
 		rLen = 0;
-		rLoc = 4415;
+		rLoc = 4409;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 4219;
@@ -998,7 +1013,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 571";
 		rLen = 0;
-		rLoc = 17795;
+		rLoc = 17521;
 		rType = 0;
 		vrLen = 740;
 		vrLoc = 17670;
@@ -1058,7 +1073,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = openDVI;
 		rLen = 7;
-		rLoc = 10699;
+		rLoc = 10562;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 10133;
@@ -1078,7 +1093,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 715;
 		vrLoc = 2992;
@@ -1138,7 +1153,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 365;
@@ -1188,7 +1203,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 365;
@@ -1235,7 +1250,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 3082;
@@ -1245,7 +1260,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 389;
 		vrLoc = 3082;
@@ -1292,7 +1307,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 389;
 		vrLoc = 3082;
@@ -1332,7 +1347,7 @@
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		name = "EditCommands.applescript: 156";
 		rLen = 0;
-		rLoc = 4883;
+		rLoc = 4871;
 		rType = 0;
 		vrLen = 304;
 		vrLoc = 1213;
@@ -1342,7 +1357,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 3082;
@@ -1359,7 +1374,7 @@
 		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
 		name = "TeXCompileObj.applescript: 612";
 		rLen = 0;
-		rLoc = 19427;
+		rLoc = 19102;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 3082;
@@ -1389,7 +1404,7 @@
 		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
 		name = "EditCommands.applescript: 156";
 		rLen = 0;
-		rLoc = 4883;
+		rLoc = 4871;
 		rType = 0;
 		vrLen = 304;
 		vrLoc = 1213;
@@ -1425,6 +1440,137 @@
 		vrLoc = 0;
 	};
 	2C4E29FE0D061F010012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
+		name = localized_string;
+		rLen = 16;
+		rLoc = 2513;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 1789;
+	};
+	2C4E2A020D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocObj.applescript */;
+		name = set_doc_pos;
+		rLen = 11;
+		rLoc = 478;
+		rType = 0;
+		vrLen = 235;
+		vrLoc = 325;
+	};
+	2C4E2A030D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD1A4A06BE616C00B6B166 /* DVIObj.applescript */;
+		name = "DVIObj.applescript: 227";
+		rLen = 0;
+		rLoc = 6627;
+		rType = 0;
+		vrLen = 564;
+		vrLoc = 2426;
+	};
+	2C4E2A040D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */;
+		name = showMessageOnmi;
+		rLen = 15;
+		rLoc = 979;
+		rType = 0;
+		vrLen = 373;
+		vrLoc = 845;
+	};
+	2C4E2A050D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
+		rLen = 12;
+		rLoc = 5189;
+		rType = 0;
+	};
+	2C4E2A060D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD1A4A06BE616C00B6B166 /* DVIObj.applescript */;
+		name = "DVIObj.applescript: 227";
+		rLen = 0;
+		rLoc = 6627;
+		rType = 0;
+		vrLen = 564;
+		vrLoc = 2426;
+	};
+	2C4E2A070D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */;
+		name = showMessageOnmi;
+		rLen = 15;
+		rLoc = 979;
+		rType = 0;
+		vrLen = 373;
+		vrLoc = 845;
+	};
+	2C4E2A080D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */;
+		name = "TeXCompileObj.applescript: 612";
+		rLen = 0;
+		rLoc = 19102;
+		rType = 0;
+		vrLen = 424;
+		vrLoc = 4887;
+	};
+	2C4E2A090D061F520012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
+		name = "EditCommands.applescript: 156";
+		rLen = 0;
+		rLoc = 4871;
+		rType = 0;
+		vrLen = 365;
+		vrLoc = 1213;
+	};
+	2C4E2A0B0D061F900012372E /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C9E42C1052215F000248965 /* Japanese */;
+	};
+	2C4E2A210D0621E60012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */;
+		name = "AuxData.applescript: 264";
+		rLen = 0;
+		rLoc = 8065;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	2C4E2A240D0621E60012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C9E42C1052215F000248965 /* Japanese */;
+		name = "Japanese: 27";
+		rLen = 0;
+		rLoc = 630;
+		rType = 0;
+		vrLen = 1089;
+		vrLoc = 0;
+	};
+	2C4E2A250D0621E60012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */;
+		name = "EditorClient.applescript: 61";
+		rLen = 0;
+		rLoc = 1474;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 445;
+	};
+	2C4E2A260D0621E60012372E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C47F6EF0A7618B6001809FA /* History.rd */;
+		name = "History.rd: 14";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 0;
+	};
+	2C4E2A270D0621E60012372E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
 		name = localized_string;
@@ -1582,17 +1728,17 @@
 	};
 	2C6FB9BD06255005004731C7 /* TeXCompileObj.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1010, 10404}}";
-			sepNavSelRange = "{19433, 0}";
-			sepNavVisRect = "{{0, 1732}, {982, 158}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1010, 10285}}";
+			sepNavSelRange = "{8704, 0}";
+			sepNavVisRect = "{{0, 4743}, {982, 88}}";
 			sepNavWindowFrame = "{{200, 106}, {967, 832}}";
 		};
 	};
 	2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {982, 2652}}";
-			sepNavSelRange = "{4883, 0}";
-			sepNavVisRect = "{{0, 671}, {982, 69}}";
+			sepNavSelRange = "{2481, 0}";
+			sepNavVisRect = "{{0, 1049}, {982, 163}}";
 			sepNavWindowFrame = "{{15, 169}, {932, 764}}";
 		};
 	};
@@ -1787,7 +1933,7 @@
 		fRef = 2CDA10AA069404FE00467991 /* PDFObj.applescript */;
 		name = "PDFObj.applescript: 397";
 		rLen = 0;
-		rLoc = 11435;
+		rLoc = 11386;
 		rType = 0;
 		vrLen = 852;
 		vrLoc = 0;
@@ -1797,7 +1943,7 @@
 		fRef = 2CDA10AA069404FE00467991 /* PDFObj.applescript */;
 		name = "PDFObj.applescript: 397";
 		rLen = 0;
-		rLoc = 11435;
+		rLoc = 11386;
 		rType = 0;
 		vrLen = 852;
 		vrLoc = 0;
@@ -1824,7 +1970,7 @@
 		fRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */;
 		name = "display dialog theMessage";
 		rLen = 25;
-		rLoc = 1113;
+		rLoc = 1148;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 92;
@@ -1844,7 +1990,7 @@
 		fRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */;
 		name = "display dialog theMessage";
 		rLen = 25;
-		rLoc = 1113;
+		rLoc = 1148;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 92;
@@ -1894,7 +2040,7 @@
 	2C9E42C1052215F000248965 /* Japanese */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {985, 1440}}";
-			sepNavSelRange = "{151, 0}";
+			sepNavSelRange = "{630, 0}";
 			sepNavVisRect = "{{0, 0}, {677, 670}}";
 			sepNavWindowFrame = "{{662, 139}, {716, 799}}";
 		};
@@ -1988,8 +2134,8 @@
 	2CCD19FA06BE5DF800B6B166 /* TeXDocObj.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1337, 7412}}";
-			sepNavSelRange = "{478, 11}";
-			sepNavVisRect = "{{0, 338}, {982, 158}}";
+			sepNavSelRange = "{409, 0}";
+			sepNavVisRect = "{{0, 323}, {982, 167}}";
 			sepNavWindowFrame = "{{432, 146}, {673, 786}}";
 		};
 	};
@@ -2049,9 +2195,9 @@
 	};
 	2CDA10AA069404FE00467991 /* PDFObj.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {789, 6749}}";
-			sepNavSelRange = "{11435, 0}";
-			sepNavVisRect = "{{0, 0}, {789, 433}}";
+			sepNavIntBoundsRect = "{{0, 0}, {982, 6732}}";
+			sepNavSelRange = "{4693, 0}";
+			sepNavVisRect = "{{0, 2545}, {982, 163}}";
 			sepNavWindowFrame = "{{61, 153}, {743, 738}}";
 		};
 	};

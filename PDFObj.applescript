@@ -151,9 +151,8 @@ script GenericDriver
 			end try
 			
 			if isPDFBusy then
-				set openedMessage to localized string "OpenedMessage"
-				set theMessage to (pdfPath of thePDFObj) & return & openedMessage
-				showMessageOnmi(theMessage) of MessageUtility
+				set a_msg to UtilityHandlers's localized_string("FileIsOpened", pdfPath of thePDFObj)
+				EditorClient's show_message(a_msg)
 				return false
 			else
 				return true
@@ -367,8 +366,8 @@ on makeObj(theDviObj)
 		end setPDFDriver
 		
 		on setPDFObj()
-			set pdfFileName to getNameWithSuffix(".pdf")
-			set pdfPath to ((my workingDirectory) as Unicode text) & pdfFileName
+			set pdfFileName to name_for_suffix(".pdf")
+			set pdfPath to pwd()'s child(pdfFileName)'s hfs_path()
 		end setPDFObj
 		
 		on isExistPDF()

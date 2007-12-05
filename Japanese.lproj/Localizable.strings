@@ -21,10 +21,10 @@
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 
 /*dviPreview*/
-"dviFile" = "DVI ファイル";
+"DviFileIsNotFound" = "DVI ファイル “$1” が見つかりません。";
 
 /*dviToPDF*/
-"OpenedMessage" = "は開かれています。コマンドの実行前に閉じて下さい。";
+"FileIsOpened" = "ファイル “$1”\nは開かれています。コマンドの実行前に閉じて下さい。";
 "PDFisNotGenerated" = "PDF ファイルは生成されませんでした。";
 
 /*typesetAndPDFPreview*/

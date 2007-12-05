@@ -64,7 +64,7 @@ on openRelatedFile given revealOnly:revealFlag
 							set theMessage to sQ & pathWithSuffix & eQ & return & return & (localized string "isNotFound")
 							*)
 							set a_msg to UtilityHandlers's localized_string("FileIsNotFound", pathWithSuffix)
-							showMessageOnmi(a_msg) of MessageUtility
+							EditorClient's show_message(a_msg)
 							return
 						end try
 					end try
@@ -138,7 +138,7 @@ on openParentFile()
 		end tell
 	else
 		set a_msg to UtilityHandlers's localized_string("noParentFile", theTexDocObj's fileName())
-		showMessageOnmi(a_msg) of MessageUtility
+		EditorClient's show_message(a_msg)
 	end if
 end openParentFile
 

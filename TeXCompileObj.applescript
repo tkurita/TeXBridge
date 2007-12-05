@@ -277,11 +277,9 @@ on dviPreview()
 			showError(errNum, "dviPreview", errMsg) of MessageUtility
 		end try
 	else
-		set textDviFile to localized string "dviFile"
-		set isNotFound to localized string "isNotFound"
 		set dviName to name_for_suffix(".dvi") of theTexDocObj
-		set theMessage to textDviFile & space & dviName & space & isNotFound
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", dviName)
+		EditorClient's show_message(a_msg)
 	end if
 	--log "end dviPreview"
 end dviPreview
@@ -301,8 +299,7 @@ on pdfPreview()
 	if isExistPDF() of thePDFObj then
 		openPDFFile() of thePDFObj
 	else
-		set theMessage to localized string "noPDFfile"
-		showMessageOnmi(theMessage) of MessageUtility
+		EditorClient's show_message(localized string "noPDFfile")
 	end if
 end pdfPreview
 
@@ -419,11 +416,9 @@ on lookUpDviFromEditor()
 	
 	set theDviObj to lookup_dvi() of theTexDocObj
 	if theDviObj is missing value then
-		set textDviFile to localized string "dviFile"
-		set isNotFound to localized string "isNotFound"
 		set dviName to theTexDocObj's name_for_suffix(".dvi")
-		set theMessage to textDviFile & space & dviName & space & isNotFound
-		showMessageOnmi(theMessage) of MessageUtility
+		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", dviName)
+		EditorClient's show_message(a_msg)
 	end if
 	
 	--log "end lookUpDviFromEditor"
@@ -479,8 +474,7 @@ on dviToPDF()
 	set thePDFObj to dviToPDF() of theDviObj
 	--log "success to get PDFObj"
 	if thePDFObj is missing value then
-		set theMessage to localized string "PDFisNotGenerated"
-		showMessageOnmi(theMessage) of MessageUtility
+		EditorClient's show_message(localized string "PDFisNotGenerated")
 	else
 		openPDFFile() of thePDFObj
 	end if
@@ -568,11 +562,10 @@ on seekExecEbb()
 	end repeat
 	
 	if noGraphicFlag then
-		set a_message to UtilityHandlers's localized_string("noGraphicFile", theTexDocObj's fileName())
-		showMessageOnmi(a_message) of MessageUtility
+		set a_msg to UtilityHandlers's localized_string("noGraphicFile", theTexDocObj's fileName())
+		EditorClient's show_message(a_msg)
 	else if noNewBBFlag then
-		set theMessage to localized string "bbAlreadyCreated"
-		showMessageOnmi(theMessage) of MessageUtility
+		EditorClient's show_message(localized string "bbAlreadyCreated")
 	end if
 end seekExecEbb
 
