@@ -44,8 +44,8 @@ on addToUserDict given keyword:keywordText, replace:replaceText
 	end considering
 	if is_defined then
 		--log userKeywordList
-		set theMessage to getLocalizedString of UtilityHandlers given keyword:"keywordStillDefined", insertTexts:{keywordText}
-		displayAlert(theMessage) of SettingWindowController
+		set a_msg to UtilityHandlers's localized_string("keywordStillDefined", {keywordText})
+		displayAlert(a_msg) of SettingWindowController
 		return false
 	else
 		--setValue of userReplaceDict given forKey:keywordText, withValue:replaceText
@@ -58,7 +58,7 @@ on addToUserDict given keyword:keywordText, replace:replaceText
 end addToUserDict
 
 on shouldSelectionChange(theObject)
-	--log "start shouldSelectionChange in ReplaceInputObj"
+	--log "start shouldSelectionChange in ReplaceInput"
 	(*
 	set editedRow to edited row of theObject
 	
@@ -102,7 +102,7 @@ on shouldSelectionChange(theObject)
 end shouldSelectionChange
 
 on selectionChanged(theObject)
-	--log "start selectionChanged in ReplaceInputObj"
+	--log "start selectionChanged in ReplaceInput"
 	set theDataRow to selected data row of theObject
 	try
 		get theDataRow
@@ -117,7 +117,7 @@ on selectionChanged(theObject)
 		--log "keyword is not blank"
 		set userKeywordList to deleteListItem of UtilityHandlers for preKeyword from userKeywordList
 	end if
-	--log "end selectionChanged in ReplaceInputObj"
+	--log "end selectionChanged in ReplaceInput"
 end selectionChanged
 
 on controlClicked(theObject)
@@ -148,10 +148,9 @@ end controlClicked
 
 on initialize()
 	if userReplaceDict is missing value then
-		--set userReplaceDict to makeObj() of XDict
 		set key_list to readDefaultValueWith("ReplaceInput_KeyList", {}) of DefaultsManager
 		set value_list to readDefaultValueWith("ReplaceInput_ValueList", {}) of DefaultsManager
-		set userReplaceDict to XDict's makeObjWithKeysAndValues(key_list, value_list)
+		set userReplaceDict to XDict's make_with_lists(key_list, value_list)
 	end if
 	
 	if internalReplaceDict is missing value then
@@ -176,7 +175,7 @@ on appendDictToOutline for theDict into parentDataItem
 end appendDictToOutline
 
 on setSettingToWindow(theView)
-	--log "start setSettingToWindow in ReplaceInputObj"
+	--log "start setSettingToWindow in ReplaceInput"
 	set parentView to theView
 	set internalReplaceOutline to outline view "InternalReplaceOutline" of scroll view "InternalReplaceScroll" of theView
 	set userReplaceTable to table view "UserReplaceTable" of scroll view "UserReplaceScroll" of theView
@@ -200,10 +199,9 @@ on setSettingToWindow(theView)
 	end repeat
 	
 	--log "set user-defined keywords"
-	copy (keyList() of userReplaceDict) to userKeywordList
-	--set userKeywordList to copy_key_list() of userReplaceDict
+	set userKeywordList to userReplaceDict's all_keys()
 	set numUserKeyword to length of userKeywordList
-	set value_list to valueList() of userReplaceDict
+	set value_list to userReplaceDict's all_values()
 	if numUserKeyword > 0 then
 		repeat with ith from 1 to numUserKeyword
 			set theKeyword to item ith of userKeywordList
@@ -215,13 +213,13 @@ on setSettingToWindow(theView)
 		end repeat
 		tell userReplaceTable to update
 	end if
-	--log "end setSettingToWindow in ReplaceInputObj"
+	--log "end setSettingToWindow in ReplaceInput"
 end setSettingToWindow
 
 on findReplaceText(keyText)
 	--log "start findReplaceText for " & keyText
 	--log "find replaceText from user dictionary"
-	set newText to getValue of userReplaceDict given forKey:keyText
+	set newText to userReplaceDict's value_for_key(keyText)
 	if newText is not missing value then
 		--log "replece text is found from userReplaceDict"
 		return newText
