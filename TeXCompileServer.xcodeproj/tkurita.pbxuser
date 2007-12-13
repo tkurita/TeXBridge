@@ -145,6 +145,8 @@
 			2C253AAF0BE3A3220018836B = 2C253AAF0BE3A3220018836B /* PBXTextBookmark */;
 			2C3DB6C70BE1D65100FD7D6E = 2C3DB6C70BE1D65100FD7D6E /* PBXTextBookmark */;
 			2C4B2C960D04609600280BE6 = 2C4B2C960D04609600280BE6 /* PBXTextBookmark */;
+			2C562F180D11583C00890765 /* PBXTextBookmark */ = 2C562F180D11583C00890765 /* PBXTextBookmark */;
+			2C562F190D11583C00890765 /* PBXTextBookmark */ = 2C562F190D11583C00890765 /* PBXTextBookmark */;
 			2C736FC90C61BA0200328CF4 = 2C736FC90C61BA0200328CF4 /* PBXTextBookmark */;
 			2C736FCD0C61BA0200328CF4 = 2C736FCD0C61BA0200328CF4 /* PBXTextBookmark */;
 			2C73717C0C61BBB600328CF4 = 2C73717C0C61BBB600328CF4 /* PBXTextBookmark */;
@@ -480,6 +482,23 @@
 			sepNavWindowFrame = "{{38, 73}, {1078, 839}}";
 		};
 	};
+	2C562F180D11583C00890765 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		rLen = 15;
+		rLoc = 15764;
+		rType = 0;
+	};
+	2C562F190D11583C00890765 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = extractFilePath;
+		rLen = 15;
+		rLoc = 15764;
+		rType = 0;
+		vrLen = 1082;
+		vrLoc = 15180;
+	};
 	2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {734, 752}}";
@@ -613,16 +632,16 @@
 	2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {982, 9894}}";
-			sepNavSelRange = "{17291, 0}";
-			sepNavVisRect = "{{0, 9456}, {982, 418}}";
+			sepNavSelRange = "{15764, 15}";
+			sepNavVisRect = "{{0, 8703}, {982, 515}}";
 			sepNavWindowFrame = "{{200, 106}, {967, 832}}";
 		};
 	};
 	2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {893, 2567}}";
-			sepNavSelRange = "{4631, 0}";
-			sepNavVisRect = "{{0, 1932}, {893, 635}}";
+			sepNavIntBoundsRect = "{{0, 0}, {893, 867}}";
+			sepNavSelRange = "{150, 15}";
+			sepNavVisRect = "{{0, 58}, {893, 635}}";
 			sepNavWindowFrame = "{{419, 167}, {932, 764}}";
 		};
 	};
@@ -1039,8 +1058,8 @@
 	2CDA10AA069404FE00467991 /* PDFController.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {704, 7480}}";
-			sepNavSelRange = "{11819, 0}";
-			sepNavVisRect = "{{0, 4702}, {704, 609}}";
+			sepNavSelRange = "{11804, 0}";
+			sepNavVisRect = "{{0, 3002}, {704, 609}}";
 			sepNavWindowFrame = "{{61, 153}, {743, 738}}";
 		};
 	};
