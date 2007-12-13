@@ -17,9 +17,13 @@ $1
 	<key>hline</key>
 	<string>\hline</string>
 	<key>incGraphicBlock</key>
-	<string>\includegraphics[width = 120mm,keepaspectratio,clip]{$1}\caption{}\label{$2}</string>
+	<string>\includegraphics[width = 0.8\textwidth,keepaspectratio,clip]{$1}\caption{}\label{$2}</string>
 	<key>incGraphicCommand</key>
 	<string>\includegraphics</string>
+	<key>includeCommand</key>
+	<string>\include</string>
+	<key>inputCommand</key>
+	<string>\input</string>
 	<key>itemHead</key>
 	<string>\item</string>
 	<key>labelText</key>
@@ -42,5 +46,7 @@ $1
 \end{center}\end{table}</string>
 	<key>texNewLine</key>
 	<string>\\</string>
+	<key>yenmark</key>
+	<string>¥</string>
 </dict>
 </plist>

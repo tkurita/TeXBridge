@@ -1,6 +1,6 @@
 global ScriptImporter
 global TerminalSettingObj
-global ReplaceInputObj
+global ReplaceInput
 global appController
 
 (* shared variable *)
@@ -66,11 +66,11 @@ end loadPreviewSetting
 
 on loadReplaceInputSetting(theView)
 	if not isLoadedReplaceInputSetting then
-		if ReplaceInputObj is missing value then
-			--log "load ReplaceInputObj"
-			set ReplaceInputObj to ScriptImporter's do("ReplaceInputObj")
+		if ReplaceInput is missing value then
+			--log "load ReplaceInput"
+			set ReplaceInput to ScriptImporter's do("ReplaceInput")
 		end if
-		setSettingToWindow(theView) of ReplaceInputObj
+		setSettingToWindow(theView) of ReplaceInput
 		set isLoadedReplaceInputSetting to true
 	end if
 end loadReplaceInputSetting
@@ -93,13 +93,13 @@ on initilize()
 	selectedTab(current tab view item of tab view "SettingTabs" of my targetWindow)
 end initilize
 
-on openWindow()
+on open_window()
 	if WindowController is missing value then
 		initilize()
 	end if
 	activate
 	call method "showWindow:" of WindowController
-end openWindow
+end open_window
 
 on setmiclient()
 	--log "start setmiclient"

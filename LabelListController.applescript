@@ -8,9 +8,9 @@ global XList
 
 global RefPanelController
 global EditorClient
-global TexDocObj
+global TeXDocController
 global AuxData
-global TeXCompileObj
+global CompileCenter
 
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
@@ -36,8 +36,8 @@ on initialize(theDataSource)
 	end tell
 end initialize
 
-on watchmi()
-	--log "start watchmi in LabelListObj"
+on watchmi given force_reloading:force_flag
+	--log "start watchmi in LabelListController"
 	try
 		set an_auxdata to findAuxObjFromDoc()
 	on error errMsg number errNum
@@ -46,7 +46,7 @@ on watchmi()
 			-- 1500 : Unsupported File.
 			return
 		else
-			error "Fail to findAuxObjFromDoc in watchmi of LabelListObj." & return & errMsg number errNum
+			error "Fail to findAuxObjFromDoc in watchmi of LabelListController." & return & errMsg number errNum
 		end if
 	end try
 	
@@ -54,29 +54,21 @@ on watchmi()
 		return
 	end if
 	
-	--set theAuxObj to targetAuxObj of resultRecord
-	
 	if an_auxdata's data_item() is missing value then
 		--log "no data item"
 		if an_auxdata's aux_file() is not missing value then
 			parseAuxFile(an_auxdata)
 		end if
-		findLabelsFromDocument(an_auxdata)
+		findLabelsFromDocument(an_auxdata, force_flag)
 		if an_auxdata's has_parent() then
 			--log "has ParentFile"
-			--set auxObjofDoc to findAuxObj(tex_file of resultRecord, is_saved of resultRecord)
-			
-			set a_parentdoc to TexDocObj's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
+			set a_parentdoc to TeXDocController's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
 			set a_parentaux to auxdata_for_texdoc(a_parentdoc)
 			if a_parentaux's data_item() is missing value then
 				if (check_auxfile() of a_parentaux) then
 					parseAuxFile(a_parentaux)
 				end if
 			end if
-			--findLabelsFromDocument(theAuxObj)
-			--set auxObjofDoc to auxdata_for_texdoc(a_parentdoc)
-			--findLabelsFromDocument(auxObjofDoc)
-			--appendToOutline for auxObjofDoc below labelDataSource
 			appendToOutline for a_parentaux below labelDataSource
 			an_auxdata's expandDataItem()
 		else
@@ -87,16 +79,8 @@ on watchmi()
 		
 		
 	else
-		(*
-		if an_auxdata's has_parent() then
-			--set theAuxObj to findAuxObj(tex_file of resultRecord, is_saved of resultRecord)
-			set a_parentdoc to TexDocObj's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
-			set an_auxdata to auxdata_for_texdoc(a_parentdoc)
-			--set theAuxObj to findAuxObj(resultRecord)
-		end if
-		*)
 		--log "before findLabelsFromDocument"
-		if findLabelsFromDocument(an_auxdata) then
+		if findLabelsFromDocument(an_auxdata, force_flag) then
 			--log "before updateLabelsFromDoc"
 			updateLabelsFromDoc() of an_auxdata
 		else
@@ -109,36 +93,11 @@ end watchmi
 
 on findAuxObjFromDoc()
 	--log "start findAuxObjFromDoc"
-	set a_texdoc to texdoc_for_firstdoc of TeXCompileObj without showing_message and need_file
+	set a_texdoc to texdoc_for_firstdoc of CompileCenter without showing_message and need_file
 	if a_texdoc is missing value then
 		return missing value
 	end if
-	(*
-	if EditorClient's exists_document() then
-		set a_tex_file to EditorClient's document_file_as_alias()
-		if (EditorClient's document_mode() is not "TEX") then
-			return missing value
-		end if
-	else
-		return missing value
-	end if
 	
-	
-	set resultRecord to {hasParentFile:false, targetAuxObj:missing value, tex_file:missing value, is_saved:false, text_encoding:missing value}
-	--log "after getting mi file in findAuxObjFromDoc"
-	
-	if a_tex_file is not missing value then
-		set tex_file of resultRecord to a_tex_file
-		set is_saved of resultRecord to true
-		set text_encoding of resultRecord to EditorClient's text_encoding()
-	else
-		set tex_file of resultRecord to EditorClient's document_name()
-		set is_saved of resultRecord to false
-		set targetAuxObj of resultRecord to findAuxObj(resultRecord)
-		return resultRecord
-	end if
-	--log "after checking mi file status"
-	*)
 	if (not a_texdoc's has_file()) then
 		return auxdata_for_texdoc(a_texdoc)
 	end if
@@ -187,7 +146,6 @@ on appendToOutline for theAuxObj below parentDataItem
 	end if
 	
 	--log "before repeat in appendToOutline"
-	--repeat with theLabelRecord in {labelRecordFromAux of theAuxObj, labelRecordFromDoc of theAuxObj}
 	repeat with theLabelRecord in theAuxObj's all_label_records()
 		repeat with ith from 1 to length of theLabelRecord
 			set theItem to item ith of theLabelRecord
@@ -210,44 +168,11 @@ on auxdata_for_texdoc(a_texdoc)
 	--log "start auxdata_for_texdoc"
 	if a_texdoc's has_file() then
 		--log "file is saved"
-		(*
-		set pathRecord to do(file_ref) of PathAnalyzer
-		set nameWithSuffix to name of pathRecord
-		if nameWithSuffix ends with ".tex" then
-			set theBaseName to text 1 thru -5 of nameWithSuffix
-			set theTexFileRef to file_ref
-			try
-				set theAuxFileRef to ((folderReference of pathRecord as Unicode text) & theBaseName & ".aux") as alias
-			on error
-				--log "aux file is not found."
-				set theAuxFileRef to missing value
-			end try
-		else if nameWithSuffix ends with ".aux" then
-			set theBaseName to text 1 thru -5 of nameWithSuffix
-			set theAuxFileRef to file_ref
-			set theTexFileRef to missing value
-		else
-			--log "unknow suffix"
-			--error "Unsupported File." number 1500
-			set theBaseName to nameWithSuffix
-			set theTexFileRef to file_ref
-			try
-				set theAuxFileRef to ((folderReference of pathRecord as Unicode text) & theBaseName & ".aux") as alias
-			on error
-				--log "aux file is not found."
-				set theAuxFileRef to missing value
-			end try
-		end if
-		
-		set auxObjKey to (folderReference of pathRecord as Unicode text) & theBaseName
-		*)
-		--set a_key to a_texdoc's no_suffix_posix_path()
 		set a_key to a_texdoc's no_suffix_target_path()
 		--log "auxdata key: " & a_key
 		set an_auxdata to auxObjArray's value_for_key(a_key)
 		if an_auxdata is missing value then
 			--log "new auxdata will be registered"
-			--set an_auxdata to newAuxObj(theTexFileRef, theAuxFileRef, theBaseName, is_saved, text_encoding of source_info)
 			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
 			auxObjArray's set_value(a_key, an_auxdata)
 		else
@@ -258,9 +183,7 @@ on auxdata_for_texdoc(a_texdoc)
 		if unsavedAuxObj is not missing value then
 			deleteDataItem() of unsavedAuxObj
 		end if
-		--set unsavedAuxObj to newAuxObj(missing value, missing value, file_ref, is_saved, text_encoding of source_info)
 		set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
-		--set theAuxObj to unsavedAuxObj
 	end if
 	
 	--log "end auxdata_for_texdoc"
@@ -302,7 +225,7 @@ on parseAuxFile(theAuxObj)
 			set_base_path(theAuxObj's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile
 			set theAuxFile to (POSIX file theAuxFile) as alias
-			set a_texdoc to TexDocObj's make_with(theAuxFile, theAuxObj's text_encoding())
+			set a_texdoc to TeXDocController's make_with(theAuxFile, theAuxObj's text_encoding())
 			set childAuxObj to auxdata_for_texdoc(a_texdoc)
 			--set childAuxObj to findAuxObj(theAuxFile, true)
 			if childAuxObj is not missing value then
@@ -316,7 +239,7 @@ on parseAuxFile(theAuxObj)
 	--log "end of parseAuxFile"
 end parseAuxFile
 
-on findLabelsFromDocument(theAuxObj)
+on findLabelsFromDocument(theAuxObj, force_flag)
 	--log "start findLabelsFromDocument"
 	set theContents to EditorClient's document_content()
 	
@@ -324,7 +247,7 @@ on findLabelsFromDocument(theAuxObj)
 	--log "before repeat"
 	
 	set a_xlist to XList's make_with(get every paragraph of theContents)
-	if not is_texfile_updated() of theAuxObj then
+	if (not force_flag) and (not is_texfile_updated() of theAuxObj) then
 		--log "document is not updated"
 		if (a_xlist's count_items()) is (theAuxObj's document_size()) then
 			--log "document size is same"
@@ -368,8 +291,6 @@ end findLabelsFromDocument
 
 on rebuildLabelsFromAux(a_texdoc)
 	--log "start rebuildLabelsFromAux"
-	--set source_info to {hasParentFile:false, targetAuxObj:missing value, tex_file:a_tex_source's file_ref()'s as_alias(), is_saved:true, text_encoding:a_tex_source's text_encoding()}
-	--set theAuxObj to findAuxObj(source_info)
 	set an_auxdata to auxdata_for_texdoc(a_texdoc)
 	--log "after auxdata_for_texdoc in rebuildLabelsFromAux"
 	if not (check_auxfile() of an_auxdata) then

@@ -6,10 +6,10 @@ global XFile
 global UtilityHandlers
 global TerminalCommander
 global MessageUtility
-global DviObj
+global DVIController
 global ToolPaletteController
 
-property name : "TeXDocObj"
+property name : "TeXDocController"
 property logSuffix : ".log"
 property texSuffixList : {".tex", ".dtx"}
 
@@ -121,7 +121,6 @@ on fileName()
 end fileName
 
 on no_suffix_posix_path()
-	--return my _texBasePath
 	return my _file_ref's change_path_extension("")'s posix_path()
 end no_suffix_posix_path
 
@@ -130,13 +129,6 @@ on no_suffix_target_path()
 end no_suffix_target_path
 
 on basename()
-	(*
-	if my _texBaseName is missing value then
-		set my _texBaseName to my _texFileName as Unicode text
-		set my _texBaseName to remove_suffix(my _texBaseName)
-	end if
-	return my _texBaseName
-	*)
 	return my _file_ref's basename()
 end basename
 
@@ -207,13 +199,13 @@ on typeset()
 		end try
 	end if
 	--log "after Typeset"
-	set theDviObj to lookup_dvi()
+	set a_dvi to lookup_dvi()
 	--log "after lookup_dvi"
-	if theDviObj is not missing value then
-		setSrcSpecialFlag() of theDviObj
+	if a_dvi is not missing value then
+		set_src_special_flag() of a_dvi
 	end if
 	--log "end texCompile"
-	return theDviObj
+	return a_dvi
 end typeset
 
 on check_logfile()
@@ -328,13 +320,14 @@ end open_outfile
 
 on lookup_dvi()
 	--log "start lookup_dvi"
-	set dvi_path to path_for_suffix(".dvi")
-	if isExists(dvi_path) of UtilityHandlers then
+	--set dvi_path to path_for_suffix(".dvi")
+	set a_dvifile to my _file_ref's change_path_extension(".dvi")
+	if a_dvifile's item_exists() then
 		--log "dviFilePath exists"
-		set a_dvi_obj to makeObj(me) of DviObj
-		set dviFileRef of a_dvi_obj to dvi_path as alias
-		set_file_type() of a_dvi_obj
-		return a_dvi_obj
+		set a_dvi to make_with(me) of DVIController
+		a_dvi's set_dvifile(a_dvifile)
+		set_file_type() of a_dvi
+		return a_dvi
 	else
 		return missing value
 	end if
@@ -363,10 +356,10 @@ on make_with_dvifile(dvi_file_ref)
 end make_with_dvifile
 
 on make_with(a_xfile, an_encoding)
-	--log "start make_with in TexDocObj"
+	--log "start make_with in TeXDocController"
 	--set pathRecord to do(theTargetFile) of PathAnalyzer
 	
-	script TexDocObj
+	script TeXDocController
 		property _file_ref : missing value -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
 		property _typesetCommand : missing value
 		property dvipdfCommand : missing value
@@ -390,47 +383,16 @@ on make_with(a_xfile, an_encoding)
 	end script
 	
 	if a_xfile is missing value then
-		return TexDocObj
+		return TeXDocController
 	end if
 	
 	if class of a_xfile is not script then
 		set a_xfile to XFile's make_with(a_xfile)
 	end if
 	
-	set TexDocObj's _file_ref to a_xfile
-	set TexDocObj's _targetFileRef to a_xfile
-	set TexDocObj's _texFileName to a_xfile's item_name()
-	set TexDocObj's _workingDirectory to a_xfile's parent_folder()
-	return TexDocObj
+	set TeXDocController's _file_ref to a_xfile
+	set TeXDocController's _targetFileRef to a_xfile
+	set TeXDocController's _texFileName to a_xfile's item_name()
+	set TeXDocController's _workingDirectory to a_xfile's parent_folder()
+	return TeXDocController
 end make_with
-
-(*== deprecated *)
-(*
-on setTexFileRef(a_file) -- set parent file of targetFileRef. Use update_with_paren
-	update_with_parent(a_file)
-end setTexFileRef
-
-on getBaseName()
-	return basename()
-end getBaseName
-
-on getHeaderCommand(a_paragraph)
-	lookup_header_command(a_paragraph)
-end getHeaderCommand
-
-on getNameWithSuffix(a_suffix)
-	return name_for_suffix(a_suffix)
-end getNameWithSuffix
-
-on getHeaderCommandFromFile()
-	return lookup_header_commands_from_file()
-end getHeaderCommandFromFile
-
-on buildCommand(a_command, a_suffix)
-	build_command(a_command, a_suffix)
-end buildCommand
-
-on checkLogFileStatus()
-	return check_logfile()
-end checkLogFileStatus
-*)

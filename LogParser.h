@@ -27,7 +27,7 @@
 }
 
 //puclic method
-- (id) initWithContentsOfFile:(NSString *)path;
+- (id)initWithContentsOfFile:(NSString *)path encodingName:(NSString *)aEncName;
 
 - (id) initWithString:(NSString *)targetText;
 

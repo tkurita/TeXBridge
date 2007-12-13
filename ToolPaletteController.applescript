@@ -8,12 +8,12 @@ on initilize()
 	call method "retain" of targetWindow
 end initilize
 
-on openWindow()
+on open_window()
 	if WindowController is missing value then
 		initilize()
 	end if
 	call method "showWindow:" of WindowController
-end openWindow
+end open_window
 
 on showStatusMessage(theMessage)
 	if (WindowController is not missing value) then

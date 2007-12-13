@@ -2,9 +2,9 @@ global EditCommands
 global UtilityHandlers
 global LogFileParser
 global MessageUtility
-global PDFObj
-global DviObj
-global TexDocObj
+global PDFController
+global DVIController
+global TeXDocController
 global appController
 global RefPanelController
 global ToolPaletteController
@@ -16,6 +16,8 @@ global ShellUtils
 global TerminalCommander
 global PathConverter
 global StringEngine
+global FrontDocument
+global XFile
 
 --special values
 global comDelim
@@ -59,7 +61,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 		return missing value
 	end if
 	
-	set a_texdoc to TexDocObj's make_with(a_tex_file, EditorClient's text_encoding())
+	set a_texdoc to TeXDocController's make_with(a_tex_file, EditorClient's text_encoding())
 	if a_tex_file is missing value then
 		a_texdoc's set_filename(EditorClient's document_name())
 	end if
@@ -69,49 +71,17 @@ end texdoc_for_firstdoc
 on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	--log "start checkmifiles"
 	
-	(*
-	try
-		tell application "mi"
-			tell document 1
-				set docname to name
-				if mode is not in supportedMode then
-					set a_message to UtilityHandlers's localized_string("invalidMode", {docname})
-					showMessage(a_message) of MessageUtility
-					error "The mode of the document is not supported." number 1205
-				end if
-				set theTargetFile to file
-				set theParagraph to index of paragraph 1 of selection object 1
-			end tell
-		end tell
-	on error errMsg number -1728
-		set theMessage to localized string "noDocument"
-		showMessage(theMessage) of MessageUtility
-		error "No opened documents." number 1240
-	end try
+	set a_texdoc to texdoc_for_firstdoc with showing_message and need_file
+	if a_texdoc is missing value then return
 	
-	try
-		set theTargetFile to theTargetFile as alias
-	on error
-		set a_message to UtilityHandlers's localized_string("DocumentIsNotSaved", {docname})
-		showMessageOnmi(a_message) of MessageUtility
-		error "The document is not saved." number 1200
-	end try
-	
-	--log "before makeObj of TexDocObj"
-	set theTexDocObj to TexDocObj's make_with(theTargetFile, EditorClient's text_encoding())
-	--log "success make of TexDocObj"
-	*)
-	set theTexDocObj to texdoc_for_firstdoc with showing_message and need_file
-	if theTexDocObj is missing value then return
-	
-	theTexDocObj's set_doc_position(EditorClient's index_current_paragraph())
+	a_texdoc's set_doc_position(EditorClient's index_current_paragraph())
 	(* find header commands *)
 	set ith to 1
 	repeat
 		set theParagraph to EditorClient's paragraph_at_index(ith)
 		if theParagraph starts with "%" then
 			try
-				theTexDocObj's lookup_header_command(theParagraph)
+				a_texdoc's lookup_header_command(theParagraph)
 			on error errMsg number errno
 				if errno is in {1220, 1230} then
 					EditorClient's show_message(errMsg)
@@ -135,47 +105,26 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 				EditorClient's save_document()
 			end if
 		end if
-		
-		--set textDoYouSave to localized string "doYouSave"
-		--set textIsModified to localized string "isModified"
-		--set textADocument to localized string "aDocument"
-		(*				
-		tell application "mi"
-			if modified of document 1 then
-				if not autosaveFlag then
-					set docname to name of document 1
-					try
-						
-						set theResult to display dialog textADocument & space & sQ & docname & eQ & space & textIsModified & return & textDoYouSave with icon note
-						-- if canceld, error number -128
-					on error errMsg number -128
-						error "The documen is modified. Saving the document is canceld by user." number 1210
-					end try
-				end if
-				save document 1
-			end if
-		end tell
-		*)
 	end if
 	--log "end of checkmifiles"
-	return theTexDocObj
+	return a_texdoc
 end checkmifiles
 
-on prepareTypeSet()
-	--log "start prepareTypeSet"	
-	set theTexDocObj to checkmifiles with saving and autosave
-	--log "end of checkmifiles in prepareTypeSet"
-	if not (theTexDocObj's check_logfile()) then
-		set a_path to theTexDocObj's logfile()'s posix_path()
-		set a_msg to UtilityHandlers's localized_string("LogFileIsOpened", a_path)
+on prepare_typeset()
+	--log "start prepare_typeset"	
+	set a_texdoc to checkmifiles with saving and autosave
+	--log "end of checkmifiles in prepare_typeset"
+	if not (a_texdoc's check_logfile()) then
+		set a_path to a_texdoc's logfile()'s posix_path()
+		set a_msg to UtilityHandlers's localized_string("LogFileIsOpened", {a_path})
 		EditorClient's show_message(a_msg)
 		return missing value
 	end if
-	--log "end of prepareTypeSet"
-	return theTexDocObj
-end prepareTypeSet
+	--log "end of prepare_typeset"
+	return a_texdoc
+end prepare_typeset
 
-on prepareVIewErrorLog(theLogFileParser, theDviObj)
+on prepareVIewErrorLog(theLogFileParser, a_dvi)
 	using terms from application "mi"
 		try
 			set auxFileRef to (path_for_suffix(".aux") of theLogFileParser) as alias
@@ -200,33 +149,33 @@ on newLogFileParser(a_texdoc)
 	return LogFileParser's make_with(a_texdoc)
 end newLogFileParser
 
-on doTypeSet()
-	--log "start doTypeset"
+on do_typeset()
+	--log "start do_typeset"
 	try
-		set theTexDocObj to prepareTypeSet()
+		set a_texdoc to prepare_typeset()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "doTypeSet", errMsg) of MessageUtility
+			showError(errNum, "do_typeset", errMsg) of MessageUtility
 		end if
 		return missing value
 	end try
-	if theTexDocObj is missing value then
+	if a_texdoc is missing value then
 		return missing value
 	end if
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
-		set theDviObj to typeset() of theTexDocObj
+		set a_dvi to typeset() of a_texdoc
 	on error number 1250
 		return missing value
 	end try
-	set theLogFileParser to newLogFileParser(theTexDocObj)
+	set theLogFileParser to newLogFileParser(a_texdoc)
 	showStatusMessage("Analyzing log text ...") of ToolPaletteController
 	parseLogFile() of theLogFileParser
 	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
 	if (autoMultiTypeset and (theLogFileParser's labels_changed())) then
 		showStatusMessage("Typeseting...") of ToolPaletteController
 		try
-			set theDviObj to typeset() of theTexDocObj
+			set a_dvi to typeset() of a_texdoc
 		on error number 1250
 			return missing value
 		end try
@@ -234,111 +183,141 @@ on doTypeSet()
 		parseLogFile() of theLogFileParser
 	end if
 	
-	prepareVIewErrorLog(theLogFileParser, theDviObj)
+	prepareVIewErrorLog(theLogFileParser, a_dvi)
 	--viewErrorLog(theLogFileParser, "latex")
-	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
+	rebuildLabelsFromAux(a_texdoc) of RefPanelController
 	showStatusMessage("") of ToolPaletteController
 	if (isDviOutput() of theLogFileParser) then
-		return theDviObj
+		return a_dvi
 	else
 		set theMessage to localized string "DVIisNotGenerated"
 		showMessage(theMessage) of MessageUtility
 		return missing value
 	end if
-end doTypeSet
+end do_typeset
 
 on logParseOnly()
 	--log "start logParseOnly"
-	set theTexDocObj to prepareTypeSet()
-	theTexDocObj's check_logfile()
-	set theLogFileParser to newLogFileParser(theTexDocObj)
+	set a_texdoc to prepare_typeset()
+	a_texdoc's check_logfile()
+	set theLogFileParser to newLogFileParser(a_texdoc)
 	parseLogFile() of theLogFileParser
 end logParseOnly
 
-on dviPreview()
-	--log "start dviPreview"
+on preview_dvi_for_frontdoc()
+	--log "start preview_dvi_for_frontdoc"
+	set front_doc to make FrontDocument
+	set a_file to document_alias() of front_doc
+	set a_xfile to XFile's make_with(a_file)
+	if a_xfile's path_extension() is ".dvi" then
+		return true
+	end if
+	
+	set dvi_file to a_xfile's change_path_extension(".dvi")
+	if not dvi_file's item_exists() then
+		return false
+	end if
+	
+	set a_dvi to DVIController's make_with_xfile(dvi_file)
+	--log "before open dvi"
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
-		theTexDocObj's set_use_term(false)
+		openDVI of a_dvi with activation
+	on error errMsg number errNum
+		showError(errNum, "preview_dvi_for_frontdoc", errMsg) of MessageUtility
+	end try
+	--log "end preview_dvi_for_frontdoc"
+	return true
+end preview_dvi_for_frontdoc
+
+on preview_dvi()
+	--log "start preview_dvi"
+	if not EditorClient's is_frontmost() then
+		if preview_dvi_for_frontdoc() then return
+	end if
+	
+	try
+		set a_texdoc to checkmifiles without saving and autosave
+		a_texdoc's set_use_term(false)
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "dviPreview", errMsg) of MessageUtility
+			showError(errNum, "preview_dvi", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	--log "before lookup_dvi"
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
-	set theDviObj to lookup_dvi() of theTexDocObj
+	set a_dvi to a_texdoc's lookup_dvi()
 	--log "before openDVI"
-	if theDviObj is not missing value then
+	if a_dvi is not missing value then
 		try
-			openDVI of theDviObj with activation
+			openDVI of a_dvi with activation
 		on error errMsg number errNum
-			showError(errNum, "dviPreview", errMsg) of MessageUtility
+			showError(errNum, "preview_dvi", errMsg) of MessageUtility
 		end try
 	else
-		set dviName to name_for_suffix(".dvi") of theTexDocObj
-		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", dviName)
+		set dviName to name_for_suffix(".dvi") of a_texdoc
+		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
 		EditorClient's show_message(a_msg)
 	end if
-	--log "end dviPreview"
-end dviPreview
+	--log "end preview_dvi"
+end preview_dvi
 
-on pdfPreview()
+on preview_pdf()
+	
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
+		set a_texdoc to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "dviPreview", errMsg) of MessageUtility
+			showError(errNum, "preview_dvi", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	showStatusMessage("Opening PDF file ...") of ToolPaletteController
-	set thePDFObj to makeObj(theTexDocObj) of PDFObj
-	setPDFObj() of thePDFObj
-	if isExistPDF() of thePDFObj then
-		openPDFFile() of thePDFObj
+	set a_pdf to PDFController's make_with(a_texdoc)
+	a_pdf's setup()
+	if isExistPDF() of a_pdf then
+		openPDFFile() of a_pdf
 	else
 		EditorClient's show_message(localized string "noPDFfile")
 	end if
-end pdfPreview
+end preview_pdf
 
-on quickTypesetAndPreview()
-	--log "start quickTypesetAndPreview"
+on quick_typeset_preview()
+	--log "start quick_typeset_preview"
 	try
-		set theTexDocObj to prepareTypeSet()
+		set a_texdoc to prepare_typeset()
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then -- "The document is not saved."
-			showError(errNum, "quickTypesetAndPreview after calling prepareTypeSet", errMsg) of MessageUtility
+			showError(errNum, "quick_typeset_preview after calling prepare_typeset", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	
-	if theTexDocObj is missing value then
+	if a_texdoc is missing value then
 		return
 	end if
 	
-	theTexDocObj's set_use_term(false)
-	--log "before texCompile in quickTypesetAndPreview"
+	a_texdoc's set_use_term(false)
+	--log "before texCompile in quick_typeset_preview"
 	showStatusMessage("Typeseting...") of ToolPaletteController
 	try
-		set theDviObj to typeset() of theTexDocObj
+		set a_dvi to typeset() of a_texdoc
 	on error number 1250
 		return
 	end try
-	--log "after texCompile in quickTypesetAndPreview"
+	--log "after texCompile in quick_typeset_preview"
 	showStatusMessage("Analyzing log text ...") of ToolPaletteController
-	set theLogFileParser to newLogFileParser(theTexDocObj)
-	--log "befor parseLogText in quickTypesetAndPreview"
+	set theLogFileParser to newLogFileParser(a_texdoc)
+	--log "befor parseLogText in quick_typeset_preview"
 	parseLogText() of theLogFileParser
-	--log "after parseLogText in quickTypesetAndPreview"
+	--log "after parseLogText in quick_typeset_preview"
 	showStatusMessage("Opening DVI file  ...") of ToolPaletteController
 	set aFlag to isNoError() of theLogFileParser
 	if isDviOutput() of theLogFileParser then
 		try
-			openDVI of theDviObj given activation:aFlag
+			openDVI of a_dvi given activation:aFlag
 		on error errMsg number errNum
-			showError(errNum, "quickTypesetAndPreview after calling openDVI", errMsg) of MessageUtility
+			showError(errNum, "quick_typeset_preview after calling openDVI", errMsg) of MessageUtility
 		end try
 	else
 		set theMessage to localized string "DVIisNotGenerated"
@@ -352,81 +331,81 @@ on quickTypesetAndPreview()
 	end if
 	
 	--log "before prepareVIewErrorLog"
-	--prepareVIewErrorLog(theLogFileParser, theDviObj)
+	--prepareVIewErrorLog(theLogFileParser, a_dvi)
 	--viewErrorLog(theLogFileParser, "latex")
-	rebuildLabelsFromAux(theTexDocObj) of RefPanelController
+	rebuildLabelsFromAux(a_texdoc) of RefPanelController
 	showStatusMessage("") of ToolPaletteController
-end quickTypesetAndPreview
+end quick_typeset_preview
 
-on typesetAndPreview()
-	set theDviObj to doTypeSet()
+on typeset_preview()
+	set a_dvi to do_typeset()
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
-	if theDviObj is not missing value then
+	if a_dvi is not missing value then
 		try
-			openDVI of theDviObj given activation:missing value
+			openDVI of a_dvi given activation:missing value
 		on error errMsg number errNum
-			showError(errNum, "typesetAndPreview", errMsg) of MessageUtility
+			showError(errNum, "typeset_preview", errMsg) of MessageUtility
 		end try
 	end if
-end typesetAndPreview
+end typeset_preview
 
-on typesetAndPDFPreview()
-	set theDviObj to doTypeSet()
+on typeset_preview_pdf()
+	set a_dvi to do_typeset()
 	
-	if theDviObj is missing value then
+	if a_dvi is missing value then
 		return
 	end if
-	set thePDFObj to dviToPDF() of theDviObj
+	set a_pdf to dvi_to_pdf() of a_dvi
 	showStatusMessage("Opening PDF file ...") of ToolPaletteController
-	if thePDFObj is missing value then
+	if a_pdf is missing value then
 		set theMessage to localized string "PDFisNotGenerated"
 		showMessage(theMessage) of MessageUtility
 	else
-		openPDFFile() of thePDFObj
+		openPDFFile() of a_pdf
 	end if
-end typesetAndPDFPreview
+end typeset_preview_pdf
 
 on openOutputHadler(an_extension)
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
+		set a_texdoc to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "openOutputHadler", errMsg) of MessageUtility
 		end if
 		return
 	end try
-	open_outfile(an_extension) of theTexDocObj
+	open_outfile(an_extension) of a_texdoc
 end openOutputHadler
 
-on bibTex()
+on bibtex()
 	set bibtexCommand to contents of default entry "bibtexCommand" of user defaults
 	execTexCommand(bibtexCommand, "", true)
-end bibTex
+end bibtex
 
-on lookUpDviFromEditor()
-	--log "start lookUpDviFromEditor"
+on dvi_from_editor()
+	--log "start dvi_from_editor"
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
+		set a_texdoc to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "dviToPDF", errMsg) of MessageUtility
+			showError(errNum, "dvi_to_pdf", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	
-	set theDviObj to lookup_dvi() of theTexDocObj
-	if theDviObj is missing value then
-		set dviName to theTexDocObj's name_for_suffix(".dvi")
-		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", dviName)
+	set a_dvi to lookup_dvi() of a_texdoc
+	if a_dvi is missing value then
+		set dviName to a_texdoc's name_for_suffix(".dvi")
+		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
 		EditorClient's show_message(a_msg)
 	end if
 	
-	--log "end lookUpDviFromEditor"
-	return theDviObj
-end lookUpDviFromEditor
+	--log "end dvi_from_editor"
+	return a_dvi
+end dvi_from_editor
 
-on lookUpDviFromMxdvi()
-	--log "start lookUpDviFromMxdvi"
+on dvi_from_mxdvi()
+	--log "start dvi_from_mxdvi"
 	set fileURL to missing value
 	tell application "System Events"
 		tell process "Mxdvi"
@@ -446,68 +425,67 @@ on lookUpDviFromMxdvi()
 	end if
 	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
 	set thePath to call method "path" of theURL
-	set theTexDocObj to TexDocObj's make_with_dvifile(thePath)
-	set theDviObj to lookup_dvi() of theTexDocObj
-	return theDviObj
-end lookUpDviFromMxdvi
+	set a_texdoc to TeXDocController's make_with_dvifile(thePath)
+	set a_dvi to lookup_dvi() of a_texdoc
+	return a_dvi
+end dvi_from_mxdvi
 
-on dviToPDF()
-	--log "start dviToPDF"
+on dvi_to_pdf()
+	--log "start dvi_to_pdf"
 	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
-	set appName to (path to frontmost application as Unicode text)
+	set front_app to (path to frontmost application as Unicode text)
 	--log appName
-	if appName ends with "Mxdvi.app:" then
-		set theDviObj to lookUpDviFromMxdvi()
+	if front_app ends with "Mxdvi.app:" then
+		set a_dvi to dvi_from_mxdvi()
 	else
-		set theDviObj to missing value
-		--set theDviObj to lookUpDviFromMxdvi()
+		set a_dvi to missing value
+		--set a_dvi to dvi_from_mxdvi()
 	end if
 	
-	if theDviObj is missing value then
-		set theDviObj to lookUpDviFromEditor()
+	if a_dvi is missing value then
+		set a_dvi to dvi_from_editor()
 	end if
 	
-	if theDviObj is missing value then
+	if a_dvi is missing value then
 		return
 	end if
 	
-	set thePDFObj to dviToPDF() of theDviObj
-	--log "success to get PDFObj"
-	if thePDFObj is missing value then
+	set a_pdf to dvi_to_pdf() of a_dvi
+	--log "success to get PDFController"
+	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")
 	else
-		openPDFFile() of thePDFObj
+		openPDFFile() of a_pdf
 	end if
-end dviToPDF
+end dvi_to_pdf
 
-on dviToPS()
+on dvi_to_ps()
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
+		set a_texdoc to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "dviToPS", errMsg) of MessageUtility
+			showError(errNum, "dvi_to_ps", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	showStatusMessage("Converting DVI to PDF ...") of ToolPaletteController
-	if dvipsCommand of theTexDocObj is not missing value then
-		set theCommand to dvipsCommand of theTexDocObj
+	if dvipsCommand of a_texdoc is not missing value then
+		set theCommand to dvipsCommand of a_texdoc
 	else
 		set theCommand to contents of default entry "dvipsCommand" of user defaults
 	end if
 	
-	--set cdCommand to "cd " & (quoted form of POSIX path of (theTexDocObj's pwd()))
-	set cdCommand to "cd " & (quoted form of (theTexDocObj's pwd()'s posix_path()))
-	set theCommand to buildCommand(theCommand, ".dvi") of theTexDocObj
+	set cdCommand to "cd " & (quoted form of (a_texdoc's pwd()'s posix_path()))
+	set theCommand to buildCommand(theCommand, ".dvi") of a_texdoc
 	set allCommand to cdCommand & comDelim & theCommand
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
-end dviToPS
+end dvi_to_ps
 
 --simply execute TeX command in Terminal
 on execTexCommand(texCommand, theSuffix, checkSaved)
 	try
-		set theTexDocObj to checkmifiles without autosave given saving:checkSaved
+		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
 			showError(errNum, "execTexCommand", errMsg) of MessageUtility
@@ -515,28 +493,27 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 		return
 	end try
 	
-	--set cdCommand to "cd " & (quoted form of POSIX path of (theTexDocObj's pwd()))
-	set cdCommand to "cd " & (quoted form of (theTexDocObj's pwd()'s posix_path()))
-	set texCommand to buildCommand(texCommand, theSuffix) of theTexDocObj
+	set cdCommand to "cd " & (quoted form of (a_texdoc's pwd()'s posix_path()))
+	set texCommand to buildCommand(texCommand, theSuffix) of a_texdoc
 	set allCommand to cdCommand & comDelim & texCommand
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 end execTexCommand
 
-on seekExecEbb()
+on seek_ebb()
 	set graphicCommand to _backslash & "includegraphics"
 	
 	try
-		set theTexDocObj to checkmifiles without saving and autosave
+		set a_texdoc to checkmifiles without saving and autosave
 	on error errMsg number errNum
 		if errNum is not in ignoringErrorList then
-			showError(errNum, "seekExecEbb", errMsg) of MessageUtility
+			showError(errNum, "seek_ebb", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	
-	--set theOriginPath to POSIX path of (theTexDocObj's file_ref())
-	set theOriginPath to (theTexDocObj's file_ref()'s posix_path())
+	--set theOriginPath to POSIX path of (a_texdoc's file_ref())
+	set theOriginPath to (a_texdoc's file_ref()'s posix_path())
 	set_base_path(theOriginPath) of PathConverter
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
@@ -562,12 +539,12 @@ on seekExecEbb()
 	end repeat
 	
 	if noGraphicFlag then
-		set a_msg to UtilityHandlers's localized_string("noGraphicFile", theTexDocObj's fileName())
+		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's fileName()})
 		EditorClient's show_message(a_msg)
 	else if noNewBBFlag then
 		EditorClient's show_message(localized string "bbAlreadyCreated")
 	end if
-end seekExecEbb
+end seek_ebb
 
 on execEbb(theGraphicPath, an_extension)
 	set basepath to text 1 thru -((length of an_extension) + 1) of theGraphicPath
@@ -597,8 +574,8 @@ on execEbb(theGraphicPath, an_extension)
 	return true
 end execEbb
 
-on execmendex()
+on mendex()
 	--log "start execmendex"
 	set mendexCommand to contents of default entry "mendexCommand" of user defaults
 	execTexCommand(mendexCommand, ".idx", false)
-end execmendex
+end mendex

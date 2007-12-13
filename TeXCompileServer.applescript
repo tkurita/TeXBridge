@@ -13,6 +13,7 @@ property XList : XDict's XList
 property XText : load("XText")
 property PathAnalyzer : XFile's PathAnalyzer
 property StringEngine : PathConverter's StringEngine
+property FrontDocument : load("FrontDocument")
 property TerminalCommanderBase : load("TerminalCommander")
 
 property appController : missing value
@@ -25,8 +26,6 @@ property dQ : ASCII character 34
 property _backslash : missing value
 property yenmark : ASCII character 92
 property comDelim : return
-property sQ : missing value
-property eQ : missing value
 
 property constantsDict : missing value
 
@@ -38,13 +37,13 @@ property DefaultsManager : missing value
 property ToolPaletteController : missing value
 property SettingWindowController : missing value
 property LogFileParser : missing value
-property ReplaceInputObj : missing value
+property ReplaceInput : missing value
 property EditCommands : missing value
 property TerminalCommander : missing value
-property TeXCompileObj : missing value
-property PDFObj : missing value
-property TexDocObj : missing value
-property DviObj : missing value
+property CompileCenter : missing value
+property PDFController : missing value
+property TeXDocController : missing value
+property DVIController : missing value
 property RefPanelController : missing value
 property SheetManager : missing value
 property AuxData : missing value
@@ -73,7 +72,7 @@ on launched theObject
 	end if
 	if showToolPaletteWhenLaunched then
 		showStartupMessage("Opening Tool Palette ...")
-		openWindow() of ToolPaletteController
+		open_window() of ToolPaletteController
 	end if
 	
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
@@ -83,39 +82,39 @@ on launched theObject
 	end if
 	if showRefPaletteWhenLaunched then
 		showStartupMessage("Opening Reference Palette ...")
-		openWindow() of RefPanelController
+		open_window() of RefPanelController
 	end if
 	hide window "Startup"
 	
 	(*debug code*)
 	(*open window*)
-	--openWindow() of RefPanelController
-	--openWindow() of ToolPaletteController
-	--openWindow() of SettingWindowController
+	--open_window() of RefPanelController
+	--open_window() of ToolPaletteController
+	--open_window() of SettingWindowController
 	
 	
 	(*exec tex commands*)
-	--dviToPDF() of TeXCompileObj
-	--logParseOnly() of TeXCompileObj
+	--dvi_to_pdf() of CompileCenter
+	--logParseOnly() of CompileCenter
 	--openRelatedFile of EditCommands without revealOnly
-	--dviPreview() of TeXCompileObj
-	--pdfPreview() of TeXCompileObj
-	--execmendex() of TeXCompileObj
+	--preview_dvi() of CompileCenter
+	--preview_pdf() of CompileCenter
+	--execmendex() of CompileCenter
 	--openParentFile() of EditCommands
-	--seekExecEbb() of TeXCompileObj
-	--dviToPS() of TeXCompileObj
-	--dviPreview() of TeXCompileObj
-	--doTypeSet() of TeXCompileObj
-	--typesetAndPreview() of TeXCompileObj
+	--seek_ebb() of CompileCenter
+	--dvi_to_ps() of CompileCenter
+	--preview_dvi() of CompileCenter
+	--do_typeset() of CompileCenter
+	--typeset_preview() of CompileCenter
 	--debug()
 	--checkmifiles with saving
-	--quickTypesetAndPreview() of TeXCompileObj
+	--quick_typeset_preview() of CompileCenter
 	
 	(*misc*)
 	--set theResult to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--openRelatedFile with revealOnly
-	--open "replaceInput"
+	--open "ReplaceInput"
 	--call method "showHelp:"
 	--call method "currentDocumentMode" of class "EditorClient"
 	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
@@ -124,65 +123,40 @@ on launched theObject
 	--log "end of launched"
 end launched
 
-on doCompileCommnad(theCommandID)
-	if theCommandID is "typesetOnly" then
-		doTypeSet() of TeXCompileObj
-	else if theCommandID is "typesetAndPreview" then
-		typesetAndPreview() of TeXCompileObj
-	else if theCommandID is "quickTypesetAndPreview" then
-		quickTypesetAndPreview() of TeXCompileObj
-	else if theCommandID is "typesetAndPDFPreview" then
-		typesetAndPDFPreview() of TeXCompileObj
-	else if theCommandID is "dviPreview" then
-		dviPreview() of TeXCompileObj
-	else if theCommandID is "pdfPreview" then
-		pdfPreview() of TeXCompileObj
-	else if theCommandID is "bibTex" then
-		bibTex() of TeXCompileObj
-	else if theCommandID is "dviToPDF" then
-		dviToPDF() of TeXCompileObj
-	else if theCommandID is "seekExecEbb" then
-		seekExecEbb() of TeXCompileObj
-	else if theCommandID is "dvips" then
-		dviToPS() of TeXCompileObj
-	else if theCommandID is "mendex" then
-		execmendex() of TeXCompileObj
-	else
-		showMessage("Unknown commandID : " & theCommandID) of MessageUtility
-	end if
-end doCompileCommnad
 
-on doEditSupportCommand(theCommandID)
+on doEditSupportCommand(command_id)
 	--log "start doEditSupportCommand"
-	if theCommandID is "replaceInput" then
-		if ReplaceInputObj is missing value then
-			set ReplaceInputObj to importScript("ReplaceInputObj")
-		end if
-		do() of ReplaceInputObj
-		
-	else if theCommandID is "openRelatedFile" then
+	if command_id is "openRelatedFile" then
 		openRelatedFile of EditCommands without revealOnly
-	else if theCommandID is "revealRelatedFile" then
+	else if command_id is "revealRelatedFile" then
 		openRelatedFile of EditCommands with revealOnly
-	else if theCommandID is "openParentFile" then
+	else if command_id is "openParentFile" then
 		openParentFile() of EditCommands
 	else
-		showMessage("Unknown commandID : " & theCommandID) of MessageUtility
+		showMessage("Unknown commandID : " & command_id) of MessageUtility
 	end if
 end doEditSupportCommand
+
+on do_replaceinput()
+	if ReplaceInput is missing value then
+		set ReplaceInput to importScript("ReplaceInput")
+	end if
+	ReplaceInput's do()
+end do_replaceinput
 
 on open theObject
 	--log "start open"
 	--stopTimer() of ToolPaletteController
 	stopTimer() of RefPanelController
 	--call method "temporaryStopDisplayToggleTimer" of WindowVisibilityController
-	if class of theObject is record then
-		set theCommandClass to commandClass of theObject
-		set theCommandID to commandID of theObject
-		
-		if theCommandClass is "compile" then
+	set a_class to class of theObject
+	if a_class is record then
+		set command_class to commandClass of theObject
+		if command_class is "action" then
+			theObject's commandScript's do(me)
+		else if command_class is "compile" then
 			try
-				doCompileCommnad(theCommandID)
+				theObject's commandScript's do(CompileCenter)
 			on error errMsg number errNum
 				if errNum is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
 					showError(errNum, "open", errMsg) of MessageUtility
@@ -192,34 +166,20 @@ on open theObject
 			end try
 			showStatusMessage("") of ToolPaletteController
 			
-		else if theCommandClass is "editSupport" then
-			doEditSupportCommand(theCommandID)
+		else if command_class is "editSupport" then
+			doEditSupportCommand(commandID of theObject)
 		else
-			showMessage("Unknown commandClass : " & theCommandClass) of MessageUtility
+			showMessage("Unknown commandClass : " & command_class) of MessageUtility
 		end if
 	else
-		set theCommandID to theObject
+		set command_id to theObject
 		
-		if theCommandID is "setting" then
-			openWindow() of SettingWindowController
-		else if theCommandID is "Help" then
-			call method "showHelp:"
-		else if theCommandID is "ShowToolPalette" then
-			openWindow() of ToolPaletteController
-		else if theCommandID is "ToggleRefPalette" then
-			toggle_visibility() of RefPanelController
-		else if theCommandID is "ShowRefPalette" then
-			openWindow() of RefPanelController
-		else if theCommandID is "ShowLogWindow" then
-			set logManager to call method "sharedLogManager" of class "LogWindowController"
-			call method "showWindow:" of logManager
-			activate
-		else if theCommandID starts with "." then
-			openOutputHadler(theCommandID) of TeXCompileObj
-		else if theCommandID ends with ".tex" then
+		if command_id starts with "." then
+			openOutputHadler(command_id) of CompileCenter
+		else if command_id ends with ".tex" then
 			--ignoring application responses
 			tell application "Finder"
-				open theCommandID using miAppRef
+				open command_id using miAppRef
 			end tell
 			--end ignoring
 			tell user defaults
@@ -227,7 +187,7 @@ on open theObject
 			end tell
 			doReverseSearch(targetLine)
 		else
-			showMessage("Unknown argument : " & theCommandID) of MessageUtility
+			showMessage("Unknown argument : " & command_id) of MessageUtility
 		end if
 		
 	end if
@@ -243,9 +203,9 @@ on clicked theObject
 	if theTag is 1 then
 		controlClicked(theObject) of TerminalSettingObj
 	else if theTag is 6 then
-		controlClicked(theObject) of ReplaceInputObj
+		controlClicked(theObject) of ReplaceInput
 	else if theTag is 7 then
-		controlClicked(theObject) of PDFObj
+		controlClicked(theObject) of PDFController
 	else
 		controlClicked(theObject)
 	end if
@@ -254,7 +214,7 @@ end clicked
 on controlClicked(theObject)
 	set theName to name of theObject
 	if theName is "Reload" then
-		watchmi() of RefPanelController
+		watchmi of RefPanelController with force_reloading
 	else if theName is "RevertToDefault" then
 		RevertToDefault() of SettingWindowController
 	else if theName is "usemi" then
@@ -272,18 +232,15 @@ on choose menu item theObject
 	--log "start choose menu item"
 	set theName to name of theObject
 	if theName is "Preference" then
-		openWindow() of SettingWindowController
+		open_window() of SettingWindowController
 	else if theName is "ShowToolPalette" then
-		openWindow() of ToolPaletteController
+		open_window() of ToolPaletteController
 	else if theName is "ShowRefPalette" then
-		openWindow() of RefPanelController
+		open_window() of RefPanelController
 	end if
 end choose menu item
 
 on setUpConstants()
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
-	
 	tell application "System Events"
 		set theVer to version of miAppRef
 	end tell
@@ -317,10 +274,10 @@ on will finish launching theObject
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set LogFileParser to importScript("LogFileParser")
 	set EditCommands to importScript("EditCommands")
-	set PDFObj to importScript("PDFObj")
-	set TeXCompileObj to importScript("TeXCompileObj")
-	set TexDocObj to importScript("TeXDocObj")
-	set DviObj to importScript("DVIObj")
+	set PDFController to importScript("PDFController")
+	set CompileCenter to importScript("CompileCenter")
+	set TeXDocController to importScript("TeXDocController")
+	set DVIController to importScript("DVIController")
 	set SettingWindowController to importScript("SettingWindowController")
 	set ToolPaletteController to importScript("ToolPaletteController")
 	set TerminalCommander to make_obj() of (importScript("TerminalCommander"))
@@ -333,15 +290,11 @@ on will finish launching theObject
 	--log "end of import library"
 	showStartupMessage("Loading Preferences ...")
 	
-	--log "start of initializeing PDFObj"
-	loadSettings() of PDFObj
+	--log "start of initializeing PDFController"
+	loadSettings() of PDFController
 	
 	--log "start of initilizing TerminalSettingObj"
 	loadSettings() of TerminalSettingObj
-	--log "end of setting TerminalSettingObj"
-	
-	
-	--set WindowVisibilityController to call method "visibilityController" of class "PaletteWindowController"
 	--log "end will finish launching"
 end will finish launching
 
@@ -370,11 +323,11 @@ on end editing theObject
 end end editing
 
 on selection changed theObject
-	selectionChanged(theObject) of ReplaceInputObj
+	selectionChanged(theObject) of ReplaceInput
 end selection changed
 
 on should selection change theObject
-	return shouldSelectionChange(theObject) of ReplaceInputObj
+	return shouldSelectionChange(theObject) of ReplaceInput
 end should selection change
 
 on will quit theObject

@@ -30,6 +30,33 @@
 	<integer>0</integer>
 	<key>DonationURL</key>
 	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
+	<key>EncodingTable</key>
+	<array>
+		<dict>
+			<key>id</key>
+			<integer>8</integer>
+			<key>name</key>
+			<string>Shift_JIS</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<integer>4</integer>
+			<key>name</key>
+			<string>UTF-8</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<integer>3</integer>
+			<key>name</key>
+			<string>EUC-JP</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<integer>21</integer>
+			<key>name</key>
+			<string>ISO-2022-JP</string>
+		</dict>
+	</array>
 	<key>ExecutionString</key>
 	<string>source ~/Library/Preferences/mi/mode/TEX/initialize.sh</string>
 	<key>IsChangeBackground</key>

@@ -3,7 +3,7 @@ global ScriptImporter
 global EditorClient
 global AuxData
 
-property LabelListObj : missing value
+property LabelListController : missing value
 property WindowController : missing value
 property targetWindow : missing value
 global miAppRef
@@ -23,19 +23,19 @@ on restartTimer()
 	end if
 end restartTimer
 
-on rebuildLabelsFromAux(theTexDocObj)
+on rebuildLabelsFromAux(a_texdoc)
 	if WindowController is missing value then
 		return
 	end if
 	
 	if visible of targetWindow then
-		rebuildLabelsFromAux(theTexDocObj) of LabelListObj
+		rebuildLabelsFromAux(a_texdoc) of LabelListController
 	end if
 end rebuildLabelsFromAux
 
-on watchmi()
+on watchmi given force_reloading:force_flag
 	--log "start watchmi in RefPanelController"
-	watchmi() of LabelListObj
+	watchmi of LabelListController given force_reloading:force_flag
 	--log "end watchmi in RefPanelController"
 end watchmi
 
@@ -102,29 +102,29 @@ on initilize()
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
 	set targetWindow to call method "window" of WindowController
 	call method "retain" of targetWindow
-	set LabelListObj to ScriptImporter's do("LabelListObj")
-	initialize(data source "LabelDataSource") of LabelListObj
-	--set outlineView of LabelListObj to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
+	set LabelListController to ScriptImporter's do("LabelListController")
+	initialize(data source "LabelDataSource") of LabelListController
+	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
 	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
 	--log "end initialize in RefPanelController"
 end initilize
 
 on toggle_visibility()
 	if WindowController is missing value then
-		openWindow()
+		open_window()
 		call method "activateSelf" of class "SmartActivate"
 	end if
 	
 	if (visible of targetWindow) then
 		close targetWindow
 	else
-		openWindow()
+		open_window()
 		call method "activateSelf" of class "SmartActivate"
 	end if
 end toggle_visibility
 
-on openWindow()
-	--log "start openWindow in RefPanelController"
+on open_window()
+	--log "start open_window in RefPanelController"
 	set is_first to false
 	if WindowController is missing value then
 		initilize()
@@ -136,10 +136,10 @@ on openWindow()
 	--log "after showWIndow"
 	--if (is_first or (isWorkingDisplayToggleTimer is 0)) then
 	if is_first then
-		watchmi() of LabelListObj
+		watchmi of LabelListController without force_reloading
 	end if
-	--log "end openWindow in RefPanelController"
-end openWindow
+	--log "end open_window in RefPanelController"
+end open_window
 
 on isOpened()
 	if WindowController is missing value then

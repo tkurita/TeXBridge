@@ -11,6 +11,19 @@
 id EditorClient;
 static id sharedObj;
 
+NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
+{
+	NSMutableArray *encoding_table = [[[NSUserDefaults standardUserDefaults] 
+											arrayForKey:@"EncodingTable"] mutableCopy];
+	if (firstCandidateName) {
+		NSPredicate *a_predicate = [NSPredicate predicateWithFormat:@"name == %@", firstCandidateName];
+		NSDictionary *first_candidate = [[encoding_table filteredArrayUsingPredicate:a_predicate] lastObject];
+		[encoding_table removeObject:first_candidate];
+		[encoding_table insertObject:first_candidate atIndex:0];
+	}
+	return [encoding_table valueForKey:@"id"];
+}
+
 @implementation AppController
 
 + (void)initialize	// Early initialization

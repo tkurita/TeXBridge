@@ -1,6 +1,8 @@
 #import "LogParser.h"
 #import "LogWindowController.h"
 #import "FileRecord.h"
+#import "AppController.h"
+#import "CocoaLib/StringExtra.h"
 
 #define useLog 0 //Yes:1, No:0
 
@@ -65,14 +67,16 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	return self;
 }
 
-- (id)initWithContentsOfFile:(NSString *)path
+- (id)initWithContentsOfFile:(NSString *)path encodingName:(NSString *)aEncName
 {
 	[self init];
 	[self setLogFilePath:path];
 	isReadFile = YES;
 	NSData *logData = [NSData dataWithContentsOfFile:logFilePath];
 	[logContents release];
-	[self setLogContents:[[[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding] autorelease]];
+	//[self setLogContents:[[[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding] autorelease]];
+	[self setLogContents:[NSString stringWithData:logData 
+								encodingCandidates:orderdEncodingCandidates(aEncName)]];
 	int length = [logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;

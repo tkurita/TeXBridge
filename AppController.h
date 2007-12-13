@@ -3,6 +3,8 @@
 #import <Cocoa/Cocoa.h>
 #import "miClient.h"
 
+NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
+
 @interface AppController : NSObject
 {
 	IBOutlet id startupWindow;

@@ -1,5 +1,5 @@
 global PathConverter
-global TeXCompileObj
+global CompileCenter
 global MessageUtility
 global PathAnalyzer
 global EditorClient
@@ -24,22 +24,22 @@ end extractFilePath
 on openRelatedFile given revealOnly:revealFlag
 	--log "start openRelatedFile"
 	try
-		set theTexDocObj to checkmifiles of TeXCompileObj without saving and autosave
+		set a_texdoc to checkmifiles of CompileCenter without saving and autosave
 	on error errMsg number errNum
-		if errNum is not in ignoringErrorList of TeXCompileObj then
+		if errNum is not in ignoringErrorList of CompileCenter then
 			showError(errNum, "openRelatedFile", errMsg) of MessageUtility
 		end if
 		return
 	end try
 	
-	set theOriginPath to theTexDocObj's file_ref()'s posix_path()
+	set theOriginPath to a_texdoc's file_ref()'s posix_path()
 	set_base_path(theOriginPath) of PathConverter
 	
 	set incGraphicCommand to (_backslash & "includegraphics" as Unicode text)
 	set bibCommand to _backslash & "bibliography"
 	set commandList to {_backslash & "includegraphics", _backslash & "input", _backslash & "include", bibCommand}
 	
-	set firstpara to theTexDocObj's doc_position()
+	set firstpara to a_texdoc's doc_position()
 	set paracount to count paragraphs of contents of selection_ref() of EditorClient
 	repeat with nth from firstpara to firstpara + paracount - 1
 		set theParagraph to EditorClient's paragraph_at_index(nth)
@@ -58,11 +58,6 @@ on openRelatedFile given revealOnly:revealFlag
 						try
 							set fileAlias to (POSIX file pathWithSuffix) as alias
 						on error
-							(*
-							set sQ to localized string "startQuote"
-							set eQ to localized string "endQuote"
-							set theMessage to sQ & pathWithSuffix & eQ & return & return & (localized string "isNotFound")
-							*)
 							set a_msg to UtilityHandlers's localized_string("FileIsNotFound", pathWithSuffix)
 							EditorClient's show_message(a_msg)
 							return
@@ -128,16 +123,16 @@ end openGraphicFile
 
 on openParentFile()
 	try
-		set theTexDocObj to checkmifiles of TeXCompileObj without saving and autosave
+		set a_texdoc to checkmifiles of CompileCenter without saving and autosave
 	on error errMsg number 1200
 		return
 	end try
-	if theTexDocObj's has_parent() then
+	if a_texdoc's has_parent() then
 		tell application "Finder"
-			open (theTexDocObj's file_ref()'s as_alias())
+			open (a_texdoc's file_ref()'s as_alias())
 		end tell
 	else
-		set a_msg to UtilityHandlers's localized_string("noParentFile", theTexDocObj's fileName())
+		set a_msg to UtilityHandlers's localized_string("noParentFile", a_texdoc's fileName())
 		EditorClient's show_message(a_msg)
 	end if
 end openParentFile

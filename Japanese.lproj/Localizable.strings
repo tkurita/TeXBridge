@@ -1,8 +1,10 @@
 /*global*/
 "aLogfile" = "ログファイル";
 "hasBeenOpend" = "は開かれています。";
+/*
 "startQuote" ="“";
 "endQuote" ="”";
+*/
 "aDocument" = "書類";
 "FileIsNotFound" = "ファイル “$1”\nが見つかりません。";
 "LogFileIsOpened" = "ログファイル “$1” は開かれています。\nタイプセットの前に閉じる必要があります。";
@@ -12,22 +14,22 @@
 "Cancel" = "キャンセル";
 "Close" = "閉じる";
 
-/*** TeXCompileObj ***/
+/*** CompileCenter ***/
 /*texdoc_for_firstdoc*/
 "DocumentIsNotSaved" = "書類 “$1” は保存されていません。";
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 
-/*doTypeSet*/
+/*do_typeset*/
 "closeBeforeTypeset" = "タイプセットの前に閉じて下さい。";
 
-/*dviPreview*/
+/*preview_dvi*/
 "DviFileIsNotFound" = "DVI ファイル “$1” が見つかりません。";
 
-/*dviToPDF*/
+/*dvi_to_pdf*/
 "FileIsOpened" = "ファイル “$1”\nは開かれています。コマンドの実行前に閉じて下さい。";
 "PDFisNotGenerated" = "PDF ファイルは生成されませんでした。";
 
-/*typesetAndPDFPreview*/
+/*typeset_preview_pdf*/
 "DVIisNotGenerated" = "DVI ファイルは生成されませんでした。";
 
 /* checkmifiles */
@@ -49,7 +51,7 @@
 /*openParentFile*/
 "noParentFile" = "書類 “$1” には ParentFile が設定されていません。";
 
-/*seekExecEbb*/
+/*seek_ebb*/
 "noGraphicFile" = "書類 “$1” にはグラフィックファイルがありません。";
 "bbAlreadyCreated" = "すべての .bb ファイルは、既に生成されています。";
 
@@ -57,10 +59,10 @@
 "disableUIScripting" = "UI element scripting が有効になっていません。\rシステム環境設定で \"補助機能にアクセスできるようにする\" を ON にして下さい。";
 "Launch System Preferences" = "システム環境設定を起動";
 
-/*pdfPreview:TeXCompileObj*/
+/*preview_pdf:CompileCenter*/
 "noPDFfile" = "PDF ファイルがありません。";
 
-/*DVIObj:MxdviDriver:openDVI*/
+/*DVIController:MxdviDriver:openDVI*/
 "mxdviIsnotFound" = "Mxdvi が見つかりません。";
 
 /*Others*/
@@ -85,6 +87,18 @@
 
 "this software" = "TeX Tools for mi";
 
-/*TeXDocObj*/
+/*TeXDocController*/
 "ParentFileIsInvalid" = "ParentFile “$1”\nは正しい設定ではありません。";
 "ParentFileIsNotFound" = "ParentFile “$1”\nが見つかりません。";
+
+/*Change Enviroment*/
+"The caret is in the beginning of the document." = "キャレットが書類の先頭にあります。";
+"Can't find an enviroment definition around the caret." = "キャレット付近で環境の定義が見つかりません。";
+"Can't find a begin command around the caret." = "キャレット付近で begin コマンドが見つかりません。";
+"The caret position is not correct." = "キャレットの位置が正しくありません。";
+"Enter a new enviroment name..." = "新しい環境名を入力してください。";
+
+/*InsertFile*/
+"Insert" = "挿入";
+"Choose" = "選択";
+
