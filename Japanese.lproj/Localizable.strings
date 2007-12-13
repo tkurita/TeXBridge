@@ -48,7 +48,7 @@
 /*showError*/
 "errorLabel" = "エラー :";
 
-/*openParentFile*/
+/*open_parentfile*/
 "noParentFile" = "書類 “$1” には ParentFile が設定されていません。";
 
 /*seek_ebb*/
@@ -101,4 +101,7 @@
 /*InsertFile*/
 "Insert" = "挿入";
 "Choose" = "選択";
+
+/*Enter Enviroment*/
+"Enter an enviroment name" = "環境名を入力してください";
 

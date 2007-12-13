@@ -100,7 +100,7 @@ on launched theObject
 	--preview_dvi() of CompileCenter
 	--preview_pdf() of CompileCenter
 	--execmendex() of CompileCenter
-	--openParentFile() of EditCommands
+	--open_parentfile() of EditCommands
 	--seek_ebb() of CompileCenter
 	--dvi_to_ps() of CompileCenter
 	--preview_dvi() of CompileCenter
@@ -122,20 +122,6 @@ on launched theObject
 	
 	--log "end of launched"
 end launched
-
-
-on doEditSupportCommand(command_id)
-	--log "start doEditSupportCommand"
-	if command_id is "openRelatedFile" then
-		openRelatedFile of EditCommands without revealOnly
-	else if command_id is "revealRelatedFile" then
-		openRelatedFile of EditCommands with revealOnly
-	else if command_id is "openParentFile" then
-		openParentFile() of EditCommands
-	else
-		showMessage("Unknown commandID : " & command_id) of MessageUtility
-	end if
-end doEditSupportCommand
 
 on do_replaceinput()
 	if ReplaceInput is missing value then
@@ -167,7 +153,7 @@ on open theObject
 			showStatusMessage("") of ToolPaletteController
 			
 		else if command_class is "editSupport" then
-			doEditSupportCommand(commandID of theObject)
+			theObject's commandScript's do(EditCommands)
 		else
 			showMessage("Unknown commandClass : " & command_class) of MessageUtility
 		end if

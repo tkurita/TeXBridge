@@ -121,7 +121,7 @@ on openGraphicFile(fileAlias)
 	end tell
 end openGraphicFile
 
-on openParentFile()
+on open_parentfile()
 	try
 		set a_texdoc to checkmifiles of CompileCenter without saving and autosave
 	on error errMsg number 1200
@@ -135,7 +135,7 @@ on openParentFile()
 		set a_msg to UtilityHandlers's localized_string("noParentFile", a_texdoc's fileName())
 		EditorClient's show_message(a_msg)
 	end if
-end openParentFile
+end open_parentfile
 
 on doReverseSearch(targetLine)
 	tell application "System Events"

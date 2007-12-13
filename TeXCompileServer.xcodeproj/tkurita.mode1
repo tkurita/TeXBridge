@@ -185,48 +185,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2C934E5A0D101B1100B4B9B0</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>Localizable.strings</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2C934E5B0D101B1100B4B9B0</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>Localizable.strings</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2C934E940D1021E200B4B9B0</string>
-						<key>history</key>
-						<array>
-							<string>2C934E570D101A6C00B4B9B0</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {716, 702}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>662 195 716 743 0 0 1440 938 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>385</integer>
@@ -357,7 +316,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C934E930D1021E200B4B9B0</string>
+										<string>2C934EC90D10C29500B4B9B0</string>
 										<key>history</key>
 										<array>
 											<string>2C00EABD0BF40EA300A04CD0</string>
@@ -621,11 +580,10 @@
 	<array>
 		<string>2C792BAC0B68BFD0005672E4</string>
 		<string>1C0AD2AF069F1E9B00FABCE6</string>
-		<string>2C92F43609C1219A00D5EA67</string>
-		<string>2C934E5A0D101B1100B4B9B0</string>
-		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>2C92F43609C1219A00D5EA67</string>
 		<string>2C92AB0709C00A1900D5EA67</string>
+		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>8 373 933 453 0 0 1440 938 </string>
@@ -850,14 +808,12 @@
 									<key>Dock</key>
 									<array>
 										<dict>
-											<key>BecomeActive</key>
-											<true/>
 											<key>ContentConfiguration</key>
 											<dict>
 												<key>PBXProjectModuleGUID</key>
 												<string>1CDD528C0622207200134675</string>
 												<key>PBXProjectModuleLabel</key>
-												<string>DVIController.applescript</string>
+												<string>TeXCompileServer.applescript</string>
 												<key>StatusBarVisibility</key>
 												<true/>
 											</dict>
@@ -904,6 +860,8 @@
 							<string>505pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -951,7 +909,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -1111,7 +1069,7 @@
 			<key>WindowToolGUID</key>
 			<string>2C92AB0709C00A1900D5EA67</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1140,7 +1098,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {651, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>268 366 651 380 0 0 1440 938 </string>
+								<string>207 499 651 380 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -1162,7 +1120,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {651, 334}}</string>
 								<key>RubberWindowFrame</key>
-								<string>268 366 651 380 0 0 1440 938 </string>
+								<string>207 499 651 380 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXCVSModule</string>
@@ -1192,7 +1150,7 @@
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.scm</string>
 			<key>WindowString</key>
-			<string>268 366 651 380 0 0 1440 938 </string>
+			<string>207 499 651 380 0 0 1440 938 </string>
 			<key>WindowToolGUID</key>
 			<string>2C792BAC0B68BFD0005672E4</string>
 			<key>WindowToolIsVisible</key>
