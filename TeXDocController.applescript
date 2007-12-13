@@ -79,6 +79,14 @@ on set_typeset_command(a_command)
 	set my _typesetCommand to a_command
 end set_typeset_command
 
+on dvipdf_command()
+	if (my _dvipdfCommand is missing value) then
+		set my _dvipdfCommand to contents of default entry "dvipdfCommand" of user defaults
+	end if
+	
+	return my _dvipdfCommand
+end dvipdf_command
+
 on typeset_command()
 	if my _typesetCommand is missing value then
 		set my _typesetCommand to contents of default entry "typesetCommand" of user defaults
@@ -116,9 +124,9 @@ on set_filename(a_name)
 	set my _texFileName to a_name
 end set_filename
 
-on fileName()
+on filename()
 	return my _texFileName
-end fileName
+end filename
 
 on no_suffix_posix_path()
 	return my _file_ref's change_path_extension("")'s posix_path()
@@ -275,7 +283,7 @@ on lookup_header_command(a_paragraph)
 		else if a_paragraph starts with "%Typeset-Command" then
 			set_typeset_command(StringEngine's strip(text 18 thru -1 of a_paragraph))
 		else if a_paragraph starts with "%DviToPdf-Command" then
-			set my dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
+			set my _dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
 		else if a_paragraph starts with "%DviToPs-Command" then
 			set my dvipsCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
 		end if
@@ -362,7 +370,7 @@ on make_with(a_xfile, an_encoding)
 	script TeXDocController
 		property _file_ref : missing value -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
 		property _typesetCommand : missing value
-		property dvipdfCommand : missing value
+		property _dvipdfCommand : missing value
 		property dvipsCommand : missing value
 		property _text_encoding : an_encoding
 		

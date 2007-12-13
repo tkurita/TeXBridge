@@ -10,7 +10,7 @@ script XdviDriver
 		-- do nothing
 	end set_file_type
 	
-	on openDVI given sender:a_dvi, activation:aFlag
+	on open_dvi given sender:a_dvi, activation:aFlag
 		set x11AppName to "X11"
 		if not (isRunning(x11AppName) of UtilityHandlers) then
 			tell application x11AppName
@@ -20,7 +20,7 @@ script XdviDriver
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
 		set cdCommand to "cd " & (quoted form of (a_dvi's pwd()'s posix_path()))
-		set dviFileName to a_dvi's fileName()
+		set dviFileName to a_dvi's filename()
 		
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
 		if (a_dvi's src_special()) and (a_texdoc is not missing value) then
@@ -28,7 +28,7 @@ script XdviDriver
 				set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
 				set sourceFile to relative_path of PathConverter for (texdoc()'s target_file()'s posix_path())
 			else
-				set sourceFile to a_dvi's texdoc()'s fileName()
+				set sourceFile to a_dvi's texdoc()'s filename()
 			end if
 			
 			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
@@ -48,7 +48,7 @@ script XdviDriver
 				do shell script "kill -USR1" & space & pid --reread
 			end if
 		end if
-	end openDVI
+	end open_dvi
 end script
 
 script SimpleDriver
@@ -56,7 +56,7 @@ script SimpleDriver
 		-- do nothing
 	end set_file_type
 	
-	on openDVI given sender:a_dvi, activation:aFlag
+	on open_dvi given sender:a_dvi, activation:aFlag
 		set an_alias to a_dvi's file_as_alias()
 		if an_alias is not missing value then
 			tell application "Finder"
@@ -65,10 +65,10 @@ script SimpleDriver
 			return
 		else
 			activate
-			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's fileName()})
+			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's filename()})
 			display alert a_msg
 		end if
-	end openDVI
+	end open_dvi
 end script
 
 script MxdviDriver
@@ -76,8 +76,8 @@ script MxdviDriver
 		a_dvi's set_types("Mxdv", "JDVI")
 	end set_file_type
 	
-	on openDVI given sender:a_dvi, activation:aFlag
-		--log "start openDVI of MxdviDriver"
+	on open_dvi given sender:a_dvi, activation:aFlag
+		--log "start open_dvi of MxdviDriver"
 		try
 			set mxdviApp to path to application "Mxdvi" as alias
 		on error
@@ -103,18 +103,20 @@ script MxdviDriver
 				open a_dvi's file_as_alias()
 			end tell
 		end if
-		--log "end openDVI"
-	end openDVI
+		--log "end open_dvi"
+	end open_dvi
 end script
 
+on file_ref()
+	return my _dvifile
+end file_ref
 
-
-on fileName()
+on filename()
 	if my _dvifile is not missing value then
 		return my _dvifile's item_name()
 	end if
 	return my _texdoc's name_for_suffix(".dvi")
-end fileName
+end filename
 
 on texdoc()
 	return my _texdoc
@@ -200,29 +202,25 @@ on update_src_special_flag_from_file()
 	end if
 end update_src_special_flag_from_file
 
-on openDVI given activation:aFlag
-	openDVI of (my _dvi_driver) given sender:a reference to me, activation:aFlag
-end openDVI
+on open_dvi given activation:aFlag
+	open_dvi of (my _dvi_driver) given sender:a reference to me, activation:aFlag
+end open_dvi
 
 on dvi_to_pdf()
 	--log "start dvi_to_pdf"
-	set a_pdf to lookupPDFFile()
-	--log "success lookupPDFFile"
+	set a_pdf to lookup_pdf_file()
+	--log "success lookup_pdf_file"
 	--check busy status of pdf file.
 	if a_pdf is not missing value then
-		if not prepareDVItoPDF() of a_pdf then
+		if not prepare_dvi_to_pdf() of a_pdf then
 			return missing value
 		end if
 	end if
 	
 	--log "convert a DVI file into a PDF file"
-	if (my dvipdfCommand is missing value) then
-		set theCommand to contents of default entry "dvipdfCommand" of user defaults
-	else
-		set theCommand to my dvipdfCommand
-	end if
+	set theCommand to my _texdoc's dvipdf_command()
 	set cdCommand to "cd" & space & (quoted form of (pwd()'s posix_path()))
-	set targetFileName to name_for_suffix(".dvi")
+	set targetFileName to my _texdoc's name_for_suffix(".dvi")
 	set allCommand to cdCommand & comDelim & theCommand & space & "'" & targetFileName & "'"
 	
 	sendCommands of TerminalCommander for allCommand
@@ -230,9 +228,9 @@ on dvi_to_pdf()
 	waitEndOfCommand(300) of currentTerminal
 	
 	if a_pdf is missing value then
-		set a_pdf to lookupPDFFile()
+		set a_pdf to lookup_pdf_file()
 	else
-		if not (isExistPDF() of a_pdf) then
+		if not (file_exists() of a_pdf) then
 			set a_pdf to missing value
 		end if
 	end if
@@ -241,16 +239,16 @@ on dvi_to_pdf()
 	return a_pdf
 end dvi_to_pdf
 
-on lookupPDFFile()
-	--log "start lookupPDFFile"
+on lookup_pdf_file()
+	--log "start lookup_pdf_file"
 	set a_pdf to PDFController's make_with(a reference to me)
 	a_pdf's setup()
-	if isExistPDF() of a_pdf then
+	if file_exists() of a_pdf then
 		return a_pdf
 	else
 		return missing value
 	end if
-end lookupPDFFile
+end lookup_pdf_file
 
 on set_dvifile(a_xfile)
 	set my _dvifile to a_xfile

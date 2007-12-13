@@ -221,7 +221,7 @@ on preview_dvi_for_frontdoc()
 	set a_dvi to DVIController's make_with_xfile(dvi_file)
 	--log "before open dvi"
 	try
-		openDVI of a_dvi with activation
+		open_dvi of a_dvi with activation
 	on error errMsg number errNum
 		showError(errNum, "preview_dvi_for_frontdoc", errMsg) of MessageUtility
 	end try
@@ -247,10 +247,10 @@ on preview_dvi()
 	--log "before lookup_dvi"
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
 	set a_dvi to a_texdoc's lookup_dvi()
-	--log "before openDVI"
+	--log "before open_dvi"
 	if a_dvi is not missing value then
 		try
-			openDVI of a_dvi with activation
+			open_dvi of a_dvi with activation
 		on error errMsg number errNum
 			showError(errNum, "preview_dvi", errMsg) of MessageUtility
 		end try
@@ -275,8 +275,8 @@ on preview_pdf()
 	showStatusMessage("Opening PDF file ...") of ToolPaletteController
 	set a_pdf to PDFController's make_with(a_texdoc)
 	a_pdf's setup()
-	if isExistPDF() of a_pdf then
-		openPDFFile() of a_pdf
+	if file_exists() of a_pdf then
+		open_pdf() of a_pdf
 	else
 		EditorClient's show_message(localized string "noPDFfile")
 	end if
@@ -315,9 +315,9 @@ on quick_typeset_preview()
 	set aFlag to isNoError() of theLogFileParser
 	if isDviOutput() of theLogFileParser then
 		try
-			openDVI of a_dvi given activation:aFlag
+			open_dvi of a_dvi given activation:aFlag
 		on error errMsg number errNum
-			showError(errNum, "quick_typeset_preview after calling openDVI", errMsg) of MessageUtility
+			showError(errNum, "quick_typeset_preview after calling open_dvi", errMsg) of MessageUtility
 		end try
 	else
 		set theMessage to localized string "DVIisNotGenerated"
@@ -342,7 +342,7 @@ on typeset_preview()
 	showStatusMessage("Opening DVI file ...") of ToolPaletteController
 	if a_dvi is not missing value then
 		try
-			openDVI of a_dvi given activation:missing value
+			open_dvi of a_dvi given activation:missing value
 		on error errMsg number errNum
 			showError(errNum, "typeset_preview", errMsg) of MessageUtility
 		end try
@@ -361,7 +361,7 @@ on typeset_preview_pdf()
 		set theMessage to localized string "PDFisNotGenerated"
 		showMessage(theMessage) of MessageUtility
 	else
-		openPDFFile() of a_pdf
+		open_pdf() of a_pdf
 	end if
 end typeset_preview_pdf
 
@@ -455,7 +455,7 @@ on dvi_to_pdf()
 	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")
 	else
-		openPDFFile() of a_pdf
+		open_pdf() of a_pdf
 	end if
 end dvi_to_pdf
 
@@ -539,7 +539,7 @@ on seek_ebb()
 	end repeat
 	
 	if noGraphicFlag then
-		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's fileName()})
+		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's filename()})
 		EditorClient's show_message(a_msg)
 	else if noNewBBFlag then
 		EditorClient's show_message(localized string "bbAlreadyCreated")
@@ -563,10 +563,10 @@ on execEbb(theGraphicPath, an_extension)
 	-------do ebb
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set fileName to basename(theGraphicPath, "") of ShellUtils
+	set filename to basename(theGraphicPath, "") of ShellUtils
 	set cdCommand to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
-	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & fileName & "'"
+	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & filename & "'"
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal
