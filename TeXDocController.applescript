@@ -238,13 +238,13 @@ on check_logfile()
 					set theFilePath to file of document ith as Unicode text
 					if theFilePath is logfile_path then
 						try
-							set theResult to display dialog textALogfile & return & logfile_path & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
+							set a_result to display dialog textALogfile & return & logfile_path & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
 						on error msg number -128 --if canceld, error number -128
 							set logFileReady to false
 							exit repeat
 						end try
 						
-						if button returned of theResult is textClose then
+						if button returned of a_result is textClose then
 							close document ith without saving
 							set logFileReady to true
 							exit repeat

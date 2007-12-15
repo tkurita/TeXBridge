@@ -44,12 +44,12 @@ on showMessageWithButtons(a_msg, buttonList, defaultButton)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			set theResult to display dialog a_msg buttons buttonList default button defaultButton
+			set a_result to display dialog a_msg buttons buttonList default button defaultButton
 		on error
-			set theResult to {button returned:missing value}
+			set a_result to {button returned:missing value}
 		end try
 	end tell
-	return theResult
+	return a_result
 end showMessageWithButtons
 
 on show_message(msg)

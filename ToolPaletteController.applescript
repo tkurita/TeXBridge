@@ -28,10 +28,10 @@ on show_status_message(a_msg)
 	end if
 end show_status_message
 
-on is_opend()
+on is_opened()
 	if my _window_controller is missing value then
 		return false
 	end if
-	set a_result to call method "is_opend" of my _window_controller
+	set a_result to call method "isOpened" of my _window_controller
 	return (a_result is 1)
-end is_opend
+end is_opened

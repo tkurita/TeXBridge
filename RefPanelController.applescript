@@ -145,13 +145,13 @@ on open_window()
 	--log "end open_window in RefPanelController"
 end open_window
 
-on is_opend()
+on is_opened()
 	if my _window_controller is missing value then
 		return false
 	end if
-	set theResult to call method "is_opend" of my _window_controller
-	return (theResult is 1)
-end is_opend
+	set a_result to call method "isOpened" of my _window_controller
+	return (a_result is 1)
+end is_opened
 
 on displayAlert(a_msg)
 	display alert a_msg attached to my _window as warning

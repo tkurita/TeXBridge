@@ -110,7 +110,7 @@ on launched theObject
 	--quick_typeset_preview({}) of CompileCenter
 	
 	(*misc*)
-	--set theResult to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
+	--set a_result to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--openRelatedFile with revealOnly
 	--open "ReplaceInput"
@@ -316,8 +316,8 @@ end should selection change
 
 on will quit theObject
 	tell user defaults
-		set contents of default entry "IsOpenedToolPalette" to is_opend() of ToolPaletteController
-		set contents of default entry "IsOpenedRefPalette" to is_opend() of RefPanelController
+		set contents of default entry "IsOpenedToolPalette" to is_opened() of ToolPaletteController
+		set contents of default entry "IsOpenedRefPalette" to is_opened() of RefPanelController
 	end tell
 end will quit
 
