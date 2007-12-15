@@ -36,7 +36,7 @@ script XdviDriver
 		else
 			try
 				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
-			on error errMsg number 1
+			on error msg number 1
 				set pid to ""
 			end try
 			
@@ -218,10 +218,10 @@ on dvi_to_pdf()
 	end if
 	
 	--log "convert a DVI file into a PDF file"
-	set theCommand to my _texdoc's dvipdf_command()
+	set a_command to my _texdoc's dvipdf_command()
 	set cdCommand to "cd" & space & (quoted form of (pwd()'s posix_path()))
 	set targetFileName to my _texdoc's name_for_suffix(".dvi")
-	set allCommand to cdCommand & comDelim & theCommand & space & "'" & targetFileName & "'"
+	set allCommand to cdCommand & comDelim & a_command & space & "'" & targetFileName & "'"
 	
 	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal

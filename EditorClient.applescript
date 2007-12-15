@@ -28,11 +28,11 @@ on save_with_asking()
 end save_with_asking
 *)
 
-on showMessageWithAsk(theMessage)
+on showMessageWithAsk(a_msg)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			display dialog theMessage
+			display dialog a_msg
 		on error
 			return false
 		end try
@@ -40,11 +40,11 @@ on showMessageWithAsk(theMessage)
 	return true
 end showMessageWithAsk
 
-on showMessageWithButtons(theMessage, buttonList, defaultButton)
+on showMessageWithButtons(a_msg, buttonList, defaultButton)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			set theResult to display dialog theMessage buttons buttonList default button defaultButton
+			set theResult to display dialog a_msg buttons buttonList default button defaultButton
 		on error
 			set theResult to {button returned:missing value}
 		end try

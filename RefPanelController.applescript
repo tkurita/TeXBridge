@@ -4,31 +4,31 @@ global EditorClient
 global AuxData
 
 property LabelListController : missing value
-property WindowController : missing value
-property targetWindow : missing value
+property _window_controller : missing value
+property _window : missing value
 global miAppRef
 global _backslash
 
 property isWorkedTimer : missing value
 
 on stopTimer()
-	if WindowController is not missing value then
-		call method "temporaryStopReloadTimer" of WindowController
+	if my _window_controller is not missing value then
+		call method "temporaryStopReloadTimer" of my _window_controller
 	end if
 end stopTimer
 
 on restartTimer()
-	if WindowController is not missing value then
-		call method "restartReloadTimer" of WindowController
+	if my _window_controller is not missing value then
+		call method "restartReloadTimer" of my _window_controller
 	end if
 end restartTimer
 
 on rebuildLabelsFromAux(a_texdoc)
-	if WindowController is missing value then
+	if my _window_controller is missing value then
 		return
 	end if
 	
-	if visible of targetWindow then
+	if visible of my _window then
 		rebuildLabelsFromAux(a_texdoc) of LabelListController
 	end if
 end rebuildLabelsFromAux
@@ -62,7 +62,7 @@ on doubleClicked(theObject)
 	if theRef is "" then
 		return
 	else
-		if (state of button "useeqref" of targetWindow is 1) then
+		if (state of button "useeqref" of my _window is 1) then
 			if (theRef starts with "equation") or (theRef starts with "AMS") then
 				set refText to "eqref"
 			else if (theRef is "--") and (theLabel starts with "eq") then
@@ -98,25 +98,25 @@ end doubleClicked
 
 on initilize()
 	--log "start initialize in RefPanelController"
-	set WindowController to call method "alloc" of class "RefPanelController"
-	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ReferencePalette"
-	set targetWindow to call method "window" of WindowController
-	call method "retain" of targetWindow
+	set my _window_controller to call method "alloc" of class "RefPanelController"
+	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "ReferencePalette"
+	set my _window to call method "window" of my _window_controller
+	call method "retain" of my _window
 	set LabelListController to ScriptImporter's do("LabelListController")
 	initialize(data source "LabelDataSource") of LabelListController
-	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
-	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of targetWindow
+	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of my _window
+	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window
 	--log "end initialize in RefPanelController"
 end initilize
 
 on toggle_visibility()
-	if WindowController is missing value then
+	if my _window_controller is missing value then
 		open_window()
 		call method "activateSelf" of class "SmartActivate"
 	end if
 	
-	if (visible of targetWindow) then
-		close targetWindow
+	if (visible of my _window) then
+		close my _window
 	else
 		open_window()
 		call method "activateSelf" of class "SmartActivate"
@@ -126,13 +126,13 @@ end toggle_visibility
 on open_window()
 	--log "start open_window in RefPanelController"
 	set is_first to false
-	if WindowController is missing value then
+	if my _window_controller is missing value then
 		initilize()
 		set is_first to true
 	end if
-	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of WindowController
+	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of my _window_controller
 	--activate
-	call method "showWindow:" of WindowController
+	call method "showWindow:" of my _window_controller
 	--log "after showWIndow"
 	--if (is_first or (isWorkingDisplayToggleTimer is 0)) then
 	if is_first then
@@ -141,22 +141,22 @@ on open_window()
 	--log "end open_window in RefPanelController"
 end open_window
 
-on isOpened()
-	if WindowController is missing value then
+on is_opend()
+	if my _window_controller is missing value then
 		return false
 	end if
-	set theResult to call method "isOpened" of WindowController
+	set theResult to call method "is_opend" of my _window_controller
 	return (theResult is 1)
-end isOpened
+end is_opend
 
-on displayAlert(theMessage)
-	display alert theMessage attached to targetWindow as warning
+on displayAlert(a_msg)
+	display alert a_msg attached to my _window as warning
 	(*
 	script endOfAlert
 		on sheetEnded(theReply)
 		end sheetEnded
 	end script
 	
-	addSheetRecord of SheetManager given parentWindow:my targetWindow, ownerObject:endOfAlert
+	addSheetRecord of SheetManager given parentWindow:my my _window, ownerObject:endOfAlert
 	*)
 end displayAlert

@@ -5,9 +5,9 @@ global PathAnalyzer
 global EditorClient
 global UtilityHandlers
 
-on extractFilePath(theCommand, theParagraph)
-	if theParagraph contains theCommand then
-		set pos0 to offset of theCommand in theParagraph
+on extractFilePath(a_command, theParagraph)
+	if theParagraph contains a_command then
+		set pos0 to offset of a_command in theParagraph
 		set theParagraph to text pos0 thru -1 of theParagraph
 		set pos1 to offset of "{" in theParagraph
 		set pos2 to offset of "}" in theParagraph

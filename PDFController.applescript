@@ -20,19 +20,19 @@ on controlClicked(theObject)
 		if theName is "AdobeReader" then
 			try
 				findAdobeReaderApp()
-			on error errMsg number -128
+			on error msg number -128
 				set contents of default entry "PDFPreviewMode" of user defaults to prePDFPreviewMode
-				set theMessage to localized string "PDFPreviewIsInvalid"
-				showMessage(theMessage) of MessageUtility
+				set a_msg to localized string "PDFPreviewIsInvalid"
+				showMessage(a_msg) of MessageUtility
 				return
 			end try
 		else if theName is "Acrobat" then
 			try
 				findAcrobatApp()
-			on error errMsg number -128
+			on error msg number -128
 				set contents of default entry "PDFPreviewMode" of user defaults to prePDFPreviewMode
-				set theMessage to localized string "PDFPreviewIsInvalid"
-				showMessage(theMessage) of MessageUtility
+				set a_msg to localized string "PDFPreviewIsInvalid"
+				showMessage(a_msg) of MessageUtility
 				return
 			end try
 		end if
@@ -65,16 +65,16 @@ on findAcrobatApp()
 	end try
 	
 	if acrobatPath is missing value then
-		set theMessage to localized string "whereisAdobeAcrobat"
-		set acrobatPath to choose application with prompt theMessage as alias
+		set a_msg to localized string "whereisAdobeAcrobat"
+		set acrobatPath to choose application with prompt a_msg as alias
 	else
 		tell application "Finder"
 			set theName to name of acrobatPath
 		end tell
 		if theName contains "Reader" then
 			set acrobatPath to missing value
-			set theMessage to localized string "whereisAdobeAcrobat"
-			set acrobatPath to choose application with prompt theMessage as alias
+			set a_msg to localized string "whereisAdobeAcrobat"
+			set acrobatPath to choose application with prompt a_msg as alias
 		end if
 	end if
 	tell user defaults
@@ -96,16 +96,16 @@ on findAdobeReaderApp()
 	end try
 	
 	if adobeReaderPath is missing value then
-		set theMessage to localized string "whereisAdobeReader"
-		set adobeReaderPath to choose application with prompt theMessage as alias
+		set a_msg to localized string "whereisAdobeReader"
+		set adobeReaderPath to choose application with prompt a_msg as alias
 	else
 		tell application "Finder"
 			set theName to name of adobeReaderPath
 		end tell
 		if theName does not contain "Reader" then
 			set adobeReaderPath to missing value
-			set theMessage to localized string "whereisAdobeReader"
-			set adobeReaderPath to choose application with prompt theMessage as alias
+			set a_msg to localized string "whereisAdobeReader"
+			set adobeReaderPath to choose application with prompt a_msg as alias
 		end if
 	end if
 	tell user defaults
@@ -119,13 +119,13 @@ on checkPDFApp()
 	if prePDFPreviewMode is 2 then
 		try
 			findAdobeReaderApp()
-		on error errMsg number -128
+		on error msg number -128
 			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
 	else if prePDFPreviewMode is 3 then
 		try
 			findAcrobatApp()
-		on error errMsg number -128
+		on error msg number -128
 			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
 		end try
 	end if
@@ -168,9 +168,9 @@ script GenericDriver
 			tell application "Finder"
 				open a_pdf's file_as_alias()
 			end tell
-		on error errMsg number errNum
+		on error msg number errno
 			activate
-			display dialog errMsg buttons {"OK"} default button "OK"
+			display dialog msg buttons {"OK"} default button "OK"
 		end try
 	end open_pdf
 end script

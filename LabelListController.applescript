@@ -40,13 +40,13 @@ on watchmi given force_reloading:force_flag
 	--log "start watchmi in LabelListController"
 	try
 		set an_auxdata to findAuxObjFromDoc()
-	on error errMsg number errNum
-		if errNum is in {1230, 1500} then
+	on error msg number errno
+		if errno is in {1230, 1500} then
 			-- 1230 : ParentFile is invalid.
 			-- 1500 : Unsupported File.
 			return
 		else
-			error "Fail to findAuxObjFromDoc in watchmi of LabelListController." & return & errMsg number errNum
+			error "Fail to findAuxObjFromDoc in watchmi of LabelListController." & return & msg number errno
 		end if
 	end try
 	

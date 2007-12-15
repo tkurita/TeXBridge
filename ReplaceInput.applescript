@@ -82,12 +82,12 @@ on shouldSelectionChange(theObject)
 	end try
 	
 	if theKeyword is "" then
-		set theMessage to localized string "keywordiIsBlank"
-		displayAlert(theMessage) of SettingWindowController
+		set a_msg to localized string "keywordiIsBlank"
+		displayAlert(a_msg) of SettingWindowController
 		return false
 	else if theReplace is "" then
-		set theMessage to localized string "replaceIsBlank"
-		displayAlert(theMessage) of SettingWindowController
+		set a_msg to localized string "replaceIsBlank"
+		displayAlert(a_msg) of SettingWindowController
 		--log "there are blanked cells"
 		return false
 	else

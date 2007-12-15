@@ -94,21 +94,20 @@ on launched theObject
 	
 	
 	(*exec tex commands*)
-	--dvi_to_pdf() of CompileCenter
+	--dvi_to_pdf({}) of CompileCenter
 	--logParseOnly() of CompileCenter
-	--openRelatedFile of EditCommands without revealOnly
-	--preview_dvi() of CompileCenter
-	--preview_pdf() of CompileCenter
-	--execmendex() of CompileCenter
-	--open_parentfile() of EditCommands
-	--seek_ebb() of CompileCenter
-	--dvi_to_ps() of CompileCenter
-	--preview_dvi() of CompileCenter
-	--do_typeset() of CompileCenter
-	--typeset_preview() of CompileCenter
+	--preview_dvi({}) of CompileCenter
+	--preview_pdf({}) of CompileCenter
+	--mendex({}) of CompileCenter
+	--open_parentfile({}) of EditCommands
+	--seek_ebb({}) of CompileCenter
+	--dvi_to_ps({}) of CompileCenter
+	--preview_dvi({}) of CompileCenter
+	--do_typeset({}) of CompileCenter
+	--typeset_preview({}) of CompileCenter
 	--debug()
 	--checkmifiles with saving
-	--quick_typeset_preview() of CompileCenter
+	--quick_typeset_preview({}) of CompileCenter
 	
 	(*misc*)
 	--set theResult to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
@@ -123,7 +122,7 @@ on launched theObject
 	--log "end of launched"
 end launched
 
-on do_replaceinput()
+on do_replaceinput({})
 	if ReplaceInput is missing value then
 		set ReplaceInput to importScript("ReplaceInput")
 	end if
@@ -139,18 +138,18 @@ on open theObject
 	if a_class is record then
 		set command_class to commandClass of theObject
 		if command_class is "action" then
-			theObject's commandScript's do(me)
+			theObject's commandScript's do(me, {})
 		else if command_class is "compile" then
 			try
 				theObject's commandScript's do(CompileCenter)
-			on error errMsg number errNum
-				if errNum is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-					showError(errNum, "open", errMsg) of MessageUtility
+			on error msg number errno
+				if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
+					showError(errno, "open", msg) of MessageUtility
 				else
-					error errMsg number errNum
+					error msg number errno
 				end if
 			end try
-			showStatusMessage("") of ToolPaletteController
+			show_status_message("") of ToolPaletteController
 			
 		else if command_class is "editSupport" then
 			theObject's commandScript's do(EditCommands)
@@ -287,9 +286,9 @@ end will finish launching
 on awake from nib theObject
 	--log "start awake from nib"
 	--set theName to name of theObject
-	set theClass to class of theObject
-	if theClass is data source then
-		tell theObject
+	set a_class to class of theObject
+	if a_class is data source then
+		tell a_class
 			make new data column at the end of the data columns with properties {name:"keyword"}
 			make new data column at the end of the data columns with properties {name:"replace"}
 		end tell
@@ -302,8 +301,8 @@ end selected tab view item
 
 on end editing theObject
 	--log "start end editing"
-	set theTag to tag of theObject
-	if theTag is 1 then
+	set a_tag to tag of theObject
+	if a_tag is 1 then
 		endEditing(theObject) of TerminalSettingObj
 	end if
 end end editing
@@ -318,11 +317,11 @@ end should selection change
 
 on will quit theObject
 	tell user defaults
-		set contents of default entry "IsOpenedToolPalette" to isOpened() of ToolPaletteController
-		set contents of default entry "IsOpenedRefPalette" to isOpened() of RefPanelController
+		set contents of default entry "IsOpenedToolPalette" to is_opend() of ToolPaletteController
+		set contents of default entry "IsOpenedRefPalette" to is_opend() of RefPanelController
 	end tell
 end will quit
 
-on showStartupMessage(theMessage)
-	set contents of text field "StartupMessage" of window "Startup" to theMessage
+on showStartupMessage(a_msg)
+	set contents of text field "StartupMessage" of window "Startup" to a_msg
 end showStartupMessage

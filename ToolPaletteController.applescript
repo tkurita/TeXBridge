@@ -1,33 +1,37 @@
-property targetWindow : missing value
-property WindowController : missing value
+property _window : missing value
+property _window_controller : missing value
+
+on window_controller()
+	return my _window_controller
+end window_controller
 
 on initilize()
-	set WindowController to call method "alloc" of class "ToolPaletteController"
-	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "ToolPalette"
-	set targetWindow to call method "window" of WindowController
-	call method "retain" of targetWindow
+	set my _window_controller to call method "alloc" of class "ToolPaletteController"
+	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "ToolPalette"
+	set my _window to call method "window" of my _window_controller
+	call method "retain" of my _window
 end initilize
 
 on open_window()
-	if WindowController is missing value then
+	if my _window_controller is missing value then
 		initilize()
 	end if
-	call method "showWindow:" of WindowController
+	call method "showWindow:" of my _window_controller
 end open_window
 
-on showStatusMessage(theMessage)
-	if (WindowController is not missing value) then
-		if (call method "isCollapsed" of WindowController) is 0 then
-			set contents of text field "StatusMessage" of targetWindow to theMessage
-			update targetWindow
+on show_status_message(a_msg)
+	if (my _window_controller is not missing value) then
+		if (call method "isCollapsed" of my _window_controller) is 0 then
+			set contents of text field "StatusMessage" of my _window to a_msg
+			update my _window
 		end if
 	end if
-end showStatusMessage
+end show_status_message
 
-on isOpened()
-	if WindowController is missing value then
+on is_opend()
+	if my _window_controller is missing value then
 		return false
 	end if
-	set theResult to call method "isOpened" of WindowController
-	return (theResult is 1)
-end isOpened
+	set a_result to call method "is_opend" of my _window_controller
+	return (a_result is 1)
+end is_opend

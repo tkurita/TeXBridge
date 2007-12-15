@@ -10,12 +10,9 @@ global DVIController
 global ToolPaletteController
 
 property name : "TeXDocController"
-property logSuffix : ".log"
-property texSuffixList : {".tex", ".dtx"}
+property _log_suffix : ".log"
 
 global comDelim
-global sQ
-global eQ
 
 (*== Private Methods *)
 on doc_position()
@@ -76,22 +73,29 @@ on is_use_term()
 end is_use_term
 
 on set_typeset_command(a_command)
-	set my _typesetCommand to a_command
+	set my _typeset_command to a_command
 end set_typeset_command
 
+on dvips_command()
+	if my _dvips_command is missing value then
+		return contents of default entry "dvipsCommand" of user defaults
+	end if
+	return my _dvipos_command
+end dvips_command
+
 on dvipdf_command()
-	if (my _dvipdfCommand is missing value) then
-		set my _dvipdfCommand to contents of default entry "dvipdfCommand" of user defaults
+	if (my _dvipdf_command is missing value) then
+		return contents of default entry "dvipdfCommand" of user defaults
 	end if
 	
-	return my _dvipdfCommand
+	return my _dvipdf_command
 end dvipdf_command
 
 on typeset_command()
-	if my _typesetCommand is missing value then
-		set my _typesetCommand to contents of default entry "typesetCommand" of user defaults
+	if my _typeset_command is missing value then
+		return contents of default entry "typesetCommand" of user defaults
 	end if
-	return my _typesetCommand
+	return my _typeset_command
 end typeset_command
 
 on logfile()
@@ -193,16 +197,16 @@ on typeset()
 		set allCommand to cdCommand & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
 			set my _logContents to do shell script allCommand
-		on error errMsg number errNum
-			if errNum is 1 then
+		on error msg number errno
+			if errno is 1 then
 				-- 1:general tex error
-				set my _logContents to errMsg
-			else if errNum is 127 then
+				set my _logContents to msg
+			else if errno is 127 then
 				-- maybe comannd name or path setting is not correct
-				showError(errNum, "texCompile", errMsg) of MessageUtility
+				showError(errno, "texCompile", msg) of MessageUtility
 				error "Typeset is not executed." number 1250
 			else
-				error errMsg number errNum
+				error msg number errno
 			end if
 		end try
 	end if
@@ -223,7 +227,7 @@ on check_logfile()
 	set textCancel to localized string "Cancel"
 	set textClose to localized string "Close"
 	
-	set a_logfile to XFile's make_with(path_for_suffix(logSuffix))
+	set a_logfile to XFile's make_with(path_for_suffix(my _log_suffix))
 	set logFileReady to false
 	if a_logfile's item_exists() then
 		if busy status of (a_logfile's info()) then
@@ -235,7 +239,7 @@ on check_logfile()
 					if theFilePath is logfile_path then
 						try
 							set theResult to display dialog textALogfile & return & logfile_path & return & textHasBeenOpend & return & textShouldClose buttons {textCancel, textClose} default button textClose with icon note
-						on error errMsg number -128 --if canceld, error number -128
+						on error msg number -128 --if canceld, error number -128
 							set logFileReady to false
 							exit repeat
 						end try
@@ -283,9 +287,9 @@ on lookup_header_command(a_paragraph)
 		else if a_paragraph starts with "%Typeset-Command" then
 			set_typeset_command(StringEngine's strip(text 18 thru -1 of a_paragraph))
 		else if a_paragraph starts with "%DviToPdf-Command" then
-			set my _dvipdfCommand to StringEngine's strip(text 19 thru -1 of a_paragraph)
+			set my _dvipdf_command to StringEngine's strip(text 19 thru -1 of a_paragraph)
 		else if a_paragraph starts with "%DviToPs-Command" then
-			set my dvipsCommand to StringEngine's strip(text 18 thru -1 of a_paragraph)
+			set my _dvips_command to StringEngine's strip(text 18 thru -1 of a_paragraph)
 		end if
 	end ignoring
 end lookup_header_command
@@ -369,9 +373,9 @@ on make_with(a_xfile, an_encoding)
 	
 	script TeXDocController
 		property _file_ref : missing value -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef
-		property _typesetCommand : missing value
-		property _dvipdfCommand : missing value
-		property dvipsCommand : missing value
+		property _typeset_command : missing value
+		property _dvipdf_command : missing value
+		property _dvips_command : missing value
 		property _text_encoding : an_encoding
 		
 		property _texFileName : missing value

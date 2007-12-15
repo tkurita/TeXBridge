@@ -5,8 +5,8 @@ global appController
 
 (* shared variable *)
 
-property WindowController : missing value
-property targetWindow : missing value
+property _window_controller : missing value
+property _window : missing value
 
 property isLoadedTerminalSetting : false
 property isLoadedPreviewSetting : false
@@ -14,7 +14,7 @@ property isLoadedReplaceInputSetting : false
 
 on RevertToDefault()
 	--log "start RevertToDefault"
-	set currentTab to current tab view item of tab view "SettingTabs" of my targetWindow
+	set currentTab to current tab view item of tab view "SettingTabs" of my _window
 	set theName to name of currentTab
 	if theName is "TerminalSetting" then
 		revertToFactorySetting() of TerminalSettingObj
@@ -87,18 +87,18 @@ on selectedTab(tabViewItem)
 end selectedTab
 
 on initilize()
-	set WindowController to call method "alloc" of class "SettingWindowController"
-	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "Setting"
-	set targetWindow to call method "window" of WindowController
-	selectedTab(current tab view item of tab view "SettingTabs" of my targetWindow)
+	set my _window_controller to call method "alloc" of class "SettingWindowController"
+	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "Setting"
+	set my _window to call method "window" of my _window_controller
+	selectedTab(current tab view item of tab view "SettingTabs" of my _window)
 end initilize
 
 on open_window()
-	if WindowController is missing value then
+	if my _window_controller is missing value then
 		initilize()
 	end if
 	activate
-	call method "showWindow:" of WindowController
+	call method "showWindow:" of my _window_controller
 end open_window
 
 on setmiclient()
@@ -112,20 +112,20 @@ end setmiclient
 
 on saveMxdviEditor(theSetting)
 	--log "start saveMxdviEditor"
-	set mxdviEditorField to text field "MxdviEditorSetting" of box "MxdviEditorBox" of tab view item "PreviewSetting" of tab view "SettingTabs" of my targetWindow
+	set mxdviEditorField to text field "MxdviEditorSetting" of box "MxdviEditorBox" of tab view item "PreviewSetting" of tab view "SettingTabs" of my _window
 	if theSetting is missing value then
 		set theSetting to contents of contents of mxdviEditorField
 	else
 		set contents of contents of mxdviEditorField to theSetting
 	end if
 	if theSetting is not "" then
-		set theCommand to "defaults write Mxdvi MxdviEditor " & (quoted form of theSetting)
-		--log theCommand
-		do shell script theCommand
+		set a_command to "defaults write Mxdvi MxdviEditor " & (quoted form of theSetting)
+		--log a_command
+		do shell script a_command
 	end if
 	--log "end saveMxdviEditor"
 end saveMxdviEditor
 
-on displayAlert(theMessage)
-	display alert theMessage attached to targetWindow as warning
+on displayAlert(a_msg)
+	display alert a_msg attached to my _window as warning
 end displayAlert
