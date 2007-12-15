@@ -12,25 +12,32 @@ property isLoadedTerminalSetting : false
 property isLoadedPreviewSetting : false
 property isLoadedReplaceInputSetting : false
 
+on window_controller()
+	if my _window_controller is missing value then
+		initilize()
+	end if
+	return my _window_controller
+end window_controller
+
 on RevertToDefault()
 	--log "start RevertToDefault"
 	set currentTab to current tab view item of tab view "SettingTabs" of my _window
-	set theName to name of currentTab
-	if theName is "TerminalSetting" then
+	set a_name to name of currentTab
+	if a_name is "TerminalSetting" then
 		revertToFactorySetting() of TerminalSettingObj
 		set isLoadedTerminalSetting to false
-	else if theName is "TeXCommands" then
+	else if a_name is "TeXCommands" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "typesetCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "dvipdfCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "dvipsCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "ebbCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "bibtexCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "mendexCommand"
-	else if theName is "PreviewSetting" then
+	else if a_name is "PreviewSetting" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "dviViewCommand"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "DVIPreviewMode"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
-	else if theName is "TheOtherSetting" then
+	else if a_name is "TheOtherSetting" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "AutoMultiTypeset"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "ShowToolPaletteWhenLaunched"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "ShowRefPaletteWhenLaunched"
@@ -65,6 +72,7 @@ on loadPreviewSetting(theView)
 end loadPreviewSetting
 
 on loadReplaceInputSetting(theView)
+	--log "start loadReplaceInputSetting"
 	if not isLoadedReplaceInputSetting then
 		if ReplaceInput is missing value then
 			--log "load ReplaceInput"
@@ -76,17 +84,18 @@ on loadReplaceInputSetting(theView)
 end loadReplaceInputSetting
 
 on selectedTab(tabViewItem)
-	set theName to name of tabViewItem
-	if theName is "TerminalSetting" then
+	set a_name to name of tabViewItem
+	if a_name is "TerminalSetting" then
 		loadTerminalSetting(tabViewItem)
-	else if theName is "PreviewSetting" then
+	else if a_name is "PreviewSetting" then
 		loadPreviewSetting(tabViewItem)
-	else if theName is "ReplaceInputSetting" then
+	else if a_name is "ReplaceInputSetting" then
 		loadReplaceInputSetting(tabViewItem)
 	end if
 end selectedTab
 
 on initilize()
+	--log "start initialize"
 	set my _window_controller to call method "alloc" of class "SettingWindowController"
 	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "Setting"
 	set my _window to call method "window" of my _window_controller

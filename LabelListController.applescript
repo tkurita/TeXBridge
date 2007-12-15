@@ -220,7 +220,7 @@ on parseAuxFile(theAuxObj)
 				addLabelFromAux(theLabel, theRef) of theAuxObj
 			end if
 		else if theParagraph starts with inputText then
-			log "start @input"
+			--log "start @input"
 			set childAuxFile to text 9 thru -2 of theParagraph
 			set_base_path(theAuxObj's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile

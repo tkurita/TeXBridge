@@ -11,6 +11,10 @@ global _backslash
 
 property isWorkedTimer : missing value
 
+on window_controller()
+	return my _window_controller
+end window_controller
+
 on stopTimer()
 	if my _window_controller is not missing value then
 		call method "temporaryStopReloadTimer" of my _window_controller

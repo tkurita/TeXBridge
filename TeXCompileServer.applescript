@@ -122,7 +122,7 @@ on launched theObject
 	--log "end of launched"
 end launched
 
-on do_replaceinput({})
+on do_replaceinput(arg)
 	if ReplaceInput is missing value then
 		set ReplaceInput to importScript("ReplaceInput")
 	end if
@@ -141,7 +141,7 @@ on open theObject
 			theObject's commandScript's do(me, {})
 		else if command_class is "compile" then
 			try
-				theObject's commandScript's do(CompileCenter)
+				theObject's commandScript's do(CompileCenter, {})
 			on error msg number errno
 				if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
 					showError(errno, "open", msg) of MessageUtility
@@ -152,7 +152,7 @@ on open theObject
 			show_status_message("") of ToolPaletteController
 			
 		else if command_class is "editSupport" then
-			theObject's commandScript's do(EditCommands)
+			theObject's commandScript's do(EditCommands, {})
 		else
 			showMessage("Unknown commandClass : " & command_class) of MessageUtility
 		end if
@@ -285,10 +285,9 @@ end will finish launching
 
 on awake from nib theObject
 	--log "start awake from nib"
-	--set theName to name of theObject
 	set a_class to class of theObject
 	if a_class is data source then
-		tell a_class
+		tell theObject
 			make new data column at the end of the data columns with properties {name:"keyword"}
 			make new data column at the end of the data columns with properties {name:"replace"}
 		end tell

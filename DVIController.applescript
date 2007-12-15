@@ -206,7 +206,7 @@ on open_dvi given activation:aFlag
 	open_dvi of (my _dvi_driver) given sender:a reference to me, activation:aFlag
 end open_dvi
 
-on dvi_to_pdf()
+on dvi_to_pdf(arg)
 	--log "start dvi_to_pdf"
 	set a_pdf to lookup_pdf_file()
 	--log "success lookup_pdf_file"

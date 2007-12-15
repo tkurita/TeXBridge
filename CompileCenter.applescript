@@ -260,7 +260,7 @@ on dvi_to_pdf(arg)
 		return
 	end if
 	
-	set a_pdf to dvi_to_pdf() of a_dvi
+	set a_pdf to a_dvi's dvi_to_pdf({})
 	--log "success to get PDFController"
 	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")

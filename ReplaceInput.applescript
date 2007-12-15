@@ -14,7 +14,7 @@ property userReplaceDataSource : missing value
 property parentView : missing value
 
 (* variables of dictionary *)
-property internalReplaceDict : missing value
+property _internalReplaceDict : missing value
 property dictList : missing value
 property userReplaceDict : missing value
 
@@ -153,9 +153,9 @@ on initialize()
 		set userReplaceDict to XDict's make_with_lists(key_list, value_list)
 	end if
 	
-	if internalReplaceDict is missing value then
-		set internalReplaceDict to loadPlistDictionary("ReplaceDictionary") of UtilityHandlers
-		set dictList to call method "allValues" of internalReplaceDict
+	if my _internalReplaceDict is missing value then
+		set my _internalReplaceDict to loadPlistDictionary("ReplaceDictionary") of UtilityHandlers
+		set dictList to call method "allValues" of my _internalReplaceDict
 	end if
 end initialize
 
@@ -187,13 +187,14 @@ on setSettingToWindow(theView)
 	--log "success get data source"
 	
 	--log "set internal keywords"
-	set categoryList to call method "allKeys" of internalReplaceDict
+	set categoryList to call method "allKeys" of my _internalReplaceDict
+	--log "after allkeys"
 	repeat with theCategory in categoryList
 		set categoryItem to make new data item at end of data items of internalReplaceDataSource
 		set categoryText to localized string theCategory
 		set contents of data cell "keyword" of categoryItem to categoryText
 		set contents of data cell "replace" of categoryItem to ""
-		set theDict to getKeyValue of UtilityHandlers for theCategory from internalReplaceDict
+		set theDict to getKeyValue of UtilityHandlers for theCategory from my _internalReplaceDict
 		--log "before appendDictToOutline"
 		appendDictToOutline for theDict into categoryItem
 	end repeat
@@ -265,7 +266,7 @@ on do()
 	set keyText to text (lastYenPosition + 1) thru -1 of targetText
 	
 	set newText to missing value
-	--set newText to getKeyValue of UtilityHandlers for keyText from internalReplaceDict
+	--set newText to getKeyValue of UtilityHandlers for keyText from my _internalReplaceDict
 	try
 		set newText to findReplaceText(keyText)
 	on error number 1270
