@@ -16,7 +16,7 @@ property parentView : missing value
 (* variables of dictionary *)
 property _internalReplaceDict : missing value
 property dictList : missing value
-property userReplaceDict : missing value
+property _user_replace_dict : missing value
 
 (* variables in this script object *)
 property preKeyword : missing value
@@ -30,8 +30,8 @@ on saveUserDict()
 	if isChangedUserDict then
 		--log "user dict will be saved"
 		tell user defaults
-			set contents of default entry "ReplaceInput_KeyList" to keyList() of userReplaceDict
-			set contents of default entry "ReplaceInput_ValueList" to valueList() of userReplaceDict
+			set contents of default entry "ReplaceInput_KeyList" to keyList() of my _user_replace_dict
+			set contents of default entry "ReplaceInput_ValueList" to valueList() of my _user_replace_dict
 		end tell
 		set isChangedUserDict to false
 	end if
@@ -48,8 +48,8 @@ on addToUserDict given keyword:keywordText, replace:replaceText
 		displayAlert(a_msg) of SettingWindowController
 		return false
 	else
-		--setValue of userReplaceDict given forKey:keywordText, withValue:replaceText
-		userReplaceDict's set_value(keywordText, replaceText)
+		--setValue of my _user_replace_dict given forKey:keywordText, withValue:replaceText
+		my _user_replace_dict's set_value(keywordText, replaceText)
 		set end of userKeywordList to keywordText
 		set isChangedUserDict to true
 		saveUserDict()
@@ -138,7 +138,7 @@ on controlClicked(theObject)
 		end try
 		--log preKeyword
 		if preKeyword is not "" then
-			if removeItem of userReplaceDict given forKey:preKeyword then
+			if my _user_replace_dict's remove_for_key(preKeyword) then
 				set isChangedUserDict to true
 				saveUserDict()
 			end if
@@ -147,10 +147,10 @@ on controlClicked(theObject)
 end controlClicked
 
 on initialize()
-	if userReplaceDict is missing value then
-		set key_list to readDefaultValueWith("ReplaceInput_KeyList", {}) of DefaultsManager
-		set value_list to readDefaultValueWith("ReplaceInput_ValueList", {}) of DefaultsManager
-		set userReplaceDict to XDict's make_with_lists(key_list, value_list)
+	if my _user_replace_dict is missing value then
+		set key_list to value_with_default("ReplaceInput_KeyList", {}) of DefaultsManager
+		set value_list to value_with_default("ReplaceInput_ValueList", {}) of DefaultsManager
+		set my _user_replace_dict to XDict's make_with_lists(key_list, value_list)
 	end if
 	
 	if my _internalReplaceDict is missing value then
@@ -200,9 +200,9 @@ on setSettingToWindow(theView)
 	end repeat
 	
 	--log "set user-defined keywords"
-	set userKeywordList to userReplaceDict's all_keys()
+	set userKeywordList to my _user_replace_dict's all_keys()
 	set numUserKeyword to length of userKeywordList
-	set value_list to userReplaceDict's all_values()
+	set value_list to my _user_replace_dict's all_values()
 	if numUserKeyword > 0 then
 		repeat with ith from 1 to numUserKeyword
 			set theKeyword to item ith of userKeywordList
@@ -220,11 +220,16 @@ end setSettingToWindow
 on findReplaceText(keyText)
 	--log "start findReplaceText for " & keyText
 	--log "find replaceText from user dictionary"
-	set newText to userReplaceDict's value_for_key(keyText)
+	try
+		return my _user_replace_dict's value_for_key(keyText)
+	on error number 900
+	end try
+	(*
 	if newText is not missing value then
 		--log "replece text is found from userReplaceDict"
 		return newText
 	end if
+	*)
 	
 	--log "find replaceText from internal dictionary"
 	repeat with theDict in dictList

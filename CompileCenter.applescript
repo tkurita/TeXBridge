@@ -76,10 +76,10 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	(* find header commands *)
 	set ith to 1
 	repeat
-		set theParagraph to EditorClient's paragraph_at_index(ith)
-		if theParagraph starts with "%" then
+		set a_paragraph to EditorClient's paragraph_at_index(ith)
+		if a_paragraph starts with "%" then
 			try
-				a_texdoc's lookup_header_command(theParagraph)
+				a_texdoc's lookup_header_command(a_paragraph)
 			on error msg number errno
 				if errno is in {1220, 1230} then
 					EditorClient's show_message(msg)
@@ -280,7 +280,7 @@ on dvi_to_ps(arg)
 	end try
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set a_command to a_texdoc's dvips_command()
-	set cdCommand to "cd " & (quoted form of (a_texdoc's pwd()'s posix_path()))
+	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set a_command to buildCommand(a_command, ".dvi") of a_texdoc
 	set allCommand to cdCommand & comDelim & a_command
 	--doCommands of TerminalCommander for allCommand with activation
@@ -298,7 +298,7 @@ on execTexCommand(texCommand, theSuffix, checkSaved)
 		return
 	end try
 	
-	set cdCommand to "cd " & (quoted form of (a_texdoc's pwd()'s posix_path()))
+	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set texCommand to buildCommand(texCommand, theSuffix) of a_texdoc
 	set allCommand to cdCommand & comDelim & texCommand
 	--doCommands of TerminalCommander for allCommand with activation
@@ -328,9 +328,9 @@ on seek_ebb(arg)
 	set noGraphicFlag to true
 	set noNewBBFlag to true
 	repeat with ith from 1 to (count paragraph of theRes)
-		set theParagraph to paragraph ith of theRes
-		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
-			set graphicFile to extractFilePath(graphicCommand, theParagraph) of EditCommands
+		set a_paragraph to paragraph ith of theRes
+		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
+			set graphicFile to extractFilePath(graphicCommand, a_paragraph) of EditCommands
 			repeat with an_extension in graphicExtensions
 				if graphicFile ends with an_extension then
 					set noGraphicFlag to false

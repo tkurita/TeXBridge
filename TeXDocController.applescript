@@ -148,9 +148,9 @@ on target_file()
 	return my _targetFileRef
 end target_file
 
-on pwd()
+on cwd()
 	return my _workingDirectory
-end pwd
+end cwd
 
 on working_directory()
 	return my _workingDirectory

@@ -20,7 +20,7 @@ property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
 property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
 *)
 
-property auxObjArray : missing value
+property _aux_data_dict : missing value
 property labelDataSource : missing value
 property unsavedAuxObj : missing value
 property outlineView : missing value
@@ -28,7 +28,7 @@ property outlineView : missing value
 property ignoringErrors : {1230, 1500}
 
 on initialize(theDataSource)
-	set auxObjArray to make XDict
+	set my _aux_data_dict to make XDict
 	set labelDataSource to theDataSource
 	tell labelDataSource
 		make new data column at the end of the data columns with properties {name:"label"}
@@ -170,14 +170,22 @@ on auxdata_for_texdoc(a_texdoc)
 		--log "file is saved"
 		set a_key to a_texdoc's no_suffix_target_path()
 		--log "auxdata key: " & a_key
-		set an_auxdata to auxObjArray's value_for_key(a_key)
+		try
+			set an_auxdata to my _aux_data_dict's value_for_key(a_key)
+			an_auxdata's set_texdoc(a_texdoc) -- update for text encoding		
+		on error number 900
+			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
+			my _aux_data_dict's set_value(a_key, an_auxdata)
+		end try
+		(*
 		if an_auxdata is missing value then
 			--log "new auxdata will be registered"
 			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
-			auxObjArray's set_value(a_key, an_auxdata)
+			my _aux_data_dict's set_value(a_key, an_auxdata)
 		else
 			an_auxdata's set_texdoc(a_texdoc) -- update for text encoding
 		end if
+		*)
 	else
 		--log "file is not saved"
 		if unsavedAuxObj is not missing value then
@@ -199,13 +207,13 @@ on parseAuxFile(theAuxObj)
 	set newlabelText to _backslash & "newlabel{"
 	set inputText to _backslash & "@input{"
 	repeat with ith from 1 to (count paragraph of theContents)
-		set theParagraph to paragraph ith of theContents
-		--log theParagraph
-		if (theParagraph as Unicode text) starts with newlabelText then
+		set a_paragraph to paragraph ith of theContents
+		--log a_paragraph
+		if (a_paragraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
-			set theParagraph to text 11 thru -2 of theParagraph
+			set a_paragraph to text 11 thru -2 of a_paragraph
 			store_delimiters() of StringEngine
-			set theTextItemList to split of StringEngine for theParagraph by "}{"
+			set theTextItemList to split of StringEngine for a_paragraph by "}{"
 			restore_delimiters() of StringEngine
 			try
 				set theRef to ((item -2 of theTextItemList) as string)
@@ -213,15 +221,15 @@ on parseAuxFile(theAuxObj)
 				set theRef to "--"
 			end try
 			
-			set pos2 to (offset of "}{" in theParagraph) as integer
+			set pos2 to (offset of "}{" in a_paragraph) as integer
 			set theLabel to item 1 of theTextItemList
 			
 			if not theLabel is "" then
 				addLabelFromAux(theLabel, theRef) of theAuxObj
 			end if
-		else if theParagraph starts with inputText then
+		else if a_paragraph starts with inputText then
 			--log "start @input"
-			set childAuxFile to text 9 thru -2 of theParagraph
+			set childAuxFile to text 9 thru -2 of a_paragraph
 			set_base_path(theAuxObj's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile
 			set theAuxFile to (POSIX file theAuxFile) as alias
@@ -259,24 +267,24 @@ on findLabelsFromDocument(theAuxObj, force_flag)
 	
 	clearLabelsFromDoc() of theAuxObj
 	repeat while (a_xlist's has_next())
-		set theParagraph to a_xlist's next()
-		--set theParagraph to paragraph ith of theContents
-		--log theParagraph
-		if ((length of theParagraph) > 1) and (theParagraph does not start with "%") then
-			repeat while (theParagraph contains labelCommand)
-				set pos0 to offset of labelCommand in theParagraph
-				set theParagraph to text pos0 thru -1 of theParagraph
-				set pos1 to offset of "{" in theParagraph
+		set a_paragraph to a_xlist's next()
+		--set a_paragraph to paragraph ith of theContents
+		--log a_paragraph
+		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
+			repeat while (a_paragraph contains labelCommand)
+				set pos0 to offset of labelCommand in a_paragraph
+				set a_paragraph to text pos0 thru -1 of a_paragraph
+				set pos1 to offset of "{" in a_paragraph
 				if pos1 is 0 then exit repeat
-				set pos2 to offset of "}" in theParagraph
+				set pos2 to offset of "}" in a_paragraph
 				if pos2 is 0 then exit repeat
-				set theLabel to text (pos1 + 1) thru (pos2 - 1) of theParagraph
+				set theLabel to text (pos1 + 1) thru (pos2 - 1) of a_paragraph
 				--if theLabel is not in labelList of theAuxObj then
 				if not theAuxObj's has_label(theLabel) then
 					addLabelFromDoc(theLabel) of theAuxObj
 				end if
 				try
-					set theParagraph to text (pos2 + 1) thru -1 of theParagraph
+					set a_paragraph to text (pos2 + 1) thru -1 of a_paragraph
 				on error
 					exit repeat
 				end try

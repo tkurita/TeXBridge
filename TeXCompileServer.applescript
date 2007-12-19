@@ -66,7 +66,7 @@ end script
 on launched theObject
 	--log "start lanunched"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
-	set IsOpenedToolPalette to readDefaultValueWith("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
+	set IsOpenedToolPalette to value_with_default("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
 	if not showToolPaletteWhenLaunched then
 		set showToolPaletteWhenLaunched to IsOpenedToolPalette
 	end if
@@ -76,7 +76,7 @@ on launched theObject
 	end if
 	
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
-	set IsOpenedRefPalette to readDefaultValueWith("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
+	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
 	if not showRefPaletteWhenLaunched then
 		set showRefPaletteWhenLaunched to IsOpenedRefPalette
 	end if

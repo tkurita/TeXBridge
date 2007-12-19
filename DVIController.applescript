@@ -19,7 +19,7 @@ script XdviDriver
 		end if
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
-		set cdCommand to "cd " & (quoted form of (a_dvi's pwd()'s posix_path()))
+		set cdCommand to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
 		set dviFileName to a_dvi's filename()
 		
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
@@ -122,13 +122,13 @@ on texdoc()
 	return my _texdoc
 end texdoc
 
-on pwd()
+on cwd()
 	if my _texdoc is not missing value then
-		return my _texdoc's pwd()
+		return my _texdoc's cwd()
 	end if
 	
 	return my _dvifile's parent_folder()
-end pwd
+end cwd
 
 on posix_path()
 	return my _dvifile's posix_path()
@@ -219,7 +219,7 @@ on dvi_to_pdf(arg)
 	
 	--log "convert a DVI file into a PDF file"
 	set a_command to my _texdoc's dvipdf_command()
-	set cdCommand to "cd" & space & (quoted form of (pwd()'s posix_path()))
+	set cdCommand to "cd" & space & (quoted form of (cwd()'s posix_path()))
 	set targetFileName to my _texdoc's name_for_suffix(".dvi")
 	set allCommand to cdCommand & comDelim & a_command & space & "'" & targetFileName & "'"
 	

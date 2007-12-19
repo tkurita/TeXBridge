@@ -133,8 +133,8 @@ on checkPDFApp()
 end checkPDFApp
 
 on loadSettings()
-	set acrobatPath to readDefaultValueWith("AcrobatPath", acrobatPath) of DefaultsManager
-	set adobeReaderPath to readDefaultValueWith("AdobeReaderPath", adobeReaderPath) of DefaultsManager
+	set acrobatPath to value_with_default("AcrobatPath", acrobatPath) of DefaultsManager
+	set adobeReaderPath to value_with_default("AdobeReaderPath", adobeReaderPath) of DefaultsManager
 	--log "success read default value of PDFPreviewIndex"
 	checkPDFApp()
 end loadSettings
