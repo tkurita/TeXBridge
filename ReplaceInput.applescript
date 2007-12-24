@@ -8,139 +8,167 @@ global XDict
 global DefaultsManager
 
 (* references to the GUI *)
-property internalReplaceOutline : missing value
-property userReplaceTable : missing value
-property userReplaceDataSource : missing value
-property parentView : missing value
+property _internalReplaceOutline : missing value
+property _userReplaceTable : missing value
+property _userReplaceDataSource : missing value
+property _removeButton : missing value
+--property parentView : missing value
 
 (* variables of dictionary *)
 property _internalReplaceDict : missing value
-property dictList : missing value
+property _dict_set : missing value
 property _user_replace_dict : missing value
 
 (* variables in this script object *)
-property preKeyword : missing value
-property preReplace : missing value
-property userKeywordList : missing value
-property numUserKeyword : missing value
-property isChangedUserDict : false
-property previousDataRow : missing value
+property _pre_keyword : missing value
+property _pre_replace : missing value
+property _is_changed_userdict : false
+property _pre_data_row : missing value
+
+on set_gui_element(an_object)
+	--log "start set_gui_element"
+	set a_name to name of an_object
+	if a_name is "RemoveReplaceText" then
+		set my _removeButton to an_object
+	else if a_name is "InternalReplaceOutline" then
+		set my _internalReplaceOutline to an_object
+	else if a_name is "UserReplaceTable" then
+		set my _userReplaceTable to an_object
+		set my _userReplaceDataSource to data source of my _userReplaceTable
+	end if
+end set_gui_element
 
 on saveUserDict()
-	if isChangedUserDict then
+	if my _is_changed_userdict then
 		--log "user dict will be saved"
 		tell user defaults
-			set contents of default entry "ReplaceInput_KeyList" to keyList() of my _user_replace_dict
-			set contents of default entry "ReplaceInput_ValueList" to valueList() of my _user_replace_dict
+			set contents of default entry "ReplaceInput_KeyList" to (my _user_replace_dict's all_keys())
+			set contents of default entry "ReplaceInput_ValueList" to (my _user_replace_dict's all_values())
 		end tell
-		set isChangedUserDict to false
+		set my _is_changed_userdict to false
 	end if
 end saveUserDict
 
-on addToUserDict given keyword:keywordText, replace:replaceText
+on addToUserDict given keyword:a_keyword, replace:replaceText
 	--log "start addToUserDict"
+	(*
 	considering case
-		set is_defined to keywordText is in userKeywordList
+		set is_defined to keywordText is in my _userKeywordList
 	end considering
-	if is_defined then
-		--log userKeywordList
-		set a_msg to UtilityHandlers's localized_string("keywordStillDefined", {keywordText})
+	*)
+	
+	if (my _pre_keyword is not a_keyword) and (my _user_replace_dict's has_key(a_keyword)) then
+		--log my _userKeywordList
+		set a_msg to UtilityHandlers's localized_string("keywordStillDefined", {a_keyword})
 		displayAlert(a_msg) of SettingWindowController
 		return false
 	else
-		--setValue of my _user_replace_dict given forKey:keywordText, withValue:replaceText
-		my _user_replace_dict's set_value(keywordText, replaceText)
-		set end of userKeywordList to keywordText
-		set isChangedUserDict to true
-		saveUserDict()
+		my _user_replace_dict's remove_for_key(my _pre_keyword)
+	end if
+	my _user_replace_dict's set_value(a_keyword, replaceText)
+	set my _is_changed_userdict to true
+	saveUserDict()
+	return true
+end addToUserDict
+
+on cell_value_changed(theObject, theRow, tableColumn, theValue)
+	--log "start cell_value_changed"
+	set current_row to data row theRow of data source of theObject
+	set a_keyword to contents of data cell "keyword" of current_row
+	set a_replace to contents of data cell "replace" of current_row
+	--log a_keyword
+	--log a_replace
+	if (a_keyword is "") or (a_replace is "") then
 		return true
 	end if
-end addToUserDict
+	
+	if (my _pre_keyword is a_keyword) and (my _pre_replace is a_replace) then
+		return true
+	end if
+	
+	if (addToUserDict given keyword:a_keyword, replace:a_replace) then
+		set my _pre_keyword to a_keyword
+		set my _pre_replace to a_replace
+		return true
+	else
+		set contents of data cell "keyword" of current_row to my _pre_keyword
+		return false
+	end if
+	
+end cell_value_changed
 
 on shouldSelectionChange(theObject)
 	--log "start shouldSelectionChange in ReplaceInput"
-	(*
-	set editedRow to edited row of theObject
 	
-	if editedRow is not 0 then
-		return true
-	end if
-	*)
-	
-	set selectedData to selected data row of theObject
+	set selected_data_row to selected data row of theObject
 	
 	try
-		if selectedData is previousDataRow then
+		if selected_data_row is my _pre_data_row then
 			return true
 		end if
-		set theKeyword to contents of data cell "keyword" of selectedData
-		set theReplace to contents of data cell "replace" of selectedData
+		set a_keyword to contents of data cell "keyword" of selected_data_row
+		set a_replace to contents of data cell "replace" of selected_data_row
 	on error
 		--log "no previos selection"
-		set previousDataRow to missing value
+		set my _pre_data_row to missing value
 		return true
 	end try
 	
-	if theKeyword is "" then
+	if a_keyword is "" then
 		set a_msg to localized string "keywordiIsBlank"
 		displayAlert(a_msg) of SettingWindowController
 		return false
-	else if theReplace is "" then
+	else if a_replace is "" then
 		set a_msg to localized string "replaceIsBlank"
 		displayAlert(a_msg) of SettingWindowController
 		--log "there are blanked cells"
 		return false
 	else
 		--log "cells are filled"
-		if (addToUserDict given keyword:theKeyword, replace:theReplace) then
-			set previousDataRow to selectedData
-			return true
-		else
-			return false
-		end if
+		set my _pre_data_row to selected_data_row
+		return true
 	end if
 end shouldSelectionChange
 
 on selectionChanged(theObject)
 	--log "start selectionChanged in ReplaceInput"
-	set theDataRow to selected data row of theObject
+	set a_data_row to selected data row of theObject
 	try
-		get theDataRow
+		get a_data_row
 	on error
 		--log "empty selection"
 		return
 	end try
 	
-	set preKeyword to contents of data cell "keyword" of theDataRow
-	set preReplace to contents of data cell "replace" of theDataRow
-	if preKeyword is not "" then
-		--log "keyword is not blank"
-		set userKeywordList to deleteListItem of UtilityHandlers for preKeyword from userKeywordList
-	end if
+	set my _pre_keyword to contents of data cell "keyword" of a_data_row
+	set my _pre_replace to contents of data cell "replace" of a_data_row
+	set enabled of my _removeButton to true
 	--log "end selectionChanged in ReplaceInput"
 end selectionChanged
 
 on controlClicked(theObject)
-	set theName to name of theObject
-	if theName is "addReplaceText" then
+	set a_name to name of theObject
+	if a_name is "addReplaceText" then
 		--log "called addRelaceText"
-		if shouldSelectionChange(userReplaceTable) then
-			set theRow to make new data row at the end of the data rows of userReplaceDataSource
-			set selected data row of userReplaceTable to theRow
-			set first responder of window of userReplaceTable to userReplaceTable
+		if shouldSelectionChange(my _userReplaceTable) then
+			set theRow to make new data row at the end of the data rows of my _userReplaceDataSource
+			set selected data row of my _userReplaceTable to theRow
+			set first responder of window of my _userReplaceTable to my _userReplaceTable
 		end if
-	else if theName is "removeReplaceText" then
-		set selectedDataRow to selected data row of userReplaceTable
+	else if a_name is "removeReplaceText" then
+		set selectedDataRow to selected data row of my _userReplaceTable
 		try
 			delete selectedDataRow
 		on error
-			retrun
+			return
 		end try
-		--log preKeyword
-		if preKeyword is not "" then
-			if my _user_replace_dict's remove_for_key(preKeyword) then
-				set isChangedUserDict to true
+		--log my _pre_keyword
+		if my _pre_keyword is not "" then
+			if my _user_replace_dict's remove_for_key(my _pre_keyword) then
+				--log "success removing keyword"
+				set my _is_changed_userdict to true
 				saveUserDict()
+				selectionChanged(my _userReplaceTable)
 			end if
 		end if
 	end if
@@ -155,7 +183,7 @@ on initialize()
 	
 	if my _internalReplaceDict is missing value then
 		set my _internalReplaceDict to loadPlistDictionary("ReplaceDictionary") of UtilityHandlers
-		set dictList to call method "allValues" of my _internalReplaceDict
+		set my _dict_set to call method "allValues" of my _internalReplaceDict
 	end if
 end initialize
 
@@ -171,19 +199,15 @@ on appendDictToOutline for theDict into parentDataItem
 		set contents of data cell "keyword" of theDataItem to theKeyword
 		set contents of data cell "replace" of theDataItem to replaceText
 	end repeat
-	-- log "end appendDictToOutline"
+	--log "end appendDictToOutline"
 end appendDictToOutline
 
-on setSettingToWindow(theView)
+on setSettingToWindow(a_view)
 	--log "start setSettingToWindow in ReplaceInput"
-	set parentView to theView
-	set internalReplaceOutline to outline view "InternalReplaceOutline" of scroll view "InternalReplaceScroll" of theView
-	set userReplaceTable to table view "UserReplaceTable" of scroll view "UserReplaceScroll" of theView
 	
 	initialize()
 	--log "success initialize"
-	set internalReplaceDataSource to data source of internalReplaceOutline
-	set userReplaceDataSource to data source of userReplaceTable
+	set internalReplaceDataSource to data source of my _internalReplaceOutline
 	--log "success get data source"
 	
 	--log "set internal keywords"
@@ -200,19 +224,20 @@ on setSettingToWindow(theView)
 	end repeat
 	
 	--log "set user-defined keywords"
-	set userKeywordList to my _user_replace_dict's all_keys()
-	set numUserKeyword to length of userKeywordList
-	set value_list to my _user_replace_dict's all_values()
-	if numUserKeyword > 0 then
-		repeat with ith from 1 to numUserKeyword
-			set theKeyword to item ith of userKeywordList
-			set replaceText to item ith of value_list
-			set theDataItem to make new data row at end of data rows of userReplaceDataSource
-			set contents of data cell "keyword" of theDataItem to theKeyword
-			set contents of data cell "replace" of theDataItem to replaceText
-			--log theKeyword & " : " & replaceText
-		end repeat
-		tell userReplaceTable to update
+	if my _user_replace_dict's count_keys() > 0 then
+		script setup_data_cell
+			on do(a_pair)
+				set a_data_item to make new data row at end of data rows of my _userReplaceDataSource
+				tell a_data_item
+					set contents of data cell "keyword" to item 1 of a_pair
+					set contents of data cell "replace" to item 2 of a_pair
+				end tell
+				return true
+			end do
+		end script
+		--log "will before set data cells"
+		my _user_replace_dict's each(setup_data_cell)
+		tell my _userReplaceTable to update
 	end if
 	--log "end setSettingToWindow in ReplaceInput"
 end setSettingToWindow
@@ -232,7 +257,7 @@ on findReplaceText(keyText)
 	*)
 	
 	--log "find replaceText from internal dictionary"
-	repeat with theDict in dictList
+	repeat with theDict in my _dict_set
 		set newText to getKeyValue of UtilityHandlers for keyText from theDict
 		try
 			get newText

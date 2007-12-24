@@ -74,10 +74,6 @@ end loadPreviewSetting
 on loadReplaceInputSetting(theView)
 	--log "start loadReplaceInputSetting"
 	if not isLoadedReplaceInputSetting then
-		if ReplaceInput is missing value then
-			--log "load ReplaceInput"
-			set ReplaceInput to ScriptImporter's do("ReplaceInput")
-		end if
 		setSettingToWindow(theView) of ReplaceInput
 		set isLoadedReplaceInputSetting to true
 	end if

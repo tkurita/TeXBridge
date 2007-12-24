@@ -123,9 +123,6 @@ on launched theObject
 end launched
 
 on do_replaceinput(arg)
-	if ReplaceInput is missing value then
-		set ReplaceInput to importScript("ReplaceInput")
-	end if
 	ReplaceInput's do()
 end do_replaceinput
 
@@ -271,6 +268,7 @@ on will finish launching theObject
 	set SheetManager to importScript("SheetManager")
 	set AuxData to importScript("AuxData")
 	set EditorClient to importScript("EditorClient")
+	set ReplaceInput to importScript("ReplaceInput")
 	
 	--log "end of import library"
 	showStartupMessage("Loading Preferences ...")
@@ -291,6 +289,11 @@ on awake from nib theObject
 			make new data column at the end of the data columns with properties {name:"keyword"}
 			make new data column at the end of the data columns with properties {name:"replace"}
 		end tell
+	else
+		set a_tag to tag of theObject
+		if a_tag is 6 then
+			ReplaceInput's set_gui_element(theObject)
+		end if
 	end if
 end awake from nib
 
@@ -320,6 +323,14 @@ on will quit theObject
 		set contents of default entry "IsOpenedRefPalette" to is_opened() of RefPanelController
 	end tell
 end will quit
+
+on cell value changed theObject row theRow table column tableColumn value theValue
+	--log "start cell value changed"
+	set a_name to name of theObject
+	if a_name is "UserReplaceTable" then
+		ReplaceInput's cell_value_changed(theObject, theRow, tableColumn, theValue)
+	end if
+end cell value changed
 
 on showStartupMessage(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
