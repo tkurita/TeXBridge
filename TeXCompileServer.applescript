@@ -49,16 +49,16 @@ property SheetManager : missing value
 property AuxData : missing value
 property EditorClient : missing value
 
-on importScript(scriptName)
+on import_script(scriptName)
 	tell main bundle
 		set scriptPath to path for script scriptName extension "scpt"
 	end tell
 	return load script POSIX file scriptPath
-end importScript
+end import_script
 
 script ScriptImporter
 	on do(scriptName)
-		return importScript(scriptName)
+		return import_script(scriptName)
 	end do
 end script
 
@@ -158,16 +158,15 @@ on open theObject
 		
 		if command_id starts with "." then
 			openOutputHadler(command_id) of CompileCenter
+			(*
 		else if command_id ends with ".tex" then
-			--ignoring application responses
-			tell application "Finder"
-				open command_id using miAppRef
-			end tell
-			--end ignoring
+			
+			EditorClient's open_with_activating(command_id)
 			tell user defaults
 				set targetLine to contents of default entry "SourcePosition"
 			end tell
 			doReverseSearch(targetLine)
+		*)
 		else
 			showMessage("Unknown argument : " & command_id) of MessageUtility
 		end if
@@ -223,8 +222,9 @@ on choose menu item theObject
 end choose menu item
 
 on setUpConstants()
+	set app_file to EditorClient's application_file()
 	tell application "System Events"
-		set theVer to version of miAppRef
+		set theVer to version of app_file
 	end tell
 	set theVer to word 3 of theVer
 	if theVer is greater than or equal to "2.1.7" then
@@ -244,35 +244,33 @@ on will finish launching theObject
 	--activate
 	--log "start will finish launching"
 	set appController to call method "sharedAppController" of class "AppController"
-	set MessageUtility to importScript("MessageUtility")
-	
 	showStartupMessage("Loading Factory Settings ...")
-	set miAppRef to path to application "mi" as alias
-	setUpConstants()
+	set MessageUtility to import_script("MessageUtility")
 	
-	set DefaultsManager to importScript("DefaultsManager")
+	
+	set DefaultsManager to import_script("DefaultsManager")
 	
 	showStartupMessage("Loading Scripts ...")
-	set UtilityHandlers to importScript("UtilityHandlers")
-	set LogFileParser to importScript("LogFileParser")
-	set EditCommands to importScript("EditCommands")
-	set PDFController to importScript("PDFController")
-	set CompileCenter to importScript("CompileCenter")
-	set TeXDocController to importScript("TeXDocController")
-	set DVIController to importScript("DVIController")
-	set SettingWindowController to importScript("SettingWindowController")
-	set ToolPaletteController to importScript("ToolPaletteController")
-	set TerminalCommander to make_obj() of (importScript("TerminalCommander"))
-	set TerminalSettingObj to importScript("TerminalSettingObj")
-	set RefPanelController to importScript("RefPanelController")
-	set SheetManager to importScript("SheetManager")
-	set AuxData to importScript("AuxData")
-	set EditorClient to importScript("EditorClient")
-	set ReplaceInput to importScript("ReplaceInput")
+	set UtilityHandlers to import_script("UtilityHandlers")
+	set LogFileParser to import_script("LogFileParser")
+	set EditCommands to import_script("EditCommands")
+	set PDFController to import_script("PDFController")
+	set CompileCenter to import_script("CompileCenter")
+	set TeXDocController to import_script("TeXDocController")
+	set DVIController to import_script("DVIController")
+	set SettingWindowController to import_script("SettingWindowController")
+	set ToolPaletteController to import_script("ToolPaletteController")
+	set TerminalCommander to make_obj() of (import_script("TerminalCommander"))
+	set TerminalSettingObj to import_script("TerminalSettingObj")
+	set RefPanelController to import_script("RefPanelController")
+	set SheetManager to import_script("SheetManager")
+	set AuxData to import_script("AuxData")
+	set EditorClient to import_script("EditorClient")
+	set ReplaceInput to import_script("ReplaceInput")
 	
 	--log "end of import library"
 	showStartupMessage("Loading Preferences ...")
-	
+	setUpConstants()
 	--log "start of initializeing PDFController"
 	loadSettings() of PDFController
 	

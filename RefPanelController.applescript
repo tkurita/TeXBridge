@@ -42,22 +42,27 @@ on watchmi given force_reloading:force_flag
 	watchmi of LabelListController given force_reloading:force_flag
 	--log "end watchmi in RefPanelController"
 end watchmi
-
+(*
 on activateFirstmiWindow()
 	set a_file to EditorClient's document_file_as_alias()
 	
 	if a_file is not missing value then
+		(*
 		ignoring application responses
 			tell application "Finder"
 				open a_file using miAppRef
 			end tell
 		end ignoring
+		*)
+		--EditorClient's open_with_activating(a_file)
+		call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	else
 		ignoring application responses
 			activate application "mi"
 		end ignoring
 	end if
 end activateFirstmiWindow
+*)
 
 on doubleClicked(theObject)
 	set selectedData to selected data item of theObject
@@ -97,7 +102,8 @@ on doubleClicked(theObject)
 	else
 		EditorClient's insert_text(refCommand & "{" & theLabel & "}")
 	end if
-	my activateFirstmiWindow()
+	--my activateFirstmiWindow()
+	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 end doubleClicked
 
 on initilize()

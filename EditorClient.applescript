@@ -58,3 +58,10 @@ on show_message(msg)
 		display alert msg
 	end tell
 end show_message
+
+(*
+on open_with_activating(a_file)
+	open_file(a_file)
+	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
+end open_with_activating
+*)
