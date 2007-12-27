@@ -21,16 +21,15 @@ property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
 *)
 
 property _aux_data_dict : missing value
-property labelDataSource : missing value
-property unsavedAuxObj : missing value
-property outlineView : missing value
+property _label_data_source : missing value
+property _unsaved_auxdata : missing value
 
-property ignoringErrors : {1230, 1500}
+property _ignoring_errors : {1230, 1500}
 
 on initialize(theDataSource)
 	set my _aux_data_dict to make XDict
-	set labelDataSource to theDataSource
-	tell labelDataSource
+	set my _label_data_source to theDataSource
+	tell my _label_data_source
 		make new data column at the end of the data columns with properties {name:"label"}
 		make new data column at the end of the data columns with properties {name:"reference"}
 	end tell
@@ -65,20 +64,28 @@ on watchmi given force_reloading:force_flag
 			set a_parentdoc to TeXDocController's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
 			set a_parentaux to auxdata_for_texdoc(a_parentdoc)
 			if a_parentaux's data_item() is missing value then
-				if (check_auxfile() of a_parentaux) then
+				if (check_auxfile of a_parentaux without display_error) then
 					parse_aux_file(a_parentaux)
 				end if
 			end if
-			append_to_outline for a_parentaux below labelDataSource
+			append_to_outline for a_parentaux below my _label_data_source
 			an_auxdata's expandDataItem()
 		else
 			--log "no ParentFile"
 			--find_labels_from_doc(an_auxdata)
-			append_to_outline for an_auxdata below labelDataSource
+			append_to_outline for an_auxdata below my _label_data_source
 		end if
 		
 		
 	else
+		if force_flag then
+			if (check_auxfile of an_auxdata without display_error) then
+				parse_aux_file(an_auxdata)
+				clear_labels_from_doc() of an_auxdata
+				append_to_outline for an_auxdata below my _label_data_source
+			end if
+		end if
+		
 		--log "before find_labels_from_doc"
 		if find_labels_from_doc(an_auxdata, force_flag) then
 			--log "before update_labels_from_doc"
@@ -131,21 +138,21 @@ on find_auxdata_from_doc()
 	return auxdata_for_texdoc(a_texdoc)
 end find_auxdata_from_doc
 
-on append_to_outline for theAuxObj below parentDataItem
+on append_to_outline for an_auxdata below parentDataItem
 	--log "start append_to_outline"
-	if theAuxObj's data_item() is missing value then
+	if an_auxdata's data_item() is missing value then
 		--log "is first append to outline"
 		set titleItem to make new data item at end of data items of parentDataItem
-		theAuxObj's set_data_item(titleItem)
-		set contents of data cell "label" of titleItem to theAuxObj's basename()
+		an_auxdata's set_data_item(titleItem)
+		set contents of data cell "label" of titleItem to an_auxdata's basename()
 	else
 		--log "before updateLabels in append_to_outline"
-		updateLabels() of theAuxObj
+		updateLabels() of an_auxdata
 		return
 	end if
 	
 	--log "before repeat in append_to_outline"
-	repeat with theLabelRecord in theAuxObj's all_label_records()
+	repeat with theLabelRecord in an_auxdata's all_label_records()
 		repeat with ith from 1 to length of theLabelRecord
 			set theItem to item ith of theLabelRecord
 			set theClass to class of theItem
@@ -159,7 +166,7 @@ on append_to_outline for theAuxObj below parentDataItem
 		end repeat
 	end repeat
 	--log "before expandDataItem"
-	expandDataItem() of theAuxObj
+	expandDataItem() of an_auxdata
 	--log "end appndToOutline"
 end append_to_outline
 
@@ -187,8 +194,8 @@ on auxdata_for_texdoc(a_texdoc)
 		*)
 	else
 		--log "file is not saved"
-		if unsavedAuxObj is not missing value then
-			deleteDataItem() of unsavedAuxObj
+		if my _unsaved_auxdata is not missing value then
+			deleteDataItem() of my _unsaved_auxdata
 		end if
 		set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
 	end if
@@ -197,11 +204,11 @@ on auxdata_for_texdoc(a_texdoc)
 	return an_auxdata
 end auxdata_for_texdoc
 
-on parse_aux_file(theAuxObj)
+on parse_aux_file(an_auxdata)
 	--log "start parse_aux_file"
-	set theContents to read_aux_file() of theAuxObj
+	set theContents to read_aux_file() of an_auxdata
 	--log "before clearLabelsFromAux in parse_aux_file"
-	clearLabelsFromAux() of theAuxObj
+	clearLabelsFromAux() of an_auxdata
 	--log "start repeat in parse_aux_file"
 	set newlabelText to _backslash & "newlabel{"
 	set inputText to _backslash & "@input{"
@@ -221,23 +228,23 @@ on parse_aux_file(theAuxObj)
 			end try
 			
 			set pos2 to (offset of "}{" in a_paragraph) as integer
-			set theLabel to item 1 of theTextItemList
+			set a_label to item 1 of theTextItemList
 			
-			if not theLabel is "" then
-				addLabelFromAux(theLabel, theRef) of theAuxObj
+			if not a_label is "" then
+				addLabelFromAux(a_label, theRef) of an_auxdata
 			end if
 		else if a_paragraph starts with inputText then
 			--log "start @input"
 			set childAuxFile to text 9 thru -2 of a_paragraph
-			set_base_path(theAuxObj's aux_file()'s posix_path()) of PathConverter
+			set_base_path(an_auxdata's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile
 			set theAuxFile to (POSIX file theAuxFile) as alias
-			set a_texdoc to TeXDocController's make_with(theAuxFile, theAuxObj's text_encoding())
+			set a_texdoc to TeXDocController's make_with(theAuxFile, an_auxdata's text_encoding())
 			set childAuxObj to auxdata_for_texdoc(a_texdoc)
 			--set childAuxObj to findAuxObj(theAuxFile, true)
 			if childAuxObj is not missing value then
 				parse_aux_file(childAuxObj)
-				addChildAuxObj(childAuxObj) of theAuxObj
+				addChildAuxObj(childAuxObj) of an_auxdata
 			end if
 			--log "end @input"
 		end if
@@ -246,7 +253,7 @@ on parse_aux_file(theAuxObj)
 	--log "end of parse_aux_file"
 end parse_aux_file
 
-on find_labels_from_doc(theAuxObj, force_flag)
+on find_labels_from_doc(an_auxdata, force_flag)
 	--log "start find_labels_from_doc"
 	set theContents to EditorClient's document_content()
 	
@@ -254,9 +261,9 @@ on find_labels_from_doc(theAuxObj, force_flag)
 	--log "before repeat"
 	
 	set a_xlist to XList's make_with(get every paragraph of theContents)
-	if (not force_flag) and (not is_texfile_updated() of theAuxObj) then
+	if (not force_flag) and (not is_texfile_updated() of an_auxdata) then
 		--log "document is not updated"
-		if (a_xlist's count_items()) is (theAuxObj's document_size()) then
+		if (a_xlist's count_items()) is (an_auxdata's document_size()) then
 			--log "document size is same"
 			return false
 		end if
@@ -264,7 +271,7 @@ on find_labels_from_doc(theAuxObj, force_flag)
 		--		log "document is updated"
 	end if
 	
-	clear_labels_from_doc() of theAuxObj
+	clear_labels_from_doc() of an_auxdata
 	repeat while (a_xlist's has_next())
 		set a_paragraph to a_xlist's next()
 		--set a_paragraph to paragraph ith of theContents
@@ -277,10 +284,10 @@ on find_labels_from_doc(theAuxObj, force_flag)
 				if pos1 is 0 then exit repeat
 				set pos2 to offset of "}" in a_paragraph
 				if pos2 is 0 then exit repeat
-				set theLabel to text (pos1 + 1) thru (pos2 - 1) of a_paragraph
-				--if theLabel is not in labelList of theAuxObj then
-				if not theAuxObj's has_label(theLabel) then
-					addLabelFromDoc(theLabel) of theAuxObj
+				set a_label to text (pos1 + 1) thru (pos2 - 1) of a_paragraph
+				--if a_label is not in labelList of an_auxdata then
+				if not an_auxdata's has_label(a_label) then
+					addLabelFromDoc(a_label) of an_auxdata
 				end if
 				try
 					set a_paragraph to text (pos2 + 1) thru -1 of a_paragraph
@@ -290,8 +297,8 @@ on find_labels_from_doc(theAuxObj, force_flag)
 			end repeat
 		end if
 	end repeat
-	theAuxObj's update_checked_time()
-	theAuxObj's set_document_size(a_xlist's count_items())
+	an_auxdata's update_checked_time()
+	an_auxdata's set_document_size(a_xlist's count_items())
 	--log "end find_labels_from_doc"	
 	return true
 end find_labels_from_doc
@@ -300,12 +307,12 @@ on rebuild_labels_from_aux(a_texdoc)
 	--log "start rebuild_labels_from_aux"
 	set an_auxdata to auxdata_for_texdoc(a_texdoc)
 	--log "after auxdata_for_texdoc in rebuild_labels_from_aux"
-	if not (check_auxfile() of an_auxdata) then
+	if not (check_auxfile of an_auxdata with display_error) then
 		--log "check_auxfile is false"
 		return
 	end if
 	parse_aux_file(an_auxdata)
 	clear_labels_from_doc() of an_auxdata
-	append_to_outline for an_auxdata below labelDataSource
+	append_to_outline for an_auxdata below my _label_data_source
 	--log "end of rebuild_labels_from_aux"
 end rebuild_labels_from_aux

@@ -65,7 +65,7 @@ end activateFirstmiWindow
 
 on double_clicked(theObject)
 	set selectedData to selected data item of theObject
-	set theLabel to ((contents of data cell "label" of selectedData) as string)
+	set a_label to ((contents of data cell "label" of selectedData) as string)
 	set theRef to ((contents of data cell "reference" of selectedData) as string)
 	if theRef is "" then
 		return
@@ -73,7 +73,7 @@ on double_clicked(theObject)
 		if (state of button "useeqref" of my _window is 1) then
 			if (theRef starts with "equation") or (theRef starts with "AMS") then
 				set refText to "eqref"
-			else if (theRef is "--") and (theLabel starts with "eq") then
+			else if (theRef is "--") and (a_label starts with "eq") then
 				set refText to "eqref"
 			else
 				set refText to "ref"
@@ -97,9 +97,9 @@ on double_clicked(theObject)
 	end if
 	set refCommand to _backslash & refText
 	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
-		EditorClient's insert_text("{" & theLabel & "}")
+		EditorClient's insert_text("{" & a_label & "}")
 	else
-		EditorClient's insert_text(refCommand & "{" & theLabel & "}")
+		EditorClient's insert_text(refCommand & "{" & a_label & "}")
 	end if
 	--my activateFirstmiWindow()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"

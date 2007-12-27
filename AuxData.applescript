@@ -58,7 +58,7 @@ on basename()
 	return my _texdoc's target_file()'s basename()
 end basename
 
-on check_auxfile()
+on check_auxfile given display_error:alert_flag
 	--log "start check_auxfile"
 	if my _auxFileRef is missing value then
 		--log "_auxFileRef is missing value"
@@ -68,8 +68,10 @@ on check_auxfile()
 			set my _auxFileRef to an_auxfile
 			return true
 		else
-			set a_msg to localized string "auxFileIsNotFound"
-			display_alert(a_msg) of RefPanelController
+			if alert_flag then
+				set a_msg to localized string "auxFileIsNotFound"
+				display_alert(a_msg) of RefPanelController
+			end if
 			return false
 		end if
 	else
@@ -84,18 +86,18 @@ on read_aux_file()
 	return call method "sniffRead:encodingCandidate:" of (RefPanelController's window_controller()) with parameters {my _auxFileRef's posix_path(), text_encoding()}
 end read_aux_file
 
-on addLabelFromAux(theLabel, theRef)
-	set end of my _labelRecordFromAux to {|label|:theLabel, |reference|:theRef}
-	set end of my _labelList to theLabel
+on addLabelFromAux(a_label, theRef)
+	set end of my _labelRecordFromAux to {|label|:a_label, |reference|:theRef}
+	set end of my _labelList to a_label
 end addLabelFromAux
 
-on addChildAuxObj(theAuxObj)
-	set end of my _labelRecordFromAux to theAuxObj
+on addChildAuxObj(an_auxdata)
+	set end of my _labelRecordFromAux to an_auxdata
 end addChildAuxObj
 
-on addLabelFromDoc(theLabel)
+on addLabelFromDoc(a_label)
 	--log "start addLabelFromDoc"
-	set end of my _labelRecordFromDoc to {|label|:theLabel, |reference|:"--"}
+	set end of my _labelRecordFromDoc to {|label|:a_label, |reference|:"--"}
 	--log "end addLabelFromDoc"
 end addLabelFromDoc
 
