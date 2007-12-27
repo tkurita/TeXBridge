@@ -23,7 +23,7 @@ global XFile
 global comDelim
 global _backslash
 
-property ignoringErrorList : {1200, 1205, 1210, 1220, 1230, 1240}
+property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
 on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
@@ -97,7 +97,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 		if EditorClient's is_modified() then
 			if not autosaveFlag then
 				if not EditorClient's save_with_asking(localized string "DocumentIsModified_AskSave") then
-					return
+					error "The documen is modified. Saving the document is canceld by user." number 1210
 				end if
 			else
 				EditorClient's save_document()
@@ -152,7 +152,7 @@ on openOutputHadler(an_extension)
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "openOutputHadler", msg) of MessageUtility
 		end if
 		return
@@ -196,7 +196,7 @@ on dvi_from_editor()
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "dvi_to_pdf", msg) of MessageUtility
 		end if
 		return
@@ -273,7 +273,7 @@ on dvi_to_ps(arg)
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "dvi_to_ps", msg) of MessageUtility
 		end if
 		return
@@ -292,7 +292,7 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 	try
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "exec_tex_command", msg) of MessageUtility
 		end if
 		return
@@ -311,7 +311,7 @@ on seek_ebb(arg)
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "seek_ebb", msg) of MessageUtility
 		end if
 		return
@@ -395,7 +395,7 @@ on quick_typeset_preview(arg)
 	try
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
-		if errno is not in ignoringErrorList then -- "The document is not saved."
+		if errno is not in my _ignoring_errors then -- "The document is not saved."
 			showError(errno, "quick_typeset_preview after calling prepare_typeset", msg) of MessageUtility
 		end if
 		return
@@ -478,7 +478,7 @@ on do_typeset(arg)
 	try
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "do_typeset", msg) of MessageUtility
 		end if
 		return missing value
@@ -530,7 +530,7 @@ on preview_dvi(arg)
 		set a_texdoc to checkmifiles without saving and autosave
 		a_texdoc's set_use_term(false)
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "preview_dvi", msg) of MessageUtility
 		end if
 		return
@@ -558,7 +558,7 @@ on preview_pdf(arg)
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
-		if errno is not in ignoringErrorList then
+		if errno is not in my _ignoring_errors then
 			showError(errno, "preview_dvi", msg) of MessageUtility
 		end if
 		return
