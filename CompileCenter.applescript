@@ -120,7 +120,7 @@ on logParseOnly()
 	set a_texdoc to prepare_typeset()
 	a_texdoc's check_logfile()
 	set a_log_file_parser to newLogFileParser(a_texdoc)
-	parseLogFile() of a_log_file_parser
+	parse_logfile() of a_log_file_parser
 end logParseOnly
 
 on preview_dvi_for_frontdoc()
@@ -288,22 +288,22 @@ on dvi_to_ps(arg)
 end dvi_to_ps
 
 --simply execute TeX command in Terminal
-on execTexCommand(texCommand, theSuffix, checkSaved)
+on exec_tex_command(texCommand, theSuffix, checkSaved)
 	try
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
 		if errno is not in ignoringErrorList then
-			showError(errno, "execTexCommand", msg) of MessageUtility
+			showError(errno, "exec_tex_command", msg) of MessageUtility
 		end if
 		return
 	end try
 	
 	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
-	set texCommand to buildCommand(texCommand, theSuffix) of a_texdoc
+	set texCommand to build_command(texCommand, theSuffix) of a_texdoc
 	set allCommand to cdCommand & comDelim & texCommand
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
-end execTexCommand
+end exec_tex_command
 
 on seek_ebb(arg)
 	set graphicCommand to _backslash & "includegraphics"
@@ -334,7 +334,7 @@ on seek_ebb(arg)
 			repeat with an_extension in graphicExtensions
 				if graphicFile ends with an_extension then
 					set noGraphicFlag to false
-					if execEbb(graphicFile, an_extension) then
+					if exec_ebb(graphicFile, an_extension) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -351,7 +351,7 @@ on seek_ebb(arg)
 	end if
 end seek_ebb
 
-on execEbb(theGraphicPath, an_extension)
+on exec_ebb(theGraphicPath, an_extension)
 	set basepath to text 1 thru -((length of an_extension) + 1) of theGraphicPath
 	set bbPath to basepath & ".bb"
 	if isExists(POSIX file bbPath) of UtilityHandlers then
@@ -377,17 +377,17 @@ on execEbb(theGraphicPath, an_extension)
 	copy TerminalCommander to currentTerminal
 	waitEndOfCommand(300) of currentTerminal
 	return true
-end execEbb
+end exec_ebb
 
 on mendex(arg)
 	--log "start execmendex"
-	set mendexCommand to contents of default entry "mendexCommand" of user defaults
-	execTexCommand(mendexCommand, ".idx", false)
+	set a_command to contents of default entry "mendexCommand" of user defaults
+	exec_tex_command(a_command, ".idx", false)
 end mendex
 
 on bibtex(arg)
-	set bibtexCommand to contents of default entry "bibtexCommand" of user defaults
-	execTexCommand(bibtexCommand, "", true)
+	set a_command to contents of default entry "bibtexCommand" of user defaults
+	exec_tex_command(a_command, "", true)
 end bibtex
 
 on quick_typeset_preview(arg)
@@ -494,7 +494,7 @@ on do_typeset(arg)
 	end try
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	show_status_message("Analyzing log text ...") of ToolPaletteController
-	parseLogFile() of a_log_file_parser
+	parse_logfile() of a_log_file_parser
 	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
 		show_status_message("Typeseting...") of ToolPaletteController
@@ -504,7 +504,7 @@ on do_typeset(arg)
 			return missing value
 		end try
 		show_status_message("Analyzing log text ...") of ToolPaletteController
-		parseLogFile() of a_log_file_parser
+		parse_logfile() of a_log_file_parser
 	end if
 	
 	prepare_view_errorlog(a_log_file_parser, a_dvi)

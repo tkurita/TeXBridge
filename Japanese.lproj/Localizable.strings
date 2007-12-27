@@ -102,6 +102,10 @@
 "Insert" = "挿入";
 "Choose" = "選択";
 "'include' command can accept only a file of which path extension is '.tex'." = "include コマンドは拡張子 '.tex' のファイルしか扱えません。";
+
 /*Enter Enviroment*/
 "Enter an enviroment name" = "環境名を入力してください";
+
+/*Paste File*/
+"No file reference in the clipboad." = "クリップボードにファイル参照がありません。"
 

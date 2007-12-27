@@ -268,22 +268,22 @@ end check_logfile
 on build_command(a_command, a_suffix)
 	-- replace %s in a_command with texBaseName. if %s is not in a_command, texBaseName+a_suffix is added end of a_command
 	if "%s" is in a_command then
-		set theBaseName to basename()
+		set a_basename to basename()
 		store_delimiters() of StringEngine
-		set a_command to replace of StringEngine for a_command from "%s" by theBaseName
+		set a_command to replace of StringEngine for a_command from "%s" by a_basename
 		restore_delimiters() of StringEngine
 		return a_command
 	else
-		set targetFileName to name_for_suffix(a_suffix)
-		return (a_command & space & "'" & targetFileName & "'")
+		set a_filename to name_for_suffix(a_suffix)
+		return (a_command & space & "'" & a_filename & "'")
 	end if
 end build_command
 
 on lookup_header_command(a_paragraph)
 	ignoring case
 		if a_paragraph starts with "%ParentFile" then
-			set theParentFile to resolve_parent(a_paragraph)
-			update_with_parent(theParentFile)
+			set a_parentfile to resolve_parent(a_paragraph)
+			update_with_parent(a_parentfile)
 		else if a_paragraph starts with "%Typeset-Command" then
 			set_typeset_command(StringEngine's strip(text 18 thru -1 of a_paragraph))
 		else if a_paragraph starts with "%DviToPdf-Command" then

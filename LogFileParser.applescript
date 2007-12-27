@@ -58,11 +58,11 @@ on parseLogText()
 	--log "end parseLogText"
 end parseLogText
 
-on parseLogFile()
+on parse_logfile()
 	set logParser to call method "alloc" of class "LogParser"
 	set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
 	parseLog(logParser)
-end parseLogFile
+end parse_logfile
 
 on resolveTargetFile(theTargetFile)
 	if (theTargetFile starts with "./") or (theTargetFile starts with "../") then
