@@ -60,7 +60,7 @@ on addToUserDict given keyword:a_keyword, replace:replaceText
 	if (my _pre_keyword is not a_keyword) and (my _user_replace_dict's has_key(a_keyword)) then
 		--log my _userKeywordList
 		set a_msg to UtilityHandlers's localized_string("keywordStillDefined", {a_keyword})
-		displayAlert(a_msg) of SettingWindowController
+		display_alert(a_msg) of SettingWindowController
 		return false
 	else
 		my _user_replace_dict's remove_for_key(my _pre_keyword)
@@ -97,8 +97,8 @@ on cell_value_changed(theObject, theRow, tableColumn, theValue)
 	
 end cell_value_changed
 
-on shouldSelectionChange(theObject)
-	--log "start shouldSelectionChange in ReplaceInput"
+on should_selection_change(theObject)
+	--log "start should_selection_change in ReplaceInput"
 	
 	set selected_data_row to selected data row of theObject
 	
@@ -116,11 +116,11 @@ on shouldSelectionChange(theObject)
 	
 	if a_keyword is "" then
 		set a_msg to localized string "keywordiIsBlank"
-		displayAlert(a_msg) of SettingWindowController
+		display_alert(a_msg) of SettingWindowController
 		return false
 	else if a_replace is "" then
 		set a_msg to localized string "replaceIsBlank"
-		displayAlert(a_msg) of SettingWindowController
+		display_alert(a_msg) of SettingWindowController
 		--log "there are blanked cells"
 		return false
 	else
@@ -128,10 +128,10 @@ on shouldSelectionChange(theObject)
 		set my _pre_data_row to selected_data_row
 		return true
 	end if
-end shouldSelectionChange
+end should_selection_change
 
-on selectionChanged(theObject)
-	--log "start selectionChanged in ReplaceInput"
+on selection_changed(theObject)
+	--log "start selection_changed in ReplaceInput"
 	set a_data_row to selected data row of theObject
 	try
 		get a_data_row
@@ -143,14 +143,14 @@ on selectionChanged(theObject)
 	set my _pre_keyword to contents of data cell "keyword" of a_data_row
 	set my _pre_replace to contents of data cell "replace" of a_data_row
 	set enabled of my _removeButton to true
-	--log "end selectionChanged in ReplaceInput"
-end selectionChanged
+	--log "end selection_changed in ReplaceInput"
+end selection_changed
 
-on controlClicked(theObject)
+on control_clicked(theObject)
 	set a_name to name of theObject
 	if a_name is "addReplaceText" then
 		--log "called addRelaceText"
-		if shouldSelectionChange(my _userReplaceTable) then
+		if should_selection_change(my _userReplaceTable) then
 			set theRow to make new data row at the end of the data rows of my _userReplaceDataSource
 			set selected data row of my _userReplaceTable to theRow
 			set first responder of window of my _userReplaceTable to my _userReplaceTable
@@ -168,11 +168,11 @@ on controlClicked(theObject)
 				--log "success removing keyword"
 				set my _is_changed_userdict to true
 				saveUserDict()
-				selectionChanged(my _userReplaceTable)
+				selection_changed(my _userReplaceTable)
 			end if
 		end if
 	end if
-end controlClicked
+end control_clicked
 
 on initialize()
 	if my _user_replace_dict is missing value then

@@ -6,7 +6,6 @@ global AuxData
 property LabelListController : missing value
 property _window_controller : missing value
 property _window : missing value
-global miAppRef
 global _backslash
 
 property isWorkedTimer : missing value
@@ -15,27 +14,27 @@ on window_controller()
 	return my _window_controller
 end window_controller
 
-on stopTimer()
+on stop_timer()
 	if my _window_controller is not missing value then
 		call method "temporaryStopReloadTimer" of my _window_controller
 	end if
-end stopTimer
+end stop_timer
 
-on restartTimer()
+on restart_timer()
 	if my _window_controller is not missing value then
 		call method "restartReloadTimer" of my _window_controller
 	end if
-end restartTimer
+end restart_timer
 
-on rebuildLabelsFromAux(a_texdoc)
+on rebuild_labels_from_aux(a_texdoc)
 	if my _window_controller is missing value then
 		return
 	end if
 	
 	if visible of my _window then
-		rebuildLabelsFromAux(a_texdoc) of LabelListController
+		rebuild_labels_from_aux(a_texdoc) of LabelListController
 	end if
-end rebuildLabelsFromAux
+end rebuild_labels_from_aux
 
 on watchmi given force_reloading:force_flag
 	--log "start watchmi in RefPanelController"
@@ -64,7 +63,7 @@ on activateFirstmiWindow()
 end activateFirstmiWindow
 *)
 
-on doubleClicked(theObject)
+on double_clicked(theObject)
 	set selectedData to selected data item of theObject
 	set theLabel to ((contents of data cell "label" of selectedData) as string)
 	set theRef to ((contents of data cell "reference" of selectedData) as string)
@@ -104,7 +103,7 @@ on doubleClicked(theObject)
 	end if
 	--my activateFirstmiWindow()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
-end doubleClicked
+end double_clicked
 
 on initilize()
 	--log "start initialize in RefPanelController"
@@ -159,7 +158,7 @@ on is_opened()
 	return (a_result is 1)
 end is_opened
 
-on displayAlert(a_msg)
+on display_alert(a_msg)
 	display alert a_msg attached to my _window as warning
 	(*
 	script endOfAlert
@@ -169,4 +168,4 @@ on displayAlert(a_msg)
 	
 	addSheetRecord of SheetManager given parentWindow:my my _window, ownerObject:endOfAlert
 	*)
-end displayAlert
+end display_alert

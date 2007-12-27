@@ -12,7 +12,7 @@ property adobeReaderPath : ""
 property hasAcrobat : false
 property hasReader : false
 
-on controlClicked(theObject)
+on control_clicked(theObject)
 	set theName to name of theObject
 	if theName is "PDFPreview" then
 		set theName to name of current cell of theObject
@@ -40,7 +40,7 @@ on controlClicked(theObject)
 		set prePDFPreviewMode to default entry "PDFPreviewMode" of user defaults
 		--set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
 	end if
-end controlClicked
+end control_clicked
 
 on findCARO() -- find acrobat or adobe reader from creator code
 	try

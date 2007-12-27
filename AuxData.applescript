@@ -69,7 +69,7 @@ on check_auxfile()
 			return true
 		else
 			set a_msg to localized string "auxFileIsNotFound"
-			displayAlert(a_msg) of RefPanelController
+			display_alert(a_msg) of RefPanelController
 			return false
 		end if
 	else
@@ -180,7 +180,7 @@ on updateLabels()
 	--log "end of updateLabels"
 end updateLabels
 
-on updateLabelsFromDoc()
+on update_labels_from_doc()
 	set nDataItem to count data item of my _dataItemRef
 	set nLabelFromAux to length of my _labelRecordFromAux
 	set nLabelFromDoc to length of my _labelRecordFromDoc
@@ -214,18 +214,18 @@ on updateLabelsFromDoc()
 		set contents of data cell "label" of theDataItem to |label| of theItem
 		set contents of data cell "reference" of theDataItem to |reference| of theItem
 	end repeat
-end updateLabelsFromDoc
+end update_labels_from_doc
 
-on clearLabelsFromDoc()
-	--log "start clearLabelsFromDoc"
+on clear_labels_from_doc()
+	--log "start clear_labels_from_doc"
 	repeat with theLabelRecord in my _labelRecordFromAux
 		if class of theLabelRecord is script then
-			clearLabelsFromDoc() of theLabelRecord
+			clear_labels_from_doc() of theLabelRecord
 		end if
 	end repeat
 	set my _labelRecordFromDoc to {}
-	--log "end clearLabelsFromDoc"
-end clearLabelsFromDoc
+	--log "end clear_labels_from_doc"
+end clear_labels_from_doc
 
 on clearLabelsFromAux()
 	set my _labelRecordFromAux to {}

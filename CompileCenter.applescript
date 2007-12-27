@@ -441,7 +441,7 @@ on quick_typeset_preview(arg)
 	--log "before prepare_view_errorlog"
 	--prepare_view_errorlog(a_log_file_parser, a_dvi)
 	--viewErrorLog(a_log_file_parser, "latex")
-	rebuildLabelsFromAux(a_texdoc) of RefPanelController
+	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 end quick_typeset_preview
 
@@ -509,7 +509,7 @@ on do_typeset(arg)
 	
 	prepare_view_errorlog(a_log_file_parser, a_dvi)
 	--viewErrorLog(a_log_file_parser, "latex")
-	rebuildLabelsFromAux(a_texdoc) of RefPanelController
+	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 	if (isDviOutput() of a_log_file_parser) then
 		return a_dvi

@@ -1,8 +1,8 @@
 --property loader : proxy_with({autocollect:true}) of application (get "TeXToolsLib")
 property loader : proxy() of application (get "TeXToolsLib")
 
-on load(theName)
-	return loader's load(theName)
+on load(a_name)
+	return loader's load(a_name)
 end load
 
 property ShellUtils : load("ShellUtils")
@@ -71,7 +71,7 @@ on launched theObject
 		set showToolPaletteWhenLaunched to IsOpenedToolPalette
 	end if
 	if showToolPaletteWhenLaunched then
-		showStartupMessage("Opening Tool Palette ...")
+		show_startup_message("Opening Tool Palette ...")
 		open_window() of ToolPaletteController
 	end if
 	
@@ -81,7 +81,7 @@ on launched theObject
 		set showRefPaletteWhenLaunched to IsOpenedRefPalette
 	end if
 	if showRefPaletteWhenLaunched then
-		showStartupMessage("Opening Reference Palette ...")
+		show_startup_message("Opening Reference Palette ...")
 		open_window() of RefPanelController
 	end if
 	hide window "Startup"
@@ -128,8 +128,7 @@ end do_replaceinput
 
 on open theObject
 	--log "start open"
-	--stopTimer() of ToolPaletteController
-	stopTimer() of RefPanelController
+	stop_timer() of RefPanelController
 	--call method "temporaryStopDisplayToggleTimer" of WindowVisibilityController
 	set a_class to class of theObject
 	if a_class is record then
@@ -173,61 +172,61 @@ on open theObject
 		
 	end if
 	
-	restartTimer() of RefPanelController
+	restart_timer() of RefPanelController
 	--call method "restartStopDisplayToggleTimer" of WindowVisibilityController
 	return true
 end open
 
 on clicked theObject
 	--log "start clicked"
-	set theTag to tag of theObject
-	if theTag is 1 then
-		controlClicked(theObject) of TerminalSettingObj
-	else if theTag is 6 then
-		controlClicked(theObject) of ReplaceInput
-	else if theTag is 7 then
-		controlClicked(theObject) of PDFController
+	set a_tag to tag of theObject
+	if a_tag is 1 then
+		control_clicked(theObject) of TerminalSettingObj
+	else if a_tag is 6 then
+		control_clicked(theObject) of ReplaceInput
+	else if a_tag is 7 then
+		control_clicked(theObject) of PDFController
 	else
-		controlClicked(theObject)
+		control_clicked(theObject)
 	end if
 end clicked
 
-on controlClicked(theObject)
-	set theName to name of theObject
-	if theName is "Reload" then
+on control_clicked(theObject)
+	set a_name to name of theObject
+	if a_name is "Reload" then
 		watchmi of RefPanelController with force_reloading
-	else if theName is "RevertToDefault" then
+	else if a_name is "RevertToDefault" then
 		RevertToDefault() of SettingWindowController
-	else if theName is "usemi" then
+	else if a_name is "usemi" then
 		setmiclient() of SettingWindowController
-	else if theName is "saveMxdviEditor" then
+	else if a_name is "saveMxdviEditor" then
 		saveMxdviEditor(missing value) of SettingWindowController
 	end if
-end controlClicked
+end control_clicked
 
 on double clicked theObject
-	doubleClicked(theObject) of RefPanelController
+	double_clicked(theObject) of RefPanelController
 end double clicked
 
 on choose menu item theObject
 	--log "start choose menu item"
-	set theName to name of theObject
-	if theName is "Preference" then
+	set a_name to name of theObject
+	if a_name is "Preference" then
 		open_window() of SettingWindowController
-	else if theName is "ShowToolPalette" then
+	else if a_name is "ShowToolPalette" then
 		open_window() of ToolPaletteController
-	else if theName is "ShowRefPalette" then
+	else if a_name is "ShowRefPalette" then
 		open_window() of RefPanelController
 	end if
 end choose menu item
 
-on setUpConstants()
+on setup_constants()
 	set app_file to EditorClient's application_file()
 	tell application "System Events"
-		set theVer to version of app_file
+		set a_var to version of app_file
 	end tell
-	set theVer to word 3 of theVer
-	if theVer is greater than or equal to "2.1.7" then
+	set a_var to word 3 of a_var
+	if a_var is greater than or equal to "2.1.7" then
 		set plistName to "ToolSupport"
 	else
 		set plistName to "ToolSupport216"
@@ -238,19 +237,19 @@ on setUpConstants()
 	end tell
 	set constantsDict to call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistPath
 	set _backslash to backslash of constantsDict
-end setUpConstants
+end setup_constants
 
 on will finish launching theObject
 	--activate
 	--log "start will finish launching"
 	set appController to call method "sharedAppController" of class "AppController"
-	showStartupMessage("Loading Factory Settings ...")
+	show_startup_message("Loading Factory Settings ...")
 	set MessageUtility to import_script("MessageUtility")
 	
 	
 	set DefaultsManager to import_script("DefaultsManager")
 	
-	showStartupMessage("Loading Scripts ...")
+	show_startup_message("Loading Scripts ...")
 	set UtilityHandlers to import_script("UtilityHandlers")
 	set LogFileParser to import_script("LogFileParser")
 	set EditCommands to import_script("EditCommands")
@@ -269,8 +268,8 @@ on will finish launching theObject
 	set ReplaceInput to import_script("ReplaceInput")
 	
 	--log "end of import library"
-	showStartupMessage("Loading Preferences ...")
-	setUpConstants()
+	show_startup_message("Loading Preferences ...")
+	setup_constants()
 	--log "start of initializeing PDFController"
 	loadSettings() of PDFController
 	
@@ -308,11 +307,11 @@ on end editing theObject
 end end editing
 
 on selection changed theObject
-	selectionChanged(theObject) of ReplaceInput
+	selection_changed(theObject) of ReplaceInput
 end selection changed
 
 on should selection change theObject
-	return shouldSelectionChange(theObject) of ReplaceInput
+	return should_selection_change(theObject) of ReplaceInput
 end should selection change
 
 on will quit theObject
@@ -330,6 +329,6 @@ on cell value changed theObject row theRow table column tableColumn value theVal
 	end if
 end cell value changed
 
-on showStartupMessage(a_msg)
+on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
-end showStartupMessage
+end show_startup_message

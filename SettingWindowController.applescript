@@ -131,6 +131,6 @@ on saveMxdviEditor(theSetting)
 	--log "end saveMxdviEditor"
 end saveMxdviEditor
 
-on displayAlert(a_msg)
+on display_alert(a_msg)
 	display alert a_msg attached to my _window as warning
-end displayAlert
+end display_alert
