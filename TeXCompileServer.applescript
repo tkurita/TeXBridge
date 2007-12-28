@@ -19,8 +19,6 @@ property TerminalCommanderBase : load("TerminalCommander")
 property appController : missing value
 --property WindowVisibilityController : missing value
 
-property miAppRef : missing value
-
 (*=== shared constants ===*)
 property dQ : ASCII character 34
 property _backslash : missing value

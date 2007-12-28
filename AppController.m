@@ -137,6 +137,11 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		 NSLog([NSString stringWithFormat:@"current mode : %@", theMode]);
 		 #endif
 		 
+		 if (!theMode) {
+			// may AESendMessage time outed
+			return kShouldNotChange;
+		 }
+		 
 		 if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"SupportedModes"]
 				containsObject:theMode]) {
 			 return kShouldShow;
