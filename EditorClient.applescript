@@ -28,29 +28,29 @@ on save_with_asking()
 end save_with_asking
 *)
 
-on showMessageWithAsk(a_msg)
+on show_message_asking(msg)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			display dialog a_msg
+			display dialog msg
 		on error
 			return false
 		end try
 	end tell
 	return true
-end showMessageWithAsk
+end show_message_asking
 
-on showMessageWithButtons(a_msg, buttonList, defaultButton)
+on show_message_buttons(msg, button_list, default_button)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			set a_result to display dialog a_msg buttons buttonList default button defaultButton
+			set a_result to display dialog msg buttons button_list default button default_button
 		on error
 			set a_result to {button returned:missing value}
 		end try
 	end tell
 	return a_result
-end showMessageWithButtons
+end show_message_buttons
 
 on show_message(msg)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
