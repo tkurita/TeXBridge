@@ -12,7 +12,7 @@ global ToolPaletteController
 property name : "TeXDocController"
 property _log_suffix : ".log"
 
-global comDelim
+global _com_delim
 
 (*== Private Methods *)
 on doc_position()
@@ -160,13 +160,13 @@ end working_directory
 on typeset()
 	--log "start texCompile"
 	set beforeCompileTime to current date
-	--set cdCommand to "cd " & (quoted form of POSIX path of (my _workingDirectory))
-	set cdCommand to "cd " & (quoted form of (my _workingDirectory's posix_path()))
+	--set cd_command to "cd " & (quoted form of POSIX path of (my _workingDirectory))
+	set cd_command to "cd " & (quoted form of (my _workingDirectory's posix_path()))
 	
 	set texCommand to typeset_command()
 	
 	if my _use_term then
-		set allCommand to cdCommand & comDelim & texCommand & space & "'" & my _texFileName & "'"
+		set allCommand to cd_command & _com_delim & texCommand & space & "'" & my _texFileName & "'"
 		--doCommands of TerminalCommander for allCommand with activation
 		sendCommands of TerminalCommander for allCommand
 		copy TerminalCommander to currentTerminal
@@ -192,9 +192,9 @@ on typeset()
 		restore_delimiters() of StringEngine
 		
 		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
-		--set allCommand to pathCommand & "; " & cdCommand & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
+		--set allCommand to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
 		set shell_path to getShellPath() of TerminalCommander
-		set allCommand to cdCommand & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of my _texFileName) & " 2>&1" & quote
+		set allCommand to cd_command & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
 			set my _logContents to do shell script allCommand
 		on error msg number errno

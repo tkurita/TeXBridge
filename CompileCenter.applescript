@@ -20,7 +20,7 @@ global FrontDocument
 global XFile
 
 --special values
-global comDelim
+global _com_delim
 global _backslash
 
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
@@ -280,9 +280,9 @@ on dvi_to_ps(arg)
 	end try
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set a_command to a_texdoc's dvips_command()
-	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
+	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set a_command to build_command(a_command, ".dvi") of a_texdoc
-	set allCommand to cdCommand & comDelim & a_command
+	set allCommand to cd_command & _com_delim & a_command
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 end dvi_to_ps
@@ -298,9 +298,9 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 		return
 	end try
 	
-	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
+	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set texCommand to build_command(texCommand, theSuffix) of a_texdoc
-	set allCommand to cdCommand & comDelim & texCommand
+	set allCommand to cd_command & _com_delim & texCommand
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 end exec_tex_command
@@ -369,9 +369,9 @@ on exec_ebb(theGraphicPath, an_extension)
 	set theGraphicPath to quoted form of theGraphicPath
 	set targetDir to dirname(theGraphicPath) of ShellUtils
 	set filename to basename(theGraphicPath, "") of ShellUtils
-	set cdCommand to "cd '" & targetDir & "'"
+	set cd_command to "cd '" & targetDir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
-	set allCommand to cdCommand & comDelim & ebbCommand & space & "'" & filename & "'"
+	set allCommand to cd_command & _com_delim & ebbCommand & space & "'" & filename & "'"
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal

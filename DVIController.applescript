@@ -3,7 +3,7 @@ global TerminalCommander
 global PDFController
 global PathConverter
 
-global comDelim
+global _com_delim
 
 script XdviDriver
 	on set_file_type(dviFileRef)
@@ -19,7 +19,7 @@ script XdviDriver
 		end if
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
-		set cdCommand to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
+		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
 		set dviFileName to a_dvi's filename()
 		
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
@@ -31,7 +31,7 @@ script XdviDriver
 				set sourceFile to a_dvi's texdoc()'s filename()
 			end if
 			
-			set allCommand to cdCommand & comDelim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
+			set allCommand to cd_command & _com_delim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
 			doCommands of TerminalCommander for allCommand without activation
 		else
 			try
@@ -41,7 +41,7 @@ script XdviDriver
 			end try
 			
 			if pid is "" then
-				set allCommand to cdCommand & comDelim & dviViewCommand & space & "'" & dviFileName & "' &"
+				set allCommand to cd_command & _com_delim & dviViewCommand & space & "'" & dviFileName & "' &"
 				doCommands of TerminalCommander for allCommand without activation
 			else
 				set pid to word 1 of pid
@@ -219,9 +219,9 @@ on dvi_to_pdf(arg)
 	
 	--log "convert a DVI file into a PDF file"
 	set a_command to my _texdoc's dvipdf_command()
-	set cdCommand to "cd" & space & (quoted form of (cwd()'s posix_path()))
+	set cd_command to "cd" & space & (quoted form of (cwd()'s posix_path()))
 	set targetFileName to my _texdoc's name_for_suffix(".dvi")
-	set allCommand to cdCommand & comDelim & a_command & space & "'" & targetFileName & "'"
+	set allCommand to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
 	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal

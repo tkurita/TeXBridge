@@ -23,7 +23,7 @@ property appController : missing value
 property dQ : ASCII character 34
 property _backslash : missing value
 property yenmark : ASCII character 92
-property comDelim : return
+property _com_delim : return
 
 property constantsDict : missing value
 
