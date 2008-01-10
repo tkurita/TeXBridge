@@ -281,7 +281,7 @@ on dvi_to_ps(arg)
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set a_command to a_texdoc's dvips_command()
 	set cdCommand to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
-	set a_command to buildCommand(a_command, ".dvi") of a_texdoc
+	set a_command to build_command(a_command, ".dvi") of a_texdoc
 	set allCommand to cdCommand & comDelim & a_command
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand

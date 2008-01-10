@@ -270,7 +270,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {271, 394}}</string>
+							<string>{{0, 0}, {271, 324}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -282,14 +282,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {288, 412}}</string>
+						<string>{{0, 0}, {288, 342}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>271</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>125 376 933 453 0 0 1440 938 </string>
+						<string>125 446 817 383 0 0 1440 938 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -354,9 +354,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {640, 0}}</string>
+								<string>{{0, 0}, {524, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>125 376 933 453 0 0 1440 938 </string>
+								<string>125 446 817 383 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -376,18 +376,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 5}, {640, 407}}</string>
+								<string>{{0, 5}, {524, 337}}</string>
 								<key>RubberWindowFrame</key>
-								<string>125 376 933 453 0 0 1440 938 </string>
+								<string>125 446 817 383 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>407pt</string>
+							<string>337pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>640pt</string>
+					<string>524pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -566,7 +566,7 @@
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>125 376 933 453 0 0 1440 938 </string>
+	<string>125 446 817 383 0 0 1440 938 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
