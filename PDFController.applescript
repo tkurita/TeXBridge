@@ -354,16 +354,20 @@ on app_name()
 	return my _app_name
 end app_name
 
+on set_app_name(a_name)
+	set my _app_name to a_name
+end set_app_name
+
 on page_number()
 	return my _page_number
 end page_number
 
 on set_page_number(a_num)
-	set my pageNumver to a_num
+	set my _page_number to a_num
 end set_page_number
 
 on set_process_name(a_name)
-	set my procesName to a_name
+	set my _process_name to a_name
 end set_process_name
 
 on process_name()
@@ -375,7 +379,7 @@ on file_ref()
 end file_ref
 
 on filename()
-	return my _pdf's item_name()
+	return my _pdffile's item_name()
 end filename
 
 on setup_pdfdriver()

@@ -20,7 +20,6 @@ property appController : missing value
 --property WindowVisibilityController : missing value
 
 (*=== shared constants ===*)
-property dQ : ASCII character 34
 property _backslash : missing value
 property yenmark : ASCII character 92
 property _com_delim : return
