@@ -91,17 +91,17 @@ on launched theObject
 	
 	
 	(*exec tex commands*)
-	--dvi_to_pdf({}) of CompileCenter
+	--dvi_to_pdf() of CompileCenter
 	--logParseOnly() of CompileCenter
-	--preview_dvi({}) of CompileCenter
-	--preview_pdf({}) of CompileCenter
-	--mendex({}) of CompileCenter
-	--open_parentfile({}) of EditCommands
-	--seek_ebb({}) of CompileCenter
-	--dvi_to_ps({}) of CompileCenter
-	--preview_dvi({}) of CompileCenter
-	--do_typeset({}) of CompileCenter
-	--typeset_preview({}) of CompileCenter
+	--preview_dvi() of CompileCenter
+	--preview_pdf() of CompileCenter
+	--mendex() of CompileCenter
+	--open_parentfile() of EditCommands
+	--seek_ebb() of CompileCenter
+	--dvi_to_ps() of CompileCenter
+	--preview_dvi() of CompileCenter
+	--do_typeset() of CompileCenter
+	--typeset_preview() of CompileCenter
 	--debug()
 	--checkmifiles with saving
 	--quick_typeset_preview({}) of CompileCenter
@@ -119,7 +119,7 @@ on launched theObject
 	--log "end of launched"
 end launched
 
-on do_replaceinput(arg)
+on do_replaceinput()
 	ReplaceInput's do()
 end do_replaceinput
 
@@ -131,10 +131,10 @@ on open theObject
 	if a_class is record then
 		set command_class to commandClass of theObject
 		if command_class is "action" then
-			theObject's commandScript's do(me, {})
+			theObject's commandScript's do(me)
 		else if command_class is "compile" then
 			try
-				theObject's commandScript's do(CompileCenter, {})
+				theObject's commandScript's do(CompileCenter)
 			on error msg number errno
 				if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
 					showError(errno, "open", msg) of MessageUtility
@@ -145,7 +145,7 @@ on open theObject
 			show_status_message("") of ToolPaletteController
 			
 		else if command_class is "editSupport" then
-			theObject's commandScript's do(EditCommands, {})
+			theObject's commandScript's do(EditCommands)
 		else
 			showMessage("Unknown commandClass : " & command_class) of MessageUtility
 		end if

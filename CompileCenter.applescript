@@ -240,7 +240,7 @@ on dvi_from_mxdvi()
 end dvi_from_mxdvi
 
 (*== actions *)
-on dvi_to_pdf(arg)
+on dvi_to_pdf()
 	--log "start dvi_to_pdf"
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set front_app to (path to frontmost application as Unicode text)
@@ -260,7 +260,7 @@ on dvi_to_pdf(arg)
 		return
 	end if
 	
-	set a_pdf to a_dvi's dvi_to_pdf({})
+	set a_pdf to a_dvi's dvi_to_pdf()
 	--log "success to get PDFController"
 	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")
@@ -269,7 +269,7 @@ on dvi_to_pdf(arg)
 	end if
 end dvi_to_pdf
 
-on dvi_to_ps(arg)
+on dvi_to_ps()
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
@@ -305,7 +305,7 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 	sendCommands of TerminalCommander for allCommand
 end exec_tex_command
 
-on seek_ebb(arg)
+on seek_ebb()
 	set graphicCommand to _backslash & "includegraphics"
 	
 	try
@@ -379,18 +379,18 @@ on exec_ebb(theGraphicPath, an_extension)
 	return true
 end exec_ebb
 
-on mendex(arg)
+on mendex()
 	--log "start execmendex"
 	set a_command to contents of default entry "mendexCommand" of user defaults
 	exec_tex_command(a_command, ".idx", false)
 end mendex
 
-on bibtex(arg)
+on bibtex()
 	set a_command to contents of default entry "bibtexCommand" of user defaults
 	exec_tex_command(a_command, "", true)
 end bibtex
 
-on quick_typeset_preview(arg)
+on quick_typeset_preview()
 	--log "start quick_typeset_preview"
 	try
 		set a_texdoc to prepare_typeset()
@@ -445,8 +445,8 @@ on quick_typeset_preview(arg)
 	show_status_message("") of ToolPaletteController
 end quick_typeset_preview
 
-on typeset_preview(arg)
-	set a_dvi to do_typeset(arg)
+on typeset_preview()
+	set a_dvi to do_typeset()
 	show_status_message("Opening DVI file ...") of ToolPaletteController
 	if a_dvi is not missing value then
 		try
@@ -457,13 +457,13 @@ on typeset_preview(arg)
 	end if
 end typeset_preview
 
-on typeset_preview_pdf(arg)
-	set a_dvi to do_typeset(arg)
+on typeset_preview_pdf()
+	set a_dvi to do_typeset()
 	
 	if a_dvi is missing value then
 		return
 	end if
-	set a_pdf to dvi_to_pdf(arg) of a_dvi
+	set a_pdf to dvi_to_pdf() of a_dvi
 	show_status_message("Opening PDF file ...") of ToolPaletteController
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
@@ -473,7 +473,7 @@ on typeset_preview_pdf(arg)
 	end if
 end typeset_preview_pdf
 
-on do_typeset(arg)
+on do_typeset()
 	--log "start do_typeset"
 	try
 		set a_texdoc to prepare_typeset()
@@ -520,7 +520,7 @@ on do_typeset(arg)
 	end if
 end do_typeset
 
-on preview_dvi(arg)
+on preview_dvi()
 	--log "start preview_dvi"
 	if not EditorClient's is_frontmost() then
 		if preview_dvi_for_frontdoc() then return
@@ -553,7 +553,7 @@ on preview_dvi(arg)
 	--log "end preview_dvi"
 end preview_dvi
 
-on preview_pdf(arg)
+on preview_pdf()
 	
 	try
 		set a_texdoc to checkmifiles without saving and autosave
