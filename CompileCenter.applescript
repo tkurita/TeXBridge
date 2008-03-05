@@ -15,7 +15,7 @@ global PathAnalyzer
 global ShellUtils
 global TerminalCommander
 global PathConverter
-global FrontDocument
+global FrontAccess
 global XFile
 
 --special values
@@ -44,7 +44,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 			if message_flag then
 				set docname to EditorClient's document_name()
 				set a_msg to UtilityHandlers's localized_string("invalidMode", {docname})
-				showMessage(a_msg) of MessageUtility
+				show_message(a_msg) of MessageUtility
 				error "The mode of the document is not supported." number 1205
 			end if
 			return missing value
@@ -52,7 +52,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 	else
 		if message_flag then
 			set a_msg to localized string "noDocument"
-			showMessage(a_msg) of MessageUtility
+			show_message(a_msg) of MessageUtility
 			error "No opened documents." number 1240
 		end if
 		return missing value
@@ -60,7 +60,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 	
 	set a_texdoc to TeXDocController's make_with(a_tex_file, EditorClient's text_encoding())
 	if a_tex_file is missing value then
-		a_texdoc's set_filename(EditorClient's document_name())
+		a_texdoc's set_a_name(EditorClient's document_name())
 	end if
 	return a_texdoc
 end texdoc_for_firstdoc
@@ -124,8 +124,11 @@ end logParseOnly
 
 on preview_dvi_for_frontdoc()
 	--log "start preview_dvi_for_frontdoc"
-	set front_doc to make FrontDocument
-	set a_file to document_alias() of front_doc
+	try
+		set a_file to (make FrontAccess)'s document_alias()
+	on error number 1750
+		return false
+	end try
 	set a_xfile to XFile's make_with(a_file)
 	if a_xfile's path_extension() is ".dvi" then
 		return true
@@ -141,7 +144,7 @@ on preview_dvi_for_frontdoc()
 	try
 		open_dvi of a_dvi with activation
 	on error msg number errno
-		showError(errno, "preview_dvi_for_frontdoc", msg) of MessageUtility
+		MessageUtility(errno, "preview_dvi_for_frontdoc", msg) of MessageUtility
 	end try
 	--log "end preview_dvi_for_frontdoc"
 	return true
@@ -152,7 +155,7 @@ on openOutputHadler(an_extension)
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "openOutputHadler", msg) of MessageUtility
+			show_error(errno, "openOutputHadler", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -273,7 +276,7 @@ on dvi_to_ps()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "dvi_to_ps", msg) of MessageUtility
+			show_error(errno, "dvi_to_ps", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -292,7 +295,7 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "exec_tex_command", msg) of MessageUtility
+			show_error(errno, "exec_tex_command", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -311,7 +314,7 @@ on seek_ebb()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "seek_ebb", msg) of MessageUtility
+			show_error(errno, "seek_ebb", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -343,15 +346,28 @@ on seek_ebb()
 	end repeat
 	
 	if noGraphicFlag then
-		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's filename()})
+		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's a_name()})
 		EditorClient's show_message(a_msg)
 	else if noNewBBFlag then
 		EditorClient's show_message(localized string "bbAlreadyCreated")
 	end if
 end seek_ebb
 
-on exec_ebb(theGraphicPath, an_extension)
-	set basepath to text 1 thru -((length of an_extension) + 1) of theGraphicPath
+on exec_ebb(graphic_path, an_extension)
+	set graphic_file to XFile's make_with(POSIX file graphic_path)
+	set bb_file to graphic_file's change_path_extension(".bb")
+	if bb_file's item_exists() then
+		set bb_mod to modification date of (bb_file's info())
+		set g_mod to modification date of (graphic_file's info())
+		if (bb_mod > g_mod) then
+			return false
+		end if
+	end if
+	
+	set target_dir to graphic_file's parent_folder()'s posix_path()
+	set a_name to graphic_file's item_name()
+	(*
+	set basepath to text 1 thru -((length of an_extension) + 1) of graphic_path
 	set bbPath to basepath & ".bb"
 	if isExists(POSIX file bbPath) of UtilityHandlers then
 		set bbAlias to POSIX file bbPath as alias
@@ -365,12 +381,13 @@ on exec_ebb(theGraphicPath, an_extension)
 		end if
 	end if
 	-------do ebb
-	set theGraphicPath to quoted form of theGraphicPath
-	set targetDir to dirname(theGraphicPath) of ShellUtils
-	set filename to basename(theGraphicPath, "") of ShellUtils
-	set cd_command to "cd '" & targetDir & "'"
+	set graphic_path to quoted form of graphic_path
+	set target_dir to dirname(graphic_path) of ShellUtils
+	set a_name to basename(graphic_path, "") of ShellUtils
+	*)
+	set cd_command to "cd '" & target_dir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
-	set allCommand to cd_command & _com_delim & ebbCommand & space & "'" & filename & "'"
+	set allCommand to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
 	--doCommands of TerminalCommander for allCommand with activation
 	sendCommands of TerminalCommander for allCommand
 	copy TerminalCommander to currentTerminal
@@ -395,7 +412,7 @@ on quick_typeset_preview()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then -- "The document is not saved."
-			showError(errno, "quick_typeset_preview after calling prepare_typeset", msg) of MessageUtility
+			show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -424,11 +441,11 @@ on quick_typeset_preview()
 		try
 			open_dvi of a_dvi given activation:aFlag
 		on error msg number errno
-			showError(errno, "quick_typeset_preview after calling open_dvi", msg) of MessageUtility
+			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of MessageUtility
 		end try
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		showMessage(a_msg) of MessageUtility
+		show_message(a_msg) of MessageUtility
 	end if
 	
 	if not aFlag then
@@ -451,7 +468,7 @@ on typeset_preview()
 		try
 			open_dvi of a_dvi given activation:missing value
 		on error msg number errno
-			showError(errno, "typeset_preview", msg) of MessageUtility
+			show_error(errno, "typeset_preview", msg) of MessageUtility
 		end try
 	end if
 end typeset_preview
@@ -466,7 +483,7 @@ on typeset_preview_pdf()
 	show_status_message("Opening PDF file ...") of ToolPaletteController
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
-		showMessage(a_msg) of MessageUtility
+		show_message(a_msg) of MessageUtility
 	else
 		open_pdf() of a_pdf
 	end if
@@ -478,7 +495,7 @@ on do_typeset()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "do_typeset", msg) of MessageUtility
+			show_error(errno, "do_typeset", msg) of MessageUtility
 		end if
 		return missing value
 	end try
@@ -514,7 +531,7 @@ on do_typeset()
 		return a_dvi
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		showMessage(a_msg) of MessageUtility
+		show_message(a_msg) of MessageUtility
 		return missing value
 	end if
 end do_typeset
@@ -530,7 +547,7 @@ on preview_dvi()
 		a_texdoc's set_use_term(false)
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of MessageUtility
 		end if
 		return
 	end try
@@ -542,7 +559,7 @@ on preview_dvi()
 		try
 			open_dvi of a_dvi with activation
 		on error msg number errno
-			showError(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of MessageUtility
 		end try
 	else
 		set dviName to name_for_suffix(".dvi") of a_texdoc
@@ -558,7 +575,7 @@ on preview_pdf()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of MessageUtility
 		end if
 		return
 	end try

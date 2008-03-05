@@ -12,7 +12,7 @@ script XdviDriver
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
 		set x11AppName to "X11"
-		if not (isRunning(x11AppName) of UtilityHandlers) then
+		if not (is_running(x11AppName) of UtilityHandlers) then
 			tell application x11AppName
 				launch
 			end tell

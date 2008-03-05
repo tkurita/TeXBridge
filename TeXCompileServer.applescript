@@ -13,7 +13,7 @@ property XList : XDict's XList
 property XText : load("XText")
 property PathAnalyzer : XFile's PathAnalyzer
 --property StringEngine : PathConverter's StringEngine
-property FrontDocument : load("FrontDocument")
+property FrontAccess : load("FrontAccess")
 property TerminalCommanderBase : load("TerminalCommander")
 
 property appController : missing value
@@ -108,7 +108,6 @@ on launched theObject
 	
 	(*misc*)
 	--set a_result to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
-	--showErrorInFrontmostApp("1111", "hello") of MessageUtility
 	--openRelatedFile with revealOnly
 	--open "ReplaceInput"
 	--call method "showHelp:"
@@ -137,7 +136,7 @@ on open theObject
 				theObject's commandScript's do(CompileCenter)
 			on error msg number errno
 				if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-					showError(errno, "open", msg) of MessageUtility
+					MessageUtility's show_error(errno, "open", msg)
 				else
 					error msg number errno
 				end if
@@ -147,7 +146,7 @@ on open theObject
 		else if command_class is "editSupport" then
 			theObject's commandScript's do(EditCommands)
 		else
-			showMessage("Unknown commandClass : " & command_class) of MessageUtility
+			show_message("Unknown commandClass : " & command_class) of MessageUtility
 		end if
 	else
 		set command_id to theObject
@@ -164,7 +163,7 @@ on open theObject
 			doReverseSearch(targetLine)
 		*)
 		else
-			showMessage("Unknown argument : " & command_id) of MessageUtility
+			show_message("Unknown argument : " & command_id) of MessageUtility
 		end if
 		
 	end if

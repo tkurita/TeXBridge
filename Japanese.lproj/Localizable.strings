@@ -46,7 +46,7 @@
 "group" = "グループ";
 
 /*showError*/
-"errorLabel" = "エラー :";
+"error_msg" = "エラー : $1 in $2 \n$3";
 
 /*open_parentfile*/
 "noParentFile" = "書類 “$1” には ParentFile が設定されていません。";

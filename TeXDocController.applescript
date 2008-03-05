@@ -230,7 +230,7 @@ on typeset()
 				set my _logContents to msg
 			else if errno is 127 then
 				-- maybe comannd name or path setting is not correct
-				showError(errno, "texCompile", msg) of MessageUtility
+				show_error(errno, "texCompile", msg) of MessageUtility
 				error "Typeset is not executed." number 1250
 			else
 				error msg number errno
@@ -387,7 +387,8 @@ on make_with_dvifile(dvi_file_ref)
 	end if
 	set tex_path to basepath & ".tex"
 	
-	if isExists(POSIX file tex_path) of UtilityHandlers then
+	--if isExists(POSIX file tex_path) of UtilityHandlers then
+	if XFile's make_with(POSIX file tex_path)'s item_exists() then
 		set tex_doc_obj to make_with(POSIX file tex_path, missing value)
 		tex_doc_obj's lookup_header_commands_from_file()
 	else
