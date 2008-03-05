@@ -1,6 +1,5 @@
 global PathConverter
 global PathAnalyzer
-global StringEngine
 global XFile
 global XText
 
@@ -27,7 +26,6 @@ end set_doc_position
 on resolve_parent(a_paragraph)
 	--log "start resolveParentFile"
 	set parent_file to XText's make_with(a_paragraph)'s text_in_range(13, -2)
-	--set parent_file to StringEngine's strip(text 13 thru -2 of a_paragraph)
 	--log parent_file
 	if parent_file's starts_with(":") then
 		set pathconv to PathConverter's make_with(my _targetFileRef's hfs_path())
@@ -35,16 +33,7 @@ on resolve_parent(a_paragraph)
 	else
 		set tex_file to parent_file's as_unicode()
 	end if
-	(*
-	if parent_file starts with ":" then
-		set_base_path(my _targetFileRef's hfs_path()) of PathConverter
-		set tex_file to absolute_path of PathConverter for parent_file
-	else
-		set tex_file to parent_file
-	end if
-	*)
 	--tell me to log "tex_file : " & tex_file
-	
 	if tex_file ends with ":" then
 		set a_msg to UtilityHandlers's localized_string("ParentFIleIsInvalid", parent_file)
 		error a_msg number 1230
@@ -199,25 +188,7 @@ on typeset()
 			set_item of command_elems for new_command at 1
 		end if
 		set tex_command to command_elems's as_unicode_with(space)
-		(*
-		store_delimiters() of StringEngine
-		set command_elems to split of StringEngine for tex_command by space
-		if "-interaction=" is in tex_command then
-			repeat with ith from 2 to length of command_elems
-				set theItem to item ith of command_elems
-				if theItem starts with "-interaction=" then
-					--set item ith of command_elems to "-interaction=batchmode"
-					set item ith of command_elems to "-interaction=nonstopmode"
-					exit repeat
-				end if
-			end repeat
-		else
-			--set item 1 of command_elems to ((item 1 of command_elems) & space & "-interaction=batchmode")
-			set item 1 of command_elems to ((item 1 of command_elems) & space & "-interaction=nonstopmode")
-		end if
-		set theTexCommand to join of StringEngine for command_elems by space
-		restore_delimiters() of StringEngine
-		*)
+		
 		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
 		--set allCommand to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
 		set shell_path to getShellPath() of TerminalCommander
@@ -297,11 +268,6 @@ on build_command(a_command, a_suffix)
 	if "%s" is in a_command then
 		set a_basename to basename()
 		set a_command to XText's make_with(a_command)'s replace("%s", a_basename)'s as_unicode()
-		(*
-		store_delimiters() of StringEngine
-		set a_command to replace of StringEngine for a_command from "%s" by a_basename
-		restore_delimiters() of StringEngine
-		*)
 		return a_command
 	else
 		set a_filename to name_for_suffix(a_suffix)
