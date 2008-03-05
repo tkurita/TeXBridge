@@ -2,6 +2,7 @@ global PathConverter
 global PathAnalyzer
 global StringEngine
 global XFile
+global XText
 
 global UtilityHandlers
 global TerminalCommander
@@ -25,30 +26,39 @@ end set_doc_position
 
 on resolve_parent(a_paragraph)
 	--log "start resolveParentFile"
-	set parentFile to StringEngine's strip(text 13 thru -2 of a_paragraph)
-	--log parentFile
-	if parentFile starts with ":" then
-		set_base_path(my _targetFileRef's hfs_path()) of PathConverter
-		set theTexFile to absolute_path of PathConverter for parentFile
+	set parent_file to XText's make_with(a_paragraph)'s text_in_range(13, -2)
+	--set parent_file to StringEngine's strip(text 13 thru -2 of a_paragraph)
+	--log parent_file
+	if parent_file's starts_with(":") then
+		set pathconv to PathConverter's make_with(my _targetFileRef's hfs_path())
+		set tex_file to absolute_path of pathconv for parent_file's as_unicode()
 	else
-		set theTexFile to parentFile
+		set tex_file to parent_file's as_unicode()
 	end if
-	--tell me to log "theTexFile : " & theTexFile
+	(*
+	if parent_file starts with ":" then
+		set_base_path(my _targetFileRef's hfs_path()) of PathConverter
+		set tex_file to absolute_path of PathConverter for parent_file
+	else
+		set tex_file to parent_file
+	end if
+	*)
+	--tell me to log "tex_file : " & tex_file
 	
-	if theTexFile ends with ":" then
-		set a_msg to UtilityHandlers's localized_string("ParentFIleIsInvalid", parentFile)
+	if tex_file ends with ":" then
+		set a_msg to UtilityHandlers's localized_string("ParentFIleIsInvalid", parent_file)
 		error a_msg number 1230
 	end if
 	
 	try
-		set theTexFile to theTexFile as alias
+		set tex_file to tex_file as alias
 	on error
-		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", theTexFile)
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", tex_file)
 		error a_msg number 1220
 	end try
 	
 	--log "end resolveParentFile"
-	return theTexFile
+	return tex_file
 end resolve_parent
 
 (*== accessors *)
@@ -117,7 +127,7 @@ end file_ref
 on update_with_parent(a_parent_file)
 	set my _hasParentFile to true
 	set my _file_ref to XFile's make_with(a_parent_file)
-	--set pathRecord to do(theTexFile) of PathAnalyzer
+	--set pathRecord to do(tex_file) of PathAnalyzer
 	--set my _workingDirectory to folderReference of pathRecord
 	set my _workingDirectory to my _file_ref's parent_folder()
 	--set my _texFileName to name of pathRecord
@@ -160,41 +170,57 @@ end working_directory
 on typeset()
 	--log "start texCompile"
 	set beforeCompileTime to current date
-	--set cd_command to "cd " & (quoted form of POSIX path of (my _workingDirectory))
 	set cd_command to "cd " & (quoted form of (my _workingDirectory's posix_path()))
 	
-	set texCommand to typeset_command()
+	set tex_command to typeset_command()
 	
 	if my _use_term then
-		set allCommand to cd_command & _com_delim & texCommand & space & "'" & my _texFileName & "'"
-		--doCommands of TerminalCommander for allCommand with activation
+		set allCommand to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
 		sendCommands of TerminalCommander for allCommand
 		copy TerminalCommander to currentTerminal
 		delay 1
 		waitEndOfCommand(300) of currentTerminal
 	else
+		set tex_command to XText's make_with(tex_command)
+		set command_elems to tex_command's as_xlist_with(space)
+		if tex_command's include("-interaction=") then
+			script ChnageInteractionMode
+				on do(an_elem)
+					if an_elem starts with "-interaction=" then
+						set content of an_elem to "-interaction=nonstopmode"
+						return false
+					end if
+					return true
+				end do
+			end script
+			command_elems's each(ChangeInteractionMode)
+		else
+			set_item of command_elems for (command_elems's item_at(1) & space & "-interaction=nonstopmode") at 1
+		end if
+		set tex_command to command_elems's as_unicode_wtih(space)
+		(*
 		store_delimiters() of StringEngine
-		set commandElements to split of StringEngine for texCommand by space
-		if "-interaction=" is in texCommand then
-			repeat with ith from 2 to length of commandElements
-				set theItem to item ith of commandElements
+		set command_elems to split of StringEngine for tex_command by space
+		if "-interaction=" is in tex_command then
+			repeat with ith from 2 to length of command_elems
+				set theItem to item ith of command_elems
 				if theItem starts with "-interaction=" then
-					--set item ith of commandElements to "-interaction=batchmode"
-					set item ith of commandElements to "-interaction=nonstopmode"
+					--set item ith of command_elems to "-interaction=batchmode"
+					set item ith of command_elems to "-interaction=nonstopmode"
 					exit repeat
 				end if
 			end repeat
 		else
-			--set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=batchmode")
-			set item 1 of commandElements to ((item 1 of commandElements) & space & "-interaction=nonstopmode")
+			--set item 1 of command_elems to ((item 1 of command_elems) & space & "-interaction=batchmode")
+			set item 1 of command_elems to ((item 1 of command_elems) & space & "-interaction=nonstopmode")
 		end if
-		set theTexCommand to join of StringEngine for commandElements by space
+		set theTexCommand to join of StringEngine for command_elems by space
 		restore_delimiters() of StringEngine
-		
+		*)
 		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
 		--set allCommand to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
 		set shell_path to getShellPath() of TerminalCommander
-		set allCommand to cd_command & ";exec " & shell_path & " -lc " & quote & theTexCommand & space & (quoted form of my _texFileName) & " 2>&1" & quote
+		set allCommand to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
 			set my _logContents to do shell script allCommand
 		on error msg number errno
@@ -269,9 +295,12 @@ on build_command(a_command, a_suffix)
 	-- replace %s in a_command with texBaseName. if %s is not in a_command, texBaseName+a_suffix is added end of a_command
 	if "%s" is in a_command then
 		set a_basename to basename()
+		set a_command to XText's make_with(a_command)'s replace("%s", a_basename)'s as_unicode()
+		(*
 		store_delimiters() of StringEngine
 		set a_command to replace of StringEngine for a_command from "%s" by a_basename
 		restore_delimiters() of StringEngine
+		*)
 		return a_command
 	else
 		set a_filename to name_for_suffix(a_suffix)
@@ -285,11 +314,11 @@ on lookup_header_command(a_paragraph)
 			set a_parentfile to resolve_parent(a_paragraph)
 			update_with_parent(a_parentfile)
 		else if a_paragraph starts with "%Typeset-Command" then
-			set_typeset_command(StringEngine's strip(text 18 thru -1 of a_paragraph))
+			set_typeset_command(XText's make_with(text 18 thru -1 of a_paragraph)'s strip()'s as_unicode())
 		else if a_paragraph starts with "%DviToPdf-Command" then
-			set my _dvipdf_command to StringEngine's strip(text 19 thru -1 of a_paragraph)
+			set my _dvipdf_command to XText's make_with(text 19 thru -1 of a_paragraph)'s strip()'s as_unicode()
 		else if a_paragraph starts with "%DviToPs-Command" then
-			set my _dvips_command to StringEngine's strip(text 18 thru -1 of a_paragraph)
+			set my _dvips_command to XText's make_with(text 18 thru -1 of a_paragraph)'s strip()'s as_unicode()
 		end if
 	end ignoring
 end lookup_header_command

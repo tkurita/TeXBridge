@@ -15,7 +15,6 @@ global PathAnalyzer
 global ShellUtils
 global TerminalCommander
 global PathConverter
-global StringEngine
 global FrontDocument
 global XFile
 

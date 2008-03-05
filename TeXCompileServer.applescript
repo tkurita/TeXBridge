@@ -12,7 +12,7 @@ property XFile : load("XFile")
 property XList : XDict's XList
 property XText : load("XText")
 property PathAnalyzer : XFile's PathAnalyzer
-property StringEngine : PathConverter's StringEngine
+--property StringEngine : PathConverter's StringEngine
 property FrontDocument : load("FrontDocument")
 property TerminalCommanderBase : load("TerminalCommander")
 

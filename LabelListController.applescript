@@ -1,7 +1,8 @@
 global _backslash
 
 global XDict
-global StringEngine
+--global StringEngine
+global XText
 global PathConverter
 global PathAnalyzer
 global XList
@@ -218,9 +219,12 @@ on parse_aux_file(an_auxdata)
 		if (a_paragraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
 			set a_paragraph to text 11 thru -2 of a_paragraph
+			set theTextItemList to XText's make_with(a_paragraph)'s as_list_with("}{")
+			(*
 			store_delimiters() of StringEngine
 			set theTextItemList to split of StringEngine for a_paragraph by "}{"
 			restore_delimiters() of StringEngine
+			*)
 			try
 				set theRef to ((item -2 of theTextItemList) as string)
 			on error
