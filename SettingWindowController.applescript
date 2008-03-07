@@ -50,7 +50,7 @@ end RevertToDefault
 
 on loadTerminalSetting(theView)
 	if not isLoadedTerminalSetting then
-		setSettingToWindow(theView) of TerminalSettings
+		set_setting_to_window(theView) of TerminalSettings
 		set isLoadedTerminalSetting to true
 	end if
 end loadTerminalSetting
@@ -74,7 +74,7 @@ end loadPreviewSetting
 on loadReplaceInputSetting(theView)
 	--log "start loadReplaceInputSetting"
 	if not isLoadedReplaceInputSetting then
-		setSettingToWindow(theView) of ReplaceInput
+		set_setting_to_window(theView) of ReplaceInput
 		set isLoadedReplaceInputSetting to true
 	end if
 end loadReplaceInputSetting

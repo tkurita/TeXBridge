@@ -14,6 +14,7 @@ property XText : load("XText")
 property PathAnalyzer : XFile's PathAnalyzer
 property FrontAccess : load("FrontAccess")
 property TerminalCommanderBase : load("TerminalCommander")
+property TerminalColors : load("TerminalColors")
 
 property appController : missing value
 --property WindowVisibilityController : missing value
@@ -266,10 +267,10 @@ on will finish launching theObject
 	show_startup_message("Loading Preferences ...")
 	setup_constants()
 	--log "start of initializeing PDFController"
-	loadSettings() of PDFController
+	load_settings() of PDFController
 	
 	--log "start of initilizing TerminalSettings"
-	loadSettings() of TerminalSettings
+	load_settings() of TerminalSettings
 	--log "end will finish launching"
 end will finish launching
 

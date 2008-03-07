@@ -131,12 +131,12 @@ on checkPDFApp()
 	set _prePDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
 end checkPDFApp
 
-on loadSettings()
+on load_settings()
 	set acrobatPath to value_with_default("AcrobatPath", _acrobatPath) of DefaultsManager
 	set _adobeReaderPath to value_with_default("AdobeReaderPath", _adobeReaderPath) of DefaultsManager
 	--log "success read default value of PDFPreviewIndex"
 	checkPDFApp()
-end loadSettings
+end load_settings
 
 script GenericDriver
 	on prepare(a_pdf)

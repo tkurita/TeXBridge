@@ -202,8 +202,8 @@ on appendDictToOutline for theDict into parentDataItem
 	--log "end appendDictToOutline"
 end appendDictToOutline
 
-on setSettingToWindow(a_view)
-	--log "start setSettingToWindow in ReplaceInput"
+on set_setting_to_window(a_view)
+	--log "start set_setting_to_window in ReplaceInput"
 	
 	initialize()
 	--log "success initialize"
@@ -239,8 +239,8 @@ on setSettingToWindow(a_view)
 		my _user_replace_dict's each(setup_data_cell)
 		tell my _userReplaceTable to update
 	end if
-	--log "end setSettingToWindow in ReplaceInput"
-end setSettingToWindow
+	--log "end set_setting_to_window in ReplaceInput"
+end set_setting_to_window
 
 on findReplaceText(keyText)
 	--log "start findReplaceText for " & keyText
