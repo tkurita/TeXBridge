@@ -1,5 +1,5 @@
 global ScriptImporter
-global TerminalSettingObj
+global TerminalSettings
 global ReplaceInput
 global appController
 
@@ -24,7 +24,7 @@ on RevertToDefault()
 	set currentTab to current tab view item of tab view "SettingTabs" of my _window
 	set a_name to name of currentTab
 	if a_name is "TerminalSetting" then
-		revertToFactorySetting() of TerminalSettingObj
+		revertToFactorySetting() of TerminalSettings
 		set isLoadedTerminalSetting to false
 	else if a_name is "TeXCommands" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "typesetCommand"
@@ -50,7 +50,7 @@ end RevertToDefault
 
 on loadTerminalSetting(theView)
 	if not isLoadedTerminalSetting then
-		setSettingToWindow(theView) of TerminalSettingObj
+		setSettingToWindow(theView) of TerminalSettings
 		set isLoadedTerminalSetting to true
 	end if
 end loadTerminalSetting

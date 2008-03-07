@@ -26,7 +26,7 @@ property _com_delim : return
 property constantsDict : missing value
 
 (*=== dynamically loaded script objects ===*)
-property TerminalSettingObj : missing value
+property TerminalSettings : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
 property DefaultsManager : missing value
@@ -176,7 +176,7 @@ on clicked theObject
 	--log "start clicked"
 	set a_tag to tag of theObject
 	if a_tag is 1 then
-		control_clicked(theObject) of TerminalSettingObj
+		control_clicked(theObject) of TerminalSettings
 	else if a_tag is 6 then
 		control_clicked(theObject) of ReplaceInput
 	else if a_tag is 7 then
@@ -254,8 +254,8 @@ on will finish launching theObject
 	set DVIController to import_script("DVIController")
 	set SettingWindowController to import_script("SettingWindowController")
 	set ToolPaletteController to import_script("ToolPaletteController")
-	set TerminalCommander to make_obj() of (import_script("TerminalCommander"))
-	set TerminalSettingObj to import_script("TerminalSettingObj")
+	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
+	set TerminalSettings to import_script("TerminalSettings")
 	set RefPanelController to import_script("RefPanelController")
 	set SheetManager to import_script("SheetManager")
 	set AuxData to import_script("AuxData")
@@ -268,8 +268,8 @@ on will finish launching theObject
 	--log "start of initializeing PDFController"
 	loadSettings() of PDFController
 	
-	--log "start of initilizing TerminalSettingObj"
-	loadSettings() of TerminalSettingObj
+	--log "start of initilizing TerminalSettings"
+	loadSettings() of TerminalSettings
 	--log "end will finish launching"
 end will finish launching
 
@@ -297,7 +297,7 @@ on end editing theObject
 	--log "start end editing"
 	set a_tag to tag of theObject
 	if a_tag is 1 then
-		endEditing(theObject) of TerminalSettingObj
+		endEditing(theObject) of TerminalSettings
 	end if
 end end editing
 

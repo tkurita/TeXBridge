@@ -285,8 +285,8 @@ on dvi_to_ps()
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set a_command to build_command(a_command, ".dvi") of a_texdoc
 	set allCommand to cd_command & _com_delim & a_command
-	--doCommands of TerminalCommander for allCommand with activation
-	sendCommands of TerminalCommander for allCommand
+	--do_command of TerminalCommander for allCommand with activation
+	send_command of TerminalCommander for allCommand
 end dvi_to_ps
 
 --simply execute TeX command in Terminal
@@ -303,8 +303,8 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set texCommand to build_command(texCommand, theSuffix) of a_texdoc
 	set allCommand to cd_command & _com_delim & texCommand
-	--doCommands of TerminalCommander for allCommand with activation
-	sendCommands of TerminalCommander for allCommand
+	--do_command of TerminalCommander for allCommand with activation
+	send_command of TerminalCommander for allCommand
 end exec_tex_command
 
 on seek_ebb()
@@ -388,10 +388,10 @@ on exec_ebb(graphic_path, an_extension)
 	set cd_command to "cd '" & target_dir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set allCommand to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
-	--doCommands of TerminalCommander for allCommand with activation
-	sendCommands of TerminalCommander for allCommand
-	copy TerminalCommander to currentTerminal
-	waitEndOfCommand(300) of currentTerminal
+	--do_command of TerminalCommander for allCommand with activation
+	send_command of TerminalCommander for allCommand
+	set currentTerminal to make TerminalCommander
+	wait_termination(300) of currentTerminal
 	return true
 end exec_ebb
 

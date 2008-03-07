@@ -265,7 +265,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>7</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -402,9 +402,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CEE62290D7F818D003F1126</string>
+				<string>2C2BC9A00D812887003A09A2</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CEE622A0D7F818D003F1126</string>
+				<string>2C2BC9A10D812887003A09A2</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -561,6 +561,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>2C92F43609C1219A00D5EA67</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/trunk/TeXCompileServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -585,7 +587,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>TeXCompileServer.applescript</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -602,6 +604,8 @@
 							<string>463pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
@@ -643,7 +647,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C92F43609C1219A00D5EA67</string>
-				<string>2CEE5D130D7EBB38003F1126</string>
+				<string>2C2BC9A20D812887003A09A2</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -797,7 +801,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{0, 0}, {1023, 516}}</string>
+										<string>{{0, 0}, {1023, 352}}</string>
 										<key>RubberWindowFrame</key>
 										<string>87 109 1023 829 0 0 1440 938 </string>
 									</dict>
@@ -808,7 +812,7 @@
 								</dict>
 							</array>
 							<key>Proportion</key>
-							<string>516pt</string>
+							<string>352pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -821,14 +825,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 521}, {1023, 267}}</string>
+								<string>{{0, 357}, {1023, 431}}</string>
 								<key>RubberWindowFrame</key>
 								<string>87 109 1023 829 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
 							<key>Proportion</key>
-							<string>267pt</string>
+							<string>431pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -846,8 +850,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2CEE5D0E0D7EBB27003F1126</string>
-				<string>2CEE5D0F0D7EBB27003F1126</string>
+				<string>2C2BC9B20D812B6C003A09A2</string>
+				<string>2C2BC9B30D812B6C003A09A2</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

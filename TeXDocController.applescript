@@ -165,10 +165,11 @@ on typeset()
 	
 	if my _use_term then
 		set allCommand to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
-		sendCommands of TerminalCommander for allCommand
-		copy TerminalCommander to currentTerminal
+		send_command of TerminalCommander for allCommand
+		
+		set currentTerminal to make TerminalCommander
 		delay 1
-		waitEndOfCommand(300) of currentTerminal
+		wait_termination(300) of currentTerminal
 	else
 		set tex_command to XText's make_with(tex_command)
 		set command_elems to tex_command's as_xlist_with(space)
@@ -191,7 +192,7 @@ on typeset()
 		
 		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
 		--set allCommand to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
-		set shell_path to getShellPath() of TerminalCommander
+		set shell_path to shell_path() of TerminalCommander
 		set allCommand to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
 			set my _logContents to do shell script allCommand

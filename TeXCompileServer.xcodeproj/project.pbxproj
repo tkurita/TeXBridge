@@ -18,7 +18,7 @@
 				2C4E27B7084273B000004A96 /* ColorSwitch.applescript in AppleScript */,
 				2C4E27B8084273B000004A96 /* UtilityHandlers.applescript in AppleScript */,
 				2C4E27B9084273B000004A96 /* MessageUtility.applescript in AppleScript */,
-				2C4E27BA084273B000004A96 /* TerminalSettingObj.applescript in AppleScript */,
+				2C4E27BA084273B000004A96 /* TerminalSettings.applescript in AppleScript */,
 				2C4E27BB084273B000004A96 /* PDFController.applescript in AppleScript */,
 				2C4E27BC084273B000004A96 /* TeXDocController.applescript in AppleScript */,
 				2C4E27BD084273B000004A96 /* DVIController.applescript in AppleScript */,
@@ -61,7 +61,7 @@
 		2C4E27B7084273B000004A96 /* ColorSwitch.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B8084273B000004A96 /* UtilityHandlers.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B9084273B000004A96 /* MessageUtility.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		2C4E27BA084273B000004A96 /* TerminalSettingObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2C4E27BA084273B000004A96 /* TerminalSettings.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C17332A063C1C9D000FEAF8 /* TerminalSettings.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27BB084273B000004A96 /* PDFController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27BC084273B000004A96 /* TeXDocController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27BD084273B000004A96 /* DVIController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -158,7 +158,7 @@
 		2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
 		2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
-		2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TerminalSettingObj.applescript; sourceTree = "<group>"; };
+		2C17332A063C1C9D000FEAF8 /* TerminalSettings.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TerminalSettings.applescript; sourceTree = "<group>"; };
 		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
 		2C2E5294080625270015E9EB /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -393,7 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */,
-				2C17332A063C1C9D000FEAF8 /* TerminalSettingObj.applescript */,
+				2C17332A063C1C9D000FEAF8 /* TerminalSettings.applescript */,
 				2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */,
 				2C1732EF063C19ED000FEAF8 /* ColorSwitch.applescript */,
 				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
