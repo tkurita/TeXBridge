@@ -104,7 +104,7 @@ on launched theObject
 	--typeset_preview() of CompileCenter
 	--debug()
 	--checkmifiles with saving
-	--quick_typeset_preview({}) of CompileCenter
+	--quick_typeset_preview() of CompileCenter
 	
 	(*misc*)
 	--set a_result to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"

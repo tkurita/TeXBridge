@@ -157,19 +157,19 @@ end working_directory
 
 (*== Instance methods *)
 on typeset()
-	--log "start texCompile"
+	--log "start typeset"
 	set beforeCompileTime to current date
 	set cd_command to "cd " & (quoted form of (my _workingDirectory's posix_path()))
 	
 	set tex_command to typeset_command()
 	
 	if my _use_term then
-		set allCommand to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
-		send_command of TerminalCommander for allCommand
+		set all_command to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
+		send_command of TerminalCommander for all_command
 		
-		set currentTerminal to make TerminalCommander
+		set a_term to make TerminalCommander
 		delay 1
-		wait_termination(300) of currentTerminal
+		wait_termination(300) of a_term
 	else
 		set tex_command to XText's make_with(tex_command)
 		set command_elems to tex_command's as_xlist_with(space)
@@ -189,13 +189,12 @@ on typeset()
 			set_item of command_elems for new_command at 1
 		end if
 		set tex_command to command_elems's as_unicode_with(space)
-		
 		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
-		--set allCommand to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
-		set shell_path to shell_path() of TerminalCommander
-		set allCommand to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
+		--set all_command to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
+		set shell_path to TerminalCommander's shell_path()
+		set all_command to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
-			set my _logContents to do shell script allCommand
+			set my _logContents to do shell script all_command
 		on error msg number errno
 			if errno is 1 then
 				-- 1:general tex error
@@ -215,7 +214,7 @@ on typeset()
 	if a_dvi is not missing value then
 		set_src_special_flag() of a_dvi
 	end if
-	--log "end texCompile"
+	--log "end typeset"
 	return a_dvi
 end typeset
 

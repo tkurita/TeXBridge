@@ -31,8 +31,8 @@ script XdviDriver
 				set sourceFile to a_dvi's texdoc()'s filename()
 			end if
 			
-			set allCommand to cd_command & _com_delim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
-			do_command of TerminalCommander for allCommand without activation
+			set all_command to cd_command & _com_delim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
+			do_command of TerminalCommander for all_command without activation
 		else
 			try
 				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
@@ -41,8 +41,8 @@ script XdviDriver
 			end try
 			
 			if pid is "" then
-				set allCommand to cd_command & _com_delim & dviViewCommand & space & "'" & dviFileName & "' &"
-				do_command of TerminalCommander for allCommand without activation
+				set all_command to cd_command & _com_delim & dviViewCommand & space & "'" & dviFileName & "' &"
+				do_command of TerminalCommander for all_command without activation
 			else
 				set pid to word 1 of pid
 				do shell script "kill -USR1" & space & pid --reread
@@ -221,11 +221,11 @@ on dvi_to_pdf()
 	set a_command to my _texdoc's dvipdf_command()
 	set cd_command to "cd" & space & (quoted form of (cwd()'s posix_path()))
 	set targetFileName to my _texdoc's name_for_suffix(".dvi")
-	set allCommand to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
+	set all_command to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
-	send_command of TerminalCommander for allCommand
-	copy TerminalCommander to currentTerminal
-	wait_termination(300) of currentTerminal
+	send_command of TerminalCommander for all_command
+	copy TerminalCommander to a_term
+	wait_termination(300) of a_term
 	
 	if a_pdf is missing value then
 		set a_pdf to lookup_pdf_file()

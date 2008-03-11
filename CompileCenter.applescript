@@ -284,9 +284,9 @@ on dvi_to_ps()
 	set a_command to a_texdoc's dvips_command()
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set a_command to build_command(a_command, ".dvi") of a_texdoc
-	set allCommand to cd_command & _com_delim & a_command
-	--do_command of TerminalCommander for allCommand with activation
-	send_command of TerminalCommander for allCommand
+	set all_command to cd_command & _com_delim & a_command
+	--do_command of TerminalCommander for all_command with activation
+	send_command of TerminalCommander for all_command
 end dvi_to_ps
 
 --simply execute TeX command in Terminal
@@ -302,9 +302,9 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 	
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set texCommand to build_command(texCommand, theSuffix) of a_texdoc
-	set allCommand to cd_command & _com_delim & texCommand
-	--do_command of TerminalCommander for allCommand with activation
-	send_command of TerminalCommander for allCommand
+	set all_command to cd_command & _com_delim & texCommand
+	--do_command of TerminalCommander for all_command with activation
+	send_command of TerminalCommander for all_command
 end exec_tex_command
 
 on seek_ebb()
@@ -387,11 +387,11 @@ on exec_ebb(graphic_path, an_extension)
 	*)
 	set cd_command to "cd '" & target_dir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
-	set allCommand to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
-	--do_command of TerminalCommander for allCommand with activation
-	send_command of TerminalCommander for allCommand
-	set currentTerminal to make TerminalCommander
-	wait_termination(300) of currentTerminal
+	set all_command to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
+	--do_command of TerminalCommander for all_command with activation
+	send_command of TerminalCommander for all_command
+	set a_term to make TerminalCommander
+	a_term's wait_termination(300)
 	return true
 end exec_ebb
 
@@ -422,10 +422,10 @@ on quick_typeset_preview()
 	end if
 	
 	a_texdoc's set_use_term(false)
-	--log "before texCompile in quick_typeset_preview"
 	show_status_message("Typeseting...") of ToolPaletteController
+	--log "before typeset in quick_typeset_preview"
 	try
-		set a_dvi to typeset() of a_texdoc
+		set a_dvi to a_texdoc's typeset()
 	on error number 1250
 		return
 	end try
