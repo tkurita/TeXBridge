@@ -37,11 +37,14 @@ end initialize
 on watchmi given force_reloading:force_flag
 	--log "start watchmi in LabelListController"
 	try
-		set an_auxdata to find_auxdata_from_doc()
+		with timeout of 2 seconds
+			set an_auxdata to find_auxdata_from_doc()
+		end timeout
 	on error msg number errno
-		if errno is in {1230, 1500} then
+		if errno is in {1230, 1500, -1712} then
 			-- 1230 : ParentFile is invalid.
 			-- 1500 : Unsupported File.
+			-- -1712 : timeout
 			return
 		else
 			error "Fail to find_auxdata_from_doc in watchmi of LabelListController." & return & msg number errno

@@ -24,7 +24,7 @@ on RevertToDefault()
 	set currentTab to current tab view item of tab view "SettingTabs" of my _window
 	set a_name to name of currentTab
 	if a_name is "TerminalSetting" then
-		revertToFactorySetting() of TerminalSettings
+		revert_to_factory_setting() of TerminalSettings
 		set isLoadedTerminalSetting to false
 	else if a_name is "TeXCommands" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "typesetCommand"
