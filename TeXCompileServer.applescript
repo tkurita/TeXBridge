@@ -1,4 +1,3 @@
---property loader : proxy_with({autocollect:true}) of application (get "TeXToolsLib")
 property loader : proxy() of application (get "TeXToolsLib")
 
 on load(a_name)
@@ -14,20 +13,17 @@ property XText : load("XText")
 property PathAnalyzer : XFile's PathAnalyzer
 property FrontAccess : load("FrontAccess")
 property TerminalCommanderBase : load("TerminalCommander")
-property TerminalColors : load("TerminalColors")
-
 property appController : missing value
---property WindowVisibilityController : missing value
 
 (*=== shared constants ===*)
 property _backslash : missing value
-property yenmark : ASCII character 92
+--property yenmark : ASCII character 92
+property yenmark : character id 165
 property _com_delim : return
 
 property constantsDict : missing value
 
 (*=== dynamically loaded script objects ===*)
-property TerminalSettings : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
 property DefaultsManager : missing value
@@ -45,6 +41,7 @@ property RefPanelController : missing value
 property SheetManager : missing value
 property AuxData : missing value
 property EditorClient : missing value
+property Root : me
 
 on import_script(scriptName)
 	tell main bundle
@@ -53,15 +50,10 @@ on import_script(scriptName)
 	return load script POSIX file scriptPath
 end import_script
 
-script ScriptImporter
-	on do(scriptName)
-		return import_script(scriptName)
-	end do
-end script
-
 (* events of application*)
 on launched theObject
-	--log "start lanunched"
+	log "start lanunched"
+	log "will show toolpalette"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
 	set IsOpenedToolPalette to value_with_default("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
 	if not showToolPaletteWhenLaunched then
@@ -72,6 +64,7 @@ on launched theObject
 		open_window() of ToolPaletteController
 	end if
 	
+	log "will show refpalette"
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
 	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
 	if not showRefPaletteWhenLaunched then
@@ -87,7 +80,7 @@ on launched theObject
 	(*open window*)
 	--open_window() of RefPanelController
 	--open_window() of ToolPaletteController
-	--open_window() of SettingWindowController
+	open_window() of SettingWindowController
 	
 	
 	(*exec tex commands*)
@@ -176,9 +169,7 @@ end open
 on clicked theObject
 	--log "start clicked"
 	set a_tag to tag of theObject
-	if a_tag is 1 then
-		control_clicked(theObject) of TerminalSettings
-	else if a_tag is 6 then
+	if a_tag is 6 then
 		control_clicked(theObject) of ReplaceInput
 	else if a_tag is 7 then
 		control_clicked(theObject) of PDFController
@@ -256,7 +247,6 @@ on will finish launching theObject
 	set SettingWindowController to import_script("SettingWindowController")
 	set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
-	set TerminalSettings to import_script("TerminalSettings")
 	set RefPanelController to import_script("RefPanelController")
 	set SheetManager to import_script("SheetManager")
 	set AuxData to import_script("AuxData")
@@ -266,12 +256,10 @@ on will finish launching theObject
 	--log "end of import library"
 	show_startup_message("Loading Preferences ...")
 	setup_constants()
-	--log "start of initializeing PDFController"
+	log "start of initializeing PDFController"
 	load_settings() of PDFController
 	
-	--log "start of initilizing TerminalSettings"
-	load_settings() of TerminalSettings
-	--log "end will finish launching"
+	log "end will finish launching"
 end will finish launching
 
 on awake from nib theObject
@@ -291,16 +279,14 @@ on awake from nib theObject
 end awake from nib
 
 on selected tab view item theObject tab view item tabViewItem
+	log "start selected tab view item"
 	selectedTab(tabViewItem) of SettingWindowController
 end selected tab view item
 
-on end editing theObject
-	--log "start end editing"
-	set a_tag to tag of theObject
-	if a_tag is 1 then
-		endEditing(theObject) of TerminalSettings
-	end if
-end end editing
+on updated_selected_tab_view_item()
+	log "start updated_selected_tab_view_item"
+	SettingWindowController's updated_selected_tab_view_item()
+end updated_selected_tab_view_item
 
 on selection changed theObject
 	selection_changed(theObject) of ReplaceInput
@@ -328,3 +314,6 @@ end cell value changed
 on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
 end show_startup_message
+
+
+
