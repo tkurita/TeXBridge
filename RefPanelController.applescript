@@ -1,5 +1,5 @@
 global SheetManager
-global ScriptImporter
+global Root
 global EditorClient
 global AuxData
 
@@ -111,7 +111,7 @@ on initilize()
 	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "ReferencePalette"
 	set my _window to call method "window" of my _window_controller
 	call method "retain" of my _window
-	set LabelListController to ScriptImporter's do("LabelListController")
+	set LabelListController to Root's import_script("LabelListController")
 	initialize(data source "LabelDataSource") of LabelListController
 	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of my _window
 	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window

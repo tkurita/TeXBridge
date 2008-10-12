@@ -469,7 +469,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				matchLength = 0;
 			}
 			subRange = NSMakeRange(matchLength,1);
-			if ([targetText compare:@"(" options:nil range:subRange] == NSOrderedSame) {
+			if ([targetText compare:@"(" options:0 range:subRange] == NSOrderedSame) {
 				if (scanResult) {
 					[self appendLogRecordWithString:scannedText intoList:currentList];
 				}
@@ -486,7 +486,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				}
 				targetText = [self parseBodyWith:newList startText:targetText isWholeLine:wholeLineFlag];
 			}
-			else if ([targetText compare:@")" options:nil range:subRange] == NSOrderedSame) {
+			else if ([targetText compare:@")" options:0 range:subRange] == NSOrderedSame) {
 				if (scanResult) {
 					[self appendLogRecordWithString:scannedText intoList:currentList];
 				}
@@ -500,7 +500,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				}
 				return targetText;
 			}
-			else if ([targetText compare:@"`" options:nil range:subRange] == NSOrderedSame) {
+			else if ([targetText compare:@"`" options:0 range:subRange] == NSOrderedSame) {
 				//this block for ignoring "(" and ")" in between "`" and "'"
 				scanResult = [scanner scanUpToString:@"'" intoString:&scannedText];
 				matchLength += ([scannedText length]+1);
@@ -541,7 +541,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #if useLog
 	NSLog(theLine);
 #endif
-		if([theLine compare:fistParenth options:nil range:beginningOne] == NSOrderedSame) {
+		if([theLine compare:fistParenth options:0 range:beginningOne] == NSOrderedSame) {
 			break;
 		}
 		theLine = [self getNextLine];

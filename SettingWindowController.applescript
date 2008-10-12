@@ -1,4 +1,3 @@
-global ScriptImporter
 global TerminalSettings
 global ReplaceInput
 global appController
@@ -8,7 +7,6 @@ global appController
 property _window_controller : missing value
 property _window : missing value
 
-property isLoadedTerminalSetting : false
 property isLoadedPreviewSetting : false
 property isLoadedReplaceInputSetting : false
 
@@ -23,7 +21,7 @@ on RevertToDefault()
 	--log "start RevertToDefault"
 	set currentTab to current tab view item of tab view "SettingTabs" of my _window
 	set a_name to name of currentTab
-	if a_name is "TerminalSetting" then
+	if a_name is "TerminalSettings" then
 		revert_to_factory_setting() of TerminalSettings
 		set isLoadedTerminalSetting to false
 	else if a_name is "TeXCommands" then
@@ -48,12 +46,6 @@ on RevertToDefault()
 	--log "end RevertToDefault"
 end RevertToDefault
 
-on loadTerminalSetting(theView)
-	if not isLoadedTerminalSetting then
-		set_setting_to_window(theView) of TerminalSettings
-		set isLoadedTerminalSetting to true
-	end if
-end loadTerminalSetting
 
 on loadPreviewSetting(theView)
 	if not isLoadedPreviewSetting then
@@ -72,7 +64,7 @@ on loadPreviewSetting(theView)
 end loadPreviewSetting
 
 on loadReplaceInputSetting(theView)
-	--log "start loadReplaceInputSetting"
+	log "start loadReplaceInputSetting"
 	if not isLoadedReplaceInputSetting then
 		set_setting_to_window(theView) of ReplaceInput
 		set isLoadedReplaceInputSetting to true
@@ -81,14 +73,17 @@ end loadReplaceInputSetting
 
 on selectedTab(tabViewItem)
 	set a_name to name of tabViewItem
-	if a_name is "TerminalSetting" then
-		loadTerminalSetting(tabViewItem)
-	else if a_name is "PreviewSetting" then
+	if a_name is "PreviewSettings" then
 		loadPreviewSetting(tabViewItem)
-	else if a_name is "ReplaceInputSetting" then
-		loadReplaceInputSetting(tabViewItem)
+	else if a_name is "ReplaceInputSettings" then
+		--loadReplaceInputSetting(tabViewItem)
 	end if
 end selectedTab
+
+on updated_selected_tab_view_item()
+	set a_tab to current tab view item of tab view "SettingTabs" of my _window
+	selectedTab(a_tab)
+end updated_selected_tab_view_item
 
 on initilize()
 	--log "start initialize"

@@ -1,8 +1,20 @@
 #import "SettingWindowController.h"
+#import "Terminal.h"
+#import "AppController.h"
+#import "DefaultToNilTransformer.h"
 
 #define useLog 0
 
+@class ASKScriptCache;
+@class ASKScript;
+
 @implementation SettingWindowController
+
++ (void)initialize
+{	
+	NSValueTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
+}
 
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
 {
@@ -107,6 +119,56 @@
 		book_name = [[main_bundle infoDictionary] objectForKey:@"CFBundleHelpBookName"];
 	
 	[help_manager openHelpAnchor:tab_name inBook:book_name];
+}
+
+- (IBAction)reloadSettingsMenu:(id)sender
+{
+	TerminalApplication *termapp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
+	NSArray *names = [[termapp settingsSets] arrayByApplyingSelector:@selector(name)];
+	
+	NSString *selected_title = [[settingMenu selectedItem] title];
+	NSUInteger nitems = [[settingMenu itemArray] count];
+	for (int n = nitems-1; n > 1; n--) {
+		[settingMenu removeItemAtIndex:n];
+	}
+	[settingMenu addItemsWithTitles:names];	
+	[settingMenu selectItemWithTitle:selected_title];
+}
+
+- (IBAction)revertToFactoryDefaults:(id)sender
+{
+	NSString *identifier = [[tabView selectedTabViewItem] identifier];
+	AppController* app_controller = [AppController sharedAppController];
+	if ([identifier isEqualToString:@"TerminalSettings"]) {
+		[app_controller revertToFactoryDefaultForKey:@"ExecutionString"];
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SettingsSetName"];
+	}
+	else if ([identifier isEqualToString:@"CommandsAndProcesses"]) {
+		[app_controller revertToFactoryDefaultForKey:@"CleanCommands"];
+		[app_controller revertToFactoryDefaultForKey:@"ModeDefaults"];
+	}
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	//NSLog([tabViewItem identifier]);
+	if ([[tabViewItem identifier] isEqualToString:@"TerminalSettings"]) {
+		[self reloadSettingsMenu:self];
+	} else {
+		NSDictionary *errorInfo = nil;
+		ASKScript *a_script = [[ASKScriptCache sharedScriptCache] 
+							   scriptWithName:@"TeXBridge"];
+		[a_script executeHandlerWithName:@"updated_selected_tab_view_item" 
+					arguments:nil error:&errorInfo];
+	}
+}
+
+- (IBAction)showWindow:(id)sender
+{
+	[super showWindow:sender];
+	if ([[[tabView selectedTabViewItem] identifier] isEqualToString:@"TerminalSettings"]) {
+		[self reloadSettingsMenu:self];
+	}
 }
 
 - (BOOL)windowShouldClose:(id)sender

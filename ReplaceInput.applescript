@@ -26,7 +26,7 @@ property _is_changed_userdict : false
 property _pre_data_row : missing value
 
 on set_gui_element(an_object)
-	--log "start set_gui_element"
+	log "start set_gui_element"
 	set a_name to name of an_object
 	if a_name is "RemoveReplaceText" then
 		set my _removeButton to an_object
@@ -36,6 +36,7 @@ on set_gui_element(an_object)
 		set my _userReplaceTable to an_object
 		set my _userReplaceDataSource to data source of my _userReplaceTable
 	end if
+	log "end set_gui_element"
 end set_gui_element
 
 on saveUserDict()
@@ -176,14 +177,19 @@ end control_clicked
 
 on initialize()
 	if my _user_replace_dict is missing value then
+		log "will load user replace dict"
 		set key_list to value_with_default("ReplaceInput_KeyList", {}) of DefaultsManager
 		set value_list to value_with_default("ReplaceInput_ValueList", {}) of DefaultsManager
 		set my _user_replace_dict to XDict's make_with_lists(key_list, value_list)
 	end if
 	
 	if my _internalReplaceDict is missing value then
+		log "will load internal replace dict"
 		set my _internalReplaceDict to loadPlistDictionary("ReplaceDictionary") of UtilityHandlers
+		log "after load internal replace dict"
+		log (my _internalReplaceDict)
 		set my _dict_set to call method "allValues" of my _internalReplaceDict
+		log "end load internal replace dict"
 	end if
 end initialize
 
@@ -203,16 +209,16 @@ on appendDictToOutline for theDict into parentDataItem
 end appendDictToOutline
 
 on set_setting_to_window(a_view)
-	--log "start set_setting_to_window in ReplaceInput"
+	log "start set_setting_to_window in ReplaceInput"
 	
 	initialize()
-	--log "success initialize"
+	log "success initialize"
 	set internalReplaceDataSource to data source of my _internalReplaceOutline
-	--log "success get data source"
+	log "success get data source"
 	
-	--log "set internal keywords"
+	log "set internal keywords"
 	set categoryList to call method "allKeys" of my _internalReplaceDict
-	--log "after allkeys"
+	log "after allkeys"
 	repeat with theCategory in categoryList
 		set categoryItem to make new data item at end of data items of internalReplaceDataSource
 		set categoryText to localized string theCategory
@@ -223,7 +229,7 @@ on set_setting_to_window(a_view)
 		appendDictToOutline for theDict into categoryItem
 	end repeat
 	
-	--log "set user-defined keywords"
+	log "set user-defined keywords"
 	if my _user_replace_dict's count_keys() > 0 then
 		script setup_data_cell
 			on do(a_pair)
@@ -235,11 +241,11 @@ on set_setting_to_window(a_view)
 				return true
 			end do
 		end script
-		--log "will before set data cells"
+		log "will before set data cells"
 		my _user_replace_dict's each(setup_data_cell)
 		tell my _userReplaceTable to update
 	end if
-	--log "end set_setting_to_window in ReplaceInput"
+	log "end set_setting_to_window in ReplaceInput"
 end set_setting_to_window
 
 on findReplaceText(keyText)
