@@ -102,7 +102,7 @@ on launched theObject
 	(*misc*)
 	--set a_result to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 	--openRelatedFile with revealOnly
-	--open "ReplaceInput"
+	-- do_replaceinput()
 	--call method "showHelp:"
 	--call method "currentDocumentMode" of class "EditorClient"
 	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
@@ -169,9 +169,7 @@ end open
 on clicked theObject
 	--log "start clicked"
 	set a_tag to tag of theObject
-	if a_tag is 6 then
-		control_clicked(theObject) of ReplaceInput
-	else if a_tag is 7 then
+	if a_tag is 7 then
 		control_clicked(theObject) of PDFController
 	else
 		control_clicked(theObject)
@@ -265,19 +263,6 @@ end will finish launching
 on awake from nib theObject
 	--log "start awake from nib"
 	set a_class to class of theObject
-	(*
-	if a_class is data source then
-		tell theObject
-			make new data column at the end of the data columns with properties {name:"keyword"}
-			make new data column at the end of the data columns with properties {name:"replace"}
-		end tell
-	else
-		set a_tag to tag of theObject
-		if a_tag is 6 then
-			ReplaceInput's set_gui_element(theObject)
-		end if
-	end if
-	*)
 end awake from nib
 
 on selected tab view item theObject tab view item tabViewItem
@@ -290,14 +275,6 @@ on updated_selected_tab_view_item()
 	SettingWindowController's updated_selected_tab_view_item()
 end updated_selected_tab_view_item
 
-on selection changed theObject
-	selection_changed(theObject) of ReplaceInput
-end selection changed
-
-on should selection change theObject
-	return should_selection_change(theObject) of ReplaceInput
-end should selection change
-
 on will quit theObject
 	tell user defaults
 		set contents of default entry "IsOpenedToolPalette" to is_opened() of ToolPaletteController
@@ -305,13 +282,6 @@ on will quit theObject
 	end tell
 end will quit
 
-on cell value changed theObject row theRow table column tableColumn value theValue
-	--log "start cell value changed"
-	set a_name to name of theObject
-	if a_name is "UserReplaceTable" then
-		ReplaceInput's cell_value_changed(theObject, theRow, tableColumn, theValue)
-	end if
-end cell value changed
 
 on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg

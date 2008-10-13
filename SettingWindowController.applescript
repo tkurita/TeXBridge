@@ -1,5 +1,4 @@
 global TerminalSettings
-global ReplaceInput
 global appController
 
 (* shared variable *)
@@ -8,7 +7,6 @@ property _window_controller : missing value
 property _window : missing value
 
 property isLoadedPreviewSetting : false
-property isLoadedReplaceInputSetting : false
 
 on window_controller()
 	if my _window_controller is missing value then
@@ -63,20 +61,11 @@ on loadPreviewSetting(theView)
 	end if
 end loadPreviewSetting
 
-on loadReplaceInputSetting(theView)
-	log "start loadReplaceInputSetting"
-	if not isLoadedReplaceInputSetting then
-		set_setting_to_window(theView) of ReplaceInput
-		set isLoadedReplaceInputSetting to true
-	end if
-end loadReplaceInputSetting
 
 on selectedTab(tabViewItem)
 	set a_name to name of tabViewItem
 	if a_name is "PreviewSettings" then
 		loadPreviewSetting(tabViewItem)
-	else if a_name is "ReplaceInputSettings" then
-		--loadReplaceInputSetting(tabViewItem)
 	end if
 end selectedTab
 

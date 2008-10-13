@@ -17,6 +17,30 @@
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
 }
 
+- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
+{
+	id current_item= [[userRIDictController selectedObjects] lastObject];
+	if (!current_item) return YES;
+	NSString *msg = nil;
+	if (![current_item value]) {
+		msg = NSLocalizedString(@"replaceIsBlank", nil);
+	}
+	else if (![current_item key] ) {
+		msg = NSLocalizedString(@"keywordiIsBlank", nil);
+	}
+	
+	if (msg) {
+		NSAlert *alert = [NSAlert alertWithMessageText:msg 
+							defaultButton:@"OK" alternateButton:nil otherButton:nil
+							informativeTextWithFormat:@""];
+		[alert setAlertStyle: NSWarningAlertStyle];
+		[alert beginSheetModalForWindow:[self window] modalDelegate:nil
+						 didEndSelector:nil contextInfo:nil];
+		return NO;
+	}
+	return YES;
+}
+
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
 	if (arrangedInternalReplaceInputDict) {

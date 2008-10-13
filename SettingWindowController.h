@@ -5,8 +5,9 @@
 @interface SettingWindowController : NSWindowController
 {
 	IBOutlet id appArrayController;
-	IBOutlet NSTabView* tabView;
-	IBOutlet NSPopUpButton* settingMenu;
+	IBOutlet NSTabView *tabView;
+	IBOutlet NSPopUpButton *settingMenu;
+	IBOutlet NSDictionaryController *userRIDictController;
 	NSMutableArray *arrangedInternalReplaceInputDict;
 }
 
