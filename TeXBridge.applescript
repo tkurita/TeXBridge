@@ -265,6 +265,7 @@ end will finish launching
 on awake from nib theObject
 	--log "start awake from nib"
 	set a_class to class of theObject
+	(*
 	if a_class is data source then
 		tell theObject
 			make new data column at the end of the data columns with properties {name:"keyword"}
@@ -276,6 +277,7 @@ on awake from nib theObject
 			ReplaceInput's set_gui_element(theObject)
 		end if
 	end if
+	*)
 end awake from nib
 
 on selected tab view item theObject tab view item tabViewItem

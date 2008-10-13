@@ -2,6 +2,7 @@
 #import "Terminal.h"
 #import "AppController.h"
 #import "DefaultToNilTransformer.h"
+#import "ReplaceInputData.h"
 
 #define useLog 0
 
@@ -16,6 +17,30 @@
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
 }
 
+- (NSMutableArray *)arrangedInternalReplaceInputDict
+{
+	if (arrangedInternalReplaceInputDict) {
+		return arrangedInternalReplaceInputDict;
+	}
+	
+	NSDictionary *a_dict = [ReplaceInputData internalReplaceDict];
+	arrangedInternalReplaceInputDict = [NSMutableArray array];
+	for (id category_name in a_dict ) {
+		id replace_dict = [a_dict objectForKey:category_name];
+		NSMutableArray *replace_array = [NSMutableArray array];
+		for (id keytext in replace_dict) {
+			[replace_array addObject:[NSDictionary
+									  dictionaryWithObjectsAndKeys:keytext, @"key",
+									  [replace_dict objectForKey:keytext], @"value", nil]];
+		}
+		NSString *localized_category_name = NSLocalizedString(category_name, nil);
+		[arrangedInternalReplaceInputDict addObject:
+			[NSDictionary dictionaryWithObjectsAndKeys: localized_category_name, @"key",
+				replace_array, @"children", nil]];
+	}
+	return [arrangedInternalReplaceInputDict retain];
+}
+	
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
 {
 	NSArray * repArray = [iconImage representations];

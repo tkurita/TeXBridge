@@ -94,6 +94,8 @@
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C808AD00E9BDC2E006F19EB /* DefaultToNilTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C808ACE0E9BDC2E006F19EB /* DefaultToNilTransformer.h */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
+		2C860B010EA24B51004D54B8 /* ReplaceInputData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */; };
+		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
@@ -183,6 +185,8 @@
 		2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultToNilTransformer.m; sourceTree = "<group>"; };
 		2C808ACE0E9BDC2E006F19EB /* DefaultToNilTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultToNilTransformer.h; sourceTree = "<group>"; };
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
+		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXBridge.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
@@ -451,6 +455,8 @@
 				2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */,
 				2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */,
 				2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */,
+				2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */,
+				2C860B000EA24B51004D54B8 /* ReplaceInputData.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 			files = (
 				2C808A8E0E9BD985006F19EB /* Terminal.h in Headers */,
 				2C808AD00E9BDC2E006F19EB /* DefaultToNilTransformer.h in Headers */,
+				2C860B010EA24B51004D54B8 /* ReplaceInputData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +569,7 @@
 				2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */,
 				2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */,
 				2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */,
+				2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
