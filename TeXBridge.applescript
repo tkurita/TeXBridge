@@ -52,8 +52,8 @@ end import_script
 
 (* events of application*)
 on launched theObject
-	log "start lanunched"
-	log "will show toolpalette"
+	--log "start lanunched"
+	--log "will show toolpalette"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
 	set IsOpenedToolPalette to value_with_default("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
 	if not showToolPaletteWhenLaunched then
@@ -64,7 +64,7 @@ on launched theObject
 		open_window() of ToolPaletteController
 	end if
 	
-	log "will show refpalette"
+	--log "will show refpalette"
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
 	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
 	if not showRefPaletteWhenLaunched then
@@ -80,7 +80,7 @@ on launched theObject
 	(*open window*)
 	--open_window() of RefPanelController
 	--open_window() of ToolPaletteController
-	open_window() of SettingWindowController
+	--open_window() of SettingWindowController
 	
 	
 	(*exec tex commands*)

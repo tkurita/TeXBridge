@@ -60,9 +60,7 @@ on watchmi given force_reloading:force_flag
 		if an_auxdata's aux_file() is not missing value then
 			parse_aux_file(an_auxdata)
 		end if
-		log "aaa"
 		find_labels_from_doc(an_auxdata, force_flag)
-		log "bbb"
 		if an_auxdata's has_parent() then
 			--log "has ParentFile"
 			set a_parentdoc to TeXDocController's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
@@ -79,8 +77,6 @@ on watchmi given force_reloading:force_flag
 			--find_labels_from_doc(an_auxdata)
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
-		log "ccc"
-		
 	else
 		if force_flag then
 			if (check_auxfile of an_auxdata without display_error) then
