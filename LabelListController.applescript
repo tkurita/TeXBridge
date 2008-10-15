@@ -35,7 +35,7 @@ on initialize(theDataSource)
 end initialize
 
 on watchmi given force_reloading:force_flag
-	--log "start watchmi in LabelListController"
+	log "start watchmi in LabelListController"
 	try
 		with timeout of 2 seconds
 			set an_auxdata to find_auxdata_from_doc()
@@ -56,11 +56,13 @@ on watchmi given force_reloading:force_flag
 	end if
 	
 	if an_auxdata's data_item() is missing value then
-		--log "no data item"
+		log "no data item"
 		if an_auxdata's aux_file() is not missing value then
 			parse_aux_file(an_auxdata)
 		end if
+		log "aaa"
 		find_labels_from_doc(an_auxdata, force_flag)
+		log "bbb"
 		if an_auxdata's has_parent() then
 			--log "has ParentFile"
 			set a_parentdoc to TeXDocController's make_with(an_auxdata's tex_file(), an_auxdata's text_encoding())
@@ -73,11 +75,11 @@ on watchmi given force_reloading:force_flag
 			append_to_outline for a_parentaux below my _label_data_source
 			an_auxdata's expandDataItem()
 		else
-			--log "no ParentFile"
+			log "no ParentFile"
 			--find_labels_from_doc(an_auxdata)
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
-		
+		log "ccc"
 		
 	else
 		if force_flag then
@@ -97,7 +99,7 @@ on watchmi given force_reloading:force_flag
 		end if
 		
 	end if
-	--log "end of watchmi"
+	log "end of watchmi"
 end watchmi
 
 on find_auxdata_from_doc()
@@ -141,19 +143,23 @@ on find_auxdata_from_doc()
 end find_auxdata_from_doc
 
 on append_to_outline for an_auxdata below parentDataItem
-	--log "start append_to_outline"
+	log "start append_to_outline"
 	if an_auxdata's data_item() is missing value then
-		--log "is first append to outline"
+		log "is first append to outline"
 		set titleItem to make new data item at end of data items of parentDataItem
+		log "kkk"
 		an_auxdata's set_data_item(titleItem)
+		log "lll"
+		--log an_auxdata's basename()
 		set contents of data cell "label" of titleItem to an_auxdata's basename()
+		log "mmm"
 	else
 		--log "before updateLabels in append_to_outline"
 		updateLabels() of an_auxdata
 		return
 	end if
 	
-	--log "before repeat in append_to_outline"
+	log "before repeat in append_to_outline"
 	repeat with theLabelRecord in an_auxdata's all_label_records()
 		repeat with ith from 1 to length of theLabelRecord
 			set theItem to item ith of theLabelRecord
@@ -167,7 +173,7 @@ on append_to_outline for an_auxdata below parentDataItem
 			end if
 		end repeat
 	end repeat
-	--log "before expandDataItem"
+	log "before expandDataItem"
 	expandDataItem() of an_auxdata
 	--log "end appndToOutline"
 end append_to_outline
@@ -197,9 +203,10 @@ on auxdata_for_texdoc(a_texdoc)
 	else
 		--log "file is not saved"
 		if my _unsaved_auxdata is not missing value then
-			deleteDataItem() of my _unsaved_auxdata
+			my _unsaved_auxdata's deleteDataItem()
 		end if
 		set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
+		set my _unsaved_auxdata to an_auxdata
 	end if
 	
 	--log "end auxdata_for_texdoc"
@@ -208,14 +215,14 @@ end auxdata_for_texdoc
 
 on parse_aux_file(an_auxdata)
 	--log "start parse_aux_file"
-	set theContents to read_aux_file() of an_auxdata
+	set doc_content to read_aux_file() of an_auxdata
 	--log "before clearLabelsFromAux in parse_aux_file"
 	clearLabelsFromAux() of an_auxdata
 	--log "start repeat in parse_aux_file"
 	set newlabelText to _backslash & "newlabel{"
 	set inputText to _backslash & "@input{"
-	repeat with ith from 1 to (count paragraph of theContents)
-		set a_paragraph to paragraph ith of theContents
+	repeat with ith from 1 to (count paragraph of doc_content)
+		set a_paragraph to paragraph ith of doc_content
 		--log a_paragraph
 		if (a_paragraph as Unicode text) starts with newlabelText then
 			--log "start with newlabelText"
@@ -254,15 +261,17 @@ on parse_aux_file(an_auxdata)
 end parse_aux_file
 
 on find_labels_from_doc(an_auxdata, force_flag)
-	--log "start find_labels_from_doc"
-	set theContents to EditorClient's document_content()
+	log "start find_labels_from_doc"
+	set doc_content to EditorClient's document_content()
 	
 	set labelCommand to _backslash & "label"
-	--log "before repeat"
+	log doc_content
+	log "before repeat"
 	
-	set a_xlist to XList's make_with(get every paragraph of theContents)
-	if (not force_flag) and (not is_texfile_updated() of an_auxdata) then
-		--log "document is not updated"
+	set a_xlist to XList's make_with(get every paragraph of doc_content)
+	log "fff"
+	if (not force_flag) and ((an_auxdata's tex_file() is missing value) or (not an_auxdata's is_texfile_updated())) then
+		log "document is not updated"
 		if (a_xlist's count_items()) is (an_auxdata's document_size()) then
 			--log "document size is same"
 			return false
@@ -270,11 +279,11 @@ on find_labels_from_doc(an_auxdata, force_flag)
 		--	else
 		--		log "document is updated"
 	end if
-	
+	log "ggg"
 	clear_labels_from_doc() of an_auxdata
 	repeat while (a_xlist's has_next())
 		set a_paragraph to a_xlist's next()
-		--set a_paragraph to paragraph ith of theContents
+		--set a_paragraph to paragraph ith of doc_content
 		--log a_paragraph
 		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
 			repeat while (a_paragraph contains labelCommand)
@@ -299,7 +308,7 @@ on find_labels_from_doc(an_auxdata, force_flag)
 	end repeat
 	an_auxdata's update_checked_time()
 	an_auxdata's set_document_size(a_xlist's count_items())
-	--log "end find_labels_from_doc"	
+	log "end find_labels_from_doc"
 	return true
 end find_labels_from_doc
 

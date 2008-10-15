@@ -140,6 +140,9 @@ on no_suffix_target_path()
 end no_suffix_target_path
 
 on basename()
+	if my _file_ref is missing value then
+		return my _texFileName
+	end if
 	return my _file_ref's basename()
 end basename
 
@@ -165,11 +168,11 @@ on typeset()
 	
 	if my _use_term then
 		set all_command to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
-		send_command of TerminalCommander for all_command
-		
 		set a_term to make TerminalCommander
+		send_command of a_term for all_command
 		delay 1
 		wait_termination(300) of a_term
+		--log "command ended in Terminal"
 	else
 		set tex_command to XText's make_with(tex_command)
 		set command_elems to tex_command's as_xlist_with(space)
@@ -292,13 +295,13 @@ end lookup_header_command
 
 on lookup_header_commands_from_file()
 	--log "start getHearderCommandFromFile"
-	set lineFeed to ASCII character 10
+	set linefeed to ASCII character 10
 	set inputFile to open for access (my _file_ref's as_alias())
-	set a_paragraph to read inputFile before lineFeed
+	set a_paragraph to read inputFile before linefeed
 	repeat while (a_paragraph starts with "%")
 		lookup_header_command(a_paragraph)
 		try
-			set a_paragraph to read inputFile before lineFeed
+			set a_paragraph to read inputFile before linefeed
 		on error
 			exit repeat
 		end try
@@ -376,8 +379,8 @@ on make_with(a_xfile, an_encoding)
 		property _text_encoding : an_encoding
 		
 		property _texFileName : missing value
-		property _texBasePath : missing value
-		property _texBaseName : missing value
+		--property _texBasePath : missing value
+		--property _texBaseName : missing value
 		
 		property _targetFileRef : missing value -- a document applied tools. alias class
 		property _doc_position : missing value

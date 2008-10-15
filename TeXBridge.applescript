@@ -180,8 +180,6 @@ on control_clicked(theObject)
 	set a_name to name of theObject
 	if a_name is "Reload" then
 		watchmi of RefPanelController with force_reloading
-	else if a_name is "RevertToDefault" then
-		RevertToDefault() of SettingWindowController
 	else if a_name is "usemi" then
 		setmiclient() of SettingWindowController
 	else if a_name is "saveMxdviEditor" then
@@ -245,6 +243,10 @@ on will finish launching theObject
 	set SettingWindowController to import_script("SettingWindowController")
 	set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
+	tell TerminalCommander
+		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
+	end tell
+	
 	set RefPanelController to import_script("RefPanelController")
 	set SheetManager to import_script("SheetManager")
 	set AuxData to import_script("AuxData")

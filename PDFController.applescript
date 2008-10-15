@@ -138,6 +138,127 @@ on load_settings()
 	checkPDFApp()
 end load_settings
 
+on target_driver()
+	return my _target_driver
+end target_driver
+
+on set_target_driver(a_driver)
+	set my _target_driver to a_driver
+end set_target_driver
+
+on file_hfs_path()
+	return my _pdffile's hfs_path()
+end file_hfs_path
+
+on file_info()
+	return my _pdffile's re_info()
+end file_info
+
+on file_as_alias()
+	return my _pdffile's as_alias()
+end file_as_alias
+
+on window_counts()
+	return my _window_counts
+end window_counts
+
+on set_window_counts(a_num)
+	set my _window_counts to a_num
+end set_window_counts
+
+on app_name()
+	return my _app_name
+end app_name
+
+on set_app_name(a_name)
+	set my _app_name to a_name
+end set_app_name
+
+on page_number()
+	return my _page_number
+end page_number
+
+on set_page_number(a_num)
+	set my _page_number to a_num
+end set_page_number
+
+on set_process_name(a_name)
+	set my _process_name to a_name
+end set_process_name
+
+on process_name()
+	return my _process_name
+end process_name
+
+on file_ref()
+	return my _pdffile
+end file_ref
+
+on filename()
+	return my _pdffile's item_name()
+end filename
+
+on setup_pdfdriver()
+	--log "start setup_pdfdriver()"
+	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	if PDFPreviewMode is 0 then
+		set my _pdfdriver to AutoDriver
+	else if PDFPreviewMode is 1 then
+		--log "PreviewDriver is selected"
+		set my _pdfdriver to PreviewDriver
+		set my _process_name to "Preview"
+		set my _app_name to "Preview"
+	else if PDFPreviewMode is 2 then
+		set my _pdfdriver to PreviewDriver
+		set my _process_name to "Adobe Reader"
+		tell application "Finder"
+			set my _app_name to name of _adobeReaderPath
+		end tell
+	else if PDFPreviewMode is 3 then
+		set my _pdfdriver to AcrobatDriver
+		set my _process_name to "Acrobat"
+		set my _app_name to _acrobatPath
+	else
+		error "PDF Preview Setting is invalid." number 1280
+	end if
+	--log "end of setup_pdfdriver()"
+end setup_pdfdriver
+
+on setup()
+	set my _pdffile to my _dvi's file_ref()'s change_path_extension(".pdf")
+end setup
+
+on file_exists()
+	return my _pdffile's item_exists()
+end file_exists
+
+on prepare_dvi_to_pdf()
+	return prepare(a reference to me) of my _pdfdriver
+end prepare_dvi_to_pdf
+
+on open_pdf()
+	--log "start open_pdf"
+	open_pdf(a reference to me) of my _pdfdriver
+	--log "end open_pdf"
+end open_pdf
+
+on make_with(a_dvi)
+	script PDFController
+		property _dvi : a_dvi
+		property _pdffile : missing value
+		property _target_driver : missing value -- used when _pdifdrive is AutoDriver
+		property _app_name : missing value
+		property _process_name : missing value -- used for PreviewDriver
+		property _window_counts : missing value -- used for PreviewDriver
+		property _page_number : missing value -- used for AcrobatDriver
+		
+		property _pdfdriver : AutoDriver
+	end script
+	
+	setup_pdfdriver() of PDFController
+	return PDFController
+end make_with
+
 script GenericDriver
 	on prepare(a_pdf)
 		set an_info to a_pdf's file_info()
@@ -320,124 +441,3 @@ script AutoDriver
 		a_pdf's target_driver()'s open_pdf(a_pdf)
 	end open_pdf
 end script
-
-on target_driver()
-	return my _target_driver
-end target_driver
-
-on set_target_driver(a_driver)
-	set my _target_driver to a_driver
-end set_target_driver
-
-on file_hfs_path()
-	return my _pdffile's hfs_path()
-end file_hfs_path
-
-on file_info()
-	return my _pdffile's re_info()
-end file_info
-
-on file_as_alias()
-	return my _pdffile's as_alias()
-end file_as_alias
-
-on window_counts()
-	return my _window_counts
-end window_counts
-
-on set_window_counts(a_num)
-	set my _window_counts to a_num
-end set_window_counts
-
-on app_name()
-	return my _app_name
-end app_name
-
-on set_app_name(a_name)
-	set my _app_name to a_name
-end set_app_name
-
-on page_number()
-	return my _page_number
-end page_number
-
-on set_page_number(a_num)
-	set my _page_number to a_num
-end set_page_number
-
-on set_process_name(a_name)
-	set my _process_name to a_name
-end set_process_name
-
-on process_name()
-	return my _process_name
-end process_name
-
-on file_ref()
-	return my _pdffile
-end file_ref
-
-on filename()
-	return my _pdffile's item_name()
-end filename
-
-on setup_pdfdriver()
-	--log "start setup_pdfdriver()"
-	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
-	if PDFPreviewMode is 0 then
-		set my _pdfdriver to AutoDriver
-	else if PDFPreviewMode is 1 then
-		--log "PreviewDriver is selected"
-		set my _pdfdriver to PreviewDriver
-		set my _process_name to "Preview"
-		set my _app_name to "Preview"
-	else if PDFPreviewMode is 2 then
-		set my _pdfdriver to PreviewDriver
-		set my _process_name to "Adobe Reader"
-		tell application "Finder"
-			set my _app_name to name of _adobeReaderPath
-		end tell
-	else if PDFPreviewMode is 3 then
-		set my _pdfdriver to AcrobatDriver
-		set my _process_name to "Acrobat"
-		set my _app_name to _acrobatPath
-	else
-		error "PDF Preview Setting is invalid." number 1280
-	end if
-	--log "end of setup_pdfdriver()"
-end setup_pdfdriver
-
-on setup()
-	set my _pdffile to my _dvi's file_ref()'s change_path_extension(".pdf")
-end setup
-
-on file_exists()
-	return my _pdffile's item_exists()
-end file_exists
-
-on prepare_dvi_to_pdf()
-	return prepare(a reference to me) of my _pdfdriver
-end prepare_dvi_to_pdf
-
-on open_pdf()
-	--log "start open_pdf"
-	open_pdf(a reference to me) of my _pdfdriver
-	--log "end open_pdf"
-end open_pdf
-
-on make_with(a_dvi)
-	script PDFController
-		property _dvi : a_dvi
-		property _pdffile : missing value
-		property _target_driver : missing value -- used when _pdifdrive is AutoDriver
-		property _app_name : missing value
-		property _process_name : missing value -- used for PreviewDriver
-		property _window_counts : missing value -- used for PreviewDriver
-		property _page_number : missing value -- used for AcrobatDriver
-		
-		property _pdfdriver : AutoDriver
-	end script
-	
-	setup_pdfdriver() of PDFController
-	return PDFController
-end make_with

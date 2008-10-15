@@ -55,7 +55,11 @@ on tex_file()
 end tex_file
 
 on basename()
-	return my _texdoc's target_file()'s basename()
+	if my _texdoc's has_file() then
+		return a_xfile's basename()
+	else
+		return my _texdoc's filename()
+	end if
 end basename
 
 on check_auxfile given display_error:alert_flag

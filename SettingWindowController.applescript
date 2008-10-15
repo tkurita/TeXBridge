@@ -15,36 +15,6 @@ on window_controller()
 	return my _window_controller
 end window_controller
 
-on RevertToDefault()
-	--log "start RevertToDefault"
-	set currentTab to current tab view item of tab view "SettingTabs" of my _window
-	set a_name to name of currentTab
-	if a_name is "TerminalSettings" then
-		revert_to_factory_setting() of TerminalSettings
-		set isLoadedTerminalSetting to false
-	else if a_name is "TeXCommands" then
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "typesetCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "dvipdfCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "dvipsCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "ebbCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "bibtexCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "mendexCommand"
-	else if a_name is "PreviewSetting" then
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "dviViewCommand"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "DVIPreviewMode"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
-	else if a_name is "TheOtherSetting" then
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "AutoMultiTypeset"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "ShowToolPaletteWhenLaunched"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "ShowRefPaletteWhenLaunched"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "ToolPaletteApplicationsFloatingOn"
-	end if
-	
-	selectedTab(currentTab)
-	--log "end RevertToDefault"
-end RevertToDefault
-
-
 on loadPreviewSetting(theView)
 	if not isLoadedPreviewSetting then
 		try

@@ -60,7 +60,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 	
 	set a_texdoc to TeXDocController's make_with(a_tex_file, EditorClient's text_encoding())
 	if a_tex_file is missing value then
-		a_texdoc's set_a_name(EditorClient's document_name())
+		a_texdoc's set_filename(EditorClient's document_name())
 	end if
 	return a_texdoc
 end texdoc_for_firstdoc

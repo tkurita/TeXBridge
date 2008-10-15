@@ -190,11 +190,27 @@
 	AppController* app_controller = [AppController sharedAppController];
 	if ([identifier isEqualToString:@"TerminalSettings"]) {
 		[app_controller revertToFactoryDefaultForKey:@"ExecutionString"];
+		[app_controller revertToFactoryDefaultForKey:@"ActivateTerminal"];
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SettingsSetName"];
 	}
-	else if ([identifier isEqualToString:@"CommandsAndProcesses"]) {
-		[app_controller revertToFactoryDefaultForKey:@"CleanCommands"];
-		[app_controller revertToFactoryDefaultForKey:@"ModeDefaults"];
+	else if ([identifier isEqualToString:@"TeXCommands"]) {
+		[app_controller revertToFactoryDefaultForKey:@"typesetCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"dvipdfCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"dvipsCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"ebbCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"bibtexCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"mendexCommand"];
+	}
+	else if ([identifier isEqualToString:@"PreviewSettings"]) {
+		[app_controller revertToFactoryDefaultForKey:@"dviViewCommand"];
+		[app_controller revertToFactoryDefaultForKey:@"DVIPreviewMode"];
+		[app_controller revertToFactoryDefaultForKey:@"PDFPreviewMode"];
+	}
+	else if ([identifier isEqualToString:@"TheOtherSettings"]) {
+		[app_controller revertToFactoryDefaultForKey:@"AutoMultiTypeset"];
+		[app_controller revertToFactoryDefaultForKey:@"ShowToolPaletteWhenLaunched"];
+		[app_controller revertToFactoryDefaultForKey:@"ShowRefPaletteWhenLaunched"];
+		[app_controller revertToFactoryDefaultForKey:@"ToolPaletteApplicationsFloatingOn"];
 	}
 }
 
