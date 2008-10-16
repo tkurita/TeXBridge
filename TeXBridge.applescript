@@ -28,7 +28,7 @@ property UtilityHandlers : missing value
 property MessageUtility : missing value
 property DefaultsManager : missing value
 property ToolPaletteController : missing value
-property SettingWindowController : missing value
+--property SettingWindowController : missing value
 property LogFileParser : missing value
 property ReplaceInput : missing value
 property EditCommands : missing value
@@ -81,7 +81,7 @@ on launched theObject
 	--open_window() of RefPanelController
 	--open_window() of ToolPaletteController
 	--open_window() of SettingWindowController
-	
+	--show_setting_window()
 	
 	(*exec tex commands*)
 	--dvi_to_pdf() of CompileCenter
@@ -179,10 +179,6 @@ on control_clicked(theObject)
 	set a_name to name of theObject
 	if a_name is "Reload" then
 		watchmi of RefPanelController with force_reloading
-	else if a_name is "usemi" then
-		SettingWindowController's setmiclient()
-	else if a_name is "saveMxdviEditor" then
-		SettingWindowController's saveMxdviEditor(missing value)
 	end if
 end control_clicked
 
@@ -194,7 +190,8 @@ on choose menu item theObject
 	--log "start choose menu item"
 	set a_name to name of theObject
 	if a_name is "Preference" then
-		open_window() of SettingWindowController
+		--open_window() of SettingWindowController
+		show_setting_window()
 	else if a_name is "ShowToolPalette" then
 		open_window() of ToolPaletteController
 	else if a_name is "ShowRefPalette" then
@@ -239,7 +236,7 @@ on will finish launching theObject
 	set CompileCenter to import_script("CompileCenter")
 	set TeXDocController to import_script("TeXDocController")
 	set DVIController to import_script("DVIController")
-	set SettingWindowController to import_script("SettingWindowController")
+	--set SettingWindowController to import_script("SettingWindowController")
 	set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
 	tell TerminalCommander
@@ -266,14 +263,9 @@ on awake from nib theObject
 	set a_class to class of theObject
 end awake from nib
 
-on selected tab view item theObject tab view item tabViewItem
-	--log "start selected tab view item"
-	selectedTab(tabViewItem) of SettingWindowController
-end selected tab view item
-
 on updated_selected_tab_view_item()
 	--log "start updated_selected_tab_view_item"
-	SettingWindowController's updated_selected_tab_view_item()
+	--SettingWindowController's updated_selected_tab_view_item()
 end updated_selected_tab_view_item
 
 on will quit theObject
@@ -288,5 +280,6 @@ on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
 end show_startup_message
 
-
-
+on show_setting_window()
+	call method "showSettingWindow" of appController
+end show_setting_window

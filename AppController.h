@@ -2,6 +2,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "miClient.h"
+#import "SettingWindowController.h"
 
 NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 
@@ -11,6 +12,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 	
 	NSTimer *appQuitTimer;
 	NSDictionary *factoryDefaults;
+	SettingWindowController *settingWindow;
 }
 
 + (id)sharedAppController;

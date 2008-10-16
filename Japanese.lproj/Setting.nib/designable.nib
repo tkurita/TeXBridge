@@ -835,33 +835,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	<reference key="NSTextColor" ref="235210383"/>
 																</object>
 															</object>
-															<object class="NSButton" id="890051550">
-																<reference key="NSNextResponder" ref="491271415"/>
-																<int key="NSvFlags">293</int>
-																<string key="NSFrame">{{332, 5}, {78, 32}}</string>
-																<reference key="NSSuperview" ref="491271415"/>
-																<bool key="NSEnabled">YES</bool>
-																<object class="NSButtonCell" key="NSCell" id="682399463">
-																	<int key="NSCellFlags">67239424</int>
-																	<int key="NSCellFlags2">134217728</int>
-																	<string type="base64-UTF8" key="NSContents">5L+d5a2YA</string>
-																	<reference key="NSSupport" ref="102869663"/>
-																	<reference key="NSControlView" ref="890051550"/>
-																	<int key="NSButtonFlags">-2038284033</int>
-																	<int key="NSButtonFlags2">1</int>
-																	<reference key="NSAlternateImage" ref="102869663"/>
-																	<string key="NSAlternateContents"/>
-																	<object class="NSMutableString" key="NSKeyEquivalent">
-																		<characters key="NS.bytes"/>
-																	</object>
-																	<int key="NSPeriodicDelay">200</int>
-																	<int key="NSPeriodicInterval">25</int>
-																</object>
-															</object>
 															<object class="NSButton" id="725803712">
 																<reference key="NSNextResponder" ref="491271415"/>
 																<int key="NSvFlags">293</int>
-																<string key="NSFrame">{{133, 5}, {100, 32}}</string>
+																<string key="NSFrame">{{403, 8}, {100, 32}}</string>
 																<reference key="NSSuperview" ref="491271415"/>
 																<bool key="NSEnabled">YES</bool>
 																<object class="NSButtonCell" key="NSCell" id="37377478">
@@ -2352,6 +2329,30 @@ meOAgg</string>
 					</object>
 					<int key="connectionID">2055</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: mxdviEditor</string>
+						<reference key="source" ref="358202830"/>
+						<reference key="destination" ref="252045561"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="358202830"/>
+							<reference key="NSDestination" ref="252045561"/>
+							<string key="NSLabel">value: mxdviEditor</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">mxdviEditor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2056</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setMiClient:</string>
+						<reference key="source" ref="252045561"/>
+						<reference key="destination" ref="725803712"/>
+					</object>
+					<int key="connectionID">2057</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2760,7 +2761,6 @@ meOAgg</string>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="490594328"/>
 							<reference ref="290665932"/>
-							<reference ref="890051550"/>
 							<reference ref="725803712"/>
 						</object>
 						<reference key="parent" ref="722161720"/>
@@ -3335,20 +3335,6 @@ meOAgg</string>
 						<reference key="parent" ref="290665932"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1170</int>
-						<reference key="object" ref="890051550"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="682399463"/>
-						</object>
-						<reference key="parent" ref="470736217"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1965</int>
-						<reference key="object" ref="682399463"/>
-						<reference key="parent" ref="890051550"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1171</int>
 						<reference key="object" ref="725803712"/>
 						<object class="NSMutableArray" key="children">
@@ -3457,9 +3443,6 @@ meOAgg</string>
 					<string>1168.ImportedFromIB2</string>
 					<string>1169.IBPluginDependency</string>
 					<string>1169.ImportedFromIB2</string>
-					<string>1170.IBAttributePlaceholdersKey</string>
-					<string>1170.IBPluginDependency</string>
-					<string>1170.ImportedFromIB2</string>
 					<string>1171.IBAttributePlaceholdersKey</string>
 					<string>1171.IBPluginDependency</string>
 					<string>1171.ImportedFromIB2</string>
@@ -3792,62 +3775,12 @@ meOAgg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="890051550"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>Clicked</string>
-								</object>
-								<string key="appleScriptScriptName">TeXBridge.applescript</string>
-								<string key="appleScriptObjectName">saveMxdviEditor</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="890051550"/>
-								<string type="base64-UTF8" key="toolTip">TXhkdmlFZGl0b3Ig44Gu6Kit5a6a44KS5L+d5a2Y44GX44G+44GZ44CCA</string>
-							</object>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="725803712"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>Clicked</string>
-								</object>
-								<string key="appleScriptScriptName">TeXBridge.applescript</string>
-								<string key="appleScriptObjectName">usemi</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="725803712"/>
-								<string type="base64-UTF8" key="toolTip">TXhkdmkg44GuIE14ZHZpRWRpdG9yIOOBqOOBl+OBpiBtaWNsaWVudCDjgpLoqK3lrprjgZfjgb7jgZnj
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="725803712"/>
+							<string type="base64-UTF8" key="toolTip">TXhkdmkg44GuIE14ZHZpRWRpdG9yIOOBqOOBl+OBpiBtaWNsaWVudCDjgpLoqK3lrprjgZfjgb7jgZnj
 gII</string>
-							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4677,7 +4610,7 @@ s+ODnuODs+ODiQ</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2055</int>
+			<int key="maxID">2057</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4700,10 +4633,12 @@ s+ODnuODs+ODiQ</string>
 							<string>addApp:</string>
 							<string>reloadSettingsMenu:</string>
 							<string>revertToFactoryDefaults:</string>
+							<string>setMiClient:</string>
 							<string>showSettingHelp:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4715,14 +4650,12 @@ s+ODnuODs+ODiQ</string>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>appArrayController</string>
-							<string>mxdviField</string>
 							<string>settingMenu</string>
 							<string>tabView</string>
 							<string>userRIDictController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>NSPopUpButton</string>
 							<string>NSTabView</string>

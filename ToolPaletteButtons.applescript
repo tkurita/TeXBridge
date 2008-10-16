@@ -5,7 +5,7 @@ on clicked theObject
 	if a_name is "setting" then
 		script x_handler
 			on do(an_object)
-				an_object's SettingWindowController's open_window()
+				an_object's show_setting_window()
 			end do
 		end script
 		open {commandClass:"action", commandScript:x_handler}

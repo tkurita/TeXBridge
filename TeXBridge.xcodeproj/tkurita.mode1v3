@@ -214,7 +214,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2CF03F110EA79F360044339F</string>
+						<string>2CF03F690EA7B35F0044339F</string>
 						<key>history</key>
 						<array>
 							<string>2CF03ECF0EA78A5D0044339F</string>
@@ -234,15 +234,17 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2CF03F120EA79F360044339F</string>
+						<string>2CF03F6A0EA7B35F0044339F</string>
 						<key>history</key>
 						<array>
-							<string>2CF03ED40EA78A5D0044339F</string>
-							<string>2CF03ED50EA78A5D0044339F</string>
+							<string>2CF03F350EA7AE8C0044339F</string>
+							<string>2CF03F260EA7AE220044339F</string>
 						</array>
 						<key>prevStack</key>
 						<array>
 							<string>2CF03ED60EA78A5D0044339F</string>
+							<string>2CF03F270EA7AE220044339F</string>
+							<string>2CF03F360EA7AE8C0044339F</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -384,7 +386,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingWindowController.applescript</string>
+								<string>ToolPaletteButtons.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -392,11 +394,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingWindowController.applescript</string>
+										<string>ToolPaletteButtons.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CF03F100EA79F360044339F</string>
+										<string>2CF03F680EA7B35F0044339F</string>
 										<key>history</key>
 										<array>
 											<string>2C814F6C0BFACB5000814390</string>
@@ -418,7 +420,6 @@
 											<string>2C86F5390EA64FDE00AC81EF</string>
 											<string>2C86F53A0EA64FDE00AC81EF</string>
 											<string>2C3E62380EA6ACEC00BEF6A5</string>
-											<string>2C93CEC60EA6BCC300CB4935</string>
 											<string>2C93CEFE0EA6CC0400CB4935</string>
 											<string>2C93CEFF0EA6CC0400CB4935</string>
 											<string>2C93CF170EA6CE7100CB4935</string>
@@ -432,7 +433,11 @@
 											<string>2CF03EC30EA78A5D0044339F</string>
 											<string>2CF03EE10EA78B0D0044339F</string>
 											<string>2CF03EED0EA78DAB0044339F</string>
-											<string>2CF03EEE0EA78DAB0044339F</string>
+											<string>2CF03F4A0EA7B3320044339F</string>
+											<string>2CF03F4B0EA7B3320044339F</string>
+											<string>2CF03F4C0EA7B3320044339F</string>
+											<string>2CF03F4D0EA7B3320044339F</string>
+											<string>2CF03F4E0EA7B3320044339F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -451,7 +456,6 @@
 											<string>2C8321D70E9A840D009F6A8B</string>
 											<string>2C927F250E9BD398000AE100</string>
 											<string>2C808AC10E9BDC0E006F19EB</string>
-											<string>2C2FF74D0E9D8D6F004F2BEE</string>
 											<string>2C2FF7710E9D9313004F2BEE</string>
 											<string>2C2FF8600E9DCAB9004F2BEE</string>
 											<string>2C2FF8610E9DCAB9004F2BEE</string>
@@ -472,9 +476,11 @@
 											<string>2C93CFB30EA6E89E00CB4935</string>
 											<string>2CF03EC70EA78A5D0044339F</string>
 											<string>2CF03EC80EA78A5D0044339F</string>
-											<string>2CF03EC90EA78A5D0044339F</string>
 											<string>2CF03EE30EA78B0D0044339F</string>
 											<string>2CF03EEF0EA78DAB0044339F</string>
+											<string>2CF03F4F0EA7B3320044339F</string>
+											<string>2CF03F500EA7B3320044339F</string>
+											<string>2CF03F510EA7B3320044339F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -677,12 +683,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>2CD476790E93E00A0069C39E</string>
-		<string>/Users/tkurita/Documents/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2CF03ECD0EA78A5D0044339F</string>
+		<string>2CD476790E93E00A0069C39E</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>/Users/tkurita/Documents/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>236 224 1076 702 0 0 1440 938 </string>
@@ -708,7 +714,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingWindowController.m</string>
+								<string>AppController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -919,14 +925,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PaletteWindowController.m</string>
+										<string>SettingWindowController.applescript</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -947,6 +951,8 @@
 							<string>550pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1060,7 +1066,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

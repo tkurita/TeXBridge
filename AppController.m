@@ -4,8 +4,6 @@
 #import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder/DonationReminder.h"
 
-#import "NTYImmutableToMutableArrayOfObjectsTransformer.h"
-
 #define useLog 0
 
 id EditorClient;
@@ -27,17 +25,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 @implementation AppController
 
 + (void)initialize	// Early initialization
-{	
-	/*
-	NSValueTransformer *transformer = [[[NTYImmutableToMutableArrayOfObjectsTransformer alloc] init] autorelease];
-	[NSValueTransformer setValueTransformer:transformer forName:@"NTYImmutableToMutableArrayOfObjects"];
-	*/
-	
+{		
 	sharedObj = nil;
-	/*
-	NSValueTransformer *appNameTransformer = [[[AppNameToIconImageTransformer alloc] init] autorelease];
-	[NSValueTransformer setValueTransformer:appNameTransformer forName:@"AppNameToIconImage"];
-	 */
 }
 
 + (id)sharedAppController
@@ -57,6 +46,15 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	}
 	
 	return self;
+}
+
+
+- (void)showSettingWindow
+{
+	if (!settingWindow) {
+		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
+	}
+	[settingWindow showWindow:self];
 }
 
 - (void)checkQuit:(NSTimer *)aTimer

@@ -20,12 +20,25 @@
 - (void) dealloc
 {
 	[arrangedInternalReplaceInputDict release];
-	[mxdviDefaults release];
 	[super dealloc];
 }
 
 
 #pragma mark binding
+
+- (NSString *)mxdviEditor
+{
+	return [[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"Mxdvi"] valueForKey:@"MxdviEditor"];
+}
+
+- (void) setMxdviEditor:(NSString *)aValue
+{
+	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *dict = [[user_defaults persistentDomainForName:@"Mxdvi"] mutableCopy];
+	[dict setObject:aValue forKey:@"MxdviEditor"];
+	[user_defaults setPersistentDomain:dict forName:@"Mxdvi"];
+}
+
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
 	if (arrangedInternalReplaceInputDict) {
@@ -51,7 +64,12 @@
 }
 
 #pragma mark actions
-	
+- (IBAction)setMiClient:(id)sender
+{
+	NSString *miclient_path = [[NSBundle mainBundle] pathForResource:@"miclient" ofType:nil];
+	[self setMxdviEditor:miclient_path];
+}
+
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
 {
 	NSArray * repArray = [iconImage representations];
@@ -261,22 +279,5 @@
 {
 	[[self window] center];
 	[self setWindowFrameAutosaveName:@"SettingWindow"];
-	
-	
-	NSUserDefaults *mxdvi_defaults = [[NSUserDefaults alloc] init];
-	[mxdvi_defaults addSuiteNamed:@"Mxdvi"];
-	[mxdvi_defaults removeSuiteNamed:@"TeXBridge"];
-	//[mxdvi_defaults removePersistentDomainForName:@"TeXBridge"];
-	NSLog([[mxdvi_defaults persistentDomainNames] description]);
-	//NSLog([[mxdvi_defaults dictionaryRepresentation] description]);
-	
-	mxdviDefaults = [[NSUserDefaultsController alloc] 
-					 initWithDefaults: mxdvi_defaults initialValues:nil];
-	[mxdviDefaults setAppliesImmediately:YES];
-	[mxdviField bind:@"value" toObject:mxdviDefaults withKeyPath:@"values.MxdviEditor"
-			 options:[NSDictionary dictionaryWithObjectsAndKeys:
-					  [NSNumber numberWithBool:YES],  NSConditionallySetsEditableBindingOption, 
-					  [NSNumber numberWithBool:YES], NSRaisesForNotApplicableKeysBindingOption, nil]];
-	
 }
 @end
