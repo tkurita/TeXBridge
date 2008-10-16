@@ -110,7 +110,6 @@
 		2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDBE609097BA7FE00C3300B /* LogWindowController.m */; };
 		2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */; };
-		2CF1023609AA2CAE007DD27C /* ToolSupport216.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -220,7 +219,6 @@
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
-		2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport216.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
 		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
@@ -343,7 +341,6 @@
 				2C732C7E07AE667D005ACE75 /* ToolPalette.nib */,
 				2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */,
 				2CF1023109AA25A1007DD27C /* ToolSupport.plist */,
-				2CF1023509AA2CAE007DD27C /* ToolSupport216.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -539,7 +536,6 @@
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
 				2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */,
 				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
-				2CF1023609AA2CAE007DD27C /* ToolSupport216.plist in Resources */,
 				2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
