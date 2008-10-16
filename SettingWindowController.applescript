@@ -61,7 +61,7 @@ on open_window()
 end open_window
 
 on setmiclient()
-	log "start setmiclient"
+	--log "start setmiclient"
 	tell main bundle
 		set miclientPath to resource path & "/miclient"
 		--set miclientPath to path for resource "miclient"
@@ -70,7 +70,7 @@ on setmiclient()
 end setmiclient
 
 on saveMxdviEditor(theSetting)
-	log "start saveMxdviEditor"
+	--log "start saveMxdviEditor"
 	set mxdviEditorField to text field "MxdviEditorSetting" of box "MxdviEditorBox" of tab view item "PreviewSettings" of tab view "SettingTabs" of my _window
 	if theSetting is missing value then
 		set theSetting to contents of contents of mxdviEditorField
@@ -79,10 +79,9 @@ on saveMxdviEditor(theSetting)
 	end if
 	if theSetting is not "" then
 		set a_command to "defaults write Mxdvi MxdviEditor " & (quoted form of theSetting)
-		log a_command
 		do shell script a_command
 	end if
-	log "end saveMxdviEditor"
+	--log "end saveMxdviEditor"
 end saveMxdviEditor
 
 on display_alert(a_msg)

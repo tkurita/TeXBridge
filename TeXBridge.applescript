@@ -255,10 +255,10 @@ on will finish launching theObject
 	--log "end of import library"
 	show_startup_message("Loading Preferences ...")
 	setup_constants()
-	log "start of initializeing PDFController"
+	--log "start of initializeing PDFController"
 	load_settings() of PDFController
 	
-	log "end will finish launching"
+	--log "end will finish launching"
 end will finish launching
 
 on awake from nib theObject
@@ -267,12 +267,12 @@ on awake from nib theObject
 end awake from nib
 
 on selected tab view item theObject tab view item tabViewItem
-	log "start selected tab view item"
+	--log "start selected tab view item"
 	selectedTab(tabViewItem) of SettingWindowController
 end selected tab view item
 
 on updated_selected_tab_view_item()
-	log "start updated_selected_tab_view_item"
+	--log "start updated_selected_tab_view_item"
 	SettingWindowController's updated_selected_tab_view_item()
 end updated_selected_tab_view_item
 
