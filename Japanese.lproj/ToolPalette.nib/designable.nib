@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1244"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,7 +44,7 @@
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{149, 38}</string>
 				<object class="NSView" key="NSWindowView" id="216020796">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -82,7 +83,7 @@
 							<reference key="NSSuperview" ref="216020796"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="337099009">
-								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags">-2080244224</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="24"/>
@@ -106,7 +107,7 @@
 							<reference key="NSSuperview" ref="216020796"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="232096129">
-								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags">-2080244224</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="24"/>
@@ -208,7 +209,8 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrame">{{1, 1}, {186, 50}}</string>
+					<string key="NSFrameSize">{186, 50}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 938}}</string>
 				<string key="NSMinSize">{149, 54}</string>
@@ -390,7 +392,9 @@
 					<string>-1.IBPluginDependency</string>
 					<string>-2.IBPluginDependency</string>
 					<string>1238.IBAttributePlaceholdersKey</string>
+					<string>1238.IBEditorWindowLastContentRect</string>
 					<string>1238.IBPluginDependency</string>
+					<string>1238.IBWindowTemplateEditedContentRect</string>
 					<string>1238.ImportedFromIB2</string>
 					<string>1238.windowTemplate.hasMinSize</string>
 					<string>1238.windowTemplate.maxSize</string>
@@ -436,7 +440,9 @@
 							<string key="appleScriptObjectName">ToolPalette</string>
 						</object>
 					</object>
+					<string>{{0, 861}, {186, 50}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{0, 861}, {186, 50}}</string>
 					<integer value="1" id="5"/>
 					<reference ref="5"/>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -633,7 +639,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1409</int>
+			<int key="maxID">1413</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
