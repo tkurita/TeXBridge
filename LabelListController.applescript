@@ -78,24 +78,28 @@ on watchmi given force_reloading:force_flag
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
 	else
+		--log "has data items"
+		set expanded_flag to an_auxdata's is_expanded()
 		if force_flag then
+			--log "force update"
 			if (check_auxfile of an_auxdata without display_error) then
 				parse_aux_file(an_auxdata)
-				clear_labels_from_doc() of an_auxdata
+				an_auxdata's clear_labels_from_doc()
 				append_to_outline for an_auxdata below my _label_data_source
 			end if
 		end if
 		
-		--log "before find_labels_from_doc"
 		if find_labels_from_doc(an_auxdata, force_flag) then
 			--log "before update_labels_from_doc"
-			update_labels_from_doc() of an_auxdata
+			an_auxdata's update_labels_from_doc()
 		else
 			--log "skip update_labels_from_doc"
 		end if
+		if expanded_flag then
+			an_auxdata's expandDataItem()
+		end if
 		
 	end if
-	log "end of watchmi"
 end watchmi
 
 on find_auxdata_from_doc()
@@ -265,7 +269,6 @@ on find_labels_from_doc(an_auxdata, force_flag)
 	log "before repeat"
 	
 	set a_xlist to XList's make_with(get every paragraph of doc_content)
-	log "fff"
 	if (not force_flag) and ((an_auxdata's tex_file() is missing value) or (not an_auxdata's is_texfile_updated())) then
 		log "document is not updated"
 		if (a_xlist's count_items()) is (an_auxdata's document_size()) then
@@ -276,10 +279,9 @@ on find_labels_from_doc(an_auxdata, force_flag)
 		--		log "document is updated"
 	end if
 	log "ggg"
-	clear_labels_from_doc() of an_auxdata
+	an_auxdata's clear_labels_from_doc()
 	repeat while (a_xlist's has_next())
 		set a_paragraph to a_xlist's next()
-		--set a_paragraph to paragraph ith of doc_content
 		--log a_paragraph
 		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
 			repeat while (a_paragraph contains labelCommand)
@@ -290,9 +292,9 @@ on find_labels_from_doc(an_auxdata, force_flag)
 				set pos2 to offset of "}" in a_paragraph
 				if pos2 is 0 then exit repeat
 				set a_label to text (pos1 + 1) thru (pos2 - 1) of a_paragraph
-				--if a_label is not in labelList of an_auxdata then
 				if not an_auxdata's has_label(a_label) then
-					addLabelFromDoc(a_label) of an_auxdata
+					log ("add label : " & a_label)
+					an_auxdata's addLabelFromDoc(a_label)
 				end if
 				try
 					set a_paragraph to text (pos2 + 1) thru -1 of a_paragraph

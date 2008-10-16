@@ -103,6 +103,12 @@ on addLabelFromDoc(a_label)
 	--log "end addLabelFromDoc"
 end addLabelFromDoc
 
+on is_expanded()
+	set a_result to call method "isItemExpanded:" of outlineView with parameter my _dataItemRef
+	log "is expanded :" & a_result
+	return a_result is not 0
+end is_expanded
+
 on expandDataItem()
 	--log "start expandDataItem"
 	-- when epanded outline, it seems that width of table column is changed uncorrectly.
