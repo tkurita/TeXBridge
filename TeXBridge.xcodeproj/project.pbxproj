@@ -59,7 +59,7 @@
 		2C4E27C3084273B000004A96 /* TerminalCommander.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27C5084273B000004A96 /* TeXBridge.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* TeXBridge.nib */; };
 		2C4E27C6084273B000004A96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C9E42BE052215CB00248965 /* Localizable.strings */; };
-		2C4E27C7084273B000004A96 /* TeXCompileServer.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CD5AA9506CCD9B500967BE0 /* TeXCompileServer.icns */; };
+		2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */; };
 		2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C498707962E380026564C /* FactorySettings.plist */; };
 		2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */; };
 		2C4E27CB084273B000004A96 /* TeXtoDVIIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */; };
@@ -204,7 +204,7 @@
 		2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
 		2CD5554C08BEC77E007E43D1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		2CD5554D08BEC77E007E43D1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
-		2CD5AA9506CCD9B500967BE0 /* TeXCompileServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXCompileServer.icns; path = images/TeXCompileServer.icns; sourceTree = "<group>"; };
+		2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXBridge.icns; path = images/TeXBridge.icns; sourceTree = "<group>"; };
 		2CDA10AA069404FE00467991 /* PDFController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = PDFController.applescript; sourceTree = "<group>"; };
 		2CDACD7F0813BE3F000B9086 /* LogParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogParser.h; sourceTree = "<group>"; };
 		2CDACD820813BE3F000B9086 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				2C6CA3A308CF5565005D5612 /* Reload.png */,
-				2CD5AA9506CCD9B500967BE0 /* TeXCompileServer.icns */,
+				2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */,
 				2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */,
 				2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */,
 				2C49445C07AD21E900B2A8D8 /* generalpref.png */,
@@ -511,7 +511,7 @@
 			files = (
 				2C4E27C5084273B000004A96 /* TeXBridge.nib in Resources */,
 				2C4E27C6084273B000004A96 /* Localizable.strings in Resources */,
-				2C4E27C7084273B000004A96 /* TeXCompileServer.icns in Resources */,
+				2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */,
 				2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */,
 				2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */,
 				2C4E27CB084273B000004A96 /* TeXtoDVIIcon.png in Resources */,
