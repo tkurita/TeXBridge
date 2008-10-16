@@ -17,30 +17,15 @@
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
 }
 
-- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
+- (void) dealloc
 {
-	id current_item= [[userRIDictController selectedObjects] lastObject];
-	if (!current_item) return YES;
-	NSString *msg = nil;
-	if (![current_item value]) {
-		msg = NSLocalizedString(@"replaceIsBlank", nil);
-	}
-	else if (![current_item key] ) {
-		msg = NSLocalizedString(@"keywordiIsBlank", nil);
-	}
-	
-	if (msg) {
-		NSAlert *alert = [NSAlert alertWithMessageText:msg 
-							defaultButton:@"OK" alternateButton:nil otherButton:nil
-							informativeTextWithFormat:@""];
-		[alert setAlertStyle: NSWarningAlertStyle];
-		[alert beginSheetModalForWindow:[self window] modalDelegate:nil
-						 didEndSelector:nil contextInfo:nil];
-		return NO;
-	}
-	return YES;
+	[arrangedInternalReplaceInputDict release];
+	[mxdviDefaults release];
+	[super dealloc];
 }
 
+
+#pragma mark binding
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
 	if (arrangedInternalReplaceInputDict) {
@@ -64,6 +49,8 @@
 	}
 	return [arrangedInternalReplaceInputDict retain];
 }
+
+#pragma mark actions
 	
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
 {
@@ -214,6 +201,33 @@
 	}
 }
 
+
+#pragma mark delegate methods
+
+- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
+{
+	id current_item= [[userRIDictController selectedObjects] lastObject];
+	if (!current_item) return YES;
+	NSString *msg = nil;
+	if (![current_item value]) {
+		msg = NSLocalizedString(@"replaceIsBlank", nil);
+	}
+	else if (![current_item key] ) {
+		msg = NSLocalizedString(@"keywordiIsBlank", nil);
+	}
+	
+	if (msg) {
+		NSAlert *alert = [NSAlert alertWithMessageText:msg 
+										 defaultButton:@"OK" alternateButton:nil otherButton:nil
+							 informativeTextWithFormat:@""];
+		[alert setAlertStyle: NSWarningAlertStyle];
+		[alert beginSheetModalForWindow:[self window] modalDelegate:nil
+						 didEndSelector:nil contextInfo:nil];
+		return NO;
+	}
+	return YES;
+}
+
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
 	//NSLog([tabViewItem identifier]);
@@ -247,5 +261,22 @@
 {
 	[[self window] center];
 	[self setWindowFrameAutosaveName:@"SettingWindow"];
+	
+	
+	NSUserDefaults *mxdvi_defaults = [[NSUserDefaults alloc] init];
+	[mxdvi_defaults addSuiteNamed:@"Mxdvi"];
+	[mxdvi_defaults removeSuiteNamed:@"TeXBridge"];
+	//[mxdvi_defaults removePersistentDomainForName:@"TeXBridge"];
+	NSLog([[mxdvi_defaults persistentDomainNames] description]);
+	//NSLog([[mxdvi_defaults dictionaryRepresentation] description]);
+	
+	mxdviDefaults = [[NSUserDefaultsController alloc] 
+					 initWithDefaults: mxdvi_defaults initialValues:nil];
+	[mxdviDefaults setAppliesImmediately:YES];
+	[mxdviField bind:@"value" toObject:mxdviDefaults withKeyPath:@"values.MxdviEditor"
+			 options:[NSDictionary dictionaryWithObjectsAndKeys:
+					  [NSNumber numberWithBool:YES],  NSConditionallySetsEditableBindingOption, 
+					  [NSNumber numberWithBool:YES], NSRaisesForNotApplicableKeysBindingOption, nil]];
+	
 }
 @end

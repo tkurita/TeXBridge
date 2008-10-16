@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="694"/>
+			<integer value="1738"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -486,7 +486,7 @@
 								<object class="NSTabViewItem" id="75198844">
 									<string key="NSIdentifier">PreviewSettings</string>
 									<object class="NSView" key="NSView" id="722161720">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="1038363873"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -912,6 +912,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
+										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">44OX44Os44OT44Ol44O8A</string>
 									<reference key="NSColor" ref="398781134"/>
@@ -1318,7 +1319,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="679642745">
 									<string key="NSIdentifier">TheOtherSettings</string>
 									<object class="NSView" key="NSView" id="1076854">
-										<reference key="NSNextResponder" ref="1038363873"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1642,21 +1643,20 @@ meOAgg</string>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
-										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">44Gd44Gu5LuWA</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="679642745"/>
+							<reference key="NSSelectedTabViewItem" ref="75198844"/>
 							<reference key="NSFont" ref="102869663"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="1076854"/>
+								<reference ref="722161720"/>
 							</object>
 						</object>
 						<object class="NSButton" id="950643852">
@@ -2343,6 +2343,14 @@ meOAgg</string>
 						<reference key="destination" ref="628904969"/>
 					</object>
 					<int key="connectionID">2054</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mxdviField</string>
+						<reference key="source" ref="252045561"/>
+						<reference key="destination" ref="490594328"/>
+					</object>
+					<int key="connectionID">2055</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3766,12 +3774,10 @@ meOAgg</string>
 							<object class="IBAppleScriptInfoAttribute">
 								<string key="name">IBAppleScriptAttributeName</string>
 								<reference key="object" ref="490594328"/>
-								<int key="appleScriptObjectID">-1</int>
+								<int key="appleScriptObjectID">0</int>
 								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName">MxdviEditorSetting.applescript</string>
+								<nil key="appleScriptEventHandlerNames"/>
+								<nil key="appleScriptScriptName"/>
 								<string key="appleScriptObjectName">MxdviEditorSetting</string>
 							</object>
 							<object class="IBToolTipAttribute">
@@ -4671,7 +4677,7 @@ s+ODnuODs+ODiQ</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2054</int>
+			<int key="maxID">2055</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4709,12 +4715,14 @@ s+ODnuODs+ODiQ</string>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>appArrayController</string>
+							<string>mxdviField</string>
 							<string>settingMenu</string>
 							<string>tabView</string>
 							<string>userRIDictController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>NSPopUpButton</string>
 							<string>NSTabView</string>

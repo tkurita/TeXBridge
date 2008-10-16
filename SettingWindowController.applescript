@@ -35,7 +35,7 @@ end loadPreviewSetting
 on selectedTab(tabViewItem)
 	set a_name to name of tabViewItem
 	if a_name is "PreviewSettings" then
-		loadPreviewSetting(tabViewItem)
+		--loadPreviewSetting(tabViewItem)
 	end if
 end selectedTab
 

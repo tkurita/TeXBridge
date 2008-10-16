@@ -158,8 +158,6 @@
 		2C4E27E4084273B000004A96 /* TeXBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInput.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
-		2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = NTYImmutableToMutableArrayOfObjectsTransformer.m; sourceTree = "<group>"; };
-		2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = NTYImmutableToMutableArrayOfObjectsTransformer.h; sourceTree = "<group>"; };
 		2C6CA37608CF54DD005D5612 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ReferencePalette.nib; sourceTree = "<group>"; };
 		2C6CA39608CF5558005D5612 /* RefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = RefPanelController.m; sourceTree = "<group>"; };
 		2C6CA39708CF5558005D5612 /* RefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = RefPanelController.h; sourceTree = "<group>"; };
@@ -419,8 +417,6 @@
 		2CB63A5D08CF038D002FCC88 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				2C59769108CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.m */,
-				2C59769208CC7A3A0050C238 /* NTYImmutableToMutableArrayOfObjectsTransformer.h */,
 				2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */,
 				2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */,
 			);
