@@ -21,7 +21,6 @@
 				2C4E27BC084273B000004A96 /* TeXDocController.applescript in AppleScript */,
 				2C4E27BD084273B000004A96 /* DVIController.applescript in AppleScript */,
 				2C4E27BE084273B000004A96 /* DefaultsManager.applescript in AppleScript */,
-				2C4E27BF084273B000004A96 /* SettingWindowController.applescript in AppleScript */,
 				2C4E27C1084273B000004A96 /* ReplaceInput.applescript in AppleScript */,
 				2C4E27C3084273B000004A96 /* TerminalCommander.applescript in AppleScript */,
 				2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */,
@@ -56,7 +55,6 @@
 		2C4E27BC084273B000004A96 /* TeXDocController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27BD084273B000004A96 /* DVIController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27BE084273B000004A96 /* DefaultsManager.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C7C492E07960C830026564C /* DefaultsManager.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		2C4E27BF084273B000004A96 /* SettingWindowController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C7C493607960CCD0026564C /* SettingWindowController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27C1084273B000004A96 /* ReplaceInput.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27C3084273B000004A96 /* TerminalCommander.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27C5084273B000004A96 /* TeXBridge.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* TeXBridge.nib */; };
@@ -175,7 +173,6 @@
 		2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = AuxData.applescript; sourceTree = "<group>"; };
 		2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = DefaultsManager.applescript; sourceTree = "<group>"; };
-		2C7C493607960CCD0026564C /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
 		2C808A8D0E9BD985006F19EB /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
@@ -255,7 +252,6 @@
 				2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */,
 				2C6FB9C906255508004731C7 /* EditCommands.applescript */,
 				2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */,
-				2C7C493607960CCD0026564C /* SettingWindowController.applescript */,
 				2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */,
 				2C6CA3C008CF559E005D5612 /* LabelListController.applescript */,
 				2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */,

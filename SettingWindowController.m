@@ -6,9 +6,6 @@
 
 #define useLog 0
 
-@class ASKScriptCache;
-@class ASKScript;
-
 @implementation SettingWindowController
 
 + (void)initialize
@@ -244,20 +241,6 @@
 		return NO;
 	}
 	return YES;
-}
-
-- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
-{
-	//NSLog([tabViewItem identifier]);
-	if ([[tabViewItem identifier] isEqualToString:@"TerminalSettings"]) {
-		[self reloadSettingsMenu:self];
-	} else {
-		NSDictionary *errorInfo = nil;
-		ASKScript *a_script = [[ASKScriptCache sharedScriptCache] 
-							   scriptWithName:@"TeXBridge"];
-		[a_script executeHandlerWithName:@"updated_selected_tab_view_item" 
-					arguments:nil error:&errorInfo];
-	}
 }
 
 - (IBAction)showWindow:(id)sender
