@@ -192,9 +192,8 @@ on typeset()
 			set_item of command_elems for new_command at 1
 		end if
 		set tex_command to command_elems's as_unicode_with(space)
-		--set pathCommand to "export PATH=/usr/local/bin:$PATH"
-		--set all_command to pathCommand & "; " & cd_command & "; " & theTexCommand & space & "'" & my _texFileName & "' 2>&1"
-		set shell_path to TerminalCommander's shell_path()
+		--set shell_path to TerminalCommander's shell_path()
+		set shell_path to system attribute "SHELL"
 		set all_command to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
 			set my _logContents to do shell script all_command

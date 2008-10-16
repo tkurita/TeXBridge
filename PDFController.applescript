@@ -170,6 +170,10 @@ on app_name()
 	return my _app_name
 end app_name
 
+on app_identifier()
+	return my _app_identifier
+end app_identifier
+
 on set_app_name(a_name)
 	set my _app_name to a_name
 end set_app_name
@@ -202,20 +206,21 @@ on setup_pdfdriver()
 	--log "start setup_pdfdriver()"
 	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
 	if PDFPreviewMode is 0 then
-		set my _pdfdriver to AutoDriver
+		set my _pdfdriver to my AutoDriver
 	else if PDFPreviewMode is 1 then
 		--log "PreviewDriver is selected"
-		set my _pdfdriver to PreviewDriver
+		set my _pdfdriver to my ReloadablePreviewDriver
 		set my _process_name to "Preview"
 		set my _app_name to "Preview"
+		set my _app_identifier to "com.apple.Preview"
 	else if PDFPreviewMode is 2 then
-		set my _pdfdriver to PreviewDriver
+		set my _pdfdriver to my PreviewDriver
 		set my _process_name to "Adobe Reader"
 		tell application "Finder"
 			set my _app_name to name of _adobeReaderPath
 		end tell
 	else if PDFPreviewMode is 3 then
-		set my _pdfdriver to AcrobatDriver
+		set my _pdfdriver to my AcrobatDriver
 		set my _process_name to "Acrobat"
 		set my _app_name to _acrobatPath
 	else
@@ -249,13 +254,14 @@ on make_with(a_dvi)
 		property _target_driver : missing value -- used when _pdifdrive is AutoDriver
 		property _app_name : missing value
 		property _process_name : missing value -- used for PreviewDriver
+		property _app_identifier : missing value -- used for ReloadablePreviewDriver
 		property _window_counts : missing value -- used for PreviewDriver
 		property _page_number : missing value -- used for AcrobatDriver
 		
-		property _pdfdriver : AutoDriver
+		property _pdfdriver : my AutoDriver
 	end script
 	
-	setup_pdfdriver() of PDFController
+	PDFController's setup_pdfdriver()
 	return PDFController
 end make_with
 
@@ -350,6 +356,21 @@ script AcrobatDriver
 			end tell
 		end using terms from
 		--log "end open_pdf in AcrobatDriver"
+	end open_pdf
+end script
+
+script ReloadablePreviewDriver
+	
+	on prepare(a_pdf)
+		return true
+	end prepare
+	
+	on open_pdf(a_pdf)
+		set an_id to a_pdf's app_identifier()
+		tell application id (an_id)
+			open a_pdf's file_as_alias()
+		end tell
+		call method "activateAppOfIdentifier:" of class "SmartActivate" with parameter an_id
 	end open_pdf
 end script
 

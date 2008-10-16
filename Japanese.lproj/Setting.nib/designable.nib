@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1353"/>
+			<integer value="694"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -920,7 +920,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="964722500">
 									<string key="NSIdentifier">ReplaceInputSettings</string>
 									<object class="NSView" key="NSView" id="20634933">
-										<reference key="NSNextResponder" ref="1038363873"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -951,7 +951,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="_NSCornerView" key="NSCornerView" id="1005857034">
 																	<reference key="NSNextResponder" ref="860594181"/>
 																	<int key="NSvFlags">-2147483392</int>
-																	<string key="NSFrame">{{242, 0}, {16, 17}}</string>
+																	<string key="NSFrame">{{-26, 0}, {16, 17}}</string>
 																	<reference key="NSSuperview" ref="860594181"/>
 																</object>
 																<object class="NSMutableArray" key="NSTableColumns">
@@ -1310,7 +1310,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
-										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">572u5o+b5YWl5YqbA</string>
 									<reference key="NSColor" ref="398781134"/>
@@ -1319,7 +1318,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="679642745">
 									<string key="NSIdentifier">TheOtherSettings</string>
 									<object class="NSView" key="NSView" id="1076854">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="1038363873"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1355,7 +1354,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSTextFieldCell" key="NSCell" id="307782978">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">VGVYQ29tcGlsZVNlcnZlciDotbfli5XmmYLjgas</string>
+													<string type="base64-UTF8" key="NSContents">VGVYQnJpZGdlIOi1t+WLleaZguOBqw</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="291739789"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -1643,20 +1642,21 @@ meOAgg</string>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
+										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">44Gd44Gu5LuWA</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="964722500"/>
+							<reference key="NSSelectedTabViewItem" ref="679642745"/>
 							<reference key="NSFont" ref="102869663"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="20634933"/>
+								<reference ref="1076854"/>
 							</object>
 						</object>
 						<object class="NSButton" id="950643852">
@@ -1697,10 +1697,6 @@ meOAgg</string>
 				</object>
 			</object>
 			<object class="NSUserDefaultsController" id="685658365">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>UserReplaceInputDict</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSArrayController" id="856127024">
@@ -2225,7 +2221,7 @@ meOAgg</string>
 							<string key="NSKeyPath">arrangedInternalReplaceInputDict</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSConditionallySetsEditable</string>
-								<integer value="0" key="NS.object.0"/>
+								<reference key="NS.object.0" ref="8"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
@@ -2245,7 +2241,7 @@ meOAgg</string>
 							<string key="NSKeyPath">arrangedObjects.key</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSConditionallySetsEditable</string>
-								<integer value="1" key="NS.object.0"/>
+								<reference key="NS.object.0" ref="9"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>

@@ -56,7 +56,7 @@ end tex_file
 
 on basename()
 	if my _texdoc's has_file() then
-		return a_xfile's basename()
+		return my _texdoc's basename()
 	else
 		return my _texdoc's filename()
 	end if
@@ -85,8 +85,6 @@ on check_auxfile given display_error:alert_flag
 end check_auxfile
 
 on read_aux_file()
-	--return read (my _auxFileRef's as_alias())
-	--return my _auxFileRef's read
 	return call method "sniffRead:encodingCandidate:" of (RefPanelController's window_controller()) with parameters {my _auxFileRef's posix_path(), text_encoding()}
 end read_aux_file
 

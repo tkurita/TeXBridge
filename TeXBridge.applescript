@@ -100,7 +100,6 @@ on launched theObject
 	--quick_typeset_preview() of CompileCenter
 	
 	(*misc*)
-	--set a_result to call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 	--openRelatedFile with revealOnly
 	-- do_replaceinput()
 	--call method "showHelp:"
@@ -181,9 +180,9 @@ on control_clicked(theObject)
 	if a_name is "Reload" then
 		watchmi of RefPanelController with force_reloading
 	else if a_name is "usemi" then
-		setmiclient() of SettingWindowController
+		SettingWindowController's setmiclient()
 	else if a_name is "saveMxdviEditor" then
-		saveMxdviEditor(missing value) of SettingWindowController
+		SettingWindowController's saveMxdviEditor(missing value)
 	end if
 end control_clicked
 
