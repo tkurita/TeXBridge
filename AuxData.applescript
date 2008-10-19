@@ -34,6 +34,9 @@ on set_texdoc(a_texdoc)
 end set_texdoc
 
 on is_texfile_updated()
+	if tex_file() is missing value then
+		return false
+	end if
 	set mod_date to modification date of (tex_file()'s info())
 	return mod_date > my _checkedTime
 end is_texfile_updated
@@ -76,10 +79,15 @@ on check_auxfile given display_error:alert_flag
 				set a_msg to localized string "auxFileIsNotFound"
 				display_alert(a_msg) of RefPanelController
 			end if
+			set my _auxFileRef to missing value
 			return false
 		end if
 	else
 		--log "_auxFileRef is not missing value"
+		if my _auxFileRef's item_exists() then
+			set my _auxFileRef to missing value
+			return false
+		end if
 		return true
 	end if
 end check_auxfile
@@ -139,11 +147,14 @@ on updateLabels()
 	set nLabelFromAux to length of my _labelRecordFromAux
 	set nLabelFromDoc to length of my _labelRecordFromDoc
 	set dItemCounter to 1
-	--log "before repeat 1"
-	--log "nDataItem:" & nDataItem
-	--log "nLabelFromAux:" & nLabelFromAux
-	--log "nLabelFromDoc:" & nLabelFromDoc
-	
+	(*
+	log "nDataItem:" & nDataItem
+	log "nLabelFromAux:" & nLabelFromAux
+	log my _labelRecordFromAux
+	log "nLabelFromDoc:" & nLabelFromDoc
+	log my _labelRecordFromDoc
+	*)
+	--log "start updating   labels from aux"
 	repeat with ith from 1 to nLabelFromAux
 		if ith is less than or equal to nDataItem then
 			set theDataItem to data item ith of my _dataItemRef
@@ -168,15 +179,18 @@ on updateLabels()
 		end if
 	end repeat
 	
-	--log "start second repeat"
+	--log "start updating labels from doc"
 	repeat with ith from 1 to nLabelFromDoc
-		if (ith + nLabelFromAux) is less than or equal to nDataItem then
-			set theDataItem to data item ith of my _dataItemRef
+		set ith_shifted to ith + nLabelFromAux
+		if ith_shifted is less than or equal to nDataItem then
+			set theDataItem to data item ith_shifted of my _dataItemRef
+			if has data items of theDataItem then
+				delete every data item of theDataItem
+			end if
 		else
 			set theDataItem to make new data item at end of data items of my _dataItemRef
 		end if
-		
-		set theItem to item ith of nLabelFromDoc
+		set theItem to item ith of my _labelRecordFromDoc
 		set contents of data cell "label" of theDataItem to |label| of theItem
 		set contents of data cell "reference" of theDataItem to |reference| of theItem
 	end repeat
@@ -195,12 +209,11 @@ on update_labels_from_doc()
 	set nLabelFromDoc to length of my _labelRecordFromDoc
 	
 	set labCounter to 1
-	(*
-			--log "before repeat 1"
-			--log "nDataItem:" & nDataItem
-			--log "nLabelFromAux:" & nLabelFromAux
-			--log "nLabelFromDoc:" & nLabelFromDoc
-			*)
+	(*log "before repeat 1"
+	log "nDataItem:" & nDataItem
+	log "nLabelFromAux:" & nLabelFromAux
+	log "nLabelFromDoc:" & nLabelFromDoc
+	*)
 	repeat with ith from (nLabelFromAux + 1) to nDataItem
 		--log "in repeat 1"
 		set theDataItem to data item ith of my _dataItemRef
@@ -224,6 +237,11 @@ on update_labels_from_doc()
 		set contents of data cell "reference" of theDataItem to |reference| of theItem
 	end repeat
 end update_labels_from_doc
+
+on clear_labels_from_aux()
+	set my _labelRecordFromAux to {}
+	set my _labelList to {}
+end clear_labels_from_aux
 
 on clear_labels_from_doc()
 	--log "start clear_labels_from_doc"

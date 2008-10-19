@@ -77,28 +77,30 @@ on watchmi given force_reloading:force_flag
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
 	else
-		--log "has data items"
-		set expanded_flag to an_auxdata's is_expanded()
+		set need_update to false
 		if force_flag then
-			--log "force update"
 			if (check_auxfile of an_auxdata without display_error) then
 				parse_aux_file(an_auxdata)
-				an_auxdata's clear_labels_from_doc()
-				append_to_outline for an_auxdata below my _label_data_source
+				--an_auxdata's clear_labels_from_doc()
+			else
+				set need_update to an_auxdata's clear_labels_from_aux()
+				set force_flag to true
 			end if
+			set need_update to true
 		end if
-		
+		--log "before find_labels_from_doc"
 		if find_labels_from_doc(an_auxdata, force_flag) then
 			--log "before update_labels_from_doc"
-			an_auxdata's update_labels_from_doc()
+			--an_auxdata's update_labels_from_doc()
+			set need_update to true
 		else
 			--log "skip update_labels_from_doc"
 		end if
-		if expanded_flag then
-			an_auxdata's expandDataItem()
+		if need_update then
+			append_to_outline for an_auxdata below my _label_data_source
 		end if
-		
 	end if
+	--log "end of watchmi"
 end watchmi
 
 on find_auxdata_from_doc()
@@ -150,7 +152,7 @@ on append_to_outline for an_auxdata below parentDataItem
 		set contents of data cell "label" of titleItem to an_auxdata's basename()
 	else
 		--log "before updateLabels in append_to_outline"
-		updateLabels() of an_auxdata
+		an_auxdata's updateLabels()
 		return
 	end if
 	
@@ -168,6 +170,7 @@ on append_to_outline for an_auxdata below parentDataItem
 			end if
 		end repeat
 	end repeat
+	--log "before expandDataItem"
 	an_auxdata's expandDataItem()
 	--log "end appndToOutline"
 end append_to_outline
@@ -255,15 +258,15 @@ on parse_aux_file(an_auxdata)
 end parse_aux_file
 
 on find_labels_from_doc(an_auxdata, force_flag)
-	-- log "start find_labels_from_doc"
+	--log "start find_labels_from_doc"
 	set doc_content to EditorClient's document_content()
-	
-	set labelCommand to _backslash & "label"
-	--log doc_content
+	--log "before repeat"
 	
 	set a_xlist to XList's make_with(get every paragraph of doc_content)
-	if (not force_flag) and ((an_auxdata's tex_file() is missing value) or (not an_auxdata's is_texfile_updated())) then
-		--log "document is not updated"
+	if (not force_flag) and (not an_auxdata's is_texfile_updated()) then
+		-- check document size before parsing document contents.
+		-- if documen has not modification, an_auxdata will not be updated
+		--log "file is not updated"
 		if (a_xlist's count_items()) is (an_auxdata's document_size()) then
 			--log "document size is same"
 			return false
@@ -272,6 +275,7 @@ on find_labels_from_doc(an_auxdata, force_flag)
 		--		log "document is updated"
 	end if
 	
+	set labelCommand to _backslash & "label"
 	an_auxdata's clear_labels_from_doc()
 	repeat while (a_xlist's has_next())
 		set a_paragraph to a_xlist's next()
@@ -312,7 +316,7 @@ on rebuild_labels_from_aux(a_texdoc)
 		return
 	end if
 	parse_aux_file(an_auxdata)
-	clear_labels_from_doc() of an_auxdata
+	an_auxdata's clear_labels_from_doc()
 	append_to_outline for an_auxdata below my _label_data_source
 	--log "end of rebuild_labels_from_aux"
 end rebuild_labels_from_aux

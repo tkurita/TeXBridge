@@ -26,12 +26,18 @@ on restart_timer()
 	end if
 end restart_timer
 
+on is_visible()
+	if my _window_controller is missing value then
+		return false
+	end if
+	return visible of my _window
+end is_visible
+
 on rebuild_labels_from_aux(a_texdoc)
 	if my _window_controller is missing value then
 		return
 	end if
-	
-	if visible of my _window then
+	if is_opened() then
 		rebuild_labels_from_aux(a_texdoc) of LabelListController
 	end if
 end rebuild_labels_from_aux

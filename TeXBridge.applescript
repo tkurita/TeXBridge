@@ -175,7 +175,9 @@ end clicked
 
 on control_clicked(theObject)
 	set a_name to name of theObject
-	if a_name is "Reload" then
+	if a_name is "PeriodicReload" then
+		watchmi of RefPanelController without force_reloading
+	else if a_name is "Reload" then
 		watchmi of RefPanelController with force_reloading
 	end if
 end control_clicked
