@@ -34,10 +34,13 @@ on set_texdoc(a_texdoc)
 end set_texdoc
 
 on is_texfile_updated()
-	if tex_file() is missing value then
+	--log "start is_texfile_updated"
+	set a_xfile to tex_file()
+	if a_xfile is missing value then
 		return false
 	end if
-	set mod_date to modification date of (tex_file()'s info())
+	set mod_date to modification date of (a_xfile's re_info())
+	--log "end is_texfile_updated"
 	return mod_date > my _checkedTime
 end is_texfile_updated
 
@@ -85,10 +88,10 @@ on check_auxfile given display_error:alert_flag
 	else
 		--log "_auxFileRef is not missing value"
 		if my _auxFileRef's item_exists() then
-			set my _auxFileRef to missing value
-			return false
+			return true
 		end if
-		return true
+		set my _auxFileRef to missing value
+		return false
 	end if
 end check_auxfile
 
@@ -153,8 +156,8 @@ on updateLabels()
 	log my _labelRecordFromAux
 	log "nLabelFromDoc:" & nLabelFromDoc
 	log my _labelRecordFromDoc
+	log "start updating   labels from aux"
 	*)
-	--log "start updating   labels from aux"
 	repeat with ith from 1 to nLabelFromAux
 		if ith is less than or equal to nDataItem then
 			set theDataItem to data item ith of my _dataItemRef
@@ -253,10 +256,6 @@ on clear_labels_from_doc()
 	set my _labelRecordFromDoc to {}
 	--log "end clear_labels_from_doc"
 end clear_labels_from_doc
-
-on clearLabelsFromAux()
-	set my _labelRecordFromAux to {}
-end clearLabelsFromAux
 
 on appendLabelsFromDoc()
 	repeat with ith from 1 to length of my _labelRecordFromDoc

@@ -54,7 +54,7 @@ on watchmi given force_reloading:force_flag
 	if an_auxdata is missing value then
 		return
 	end if
-	
+	--log "passed find_auxdata_from_doc"
 	if an_auxdata's data_item() is missing value then
 		--log "no data item"
 		if an_auxdata's aux_file() is not missing value then
@@ -77,27 +77,31 @@ on watchmi given force_reloading:force_flag
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
 	else
-		set need_update to false
+		set aux_updated to false
+		set doc_updated to false
 		if force_flag then
 			if (check_auxfile of an_auxdata without display_error) then
 				parse_aux_file(an_auxdata)
 				--an_auxdata's clear_labels_from_doc()
 			else
-				set need_update to an_auxdata's clear_labels_from_aux()
+				--log "no aux file"
+				set aux_updated to an_auxdata's clear_labels_from_aux()
 				set force_flag to true
 			end if
-			set need_update to true
+			set aux_updated to true
 		end if
 		--log "before find_labels_from_doc"
 		if find_labels_from_doc(an_auxdata, force_flag) then
 			--log "before update_labels_from_doc"
 			--an_auxdata's update_labels_from_doc()
-			set need_update to true
+			set doc_updated to true
 		else
 			--log "skip update_labels_from_doc"
 		end if
-		if need_update then
+		if aux_updated then
 			append_to_outline for an_auxdata below my _label_data_source
+		else if doc_updated then
+			an_auxdata's update_labels_from_doc()
 		end if
 	end if
 	--log "end of watchmi"
@@ -212,9 +216,9 @@ end auxdata_for_texdoc
 
 on parse_aux_file(an_auxdata)
 	--log "start parse_aux_file"
-	set doc_content to read_aux_file() of an_auxdata
+	set doc_content to an_auxdata's read_aux_file()
 	--log "before clearLabelsFromAux in parse_aux_file"
-	clearLabelsFromAux() of an_auxdata
+	an_auxdata's clear_labels_from_aux()
 	--log "start repeat in parse_aux_file"
 	set newlabelText to _backslash & "newlabel{"
 	set inputText to _backslash & "@input{"
@@ -242,13 +246,19 @@ on parse_aux_file(an_auxdata)
 			set childAuxFile to text 9 thru -2 of a_paragraph
 			set_base_path(an_auxdata's aux_file()'s posix_path()) of PathConverter
 			set theAuxFile to absolute_path of PathConverter for childAuxFile
-			set theAuxFile to (POSIX file theAuxFile) as alias
-			set a_texdoc to TeXDocController's make_with(theAuxFile, an_auxdata's text_encoding())
-			set childAuxObj to auxdata_for_texdoc(a_texdoc)
-			--set childAuxObj to findAuxObj(theAuxFile, true)
-			if childAuxObj is not missing value then
-				parse_aux_file(childAuxObj)
-				addChildAuxObj(childAuxObj) of an_auxdata
+			set exists_flag to true
+			try
+				set theAuxFile to (POSIX file theAuxFile) as alias
+			on error number -1700
+				set exists_flag to false
+			end try
+			if exists_flag then
+				set a_texdoc to TeXDocController's make_with(theAuxFile, an_auxdata's text_encoding())
+				set childAuxObj to auxdata_for_texdoc(a_texdoc)
+				if childAuxObj is not missing value then
+					parse_aux_file(childAuxObj)
+					an_auxdata's addChildAuxObj(childAuxObj)
+				end if
 			end if
 			--log "end @input"
 		end if
@@ -260,7 +270,6 @@ end parse_aux_file
 on find_labels_from_doc(an_auxdata, force_flag)
 	--log "start find_labels_from_doc"
 	set doc_content to EditorClient's document_content()
-	--log "before repeat"
 	
 	set a_xlist to XList's make_with(get every paragraph of doc_content)
 	if (not force_flag) and (not an_auxdata's is_texfile_updated()) then
@@ -274,7 +283,7 @@ on find_labels_from_doc(an_auxdata, force_flag)
 		--	else
 		--		log "document is updated"
 	end if
-	
+	--log "before repeat in find_labels_from_doc"
 	set labelCommand to _backslash & "label"
 	an_auxdata's clear_labels_from_doc()
 	repeat while (a_xlist's has_next())
