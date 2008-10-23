@@ -9,6 +9,7 @@ global appController
 global RefPanelController
 global ToolPaletteController
 global EditorClient
+global FrontAccess
 
 --general libs
 global PathAnalyzer
@@ -215,44 +216,43 @@ on dvi_from_editor()
 	return a_dvi
 end dvi_from_editor
 
-on dvi_from_mxdvi()
-	--log "start dvi_from_mxdvi"
-	set fileURL to missing value
-	tell application "System Events"
-		tell process "Mxdvi"
-			set n_wind to count windows
-			repeat with ith from 1 to (count windows)
-				tell window ith
-					if (subrole of it is "AXStandardWindow") then
-						set fileURL to (value of attribute "AxDocument" of it)
-						exit repeat
-					end if
-				end tell
-			end repeat
-		end tell
-	end tell
-	if fileURL is missing value then
+on dvi_from_frontmost()
+	--log "start dvi_from_frontmost"
+	set a_front to make FrontAccess
+	try
+		set file_url to a_front's document_url()
+	on error msg number errno
+		log msg
+		set file_url to missing value
+	end try
+	if file_url is missing value then
 		return missing value
 	end if
-	set theURL to call method "URLWithString:" of class "NSURL" with parameter fileURL
-	set thePath to call method "path" of theURL
-	set a_texdoc to TeXDocController's make_with_dvifile(thePath)
-	set a_dvi to lookup_dvi() of a_texdoc
+	if file_url does not end with ".dvi" then
+		return missing value
+	end if
+	set an_url to call method "URLWithString:" of class "NSURL" with parameter file_url
+	set a_path to call method "path" of an_url
+	set a_texdoc to TeXDocController's make_with_dvifile(a_path)
+	set a_dvi to a_texdoc's lookup_dvi()
+	--log "end dvi_from_frontmost"
 	return a_dvi
-end dvi_from_mxdvi
+end dvi_from_frontmost
 
 (*== actions *)
 on dvi_to_pdf()
 	--log "start dvi_to_pdf"
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
+	set a_dvi to dvi_from_frontmost()
+	(*
 	set front_app to (path to frontmost application as Unicode text)
-	--log appName
 	if front_app ends with "Mxdvi.app:" then
 		set a_dvi to dvi_from_mxdvi()
 	else
 		set a_dvi to missing value
 		--set a_dvi to dvi_from_mxdvi()
 	end if
+	*)
 	
 	if a_dvi is missing value then
 		set a_dvi to dvi_from_editor()
@@ -456,7 +456,6 @@ on quick_typeset_preview()
 	
 	--log "before prepare_view_errorlog"
 	--prepare_view_errorlog(a_log_file_parser, a_dvi)
-	--viewErrorLog(a_log_file_parser, "latex")
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 end quick_typeset_preview
@@ -524,7 +523,6 @@ on do_typeset()
 	end if
 	
 	prepare_view_errorlog(a_log_file_parser, a_dvi)
-	--viewErrorLog(a_log_file_parser, "latex")
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 	if (isDviOutput() of a_log_file_parser) then
