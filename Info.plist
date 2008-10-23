@@ -4,6 +4,29 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>Japanese</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dvi</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>DVIDocument</string>
+			<key>CFBundleTypeName</key>
+			<string>DVI document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>JDVI</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>XML</string>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>TeXBridge</string>
 	<key>CFBundleGetInfoString</key>
@@ -23,7 +46,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>TeXB</string>
 	<key>CFBundleVersion</key>
 	<string>3.3b</string>
 	<key>LSUIElement</key>

@@ -6,8 +6,8 @@ global PathConverter
 global _com_delim
 
 script XdviDriver
-	on set_file_type(dviFileRef)
-		-- do nothing
+	on set_file_type(a_dvi)
+		a_dvi's set_types("TeXB", "JDVI")
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
@@ -52,7 +52,7 @@ script XdviDriver
 end script
 
 script SimpleDriver
-	on set_file_type(dviFileRef)
+	on set_file_type(a_dvi)
 		-- do nothing
 	end set_file_type
 	
@@ -79,7 +79,7 @@ script MxdviDriver
 	on open_dvi given sender:a_dvi, activation:aFlag
 		--log "start open_dvi of MxdviDriver"
 		try
-			set mxdviApp to path to application "Mxdvi" as alias
+			set mxdviApp to path to application (get "Mxdvi") as alias
 		on error
 			set msg to localized string "mxdviIsnotFound"
 			error msg number 1260
@@ -90,7 +90,7 @@ script MxdviDriver
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
 			set targetDviPath to quoted form of (a_dvi's posix_path())
-			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath & " &"
+			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath
 			--log all_command
 			if a_texdoc's is_use_term() then
 				do_command of TerminalCommander for all_command without activation
@@ -103,6 +103,46 @@ script MxdviDriver
 				open a_dvi's file_as_alias()
 			end tell
 		end if
+		--log "end open_dvi"
+	end open_dvi
+end script
+
+script PictPrinterDriver
+	on set_file_type(a_dvi)
+		a_dvi's set_types("TeXB", "JDVI")
+	end set_file_type
+	
+	on open_dvi given sender:a_dvi, activation:aFlag
+		--log "start open_dvi of MxdviDriver"
+		try
+			set pictprinter_app to path to application (get "PictPrinter") as alias
+		on error
+			set msg to localized string "pictPrinterIsnotFound"
+			error msg number 1260
+		end try
+		a_dvi's update_src_special_flag_from_file()
+		--log "success update_src_special_flag_from_file"
+		set a_texdoc to a_dvi's texdoc()
+		set targetDviPath to a_dvi's posix_path()
+		if a_dvi's src_special() and (a_texdoc is not missing value) then
+			using terms from application "PictPrinter"
+				tell application (pictprinter_app as Unicode text)
+					FindRoughly in dvi targetDviPath startLine (a_texdoc's doc_position())
+				end tell
+			end using terms from
+		else
+			using terms from application "PictPrinter"
+				tell application (pictprinter_app as Unicode text)
+					FindRoughly in dvi targetDviPath
+				end tell
+			end using terms from
+			(*
+			tell application (pictprinter_app as Unicode text)
+				open a_dvi's file_as_alias()
+			end tell
+			*)
+		end if
+		if aFlag then call method "activateAppOfType:" of class "SmartActivate" with parameter "pPrn"
 		--log "end open_dvi"
 	end open_dvi
 end script
@@ -164,6 +204,8 @@ on set_dvi_driver()
 		set my _dvi_driver to MxdviDriver
 	else if DVIPreviewMode is 2 then
 		set my _dvi_driver to XdviDriver
+	else if DVIPreviewMode is 3 then
+		set my _dvi_driver to PictPrinterDriver
 	else
 		--log "DVI Preview setting is invalid."
 		error "DVI Preview setting is invalid." number 1290

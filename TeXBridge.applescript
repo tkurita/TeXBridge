@@ -139,10 +139,12 @@ on open theObject
 			show_message("Unknown commandClass : " & command_class) of MessageUtility
 		end if
 	else
-		set command_id to theObject
-		
+		set command_id to item 1 of theObject
 		if command_id starts with "." then
 			openOutputHadler(command_id) of CompileCenter
+		else if (command_id as Unicode text) ends with ".dvi" then
+			set a_dvi to DVIController's make_with_xfile(XFile's make_with(command_id))
+			open_dvi of a_dvi with activation
 			(*
 		else if command_id ends with ".tex" then
 			
