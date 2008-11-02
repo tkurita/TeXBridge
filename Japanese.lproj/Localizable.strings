@@ -56,7 +56,7 @@
 "bbAlreadyCreated" = "すべての .bb ファイルは、既に生成されています。";
 
 /*initilize*/
-"disableUIScripting" = "UI element scripting が有効になっていません。\rシステム環境設定で \"補助機能にアクセスできるようにする\" を ON にして下さい。";
+"disableGUIScripting" = "GUI スクリプティング が有効になっていません。\nシステム環境設定で \"補助機能にアクセスできるようにする\" を ON にして下さい。";
 "Launch System Preferences" = "システム環境設定を起動";
 
 /*preview_pdf:CompileCenter*/

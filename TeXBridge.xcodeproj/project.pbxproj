@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAppleScriptBuildPhase section */
@@ -90,9 +90,7 @@
 		2C808A8E0E9BD985006F19EB /* Terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C808A8D0E9BD985006F19EB /* Terminal.h */; };
 		2C808AAD0E9BD9C2006F19EB /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */; };
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
-		2C808AD00E9BDC2E006F19EB /* DefaultToNilTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C808ACE0E9BDC2E006F19EB /* DefaultToNilTransformer.h */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
-		2C860B010EA24B51004D54B8 /* ReplaceInputData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CA3F88308BEE59500F997B9 /* ToolPaletteController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -110,6 +108,8 @@
 		2CE026E40EB0C98500925F15 /* KTeXEdit.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = 2CE026E10EB0C98500925F15 /* KTeXEdit.scriptTerminology */; };
 		2CE026EE0EB0C9A400925F15 /* FindRoughlyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */; };
 		2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CE026F00EB0CAB600925F15 /* DVIDocument.icns */; };
+		2CE680030EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */; };
+		2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */; };
 		2CE77AD508E257D200C3AD21 /* ToolPaletteButtons.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */; };
 /* End PBXBuildFile section */
@@ -222,6 +222,9 @@
 		2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRoughlyCommand.m; sourceTree = "<group>"; };
 		2CE026ED0EB0C9A400925F15 /* FindRoughlyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRoughlyCommand.h; sourceTree = "<group>"; };
 		2CE026F00EB0CAB600925F15 /* DVIDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DVIDocument.icns; sourceTree = "<group>"; };
+		2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldKTeXEdit.scriptSuite; sourceTree = "<group>"; };
+		2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_TeXFileUtilities.m; sourceTree = "<group>"; };
+		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
 		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
@@ -332,6 +335,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */,
 				2CE026E00EB0C98500925F15 /* KTeXEdit.scriptSuite */,
 				2CE026E10EB0C98500925F15 /* KTeXEdit.scriptTerminology */,
 				2CE026E20EB0C98500925F15 /* KTeXEdit.sdef */,
@@ -436,6 +440,8 @@
 		2CD553EC08BCDE96007E43D1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */,
+				2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */,
 				2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */,
 				2CE026ED0EB0C9A400925F15 /* FindRoughlyCommand.h */,
 				2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */,
@@ -474,8 +480,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C808A8E0E9BD985006F19EB /* Terminal.h in Headers */,
-				2C808AD00E9BDC2E006F19EB /* DefaultToNilTransformer.h in Headers */,
-				2C860B010EA24B51004D54B8 /* ReplaceInputData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +513,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
@@ -548,6 +552,7 @@
 				2CE026E30EB0C98500925F15 /* KTeXEdit.scriptSuite in Resources */,
 				2CE026E40EB0C98500925F15 /* KTeXEdit.scriptTerminology in Resources */,
 				2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */,
+				2CE680030EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +583,7 @@
 				2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */,
 				2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */,
 				2CE026EE0EB0C9A400925F15 /* FindRoughlyCommand.m in Sources */,
+				2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,7 +694,7 @@
 				INSTALL_PATH = /Library/Preferences/mi/mode/TEX;
 				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_OSAFLAGS = "-x";
@@ -721,7 +727,7 @@
 				INSTALL_PATH = "";
 				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
@@ -751,7 +757,7 @@
 				INSTALL_PATH = "";
 				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TeXBridge;
@@ -771,7 +777,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -786,7 +792,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
@@ -796,7 +802,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 			};
 			name = SDDebug;
 		};
@@ -806,7 +812,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 			};
 			name = Default;
 		};

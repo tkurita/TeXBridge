@@ -1,16 +1,19 @@
+global XText
 global UtilityHandlers
 global TerminalCommander
 global PDFController
 global PathConverter
-
+global _my_signature
 global _com_delim
+global _backslash
 
 script XdviDriver
-	on set_file_type(a_dvi)
-		a_dvi's set_types("TeXB", "JDVI")
+	on set_file_type(a_xfile)
+		a_xfile's set_types(_my_signature, "JDVI")
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
+		--log "start open_dvi in XdviDriver"
 		set x11AppName to "X11"
 		if not (is_running(x11AppName) of UtilityHandlers) then
 			tell application x11AppName
@@ -20,40 +23,57 @@ script XdviDriver
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
-		set dviFileName to a_dvi's filename()
-		
+		set dvi_file_name to a_dvi's filename()
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
-		if (a_dvi's src_special()) and (a_texdoc is not missing value) then
-			if a_texdoc's has_parent() then
-				set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
-				set sourceFile to relative_path of PathConverter for (texdoc()'s target_file()'s posix_path())
-			else
-				set sourceFile to a_dvi's texdoc()'s filename()
+		if (a_dvi's src_special()) then
+			if (a_texdoc is not missing value) then
+				if a_texdoc's has_parent() then
+					set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
+					set sourceFile to relative_path of PathConverter for (texdoc()'s target_file()'s posix_path())
+				else
+					set sourceFile to a_dvi's texdoc()'s filename()
+				end if
+				set srcpos_option to "-sourceposition"
+				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of (a_texdoc's doc_position() & space & sourceFile))
 			end if
-			
-			set all_command to cd_command & _com_delim & dviViewCommand & " -sourceposition '" & (a_texdoc's doc_position()) & space & sourceFile & "' '" & dviFileName & "' &"
+			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
+			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
+			set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
 			do_command of TerminalCommander for all_command without activation
 		else
-			try
-				set pid to do shell script "ps -o pid,command|awk '/xdvi.bin.*" & dviFileName & "$/{print $1}'"
-			on error msg number 1
-				set pid to ""
-			end try
-			
-			if pid is "" then
-				set all_command to cd_command & _com_delim & dviViewCommand & space & "'" & dviFileName & "' &"
+			set need_command to true
+			if (dviViewCommand does not contain "-unique") then
+				--log "no source special"
+				try
+					set pid to do shell script "/usr/sbin/lsof -a -Fp -c xdvi -u $USER " & quoted form of (a_dvi's posix_path())
+				on error msg number 1
+					set pid to missing value
+				end try
+				--log pid
+				if pid is not missing value then
+					set pid to text 2 thru -1 of pid
+					do shell script "kill -USR1" & space & pid --reread
+					set need_command to false
+				end if
+			end if
+			if need_command then
+				set dviViewCommand to replace of XText for dviViewCommand from "-editor %editor" by ""
+				set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
 				do_command of TerminalCommander for all_command without activation
-			else
-				set pid to word 1 of pid
-				do shell script "kill -USR1" & space & pid --reread
 			end if
 		end if
+		--log "end open_dvi in XdviDriver"
 	end open_dvi
 end script
 
 script SimpleDriver
-	on set_file_type(a_dvi)
-		-- do nothing
+	on set_file_type(a_xfile)
+		set info_rec to a_xfile's info()
+		set a_creator to info_rec's file creator
+		set a_type to info_rec's file creator
+		if a_creator is _my_signature then
+			a_xfile's set_types(missing value, a_type)
+		end if
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
@@ -109,7 +129,7 @@ end script
 
 script PictPrinterDriver
 	on set_file_type(a_dvi)
-		a_dvi's set_types("TeXB", "JDVI")
+		a_dvi's set_types(_my_signature, "JDVI")
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
@@ -217,31 +237,51 @@ on getModDate()
 	return modification date of (my _dvifile's info())
 end getModDate
 
-on set_src_special_flag()
-	if (my _texdoc's typeset_command()) contains "-src" then
-		set_src_special(true)
+on remove_src_special_flag_in_comment()
+	set a_file to my _dvifile's as_alias()
+	tell application "Finder"
+		set a_comment to comment of a_file
+	end tell
+	if a_comment is "Source Specials" then
 		ignoring application responses
 			tell application "Finder"
-				set comment of (my _dvifile's as_alias()) to "Source Specials"
-			end tell
-		end ignoring
-	else
-		set_src_special(false)
-		ignoring application responses
-			tell application "Finder"
-				set comment of my _dvifile's as_alias() to ""
+				set comment of a_file to ""
 			end tell
 		end ignoring
 	end if
+end remove_src_special_flag_in_comment
+
+on set_src_special_flag()
+	set a_path to my _dvifile's posix_path()
+	call method "setHasSourceSpecials:" of a_path with parameter ((my _texdoc's typeset_command()) contains "-src")
 end set_src_special_flag
 
 on update_src_special_flag_from_file()
+	--log "start update_src_special_flag_from_file"
 	if src_special() is missing value then
-		tell application "Finder"
-			set comment_text to comment of (my _dvifile's as_alias())
-		end tell
-		set_src_special(comment_text starts with "Source Special")
+		set a_path to my _dvifile's posix_path()
+		set a_flag to call method "hasSourceSpecials" of a_path
+		if a_flag is -1 then
+			tell application "Finder"
+				set a_comment to comment of (my _dvifile's as_alias())
+			end tell
+			set src_flag to a_comment is "Source Specials"
+			if src_flag then
+				ignoring application responses
+					tell application "Finder"
+						set comment of my _dvifile's as_alias() to ""
+					end tell
+				end ignoring
+			end if
+			call method "setHasSourceSpecials:" of a_path with parameter src_flag
+			set_src_special(src_flag)
+		else if a_flag is 1 then
+			set_src_special(true)
+		else if a_flag is 0 then
+			set_src_special(false)
+		end if
 	end if
+	--log "end update_src_special_flag_from_file"
 end update_src_special_flag_from_file
 
 on open_dvi given activation:aFlag

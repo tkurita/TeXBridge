@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>AppleEventCode</key>
-	<string>ktxE</string>
+	<string>misc</string>
 	<key>Commands</key>
 	<dict>
 		<key>FindRoughly</key>
 		<dict>
 			<key>AppleEventClassCode</key>
-			<string>ktxE</string>
+			<string>misc</string>
 			<key>AppleEventCode</key>
 			<string>FndR</string>
 			<key>Arguments</key>
@@ -17,7 +17,7 @@
 				<key>inDvi</key>
 				<dict>
 					<key>AppleEventCode</key>
-					<string>iDvi</string>
+					<string>file</string>
 					<key>Optional</key>
 					<string>YES</string>
 					<key>Type</key>
@@ -26,7 +26,7 @@
 				<key>previousText</key>
 				<dict>
 					<key>AppleEventCode</key>
-					<string>Prev</string>
+					<string>prev</string>
 					<key>Optional</key>
 					<string>YES</string>
 					<key>Type</key>
@@ -44,7 +44,7 @@
 				<key>selecting</key>
 				<dict>
 					<key>AppleEventCode</key>
-					<string>Selc</string>
+					<string>selc</string>
 					<key>Optional</key>
 					<string>YES</string>
 					<key>Type</key>
@@ -62,7 +62,7 @@
 				<key>text</key>
 				<dict>
 					<key>AppleEventCode</key>
-					<string>Text</string>
+					<string>TEXT</string>
 					<key>Optional</key>
 					<string>YES</string>
 					<key>Type</key>
@@ -80,7 +80,7 @@
 				<key>withSource</key>
 				<dict>
 					<key>AppleEventCode</key>
-					<string>At  </string>
+					<string>at  </string>
 					<key>Optional</key>
 					<string>YES</string>
 					<key>Type</key>
@@ -103,7 +103,7 @@
 		</dict>
 	</dict>
 	<key>Name</key>
-	<string>KTeXEdit</string>
+	<string>OldKTeXEdit</string>
 	<key>UsedFeatures</key>
 	<array>
 		<string>UnnamedArguments</string>

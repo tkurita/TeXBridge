@@ -28,7 +28,8 @@
 	OSStatus status = FSPathMakeRef((UInt8 *)[tex_path fileSystemRepresentation], &ref, NULL);
 	if (status == noErr) {
 		id miclient = [[[miClient alloc] init] autorelease];
-		BOOL is_success = [miclient jumpToFile:&ref paragraph:start_pos];
+		[miclient setUseBookmarkBeforeJump:YES];
+		[miclient jumpToFile:&ref paragraph:start_pos];
 	}
 	
 	return [super performDefaultImplementation];

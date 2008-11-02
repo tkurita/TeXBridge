@@ -125,7 +125,7 @@
 	<key>bibtexCommand</key>
 	<string>jbibtex</string>
 	<key>dviViewCommand</key>
-	<string>xdvi -postscript 0</string>
+	<string>xdvi -postscript 0 -nofork -unique -editor %editor</string>
 	<key>dvipdfCommand</key>
 	<string>dvipdfmx -V 4</string>
 	<key>dvipsCommand</key>

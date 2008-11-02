@@ -23,6 +23,8 @@ property _com_delim : return
 
 property constantsDict : missing value
 
+property _my_signature : missing value
+
 (*=== dynamically loaded script objects ===*)
 property UtilityHandlers : missing value
 property MessageUtility : missing value
@@ -217,6 +219,8 @@ on setup_constants()
 	end tell
 	set constantsDict to call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistPath
 	set _backslash to backslash of constantsDict
+	
+	set my _my_signature to call method "objectForInfoDictionaryKey:" of main bundle with parameter "CFBundleSignature"
 end setup_constants
 
 on will finish launching theObject

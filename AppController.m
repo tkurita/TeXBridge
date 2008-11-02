@@ -167,7 +167,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
     {
 		[startupWindow close];
 		[NSApp activateIgnoringOtherApps:YES];
-		int ret = NSRunAlertPanel(NSLocalizedString(@"disableUIScripting", ""), @"", 
+		int ret = NSRunAlertPanel(NSLocalizedString(@"disableGUIScripting", ""), @"", 
 							NSLocalizedString(@"Launch System Preferences", ""),
 							NSLocalizedString(@"Cancel",""), @"");
 		switch (ret)
