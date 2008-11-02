@@ -195,7 +195,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>2C98B6030EBD81E400C24451</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>DVIController.applescript</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>2C98B6040EBD81E400C24451</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>DVIController.applescript</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>2C98B60F0EBD821900C24451</string>
+						<key>history</key>
+						<array>
+							<string>2C98B5F60EBD812F00C24451</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {965, 684}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>336 185 965 725 0 0 1440 938 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -229,6 +270,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -275,7 +318,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>19</integer>
+									<integer>18</integer>
 									<integer>7</integer>
 									<integer>0</integer>
 								</array>
@@ -313,14 +356,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RefPanelController.applescript</string>
+								<string>TeXDocController.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +369,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RefPanelController.applescript</string>
+										<string>TeXDocController.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C98B5E90EBD280200C24451</string>
+										<string>2C98B60E0EBD821900C24451</string>
 										<key>history</key>
 										<array>
 											<string>2C736FC90C61BA0200328CF4</string>
@@ -356,11 +397,9 @@
 											<string>2CF03F8E0EA7B81E0044339F</string>
 											<string>2CD680210EACD45100790719</string>
 											<string>2CD680220EACD45100790719</string>
-											<string>2CA333D60EAD4F2D00C009DE</string>
 											<string>2CA333F10EAD54A600C009DE</string>
 											<string>2CE026F80EB0CB0B00925F15</string>
 											<string>2CE027100EB0DF1B00925F15</string>
-											<string>2CE027110EB0DF1B00925F15</string>
 											<string>2CE6802B0EB9FEA500E600A2</string>
 											<string>2CE6802C0EB9FEA500E600A2</string>
 											<string>2CE6802D0EB9FEA500E600A2</string>
@@ -389,7 +428,10 @@
 											<string>2C98B5C50EBD26DE00C24451</string>
 											<string>2C98B5C60EBD26DE00C24451</string>
 											<string>2C98B5C70EBD26DE00C24451</string>
-											<string>2C98B5D00EBD26DE00C24451</string>
+											<string>2C98B5FA0EBD81E400C24451</string>
+											<string>2C98B5FB0EBD81E400C24451</string>
+											<string>2C98B5FC0EBD81E400C24451</string>
+											<string>2C98B5FD0EBD81E400C24451</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -447,6 +489,10 @@
 											<string>2CE680570EB9FEA500E600A2</string>
 											<string>2C98B5CD0EBD26DE00C24451</string>
 											<string>2C98B5CF0EBD26DE00C24451</string>
+											<string>2C98B5FE0EBD81E400C24451</string>
+											<string>2C98B5FF0EBD81E400C24451</string>
+											<string>2C98B6000EBD81E400C24451</string>
+											<string>2C98B6010EBD81E400C24451</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -649,7 +695,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C98B60C0EBD81E400C24451</string>
+		<string>2C98B60D0EBD81E400C24451</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>2CD476790E93E00A0069C39E</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>2C98B6030EBD81E400C24451</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/tkurita/Documents/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -669,14 +721,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>FindRoughlyCommand.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -696,7 +746,7 @@
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 69}, {819, 158}}</string>
+								<string>{{0, 5}, {819, 222}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -734,7 +784,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C98B5B30EBCA08400C24451</string>
+				<string>2C98B6060EBD81E400C24451</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -894,7 +944,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DVIController.applescript</string>
+										<string>CompileCenter.applescript</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -950,8 +1000,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2C3497BB0EAEABE20097A2BE</string>
-				<string>2C3497BC0EAEABE20097A2BE</string>
+				<string>2C98B6070EBD81E400C24451</string>
+				<string>2C98B6080EBD81E400C24451</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -960,7 +1010,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -981,8 +1031,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1018,7 +1066,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>2C98B5D70EBD26DE00C24451</string>
+				<string>2C98B6090EBD81E400C24451</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1028,7 +1076,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

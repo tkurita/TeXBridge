@@ -542,7 +542,8 @@ on preview_dvi()
 	
 	try
 		set a_texdoc to checkmifiles without saving and autosave
-		a_texdoc's set_use_term(false)
+		--a_texdoc's set_use_term(false)
+		a_texdoc's set_use_term(true)
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
 			show_error(errno, "preview_dvi", msg) of MessageUtility

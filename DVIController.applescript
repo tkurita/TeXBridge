@@ -110,7 +110,7 @@ script MxdviDriver
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
 			set targetDviPath to quoted form of (a_dvi's posix_path())
-			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath
+			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath & " &"
 			--log all_command
 			if a_texdoc's is_use_term() then
 				do_command of TerminalCommander for all_command without activation
