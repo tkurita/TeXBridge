@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -316,6 +314,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -333,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C3CDECC0EBFCB77009DD63A</string>
+										<string>2C3CDED20EBFD30F009DD63A</string>
 										<key>history</key>
 										<array>
 											<string>2C736FC90C61BA0200328CF4</string>
@@ -652,6 +652,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
+		<string>2CD476790E93E00A0069C39E</string>
 		<string>/Users/tkurita/Documents/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -734,7 +736,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C3AF17E0EBD859D0037AF25</string>
+				<string>2C3CDED30EBFD30F009DD63A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -854,13 +856,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C3AF17F0EBD859D0037AF25</string>
+				<string>2C3CDED40EBFD30F009DD63A</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C3AF1800EBD859D0037AF25</string>
-				<string>2C3AF1810EBD859D0037AF25</string>
-				<string>2C3AF1820EBD859D0037AF25</string>
-				<string>2C3AF1830EBD859D0037AF25</string>
-				<string>2C3AF1840EBD859D0037AF25</string>
+				<string>2C3CDED50EBFD30F009DD63A</string>
+				<string>2C3CDED60EBFD30F009DD63A</string>
+				<string>2C3CDED70EBFD30F009DD63A</string>
+				<string>2C3CDED80EBFD30F009DD63A</string>
+				<string>2C3CDED90EBFD30F009DD63A</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

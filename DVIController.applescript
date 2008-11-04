@@ -34,7 +34,7 @@ script XdviDriver
 					set sourceFile to a_dvi's texdoc()'s filename()
 				end if
 				set srcpos_option to "-sourceposition"
-				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of (a_texdoc's doc_position() & space & sourceFile))
+				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of ((a_texdoc's doc_position() as Unicode text) & space & sourceFile))
 			end if
 			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
 			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
