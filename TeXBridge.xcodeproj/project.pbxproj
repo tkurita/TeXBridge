@@ -828,7 +828,7 @@
 				2C6D92DF0928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */ = {
 			isa = XCConfigurationList;
@@ -839,7 +839,7 @@
 				2C6D92E40928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

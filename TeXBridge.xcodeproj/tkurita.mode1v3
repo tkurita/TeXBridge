@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -275,9 +277,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
-									<integer>22</integer>
-									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -314,8 +313,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -333,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C3CDED20EBFD30F009DD63A</string>
+										<string>2CD6F5D40EC1F0B100134939</string>
 										<key>history</key>
 										<array>
 											<string>2C736FC90C61BA0200328CF4</string>
@@ -391,7 +388,7 @@
 											<string>2C98B5FB0EBD81E400C24451</string>
 											<string>2C3AF1750EBD859D0037AF25</string>
 											<string>2C3AF1760EBD859D0037AF25</string>
-											<string>2C3AF1990EBD94CA0037AF25</string>
+											<string>2CF652860EC0970600F178A7</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -507,9 +504,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C3CDECD0EBFCB77009DD63A</string>
+				<string>2CD6F5D50EC1F0B100134939</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C3CDECE0EBFCB77009DD63A</string>
+				<string>2CD6F5D60EC1F0B100134939</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -652,7 +649,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2CD476790E93E00A0069C39E</string>
 		<string>/Users/tkurita/Documents/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
@@ -736,7 +732,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C3CDED30EBFD30F009DD63A</string>
+				<string>2CD6F5D70EC1F0B100134939</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -856,13 +852,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C3CDED40EBFD30F009DD63A</string>
+				<string>2CF6528A0EC0970600F178A7</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C3CDED50EBFD30F009DD63A</string>
-				<string>2C3CDED60EBFD30F009DD63A</string>
-				<string>2C3CDED70EBFD30F009DD63A</string>
-				<string>2C3CDED80EBFD30F009DD63A</string>
-				<string>2C3CDED90EBFD30F009DD63A</string>
+				<string>2CF6528B0EC0970600F178A7</string>
+				<string>2CF6528C0EC0970600F178A7</string>
+				<string>2CF6528D0EC0970600F178A7</string>
+				<string>2CF6528E0EC0970600F178A7</string>
+				<string>2CF6528F0EC0970600F178A7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
