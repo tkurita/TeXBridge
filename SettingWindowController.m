@@ -10,7 +10,8 @@
 
 + (void)initialize
 {	
-	NSValueTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	DefaultToNilTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	[transformer setNilWord:@"Default"];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
 }
 

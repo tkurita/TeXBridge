@@ -204,7 +204,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<object class="NSMenuItem" key="NSMenuItem" id="713347189">
 														<reference key="NSMenu" ref="888057786"/>
-														<string key="NSTitle">Default</string>
+														<string type="base64-UTF8" key="NSTitle">44OH44OV44Kp44Or44OIA</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSMnemonicLoc">2147483647</int>
 														<int key="NSState">1</int>
@@ -2269,35 +2269,6 @@ meOAgg</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedValue: values.SettingsSetName</string>
-						<reference key="source" ref="132581757"/>
-						<reference key="destination" ref="685658365"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="132581757"/>
-							<reference key="NSDestination" ref="685658365"/>
-							<string key="NSLabel">selectedValue: values.SettingsSetName</string>
-							<string key="NSBinding">selectedValue</string>
-							<string key="NSKeyPath">values.SettingsSetName</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSNullPlaceholder</string>
-									<string>NSValueTransformerName</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>Default</string>
-									<string>DefaultToNil</string>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">2023</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.value</string>
 						<reference key="source" ref="425751810"/>
 						<reference key="destination" ref="564138347"/>
@@ -2449,14 +2420,6 @@ meOAgg</string>
 					<int key="connectionID">2054</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">mxdviField</string>
-						<reference key="source" ref="252045561"/>
-						<reference key="destination" ref="490594328"/>
-					</object>
-					<int key="connectionID">2055</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: mxdviEditor</string>
 						<reference key="source" ref="358202830"/>
@@ -2487,6 +2450,26 @@ meOAgg</string>
 						<reference key="destination" ref="252045561"/>
 					</object>
 					<int key="connectionID">2059</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: values.SettingsSetName</string>
+						<reference key="source" ref="132581757"/>
+						<reference key="destination" ref="685658365"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="132581757"/>
+							<reference key="NSDestination" ref="685658365"/>
+							<string key="NSLabel">selectedValue: values.SettingsSetName</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">values.SettingsSetName</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">DefaultToNil</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2060</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4847,7 +4830,7 @@ s+ODnuODs+ODiQ</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2059</int>
+			<int key="maxID">2060</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

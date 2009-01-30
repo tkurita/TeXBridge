@@ -2,17 +2,11 @@
 
 
 @implementation DefaultToNilTransformer
-
-static NSPopUpButton *popupMenu = nil;
+@synthesize nilWord;
 
 + (Class)transformedValueClass
 {
 	return [NSString class];
-}
-
-+ (void)setPopupMenu:(NSPopUpButton *)aPopupMenu
-{
-	popupMenu = aPopupMenu;
 }
 
 + (BOOL)allowsReverseTransformation
@@ -22,15 +16,18 @@ static NSPopUpButton *popupMenu = nil;
 
 - (id)transformedValue:(id)aString
 {
+	if (!aString) {
+		return NSLocalizedString(nilWord, @"");
+	} 
+	
 	return aString;
 }
 
 - (id)reverseTransformedValue:(id)value
 {
-	if ([popupMenu indexOfSelectedItem] == 0) {
+	if ([value isEqualToString:NSLocalizedString(nilWord, @"")]) {
 		return nil;
 	}
-
 	return value;	
 }
 
