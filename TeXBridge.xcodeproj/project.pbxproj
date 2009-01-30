@@ -150,7 +150,7 @@
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
-		2C47F6EF0A7618B6001809FA /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
+		2C47F6EF0A7618B6001809FA /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
 		2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoPDFIcon.png; path = images/TeXtoPDFIcon.png; sourceTree = "<group>"; };
 		2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoDVIIcon.png; path = images/TeXtoDVIIcon.png; sourceTree = "<group>"; };
 		2C49445C07AD21E900B2A8D8 /* generalpref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = generalpref.png; path = images/generalpref.png; sourceTree = "<group>"; };

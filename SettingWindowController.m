@@ -176,6 +176,7 @@
 {
 	TerminalApplication *termapp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 	NSArray *names = [[termapp settingsSets] arrayByApplyingSelector:@selector(name)];
+	names = [names sortedArrayUsingSelector:@selector(localizedCompare:)];
 	
 	NSString *selected_title = [[settingMenu selectedItem] title];
 	NSUInteger nitems = [[settingMenu itemArray] count];
