@@ -219,6 +219,12 @@
 
 
 #pragma mark delegate methods
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	if ([[tabViewItem identifier] isEqualToString:@"TerminalSettings"]) {
+		[self reloadSettingsMenu:self];
+	}
+}
 
 - (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
 {
