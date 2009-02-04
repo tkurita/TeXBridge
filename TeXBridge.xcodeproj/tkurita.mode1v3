@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingWindowController.m</string>
+								<string>SettingWindowController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingWindowController.m</string>
+										<string>SettingWindowController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CB721B20F32CA9B00995D8A</string>
+										<string>2CB721D90F32CD4900995D8A</string>
 										<key>history</key>
 										<array>
 											<string>2C736FC90C61BA0200328CF4</string>
@@ -366,8 +366,6 @@
 											<string>2CE680390EB9FEA500E600A2</string>
 											<string>2CE6803A0EB9FEA500E600A2</string>
 											<string>2CE6803B0EB9FEA500E600A2</string>
-											<string>2CE680400EB9FEA500E600A2</string>
-											<string>2CE680410EB9FEA500E600A2</string>
 											<string>2C98B5C20EBD26DE00C24451</string>
 											<string>2C98B5C30EBD26DE00C24451</string>
 											<string>2C98B5C40EBD26DE00C24451</string>
@@ -382,9 +380,11 @@
 											<string>2CB7210C0F32BBA200995D8A</string>
 											<string>2CB7210D0F32BBA200995D8A</string>
 											<string>2CB721450F32BF0C00995D8A</string>
-											<string>2CB7217C0F32C35D00995D8A</string>
-											<string>2CB721A10F32C98600995D8A</string>
-											<string>2CB721A20F32C98600995D8A</string>
+											<string>2CB721C10F32CC3800995D8A</string>
+											<string>2CB721C20F32CC3800995D8A</string>
+											<string>2CB721C30F32CC3800995D8A</string>
+											<string>2CB721C40F32CC3800995D8A</string>
+											<string>2CB721C50F32CC3800995D8A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -434,7 +434,6 @@
 											<string>2CE680500EB9FEA500E600A2</string>
 											<string>2CE680510EB9FEA500E600A2</string>
 											<string>2CE680520EB9FEA500E600A2</string>
-											<string>2CE680570EB9FEA500E600A2</string>
 											<string>2C98B5CD0EBD26DE00C24451</string>
 											<string>2C98B5CF0EBD26DE00C24451</string>
 											<string>2C98B5FF0EBD81E400C24451</string>
@@ -445,6 +444,15 @@
 											<string>2CB721810F32C35D00995D8A</string>
 											<string>2CB7218A0F32C4D300995D8A</string>
 											<string>2CB721A30F32C98600995D8A</string>
+											<string>2CB721C60F32CC3800995D8A</string>
+											<string>2CB721C70F32CC3800995D8A</string>
+											<string>2CB721C80F32CC3800995D8A</string>
+											<string>2CB721C90F32CC3800995D8A</string>
+											<string>2CB721CA0F32CC3800995D8A</string>
+											<string>2CB721CB0F32CC3800995D8A</string>
+											<string>2CB721CC0F32CC3800995D8A</string>
+											<string>2CB721CD0F32CC3800995D8A</string>
+											<string>2CB721CE0F32CC3800995D8A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -647,8 +655,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2CB721B30F32CA9B00995D8A</string>
-		<string>2CB721AF0F32CA6F00995D8A</string>
 		<string>2CB721A50F32C98600995D8A</string>
 		<string>2CB721A60F32C98600995D8A</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
