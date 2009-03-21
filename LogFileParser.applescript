@@ -13,13 +13,13 @@ on log_contents()
 	return my _texdoc's log_contents()
 end log_contents
 
-on isDviOutput()
+on is_dvi_output()
 	return my _isDviOutput
-end isDviOutput
+end is_dvi_output
 
-on isNoError()
+on is_no_error()
 	return my _isNoError
-end isNoError
+end is_no_error
 
 on labels_changed()
 	return my _isLabelsChanged
@@ -31,7 +31,7 @@ on parseLog(logParser)
 	set AppleScript's text item delimiters to space
 	set commandName to text item 1 of (my _texdoc's typeset_command())
 	set AppleScript's text item delimiters to preDelim
-	call method "setJobName:" of logParser with parameter (commandName & space & (my _texdoc's filename()))
+	call method "setJobName:" of logParser with parameter (commandName & space & (my _texdoc's fileName()))
 	try
 		set parseResult to call method "parseLog" of logParser
 	on error msg number errno

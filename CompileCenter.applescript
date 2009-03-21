@@ -436,8 +436,8 @@ on quick_typeset_preview()
 	parseLogText() of a_log_file_parser
 	--log "after parseLogText in quick_typeset_preview"
 	show_status_message("Opening DVI file  ...") of ToolPaletteController
-	set aFlag to isNoError() of a_log_file_parser
-	if isDviOutput() of a_log_file_parser then
+	set aFlag to is_no_error() of a_log_file_parser
+	if is_dvi_output() of a_log_file_parser then
 		try
 			open_dvi of a_dvi given activation:aFlag
 		on error msg number errno
@@ -463,9 +463,11 @@ end quick_typeset_preview
 on typeset_preview()
 	set a_dvi to do_typeset()
 	show_status_message("Opening DVI file ...") of ToolPaletteController
+	set activate_flag to false
 	if a_dvi is not missing value then
+		set activate_flag to a_dvi's log_parser()'s is_no_error()
 		try
-			open_dvi of a_dvi given activation:missing value
+			open_dvi of a_dvi given activation:activate_flag
 		on error msg number errno
 			show_error(errno, "typeset_preview", msg) of MessageUtility
 		end try
@@ -525,7 +527,11 @@ on do_typeset()
 	prepare_view_errorlog(a_log_file_parser, a_dvi)
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
-	if (isDviOutput() of a_log_file_parser) then
+	a_dvi's set_log_parser(a_log_file_parser)
+	if (not (a_log_file_parser's is_no_error())) then
+		call method "activateSelf" of class "SmartActivate"
+	end if
+	if (is_dvi_output() of a_log_file_parser) then
 		return a_dvi
 	else
 		set a_msg to localized string "DVIisNotGenerated"

@@ -23,7 +23,7 @@ script XdviDriver
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
-		set dvi_file_name to a_dvi's filename()
+		set dvi_file_name to a_dvi's fileName()
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
 		if (a_dvi's src_special()) then
 			if (a_texdoc is not missing value) then
@@ -31,7 +31,7 @@ script XdviDriver
 					set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
 					set sourceFile to relative_path of PathConverter for (texdoc()'s target_file()'s posix_path())
 				else
-					set sourceFile to a_dvi's texdoc()'s filename()
+					set sourceFile to a_dvi's texdoc()'s fileName()
 				end if
 				set srcpos_option to "-sourceposition"
 				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of ((a_texdoc's doc_position() as Unicode text) & space & sourceFile))
@@ -85,7 +85,7 @@ script SimpleDriver
 			return
 		else
 			activate
-			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's filename()})
+			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's fileName()})
 			display alert a_msg
 		end if
 	end open_dvi
@@ -171,12 +171,12 @@ on file_ref()
 	return my _dvifile
 end file_ref
 
-on filename()
+on fileName()
 	if my _dvifile is not missing value then
 		return my _dvifile's item_name()
 	end if
 	return my _texdoc's name_for_suffix(".dvi")
-end filename
+end fileName
 
 on texdoc()
 	return my _texdoc
@@ -336,11 +336,20 @@ on set_dvifile(a_xfile)
 	set my _dvifile to a_xfile
 end set_dvifile
 
+on set_log_parser(a_log_parser)
+	set my _log_parser to a_log_parser
+end set_log_parser
+
+on log_parser()
+	return my _log_parser
+end log_parser
+
 on make
 	script DVIController
 		property _texdoc : missing value
 		property _dvifile : missing value
 		property _isSrcSpecial : missing value
+		property _log_parser : missing value
 		property _dvi_driver : SimpleDriver
 	end script
 	

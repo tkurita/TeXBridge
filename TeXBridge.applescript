@@ -147,15 +147,6 @@ on open theObject
 		else if (command_id as Unicode text) ends with ".dvi" then
 			set a_dvi to DVIController's make_with_xfile(XFile's make_with(command_id))
 			open_dvi of a_dvi with activation
-			(*
-		else if command_id ends with ".tex" then
-			
-			EditorClient's open_with_activating(command_id)
-			tell user defaults
-				set targetLine to contents of default entry "SourcePosition"
-			end tell
-			doReverseSearch(targetLine)
-		*)
 		else
 			show_message("Unknown argument : " & command_id) of MessageUtility
 		end if
