@@ -3,6 +3,7 @@
 #import "CocoaLib/PathExtra.h"
 #import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder/DonationReminder.h"
+#import "SmartActivate.h"
 
 #define useLog 0
 
@@ -55,6 +56,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
 	}
 	[settingWindow showWindow:self];
+	[SmartActivate activateSelf];
 }
 
 - (void)checkQuit:(NSTimer *)aTimer
