@@ -57,6 +57,8 @@
 	<string>YES</string>
 	<key>NSMainNibFile</key>
 	<string>TeXBridge</string>
+	<key>DonationURL</key>
+	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
