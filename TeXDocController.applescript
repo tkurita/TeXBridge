@@ -35,14 +35,13 @@ on resolve_parent(a_paragraph)
 	end if
 	--tell me to log "tex_file : " & tex_file
 	if tex_file ends with ":" then
-		set a_msg to UtilityHandlers's localized_string("ParentFIleIsInvalid", parent_file)
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsInvalid", {parent_file})
 		error a_msg number 1230
 	end if
-	
 	try
 		set tex_file to tex_file as alias
 	on error
-		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", tex_file)
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", {tex_file})
 		error a_msg number 1220
 	end try
 	

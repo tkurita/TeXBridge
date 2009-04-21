@@ -186,7 +186,7 @@
 		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
 		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXBridge.nib; sourceTree = "<group>"; };
-		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteController.applescript; sourceTree = "<group>"; };
