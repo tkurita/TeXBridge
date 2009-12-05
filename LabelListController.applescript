@@ -3,7 +3,6 @@ global _backslash
 global XDict
 global XText
 global PathConverter
-global PathAnalyzer
 global XList
 
 global RefPanelController
@@ -15,7 +14,6 @@ global CompileCenter
 (*
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:TeX Tools for mi:Library Scripts:"
 property XDict : load script file (LibraryFolder & "XDict.scpt")
-property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
 property PathConverter : load script file (LibraryFolder & "PathConverter.scpt")
 *)
 

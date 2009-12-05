@@ -46,6 +46,8 @@
 		2C0313760AAD0F6B005B592F /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2C30E7111095A65800605969 /* FrontAppMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C30E70F1095A65800605969 /* FrontAppMonitor.h */; };
+		2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C30E7101095A65800605969 /* FrontAppMonitor.m */; };
 		2C4E27B4084273B000004A96 /* CompileCenter.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -147,6 +149,8 @@
 		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
 		2C2E5294080625270015E9EB /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
+		2C30E70F1095A65800605969 /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
+		2C30E7101095A65800605969 /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
@@ -368,6 +372,8 @@
 		2C0311A00AACA0F2005B592F /* CocoaLib */ = {
 			isa = PBXGroup;
 			children = (
+				2C30E70F1095A65800605969 /* FrontAppMonitor.h */,
+				2C30E7101095A65800605969 /* FrontAppMonitor.m */,
 				2C0311A10AACA0F2005B592F /* PaletteWindowController.h */,
 				2C0311A20AACA0F2005B592F /* PaletteWindowController.m */,
 				2C0311A30AACA0F2005B592F /* PathExtra.h */,
@@ -447,8 +453,8 @@
 				2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */,
 				2C808ACE0E9BDC2E006F19EB /* DefaultToNilTransformer.h */,
 				2C808A8D0E9BD985006F19EB /* Terminal.h */,
-				2C6CA39608CF5558005D5612 /* RefPanelController.m */,
 				2C6CA39708CF5558005D5612 /* RefPanelController.h */,
+				2C6CA39608CF5558005D5612 /* RefPanelController.m */,
 				2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */,
 				2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */,
 				2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */,
@@ -480,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C808A8E0E9BD985006F19EB /* Terminal.h in Headers */,
+				2C30E7111095A65800605969 /* FrontAppMonitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +591,7 @@
 				2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */,
 				2CE026EE0EB0C9A400925F15 /* FindRoughlyCommand.m in Sources */,
 				2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */,
+				2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +687,9 @@
 		2C6D92DD0928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 5;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -700,6 +710,7 @@
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_NAME = TeXBridge;
 				SECTORDER_FLAGS = "";
+				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",

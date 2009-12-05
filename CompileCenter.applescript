@@ -12,7 +12,6 @@ global EditorClient
 global FrontAccess
 
 --general libs
-global PathAnalyzer
 global ShellUtils
 global TerminalCommander
 global PathConverter

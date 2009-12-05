@@ -145,11 +145,9 @@ on open_window()
 		initilize()
 		set is_first to true
 	end if
-	--set isWorkingDisplayToggleTimer to call method "isWorkingDisplayToggleTimer" of my _window_controller
 	--activate
 	call method "showWindow:" of my _window_controller
 	--log "after showWIndow"
-	--if (is_first or (isWorkingDisplayToggleTimer is 0)) then
 	if is_first then
 		watchmi of LabelListController without force_reloading
 	end if

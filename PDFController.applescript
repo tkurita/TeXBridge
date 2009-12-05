@@ -1,5 +1,4 @@
 global UtilityHandlers
-global PathAnalyzer
 global DefaultsManager
 global MessageUtility
 global appController
@@ -198,9 +197,9 @@ on file_ref()
 	return my _pdffile
 end file_ref
 
-on filename()
+on fileName()
 	return my _pdffile's item_name()
-end filename
+end fileName
 
 on setup_pdfdriver()
 	--log "start setup_pdfdriver()"
@@ -320,7 +319,7 @@ script AcrobatDriver
 	
 	on close_pdf(a_pdf)
 		--log "start close_pdf of AcrobatDriver"
-		set a_filename to a_pdf's filename()
+		set a_filename to a_pdf's fileName()
 		using terms from application "Adobe Acrobat Professional"
 			tell application ((a_pdf's app_name()) as Unicode text)
 				if exists document a_filename then

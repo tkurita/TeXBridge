@@ -1,5 +1,4 @@
 global PathConverter
-global PathAnalyzer
 global XFile
 global XText
 
@@ -115,10 +114,7 @@ end file_ref
 on update_with_parent(a_parent_file)
 	set my _hasParentFile to true
 	set my _file_ref to XFile's make_with(a_parent_file)
-	--set pathRecord to do(tex_file) of PathAnalyzer
-	--set my _workingDirectory to folderReference of pathRecord
 	set my _workingDirectory to my _file_ref's parent_folder()
-	--set my _texFileName to name of pathRecord
 	set my _texFileName to my _file_ref's item_name()
 end update_with_parent
 
@@ -126,9 +122,9 @@ on set_filename(a_name)
 	set my _texFileName to a_name
 end set_filename
 
-on filename()
+on fileName()
 	return my _texFileName
-end filename
+end fileName
 
 on no_suffix_posix_path()
 	return my _file_ref's change_path_extension("")'s posix_path()
@@ -367,7 +363,6 @@ end make_with_dvifile
 
 on make_with(a_xfile, an_encoding)
 	--log "start make_with in TeXDocController"
-	--set pathRecord to do(theTargetFile) of PathAnalyzer
 	
 	script TeXDocController
 		property _file_ref : missing value -- targetFileRef's ParentFile. if ParentFile does not exists, it's same to targeFileRef

@@ -10,7 +10,6 @@ property XDict : load("XDict")
 property XFile : load("XFile")
 property XList : XDict's XList
 property XText : load("XText")
-property PathAnalyzer : XFile's PathAnalyzer
 property FrontAccess : load("FrontAccess")
 property TerminalCommanderBase : load("TerminalCommander")
 property appController : missing value

@@ -31,12 +31,20 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>TeXBridge</string>
+	<key>CFBundleVersion</key>
+	<string>5</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.3.4b</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>copyright 2003-2009, Tetsuro KURITA</string>
 	<key>CFBundleGetInfoString</key>
 	<string>3.3.4b copyright 2003-2009, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>TeX Tools for mi ヘルプ</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.5</string>
 	<key>CFBundleIconFile</key>
 	<string>TeXBridge</string>
 	<key>CFBundleIdentifier</key>
@@ -49,8 +57,6 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>TeXB</string>
-	<key>CFBundleVersion</key>
-	<string>3.3.4</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
