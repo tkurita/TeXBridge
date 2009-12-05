@@ -203,48 +203,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2CAD357910CA0EC60063B249</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>DVIController.applescript</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2CAD357A10CA0EC60063B249</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>DVIController.applescript</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2CAD357B10CA0EC60063B249</string>
-						<key>history</key>
-						<array>
-							<string>2CAD356410CA0E490063B249</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {965, 724}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>336 113 965 765 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -549,7 +508,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CAD357810CA0EC60063B249</string>
+										<string>2CAD358E10CA12090063B249</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -881,13 +840,12 @@
 	<array>
 		<string>2CAD353710CA09FB0063B249</string>
 		<string>2CAD353810CA09FB0063B249</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>2CD476790E93E00A0069C39E</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2AF069F1E9B00FABCE6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
-		<string>2CAD357910CA0EC60063B249</string>
 	</array>
 	<key>WindowString</key>
 	<string>93 131 1210 725 0 0 1440 878 </string>
@@ -1265,7 +1223,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

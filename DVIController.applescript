@@ -8,6 +8,7 @@ global _com_delim
 global _backslash
 
 script XdviDriver
+	property parent : AppleScript
 	on set_file_type(a_xfile)
 		a_xfile's set_types(_my_signature, "JDVI")
 	end set_file_type
@@ -29,7 +30,7 @@ script XdviDriver
 			if (a_texdoc is not missing value) then
 				if a_texdoc's has_parent() then
 					set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
-					set sourceFile to relative_path of PathConverter for (texdoc()'s target_file()'s posix_path())
+					set sourceFile to relative_path of PathConverter for (a_texdoc's target_file()'s posix_path())
 				else
 					set sourceFile to a_dvi's texdoc()'s fileName()
 				end if
@@ -67,6 +68,7 @@ script XdviDriver
 end script
 
 script SimpleDriver
+	property parent : AppleScript
 	on set_file_type(a_xfile)
 		set info_rec to a_xfile's info()
 		set a_creator to info_rec's file creator
@@ -92,6 +94,7 @@ script SimpleDriver
 end script
 
 script MxdviDriver
+	property parent : AppleScript
 	on set_file_type(a_dvi)
 		a_dvi's set_types("Mxdv", "JDVI")
 	end set_file_type
@@ -128,6 +131,7 @@ script MxdviDriver
 end script
 
 script PictPrinterDriver
+	property parent : AppleScript
 	on set_file_type(a_dvi)
 		a_dvi's set_types(_my_signature, "JDVI")
 	end set_file_type
