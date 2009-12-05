@@ -64,7 +64,7 @@ on basename()
 	if my _texdoc's has_file() then
 		return my _texdoc's basename()
 	else
-		return my _texdoc's filename()
+		return my _texdoc's fileName()
 	end if
 end basename
 
@@ -72,7 +72,7 @@ on check_auxfile given display_error:alert_flag
 	--log "start check_auxfile"
 	if my _auxFileRef is missing value then
 		--log "_auxFileRef is missing value"
-		set an_auxfile to tex_file()'s change_path_extension(".aux")
+		set an_auxfile to tex_file()'s change_path_extension("aux")
 		if an_auxfile's item_exists() then
 			--log "aux file exists"
 			set my _auxFileRef to an_auxfile
@@ -280,7 +280,7 @@ on make_with_texdoc(a_texdoc)
 	end script
 	
 	if a_texdoc's has_file() then
-		set an_aux_file to a_texdoc's target_file()'s change_path_extension(".aux")
+		set an_aux_file to a_texdoc's target_file()'s change_path_extension("aux")
 		if an_aux_file's item_exists() then
 			set AuxData's _auxFileRef to an_aux_file
 		end if

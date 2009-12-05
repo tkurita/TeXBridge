@@ -229,7 +229,7 @@ on setup_pdfdriver()
 end setup_pdfdriver
 
 on setup()
-	set my _pdffile to my _dvi's file_ref()'s change_path_extension(".pdf")
+	set my _pdffile to my _dvi's file_ref()'s change_path_extension("pdf")
 end setup
 
 on file_exists()

@@ -1,22 +1,16 @@
-property loader : proxy() of application (get "TeXToolsLib")
-
-on load(a_name)
-	return loader's load(a_name)
-end load
-
-property ShellUtils : load("ShellUtils")
-property PathConverter : load("PathConverter")
-property XDict : load("XDict")
-property XFile : load("XFile")
-property XList : XDict's XList
-property XText : load("XText")
-property FrontAccess : load("FrontAccess")
-property TerminalCommanderBase : load("TerminalCommander")
+property ShellUtils : module
+property PathConverter : module
+property XDict : module
+property XFile : module
+property XList : module
+property XText : module
+property FrontAccess : module
+property TerminalCommanderBase : module "TerminalCommander"
+property _ : boot (module loader of application (get "TeXToolsLib")) for me
 property appController : missing value
 
 (*=== shared constants ===*)
 property _backslash : missing value
---property yenmark : ASCII character 92
 property yenmark : character id 165
 property _com_delim : return
 

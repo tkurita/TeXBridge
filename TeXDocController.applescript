@@ -9,7 +9,7 @@ global DVIController
 global ToolPaletteController
 
 property name : "TeXDocController"
-property _log_suffix : ".log"
+property _log_suffix : "log"
 
 global _com_delim
 
@@ -127,11 +127,11 @@ on fileName()
 end fileName
 
 on no_suffix_posix_path()
-	return my _file_ref's change_path_extension("")'s posix_path()
+	return my _file_ref's change_path_extension(missing value)'s posix_path()
 end no_suffix_posix_path
 
 on no_suffix_target_path()
-	return my _targetFileRef's change_path_extension("")'s posix_path()
+	return my _targetFileRef's change_path_extension(missing value)'s posix_path()
 end no_suffix_target_path
 
 on basename()
@@ -308,7 +308,7 @@ on path_for_suffix(an_extension)
 end path_for_suffix
 
 on name_for_suffix(a_suffix)
-	return (basename()) & a_suffix
+	return (basename()) & "." & a_suffix
 end name_for_suffix
 
 on open_outfile(an_extension)
@@ -325,8 +325,7 @@ end open_outfile
 
 on lookup_dvi()
 	--log "start lookup_dvi"
-	--set dvi_path to path_for_suffix(".dvi")
-	set a_dvifile to my _file_ref's change_path_extension(".dvi")
+	set a_dvifile to my _file_ref's change_path_extension("dvi")
 	if a_dvifile's item_exists() then
 		--log "dviFilePath exists"
 		set a_dvi to make_with(me) of DVIController

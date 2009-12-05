@@ -175,7 +175,7 @@ on fileName()
 	if my _dvifile is not missing value then
 		return my _dvifile's item_name()
 	end if
-	return my _texdoc's name_for_suffix(".dvi")
+	return my _texdoc's name_for_suffix("dvi")
 end fileName
 
 on texdoc()
@@ -196,7 +196,7 @@ end posix_path
 
 on file_as_alias()
 	if my _dvifile is missing value then
-		set an_alias to my _texdoc's tex_file()'s change_path_extension(".dvi")'s as_alias()
+		set an_alias to my _texdoc's tex_file()'s change_path_extension("dvi")'s as_alias()
 	else
 		set an_alias to my _dvifile's as_alias()
 	end if
@@ -302,7 +302,7 @@ on dvi_to_pdf()
 	--log "convert a DVI file into a PDF file"
 	set a_command to my _texdoc's dvipdf_command()
 	set cd_command to "cd" & space & (quoted form of (cwd()'s posix_path()))
-	set targetFileName to my _texdoc's name_for_suffix(".dvi")
+	set targetFileName to my _texdoc's name_for_suffix("dvi")
 	set all_command to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
 	send_command of TerminalCommander for all_command

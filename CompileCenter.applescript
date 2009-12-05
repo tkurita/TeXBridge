@@ -130,11 +130,11 @@ on preview_dvi_for_frontdoc()
 		return false
 	end try
 	set a_xfile to XFile's make_with(a_file)
-	if a_xfile's path_extension() is ".dvi" then
+	if a_xfile's path_extension() is "dvi" then
 		return true
 	end if
 	
-	set dvi_file to a_xfile's change_path_extension(".dvi")
+	set dvi_file to a_xfile's change_path_extension("dvi")
 	if not dvi_file's item_exists() then
 		return false
 	end if
@@ -180,7 +180,7 @@ end prepare_typeset
 on prepare_view_errorlog(a_log_file_parser, a_dvi)
 	using terms from application "mi"
 		try
-			set auxFileRef to (path_for_suffix(".aux") of a_log_file_parser) as alias
+			set auxFileRef to (path_for_suffix("aux") of a_log_file_parser) as alias
 			
 			tell application "Finder"
 				ignoring application responses
@@ -206,7 +206,7 @@ on dvi_from_editor()
 	
 	set a_dvi to lookup_dvi() of a_texdoc
 	if a_dvi is missing value then
-		set dviName to a_texdoc's name_for_suffix(".dvi")
+		set dviName to a_texdoc's name_for_suffix("dvi")
 		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
 		EditorClient's show_message(a_msg)
 	end if
@@ -354,7 +354,7 @@ end seek_ebb
 
 on exec_ebb(graphic_path, an_extension)
 	set graphic_file to XFile's make_with(POSIX file graphic_path)
-	set bb_file to graphic_file's change_path_extension(".bb")
+	set bb_file to graphic_file's change_path_extension("bb")
 	if bb_file's item_exists() then
 		set bb_mod to modification date of (bb_file's info())
 		set g_mod to modification date of (graphic_file's info())
@@ -566,7 +566,7 @@ on preview_dvi()
 			show_error(errno, "preview_dvi", msg) of MessageUtility
 		end try
 	else
-		set dviName to name_for_suffix(".dvi") of a_texdoc
+		set dviName to name_for_suffix("dvi") of a_texdoc
 		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
 		EditorClient's show_message(a_msg)
 	end if
