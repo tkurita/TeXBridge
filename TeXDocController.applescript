@@ -10,6 +10,7 @@ global ToolPaletteController
 
 property name : "TeXDocController"
 property _log_suffix : "log"
+property _terminal : missing value
 
 global _com_delim
 
@@ -49,6 +50,20 @@ on resolve_parent(a_paragraph)
 end resolve_parent
 
 (*== accessors *)
+on target_terminal()
+	if my _terminal is missing value then
+		set my _terminal to make TerminalCommander
+	end if
+	return my _terminal
+end target_terminal
+
+on preserve_terminal()
+	if my _terminal is not missing value then
+		TerminalCommander's register_from_commander(my _terminal)
+	end if
+	return me
+end preserve_terminal
+
 on has_file()
 	return my _file_ref is not missing value
 end has_file
@@ -163,7 +178,7 @@ on typeset()
 	
 	if my _use_term then
 		set all_command to cd_command & _com_delim & tex_command & space & "'" & my _texFileName & "'"
-		set a_term to make TerminalCommander
+		set a_term to target_terminal()
 		send_command of a_term for all_command
 		delay 1
 		wait_termination(300) of a_term
@@ -308,7 +323,11 @@ on path_for_suffix(an_extension)
 end path_for_suffix
 
 on name_for_suffix(a_suffix)
-	return (basename()) & "." & a_suffix
+	set a_name to basename()
+	if a_suffix is not missing value then
+		set a_name to (basename()) & "." & a_suffix
+	end if
+	return a_name
 end name_for_suffix
 
 on open_outfile(an_extension)

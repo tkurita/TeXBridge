@@ -243,16 +243,6 @@ on dvi_to_pdf()
 	--log "start dvi_to_pdf"
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set a_dvi to dvi_from_frontmost()
-	(*
-	set front_app to (path to frontmost application as Unicode text)
-	if front_app ends with "Mxdvi.app:" then
-		set a_dvi to dvi_from_mxdvi()
-	else
-		set a_dvi to missing value
-		--set a_dvi to dvi_from_mxdvi()
-	end if
-	*)
-	
 	if a_dvi is missing value then
 		set a_dvi to dvi_from_editor()
 	end if
@@ -262,6 +252,7 @@ on dvi_to_pdf()
 	end if
 	
 	set a_pdf to a_dvi's dvi_to_pdf()
+	a_dvi's texdoc()'s preserve_terminal()
 	--log "success to get PDFController"
 	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")
@@ -282,14 +273,13 @@ on dvi_to_ps()
 	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
 	set a_command to a_texdoc's dvips_command()
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
-	set a_command to build_command(a_command, ".dvi") of a_texdoc
+	set a_command to build_command(a_command, "dvi") of a_texdoc
 	set all_command to cd_command & _com_delim & a_command
-	--do_command of TerminalCommander for all_command with activation
 	send_command of TerminalCommander for all_command
 end dvi_to_ps
 
 --simply execute TeX command in Terminal
-on exec_tex_command(texCommand, theSuffix, checkSaved)
+on exec_tex_command(texCommand, a_suffix, checkSaved)
 	try
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
@@ -300,9 +290,8 @@ on exec_tex_command(texCommand, theSuffix, checkSaved)
 	end try
 	
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
-	set texCommand to build_command(texCommand, theSuffix) of a_texdoc
+	set texCommand to build_command(texCommand, a_suffix) of a_texdoc
 	set all_command to cd_command & _com_delim & texCommand
-	--do_command of TerminalCommander for all_command with activation
 	send_command of TerminalCommander for all_command
 end exec_tex_command
 
@@ -328,6 +317,7 @@ on seek_ebb()
 	--find graphic files
 	set noGraphicFlag to true
 	set noNewBBFlag to true
+	set a_term to make TerminalCommander
 	repeat with ith from 1 to (count paragraph of theRes)
 		set a_paragraph to paragraph ith of theRes
 		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
@@ -335,7 +325,7 @@ on seek_ebb()
 			repeat with an_extension in graphicExtensions
 				if graphicFile ends with an_extension then
 					set noGraphicFlag to false
-					if exec_ebb(graphicFile, an_extension) then
+					if exec_ebb(graphicFile, an_extension, a_term) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -343,7 +333,7 @@ on seek_ebb()
 			end repeat
 		end if
 	end repeat
-	
+	TerminalCommander's register_from_commander(a_term)
 	if noGraphicFlag then
 		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's a_name()})
 		EditorClient's show_message(a_msg)
@@ -352,7 +342,7 @@ on seek_ebb()
 	end if
 end seek_ebb
 
-on exec_ebb(graphic_path, an_extension)
+on exec_ebb(graphic_path, an_extension, a_term)
 	set graphic_file to XFile's make_with(POSIX file graphic_path)
 	set bb_file to graphic_file's change_path_extension("bb")
 	if bb_file's item_exists() then
@@ -388,8 +378,7 @@ on exec_ebb(graphic_path, an_extension)
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set all_command to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
 	--do_command of TerminalCommander for all_command with activation
-	send_command of TerminalCommander for all_command
-	set a_term to make TerminalCommander
+	send_command of a_term for all_command
 	a_term's wait_termination(300)
 	return true
 end exec_ebb
@@ -397,12 +386,12 @@ end exec_ebb
 on mendex()
 	--log "start execmendex"
 	set a_command to contents of default entry "mendexCommand" of user defaults
-	exec_tex_command(a_command, ".idx", false)
+	exec_tex_command(a_command, "idx", false)
 end mendex
 
 on bibtex()
 	set a_command to contents of default entry "bibtexCommand" of user defaults
-	exec_tex_command(a_command, "", true)
+	exec_tex_command(a_command, missing value, true)
 end bibtex
 
 on quick_typeset_preview()
@@ -452,7 +441,7 @@ on quick_typeset_preview()
 		call method "bringToFront" of logManager
 		activate
 	end if
-	
+	a_texdoc's preserve_terminal()
 	--log "before prepare_view_errorlog"
 	--prepare_view_errorlog(a_log_file_parser, a_dvi)
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
@@ -460,7 +449,7 @@ on quick_typeset_preview()
 end quick_typeset_preview
 
 on typeset_preview()
-	set a_dvi to do_typeset()
+	set a_dvi to typeset()
 	show_status_message("Opening DVI file ...") of ToolPaletteController
 	set activate_flag to false
 	if a_dvi is not missing value then
@@ -471,15 +460,17 @@ on typeset_preview()
 			show_error(errno, "typeset_preview", msg) of MessageUtility
 		end try
 	end if
+	a_dvi's texdoc()'s preserve_terminal()
 end typeset_preview
 
 on typeset_preview_pdf()
-	set a_dvi to do_typeset()
+	set a_dvi to typeset()
 	
 	if a_dvi is missing value then
 		return
 	end if
-	set a_pdf to dvi_to_pdf() of a_dvi
+	set a_pdf to a_dvi's dvi_to_pdf()
+	a_dvi's texdoc()'s preserve_terminal()
 	show_status_message("Opening PDF file ...") of ToolPaletteController
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
@@ -490,12 +481,16 @@ on typeset_preview_pdf()
 end typeset_preview_pdf
 
 on do_typeset()
-	--log "start do_typeset"
+	typeset()'s texdoc()'s preserve_terminal()
+end do_typeset
+
+on typeset()
+	--log "start typeset"
 	try
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "do_typeset", msg) of MessageUtility
+			show_error(errno, "typeset", msg) of MessageUtility
 		end if
 		return missing value
 	end try
@@ -504,7 +499,7 @@ on do_typeset()
 	end if
 	show_status_message("Typeseting...") of ToolPaletteController
 	try
-		set a_dvi to typeset() of a_texdoc
+		set a_dvi to a_texdoc's typeset()
 	on error number 1250
 		return missing value
 	end try
@@ -537,7 +532,7 @@ on do_typeset()
 		show_message(a_msg) of MessageUtility
 		return missing value
 	end if
-end do_typeset
+end typeset
 
 on preview_dvi()
 	--log "start preview_dvi"

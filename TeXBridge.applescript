@@ -6,7 +6,8 @@ property XList : module
 property XText : module
 property FrontAccess : module
 property TerminalCommanderBase : module "TerminalCommander"
-property _ : boot (module loader of application (get "TeXToolsLib")) for me
+property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(false)) for me
+
 property appController : missing value
 
 (*=== shared constants ===*)
