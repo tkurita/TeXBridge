@@ -40,7 +40,8 @@ script XdviDriver
 			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
 			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
 			set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
-			do_command of TerminalCommander for all_command without activation
+			--do_command of TerminalCommander for all_command without activation
+			do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
 		else
 			set need_command to true
 			if (dviViewCommand does not contain "-unique") then
@@ -60,7 +61,8 @@ script XdviDriver
 			if need_command then
 				set dviViewCommand to replace of XText for dviViewCommand from "-editor %editor" by ""
 				set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
-				do_command of TerminalCommander for all_command without activation
+				--do_command of TerminalCommander for all_command without activation
+				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
 			end if
 		end if
 		--log "end open_dvi in XdviDriver"
@@ -116,7 +118,8 @@ script MxdviDriver
 			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath & " &"
 			--log all_command
 			if a_texdoc's is_use_term() then
-				do_command of TerminalCommander for all_command without activation
+				--do_command of TerminalCommander for all_command without activation
+				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
 			else
 				do shell script all_command
 			end if
@@ -309,9 +312,11 @@ on dvi_to_pdf()
 	set targetFileName to my _texdoc's name_for_suffix("dvi")
 	set all_command to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
-	send_command of TerminalCommander for all_command
-	copy TerminalCommander to a_term
-	wait_termination(300) of a_term
+	--send_command of TerminalCommander for all_command
+	set a_term to texdoc()'s target_terminal()
+	do_command of (a_term) for all_command without activation
+	--copy TerminalCommander to a_term
+	a_term's wait_termination(300)
 	
 	if a_pdf is missing value then
 		set a_pdf to lookup_pdf_file()
