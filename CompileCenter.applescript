@@ -173,12 +173,6 @@ on prepare_typeset()
 	end if
 	--log "end of checkmifiles in prepare_typeset"
 	if not (a_texdoc's check_logfile()) then
-		-- debug
-		if a_texdoc's logfile() is missing value then
-			display alert "a_texdoc's logfile() is missing value"
-			return missing value
-		end if
-		-- end debug
 		set a_path to a_texdoc's logfile()'s posix_path()
 		set a_msg to UtilityHandlers's localized_string("LogFileIsOpened", {a_path})
 		EditorClient's show_message(a_msg)
