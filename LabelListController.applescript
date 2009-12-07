@@ -190,15 +190,6 @@ on auxdata_for_texdoc(a_texdoc)
 			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
 			my _aux_data_dict's set_value(a_key, an_auxdata)
 		end try
-		(*
-		if an_auxdata is missing value then
-			--log "new auxdata will be registered"
-			set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
-			my _aux_data_dict's set_value(a_key, an_auxdata)
-		else
-			an_auxdata's set_texdoc(a_texdoc) -- update for text encoding
-		end if
-		*)
 	else
 		--log "file is not saved"
 		if my _unsaved_auxdata is not missing value then

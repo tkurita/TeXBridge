@@ -236,8 +236,10 @@ on check_logfile()
 	set textShouldClose to localized string "shouldClose"
 	set textCancel to localized string "Cancel"
 	set textClose to localized string "Close"
-	
-	set a_logfile to XFile's make_with(path_for_suffix(my _log_suffix))
+	log "aaa"
+	set a_logfile to my _file_ref's change_path_extension(my _log_suffix)
+	set my _logFileRef to a_logfile
+	log "bbb"
 	set logFileReady to false
 	if a_logfile's item_exists() then
 		if busy status of (a_logfile's info()) then
@@ -269,9 +271,6 @@ on check_logfile()
 		set logFileReady to true
 	end if
 	
-	if logFileReady then
-		set my _logFileRef to a_logfile
-	end if
 	return logFileReady
 end check_logfile
 
@@ -318,9 +317,13 @@ on lookup_header_commands_from_file()
 	close access inputFile
 end lookup_header_commands_from_file
 
-on path_for_suffix(an_extension)
+on path_for_suffix(an_extension) -- deprecated
 	return my _file_ref's change_path_extension(an_extension)'s hfs_path()
 end path_for_suffix
+
+on xfile_for_suffix(an_extension)
+	return my _file_ref's change_path_extension(an_extension)
+end xfile_for_suffix
 
 on name_for_suffix(a_suffix)
 	set a_name to basename()
@@ -390,8 +393,6 @@ on make_with(a_xfile, an_encoding)
 		property _text_encoding : an_encoding
 		
 		property _texFileName : missing value
-		--property _texBasePath : missing value
-		--property _texBaseName : missing value
 		
 		property _targetFileRef : missing value -- a document applied tools. alias class
 		property _doc_position : missing value
@@ -413,9 +414,11 @@ on make_with(a_xfile, an_encoding)
 		set a_xfile to XFile's make_with(a_xfile)
 	end if
 	
-	set TeXDocController's _file_ref to a_xfile
-	set TeXDocController's _targetFileRef to a_xfile
-	set TeXDocController's _texFileName to a_xfile's item_name()
-	set TeXDocController's _workingDirectory to a_xfile's parent_folder()
+	tell TeXDocController
+		set its _file_ref to a_xfile
+		set its _targetFileRef to a_xfile
+		set its _texFileName to a_xfile's item_name()
+		set its _workingDirectory to a_xfile's parent_folder()
+	end tell
 	return TeXDocController
 end make_with

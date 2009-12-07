@@ -69,7 +69,9 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	--log "start checkmifiles"
 	
 	set a_texdoc to texdoc_for_firstdoc with showing_message and need_file
-	if a_texdoc is missing value then return
+	if a_texdoc is missing value then
+		return missing value
+	end if
 	
 	a_texdoc's set_doc_position(EditorClient's index_current_paragraph())
 	(* find header commands *)
@@ -166,8 +168,17 @@ end openOutputHadler
 on prepare_typeset()
 	--log "start prepare_typeset"	
 	set a_texdoc to checkmifiles with saving and autosave
+	if a_texdoc is missing value then
+		return missing value
+	end if
 	--log "end of checkmifiles in prepare_typeset"
 	if not (a_texdoc's check_logfile()) then
+		-- debug
+		if a_texdoc's logfile() is missing value then
+			display alert "a_texdoc's logfile() is missing value"
+			return missing value
+		end if
+		-- end debug
 		set a_path to a_texdoc's logfile()'s posix_path()
 		set a_msg to UtilityHandlers's localized_string("LogFileIsOpened", {a_path})
 		EditorClient's show_message(a_msg)
@@ -177,22 +188,6 @@ on prepare_typeset()
 	return a_texdoc
 end prepare_typeset
 
-on prepare_view_errorlog(a_log_file_parser, a_dvi)
-	using terms from application "mi"
-		try
-			set auxFileRef to (path_for_suffix("aux") of a_log_file_parser) as alias
-			
-			tell application "Finder"
-				ignoring application responses
-					set creator type of auxFileRef to "MMKE"
-					set file type of auxFileRef to "TEXT"
-				end ignoring
-			end tell
-		end try
-		
-	end using terms from
-end prepare_view_errorlog
-
 on dvi_from_editor()
 	--log "start dvi_from_editor"
 	try
@@ -201,7 +196,7 @@ on dvi_from_editor()
 		if errno is not in my _ignoring_errors then
 			showError(errno, "dvi_to_pdf", msg) of MessageUtility
 		end if
-		return
+		return missing value
 	end try
 	
 	set a_dvi to lookup_dvi() of a_texdoc
@@ -399,8 +394,8 @@ on quick_typeset_preview()
 	try
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
-		if errno is not in my _ignoring_errors then -- "The document is not saved."
-			show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg) of MessageUtility
+		if errno is not in my _ignoring_errors then
+			MessageUtility's show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg)
 		end if
 		return
 	end try
@@ -442,8 +437,6 @@ on quick_typeset_preview()
 		activate
 	end if
 	a_texdoc's preserve_terminal()
-	--log "before prepare_view_errorlog"
-	--prepare_view_errorlog(a_log_file_parser, a_dvi)
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 end quick_typeset_preview
@@ -481,7 +474,11 @@ on typeset_preview_pdf()
 end typeset_preview_pdf
 
 on do_typeset()
-	typeset()'s texdoc()'s preserve_terminal()
+	set a_dvi to typeset()
+	if a_dvi is missing value then
+		return
+	end if
+	a_dvi's texdoc()'s preserve_terminal()
 end do_typeset
 
 on typeset()
@@ -490,7 +487,7 @@ on typeset()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "typeset", msg) of MessageUtility
+			show_error(errno, "typeset after calling prepare_typeset", msg) of MessageUtility
 		end if
 		return missing value
 	end try
@@ -518,7 +515,6 @@ on typeset()
 		parse_logfile() of a_log_file_parser
 	end if
 	
-	prepare_view_errorlog(a_log_file_parser, a_dvi)
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
 	show_status_message("") of ToolPaletteController
 	a_dvi's set_log_parser(a_log_file_parser)

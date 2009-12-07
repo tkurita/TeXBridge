@@ -75,6 +75,10 @@ on resolveTargetFile(theTargetFile)
 	return theTargetFile
 end resolveTargetFile
 
+on texdoc()
+	return my _texdoc
+end texdoc
+
 on make_with(a_texdoc)
 	script LogFileParser
 		property _texdoc : a_texdoc
