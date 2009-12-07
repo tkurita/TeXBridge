@@ -26,6 +26,7 @@ script XdviDriver
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
 		set dvi_file_name to a_dvi's fileName()
 		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
+		set target_term to TerminalCommander
 		if (a_dvi's src_special()) then
 			if (a_texdoc is not missing value) then
 				if a_texdoc's has_parent() then
@@ -36,12 +37,12 @@ script XdviDriver
 				end if
 				set srcpos_option to "-sourceposition"
 				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of ((a_texdoc's doc_position() as Unicode text) & space & sourceFile))
+				set target_term to a_dvi's texdoc()'s target_terminal()
 			end if
 			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
 			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
 			set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
-			--do_command of TerminalCommander for all_command without activation
-			do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
+			do_command of target_term for all_command without activation
 		else
 			set need_command to true
 			if (dviViewCommand does not contain "-unique") then
@@ -59,10 +60,12 @@ script XdviDriver
 				end if
 			end if
 			if need_command then
+				if a_texdoc is not missing value then
+					set target_term to a_dvi's texdoc()'s target_terminal()
+				end if
 				set dviViewCommand to replace of XText for dviViewCommand from "-editor %editor" by ""
 				set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
-				--do_command of TerminalCommander for all_command without activation
-				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
+				do_command of target_term for all_command without activation
 			end if
 		end if
 		--log "end open_dvi in XdviDriver"
@@ -74,7 +77,7 @@ script SimpleDriver
 	on set_file_type(a_xfile)
 		set info_rec to a_xfile's info()
 		set a_creator to info_rec's file creator
-		set a_type to info_rec's file creator
+		set a_type to info_rec's file type
 		if a_creator is _my_signature then
 			a_xfile's set_types(missing value, a_type)
 		end if
@@ -118,7 +121,6 @@ script MxdviDriver
 			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath & " &"
 			--log all_command
 			if a_texdoc's is_use_term() then
-				--do_command of TerminalCommander for all_command without activation
 				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
 			else
 				do shell script all_command
@@ -221,23 +223,19 @@ on set_file_type()
 	set_file_type(my _dvifile) of my _dvi_driver
 end set_file_type
 
-on set_dvi_driver()
-	--log "start set_dvi_driver"
-	set DVIPreviewMode to contents of default entry "DVIPreviewMode" of user defaults
-	--log "after get DVIPreviewMode"
-	if DVIPreviewMode is 0 then
+on set_dvi_driver(a_mode)
+	if a_mode is 0 then
 		set my _dvi_driver to SimpleDriver
-	else if DVIPreviewMode is 1 then
+	else if a_mode is 1 then
 		set my _dvi_driver to MxdviDriver
-	else if DVIPreviewMode is 2 then
+	else if a_mode is 2 then
 		set my _dvi_driver to XdviDriver
-	else if DVIPreviewMode is 3 then
+	else if a_mode is 3 then
 		set my _dvi_driver to PictPrinterDriver
 	else
 		--log "DVI Preview setting is invalid."
 		error "DVI Preview setting is invalid." number 1290
 	end if
-	--log "end set_dvi_driver"
 end set_dvi_driver
 
 on getModDate()
@@ -354,6 +352,11 @@ on log_parser()
 end log_parser
 
 on make
+	set a_mode to contents of default entry "DVIPreviewMode" of user defaults
+	return make_with_mode(a_mode)
+end make
+
+on make_with_mode(a_mode)
 	script DVIController
 		property _texdoc : missing value
 		property _dvifile : missing value
@@ -362,9 +365,9 @@ on make
 		property _dvi_driver : SimpleDriver
 	end script
 	
-	set_dvi_driver() of DVIController
+	DVIController's set_dvi_driver(a_mode)
 	return DVIController
-end make
+end make_with_mode
 
 on make_with(a_texdoc)
 	set a_dvi to make
@@ -377,3 +380,9 @@ on make_with_xfile(a_dvifile)
 	set a_dvi's _dvifile to a_dvifile
 	return a_dvi
 end make_with_xfile
+
+on make_with_xfile_mode(a_dvifile, a_mode)
+	set a_dvi to make_with_mode(a_mode)
+	set a_dvi's _dvifile to a_dvifile
+	return a_dvi
+end make_with_xfile_mode

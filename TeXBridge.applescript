@@ -139,8 +139,29 @@ on open theObject
 		if command_id starts with "." then
 			openOutputHadler(command_id) of CompileCenter
 		else if (command_id as Unicode text) ends with ".dvi" then
-			set a_dvi to DVIController's make_with_xfile(XFile's make_with(command_id))
-			open_dvi of a_dvi with activation
+			set a_xfile to XFile's make_with(command_id)
+			set a_mode to contents of default entry "DVIPreviewMode" of user defaults
+			if a_mode is 0 then
+				set def_app to a_xfile's info()'s default application
+				if def_app is (path to me) then
+					activate
+					set a_result to choose from list {"xdvi", "PictPrinter"} with prompt "Choose a DVI Previewer :"
+					if class of a_result is not list then
+						set a_mode to -1
+					else
+						set a_result to item 1 of a_result
+						if a_result is "xdvi" then
+							set a_mode to 2
+						else
+							set a_mode to 3
+						end if
+					end if
+				end if
+			end if
+			if a_mode is not -1 then
+				set a_dvi to DVIController's make_with_xfile_mode(a_xfile, a_mode)
+				open_dvi of a_dvi with activation
+			end if
 		else
 			show_message("Unknown argument : " & command_id) of MessageUtility
 		end if
@@ -148,7 +169,6 @@ on open theObject
 	end if
 	
 	restart_timer() of RefPanelController
-	--call method "restartStopDisplayToggleTimer" of WindowVisibilityController
 	return true
 end open
 

@@ -236,10 +236,8 @@ on check_logfile()
 	set textShouldClose to localized string "shouldClose"
 	set textCancel to localized string "Cancel"
 	set textClose to localized string "Close"
-	log "aaa"
 	set a_logfile to my _file_ref's change_path_extension(my _log_suffix)
 	set my _logFileRef to a_logfile
-	log "bbb"
 	set logFileReady to false
 	if a_logfile's item_exists() then
 		if busy status of (a_logfile's info()) then
