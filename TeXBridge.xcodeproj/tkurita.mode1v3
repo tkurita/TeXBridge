@@ -290,13 +290,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>29</integer>
-									<integer>27</integer>
+									<integer>48</integer>
+									<integer>42</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 267}, {271, 645}}</string>
+							<string>{{0, 268}, {271, 645}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -488,14 +488,12 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DVIController.applescript</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -503,11 +501,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DVIController.applescript</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C81326A10CD48B0001A9107</string>
+										<string>2C81327F10CD499C001A9107</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -554,7 +552,6 @@
 											<string>2C1D861210966D5E004E0764</string>
 											<string>2C1D861310966D5E004E0764</string>
 											<string>2C1D861410966D5E004E0764</string>
-											<string>2CAD367610CB60410063B249</string>
 											<string>2CAD36E810CC76420063B249</string>
 											<string>2CE4BB9010CCCC5C0083834E</string>
 											<string>2CE4BB9110CCCC5C0083834E</string>
@@ -568,6 +565,7 @@
 											<string>2C81325410CD45A2001A9107</string>
 											<string>2C81326810CD48B0001A9107</string>
 											<string>2C81326210CD488F001A9107</string>
+											<string>2C81327E10CD499C001A9107</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -632,18 +630,7 @@
 											<string>2C1D861710966D5E004E0764</string>
 											<string>2CAD357710CA0EC60063B249</string>
 											<string>2CE4BC0110CCE22C0083834E</string>
-											<string>2C81322B10CD3C27001A9107</string>
-											<string>2C81322C10CD3C27001A9107</string>
-											<string>2C81322D10CD3C27001A9107</string>
 											<string>2C81324410CD451E001A9107</string>
-											<string>2C81324510CD451E001A9107</string>
-											<string>2C81324610CD451E001A9107</string>
-											<string>2C81324710CD451E001A9107</string>
-											<string>2C81324810CD451E001A9107</string>
-											<string>2C81324910CD451E001A9107</string>
-											<string>2C81324A10CD451E001A9107</string>
-											<string>2C81325510CD45A2001A9107</string>
-											<string>2C81326910CD48B0001A9107</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -702,9 +689,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C81321910CD3B3D001A9107</string>
+				<string>2C81328010CD499C001A9107</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C81321A10CD3B3D001A9107</string>
+				<string>2C81328110CD499C001A9107</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -848,10 +835,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2CD476790E93E00A0069C39E</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -934,7 +918,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C81321B10CD3B3D001A9107</string>
+				<string>2C81328210CD499C001A9107</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
