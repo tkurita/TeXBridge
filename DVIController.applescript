@@ -154,22 +154,25 @@ script PictPrinterDriver
 		set a_texdoc to a_dvi's texdoc()
 		set targetDviPath to a_dvi's posix_path()
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
+			--log "open dvi with forward search"
+			if a_texdoc's has_parent() then
+				set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
+				set sourceFile to relative_path of PathConverter for (a_texdoc's target_file()'s posix_path())
+			else
+				set sourceFile to a_dvi's texdoc()'s fileName()
+			end if
 			using terms from application "PictPrinter"
 				tell application (pictprinter_app as Unicode text)
-					FindRoughly in dvi targetDviPath startLine (a_texdoc's doc_position())
+					FindRoughly in dvi targetDviPath startLine (a_texdoc's doc_position()) with source sourceFile
 				end tell
 			end using terms from
 		else
+			--log "open dvi without forward search"
 			using terms from application "PictPrinter"
 				tell application (pictprinter_app as Unicode text)
 					FindRoughly in dvi targetDviPath
 				end tell
 			end using terms from
-			(*
-			tell application (pictprinter_app as Unicode text)
-				open a_dvi's file_as_alias()
-			end tell
-			*)
 		end if
 		if aFlag then call method "activateAppOfType:" of class "SmartActivate" with parameter "pPrn"
 		--log "end open_dvi"
