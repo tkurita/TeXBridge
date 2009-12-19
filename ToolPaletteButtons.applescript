@@ -1,4 +1,5 @@
-property XHandler : load("XHandler") of application (get "TeXToolsLib")
+property XHandler : module
+property _ : boot (module loader of application (get "TeXToolsLib")) for me
 
 on clicked theObject
 	set a_name to name of theObject

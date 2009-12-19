@@ -501,7 +501,7 @@ on typeset()
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
 		show_status_message("Typeseting...") of ToolPaletteController
 		try
-			set a_dvi to typeset() of a_texdoc
+			set a_dvi to a_texdoc's typeset()
 		on error number 1250
 			return missing value
 		end try
@@ -509,7 +509,9 @@ on typeset()
 		parse_logfile() of a_log_file_parser
 	end if
 	
-	rebuild_labels_from_aux(a_texdoc) of RefPanelController
+	-- log "befor rebuild_labels_from_aux in typeset"
+	RefPanelController's rebuild_labels_from_aux(a_texdoc)
+	-- log "after rebuild_labels_from_aux in typeset"
 	show_status_message("") of ToolPaletteController
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then

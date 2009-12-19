@@ -156,6 +156,14 @@ on basename()
 	return my _file_ref's basename()
 end basename
 
+on master_texdoc()
+	if has_parent() then
+		return make_with(my _file_ref, my _text_encoding)
+	else
+		return me
+	end if
+end master_texdoc
+
 on target_file()
 	return my _targetFileRef
 end target_file

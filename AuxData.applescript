@@ -29,6 +29,10 @@ on has_parent()
 	return my _texdoc's has_parent()
 end has_parent
 
+on texdoc()
+	return my _texdoc
+end texdoc
+
 on set_texdoc(a_texdoc)
 	set my _texdoc to a_texdoc
 end set_texdoc
@@ -72,7 +76,8 @@ on check_auxfile given display_error:alert_flag
 	--log "start check_auxfile"
 	if my _auxFileRef is missing value then
 		--log "_auxFileRef is missing value"
-		set an_auxfile to tex_file()'s change_path_extension("aux")
+		--set an_auxfile to tex_file()'s change_path_extension("aux")
+		set an_auxfile to my _texdoc's target_file()'s change_path_extension("aux")
 		if an_auxfile's item_exists() then
 			--log "aux file exists"
 			set my _auxFileRef to an_auxfile
@@ -99,14 +104,14 @@ on read_aux_file()
 	return call method "sniffRead:encodingCandidate:" of (RefPanelController's window_controller()) with parameters {my _auxFileRef's posix_path(), text_encoding()}
 end read_aux_file
 
-on addLabelFromAux(a_label, theRef)
+on add_label_from_aux(a_label, theRef)
 	set end of my _labelRecordFromAux to {|label|:a_label, |reference|:theRef}
 	set end of my _labelList to a_label
-end addLabelFromAux
+end add_label_from_aux
 
-on addChildAuxObj(an_auxdata)
+on add_child_with_auxdata(an_auxdata)
 	set end of my _labelRecordFromAux to an_auxdata
-end addChildAuxObj
+end add_child_with_auxdata
 
 on addLabelFromDoc(a_label)
 	--log "start addLabelFromDoc"
@@ -119,8 +124,8 @@ on is_expanded()
 	return a_result is not 0
 end is_expanded
 
-on expandDataItem()
-	--log "start expandDataItem"
+on expand_dataitem()
+	--log "start expand_dataitem"
 	-- when epanded outline, it seems that width of table column is changed uncorrectly.
 	-- fix table column width between before exapand and after expand
 	set currentLabelWidth to width of table column "label" of outlineView
@@ -128,7 +133,7 @@ on expandDataItem()
 	call method "expandItem:" of outlineView with parameter my _dataItemRef
 	set width of table column "label" of outlineView to currentLabelWidth
 	set width of table column "reference" of outlineView to currentRefWidth
-end expandDataItem
+end expand_dataitem
 
 on deleteDataItem()
 	set my _labelRecordFromAux to {}
@@ -247,14 +252,14 @@ on clear_labels_from_aux()
 end clear_labels_from_aux
 
 on clear_labels_from_doc()
-	--log "start clear_labels_from_doc"
+	-- log "start clear_labels_from_doc"
 	repeat with theLabelRecord in my _labelRecordFromAux
 		if class of theLabelRecord is script then
-			clear_labels_from_doc() of theLabelRecord
+			theLabelRecord's clear_labels_from_doc()
 		end if
 	end repeat
 	set my _labelRecordFromDoc to {}
-	--log "end clear_labels_from_doc"
+	-- log "end clear_labels_from_doc"
 end clear_labels_from_doc
 
 on appendLabelsFromDoc()
@@ -268,6 +273,7 @@ end appendLabelsFromDoc
 
 
 on make_with_texdoc(a_texdoc)
+	--log "start make_with_texdoc in AuxData"
 	script AuxData
 		property _texdoc : a_texdoc
 		property _auxFileRef : missing value
@@ -280,10 +286,15 @@ on make_with_texdoc(a_texdoc)
 	end script
 	
 	if a_texdoc's has_file() then
+		--log "auxdate for " & a_texdoc's target_file()'s posix_path()
 		set an_aux_file to a_texdoc's target_file()'s change_path_extension("aux")
+		--log "aux file : " & an_aux_file's posix_path()
 		if an_aux_file's item_exists() then
+			--log "aux file exists"
 			set AuxData's _auxFileRef to an_aux_file
 		end if
+	else
+		--log "texdoc does not have file."
 	end if
 	return AuxData
 end make_with_texdoc

@@ -47,7 +47,7 @@ end import_script
 
 (* events of application*)
 on launched theObject
-	--log "start lanunched"
+	-- log "start lanunched"
 	--log "will show toolpalette"
 	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
 	set IsOpenedToolPalette to value_with_default("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
@@ -101,7 +101,7 @@ on launched theObject
 	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
 	(*end of debug code*)
 	
-	--log "end of launched"
+	-- log "end of launched"
 end launched
 
 on do_replaceinput()
