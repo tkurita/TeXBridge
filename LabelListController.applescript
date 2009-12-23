@@ -327,7 +327,6 @@ on rebuild_labels_from_aux(a_texdoc)
 	--log "start rebuild_labels_from_aux in LabelListController"
 	set an_auxdata to auxdata_for_texdoc(a_texdoc)
 	--log "after auxdata_for_texdoc"
-	set auxdata_in_editor to an_auxdata
 	if not (check_auxfile of an_auxdata with display_error) then
 		return false
 	end if
@@ -343,7 +342,7 @@ on rebuild_labels_from_aux(a_texdoc)
 	if not parse_aux_file(an_auxdata) then
 		return false
 	end if
-	auxdata_in_editor's clear_labels_from_doc()
+	an_auxdata's clear_labels_from_doc_recursively()
 	append_to_outline for an_auxdata below my _label_data_source
 	an_auxdata's expand_dataitem()
 	

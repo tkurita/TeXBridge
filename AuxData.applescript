@@ -280,13 +280,17 @@ on clear_labels_from_aux()
 	--log "end clear_labels_from_aux"
 end clear_labels_from_aux
 
-on clear_labels_from_doc()
-	--log "start clear_labels_from_doc"
+on clear_labels_from_doc_recursively()
 	repeat with a_labelrecord in my _labelRecordFromAux
 		if class of a_labelrecord is script then
-			a_labelrecord's clear_labels_from_doc()
+			a_labelrecord's clear_labels_from_doc_recursively()
 		end if
 	end repeat
+	set my _labelRecordFromDoc to {}
+end clear_labels_from_doc_recursively
+
+on clear_labels_from_doc()
+	--log "start clear_labels_from_doc"
 	set my _labelRecordFromDoc to {}
 	--log "end clear_labels_from_doc"
 end clear_labels_from_doc
