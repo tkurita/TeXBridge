@@ -100,6 +100,7 @@ on initilize()
 	initialize(data source "LabelDataSource") of LabelListController
 	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of my _window
 	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window
+	set LabelListController of AuxData to LabelListController
 	--log "end initialize in RefPanelController"
 end initilize
 

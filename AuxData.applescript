@@ -1,5 +1,7 @@
 global RefPanelController
+
 property outlineView : missing value
+property LabelListController : missing value
 
 on all_label_records()
 	return {my _labelRecordFromAux, my _labelRecordFromDoc}
@@ -14,6 +16,11 @@ on set_data_item(an_item)
 end set_data_item
 
 on data_item()
+	if my _dataItemRef is not missing value then
+		if not (exists my _dataItemRef) then
+			set my _dataItemRef to missing value
+		end if
+	end if
 	return my _dataItemRef
 end data_item
 
@@ -49,6 +56,7 @@ on is_texfile_updated()
 end is_texfile_updated
 
 on document_size()
+	--log "start document_size"
 	return my _document_size
 end document_size
 
@@ -66,7 +74,8 @@ end tex_file
 
 on basename()
 	if my _texdoc's has_file() then
-		return my _texdoc's basename()
+		--return my _texdoc's basename()
+		return my _texdoc's target_file()'s basename()
 	else
 		return my _texdoc's fileName()
 	end if
@@ -76,7 +85,6 @@ on check_auxfile given display_error:alert_flag
 	--log "start check_auxfile"
 	if my _auxFileRef is missing value then
 		--log "_auxFileRef is missing value"
-		--set an_auxfile to tex_file()'s change_path_extension("aux")
 		set an_auxfile to my _texdoc's target_file()'s change_path_extension("aux")
 		if an_auxfile's item_exists() then
 			--log "aux file exists"
@@ -124,6 +132,20 @@ on is_expanded()
 	return a_result is not 0
 end is_expanded
 
+on restore_expand_status()
+	--log "start restore_expand_status"
+	if my _saved_expand_status then
+		--log "will expand"
+		expand_dataitem()
+	end if
+	repeat with an_auxdata in my _labelRecordFromAux
+		if class of an_auxdata is script then
+			an_auxdata's restore_expand_status()
+		end if
+	end repeat
+	--log "end restore_expand_status"
+end restore_expand_status
+
 on expand_dataitem()
 	--log "start expand_dataitem"
 	-- when epanded outline, it seems that width of table column is changed uncorrectly.
@@ -135,55 +157,55 @@ on expand_dataitem()
 	set width of table column "reference" of outlineView to currentRefWidth
 end expand_dataitem
 
-on deleteDataItem()
+on delete_dataitem()
+	--log "start delete_dataitem"
+	--log basename()
+	set my _saved_expand_status to is_expanded()
+	--log "saved expand status : " & my _saved_expand_status
+	repeat with an_labelrecord in my _labelRecordFromAux
+		if class of an_labelrecord is script then
+			an_labelrecord's delete_dataitem()
+		end if
+	end repeat
 	set my _labelRecordFromAux to {}
 	set my _labelRecordFromDoc to {}
-	delete my _dataItemRef
-end deleteDataItem
+	--log "end delete_dataitem"
+end delete_dataitem
 
-on deleteChildDataItem()
-	if my _dataItemRef is not missing value then
-		set my _labelRecordFromAux to {}
-		set my _labelRecordFromDoc to {}
-		delete (every data item of my _dataItemRef)
-	end if
-end deleteChildDataItem
-
-on updateLabels()
-	--log "start updateLabels"
-	set nDataItem to count data item of my _dataItemRef
+on update_labels()
+	--log "start update_labels for " & (aux_file()'s posix_path())
 	set nLabelFromAux to length of my _labelRecordFromAux
 	set nLabelFromDoc to length of my _labelRecordFromDoc
 	set dItemCounter to 1
+	set nDataItem to count data items of my _dataItemRef
 	(*
-	log "nDataItem:" & nDataItem
-	log "nLabelFromAux:" & nLabelFromAux
-	log my _labelRecordFromAux
-	log "nLabelFromDoc:" & nLabelFromDoc
-	log my _labelRecordFromDoc
-	log "start updating   labels from aux"
+	--log "nDataItem:" & nDataItem
+	--log "nLabelFromAux:" & nLabelFromAux
+	--log my _labelRecordFromAux
+	--log "nLabelFromDoc:" & nLabelFromDoc
+	--log my _labelRecordFromDoc
+	--log "start updating labels from aux"
 	*)
 	repeat with ith from 1 to nLabelFromAux
 		if ith is less than or equal to nDataItem then
-			set theDataItem to data item ith of my _dataItemRef
+			set a_dataitem to data item ith of my _dataItemRef
 		else
-			set theDataItem to make new data item at end of data items of my _dataItemRef
+			set a_dataitem to make new data item at end of data items of my _dataItemRef
 		end if
 		
-		set theItem to item ith of my _labelRecordFromAux
-		set a_class to class of theItem
+		set a_labelitem to item ith of my _labelRecordFromAux
+		set a_class to class of a_labelitem
 		if a_class is record then
-			set contents of data cell "label" of theDataItem to |label| of theItem
-			set contents of data cell "reference" of theDataItem to |reference| of theItem
-			if has data items of theDataItem then
-				delete every data item of theDataItem
+			set contents of data cell "label" of a_dataitem to |label| of a_labelitem
+			set contents of data cell "reference" of a_dataitem to |reference| of a_labelitem
+			if has data items of a_dataitem then
+				delete every data item of a_dataitem
 			end if
 		else if a_class is script then
-			--set my _dataItemRef of theItem to theDataItem
-			theItem's set_data_item(theDataItem)
-			set contents of data cell "label" of theDataItem to (theItem's basename())
-			set contents of data cell "reference" of theDataItem to ""
-			theItem's updateLabels()
+			a_labelitem's set_data_item(a_dataitem)
+			set contents of data cell "label" of a_dataitem to (a_labelitem's basename())
+			set contents of data cell "reference" of a_dataitem to ""
+			a_labelitem's update_labels()
 		end if
 	end repeat
 	
@@ -191,16 +213,16 @@ on updateLabels()
 	repeat with ith from 1 to nLabelFromDoc
 		set ith_shifted to ith + nLabelFromAux
 		if ith_shifted is less than or equal to nDataItem then
-			set theDataItem to data item ith_shifted of my _dataItemRef
-			if has data items of theDataItem then
-				delete every data item of theDataItem
+			set a_dataitem to data item ith_shifted of my _dataItemRef
+			if has data items of a_dataitem then
+				delete every data item of a_dataitem
 			end if
 		else
-			set theDataItem to make new data item at end of data items of my _dataItemRef
+			set a_dataitem to make new data item at end of data items of my _dataItemRef
 		end if
-		set theItem to item ith of my _labelRecordFromDoc
-		set contents of data cell "label" of theDataItem to |label| of theItem
-		set contents of data cell "reference" of theDataItem to |reference| of theItem
+		set a_labelitem to item ith of my _labelRecordFromDoc
+		set contents of data cell "label" of a_dataitem to |label| of a_labelitem
+		set contents of data cell "reference" of a_dataitem to |reference| of a_labelitem
 	end repeat
 	
 	--log "start third repeat"
@@ -208,8 +230,8 @@ on updateLabels()
 	repeat (nDataItem - nLabelFromAux - nLabelFromDoc) times
 		delete data item delItemNum of my _dataItemRef
 	end repeat
-	--log "end of updateLabels"
-end updateLabels
+	--log "end of update_labels"
+end update_labels
 
 on update_labels_from_doc()
 	set nDataItem to count data item of my _dataItemRef
@@ -218,20 +240,20 @@ on update_labels_from_doc()
 	
 	set labCounter to 1
 	(*log "before repeat 1"
-	log "nDataItem:" & nDataItem
-	log "nLabelFromAux:" & nLabelFromAux
-	log "nLabelFromDoc:" & nLabelFromDoc
+	--log "nDataItem:" & nDataItem
+	--log "nLabelFromAux:" & nLabelFromAux
+	--log "nLabelFromDoc:" & nLabelFromDoc
 	*)
 	repeat with ith from (nLabelFromAux + 1) to nDataItem
 		--log "in repeat 1"
-		set theDataItem to data item ith of my _dataItemRef
+		set a_dataitem to data item ith of my _dataItemRef
 		
 		if labCounter is less than or equal to nLabelFromDoc then
 			set theItem to item labCounter of my _labelRecordFromDoc
-			set contents of data cell "label" of theDataItem to |label| of theItem
-			set contents of data cell "reference" of theDataItem to |reference| of theItem
+			set contents of data cell "label" of a_dataitem to |label| of theItem
+			set contents of data cell "reference" of a_dataitem to |reference| of theItem
 		else
-			delete theDataItem
+			delete a_dataitem
 		end if
 		set labCounter to labCounter + 1
 	end repeat
@@ -240,34 +262,41 @@ on update_labels_from_doc()
 	repeat with ith from labCounter to nLabelFromDoc
 		--log "in repeat 2"
 		set theItem to item ith of my _labelRecordFromDoc
-		set theDataItem to make new data item at end of data items of my _dataItemRef
-		set contents of data cell "label" of theDataItem to |label| of theItem
-		set contents of data cell "reference" of theDataItem to |reference| of theItem
+		set a_dataitem to make new data item at end of data items of my _dataItemRef
+		set contents of data cell "label" of a_dataitem to |label| of theItem
+		set contents of data cell "reference" of a_dataitem to |reference| of theItem
 	end repeat
 end update_labels_from_doc
 
 on clear_labels_from_aux()
+	--log "start clear_labels_from_aux"
+	repeat with a_labelrecord in my _labelRecordFromAux
+		if class of a_labelrecord is script then
+			a_labelrecord's delete_dataitem()
+		end if
+	end repeat
 	set my _labelRecordFromAux to {}
 	set my _labelList to {}
+	--log "end clear_labels_from_aux"
 end clear_labels_from_aux
 
 on clear_labels_from_doc()
-	-- log "start clear_labels_from_doc"
-	repeat with theLabelRecord in my _labelRecordFromAux
-		if class of theLabelRecord is script then
-			theLabelRecord's clear_labels_from_doc()
+	--log "start clear_labels_from_doc"
+	repeat with a_labelrecord in my _labelRecordFromAux
+		if class of a_labelrecord is script then
+			a_labelrecord's clear_labels_from_doc()
 		end if
 	end repeat
 	set my _labelRecordFromDoc to {}
-	-- log "end clear_labels_from_doc"
+	--log "end clear_labels_from_doc"
 end clear_labels_from_doc
 
 on appendLabelsFromDoc()
 	repeat with ith from 1 to length of my _labelRecordFromDoc
 		set theItem to item ith of my _labelRecordFromDoc
-		set theDataItem to make new data item at end of data items of my _dataItemRef
-		set contents of data cell "label" of theDataItem to |label| of theItem
-		set contents of data cell "reference" of theDataItem to |reference| of theItem
+		set a_dataitem to make new data item at end of data items of my _dataItemRef
+		set contents of data cell "label" of a_dataitem to |label| of theItem
+		set contents of data cell "reference" of a_dataitem to |reference| of theItem
 	end repeat
 end appendLabelsFromDoc
 
@@ -282,7 +311,8 @@ on make_with_texdoc(a_texdoc)
 		property _labelList : {}
 		property _dataItemRef : missing value
 		property _checkedTime : current date
-		property _document_size : missing value
+		property _document_size : 0
+		property _saved_expand_status : true
 	end script
 	
 	if a_texdoc's has_file() then
