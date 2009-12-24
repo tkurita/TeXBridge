@@ -220,18 +220,22 @@ on parse_aux_file(an_auxdata)
 		if (a_paragraph as Unicode text) starts with newlabelText then
 			-- log "start with newlabelText"
 			set a_paragraph to text 11 thru -2 of a_paragraph
-			set theTextItemList to XText's make_with(a_paragraph)'s as_list_with("}{")
+			set arglist to XText's make_with(a_paragraph)'s as_list_with("}{")
 			try
-				set theRef to ((item -2 of theTextItemList) as string)
+				if length of arglist > 3 then -- hypertex 
+					set refnum to ((item -2 of arglist) as text)
+				else -- without hypertex
+					set refnum to text 2 thru -1 of (item 2 of arglist as text)
+				end if
 			on error
-				set theRef to "--"
+				set refnum to "--"
 			end try
 			
 			set pos2 to (offset of "}{" in a_paragraph) as integer
-			set a_label to item 1 of theTextItemList
+			set a_label to item 1 of arglist
 			
 			if not a_label is "" then
-				an_auxdata's add_label_from_aux(a_label, theRef)
+				an_auxdata's add_label_from_aux(a_label, refnum)
 			end if
 		else if a_paragraph starts with inputText then
 			--log "start @input"
@@ -252,15 +256,15 @@ on parse_aux_file(an_auxdata)
 				-- log an_aux_file
 				set a_texdoc to TeXDocController's make_with(an_aux_file, an_auxdata's text_encoding())
 				set child_auxdata to auxdata_for_texdoc(a_texdoc)
-				if child_auxdata is not missing value then
-					-- log "befor parse_aux_file in @input"
-					if check_auxfile of child_auxdata without display_error then
-						if not parse_aux_file(child_auxdata) then
-							return false
-						end if
+				--if child_auxdata is not missing value then
+				-- log "befor parse_aux_file in @input"
+				if check_auxfile of child_auxdata without display_error then
+					if not parse_aux_file(child_auxdata) then
+						return false
 					end if
-					an_auxdata's add_child_with_auxdata(child_auxdata)
 				end if
+				an_auxdata's add_child_with_auxdata(child_auxdata)
+				--end if
 			end if
 			--log "end @input"
 		end if
