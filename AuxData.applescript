@@ -177,9 +177,9 @@ on update_labels()
 	set nLabelFromAux to length of my _labelRecordFromAux
 	set nLabelFromDoc to length of my _labelRecordFromDoc
 	set dItemCounter to 1
-	set nDataItem to count data items of my _dataItemRef
+	set dataitem_counts to count data items of my _dataItemRef
 	(*
-	--log "nDataItem:" & nDataItem
+	--log "dataitem_counts:" & dataitem_counts
 	--log "nLabelFromAux:" & nLabelFromAux
 	--log my _labelRecordFromAux
 	--log "nLabelFromDoc:" & nLabelFromDoc
@@ -187,7 +187,7 @@ on update_labels()
 	--log "start updating labels from aux"
 	*)
 	repeat with ith from 1 to nLabelFromAux
-		if ith is less than or equal to nDataItem then
+		if ith is less than or equal to dataitem_counts then
 			set a_dataitem to data item ith of my _dataItemRef
 		else
 			set a_dataitem to make new data item at end of data items of my _dataItemRef
@@ -212,7 +212,7 @@ on update_labels()
 	--log "start updating labels from doc"
 	repeat with ith from 1 to nLabelFromDoc
 		set ith_shifted to ith + nLabelFromAux
-		if ith_shifted is less than or equal to nDataItem then
+		if ith_shifted is less than or equal to dataitem_counts then
 			set a_dataitem to data item ith_shifted of my _dataItemRef
 			if has data items of a_dataitem then
 				delete every data item of a_dataitem
@@ -227,24 +227,24 @@ on update_labels()
 	
 	--log "start third repeat"
 	set delItemNum to (nLabelFromAux + nLabelFromDoc + 1)
-	repeat (nDataItem - nLabelFromAux - nLabelFromDoc) times
+	repeat (dataitem_counts - nLabelFromAux - nLabelFromDoc) times
 		delete data item delItemNum of my _dataItemRef
 	end repeat
 	--log "end of update_labels"
 end update_labels
 
 on update_labels_from_doc()
-	set nDataItem to count data item of my _dataItemRef
+	set dataitem_counts to count data item of my _dataItemRef
 	set nLabelFromAux to length of my _labelRecordFromAux
 	set nLabelFromDoc to length of my _labelRecordFromDoc
 	
 	set labCounter to 1
 	(*log "before repeat 1"
-	--log "nDataItem:" & nDataItem
+	--log "dataitem_counts:" & dataitem_counts
 	--log "nLabelFromAux:" & nLabelFromAux
 	--log "nLabelFromDoc:" & nLabelFromDoc
 	*)
-	repeat with ith from (nLabelFromAux + 1) to nDataItem
+	repeat with ith from (nLabelFromAux + 1) to dataitem_counts
 		--log "in repeat 1"
 		set a_dataitem to data item ith of my _dataItemRef
 		

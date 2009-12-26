@@ -234,7 +234,7 @@ on parse_aux_file(an_auxdata)
 			set pos2 to (offset of "}{" in a_paragraph) as integer
 			set a_label to item 1 of arglist
 			
-			if not a_label is "" then
+			if not (a_label is "" or a_label starts with "SC@") then
 				an_auxdata's add_label_from_aux(a_label, refnum)
 			end if
 		else if a_paragraph starts with inputText then

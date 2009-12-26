@@ -222,10 +222,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2CE7832B10E3BDBF003D6BCF</string>
+						<string>2CD5D73510E5F243003105C0</string>
 						<key>history</key>
 						<array>
-							<string>2CE7831E10E3B7CE003D6BCF</string>
+							<string>2CE7832B10E3BDBF003D6BCF</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -262,10 +262,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>2CE7832F10E3BDBF003D6BCF</string>
+						<string>2CD5D73610E5F243003105C0</string>
 						<key>history</key>
 						<array>
-							<string>2CE7832E10E3BDBF003D6BCF</string>
+							<string>2CE7832F10E3BDBF003D6BCF</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -282,46 +282,6 @@
 				<false/>
 				<key>RubberWindowFrame</key>
 				<string>446 79 690 799 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2CE7833010E3BDBF003D6BCF</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>3155 と ローカル — LabelListController.applescript を比較</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2CE7833110E3BDBF003D6BCF</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>3155 と ローカル — LabelListController.applescript を比較</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2CE7833310E3BDBF003D6BCF</string>
-						<key>history</key>
-						<array>
-							<string>2CE7833210E3BDBF003D6BCF</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1066, 756}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 76 1066 797 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -619,7 +579,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CE7832610E3BDBF003D6BCF</string>
+										<string>2CD5D73210E5F243003105C0</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -678,7 +638,7 @@
 											<string>2CCF972210DF9AB0004E5A38</string>
 											<string>2CE7832010E3BDBF003D6BCF</string>
 											<string>2CE7832110E3BDBF003D6BCF</string>
-											<string>2CE7832210E3BDBF003D6BCF</string>
+											<string>2CE7832610E3BDBF003D6BCF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -742,9 +702,7 @@
 											<string>2CE4BC0110CCE22C0083834E</string>
 											<string>2CCF960810DD40A9004E5A38</string>
 											<string>2CCF976F10DFC6CD004E5A38</string>
-											<string>2CE7832310E3BDBF003D6BCF</string>
 											<string>2CE7832410E3BDBF003D6BCF</string>
-											<string>2CE7832510E3BDBF003D6BCF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -803,9 +761,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CE7832710E3BDBF003D6BCF</string>
+				<string>2CD5D73310E5F243003105C0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CE7832810E3BDBF003D6BCF</string>
+				<string>2CD5D73410E5F243003105C0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -949,11 +907,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>2CD476790E93E00A0069C39E</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>2CE7833010E3BDBF003D6BCF</string>
 		<string>2CE7832C10E3BDBF003D6BCF</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 		<string>2CE7832910E3BDBF003D6BCF</string>
@@ -1038,7 +993,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2CE7833510E3BDBF003D6BCF</string>
+				<string>2CD5D73710E5F243003105C0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1158,13 +1113,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2CE7833610E3BDBF003D6BCF</string>
+				<string>2CD5D73810E5F243003105C0</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2CE7833710E3BDBF003D6BCF</string>
-				<string>2CE7833810E3BDBF003D6BCF</string>
-				<string>2CE7833910E3BDBF003D6BCF</string>
-				<string>2CE7833A10E3BDBF003D6BCF</string>
-				<string>2CE7833B10E3BDBF003D6BCF</string>
+				<string>2CD5D73910E5F243003105C0</string>
+				<string>2CD5D73A10E5F243003105C0</string>
+				<string>2CD5D73B10E5F243003105C0</string>
+				<string>2CD5D73C10E5F243003105C0</string>
+				<string>2CD5D73D10E5F243003105C0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
