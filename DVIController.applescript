@@ -117,8 +117,8 @@ script MxdviDriver
 		set a_texdoc to a_dvi's texdoc()
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
 			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
-			set targetDviPath to quoted form of (a_dvi's posix_path())
-			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & targetDviPath & " &"
+			set target_dvi_path to quoted form of (a_dvi's posix_path())
+			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & target_dvi_path & " &"
 			--log all_command
 			if a_texdoc's is_use_term() then
 				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
@@ -152,25 +152,60 @@ script PictPrinterDriver
 		a_dvi's update_src_special_flag_from_file()
 		--log "success update_src_special_flag_from_file"
 		set a_texdoc to a_dvi's texdoc()
-		set targetDviPath to a_dvi's posix_path()
+		set target_dvi_path to a_dvi's posix_path()
+		set target_dvi_file to POSIX file target_dvi_path
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
 			--log "open dvi with forward search"
 			if a_texdoc's has_parent() then
-				set_base_path(a_texdoc's file_ref()'s posix_path()) of PathConverter
-				set sourceFile to relative_path of PathConverter for (a_texdoc's target_file()'s posix_path())
+				--log "has parent"
+				using terms from application "PictPrinter"
+					tell application (pictprinter_app as Unicode text)
+						open target_dvi_file
+						set dvis_list to DVIsList
+					end tell
+				end using terms from
+				set subpath_list to missing value
+				repeat with a_sublist in dvis_list
+					set a_dvi_path to POSIX path of item 1 of a_sublist
+					if a_dvi_path is target_dvi_path then
+						if length of a_sublist > 1 then
+							set subpath_list to items 2 thru -1 of a_sublist
+						end if
+						exit repeat
+					end if
+				end repeat
+				set a_pathconv to PathConverter's make_with(a_texdoc's file_ref()'s posix_path())
+				set a_source_path to a_texdoc's target_file()'s posix_path()
+				if subpath_list is not missing value then
+					repeat with a_subpath in subpath_list
+						if a_subpath starts with "/" then
+							set a_path to a_subpath
+						else
+							set a_path to absolute_path of a_pathconv for a_subpath
+						end if
+						if a_path is a_source_path then
+							using terms from application "PictPrinter"
+								tell application (pictprinter_app as Unicode text)
+									FindRoughly in dvi target_dvi_path startLine (a_texdoc's doc_position()) with source a_subpath
+								end tell
+							end using terms from
+							exit repeat
+						end if
+					end repeat
+				end if
 			else
-				set sourceFile to a_dvi's texdoc()'s fileName()
+				set source_file to a_dvi's texdoc()'s fileName()
+				using terms from application "PictPrinter"
+					tell application (pictprinter_app as Unicode text)
+						FindRoughly in dvi target_dvi_path startLine (a_texdoc's doc_position()) with source source_file
+					end tell
+				end using terms from
 			end if
-			using terms from application "PictPrinter"
-				tell application (pictprinter_app as Unicode text)
-					FindRoughly in dvi targetDviPath startLine (a_texdoc's doc_position()) with source sourceFile
-				end tell
-			end using terms from
 		else
 			--log "open dvi without forward search"
 			using terms from application "PictPrinter"
 				tell application (pictprinter_app as Unicode text)
-					FindRoughly in dvi targetDviPath
+					open target_dvi_file
 				end tell
 			end using terms from
 		end if

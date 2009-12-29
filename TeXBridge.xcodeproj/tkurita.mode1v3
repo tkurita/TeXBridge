@@ -203,88 +203,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2CE7832910E3BDBF003D6BCF</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>LabelListController.applescript</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2CE7832A10E3BDBF003D6BCF</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>LabelListController.applescript</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2CD5D73510E5F243003105C0</string>
-						<key>history</key>
-						<array>
-							<string>2CE7832B10E3BDBF003D6BCF</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {786, 747}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>558 90 786 788 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2CE7832C10E3BDBF003D6BCF</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>AuxData.applescript</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2CE7832D10E3BDBF003D6BCF</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>AuxData.applescript</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2CD5D73610E5F243003105C0</string>
-						<key>history</key>
-						<array>
-							<string>2CE7832F10E3BDBF003D6BCF</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {690, 758}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>446 79 690 799 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -372,7 +291,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>30</integer>
+									<integer>28</integer>
 									<integer>17</integer>
 									<integer>0</integer>
 								</array>
@@ -567,7 +486,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AuxData.applescript</string>
+								<string>LabelListController.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -575,11 +494,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AuxData.applescript</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>2CD5D73210E5F243003105C0</string>
+										<string>LabelListController.applescript</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -637,8 +552,8 @@
 											<string>2CCF96B510DF8379004E5A38</string>
 											<string>2CCF972210DF9AB0004E5A38</string>
 											<string>2CE7832010E3BDBF003D6BCF</string>
-											<string>2CE7832110E3BDBF003D6BCF</string>
-											<string>2CE7832610E3BDBF003D6BCF</string>
+											<string>2CD5D75C10E9B010003105C0</string>
+											<string>2CD5D75D10E9B010003105C0</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -761,9 +676,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CD5D73310E5F243003105C0</string>
+				<string>2CD5D77210E9B025003105C0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CD5D73410E5F243003105C0</string>
+				<string>2CD5D77310E9B025003105C0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -907,11 +822,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2CD476790E93E00A0069C39E</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>2CE7832C10E3BDBF003D6BCF</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
-		<string>2CE7832910E3BDBF003D6BCF</string>
 	</array>
 	<key>WindowString</key>
 	<string>40 131 1047 738 0 0 1440 878 </string>
@@ -1146,8 +1057,6 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -1174,6 +1083,8 @@
 							<string>444pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1209,8 +1120,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2CE7833C10E3BDBF003D6BCF</string>
-				<string>2CE7833D10E3BDBF003D6BCF</string>
+				<string>2CD5D74010E5F766003105C0</string>
+				<string>2CD5D74110E5F766003105C0</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1219,7 +1130,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1240,6 +1151,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1275,7 +1188,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>2CE7833E10E3BDBF003D6BCF</string>
+				<string>2CD5D75B10E9B00A003105C0</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
