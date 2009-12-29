@@ -40,7 +40,7 @@ on watchmi given force_reloading:force_flag
 			-- -1712 : timeout
 			return
 		else
-			error "Fail to find_auxdata_from_doc in watchmi of LabelListController." & return & msg number errno
+			error ("Fail to find_auxdata_from_doc in watchmi of LabelListController." & return & msg) number errno
 		end if
 	end try
 	
