@@ -278,7 +278,7 @@ on find_labels_from_doc(an_auxdata, force_flag)
 	--log "start find_labels_from_doc"
 	set doc_content to EditorClient's document_content()
 	--log doc_content
-	set a_xlist to XList's make_with(every paragraph of doc_content)
+	set a_xlist to XList's make_with(get every paragraph of doc_content)
 	if (not force_flag) and (not an_auxdata's is_texfile_updated()) then
 		-- check document size before parsing document contents.
 		-- if documen has not modification, an_auxdata will not be updated
