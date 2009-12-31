@@ -41,6 +41,7 @@ script XdviDriver
 			end if
 			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
 			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
+			set dviViewCommand to replace of XText for dviViewCommand from " -unique" by ""
 			set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
 			do_command of target_term for all_command without activation
 		else

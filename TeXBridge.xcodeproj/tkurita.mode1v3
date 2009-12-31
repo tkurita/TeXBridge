@@ -238,6 +238,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -289,13 +291,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>38</integer>
+									<integer>40</integer>
 									<integer>32</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 267}, {271, 658}}</string>
+							<string>{{0, 210}, {271, 658}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -369,7 +371,6 @@
 											<string>2CB721C40F32CC3800995D8A</string>
 											<string>2C5C63B60F39FFD800B0AE1D</string>
 											<string>2C5C63B70F39FFD800B0AE1D</string>
-											<string>2CD404610F74A32000B96300</string>
 											<string>2CD4047F0F74DC4F00B96300</string>
 											<string>2C64E0BB0F8603A700A664B1</string>
 											<string>2C64E0BD0F8603A700A664B1</string>
@@ -426,7 +427,6 @@
 											<string>2C3E62160EA6654D00BEF6A5</string>
 											<string>2C93CF360EA6D9A400CB4935</string>
 											<string>2CD680230EACD45100790719</string>
-											<string>2CA333F30EAD54A600C009DE</string>
 											<string>2CE027150EB0DF1B00925F15</string>
 											<string>2CE680430EB9FEA500E600A2</string>
 											<string>2CE680440EB9FEA500E600A2</string>
@@ -484,7 +484,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>FactorySettings.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -492,11 +492,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>FactorySettings.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CD5D7C410EA08E4003105C0</string>
+										<string>2CD5D83D10EC810A003105C0</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -545,17 +545,17 @@
 											<string>2CE4BB9010CCCC5C0083834E</string>
 											<string>2CE4BC2510CCE8D80083834E</string>
 											<string>2CE4BC2610CCE8D80083834E</string>
-											<string>2C81324010CD451E001A9107</string>
 											<string>2CCF952010DCC980004E5A38</string>
-											<string>2CCF960010DD40A9004E5A38</string>
 											<string>2CCF969610DF7DAE004E5A38</string>
-											<string>2CCF96B510DF8379004E5A38</string>
 											<string>2CCF972210DF9AB0004E5A38</string>
-											<string>2CE7832010E3BDBF003D6BCF</string>
 											<string>2CD5D75C10E9B010003105C0</string>
 											<string>2CD5D77710E9B2D5003105C0</string>
 											<string>2CD5D7AC10EA08C4003105C0</string>
-											<string>2CD5D7AF10EA08C4003105C0</string>
+											<string>2CD5D7FB10EA5AEB003105C0</string>
+											<string>2CD5D7FC10EA5AEB003105C0</string>
+											<string>2CD5D83010EA6827003105C0</string>
+											<string>2CD5D83210EA6827003105C0</string>
+											<string>2CD5D83C10EC810A003105C0</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -581,7 +581,6 @@
 											<string>2C3E62160EA6654D00BEF6A5</string>
 											<string>2C93CF360EA6D9A400CB4935</string>
 											<string>2CD680230EACD45100790719</string>
-											<string>2CA333F30EAD54A600C009DE</string>
 											<string>2CE027150EB0DF1B00925F15</string>
 											<string>2CE680430EB9FEA500E600A2</string>
 											<string>2CE680440EB9FEA500E600A2</string>
@@ -620,6 +619,16 @@
 											<string>2CCF960810DD40A9004E5A38</string>
 											<string>2CCF976F10DFC6CD004E5A38</string>
 											<string>2CE7832410E3BDBF003D6BCF</string>
+											<string>2CD5D80010EA5AEB003105C0</string>
+											<string>2CD5D80110EA5AEB003105C0</string>
+											<string>2CD5D80310EA5AEB003105C0</string>
+											<string>2CD5D82410EA67C4003105C0</string>
+											<string>2CD5D82510EA67C4003105C0</string>
+											<string>2CD5D82610EA67C4003105C0</string>
+											<string>2CD5D82710EA67C4003105C0</string>
+											<string>2CD5D82810EA67C4003105C0</string>
+											<string>2CD5D83410EA6827003105C0</string>
+											<string>2CD5D83610EA6827003105C0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -678,9 +687,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CD5D7C510EA08E4003105C0</string>
+				<string>2CD5D80510EA5AEB003105C0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CD5D7C610EA08E4003105C0</string>
+				<string>2CD5D80610EA5AEB003105C0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -826,6 +835,7 @@
 	<array>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2CD476790E93E00A0069C39E</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -908,7 +918,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2CD5D7C710EA08E4003105C0</string>
+				<string>2CD5D80710EA5AEB003105C0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1028,13 +1038,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2CD5D7C810EA08E4003105C0</string>
+				<string>2CD5D80810EA5AEB003105C0</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2CD5D7C910EA08E4003105C0</string>
-				<string>2CD5D7CA10EA08E4003105C0</string>
-				<string>2CD5D7CB10EA08E4003105C0</string>
-				<string>2CD5D7CC10EA08E4003105C0</string>
-				<string>2CD5D7CD10EA08E4003105C0</string>
+				<string>2CD5D80910EA5AEB003105C0</string>
+				<string>2CD5D80A10EA5AEB003105C0</string>
+				<string>2CD5D80B10EA5AEB003105C0</string>
+				<string>2CD5D80C10EA5AEB003105C0</string>
+				<string>2CD5D80D10EA5AEB003105C0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1192,7 +1202,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>2CD5D75B10E9B00A003105C0</string>
+				<string>2CD5D80E10EA5AEB003105C0</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1202,7 +1212,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
