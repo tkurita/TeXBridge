@@ -85,7 +85,11 @@ on check_auxfile given display_error:alert_flag
 	--log "start check_auxfile"
 	if my _auxFileRef is missing value then
 		--log "_auxFileRef is missing value"
-		set an_auxfile to my _texdoc's target_file()'s change_path_extension("aux")
+		set tex_source_file to my _texdoc's target_file()
+		if tex_source_file is missing value then
+			return false
+		end if
+		set an_auxfile to tex_source_file's change_path_extension("aux")
 		if an_auxfile's item_exists() then
 			--log "aux file exists"
 			set my _auxFileRef to an_auxfile

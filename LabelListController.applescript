@@ -49,12 +49,12 @@ on watchmi given force_reloading:force_flag
 	end if
 	--log "passed find_auxdata_from_doc"
 	if an_auxdata's data_item() is missing value then
-		--log "no data item"
+		log "no data item"
 		if check_auxfile of an_auxdata without display_error then
 			--log "before parse_aux_file in watchmi when data_item() is missing value"
 			parse_aux_file(an_auxdata)
 		end if
-		--log "after aux_file"
+		log "after parse_aux_file"
 		find_labels_from_doc(an_auxdata, force_flag)
 		if an_auxdata's has_parent() then
 			--log "has ParentFile"
@@ -74,7 +74,7 @@ on watchmi given force_reloading:force_flag
 			append_to_outline for an_auxdata below my _label_data_source
 		end if
 	else
-		--log "has data item"
+		log "has data item"
 		set aux_updated to false
 		set doc_updated to false
 		if force_flag then
@@ -82,7 +82,7 @@ on watchmi given force_reloading:force_flag
 				--log "before parse_aux_file in watchmi when data_item() exists"
 				parse_aux_file(an_auxdata)
 			else
-				--log "no aux file"
+				log "no aux file"
 				set aux_updated to an_auxdata's clear_labels_from_aux()
 				set force_flag to true
 			end if
@@ -149,7 +149,7 @@ end find_auxdata_from_doc
 on append_to_outline for an_auxdata below parentDataItem
 	--log "start append_to_outline"
 	if an_auxdata's data_item() is missing value then
-		-- log "is first append to outline"
+		log "is first append to outline"
 		set titleItem to make new data item at end of data items of parentDataItem
 		an_auxdata's set_data_item(titleItem)
 		set contents of data cell "label" of titleItem to an_auxdata's basename()
@@ -181,7 +181,7 @@ on append_to_outline for an_auxdata below parentDataItem
 end append_to_outline
 
 on auxdata_for_texdoc(a_texdoc)
-	-- log "start auxdata_for_texdoc"
+	--log "start auxdata_for_texdoc"
 	if a_texdoc's has_file() then
 		-- log "file is saved"
 		set a_key to a_texdoc's no_suffix_target_path()
@@ -195,15 +195,16 @@ on auxdata_for_texdoc(a_texdoc)
 			my _aux_data_dict's set_value(a_key, an_auxdata)
 		end try
 	else
-		-- log "file is not saved"
+		log "file is not saved"
 		if my _unsaved_auxdata is not missing value then
 			my _unsaved_auxdata's delete_dataitem()
+		else
+			set my _unsaved_auxdata to AuxData's make_with_texdoc(a_texdoc)
 		end if
-		set an_auxdata to AuxData's make_with_texdoc(a_texdoc)
-		set my _unsaved_auxdata to an_auxdata
+		set an_auxdata to my _unsaved_auxdata
 	end if
 	
-	-- log "end auxdata_for_texdoc"
+	--log "end auxdata_for_texdoc"
 	return an_auxdata
 end auxdata_for_texdoc
 
