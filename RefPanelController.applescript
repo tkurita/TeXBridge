@@ -38,7 +38,7 @@ on rebuild_labels_from_aux(a_texdoc)
 	if my _window_controller is missing value then
 		return
 	end if
-	if is_opened() then
+	if is_opened_expanded() then
 		rebuild_labels_from_aux(a_texdoc) of LabelListController
 	end if
 end rebuild_labels_from_aux
@@ -141,6 +141,16 @@ on is_opened()
 	set a_result to call method "isOpened" of my _window_controller
 	return (a_result is 1)
 end is_opened
+
+on is_opened_expanded()
+	if not is_opened() then
+		return false
+	end if
+	
+	set a_result to call method "isCollapsed" of my _window_controller
+	return (a_result is not 1)
+end is_opened_expanded
+
 
 on display_alert(a_msg)
 	display alert a_msg attached to my _window as warning
