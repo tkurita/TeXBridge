@@ -181,6 +181,14 @@
 			2C108655112D3A4900AD9B9C = 2C108655112D3A4900AD9B9C /* PBXTextBookmark */;
 			2C10866D112D3A7B00AD9B9C /* PlistBookmark */ = 2C10866D112D3A7B00AD9B9C /* PlistBookmark */;
 			2C10866E112D3A7B00AD9B9C /* PlistBookmark */ = 2C10866E112D3A7B00AD9B9C /* PlistBookmark */;
+			2C10867B112D3B2F00AD9B9C /* PBXTextBookmark */ = 2C10867B112D3B2F00AD9B9C /* PBXTextBookmark */;
+			2C10867C112D3B2F00AD9B9C /* PBXTextBookmark */ = 2C10867C112D3B2F00AD9B9C /* PBXTextBookmark */;
+			2C10867D112D3B2F00AD9B9C /* PBXTextBookmark */ = 2C10867D112D3B2F00AD9B9C /* PBXTextBookmark */;
+			2C10867E112D3B2F00AD9B9C /* PBXTextBookmark */ = 2C10867E112D3B2F00AD9B9C /* PBXTextBookmark */;
+			2C108684112D3B3A00AD9B9C /* PlistBookmark */ = 2C108684112D3B3A00AD9B9C /* PlistBookmark */;
+			2C108685112D3B3A00AD9B9C /* PBXTextBookmark */ = 2C108685112D3B3A00AD9B9C /* PBXTextBookmark */;
+			2C108686112D3B3A00AD9B9C /* PlistBookmark */ = 2C108686112D3B3A00AD9B9C /* PlistBookmark */;
+			2C108687112D3B3A00AD9B9C /* PBXTextBookmark */ = 2C108687112D3B3A00AD9B9C /* PBXTextBookmark */;
 			2C155B3710F462BC00079C06 = 2C155B3710F462BC00079C06 /* PBXTextBookmark */;
 			2C155B3910F462BC00079C06 = 2C155B3910F462BC00079C06 /* PBXTextBookmark */;
 			2C1D861210966D5E004E0764 = 2C1D861210966D5E004E0764 /* PlistBookmark */;
@@ -594,6 +602,84 @@
 		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
 		rLen = 0;
 		rLoc = 2147483647;
+	};
+	2C10867B112D3B2F00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 198";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 5671;
+	};
+	2C10867C112D3B2F00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		rLen = 5;
+		rLoc = 5955;
+		rType = 0;
+	};
+	2C10867D112D3B2F00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 198";
+		rLen = 0;
+		rLoc = 6109;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 5671;
+	};
+	2C10867E112D3B2F00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 213";
+		rLen = 5;
+		rLoc = 5955;
+		rType = 0;
+		vrLen = 690;
+		vrLoc = 5754;
+	};
+	2C108684112D3B3A00AD9B9C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C108685112D3B3A00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		rLen = 13;
+		rLoc = 2272;
+		rType = 0;
+	};
+	2C108686112D3B3A00AD9B9C /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C108687112D3B3A00AD9B9C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 357";
+		rLen = 0;
+		rLoc = 11695;
+		rType = 0;
+		vrLen = 862;
+		vrLoc = 2314;
 	};
 	2C1548DB0B1ED1E3005D565B /* WindowVisibilityController.m:18 */ = {
 		isa = PBXFileBreakpoint;
@@ -1519,18 +1605,18 @@
 	};
 	2C6CA3C008CF559E005D5612 /* LabelListController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 5212}}";
-			sepNavSelRange = "{17, 0}";
-			sepNavVisRange = "{0, 679}";
+			sepNavIntBoundsRect = "{{0, 0}, {914, 5317}}";
+			sepNavSelRange = "{11695, 0}";
+			sepNavVisRange = "{2314, 862}";
 			sepNavVisRect = "{{0, 418}, {747, 715}}";
 			sepNavWindowFrame = "{{558, 90}, {786, 788}}";
 		};
 	};
 	2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 8737}}";
-			sepNavSelRange = "{247, 0}";
-			sepNavVisRange = "{1257, 867}";
+			sepNavIntBoundsRect = "{{0, 0}, {962, 8747}}";
+			sepNavSelRange = "{5955, 5}";
+			sepNavVisRange = "{5754, 690}";
 			sepNavVisRect = "{{0, 7058}, {982, 352}}";
 			sepNavWindowFrame = "{{85, 75}, {703, 803}}";
 		};

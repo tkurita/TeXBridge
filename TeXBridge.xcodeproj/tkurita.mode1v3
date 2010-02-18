@@ -400,12 +400,14 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>LabelListController.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -413,11 +415,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>LabelListController.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C10866E112D3A7B00AD9B9C</string>
+										<string>2C108687112D3B3A00AD9B9C</string>
 										<key>history</key>
 										<array>
 											<string>2C77C39A0D003CC000C4E9D3</string>
@@ -437,7 +439,8 @@
 											<string>2C108645112D38E100AD9B9C</string>
 											<string>2C108652112D3A4900AD9B9C</string>
 											<string>2C108653112D3A4900AD9B9C</string>
-											<string>2C10866D112D3A7B00AD9B9C</string>
+											<string>2C108684112D3B3A00AD9B9C</string>
+											<string>2C108685112D3B3A00AD9B9C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -456,6 +459,7 @@
 											<string>2C860B310EA31CEE004D54B8</string>
 											<string>2C108647112D38E100AD9B9C</string>
 											<string>2C108654112D3A4900AD9B9C</string>
+											<string>2C108686112D3B3A00AD9B9C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -660,6 +664,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2CD476790E93E00A0069C39E</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
@@ -897,14 +902,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MessageUtility.applescript</string>
+										<string>LabelListController.applescript</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -913,7 +916,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {1023, 444}}</string>
 										<key>RubberWindowFrame</key>
-										<string>881 -89 1023 796 0 0 1440 878 </string>
+										<string>464 8 1023 796 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -925,6 +928,8 @@
 							<string>444pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -937,7 +942,7 @@
 								<key>Frame</key>
 								<string>{{0, 449}, {1023, 306}}</string>
 								<key>RubberWindowFrame</key>
-								<string>881 -89 1023 796 0 0 1440 878 </string>
+								<string>464 8 1023 796 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -960,17 +965,17 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2C10864A112D38E100AD9B9C</string>
-				<string>2C10864B112D38E100AD9B9C</string>
+				<string>2C10867F112D3B2F00AD9B9C</string>
+				<string>2C108680112D3B2F00AD9B9C</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>881 -89 1023 796 0 0 1440 878 </string>
+			<string>464 8 1023 796 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
