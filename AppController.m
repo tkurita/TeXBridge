@@ -189,6 +189,9 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[wvController setDelegate:self];
 	[wvController setFocusWatchApplication:@"mi"];
 	[PaletteWindowController setVisibilityController:[wvController autorelease]];
+#if useLog
+	NSLog(@"end applicationWillFinishLaunching");
+#endif		
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -204,6 +207,9 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 	id reminderWindow = [DonationReminder remindDonation];
 	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
+#if useLog
+	NSLog(@"end applicationDidFinishLaunching");
+#endif	
 }
 
 @end

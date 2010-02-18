@@ -47,14 +47,14 @@ end import_script
 
 (* events of application*)
 on launched theObject
-	-- log "start lanunched"
+	--log "start lanunched"
 	--log "will show toolpalette"
-	set showToolPaletteWhenLaunched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
-	set IsOpenedToolPalette to value_with_default("IsOpenedToolPalette", showToolPaletteWhenLaunched) of DefaultsManager
-	if not showToolPaletteWhenLaunched then
-		set showToolPaletteWhenLaunched to IsOpenedToolPalette
+	set show_tool_palette_when_launched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
+	set is_opened_tool_palette to value_with_default("IsOpenedToolPalette", show_tool_palette_when_launched) of DefaultsManager
+	if not show_tool_palette_when_launched then
+		set show_tool_palette_when_launched to is_opened_tool_palette
 	end if
-	if showToolPaletteWhenLaunched then
+	if show_tool_palette_when_launched then
 		show_startup_message("Opening Tool Palette ...")
 		open_window() of ToolPaletteController
 	end if
@@ -101,7 +101,7 @@ on launched theObject
 	--open {commandClass:"editSupport", commandID:"openRelatedFile"}
 	(*end of debug code*)
 	
-	-- log "end of launched"
+	--log "end of launched"
 end launched
 
 on do_replaceinput()
@@ -207,25 +207,32 @@ on choose menu item theObject
 	end if
 end choose menu item
 
-on setup_constants()
+on check_mi_version()
 	set app_file to EditorClient's application_file()
 	tell application "System Events"
-		set a_var to version of app_file
+		set a_ver to version of app_file
 	end tell
-	set a_var to word 3 of a_var
-	if a_var is greater than or equal to "2.1.7" then
-		set plistName to "ToolSupport"
-	else
-		set plistName to "ToolSupport216"
-	end if
-	
+	set a_ver to word 3 of a_ver
+	considering numeric strings
+		if a_ver is not greater than or equal to "2.1.7" then
+			set msg to UtilityHandlers's localized_string("mi $1 is not supported.", {a_ver})
+			hide window "Startup"
+			MessageUtility's show_message(msg)
+			return false
+		end if
+	end considering
+	return true
+end check_mi_version
+
+on setup_constants()
 	tell main bundle
-		set plistPath to path for resource plistName extension "plist"
+		set plistPath to path for resource "ToolSupport" extension "plist"
 	end tell
 	set constantsDict to call method "dictionaryWithContentsOfFile:" of class "NSDictionary" with parameter plistPath
 	set _backslash to backslash of constantsDict
 	
 	set my _my_signature to call method "objectForInfoDictionaryKey:" of main bundle with parameter "CFBundleSignature"
+	return true
 end setup_constants
 
 on will finish launching theObject
@@ -259,6 +266,10 @@ on will finish launching theObject
 	set ReplaceInput to import_script("ReplaceInput")
 	
 	--log "end of import library"
+	show_startup_message("Checking mi version ...")
+	if not check_mi_version() then
+		quit
+	end if
 	show_startup_message("Loading Preferences ...")
 	setup_constants()
 	--log "start of initializeing PDFController"
