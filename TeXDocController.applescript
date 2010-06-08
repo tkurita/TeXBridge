@@ -222,6 +222,7 @@ on typeset()
 			else if errno is 127 then
 				-- maybe comannd name or path setting is not correct
 				show_error(errno, "texCompile", msg) of MessageUtility
+				log all_command
 				error "Typeset is not executed." number 1250
 			else
 				error msg number errno
