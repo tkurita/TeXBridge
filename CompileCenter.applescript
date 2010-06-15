@@ -310,11 +310,11 @@ on seek_ebb()
 	repeat with ith from 1 to (count paragraph of theRes)
 		set a_paragraph to paragraph ith of theRes
 		if ((length of a_paragraph) > 1) and (a_paragraph does not start with "%") then
-			set graphicFile to extractFilePath(graphicCommand, a_paragraph) of EditCommands
+			set a_path to filepath_in_command(graphicCommand, a_paragraph) of EditCommands
 			repeat with an_extension in graphicExtensions
-				if graphicFile ends with an_extension then
+				if a_path ends with an_extension then
 					set noGraphicFlag to false
-					if exec_ebb(graphicFile, an_extension, a_term) then
+					if exec_ebb(a_path, an_extension, a_term) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -322,6 +322,7 @@ on seek_ebb()
 			end repeat
 		end if
 	end repeat
+	
 	TerminalCommander's register_from_commander(a_term)
 	if noGraphicFlag then
 		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's a_name()})
@@ -332,7 +333,7 @@ on seek_ebb()
 end seek_ebb
 
 on exec_ebb(graphic_path, an_extension, a_term)
-	set graphic_file to XFile's make_with(POSIX file graphic_path)
+	set graphic_file to XFile's make_with(graphic_path)
 	set bb_file to graphic_file's change_path_extension("bb")
 	if bb_file's item_exists() then
 		set bb_mod to modification date of (bb_file's info())
@@ -344,29 +345,10 @@ on exec_ebb(graphic_path, an_extension, a_term)
 	
 	set target_dir to graphic_file's parent_folder()'s posix_path()
 	set a_name to graphic_file's item_name()
-	(*
-	set basepath to text 1 thru -((length of an_extension) + 1) of graphic_path
-	set bbPath to basepath & ".bb"
-	if isExists(POSIX file bbPath) of UtilityHandlers then
-		set bbAlias to POSIX file bbPath as alias
-		set graphicAlias to POSIX file theGraphicPath as alias
-		tell application "System Events"
-			set bbModDate to modification date of bbAlias
-			set graphicModDate to modification date of graphicAlias
-		end tell
-		if (graphicModDate < bbModDate) then
-			return false
-		end if
-	end if
-	-------do ebb
-	set graphic_path to quoted form of graphic_path
-	set target_dir to dirname(graphic_path) of ShellUtils
-	set a_name to basename(graphic_path, "") of ShellUtils
-	*)
+	
 	set cd_command to "cd '" & target_dir & "'"
 	set ebbCommand to contents of default entry "ebbCommand" of user defaults
 	set all_command to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
-	--do_command of TerminalCommander for all_command with activation
 	send_command of a_term for all_command
 	a_term's wait_termination(300)
 	return true

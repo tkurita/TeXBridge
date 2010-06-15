@@ -4,7 +4,7 @@ global MessageUtility
 global EditorClient
 global UtilityHandlers
 
-on extractFilePath(a_command, a_paragraph)
+on filepath_in_command(a_command, a_paragraph)
 	if a_paragraph contains a_command then
 		set pos0 to offset of a_command in a_paragraph
 		set a_paragraph to text pos0 thru -1 of a_paragraph
@@ -16,7 +16,7 @@ on extractFilePath(a_command, a_paragraph)
 		set fullPath to ""
 	end if
 	return fullPath
-end extractFilePath
+end filepath_in_command
 
 on open_parentfile()
 	try

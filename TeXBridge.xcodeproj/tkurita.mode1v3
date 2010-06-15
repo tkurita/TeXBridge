@@ -238,6 +238,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -292,8 +294,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>38</integer>
-									<integer>32</integer>
+									<integer>10</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -402,7 +404,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>TerminalCommander.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -410,11 +412,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>TerminalCommander.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C39FC7711BDEAC10069533D</string>
+										<string>2CFCE8A811C781660087DE42</string>
 										<key>history</key>
 										<array>
 											<string>2CA9B34B0E97C419009C0C2A</string>
@@ -435,7 +437,8 @@
 											<string>2C39FC3811BDE6850069533D</string>
 											<string>2C39FC3A11BDE6850069533D</string>
 											<string>2C39FC7411BDEAC10069533D</string>
-											<string>2C39FC7511BDEAC10069533D</string>
+											<string>2CFCE8A511C781660087DE42</string>
+											<string>2CFCE8A611C781660087DE42</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -458,7 +461,7 @@
 											<string>2C74D4021192C25F0071E691</string>
 											<string>2C74D4031192C25F0071E691</string>
 											<string>2C39FC3D11BDE6850069533D</string>
-											<string>2C39FC7611BDEAC10069533D</string>
+											<string>2CFCE8A711C781660087DE42</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -517,9 +520,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C39FC7811BDEAC10069533D</string>
+				<string>2CFCE8A911C781660087DE42</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C39FC7911BDEAC10069533D</string>
+				<string>2CFCE8AA11C781660087DE42</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -663,7 +666,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2CD476790E93E00A0069C39E</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -866,13 +869,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C39FC2311BDE0B10069533D</string>
+				<string>2CFCE8AB11C781660087DE42</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C39FC2411BDE0B10069533D</string>
-				<string>2C39FC2511BDE0B10069533D</string>
-				<string>2C39FC2611BDE0B10069533D</string>
-				<string>2C39FC2711BDE0B10069533D</string>
-				<string>2C39FC2811BDE0B10069533D</string>
+				<string>2CFCE8AC11C781660087DE42</string>
+				<string>2CFCE8AD11C781660087DE42</string>
+				<string>2CFCE8AE11C781660087DE42</string>
+				<string>2CFCE8AF11C781660087DE42</string>
+				<string>2CFCE8B011C781660087DE42</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
