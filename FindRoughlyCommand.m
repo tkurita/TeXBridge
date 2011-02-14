@@ -15,6 +15,7 @@ void showAEDesc(const AppleEvent *ev)
 
 - (id)performDefaultImplementation
 {
+
 #if useLog
 	NSLog(@"FindRoughlyCommand");
 	showAEDesc([[self appleEvent] aeDesc]);
@@ -67,8 +68,8 @@ void showAEDesc(const AppleEvent *ev)
 	} else {
 		NSLog(@"Can't find %@", tex_path);
 	}
-	
-	return [super performDefaultImplementation];
+	return [NSNumber numberWithInteger:0];
+	//return [super performDefaultImplementation];
 }
 
 @end

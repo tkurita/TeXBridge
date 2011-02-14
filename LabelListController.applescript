@@ -332,13 +332,15 @@ on rebuild_labels_from_aux(a_texdoc)
 	--log "start rebuild_labels_from_aux in LabelListController"
 	set an_auxdata to auxdata_for_texdoc(a_texdoc)
 	--log "after auxdata_for_texdoc"
-	if not (check_auxfile of an_auxdata with display_error) then
-		return false
-	end if
 	--log "after check_auxfile"
 	if a_texdoc's has_parent() then
+		check_auxfile of an_auxdata without display_error -- inputed file will not have an aux file.
 		set a_texdoc to a_texdoc's master_texdoc()
 		set an_auxdata to auxdata_for_texdoc(a_texdoc)
+		if not (check_auxfile of an_auxdata with display_error) then
+			return false
+		end if
+	else
 		if not (check_auxfile of an_auxdata with display_error) then
 			return false
 		end if

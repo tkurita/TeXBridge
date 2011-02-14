@@ -98,6 +98,8 @@ on check_auxfile given display_error:alert_flag
 			if alert_flag then
 				set a_msg to localized string "auxFileIsNotFound"
 				display_alert(a_msg) of RefPanelController
+			else
+				--log (localized string "auxFileIsNotFound")
 			end if
 			set my _auxFileRef to missing value
 			return false
