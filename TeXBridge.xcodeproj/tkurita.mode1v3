@@ -414,7 +414,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C134E461309FB16006DEA71</string>
+										<string>2C134E4E1309FBB8006DEA71</string>
 										<key>history</key>
 										<array>
 											<string>2CA9B34B0E97C419009C0C2A</string>
@@ -671,6 +671,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2CD476790E93E00A0069C39E</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -753,7 +755,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C77377513093209001C7FD2</string>
+				<string>2C134E4F1309FBB8006DEA71</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -873,13 +875,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C134E291309FADD006DEA71</string>
+				<string>2C134E501309FBB8006DEA71</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C134E2A1309FADD006DEA71</string>
-				<string>2C134E2B1309FADD006DEA71</string>
-				<string>2C134E2C1309FADD006DEA71</string>
-				<string>2C134E2D1309FADD006DEA71</string>
-				<string>2C134E2E1309FADD006DEA71</string>
+				<string>2C134E511309FBB8006DEA71</string>
+				<string>2C134E521309FBB8006DEA71</string>
+				<string>2C134E531309FBB8006DEA71</string>
+				<string>2C134E541309FBB8006DEA71</string>
+				<string>2C134E551309FBB8006DEA71</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
