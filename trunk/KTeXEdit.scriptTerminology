@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Commands</key>
+	<dict>
+		<key>FindRoughly</key>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>inDvi</key>
+				<dict>
+					<key>Description</key>
+					<string>dvi file in which the text is</string>
+					<key>Name</key>
+					<string>inDvi</string>
+				</dict>
+				<key>previousText</key>
+				<dict>
+					<key>Description</key>
+					<string>text before the searching text</string>
+					<key>Name</key>
+					<string>previous text</string>
+				</dict>
+				<key>reopen</key>
+				<dict>
+					<key>Description</key>
+					<string>reopen dvi</string>
+					<key>Name</key>
+					<string>reopen</string>
+				</dict>
+				<key>selecting</key>
+				<dict>
+					<key>Description</key>
+					<string>select found text or select its first char</string>
+					<key>Name</key>
+					<string>selecting</string>
+				</dict>
+				<key>startLine</key>
+				<dict>
+					<key>Description</key>
+					<string>minimum of source line number</string>
+					<key>Name</key>
+					<string>startLine</string>
+				</dict>
+				<key>text</key>
+				<dict>
+					<key>Description</key>
+					<string>text to search</string>
+					<key>Name</key>
+					<string>text</string>
+				</dict>
+				<key>untilLine</key>
+				<dict>
+					<key>Description</key>
+					<string>maximum of source line number (exclusive)</string>
+					<key>Name</key>
+					<string>untilLine</string>
+				</dict>
+				<key>withSource</key>
+				<dict>
+					<key>Description</key>
+					<string>tex source path (ptex only)</string>
+					<key>Name</key>
+					<string>withSource</string>
+				</dict>
+			</dict>
+			<key>Description</key>
+			<string>find text ignorering tex-control sequences or mathematical symbols</string>
+			<key>Name</key>
+			<string>FindRoughly</string>
+			<key>UnnamedArgument</key>
+			<dict>
+				<key>Description</key>
+				<string>search text</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Terms for KTeXEdit</string>
+	<key>Name</key>
+	<string>KTeXEdit Suite</string>
+</dict>
+</plist>
