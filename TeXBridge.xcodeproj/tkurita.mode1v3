@@ -291,11 +291,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>19</integer>
+									<integer>18</integer>
+									<integer>8</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 11}, {271, 646}}</string>
+							<string>{{0, 0}, {271, 646}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -411,7 +414,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C77373213092EB6001C7FD2</string>
+										<string>2C134E461309FB16006DEA71</string>
 										<key>history</key>
 										<array>
 											<string>2CA9B34B0E97C419009C0C2A</string>
@@ -426,16 +429,16 @@
 											<string>2C10868A112E625500AD9B9C</string>
 											<string>2C39FC3511BDE6850069533D</string>
 											<string>2C39FC3611BDE6850069533D</string>
-											<string>2CFCE8A511C781660087DE42</string>
 											<string>2CC4C6FD125C58BB0079AA3D</string>
 											<string>2C3B821A125DCA6100FE0450</string>
 											<string>2C3B821B125DCA6100FE0450</string>
 											<string>2C3B821C125DCA6100FE0450</string>
 											<string>2C230C2112C1D5D50002A386</string>
 											<string>2C7E649812FAA9AD006F711F</string>
-											<string>2C692E9713014B3D003E7AF5</string>
 											<string>2C77372E13092E7B001C7FD2</string>
-											<string>2C77372F13092E7B001C7FD2</string>
+											<string>2C134E411309FB16006DEA71</string>
+											<string>2C134E421309FB16006DEA71</string>
+											<string>2C134E431309FB16006DEA71</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -462,7 +465,8 @@
 											<string>2C3B8222125DCA6100FE0450</string>
 											<string>2C7E649A12FAA9AD006F711F</string>
 											<string>2C7E64A412FAAFCF006F711F</string>
-											<string>2C77373013092E7B001C7FD2</string>
+											<string>2C134E441309FB16006DEA71</string>
+											<string>2C134E451309FB16006DEA71</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -521,9 +525,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C7736FE13092BD9001C7FD2</string>
+				<string>2C134E471309FB16006DEA71</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C7736FF13092BD9001C7FD2</string>
+				<string>2C134E481309FB16006DEA71</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -667,10 +671,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>2CD476790E93E00A0069C39E</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -753,7 +753,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2CD476790E93E00A0069C39E</string>
-				<string>2C77371C13092E6E001C7FD2</string>
+				<string>2C77377513093209001C7FD2</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -873,13 +873,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2C77371D13092E6E001C7FD2</string>
+				<string>2C134E291309FADD006DEA71</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2C77371E13092E6E001C7FD2</string>
-				<string>2C77371F13092E6E001C7FD2</string>
-				<string>2C77372013092E6E001C7FD2</string>
-				<string>2C77372113092E6E001C7FD2</string>
-				<string>2C77372213092E6E001C7FD2</string>
+				<string>2C134E2A1309FADD006DEA71</string>
+				<string>2C134E2B1309FADD006DEA71</string>
+				<string>2C134E2C1309FADD006DEA71</string>
+				<string>2C134E2D1309FADD006DEA71</string>
+				<string>2C134E2E1309FADD006DEA71</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
