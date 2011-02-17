@@ -1,4 +1,3 @@
-property ShellUtils : module
 property PathConverter : module
 property XDict : module
 property XFile : module
