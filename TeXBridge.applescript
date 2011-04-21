@@ -207,11 +207,16 @@ on choose menu item theObject
 end choose menu item
 
 on check_mi_version()
+	-- log "start check_mi_version"
 	set app_file to EditorClient's application_file()
 	tell application "System Events"
 		set a_ver to version of app_file
 	end tell
-	set a_ver to word 3 of a_ver
+	if (count word of a_ver) > 1 then
+		-- before 2.1.11r1 , the version number was "mi version x.x.x". 
+		-- obtain "x.x.x" from "mi version x.x.x"
+		set a_ver to last word of a_ver
+	end if
 	considering numeric strings
 		if a_ver is not greater than or equal to "2.1.7" then
 			set msg to UtilityHandlers's localized_string("mi $1 is not supported.", {a_ver})

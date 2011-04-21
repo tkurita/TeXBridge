@@ -689,7 +689,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
