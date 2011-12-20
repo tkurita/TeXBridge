@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>ExecutionString</key>
-	<string>source ~/Library/Preferences/mi/mode/TEX/initialize.sh</string>
+	<string>source ~/Library/Application Support/mi/mode/TEX/initialize.sh</string>
 	<key>IsOpenedRefPalette</key>
 	<true/>
 	<key>IsOpenedToolPalette</key>

@@ -144,7 +144,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					638,
+					539,
 					60,
 					20,
 					48,
@@ -185,6 +185,8 @@
 			2CE026EC0EB0C9A400925F15 = 2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */;
 			2CE6F44814A0335200255449 /* PBXTextBookmark */ = 2CE6F44814A0335200255449 /* PBXTextBookmark */;
 			2CE6F44B14A0335200255449 /* PBXTextBookmark */ = 2CE6F44B14A0335200255449 /* PBXTextBookmark */;
+			2CE6F46414A0410E00255449 /* PBXTextBookmark */ = 2CE6F46414A0410E00255449 /* PBXTextBookmark */;
+			2CE6F46514A0410E00255449 /* PBXTextBookmark */ = 2CE6F46514A0410E00255449 /* PBXTextBookmark */;
 			2CF03EE10EA78B0D0044339F = 2CF03EE10EA78B0D0044339F /* PBXTextBookmark */;
 			DA206CF3015C4E8B03C91932 = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		};
@@ -785,9 +787,9 @@
 	};
 	2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 8264}}";
+			sepNavIntBoundsRect = "{{0, 0}, {757, 9566}}";
 			sepNavSelRange = "{16790, 0}";
-			sepNavVisRange = "{1638, 1025}";
+			sepNavVisRange = "{14694, 725}";
 			sepNavVisRect = "{{0, 7058}, {982, 352}}";
 			sepNavWindowFrame = "{{85, 75}, {703, 803}}";
 		};
@@ -1277,6 +1279,26 @@
 		vrLoc = 1638;
 	};
 	2CE6F44B14A0335200255449 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */;
+		name = "PDFController.applescript: 353";
+		rLen = 6;
+		rLoc = 9581;
+		rType = 0;
+		vrLen = 979;
+		vrLoc = 8849;
+	};
+	2CE6F46414A0410E00255449 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 563";
+		rLen = 0;
+		rLoc = 16790;
+		rType = 0;
+		vrLen = 725;
+		vrLoc = 14694;
+	};
+	2CE6F46514A0410E00255449 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */;
 		name = "PDFController.applescript: 353";

@@ -708,7 +708,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_MODE_FLAG = "a+rX";
-				INSTALL_PATH = /Library/Preferences/mi/mode/TEX;
+				INSTALL_PATH = "/Library/Application Support/mi/mode/TEX";
 				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
