@@ -187,7 +187,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	EditorClient = [[miClient alloc] init];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
-	[wvController setFocusWatchApplication:@"mi"];
+	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
 	[PaletteWindowController setVisibilityController:[wvController autorelease]];
 #if useLog
 	NSLog(@"end applicationWillFinishLaunching");

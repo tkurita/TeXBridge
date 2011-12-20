@@ -76,7 +76,7 @@ on checkmifiles given saving:savingFlag, autosave:autosaveFlag
 	(* find header commands *)
 	set ith to 1
 	repeat
-		set a_paragraph to EditorClient's paragraph_at_index(ith)
+		set a_paragraph to EditorClient's paragraph_at(ith)
 		if a_paragraph starts with "%" then
 			try
 				a_texdoc's lookup_header_command(a_paragraph)

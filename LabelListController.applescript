@@ -120,7 +120,7 @@ on find_auxdata_from_doc()
 	--log "start finding ParentFile"
 	set ith to 1
 	repeat
-		set a_paragraph to paragraph_at_index(ith) of EditorClient
+		set a_paragraph to EditorClient's paragraph_at(ith)
 		if a_paragraph starts with "%" then
 			if a_paragraph starts with "%ParentFile" then
 				try
