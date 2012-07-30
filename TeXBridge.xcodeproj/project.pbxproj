@@ -46,7 +46,6 @@
 		2C0313760AAD0F6B005B592F /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
-		2C30E7111095A65800605969 /* FrontAppMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C30E70F1095A65800605969 /* FrontAppMonitor.h */; };
 		2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C30E7101095A65800605969 /* FrontAppMonitor.m */; };
 		2C4E27B4084273B000004A96 /* CompileCenter.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -486,7 +485,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C808A8E0E9BD985006F19EB /* Terminal.h in Headers */,
-				2C30E7111095A65800605969 /* FrontAppMonitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,9 +692,8 @@
 		2C6D92DD0928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -803,6 +800,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
+					x86_64,
 					ppc,
 					i386,
 				);
