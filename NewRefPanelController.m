@@ -13,6 +13,11 @@ extern id EditorClient;
 
 @implementation NewRefPanelController
 
+- (IBAction)forceReload:(id)sender
+{
+	[dataController watchEditorWithReloading:YES];
+}
+
 - (void)periodicReload:(NSTimer *)theTimer
 {
 	if ([[self window] isVisible] && ![self isCollapsed]) {

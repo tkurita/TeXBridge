@@ -25,7 +25,7 @@
 - (NSTreeNode *)treeNode
 {
 	if (! treeNode) {
-		treeNode = [[NSTreeNode treeNodeWithRepresentedObject:self] retain];
+		treeNode = [NSTreeNode treeNodeWithRepresentedObject:self];
 	}
 	return treeNode;
 }

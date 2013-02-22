@@ -34,7 +34,7 @@
 	AuxFile *result = [[AuxFile new] autorelease];
 	result.basename = [aTeXDocument.name stringByDeletingPathExtension];
 	result.texDocument = aTeXDocument;
-	result.labelsFromAux = [NSMutableArray array];
+	//result.labelsFromAux = [NSMutableArray array];
 	result.labelsFromEditor = [NSMutableArray array];
 	if (aTeXDocument.file) {
 		[result checkAuxFile];
@@ -54,7 +54,7 @@
 	result.texDocument = tex_doc;
 	result.basename = [tex_doc.name stringByDeletingPathExtension];
 	result.auxFilePath = path;
-	result.labelsFromAux = [NSMutableArray array];
+	//result.labelsFromAux = [NSMutableArray array];
 	result.labelsFromEditor = [NSMutableArray array];
 
 	return result;
@@ -62,11 +62,9 @@
 
 - (NSTreeNode *)treeNode
 {
-	//NSLog(@"start treeNode, retainCount:%d", [self retainCount]);
 	if (! treeNode) {
-		treeNode = [[NSTreeNode treeNodeWithRepresentedObject:self] retain];
+		treeNode = [NSTreeNode treeNodeWithRepresentedObject:self];
 	}
-	//NSLog(@"end treeNode, retainCount:%d", [self retainCount]);
 	return treeNode;
 }
 
@@ -80,15 +78,19 @@
 	return [texDocument hasMaster];
 }
 
-- (void)checkAuxFile
+- (BOOL)checkAuxFile
 {
 	if (! auxFilePath) {
 		NSString *aux_file_path = [[[texDocument.file path] stringByDeletingPathExtension]
 								   stringByAppendingPathExtension:@"aux"];
 		if ([aux_file_path fileExists]) {
 			self.auxFilePath = aux_file_path;
+			return YES;
 		}
+	} else {
+		return YES;
 	}
+	return NO;
 }
 
 - (NSString *)readAuxFileReturningError:(NSError **)error
@@ -232,6 +234,96 @@
 	}
 	
 	NSLog(@"end updateLabelsFromEditor");
+}
+
+- (void)updateChildren
+{
+	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
+	NSUInteger pre_children_count = [child_nodes count];
+	
+	//NSUInteger new_children_count = [labelsFromAux count]+[labelsFromEditor count];
+	NSUInteger update_index = 0;
+	NSArray *array_of_labels[] = {labelsFromAux, labelsFromEditor};
+
+	for (int n = 0; n < 2; n++) {
+		NSArray *labels = array_of_labels[n];
+		for (id an_item in labels) {
+			NSTreeNode *new_node = [an_item treeNode];
+			if (update_index < pre_children_count) {
+				NSTreeNode *old_node = [child_nodes objectAtIndex:update_index];
+				if (![old_node isEqual:new_node]) {
+					[child_nodes replaceObjectAtIndex:update_index withObject:new_node];
+				}
+			} else {
+				[child_nodes addObject:new_node];
+			}
+			if ([an_item isKindOfClass:[AuxFile class]]) {
+				[an_item updateChildren];
+			} 
+			
+			update_index++;
+		}
+	}
+	for (NSUInteger n = update_index; n < pre_children_count; n++) {
+		[child_nodes removeLastObject];
+	}
+}
+
+- (BOOL)parseAuxFile
+{
+	self.labelsFromAux = [NSMutableArray array];
+	NSError *error = nil;
+	NSString *aux_text = [self readAuxFileReturningError:&error];
+	// ToDo : error processing
+	
+	NSArray *paragraphs = [aux_text paragraphs];
+	
+	for (NSString *a_line in paragraphs) {
+		NSLog(@"a line in aux : %@", a_line);
+		// pickup newlabel commands
+		NSArray *captures = [a_line captureComponentsMatchedByRegex:@"\\\\newlabel\\{([^{}]+)\\}\\{((\\{[^{}]*\\})+)\\}"];
+		NSLog(@"%@", captures);
+		if ([captures count] > 2) {
+			NSString *label_name = [captures objectAtIndex:1];
+			NSArray *second_captures = [[captures objectAtIndex:2] 
+										arrayOfCaptureComponentsMatchedByRegex:@"\\{([^{}]*)\\}"];
+			NSLog(@"%@", second_captures);
+			NSString *ref_name = nil;
+			NSUInteger second_captures_count = [second_captures count];
+			if ( second_captures_count > 3) { // hyperref
+				ref_name = [[second_captures objectAtIndex:second_captures_count-2] lastObject];
+			} else {
+				ref_name = [[second_captures objectAtIndex:1] lastObject];
+			}
+			
+			if ( [label_name length] || ![label_name hasPrefix:@"SC@"]) {
+				[self addLabelFromAux:label_name referenceName:ref_name];
+			}
+			continue;
+		}
+		// pickup input commands
+		captures = [a_line captureComponentsMatchedByRegex:@"\\\\@input\\{([^{}]+)\\}"];
+		NSLog(@"%@", captures);
+		if ([captures count] > 1) {
+			NSString *input_file = [captures objectAtIndex:1];
+			NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[texDocument file]] 
+									absoluteURL];
+#if useLog
+			NSLog(@"%@", input_aux_url);
+#endif			
+			NSString *input_aux_path = [input_aux_url path];
+			if ([input_aux_path fileExists]) {
+				AuxFile *child_aux_file = [AuxFile auxFileWithPath:input_aux_path
+													  textEncoding:texDocument.textEncoding];
+				if ([child_aux_file parseAuxFile]) {
+					[self addChildAuxFile:child_aux_file];
+				}
+				
+			}
+			continue;
+		}
+	}
+	return YES;
 }
 
 - (NSString *)name

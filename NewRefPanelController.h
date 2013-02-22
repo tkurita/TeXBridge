@@ -16,5 +16,6 @@
 - (void)setReloadTimer;
 - (void)temporaryStopReloadTimer;
 - (void)restartReloadTimer;
+- (IBAction)forceReload:(id)sender;
 
 @end

@@ -27,15 +27,18 @@
 - (NSTreeNode *)treeNode;
 - (BOOL)hasTreeNode;
 - (BOOL)hasMaster;
-- (void)checkAuxFile;
+- (BOOL)checkAuxFile;
 - (NSString *)readAuxFileReturningError:(NSError **)error;
 - (void)addLabelFromAux:(NSString *)labelName referenceName:(NSString *)refName;
 - (void)addLabelFromEditor:(NSString *)labelNamel;
 - (void)addChildAuxFile:(AuxFile *)childAuxFile;
 - (BOOL)hasLabel:(NSString *)labelName;
+- (void)clearLabelsFromEditor;
 - (BOOL)findLabelsFromEditorWithForceUpdate:(BOOL)forceUpdate;
 - (void)insertIntoTree:(NSTreeController *)treeController atIndexPath:(NSIndexPath *)indexPath;
 - (void)updateLabelsFromEditor;
+- (void)updateChildren;
+- (BOOL)parseAuxFile;
 
 // methods for outline
 - (NSString *)name;
