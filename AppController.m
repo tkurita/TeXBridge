@@ -4,6 +4,8 @@
 #import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder/DonationReminder.h"
 #import "SmartActivate.h"
+#import "TeXDocument.h"
+#import "NewRefPanelController.h"
 
 #define useLog 0
 
@@ -159,7 +161,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NSLog(@"start applicationWillFinishLaunching");
 #endif	
 	/* regist FactorySettings into shared user defaults */
-	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
+	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
+																  ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:factoryDefaults];
@@ -184,7 +187,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		[NSApp terminate:self];
 		return;
     }
-	EditorClient = [[miClient alloc] init];
+	EditorClient = [miClient sharedClient];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
 	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
@@ -199,14 +202,24 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #if useLog
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(checkQuit:) userInfo:nil repeats:YES];
+	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
+												  selector:@selector(checkQuit:) 
+												  userInfo:nil repeats:YES];
 	[appQuitTimer retain];
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
+	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) 
+						 name:NSWorkspaceDidTerminateApplicationNotification object:nil];
 
 	id reminderWindow = [DonationReminder remindDonation];
 	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
+
+	// Test Code
+	// NSError *error = nil;
+	// [TeXDocument frontTexDocumentReturningError:&error];
+	
+	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
+	[wc showWindow:self];
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	

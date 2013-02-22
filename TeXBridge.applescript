@@ -263,7 +263,7 @@ on will finish launching theObject
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
 	end tell
 	
-	set RefPanelController to import_script("RefPanelController")
+	set RefPanelController to import_script("NewRefPanelController")
 	set SheetManager to import_script("SheetManager")
 	set AuxData to import_script("AuxData")
 	set EditorClient to import_script("EditorClient")
