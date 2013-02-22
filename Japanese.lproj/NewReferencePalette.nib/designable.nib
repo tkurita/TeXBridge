@@ -167,7 +167,7 @@
 													<bytes key="NSWhite">MC41AA</bytes>
 												</object>
 											</object>
-											<double key="NSRowHeight">14</double>
+											<double key="NSRowHeight">16</double>
 											<int key="NSTvFlags">1396703232</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
@@ -239,7 +239,7 @@
 							<reference key="NSContentView" ref="417389875"/>
 							<reference key="NSHeaderClipView" ref="631347366"/>
 							<reference key="NSCornerView" ref="560253976"/>
-							<bytes key="NSScrollAmts">QSAAAEEgAABBgAAAQYAAAA</bytes>
+							<bytes key="NSScrollAmts">QSAAAEEgAABBkAAAQZAAAA</bytes>
 						</object>
 						<object class="NSButton" id="315149281">
 							<reference key="NSNextResponder" ref="830158658"/>

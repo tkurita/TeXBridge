@@ -7,9 +7,7 @@
 #import "RegexKitLite.h"
 
 @implementation AuxFile
-
 @synthesize basename;
-@synthesize nodeIcon;
 @synthesize texDocument;
 @synthesize auxFilePath;
 @synthesize labelsFromAux;
@@ -17,10 +15,16 @@
 @synthesize checkedTime;
 @synthesize texDocumentSize;
 
+- (NSImage *)nodeIcon
+{
+	static NSImage *nodeIcon = nil;
+	if (!nodeIcon) nodeIcon = [NSImage imageNamed:@"mi-document.icns"];
+	return nodeIcon;
+}
+
 - (void)dealloc
 {
 	[basename release];
-	[nodeIcon release];
 	[texDocument release];
 	[auxFilePath release];
 	[labelsFromAux release];

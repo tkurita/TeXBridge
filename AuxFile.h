@@ -4,7 +4,6 @@
 @interface AuxFile : NSObject {
 	NSTreeNode *treeNode;
 	NSString *basename;
-	NSImage *nodeIcon;
 	TeXDocument *texDocument;
 	NSString *auxFilePath;
 	NSMutableArray *labelsFromAux;
@@ -14,7 +13,6 @@
 }
 
 @property (retain) NSString *basename;
-@property (retain) NSImage *nodeIcon;
 @property (retain) TeXDocument *texDocument;
 @property (retain) NSString *auxFilePath;
 @property (retain) NSMutableArray *labelsFromAux;
@@ -43,6 +41,7 @@
 // methods for outline
 - (NSString *)name;
 - (NSString *)referenceName;
+- (NSImage *)nodeIcon;
 @end
 
 NSArray *orderdEncodingCandidates(NSString *firstCandidateName);

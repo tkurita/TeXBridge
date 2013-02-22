@@ -46,6 +46,10 @@
 		2C03136F0AAD0F21005B592F /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
 		2C0313760AAD0F6B005B592F /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
+		2C0BDB2716D75A410005A62A /* ImageAndTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */; };
+		2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */; };
+		2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC5A16D783470005A62A /* tag-gray-16.png */; };
+		2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC6616D783A20005A62A /* mi-document.icns */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C30E7101095A65800605969 /* FrontAppMonitor.m */; };
 		2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4095B516A79B120085CB9D /* NewReferencePalette.nib */; };
@@ -160,6 +164,10 @@
 		2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C03136E0AAD0F21005B592F /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = ../DonationReminder.framework; sourceTree = SOURCE_ROOT; };
 		2C0315700AAD154A005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpSetup.plist; sourceTree = "<group>"; };
+		2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
+		2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
+		2C0BDC5A16D783470005A62A /* tag-gray-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-gray-16.png"; sourceTree = "<group>"; };
+		2C0BDC6616D783A20005A62A /* mi-document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "mi-document.icns"; sourceTree = "<group>"; };
 		2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
 		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
@@ -457,6 +465,8 @@
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
 			isa = PBXGroup;
 			children = (
+				2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */,
+				2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */,
 				2C4095D416A8C3E60085CB9D /* TeXDocument.h */,
 				2C4095D516A8C3E60085CB9D /* TeXDocument.m */,
 				2C40972416A96F410085CB9D /* LabelDatum.h */,
@@ -484,6 +494,8 @@
 		2C49445407AD219B00B2A8D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2C0BDC6616D783A20005A62A /* mi-document.icns */,
+				2C0BDC5A16D783470005A62A /* tag-gray-16.png */,
 				2CE026F00EB0CAB600925F15 /* DVIDocument.icns */,
 				2C6CA3A308CF5565005D5612 /* Reload.png */,
 				2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */,
@@ -557,6 +569,7 @@
 				2C40973016AA4D820085CB9D /* ReferenceDataController.h in Headers */,
 				2C40983916AD578D0085CB9D /* AuxFile.h in Headers */,
 				2C4098F116AE2C6A0085CB9D /* RegexKitLite.h in Headers */,
+				2C0BDB2716D75A410005A62A /* ImageAndTextCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +652,8 @@
 				2CE680030EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite in Resources */,
 				2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */,
 				2C4099BC16AECE4C0085CB9D /* History.rtf in Resources */,
+				2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */,
+				2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +692,7 @@
 				2C40973116AA4D820085CB9D /* ReferenceDataController.m in Sources */,
 				2C40983A16AD578D0085CB9D /* AuxFile.m in Sources */,
 				2C4098F216AE2C6A0085CB9D /* RegexKitLite.m in Sources */,
+				2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,13 +4,18 @@
 
 @synthesize name;
 @synthesize referenceName;
-@synthesize nodeIcon;
+
+- (NSImage *)nodeIcon
+{
+	static NSImage *nodeIcon = nil;
+	if (!nodeIcon) nodeIcon = [NSImage imageNamed:@"tag-gray-16.png"];
+	return nodeIcon;
+}
 
 - (void)dealloc
 {
 	[name release];
 	[referenceName release];
-	[nodeIcon release];
 	[super dealloc];
 }
 

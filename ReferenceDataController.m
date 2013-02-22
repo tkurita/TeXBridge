@@ -5,6 +5,7 @@
 #import "RegexKitLite.h"
 #import "PathExtra.h"
 #import "miClient.h"
+#import "ImageAndTextCell.h"
 
 #define useLog 1
 @implementation ReferenceDataController
@@ -131,8 +132,22 @@
 	}
 }
 
+- (void)outlineView:(NSOutlineView *)olv willDisplayCell:(NSCell*)cell 
+							forTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+	if ([[tableColumn identifier] isEqualToString:@"label"]) {
+		if ([cell isKindOfClass:[ImageAndTextCell class]]) {
+			item = [item representedObject];
+			[(ImageAndTextCell*)cell setImage:[[item representedObject] nodeIcon]];
+		}
+	}
+}
+
 - (void)awakeFromNib
 {
+	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
+	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
+	[table_column setDataCell:image_text_cell];
 	self.rootNode = [NSTreeNode new];
 }
 
