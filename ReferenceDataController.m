@@ -6,6 +6,8 @@
 #import "PathExtra.h"
 #import "miClient.h"
 #import "ImageAndTextCell.h"
+#import "mi.h"
+#import "SmartActivate.h"
 
 #define useLog 1
 @implementation ReferenceDataController
@@ -143,12 +145,60 @@
 	}
 }
 
+static NSString *EQREF_COMMAND = @"\\eqref";
+
+- (void)insertLabel:(id)sender
+{
+	NSArray  *selection = [treeController selectedObjects];
+	id target_item = [[selection lastObject] representedObject];
+	if ([target_item isKindOfClass:[AuxFile class]]) return;
+	
+	NSString *ref_name = [target_item referenceName];
+	if (![ref_name length]) return;
+	
+	NSString *label_name = [target_item name];	
+	BOOL useeqref = [[NSUserDefaults standardUserDefaults] boolForKey:@"useeqref"];
+	
+	NSString *ref_command = @"\\ref";
+	if (useeqref) {
+		if ([ref_name hasPrefix:@"equation"] || [ref_name hasPrefix:@"AMS"]) {
+			ref_command = EQREF_COMMAND;
+		} else if ([ref_name isEqualToString:@"--"] && [label_name hasPrefix:@"eq"]) {
+			ref_command = EQREF_COMMAND;
+		}
+	}
+	
+	miApplication *mi_app = [SBApplication applicationWithBundleIdentifier:@"net.mimikaki.mi"];
+	miDocument *front_doc = [[mi_app documents] objectAtIndex:0];
+	miSelectionObject *first_selection = [[front_doc selectionObjects] objectAtIndex:0];
+	NSUInteger cursor_position = [[[first_selection insertionPoints] objectAtIndex:0] index];
+	SBElementArray *paragraphs_in_selection = [first_selection elementArrayWithCode:'cpar'];
+	miParagraph *first_paragraph_in_selection = [paragraphs_in_selection objectAtIndex:0];
+	NSUInteger line_position = [[[first_paragraph_in_selection insertionPoints] objectAtIndex:0] index];
+	NSUInteger position_in_line = cursor_position - line_position;
+	
+	NSString *text_before_cursor = @"";
+	if (position_in_line > 0) {
+		NSString *current_paragraph = [first_paragraph_in_selection content];
+		text_before_cursor = [current_paragraph substringToIndex:position_in_line];
+		if ([text_before_cursor hasSuffix:ref_command]) {
+			[first_selection setContent:[NSString stringWithFormat:@"{%@}", label_name]];
+			goto inserted;
+		}
+	} 
+	[first_selection setContent: [NSString stringWithFormat:@"%@{%@}", ref_command, label_name]];
+inserted:
+	[SmartActivate activateAppOfIdentifier:@"net.mimikaki.mi"];
+}
+
 - (void)awakeFromNib
 {
 	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
 	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
 	[table_column setDataCell:image_text_cell];
 	self.rootNode = [NSTreeNode new];
+	[outlineView setDoubleAction:@selector(insertLabel:)];
+	[outlineView setTarget:self];
 }
 
 @end

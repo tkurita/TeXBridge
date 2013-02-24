@@ -91,7 +91,7 @@ extern id EditorClient;
 		reloadTimer = nil;
 	}
 
-	[super windowShouldClose:sender];
+	return [super windowShouldClose:sender];
 	
 	/* To support AppleScript Studio of MacOS 10.4 */
 	[[self window] orderOut:self];

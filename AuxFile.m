@@ -15,6 +15,8 @@
 @synthesize checkedTime;
 @synthesize texDocumentSize;
 
+#define useLog 0
+
 - (NSImage *)nodeIcon
 {
 	static NSImage *nodeIcon = nil;
@@ -185,7 +187,6 @@
 				[clean_line appendString:@"%"];
 				[scanner setScanLocation:[scanner scanLocation]+1];
 			}
-			//NSLog(@"isAtEnd : %d, scan location : %d", [scanner isAtEnd], [scanner scanLocation]);
 		}
 		
 		// find label command
@@ -218,7 +219,6 @@
 
 - (void)updateLabelsFromEditor
 {
-	NSLog(@"start updateLabelsFromEditor");
 	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
 	NSUInteger n_labels_from_editor = [labelsFromEditor count];
 	NSUInteger lab_count = 0;
@@ -236,8 +236,6 @@
 	for (NSUInteger n=lab_count; n < n_labels_from_editor; n++) {
 		[child_nodes addObject:[[labelsFromEditor objectAtIndex:n] treeNode]];
 	}
-	
-	NSLog(@"end updateLabelsFromEditor");
 }
 
 - (void)updateChildren
@@ -283,15 +281,21 @@
 	NSArray *paragraphs = [aux_text paragraphs];
 	
 	for (NSString *a_line in paragraphs) {
+#if useLog
 		NSLog(@"a line in aux : %@", a_line);
+#endif
 		// pickup newlabel commands
 		NSArray *captures = [a_line captureComponentsMatchedByRegex:@"\\\\newlabel\\{([^{}]+)\\}\\{((\\{[^{}]*\\})+)\\}"];
+#if useLog
 		NSLog(@"%@", captures);
+#endif		
 		if ([captures count] > 2) {
 			NSString *label_name = [captures objectAtIndex:1];
 			NSArray *second_captures = [[captures objectAtIndex:2] 
 										arrayOfCaptureComponentsMatchedByRegex:@"\\{([^{}]*)\\}"];
+#if useLog
 			NSLog(@"%@", second_captures);
+#endif
 			NSString *ref_name = nil;
 			NSUInteger second_captures_count = [second_captures count];
 			if ( second_captures_count > 3) { // hyperref
@@ -307,7 +311,9 @@
 		}
 		// pickup input commands
 		captures = [a_line captureComponentsMatchedByRegex:@"\\\\@input\\{([^{}]+)\\}"];
+#if useLo
 		NSLog(@"%@", captures);
+#endif
 		if ([captures count] > 1) {
 			NSString *input_file = [captures objectAtIndex:1];
 			NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[texDocument file]] 
