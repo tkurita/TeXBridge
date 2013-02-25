@@ -9,7 +9,7 @@
 #import "mi.h"
 #import "SmartActivate.h"
 
-#define useLog 1
+#define useLog 0
 @implementation ReferenceDataController
 
 @synthesize	rootNode;
@@ -42,7 +42,9 @@
 
 - (NSTreeNode *)appendToOutline:(AuxFile *)auxFile parentNode:(NSTreeNode *)parentNode
 {
+#if useLog
 	NSLog(@"start appendToOutline");
+#endif	
 	NSTreeNode *current_node = [auxFile treeNode];
 	[[parentNode mutableChildNodes] addObject:current_node];
 	
@@ -61,7 +63,9 @@
 
 		}
 	}
+#if useLog
 	NSLog(@"end appendToOutline");
+#endif	
 	return current_node;
 }
 
@@ -94,21 +98,12 @@ bail:
 
 	return YES;
 }
-/*
-- (void)expandChildrenIfNeeded:(NSTreeNode *)aNode
-{	
-	NSArray *pre_selected = [treeController selectionIndexPaths];
-	[treeController setSelectionIndexPath:[aNode indexPath]];
-	id row_item = [outlineView itemAtRow:[outlineView selectedRow]];
-	if ([outlineView isItemExpanded:row_item]) {
-		[outlineView expandItem:row_item expandChildren:YES];
-	}
-	[treeController setSelectionIndexPaths:pre_selected];
-}
-*/
+
 - (void)watchEditorWithReloading:(BOOL)reloading
 {
+#if useLog
 	NSLog(@"start watchEditorWithReloading");
+#endif	
 	AuxFile *current_aux_file = [self findAuxFileFromEditor];
 	if (! current_aux_file) {
 		//ToDo: error processing

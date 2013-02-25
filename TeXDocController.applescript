@@ -196,15 +196,17 @@ on typeset()
 		set command_elems to tex_command's as_xlist_with(space)
 		if tex_command's include("-interaction=") then
 			script ChangeInteractionMode
-				on do(an_elem)
+				on do(an_elem, sender)
 					if an_elem starts with "-interaction=" then
-						set contents of an_elem to "-interaction=nonstopmode"
+						tell sender
+							set_item_at("-interaction=nonstopmode", current_index())
+						end tell
 						return false
 					end if
 					return true
 				end do
 			end script
-			command_elems's each(ChangeInteractionMode)
+			command_elems's enumerate(ChangeInteractionMode)
 		else
 			set new_command to command_elems's item_at(1) & space & "-interaction=nonstopmode"
 			set_item of command_elems for new_command at 1

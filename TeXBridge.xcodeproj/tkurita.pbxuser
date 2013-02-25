@@ -17,9 +17,9 @@
 			2C639278112D2F1400427733 /* TeXBridge.applescript:217 */,
 			2C089F9F14A00E4400515F0A /* WindowVisibilityController.m:106 */,
 			2C0BDD4016D7CCDE0005A62A /* PaletteWindowController.m:277 */,
-			2C0BDF3C16DAE5C60005A62A /* ReferenceDataController.m:89 */,
-			2C0BE11C16DB42A40005A62A /* ReferenceDataController.m:152 */,
-			2C0BE13416DB42F40005A62A /* ReferenceDataController.m:154 */,
+			2C0BDF3C16DAE5C60005A62A /* ReferenceDataController.m:93 */,
+			2C0BE11C16DB42A40005A62A /* ReferenceDataController.m:147 */,
+			2C0BE13416DB42F40005A62A /* ReferenceDataController.m:149 */,
 		);
 		codeSenseManager = 2C69503B0A06E6D3008277ED /* Code sense */;
 		executables = (
@@ -856,6 +856,30 @@
 			2C0BE1EE16DB511A0005A62A /* PBXTextBookmark */ = 2C0BE1EE16DB511A0005A62A /* PBXTextBookmark */;
 			2C0BE1EF16DB511A0005A62A /* PBXTextBookmark */ = 2C0BE1EF16DB511A0005A62A /* PBXTextBookmark */;
 			2C0BE1F016DB511A0005A62A /* PBXTextBookmark */ = 2C0BE1F016DB511A0005A62A /* PBXTextBookmark */;
+			2C0BE1F116DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F116DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F216DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F216DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F316DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F316DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F416DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F416DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F516DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F516DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F616DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F616DB51800005A62A /* PBXTextBookmark */;
+			2C0BE1F716DB51800005A62A /* PBXTextBookmark */ = 2C0BE1F716DB51800005A62A /* PBXTextBookmark */;
+			2C0BE20716DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20716DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20816DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20816DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20916DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20916DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20A16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20A16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20B16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20B16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20C16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20C16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20D16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20D16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20E16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20E16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE20F16DB52F50005A62A /* PBXTextBookmark */ = 2C0BE20F16DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE21016DB52F50005A62A /* PBXTextBookmark */ = 2C0BE21016DB52F50005A62A /* PBXTextBookmark */;
+			2C0BE21816DB53390005A62A /* PBXTextBookmark */ = 2C0BE21816DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21916DB53390005A62A /* PBXTextBookmark */ = 2C0BE21916DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21A16DB53390005A62A /* PBXTextBookmark */ = 2C0BE21A16DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21B16DB53390005A62A /* PBXTextBookmark */ = 2C0BE21B16DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21C16DB53390005A62A /* PBXTextBookmark */ = 2C0BE21C16DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21D16DB53390005A62A /* PBXTextBookmark */ = 2C0BE21D16DB53390005A62A /* PBXTextBookmark */;
+			2C0BE21E16DB53390005A62A /* PBXTextBookmark */ = 2C0BE21E16DB53390005A62A /* PBXTextBookmark */;
 			2C4095D116A850130085CB9D = 2C4095D116A850130085CB9D /* mi.h */;
 			2C5C603516D27AB600214DDD = 2C5C603516D27AB600214DDD /* PBXTextBookmark */;
 			2C6CA39608CF5558005D5612 = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
@@ -1054,7 +1078,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 130";
 		rLen = 0;
-		rLoc = 4843;
+		rLoc = 4491;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 3197;
@@ -1475,7 +1499,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4843;
+		rLoc = 4491;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 3110;
@@ -1485,7 +1509,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4843;
+		rLoc = 4491;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3110;
@@ -1553,7 +1577,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4843;
+		rLoc = 4491;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3110;
@@ -1590,7 +1614,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 81";
 		rLen = 0;
-		rLoc = 1959;
+		rLoc = 1997;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 1693;
@@ -1801,7 +1825,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 99";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 2086;
@@ -1811,7 +1835,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -1968,7 +1992,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2105,7 +2129,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2215,7 +2239,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2325,7 +2349,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2435,7 +2459,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2556,7 +2580,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 88;
+		rLoc = 92;
 		rType = 1;
 	};
 	2C0BDF3B16DAE5AE0005A62A /* PBXTextBookmark */ = {
@@ -2564,12 +2588,12 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 2094;
 	};
-	2C0BDF3C16DAE5C60005A62A /* ReferenceDataController.m:89 */ = {
+	2C0BDF3C16DAE5C60005A62A /* ReferenceDataController.m:93 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2581,7 +2605,7 @@
 		functionName = "-rebuildLabelsFromAuxForDoc:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 89;
+		lineNumber = 93;
 		location = TeXBridge;
 		modificationTime = 383469990.199705;
 		originalNumberOfMultipleMatches = 1;
@@ -2592,7 +2616,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 528;
 		vrLoc = 2094;
@@ -2602,7 +2626,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 93";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 697;
 		vrLoc = 2091;
@@ -2632,7 +2656,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -2642,7 +2666,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -2752,7 +2776,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 2091;
@@ -2772,7 +2796,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -2862,7 +2886,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 2091;
@@ -2892,7 +2916,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -2972,7 +2996,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -2992,7 +3016,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 630;
 		vrLoc = 3251;
@@ -3002,7 +3026,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 88";
 		rLen = 0;
-		rLoc = 2231;
+		rLoc = 2269;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 2094;
@@ -3082,7 +3106,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3092,7 +3116,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -3102,7 +3126,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 2094;
@@ -3182,7 +3206,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3192,7 +3216,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -3202,7 +3226,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 2094;
@@ -3282,7 +3306,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2362;
+		rLoc = 2400;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3292,7 +3316,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2349;
+		rLoc = 2387;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 2592;
@@ -3302,7 +3326,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 111";
 		rLen = 48;
-		rLoc = 2775;
+		rLoc = 2404;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -3401,7 +3425,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 84;
+		rLoc = 88;
 		rType = 1;
 	};
 	2C0BDFA216DAF50C0005A62A /* PBXTextBookmark */ = {
@@ -3409,7 +3433,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 120";
 		rLen = 0;
-		rLoc = 3228;
+		rLoc = 2876;
 		rType = 0;
 		vrLen = 428;
 		vrLoc = 3020;
@@ -3419,7 +3443,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3228;
+		rLoc = 2876;
 		rType = 0;
 		vrLen = 532;
 		vrLoc = 3020;
@@ -3439,7 +3463,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 138";
 		rLen = 0;
-		rLoc = 3975;
+		rLoc = 3623;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 3335;
@@ -3510,7 +3534,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 112;
+		rLoc = 107;
 		rType = 1;
 	};
 	2C0BDFB516DAF9900005A62A /* PBXTextBookmark */ = {
@@ -3518,7 +3542,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2951;
+		rLoc = 2599;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 3020;
@@ -3538,7 +3562,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 155";
 		rLen = 0;
-		rLoc = 4625;
+		rLoc = 4273;
 		rType = 0;
 		vrLen = 982;
 		vrLoc = 3245;
@@ -3608,7 +3632,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2951;
+		rLoc = 2599;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 3020;
@@ -3638,7 +3662,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 3123;
+		rLoc = 2771;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 1131;
@@ -3648,7 +3672,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 120";
 		rLen = 0;
-		rLoc = 3081;
+		rLoc = 2729;
 		rType = 0;
 		vrLen = 949;
 		vrLoc = 3078;
@@ -3728,7 +3752,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 3123;
+		rLoc = 2771;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 1131;
@@ -3738,7 +3762,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 153";
 		rLen = 0;
-		rLoc = 4500;
+		rLoc = 4148;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 3565;
@@ -3827,7 +3851,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 	};
 	2C0BDFDE16DB02060005A62A /* PBXTextBookmark */ = {
@@ -3835,7 +3859,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 4368;
@@ -3845,7 +3869,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 3123;
+		rLoc = 2771;
 		rType = 0;
 		vrLen = 296;
 		vrLoc = 2964;
@@ -3855,7 +3879,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 2566;
@@ -3925,7 +3949,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 4368;
@@ -3952,7 +3976,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 3123;
+		rLoc = 2771;
 		rType = 0;
 		vrLen = 333;
 		vrLoc = 3694;
@@ -3962,7 +3986,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3306;
@@ -4041,7 +4065,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 111;
+		rLoc = 106;
 		rType = 1;
 	};
 	2C0BDFF716DB05560005A62A /* PBXTextBookmark */ = {
@@ -4049,7 +4073,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 122";
 		rLen = 0;
-		rLoc = 3178;
+		rLoc = 2826;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 2660;
@@ -4059,7 +4083,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 126";
 		rLen = 0;
-		rLoc = 3178;
+		rLoc = 2826;
 		rType = 0;
 		vrLen = 885;
 		vrLoc = 3183;
@@ -4079,7 +4103,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2904;
+		rLoc = 2552;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 3078;
@@ -4089,7 +4113,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 227";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 6557;
@@ -4159,7 +4183,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 127";
 		rLen = 0;
-		rLoc = 3178;
+		rLoc = 2826;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 3296;
@@ -4179,7 +4203,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 228";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 6377;
@@ -4249,7 +4273,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 127";
 		rLen = 0;
-		rLoc = 3178;
+		rLoc = 2826;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 3280;
@@ -4269,7 +4293,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 228";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 722;
 		vrLoc = 6939;
@@ -4339,7 +4363,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 128";
 		rLen = 0;
-		rLoc = 3178;
+		rLoc = 2826;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 3267;
@@ -4359,7 +4383,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 229";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 795;
 		vrLoc = 6903;
@@ -4438,7 +4462,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 111;
+		rLoc = 106;
 		rType = 1;
 	};
 	2C0BE03D16DB1E660005A62A /* PBXTextBookmark */ = {
@@ -4446,7 +4470,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 119";
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 2466;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 453;
@@ -4456,7 +4480,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 69";
 		rLen = 17;
-		rLoc = 1148;
+		rLoc = 1167;
 		rType = 0;
 		vrLen = 798;
 		vrLoc = 1531;
@@ -4483,7 +4507,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 119";
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 2466;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 453;
@@ -4503,7 +4527,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 85";
 		rLen = 0;
-		rLoc = 1581;
+		rLoc = 1611;
 		rType = 0;
 		vrLen = 692;
 		vrLoc = 1850;
@@ -4550,7 +4574,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 862;
 		vrLoc = 6868;
@@ -4650,7 +4674,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 862;
 		vrLoc = 6868;
@@ -4770,7 +4794,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 862;
 		vrLoc = 6868;
@@ -4859,7 +4883,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 165;
+		rLoc = 160;
 		rType = 1;
 	};
 	2C0BE08916DB2D9C0005A62A /* PBXTextBookmark */ = {
@@ -4867,7 +4891,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 167";
 		rLen = 0;
-		rLoc = 4831;
+		rLoc = 4479;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 107;
@@ -4877,7 +4901,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 167";
 		rLen = 0;
-		rLoc = 4831;
+		rLoc = 4479;
 		rType = 0;
 		vrLen = 469;
 		vrLoc = 36;
@@ -4924,7 +4948,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 6868;
@@ -4934,7 +4958,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 232";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 740;
 		vrLoc = 7090;
@@ -5043,7 +5067,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 240";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 927;
 		vrLoc = 7034;
@@ -5170,7 +5194,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 607;
 		vrLoc = 6416;
@@ -5250,7 +5274,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 146";
 		rLen = 0;
-		rLoc = 4831;
+		rLoc = 4479;
 		rType = 0;
 		vrLen = 308;
 		vrLoc = 107;
@@ -5340,7 +5364,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2165;
+		rLoc = 2203;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 304;
@@ -5350,7 +5374,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -5440,7 +5464,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2165;
+		rLoc = 2203;
 		rType = 0;
 		vrLen = 545;
 		vrLoc = 326;
@@ -5450,7 +5474,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -5540,7 +5564,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2165;
+		rLoc = 2203;
 		rType = 0;
 		vrLen = 545;
 		vrLoc = 326;
@@ -5550,7 +5574,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -5640,7 +5664,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2165;
+		rLoc = 2203;
 		rType = 0;
 		vrLen = 604;
 		vrLoc = 355;
@@ -5650,7 +5674,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -5740,7 +5764,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2165;
+		rLoc = 2203;
 		rType = 0;
 		vrLen = 622;
 		vrLoc = 373;
@@ -5750,7 +5774,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 7333;
+		rLoc = 6981;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -5829,8 +5853,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 2110;
@@ -5840,7 +5864,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -5915,7 +5939,7 @@
 		vrLen = 1092;
 		vrLoc = 2057;
 	};
-	2C0BE11C16DB42A40005A62A /* ReferenceDataController.m:152 */ = {
+	2C0BE11C16DB42A40005A62A /* ReferenceDataController.m:147 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5927,7 +5951,7 @@
 		functionName = "-watchEditorWithReloading:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 152;
+		lineNumber = 147;
 		location = TeXBridge;
 		modificationTime = 383469996.512893;
 		originalNumberOfMultipleMatches = 1;
@@ -5947,8 +5971,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 2110;
@@ -5958,7 +5982,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -5968,7 +5992,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6057,8 +6081,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 3298;
@@ -6068,7 +6092,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6143,7 +6167,7 @@
 		vrLen = 1092;
 		vrLoc = 2057;
 	};
-	2C0BE13416DB42F40005A62A /* ReferenceDataController.m:154 */ = {
+	2C0BE13416DB42F40005A62A /* ReferenceDataController.m:149 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6155,7 +6179,7 @@
 		functionName = "-watchEditorWithReloading:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 154;
+		lineNumber = 149;
 		location = TeXBridge;
 		modificationTime = 383469990.261908;
 		originalNumberOfMultipleMatches = 1;
@@ -6175,8 +6199,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 4117;
@@ -6186,7 +6210,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6196,7 +6220,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6320,7 +6344,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 151;
+		rLoc = 146;
 		rType = 1;
 	};
 	2C0BE14716DB43250005A62A /* PBXTextBookmark */ = {
@@ -6328,7 +6352,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 141";
 		rLen = 0;
-		rLoc = 4063;
+		rLoc = 3711;
 		rType = 0;
 		vrLen = 541;
 		vrLoc = 3525;
@@ -6348,7 +6372,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 141";
 		rLen = 0;
-		rLoc = 4063;
+		rLoc = 3711;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 3467;
@@ -6357,8 +6381,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 767;
 		vrLoc = 3350;
@@ -6368,7 +6392,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4188;
+		rLoc = 3836;
 		rType = 0;
 		vrLen = 679;
 		vrLoc = 3391;
@@ -6448,7 +6472,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4063;
+		rLoc = 3711;
 		rType = 0;
 		vrLen = 750;
 		vrLoc = 3467;
@@ -6458,7 +6482,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4271;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 3391;
@@ -6468,7 +6492,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4225;
+		rLoc = 3873;
 		rType = 0;
 		vrLen = 739;
 		vrLoc = 3522;
@@ -6548,7 +6572,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4063;
+		rLoc = 3711;
 		rType = 0;
 		vrLen = 813;
 		vrLoc = 2419;
@@ -6574,8 +6598,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 2232;
@@ -6585,7 +6609,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 147";
 		rLen = 22;
-		rLoc = 4137;
+		rLoc = 3785;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 3395;
@@ -6674,7 +6698,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 151;
+		rLoc = 146;
 		rType = 1;
 	};
 	2C0BE17D16DB49A70005A62A /* PBXTextBookmark */ = {
@@ -6682,7 +6706,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3637;
@@ -6701,8 +6725,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 532;
 		vrLoc = 2294;
@@ -6712,7 +6736,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 147";
 		rLen = 22;
-		rLoc = 4137;
+		rLoc = 3785;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 3395;
@@ -6782,7 +6806,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 4089;
@@ -6791,8 +6815,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 549;
 		vrLoc = 3805;
@@ -6802,7 +6826,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 3810;
@@ -6882,7 +6906,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 6764;
@@ -6901,8 +6925,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 537;
 		vrLoc = 3821;
@@ -6912,7 +6936,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 3810;
@@ -6982,7 +7006,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 900;
 		vrLoc = 6764;
@@ -7028,8 +7052,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3948;
@@ -7039,7 +7063,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7128,8 +7152,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3952;
@@ -7139,7 +7163,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7238,8 +7262,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3952;
@@ -7249,7 +7273,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7338,8 +7362,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 557;
 		vrLoc = 4056;
@@ -7349,7 +7373,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7438,8 +7462,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 4063;
@@ -7449,7 +7473,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7519,7 +7543,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4063;
+		rLoc = 3711;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 3805;
@@ -7558,8 +7582,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
-		rLen = 22;
-		rLoc = 2376;
+		rLen = 0;
+		rLoc = 2403;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 4063;
@@ -7569,7 +7593,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4088;
+		rLoc = 3736;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7623,6 +7647,246 @@
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 2057;
+	};
+	2C0BE1F116DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 211";
+		rLen = 9;
+		rLoc = 6431;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 6458;
+	};
+	2C0BE1F216DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
+		name = "History.rtf: 42";
+		rLen = 0;
+		rLoc = 1050;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 696;
+	};
+	2C0BE1F316DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
+		name = "NewRefPanelController.m: 73";
+		rLen = 0;
+		rLoc = 1487;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 1072;
+	};
+	2C0BE1F416DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 352";
+		rLen = 33;
+		rLoc = 11579;
+		rType = 0;
+		vrLen = 1451;
+		vrLoc = 10341;
+	};
+	2C0BE1F516DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 112";
+		rLen = 0;
+		rLoc = 3149;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 260;
+	};
+	2C0BE1F616DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4095C716A79DA80085CB9D /* RefPanelController.applescript */;
+		name = "RefPanelController.applescript: 52";
+		rLen = 28;
+		rLoc = 1274;
+		rType = 0;
+		vrLen = 1798;
+		vrLoc = 1981;
+	};
+	2C0BE1F716DB51800005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 122";
+		rLen = 9;
+		rLoc = 2764;
+		rType = 0;
+		vrLen = 1092;
+		vrLoc = 2057;
+	};
+	2C0BE20716DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 211";
+		rLen = 9;
+		rLoc = 6431;
+		rType = 0;
+		vrLen = 926;
+		vrLoc = 6458;
+	};
+	2C0BE20816DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
+		name = "ReferenceDataController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 427;
+		vrLoc = 0;
+	};
+	2C0BE20916DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 202";
+		rLen = 0;
+		rLoc = 4804;
+		rType = 0;
+		vrLen = 1062;
+		vrLoc = 4158;
+	};
+	2C0BE20A16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 435";
+		rLen = 0;
+		rLoc = 12098;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 4180;
+	};
+	2C0BE20B16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
+		name = "History.rtf: 42";
+		rLen = 0;
+		rLoc = 1050;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 696;
+	};
+	2C0BE20C16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
+		name = "NewRefPanelController.m: 73";
+		rLen = 0;
+		rLoc = 1487;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 1072;
+	};
+	2C0BE20D16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 352";
+		rLen = 33;
+		rLoc = 11579;
+		rType = 0;
+		vrLen = 1451;
+		vrLoc = 10341;
+	};
+	2C0BE20E16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 112";
+		rLen = 0;
+		rLoc = 3149;
+		rType = 0;
+		vrLen = 1737;
+		vrLoc = 260;
+	};
+	2C0BE20F16DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4095C716A79DA80085CB9D /* RefPanelController.applescript */;
+		name = "RefPanelController.applescript: 52";
+		rLen = 28;
+		rLoc = 1274;
+		rType = 0;
+		vrLen = 1798;
+		vrLoc = 1981;
+	};
+	2C0BE21016DB52F50005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 435";
+		rLen = 0;
+		rLoc = 12098;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 2032;
+	};
+	2C0BE21816DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 434";
+		rLen = 0;
+		rLoc = 12098;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 4180;
+	};
+	2C0BE21916DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
+		name = "History.rtf: 42";
+		rLen = 0;
+		rLoc = 1050;
+		rType = 0;
+		vrLen = 679;
+		vrLoc = 696;
+	};
+	2C0BE21A16DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
+		name = "NewRefPanelController.m: 73";
+		rLen = 0;
+		rLoc = 1487;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 1072;
+	};
+	2C0BE21B16DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 352";
+		rLen = 33;
+		rLoc = 11579;
+		rType = 0;
+		vrLen = 1451;
+		vrLoc = 10341;
+	};
+	2C0BE21C16DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 112";
+		rLen = 0;
+		rLoc = 3149;
+		rType = 0;
+		vrLen = 1753;
+		vrLoc = 260;
+	};
+	2C0BE21D16DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4095C716A79DA80085CB9D /* RefPanelController.applescript */;
+		name = "RefPanelController.applescript: 52";
+		rLen = 28;
+		rLoc = 1274;
+		rType = 0;
+		vrLen = 1846;
+		vrLoc = 1981;
+	};
+	2C0BE21E16DB53390005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 434";
+		rLen = 0;
+		rLoc = 12098;
+		rType = 0;
+		vrLen = 1117;
+		vrLoc = 2032;
 	};
 	2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {
 		uiCtxt = {
@@ -7724,7 +7988,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {847, 2323}}";
 			sepNavSelRange = "{1274, 28}";
-			sepNavVisRange = "{1981, 1798}";
+			sepNavVisRange = "{1981, 1846}";
 			sepNavWindowFrame = "{{672, 88}, {749, 780}}";
 		};
 	};
@@ -7770,16 +8034,16 @@
 	};
 	2C40972E16AA4D820085CB9D /* ReferenceDataController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 305}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 418}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 427}";
 		};
 	};
 	2C40972F16AA4D820085CB9D /* ReferenceDataController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {793, 3033}}";
-			sepNavSelRange = "{4088, 0}";
-			sepNavVisRange = "{5215, 870}";
+			sepNavIntBoundsRect = "{{0, 0}, {793, 3007}}";
+			sepNavSelRange = "{2403, 0}";
+			sepNavVisRange = "{4009, 739}";
 			sepNavWindowFrame = "{{40, 103}, {1096, 775}}";
 		};
 	};
@@ -7815,9 +8079,9 @@
 	};
 	2C4099BB16AECE4C0085CB9D /* History.rtf */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {730, 13544}}";
-			sepNavSelRange = "{1195, 0}";
-			sepNavVisRect = "{{0, 635}, {730, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {730, 13523}}";
+			sepNavSelRange = "{1050, 0}";
+			sepNavVisRect = "{{0, 635}, {730, 578}}";
 			sepNavWindowFrame = "{{659, 163}, {769, 635}}";
 		};
 	};
@@ -8042,7 +8306,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {873, 1484}}";
 			sepNavSelRange = "{3149, 0}";
-			sepNavVisRange = "{260, 1737}";
+			sepNavVisRange = "{260, 1753}";
 			sepNavVisRect = "{{0, 180}, {758, 781}}";
 			sepNavWindowFrame = "{{603, 89}, {797, 789}}";
 		};
@@ -8295,9 +8559,9 @@
 	};
 	2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {843, 6275}}";
-			sepNavSelRange = "{2764, 9}";
-			sepNavVisRange = "{2057, 1092}";
+			sepNavIntBoundsRect = "{{0, 0}, {843, 6379}}";
+			sepNavSelRange = "{12098, 0}";
+			sepNavVisRange = "{2032, 1117}";
 			sepNavVisRect = "{{0, 2774}, {982, 352}}";
 			sepNavWindowFrame = "{{241, 76}, {902, 802}}";
 		};
