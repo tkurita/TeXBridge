@@ -26,18 +26,24 @@ end set_doc_position
 on resolve_parent(a_paragraph)
 	--log "start resolveParentFile"
 	set parent_file to XText's make_with(a_paragraph)'s text_in_range(13, -2)
-	--log parent_file
-	if parent_file's starts_with(":") then
-		set pathconv to PathConverter's make_with(my _targetFileRef's hfs_path())
-		set tex_file to absolute_path of pathconv for parent_file's as_unicode()
-	else
-		set tex_file to parent_file's as_unicode()
-	end if
-	--tell me to log "tex_file : " & tex_file
-	if tex_file ends with ":" then
+	if parent_file's ends_with(":") then
 		set a_msg to UtilityHandlers's localized_string("ParentFileIsInvalid", {parent_file})
 		error a_msg number 1230
 	end if
+	--log parent_file
+	if parent_file's starts_with(":") then --  relative hfs path
+		tell PathConverter's make_with(my _targetFileRef's hfs_path())
+			set tex_file to absolute_path for parent_file's as_unicode()
+		end tell
+	else if parent_file's starts_with("/") then --  absolute posix path
+		set tex_file to POSIX file (parent_file's as_unicode())
+	else -- relative posix path
+		tell PathConverter's make_with(my _targetFileRef's posix_path())
+			set tex_file to absolute_path for parent_file's as_unicode()
+		end tell
+		set tex_file to POSIX file tex_file
+	end if
+	--tell me to log "tex_file : " & tex_file
 	try
 		set tex_file to tex_file as alias
 	on error
