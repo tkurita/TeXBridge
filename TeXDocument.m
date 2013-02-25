@@ -35,9 +35,10 @@ static NSArray *SUPPORTED_MODES = nil;
 	}
 	NSString *mode = [front_doc mode];
 	if (! [SUPPORTED_MODES containsObject:mode]) {
-		NSString *reason = @"invalidMode";
+		NSString *localized_format = NSLocalizedString(@"The mode setting of '%@' is invalid", @"");
+		NSString *reason = [NSString stringWithFormat:localized_format, [front_doc name]];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1205 
-								 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(reason, @"")
+								 userInfo:[NSDictionary dictionaryWithObject:reason
 																	  forKey:NSLocalizedDescriptionKey]];
 		goto bail;
 	}
@@ -70,7 +71,7 @@ bail:
 	return tex_doc;
 }
 
-- (TeXDocument *)resolveMasterFromEditor
+- (TeXDocument *)resolveMasterFromEditorReturningError:(NSError **)error
 {
 	TeXDocument *result = self;
 	miApplication *mi_app = [SBApplication applicationWithBundleIdentifier:@"net.mimikaki.mi"];
@@ -84,10 +85,29 @@ bail:
 		if ([line_content hasPrefix:masterfile_command]) break;
 	}
 	NSUInteger command_len = [masterfile_command length];
-	NSRange range = NSMakeRange(command_len+1, [line_content length]-command_len-2);
+	NSUInteger line_length = [line_content length];
+	if (line_length <= command_len+1) {
+		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
+		NSString *reason = [NSString stringWithFormat:localized_format, @""];
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
+								 userInfo:[NSDictionary dictionaryWithObject:reason
+																	  forKey:NSLocalizedDescriptionKey]];
+		goto bail;
+	}
+	
+	NSRange range = NSMakeRange(command_len+1, line_length-command_len-2);
 	NSString *masterfile_path = [line_content substringWithRange:range];
 	masterfile_path = [masterfile_path stringByTrimmingCharactersInSet:
 									[NSCharacterSet whitespaceCharacterSet]];
+	if (![masterfile_path length]) {
+		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
+		NSString *reason = [NSString stringWithFormat:localized_format, @""];
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
+								 userInfo:[NSDictionary dictionaryWithObject:reason
+																	  forKey:NSLocalizedDescriptionKey]];
+		goto bail;
+	}
+	
 	if ([masterfile_path hasPrefix:@":"]) { //relative HFS path
 		NSString *hfs_base_path = [[[file path] stringByDeletingLastPathComponent] hfsPath];
 		NSString *hfs_abs_path = [hfs_base_path stringByAppendingString:masterfile_path];
@@ -96,6 +116,35 @@ bail:
 	} else if (! [masterfile_path hasPrefix:@"/"]) { //relative POSIX Path
 		masterfile_path = [[NSURL URLWithString:masterfile_path relativeToURL:file] path];
 	}
+	
+	NSFileManager *fm = [NSFileManager defaultManager];
+	if (![fm fileExistsAtPath:masterfile_path]) {
+		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is not Found", @"");
+		NSString *reason = [NSString stringWithFormat:localized_format, masterfile_path];
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1220
+								 userInfo:[NSDictionary dictionaryWithObject:reason
+																	 forKey:NSLocalizedDescriptionKey]];
+		goto bail;
+	}
+	NSDictionary *info = [fm attributesOfItemAtPath:masterfile_path error:error];
+	if (!info) goto bail;
+	NSString *file_type = [info objectForKey:NSFileType];
+	if ([file_type isEqualToString:NSFileTypeSymbolicLink]) {
+		masterfile_path = [fm destinationOfSymbolicLinkAtPath:masterfile_path error:error];
+		if (!masterfile_path) goto bail;
+		info = [fm attributesOfItemAtPath:masterfile_path error:error];
+		if (!info) goto bail;
+	}
+	
+	if (![[info objectForKey:NSFileType] isEqualToString:NSFileTypeRegular]) {
+		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
+		NSString *reason = [NSString stringWithFormat:localized_format, masterfile_path];
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
+								userInfo:[NSDictionary dictionaryWithObject:reason
+																   forKey:NSLocalizedDescriptionKey]];
+		goto bail;
+	}
+	
 	result = [TeXDocument texDocumentWithPath:masterfile_path textEncoding:textEncoding];
 	if (result) hasMaster = YES;
 bail:	

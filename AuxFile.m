@@ -195,7 +195,9 @@ bail:
 
 - (void)clearLabelsFromEditorRecursively:(BOOL)recursively
 {
+#if useLog
 	NSLog(@"start clearLabelsFromEditorRecursively");
+#endif	
 	NSTreeNode *current_node = [self treeNode];
 	NSMutableArray *child_nodes = [current_node mutableChildNodes];
 	NSArray *array = [NSArray arrayWithArray:labelsFromEditor];
@@ -212,7 +214,9 @@ bail:
 			}
 		}
 	}
+#if useLog	
 	NSLog(@"end clearLabelsFromEditorRecursively");
+#endif	
 }
 
 - (BOOL)findLabelsFromEditorWithForceUpdate:(BOOL)forceUpdate
@@ -267,20 +271,11 @@ bail:
 	return YES;
 }
 
-/*
-- (void)insertIntoTree:(NSTreeController *)treeController atIndexPath:(NSIndexPath *)indexPath // may not used
-{
-	[treeController insertObject:[self treeNode] atArrangedObjectIndexPath:indexPath];
-	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
-	for (id child_item in labelsFromAux) {
-		NSTreeNode *child_node = [child_item treeNode];
-		[child_nodes addObject:child_node];
-	}
-}
-*/
 - (void)updateLabelsFromEditor
 {
+#if useLog
 	NSLog(@"start updateLabelsFromEditor");
+#endif	
 	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
 	NSUInteger n_labels_from_editor = [labelsFromEditor count];
 	NSUInteger lab_count = 0;
@@ -298,16 +293,19 @@ bail:
 	for (NSUInteger n=lab_count; n < n_labels_from_editor; n++) {
 		[child_nodes addObject:[[labelsFromEditor objectAtIndex:n] treeNode]];
 	}
+#if useLog
 	NSLog(@"end updateLabelsFromEditor");
+#endif	
 }
 
 - (void)updateChildren
 {
+#if useLog
 	NSLog(@"start updateChildren");
+#endif	
 	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
 	NSUInteger pre_children_count = [child_nodes count];
 	
-	//NSUInteger new_children_count = [labelsFromAux count]+[labelsFromEditor count];
 	NSUInteger update_index = 0;
 	NSArray *array_of_labels[] = {labelsFromAux, labelsFromEditor};
 
@@ -333,7 +331,9 @@ bail:
 	for (NSUInteger n = update_index; n < pre_children_count; n++) {
 		[child_nodes removeLastObject];
 	}
+#if useLog	
 	NSLog(@"end updateChildren");
+#endif	
 }
 
 - (BOOL)parseAuxFile
@@ -394,6 +394,14 @@ bail:
 			if ([input_aux_path fileExists]) {
 				AuxFile *child_aux_file = [AuxFile auxFileWithPath:input_aux_path
 													  textEncoding:texDocument.textEncoding];
+				
+				if (!treeNode && [child_aux_file hasTreeNode]) { //child item has already exists before its parent.
+					NSMutableArray *nodes = [child_aux_file.treeNode mutableChildNodes];
+					NSArray* nodes_copy = [NSArray arrayWithArray:nodes];
+					for (id a_node in nodes_copy) {
+						[nodes removeLastObject];
+					}
+				}
 				if ([child_aux_file parseAuxFile]) {
 					[self addChildAuxFile:child_aux_file];
 				}

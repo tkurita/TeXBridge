@@ -111,13 +111,17 @@ bail:
 	NSError *error = nil;
 	AuxFile *current_aux_file = [self findAuxFileFromEditorReturningError:&error];
 	if (! current_aux_file) {
+		NSLog(@"Failed to findAuxFileFromEditorReturningError : %@", error);
 		return;
 	}
 	
 	AuxFile *master_aux_file = current_aux_file;
 	if (current_aux_file.texDocument.file) {
 		TeXDocument *tex_doc = [[current_aux_file texDocument] 
-										resolveMasterFromEditor];
+										resolveMasterFromEditorReturningError:&error];
+		if (error) {
+			NSLog(@"Failed to resolveMasterFromEditorReturningError: %@", error);
+		}
 		master_aux_file = [self auxFileForDoc:tex_doc];
 	}
 		

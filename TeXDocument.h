@@ -17,6 +17,6 @@
 
 + (TeXDocument *)frontTexDocumentReturningError:(NSError **)error;
 + (TeXDocument *)texDocumentWithPath:(NSString *)pathname textEncoding:(NSString *)encodingName;
-- (TeXDocument *)resolveMasterFromEditor;
+- (TeXDocument *)resolveMasterFromEditorReturningError:(NSError **)error;
 
 @end
