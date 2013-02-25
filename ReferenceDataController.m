@@ -1,3 +1,4 @@
+#import <Carbon/Carbon.h>
 #import "ReferenceDataController.h"
 #import "LabelDatum.h"
 #import "TeXDocument.h"
@@ -9,6 +10,7 @@
 #import "mi.h"
 #import "SmartActivate.h"
 #import "miClient.h"
+
 
 #define useLog 0
 @implementation ReferenceDataController
@@ -181,10 +183,36 @@ bail:
 	}
 }
 
+void jumpToLabel(LabelDatum *targetLabel)
+{
+	AuxFile *aux_file = [[[targetLabel treeNode] parentNode] representedObject];
+	NSURL *target_url = aux_file.texDocument.file;
+	FSRef ref;
+	CFURLGetFSRef((CFURLRef)target_url, &ref);
+	NSString *label_command = [NSString stringWithFormat:@"\\label{%@}", targetLabel.name];
+
+	miClient *mi_client = [miClient sharedClient];
+	[mi_client jumpToFile:&ref paragraph:nil];
+	NSString *doc_content = [mi_client currentDocumentContent];
+	int n = -1; 
+	for (NSString *a_line in [doc_content paragraphs]) {
+		if ([a_line contain:label_command]) {
+			n = n * -1;
+			break;
+		}
+		n--;
+	}
+	if (n > 0) {
+		[mi_client jumpToFile:&ref paragraph:[NSNumber numberWithInt:n]];
+	}
+	
+}
+
 static NSString *EQREF_COMMAND = @"\\eqref";
 
-- (void)insertLabel:(id)sender
+- (void)doubleAction:(id)sender
 {
+	
 	NSArray  *selection = [treeController selectedObjects];
 	id target_item = [[selection lastObject] representedObject];
 	if ([target_item isKindOfClass:[AuxFile class]]) {
@@ -198,6 +226,12 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 	NSString *ref_name = [target_item referenceName];	
 	NSString *label_name = [target_item name];	
 	if (![label_name length]) return;
+	
+	CGEventSourceStateID eventSource = kCGEventSourceStateCombinedSessionState;	
+	bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Control);
+	if (is_command_down) {
+		return jumpToLabel(target_item);
+	}
 	
 	BOOL useeqref = [[NSUserDefaults standardUserDefaults] boolForKey:@"useeqref"];
 	
@@ -239,7 +273,7 @@ inserted:
 	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
 	[table_column setDataCell:image_text_cell];
 	self.rootNode = [NSTreeNode new];
-	[outlineView setDoubleAction:@selector(insertLabel:)];
+	[outlineView setDoubleAction:@selector(doubleAction:)];
 	[outlineView setTarget:self];
 }
 
