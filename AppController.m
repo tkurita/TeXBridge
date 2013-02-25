@@ -215,11 +215,10 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
 
 	// Test Code
-	// NSError *error = nil;
-	// [TeXDocument frontTexDocumentReturningError:&error];
-	
+	/*
 	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
 	[wc showWindow:self];
+	 */
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	

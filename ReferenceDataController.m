@@ -24,21 +24,11 @@
 - (AuxFile *)auxFileForDoc:(TeXDocument *)texDoc
 {
 	AuxFile *result = nil;
-	if (texDoc.file) { // file is saved
-		NSString *a_key = [texDoc pathWithoutSuffix];
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"representedObject.pathWithoutSuffix LIKE %@", a_key];
-		NSArray *filterd_array = [rootNode.childNodes filteredArrayUsingPredicate:predicate];
-		if (filterd_array && [filterd_array count]) {
-			result = [[filterd_array lastObject] representedObject];
-			[result checkAuxFile];
-		} else {
-			result = [AuxFile auxFileWithTexDocument:texDoc];
-		}
-	} else { // file is not saved
+	result = [AuxFile auxFileWithTexDocument:texDoc];
+	if (! texDoc.file) {
 		//ToDo : may require delete old unsavedAuxData
-		self.unsavedAuxFile = [AuxFile auxFileWithTexDocument:texDoc];
+		self.unsavedAuxFile = result;
 	}
-	
 	return result;
 }
 
@@ -47,16 +37,12 @@
 	NSError *error = nil;
 	TeXDocument *tex_doc = [TeXDocument frontTexDocumentReturningError:&error];
 	if (! tex_doc) return nil;
-	
-	if (tex_doc.file) {
-		tex_doc = [tex_doc resolveMasterFromEditor];
-	}
-	
 	return [self auxFileForDoc:tex_doc];
 }
 
 - (NSTreeNode *)appendToOutline:(AuxFile *)auxFile parentNode:(NSTreeNode *)parentNode
 {
+	NSLog(@"start appendToOutline");
 	NSTreeNode *current_node = [auxFile treeNode];
 	[[parentNode mutableChildNodes] addObject:current_node];
 	
@@ -75,9 +61,40 @@
 
 		}
 	}
+	NSLog(@"end appendToOutline");
 	return current_node;
 }
 
+- (id)rowItemForRepresentedObject:(id)anObject
+{
+	id result = nil;
+	for (NSUInteger n=0; n<[outlineView numberOfRows]; n++) {
+		id row_item = [outlineView itemAtRow:n];
+		id rep_item = [[row_item representedObject] representedObject];
+		if (rep_item == anObject) {
+			result = row_item;
+			goto bail;
+		}
+	}
+bail:
+	return result;
+}
+
+- (BOOL)rebuildLabelsFromAuxForDoc:(TeXDocument *)texDoc
+{
+	AuxFile *aux_file = [self auxFileForDoc:texDoc];
+	if (![aux_file checkAuxFile]) return NO;
+	if (![aux_file parseAuxFile]) return NO;
+	
+	[aux_file clearLabelsFromEditorRecursively:YES];
+	[aux_file updateChildren];
+	
+	id row_item = [self rowItemForRepresentedObject:aux_file];
+	[outlineView expandItem:row_item expandChildren:YES];
+
+	return YES;
+}
+/*
 - (void)expandChildrenIfNeeded:(NSTreeNode *)aNode
 {	
 	NSArray *pre_selected = [treeController selectionIndexPaths];
@@ -88,44 +105,67 @@
 	}
 	[treeController setSelectionIndexPaths:pre_selected];
 }
-
+*/
 - (void)watchEditorWithReloading:(BOOL)reloading
 {
-	AuxFile *aux_file = [self findAuxFileFromEditor];
-	if (! aux_file) {
+	NSLog(@"start watchEditorWithReloading");
+	AuxFile *current_aux_file = [self findAuxFileFromEditor];
+	if (! current_aux_file) {
 		//ToDo: error processing
 		return;
 	}
-
-	if ([aux_file hasTreeNode]) {
+	
+	AuxFile *master_aux_file = current_aux_file;
+	if (current_aux_file.texDocument.file) {
+		TeXDocument *tex_doc = [[current_aux_file texDocument] 
+										resolveMasterFromEditor];
+		master_aux_file = [self auxFileForDoc:tex_doc];
+	}
+		
+	if ([master_aux_file hasTreeNode]) {
 		BOOL from_aux_updated = NO;
 		BOOL from_editor_updated = NO;
+		BOOL was_expanded;
+		id row_item;
+
 		if (reloading) {
-			if ([aux_file checkAuxFile]) {
-				[aux_file parseAuxFile];
+			if ([master_aux_file checkAuxFile]) {
+				row_item = [self rowItemForRepresentedObject:master_aux_file];
+				was_expanded = [outlineView isItemExpanded:row_item];
+				[master_aux_file parseAuxFile];
+				from_aux_updated = YES;
 			} else {
-				[aux_file clearLabelsFromEditor];
+				row_item = [self rowItemForRepresentedObject:master_aux_file];
+				was_expanded = [outlineView isItemExpanded:row_item];
+				[current_aux_file clearLabelsFromEditor];
 			}
-			from_aux_updated = YES;
+		} else {
+			row_item = [self rowItemForRepresentedObject:master_aux_file];
+			was_expanded = [outlineView isItemExpanded:row_item];
 		}
+
 		
-		if ([aux_file findLabelsFromEditorWithForceUpdate:reloading]) {
+		if ([current_aux_file findLabelsFromEditorWithForceUpdate:reloading]) {
 			from_editor_updated = YES;
 		}
 		
 		if (from_aux_updated) {
-			[aux_file updateChildren];
-			[self expandChildrenIfNeeded:[aux_file treeNode]];
+			[master_aux_file updateChildren];
+			//[self expandChildrenIfNeeded:[master_aux_file treeNode]];
 		} else if (from_editor_updated) {
-			[aux_file updateLabelsFromEditor];
+			[current_aux_file updateLabelsFromEditor];
+		}
+		if (was_expanded) {
+			[outlineView expandItem:row_item expandChildren:YES];
 		}
 		
 	} else { // まだ ReferencePalette に登録されていない。
-		if (aux_file.auxFilePath) {
-			[aux_file parseAuxFile];
+		if (master_aux_file.auxFilePath) {
+			[master_aux_file parseAuxFile];
 		}
-		[aux_file findLabelsFromEditorWithForceUpdate:reloading];
-		NSTreeNode *new_node = [self appendToOutline:aux_file parentNode:rootNode];		
+		[current_aux_file findLabelsFromEditorWithForceUpdate:reloading];
+		NSTreeNode *new_node = [self appendToOutline:master_aux_file 
+										  parentNode:rootNode];		
 		NSArray *pre_selected = [treeController selectionIndexPaths];
 		[treeController setSelectionIndexPath:[new_node indexPath]];
 		id row_item = [outlineView itemAtRow:[outlineView selectedRow]];

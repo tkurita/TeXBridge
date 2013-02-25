@@ -12,5 +12,6 @@
 @property (retain) AuxFile *unsavedAuxFile;
 
 - (void)watchEditorWithReloading:(BOOL)reloading;
+- (BOOL)rebuildLabelsFromAuxForDoc:(TeXDocument *)texDoc;
 
 @end

@@ -33,7 +33,7 @@ property TeXDocController : missing value
 property DVIController : missing value
 property RefPanelController : missing value
 property SheetManager : missing value
-property AuxData : missing value
+--property AuxData : missing value
 property EditorClient : missing value
 property Root : me
 
@@ -177,10 +177,10 @@ on clicked theObject
 	if a_tag is 7 then
 		control_clicked(theObject) of PDFController
 	else
-		control_clicked(theObject)
+		--control_clicked(theObject)
 	end if
 end clicked
-
+(*
 on control_clicked(theObject)
 	set a_name to name of theObject
 	if a_name is "PeriodicReload" then
@@ -189,10 +189,12 @@ on control_clicked(theObject)
 		watchmi of RefPanelController with force_reloading
 	end if
 end control_clicked
-
+*)
+(*
 on double clicked theObject
 	double_clicked(theObject) of RefPanelController
 end double clicked
+*)
 
 on choose menu item theObject
 	--log "start choose menu item"
@@ -265,7 +267,7 @@ on will finish launching theObject
 	
 	set RefPanelController to import_script("NewRefPanelController")
 	set SheetManager to import_script("SheetManager")
-	set AuxData to import_script("AuxData")
+	--set AuxData to import_script("AuxData")
 	set EditorClient to import_script("EditorClient")
 	set ReplaceInput to import_script("ReplaceInput")
 	

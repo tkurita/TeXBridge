@@ -71,7 +71,6 @@ extern id EditorClient;
 {
 	[super showWindow:self];
 	[self setReloadTimer];
-	[dataController watchEditorWithReloading:NO];
 }
 
 - (void)awakeFromNib
@@ -80,6 +79,7 @@ extern id EditorClient;
 	[self setApplicationsFloatingOnFromDefaultName:@"ReferencePaletteApplicationsFloatingOn"];
 	[self useFloating];
 	[self useWindowCollapse];
+	[dataController watchEditorWithReloading:NO];
 }
 
 - (BOOL)windowShouldClose:(id)sender
@@ -98,5 +98,11 @@ extern id EditorClient;
 	return NO;
 }
 
+//texFileFilePath must be master file.
+- (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName
+{
+	TeXDocument *tex_doc = [TeXDocument texDocumentWithPath:texFilePath textEncoding:encodingName];
+	[dataController rebuildLabelsFromAuxForDoc:tex_doc];
+}
 @end
 

@@ -21,7 +21,7 @@
 @property NSUInteger texDocumentSize;
 
 + (AuxFile *)auxFileWithTexDocument:(TeXDocument *)aTeXDocument;
-+ (AuxFile *)auxFileWithPath:(NSString *)path textEncoding:(NSString *)encodingName;
++ (AuxFile *)auxFileWithPath:(NSString *)anAuxFilePath textEncoding:(NSString *)encodingName;
 - (NSTreeNode *)treeNode;
 - (BOOL)hasTreeNode;
 - (BOOL)hasMaster;
@@ -32,8 +32,9 @@
 - (void)addChildAuxFile:(AuxFile *)childAuxFile;
 - (BOOL)hasLabel:(NSString *)labelName;
 - (void)clearLabelsFromEditor;
+- (void)clearLabelsFromEditorRecursively:(BOOL)recursively;
 - (BOOL)findLabelsFromEditorWithForceUpdate:(BOOL)forceUpdate;
-- (void)insertIntoTree:(NSTreeController *)treeController atIndexPath:(NSIndexPath *)indexPath;
+//- (void)insertIntoTree:(NSTreeController *)treeController atIndexPath:(NSIndexPath *)indexPath;
 - (void)updateLabelsFromEditor;
 - (void)updateChildren;
 - (BOOL)parseAuxFile;

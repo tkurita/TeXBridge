@@ -1,9 +1,5 @@
-global SheetManager
 global Root
 global EditorClient
-global AuxData
-
-property LabelListController : missing value
 property _window_controller : missing value
 property _window : missing value
 global _backslash
@@ -39,56 +35,13 @@ on rebuild_labels_from_aux(a_texdoc)
 		return
 	end if
 	if is_opened_expanded() then
-		rebuild_labels_from_aux(a_texdoc) of LabelListController
+		set tex_file_path to a_texdoc's tex_file()'s posix_path()
+		call method "rebuildLabelsFromAux:textEncoding:" of my _window_controller Ê
+			with parameters {tex_file_path, a_texdoc's text_encoding()}
+		--rebuild_labels_from_aux(a_texdoc) of LabelListController
 	end if
 end rebuild_labels_from_aux
 
-on watchmi given force_reloading:force_flag
-	--log "start watchmi in RefPanelController"
-	watchmi of LabelListController given force_reloading:force_flag
-	--log "end watchmi in RefPanelController"
-end watchmi
-
-on double_clicked(theObject)
-	set selectedData to selected data item of theObject
-	set a_label to ((contents of data cell "label" of selectedData) as string)
-	set theRef to ((contents of data cell "reference" of selectedData) as string)
-	if theRef is "" then
-		return
-	else
-		if (state of button "useeqref" of my _window is 1) then
-			if (theRef starts with "equation") or (theRef starts with "AMS") then
-				set refText to "eqref"
-			else if (theRef is "--") and (a_label starts with "eq") then
-				set refText to "eqref"
-			else
-				set refText to "ref"
-			end if
-		else
-			set refText to "ref"
-		end if
-	end if
-	
-	try
-		set selectionRecord to selection_info() of EditorClient
-	on error
-		return
-	end try
-	
-	set posInLine to cursorInParagraph of selectionRecord
-	if (posInLine > 0) then
-		set textBeforeCursor to text 1 thru posInLine of currentParagraph of selectionRecord
-	else
-		set textBeforeCursor to ""
-	end if
-	set refCommand to _backslash & refText
-	if (textBeforeCursor as Unicode text) ends with (refCommand as Unicode text) then
-		EditorClient's insert_text("{" & a_label & "}")
-	else
-		EditorClient's insert_text(refCommand & "{" & a_label & "}")
-	end if
-	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
-end double_clicked
 
 on initilize()
 	--log "start initialize in RefPanelController"
@@ -96,11 +49,10 @@ on initilize()
 	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "NewReferencePalette"
 	set my _window to call method "window" of my _window_controller
 	call method "retain" of my _window
-	set LabelListController to Root's import_script("LabelListController")
-	initialize(data source "LabelDataSource") of LabelListController
-	--set outlineView of LabelListController to outline view "LabelOutline" of scroll view "Scroll" of my _window
-	set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window
-	set LabelListController of AuxData to LabelListController
+	--set LabelListController to Root's import_script("LabelListController")
+	--initialize(data source "LabelDataSource") of LabelListController
+	--set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window
+	--set LabelListController of AuxData to LabelListController
 	--log "end initialize in RefPanelController"
 end initilize
 
@@ -120,17 +72,19 @@ end toggle_visibility
 
 on open_window()
 	--log "start open_window in RefPanelController"
-	set is_first to false
+	--set is_first to false
 	if my _window_controller is missing value then
 		initilize()
-		set is_first to true
+		--set is_first to true
 	end if
 	--activate
 	call method "showWindow:" of my _window_controller
 	--log "after showWIndow"
+	(*
 	if is_first then
 		watchmi of LabelListController without force_reloading
 	end if
+	*)
 	--log "end open_window in RefPanelController"
 end open_window
 
@@ -154,12 +108,4 @@ end is_opened_expanded
 
 on display_alert(a_msg)
 	display alert a_msg attached to my _window as warning
-	(*
-	script endOfAlert
-		on sheetEnded(theReply)
-		end sheetEnded
-	end script
-	
-	addSheetRecord of SheetManager given parentWindow:my my _window, ownerObject:endOfAlert
-	*)
 end display_alert
