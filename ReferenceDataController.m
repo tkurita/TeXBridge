@@ -37,10 +37,9 @@
 	return result;
 }
 
-- (AuxFile *)findAuxFileFromEditor
+- (AuxFile *)findAuxFileFromEditorReturningError:(NSError **)error
 {
-	NSError *error = nil;
-	TeXDocument *tex_doc = [TeXDocument frontTexDocumentReturningError:&error];
+	TeXDocument *tex_doc = [TeXDocument frontTexDocumentReturningError:error];
 	if (! tex_doc) return nil;
 	return [self auxFileForDoc:tex_doc];
 }
@@ -109,9 +108,9 @@ bail:
 #if useLog
 	NSLog(@"start watchEditorWithReloading");
 #endif	
-	AuxFile *current_aux_file = [self findAuxFileFromEditor];
+	NSError *error = nil;
+	AuxFile *current_aux_file = [self findAuxFileFromEditorReturningError:&error];
 	if (! current_aux_file) {
-		//ToDo: error processing
 		return;
 	}
 	

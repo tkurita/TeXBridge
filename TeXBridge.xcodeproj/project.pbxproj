@@ -162,6 +162,7 @@
 		2C0BDC5A16D783470005A62A /* tag-gray-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-gray-16.png"; sourceTree = "<group>"; };
 		2C0BDC6616D783A20005A62A /* mi-document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "mi-document.icns"; sourceTree = "<group>"; };
 		2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-blue-16.png"; sourceTree = "<group>"; };
+		2C0BE33416DB872D0005A62A /* Error Numbers.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Error Numbers.rtf"; sourceTree = "<group>"; };
 		2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
 		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
@@ -346,6 +347,7 @@
 			children = (
 				2C0BDE4516D9B0A40005A62A /* Old Code */,
 				2C4099BB16AECE4C0085CB9D /* History.rtf */,
+				2C0BE33416DB872D0005A62A /* Error Numbers.rtf */,
 				2C4098F316AE2C700085CB9D /* RegexKitLite */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
 				2C1656E209F90C3200CE5422 /* miClientLib */,

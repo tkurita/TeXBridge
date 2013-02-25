@@ -341,7 +341,11 @@ bail:
 	self.labelsFromAux = [NSMutableArray array];
 	NSError *error = nil;
 	NSString *aux_text = [self readAuxFileReturningError:&error];
-	// ToDo : error processing
+	if (! aux_text) {
+		NSLog(@"Error in parseAuxFile : %@", error);
+		return NO;
+	}
+	
 	
 	NSArray *paragraphs = [aux_text paragraphs];
 	

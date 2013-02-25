@@ -27,12 +27,18 @@ static NSArray *SUPPORTED_MODES = nil;
 	if ([[[mi_app documents] objectAtIndex:0] exists]) {
 		front_doc = [[mi_app documents] objectAtIndex:0];
 	} else {
-		// ToDo : describe error
+		NSString *reason = @"noDocument";
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1240 
+								 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(reason, @"")
+																	  forKey:NSLocalizedDescriptionKey]];
 		goto bail;
 	}
 	NSString *mode = [front_doc mode];
 	if (! [SUPPORTED_MODES containsObject:mode]) {
-		// ToDo : describe error
+		NSString *reason = @"invalidMode";
+		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1205 
+								 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(reason, @"")
+																	  forKey:NSLocalizedDescriptionKey]];
 		goto bail;
 	}
 	
@@ -80,7 +86,8 @@ bail:
 	NSUInteger command_len = [masterfile_command length];
 	NSRange range = NSMakeRange(command_len+1, [line_content length]-command_len-2);
 	NSString *masterfile_path = [line_content substringWithRange:range];
-	// ToDo : remove tailing and headding spaces
+	masterfile_path = [masterfile_path stringByTrimmingCharactersInSet:
+									[NSCharacterSet whitespaceCharacterSet]];
 	if ([masterfile_path hasPrefix:@":"]) { //relative HFS path
 		NSString *hfs_base_path = [[[file path] stringByDeletingLastPathComponent] hfsPath];
 		NSString *hfs_abs_path = [hfs_base_path stringByAppendingString:masterfile_path];
