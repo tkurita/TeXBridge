@@ -352,21 +352,21 @@ bail:
 		// pickup newlabel commands
 		NSArray *captures = [a_line captureComponentsMatchedByRegex:@"\\\\newlabel\\{([^{}]+)\\}\\{((\\{[^{}]*\\})+)\\}"];
 #if useLog
-		NSLog(@"%@", captures);
+		NSLog(@"captures : %@", captures);
 #endif		
 		if ([captures count] > 2) {
 			NSString *label_name = [captures objectAtIndex:1];
 			NSArray *second_captures = [[captures objectAtIndex:2] 
 										arrayOfCaptureComponentsMatchedByRegex:@"\\{([^{}]*)\\}"];
 #if useLog
-			NSLog(@"%@", second_captures);
+			NSLog(@"second_captures : %@", second_captures);
 #endif
 			NSString *ref_name = nil;
 			NSUInteger second_captures_count = [second_captures count];
 			if ( second_captures_count > 3) { // hyperref
 				ref_name = [[second_captures objectAtIndex:second_captures_count-2] lastObject];
 			} else {
-				ref_name = [[second_captures objectAtIndex:1] lastObject];
+				ref_name = [[second_captures objectAtIndex:0] lastObject];
 			}
 			
 			if ( [label_name length] || ![label_name hasPrefix:@"SC@"]) {
