@@ -62,7 +62,7 @@ void showAEDesc(const AppleEvent *ev)
 	FSRef ref;
 	OSStatus status = FSPathMakeRef((UInt8 *)[tex_path fileSystemRepresentation], &ref, NULL);
 	if (status == noErr) {
-		id miclient = [[[miClient alloc] init] autorelease];
+		id miclient = [miClient sharedClient];
 		[miclient setUseBookmarkBeforeJump:YES];
 		[miclient jumpToFile:&ref paragraph:start_pos];
 	} else {

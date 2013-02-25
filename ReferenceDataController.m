@@ -8,6 +8,7 @@
 #import "ImageAndTextCell.h"
 #import "mi.h"
 #import "SmartActivate.h"
+#import "miClient.h"
 
 #define useLog 0
 @implementation ReferenceDataController
@@ -186,12 +187,18 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 {
 	NSArray  *selection = [treeController selectedObjects];
 	id target_item = [[selection lastObject] representedObject];
-	if ([target_item isKindOfClass:[AuxFile class]]) return;
+	if ([target_item isKindOfClass:[AuxFile class]]) {
+		FSRef fref;
+		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
+		CFURLGetFSRef((CFURLRef)file_url, &fref);
+		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
+		return;
+	}
 	
-	NSString *ref_name = [target_item referenceName];
-	if (![ref_name length]) return;
-	
+	NSString *ref_name = [target_item referenceName];	
 	NSString *label_name = [target_item name];	
+	if (![label_name length]) return;
+	
 	BOOL useeqref = [[NSUserDefaults standardUserDefaults] boolForKey:@"useeqref"];
 	
 	NSString *ref_command = @"\\ref";
