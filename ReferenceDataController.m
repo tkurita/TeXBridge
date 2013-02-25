@@ -29,7 +29,9 @@
 	AuxFile *result = nil;
 	result = [AuxFile auxFileWithTexDocument:texDoc];
 	if (! texDoc.file) {
-		//ToDo : may require delete old unsavedAuxData
+		if (unsavedAuxFile) {
+			[[rootNode mutableChildNodes] removeObject:[unsavedAuxFile treeNode]];
+		}
 		self.unsavedAuxFile = result;
 	}
 	return result;
