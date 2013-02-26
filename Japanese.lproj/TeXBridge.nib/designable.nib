@@ -180,7 +180,7 @@
 								</object>
 								<object class="NSMenuItem" id="825861968">
 									<reference key="NSMenu" ref="172264112"/>
-									<string key="NSTitle">TeXCompileServer を終了</string>
+									<string key="NSTitle">TeXBridge を終了</string>
 									<string key="NSKeyEquiv">q</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -388,7 +388,7 @@
 								<int key="NSCellFlags2">33554432</int>
 								<object class="NSCustomResource" key="NSContents">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSApplicationIcon</string>
+									<string key="NSResourceName">TeXBridge</string>
 								</object>
 								<int key="NSAlign">0</int>
 								<int key="NSScale">0</int>
@@ -566,6 +566,30 @@
 						<reference key="destination" ref="743643864"/>
 					</object>
 					<int key="connectionID">1368</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showSettingWindow:</string>
+						<reference key="source" ref="29626734"/>
+						<reference key="destination" ref="197774401"/>
+					</object>
+					<int key="connectionID">1374</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showToolPalette:</string>
+						<reference key="source" ref="29626734"/>
+						<reference key="destination" ref="121373373"/>
+					</object>
+					<int key="connectionID">1375</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showRefPalette:</string>
+						<reference key="source" ref="29626734"/>
+						<reference key="destination" ref="1046831297"/>
+					</object>
+					<int key="connectionID">1376</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1021,15 +1045,10 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="1055728880"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<reference key="appleScriptEventHandlerNames" ref="0"/>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">Help</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1039,15 +1058,10 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="82297945"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<reference key="appleScriptEventHandlerNames" ref="0"/>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">Help</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1055,49 +1069,28 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="121373373"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<string>ChooseMenuItem</string>
-							</object>
-							<string key="appleScriptScriptName">TeXBridge.applescript</string>
-							<string key="appleScriptObjectName">ShowToolPalette</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="1046831297"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<string>ChooseMenuItem</string>
-							</object>
-							<string key="appleScriptScriptName">TeXBridge.applescript</string>
-							<string key="appleScriptObjectName">ShowRefPalette</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="987533214"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<reference key="appleScriptEventHandlerNames" ref="0"/>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">Help</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1113,9 +1106,8 @@
 							<int key="appleScriptScriptScope">0</int>
 							<object class="NSArray" key="appleScriptEventHandlerNames">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<string>ChooseMenuItem</string>
 							</object>
-							<string key="appleScriptScriptName">TeXBridge.applescript</string>
+							<string key="appleScriptScriptName"/>
 							<string key="appleScriptObjectName">Preference</string>
 						</object>
 					</object>
@@ -1224,7 +1216,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1373</int>
+			<int key="maxID">1376</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1238,12 +1230,16 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>dviPreview:</string>
 							<string>dviToPDF:</string>
-							<string>openSettingsWindow:</string>
 							<string>quickTypesetPreview:</string>
+							<string>showRefPalette:</string>
+							<string>showSettingWindow:</string>
+							<string>showToolPalette:</string>
 							<string>typesetPDFPreview:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1257,8 +1253,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>dviPreview:</string>
 							<string>dviToPDF:</string>
-							<string>openSettingsWindow:</string>
 							<string>quickTypesetPreview:</string>
+							<string>showRefPalette:</string>
+							<string>showSettingWindow:</string>
+							<string>showToolPalette:</string>
 							<string>typesetPDFPreview:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1272,11 +1270,19 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">openSettingsWindow:</string>
+								<string key="name">quickTypesetPreview:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">quickTypesetPreview:</string>
+								<string key="name">showRefPalette:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showSettingWindow:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showToolPalette:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -1837,15 +1843,15 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>NSApplicationIcon</string>
 				<string>NSMenuCheckmark</string>
 				<string>NSMenuMixedState</string>
+				<string>TeXBridge</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{128, 128}</string>
 				<string>{9, 8}</string>
 				<string>{7, 2}</string>
+				<string>{128, 128}</string>
 			</object>
 		</object>
 	</data>

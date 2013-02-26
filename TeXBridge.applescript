@@ -153,22 +153,8 @@ on clicked theObject
 	set a_tag to tag of theObject
 	if a_tag is 7 then
 		control_clicked(theObject) of PDFController
-	else
-		--control_clicked(theObject)
 	end if
 end clicked
-
-on choose menu item theObject
-	--log "start choose menu item"
-	set a_name to name of theObject
-	if a_name is "Preference" then
-		show_setting_window()
-	else if a_name is "ShowToolPalette" then
-		--open_window() of ToolPaletteController
-	else if a_name is "ShowRefPalette" then
-		--open_window() of RefPanelController
-	end if
-end choose menu item
 
 on check_mi_version()
 	-- log "start check_mi_version"
@@ -272,7 +258,7 @@ on toggle_visibility_RefPalette()
 end toggle_visibility_RefPalette
 
 on open_RefPalette()
-	call method "showRefPalette" of appController
+	call method "showRefPalette:" of appController with parameter missing value
 end open_RefPalette
 
 on toggle_visibility_ToolPalette()
@@ -280,5 +266,5 @@ on toggle_visibility_ToolPalette()
 end toggle_visibility_ToolPalette
 
 on open_ToolPalette()
-	call method "showToolPalette" of appController
+	call method "showToolPalette:" of appController with parameter missing value
 end open_ToolPalette

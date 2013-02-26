@@ -204,7 +204,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[toolPaletteController showStatusMessage:msg];
 }
 
-- (void)showToolPalette
+- (IBAction)showToolPalette:(id)sender
 {
 	if (!toolPaletteController) {
 		toolPaletteController = [[NewToolPaletteController alloc] 
@@ -216,7 +216,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 - (void)toggleToolPalette
 {
 	if (!toolPaletteController) {
-		return [self showToolPalette];
+		return [self showToolPalette:self];
 	}
 	
 	if ([toolPaletteController isOpened]) {
@@ -247,7 +247,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[refPanelController rebuildLabelsFromAux:texFilePath textEncoding:encodingName];
 }
 
-- (void)showRefPalette
+- (IBAction)showRefPalette:(id)sender
 {
 	if (!refPanelController) {
 		refPanelController = [[NewRefPanelController alloc]
@@ -259,7 +259,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 - (void)toggleRefPalette
 {
 	if (!refPanelController) {
-		return [self showRefPalette];
+		return [self showRefPalette:self];
 	}
 	
 	if ([refPanelController isOpened]) {
@@ -336,14 +336,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
 			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
 		//ToDo : show messsage "Opening Tool Palette..."
-		[self showToolPalette];
+		[self showToolPalette:self];
 	}
 	
 	refPanelController = nil;
 	if ([user_defaults boolForKey:@"ShowRefPaletteWhenLaunched"] 
 		||  [user_defaults boolForKey:@"IsOpenedRefPalette"]) {
 		//To Do :: show message "Opening Reference Palette..."
-		[self showRefPalette];
+		[self showRefPalette:self];
 	}
 	
 
@@ -362,8 +362,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 {
 	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
 }
-
-
 
 
 @end

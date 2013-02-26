@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9L30</string>
-		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.54</string>
-		<string key="IBDocument.HIToolboxVersion">353.00</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.InterfaceBuilderVersion">851</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string key="NS.object.0">851</string>
+		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="687"/>
+			<integer value="689"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
-			<object class="NSMutableArray" key="dict.values">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
+			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
+			<integer value="1" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="29371605">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,7 +38,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{174, 323}, {569, 383}}</string>
 				<int key="NSWTFlags">1886912512</int>
-				<string type="base64-UTF8" key="NSWindowTitle">VGVYIFRvb2xzIOioreWumg</string>
+				<string key="NSWindowTitle">TeX Tools 設定</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
@@ -60,10 +59,10 @@
 							<object class="NSButtonCell" key="NSCell" id="848202487">
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">137887744</int>
-								<string type="base64-UTF8" key="NSContents">44OH44OV44Kp44Or44OI6Kit5a6a44Gr5oi744GZA</string>
+								<string key="NSContents">デフォルト設定に戻す</string>
 								<object class="NSFont" key="NSSupport" id="102869663">
 									<string key="NSName">LucidaGrande</string>
-									<double key="NSSize">1.300000e+01</double>
+									<double key="NSSize">13</double>
 									<int key="NSfFlags">1044</int>
 								</object>
 								<reference key="NSControlView" ref="860894661"/>
@@ -71,7 +70,7 @@
 								<int key="NSButtonFlags2">1</int>
 								<object class="NSFont" key="NSAlternateImage">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.300000e+01</double>
+									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<string key="NSAlternateContents"/>
@@ -90,7 +89,7 @@
 								<object class="NSTabViewItem" id="561284023">
 									<string key="NSIdentifier">TerminalSettings</string>
 									<object class="NSView" key="NSView" id="272574092">
-										<reference key="NSNextResponder" ref="1038363873"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -106,8 +105,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">1</int>
 													<reference key="NSControlView" ref="796010348"/>
+													<int key="NSTag">1</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<object class="NSColor" key="NSBackgroundColor" id="242870664">
 														<int key="NSColorSpace">6</int>
@@ -138,7 +137,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="297935359">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">5Yid5pyf5a6f6KGM44Kz44Oe44Oz44OJIDo</string>
+													<string key="NSContents">初期実行コマンド :</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="330507898"/>
 													<object class="NSColor" key="NSBackgroundColor" id="398781134">
@@ -147,7 +146,7 @@
 														<string key="NSColorName">controlColor</string>
 														<object class="NSColor" key="NSColor" id="971134312">
 															<int key="NSColorSpace">3</int>
-															<bytes key="NSWhite">MC42NjY2NjY2OQA</bytes>
+															<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
 														</object>
 													</object>
 													<object class="NSColor" key="NSTextColor" id="235210383">
@@ -167,7 +166,7 @@
 												<object class="NSButtonCell" key="NSCell" id="79617620">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string type="base64-UTF8" key="NSContents">44K/44O844Of44OK44Or44Km44Kj44Oz44OJ44Km44KS44Ki44Kv44OG44Kj44OW44Gr44GZ44KLA</string>
+													<string key="NSContents">ターミナルウィンドウをアクティブにする</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="266606221"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -204,7 +203,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<object class="NSMenuItem" key="NSMenuItem" id="713347189">
 														<reference key="NSMenu" ref="888057786"/>
-														<string type="base64-UTF8" key="NSTitle">44OH44OV44Kp44Or44OIA</string>
+														<string key="NSTitle">デフォルト</string>
 														<string key="NSKeyEquiv"/>
 														<int key="NSMnemonicLoc">2147483647</int>
 														<int key="NSState">1</int>
@@ -254,7 +253,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="191405763">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string type="base64-UTF8" key="NSContents">44K/44O844Of44OK44Or6Kit5a6aIDo</string>
+													<string key="NSContents">ターミナル設定 :</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="893673538"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -263,9 +262,8 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
-										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
-									<string type="base64-UTF8" key="NSLabel">44K/44O844Of44OK44OrA</string>
+									<string key="NSLabel">ターミナル</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
@@ -288,8 +286,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">latex</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">2</int>
 													<reference key="NSControlView" ref="1044286454"/>
+													<int key="NSTag">2</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -307,8 +305,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">dvipdfmx</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">3</int>
 													<reference key="NSControlView" ref="408107626"/>
+													<int key="NSTag">3</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -326,8 +324,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">dvips</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">4</int>
 													<reference key="NSControlView" ref="17699929"/>
+													<int key="NSTag">4</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -342,7 +340,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="1025758435">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">44K/44Kk44OX44K744OD44OIOg</string>
+													<string key="NSContents">タイプセット:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="79981420"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -358,7 +356,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="895561876">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">RFZJIOOCkiBQREYg44Gr5aSJ5o+bOg</string>
+													<string key="NSContents">DVI を PDF に変換:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="776177328"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -374,7 +372,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="869558532">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">RFZJIOOCkiBQUyDjgavlpInmj5s6A</string>
+													<string key="NSContents">DVI を PS に変換:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="674778582"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -390,7 +388,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="206840832">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">ZWJiIOOCs+ODnuODs+ODiTo</string>
+													<string key="NSContents">ebb コマンド:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="922774476"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -406,7 +404,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="538313177">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">QmliVGVYIOOCs+ODnuODs+ODiTo</string>
+													<string key="NSContents">BibTeX コマンド:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="34723721"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -422,7 +420,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="921236834">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">71303168</int>
-													<string type="base64-UTF8" key="NSContents">bWVuZGV4IOOCs+ODnuODs+ODiTo</string>
+													<string key="NSContents">mendex コマンド:</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="923084396"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -441,8 +439,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">ebb</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">4</int>
 													<reference key="NSControlView" ref="757541670"/>
+													<int key="NSTag">4</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -460,8 +458,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">BibTeX</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">4</int>
 													<reference key="NSControlView" ref="302036516"/>
+													<int key="NSTag">4</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -479,8 +477,8 @@
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">mendex</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">4</int>
 													<reference key="NSControlView" ref="710235234"/>
+													<int key="NSTag">4</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -489,14 +487,14 @@
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
 									</object>
-									<string type="base64-UTF8" key="NSLabel">VGVYIOOCs+ODnuODs+ODiQ</string>
+									<string key="NSLabel">TeX コマンド</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
 								<object class="NSTabViewItem" id="75198844">
 									<string key="NSIdentifier">PreviewSettings</string>
 									<object class="NSView" key="NSView" id="722161720">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="1038363873"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -514,7 +512,7 @@
 													<object class="NSButtonCell" id="444430243">
 														<int key="NSCellFlags">-2080244224</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">RmluZGVyIOOBp+mWi+OBjw</string>
+														<string key="NSContents">Finder で開く</string>
 														<reference key="NSSupport" ref="102869663"/>
 														<reference key="NSControlView" ref="574609608"/>
 														<int key="NSButtonFlags">1211912703</int>
@@ -530,10 +528,10 @@
 													<object class="NSButtonCell" id="983673652">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">TXhkdmkg44KS5L2/44GGA</string>
+														<string key="NSContents">Mxdvi を使う</string>
 														<reference key="NSSupport" ref="102869663"/>
-														<int key="NSTag">1</int>
 														<reference key="NSControlView" ref="574609608"/>
+														<int key="NSTag">1</int>
 														<int key="NSButtonFlags">1211912703</int>
 														<int key="NSButtonFlags2">0</int>
 														<reference key="NSAlternateImage" ref="813103897"/>
@@ -545,10 +543,10 @@
 													<object class="NSButtonCell" id="52260601">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">eGR2aSDjgpLkvb/jgYYgOg</string>
+														<string key="NSContents">xdvi を使う :</string>
 														<reference key="NSSupport" ref="102869663"/>
-														<int key="NSTag">2</int>
 														<reference key="NSControlView" ref="574609608"/>
+														<int key="NSTag">2</int>
 														<int key="NSButtonFlags">1211912703</int>
 														<int key="NSButtonFlags2">0</int>
 														<reference key="NSAlternateImage" ref="813103897"/>
@@ -560,7 +558,7 @@
 													<object class="NSButtonCell" id="507722009">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">UGljdFByaW50ZXIg44KS5L2/44GGA</string>
+														<string key="NSContents">PictPrinter を使う</string>
 														<reference key="NSSupport" ref="102869663"/>
 														<reference key="NSControlView" ref="574609608"/>
 														<int key="NSButtonFlags">1211912703</int>
@@ -572,7 +570,7 @@
 																<bool key="EncodedWithXMLCoder">YES</bool>
 																<object class="NSArray">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
-																	<integer value="0" id="8"/>
+																	<integer value="0"/>
 																	<object class="NSBitmapImageRep">
 																		<object class="NSData" key="NSTIFFRepresentation">
 																			<bytes key="NS.bytes">TU0AKgAABRgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAMAAAADAAAAAwAAAAAAAAAA
@@ -598,7 +596,7 @@ AAAAFwAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAoAAAAXAAAAJAAAAC4AAAAu
 AAAAJAAAABcAAAAKAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAwAAAAMAAAADAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgEAAAMAAAABABIAAAEB
 AAMAAAABABIAAAECAAMAAAAEAAAFxgEDAAMAAAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAABAAAACAES
-AAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABBxwAAAEXAAQAAAABAAAFEAEcAAMAAAABAAEAAAFS
+AAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABABIAAAEXAAQAAAABAAAFEAEcAAMAAAABAAEAAAFS
 AAMAAAABAAEAAAFTAAMAAAAEAAAFzodzAAcAABEcAAAF1gAAAAAACAAIAAgACAABAAEAAQABAAARHGFw
 cGwCAAAAbW50clJHQiBYWVogB9gACQARABcAKgAlYWNzcEFQUEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAPbWAAEAAAAA0y1hcHBsbQmZsQDj9AgbSNgrDieCLwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -705,7 +703,7 @@ kQAAAAAAAAAAAAAAAAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMDgAA</bytes
 															<bool key="EncodedWithXMLCoder">YES</bool>
 															<object class="NSArray">
 																<bool key="EncodedWithXMLCoder">YES</bool>
-																<reference ref="8"/>
+																<integer value="0"/>
 																<object class="NSBitmapImageRep">
 																	<object class="NSData" key="NSTIFFRepresentation">
 																		<bytes key="NS.bytes">TU0AKgAABRgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAMAAAADAAAAAwAAAAAAAAAA
@@ -731,7 +729,7 @@ AAAAFwAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAoAAAAXAAAAJAAAAC4AAAAu
 AAAAJAAAABcAAAAKAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAwAAAAMAAAADAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQEAAAMAAAABABIAAAEB
 AAMAAAABABIAAAECAAMAAAAEAAAFugEDAAMAAAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAABAAAACAES
-AAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABBxwAAAEXAAQAAAABAAAFEAEcAAMAAAABAAEAAAFS
+AAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABABIAAAEXAAQAAAABAAAFEAEcAAMAAAABAAEAAAFS
 AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	</object>
 																</object>
@@ -760,8 +758,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<int key="NSCellFlags2">4195328</int>
 													<string key="NSContents">xdvi</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">3</int>
 													<reference key="NSControlView" ref="485346427"/>
+													<int key="NSTag">3</int>
 													<bool key="NSDrawsBackground">YES</bool>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<reference key="NSTextColor" ref="673015949"/>
@@ -781,7 +779,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<object class="NSButtonCell" id="1037697264">
 														<int key="NSCellFlags">-2080244224</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">RmluZGVyIOOBp+mWi+OBjw</string>
+														<string key="NSContents">Finder で開く</string>
 														<reference key="NSSupport" ref="102869663"/>
 														<reference key="NSControlView" ref="711033467"/>
 														<int key="NSButtonFlags">1211912703</int>
@@ -795,10 +793,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<object class="NSButtonCell" id="1004320856">
 														<int key="NSCellFlags">67239424</int>
 														<int key="NSCellFlags2">0</int>
-														<string type="base64-UTF8" key="NSContents">44OX44Os44OT44Ol44O8A</string>
+														<string key="NSContents">プレビュー</string>
 														<reference key="NSSupport" ref="102869663"/>
-														<int key="NSTag">1</int>
 														<reference key="NSControlView" ref="711033467"/>
+														<int key="NSTag">1</int>
 														<int key="NSButtonFlags">1211912703</int>
 														<int key="NSButtonFlags2">0</int>
 														<reference key="NSAlternateImage" ref="813103897"/>
@@ -866,7 +864,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<object class="NSColor" key="NSTextColor">
 														<int key="NSColorSpace">3</int>
-														<bytes key="NSWhite">MCAwLjgwMDAwMDAxAA</bytes>
+														<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 													</object>
 												</object>
 												<int key="NSBorderType">3</int>
@@ -883,7 +881,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSTextFieldCell" key="NSCell" id="752918471">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">RFZJIOODl+ODrOODk+ODpeODvA</string>
+													<string key="NSContents">DVI プレビュー</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="299662388"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -899,7 +897,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSTextFieldCell" key="NSCell" id="630963748">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">UERGIOODl+ODrOODk+ODpeODvA</string>
+													<string key="NSContents">PDF プレビュー</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="114457587"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -942,7 +940,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSTextFieldCell" key="NSCell" id="634185838">
 																	<int key="NSCellFlags">67239424</int>
 																	<int key="NSCellFlags2">4194304</int>
-																	<string type="base64-UTF8" key="NSContents">TXhkdmlFZGl0b3LvvJo</string>
+																	<string key="NSContents">MxdviEditor：</string>
 																	<reference key="NSSupport" ref="102869663"/>
 																	<reference key="NSControlView" ref="290665932"/>
 																	<reference key="NSBackgroundColor" ref="398781134"/>
@@ -958,7 +956,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSButtonCell" key="NSCell" id="37377478">
 																	<int key="NSCellFlags">67239424</int>
 																	<int key="NSCellFlags2">134217728</int>
-																	<string type="base64-UTF8" key="NSContents">bWkg44KS5L2/44GGA</string>
+																	<string key="NSContents">mi を使う</string>
 																	<reference key="NSSupport" ref="102869663"/>
 																	<reference key="NSControlView" ref="725803712"/>
 																	<int key="NSButtonFlags">-2038284033</int>
@@ -986,7 +984,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	<reference key="NSBackgroundColor" ref="242870664"/>
 																	<object class="NSColor" key="NSTextColor">
 																		<int key="NSColorSpace">3</int>
-																		<bytes key="NSWhite">MCAwLjgwMDAwMDAxAA</bytes>
+																		<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 																	</object>
 																</object>
 																<int key="NSBorderType">3</int>
@@ -1008,13 +1006,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<string key="NSContents">Title</string>
 													<object class="NSFont" key="NSSupport">
 														<string key="NSName">LucidaGrande</string>
-														<double key="NSSize">1.100000e+01</double>
+														<double key="NSSize">11</double>
 														<int key="NSfFlags">16</int>
 													</object>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<object class="NSColor" key="NSTextColor">
 														<int key="NSColorSpace">3</int>
-														<bytes key="NSWhite">MCAwLjgwMDAwMDAxAA</bytes>
+														<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 													</object>
 												</object>
 												<reference key="NSContentView" ref="491271415"/>
@@ -1025,8 +1023,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
+										<reference key="NSSuperview" ref="1038363873"/>
 									</object>
-									<string type="base64-UTF8" key="NSLabel">44OX44Os44OT44Ol44O8A</string>
+									<string key="NSLabel">プレビュー</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
@@ -1071,21 +1070,21 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSTableColumn" id="54323118">
 																		<string key="NSIdentifier">keyword</string>
-																		<double key="NSWidth">1.070000e+02</double>
-																		<double key="NSMinWidth">1.600000e+01</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">107</double>
+																		<double key="NSMinWidth">16</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">75628032</int>
-																			<int key="NSCellFlags2">0</int>
-																			<string type="base64-UTF8" key="NSContents">5a6a576p5riI44G/44Kt44O844Ov44O844OJA</string>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
+																			<string key="NSContents">定義済みキーワード</string>
 																			<object class="NSFont" key="NSSupport" id="26">
 																				<string key="NSName">LucidaGrande</string>
-																				<double key="NSSize">1.100000e+01</double>
+																				<double key="NSSize">11</double>
 																				<int key="NSfFlags">3100</int>
 																			</object>
 																			<object class="NSColor" key="NSBackgroundColor" id="986372305">
 																				<int key="NSColorSpace">3</int>
-																				<bytes key="NSWhite">MC4zMzMzMzI5OQA</bytes>
+																				<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
 																			</object>
 																			<object class="NSColor" key="NSTextColor" id="773630303">
 																				<int key="NSColorSpace">6</int>
@@ -1108,13 +1107,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	</object>
 																	<object class="NSTableColumn" id="425751810">
 																		<string key="NSIdentifier">replace</string>
-																		<double key="NSWidth">1.430000e+02</double>
-																		<double key="NSMinWidth">8.000000e+00</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">143</double>
+																		<double key="NSMinWidth">8</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">75628032</int>
-																			<int key="NSCellFlags2">0</int>
-																			<string type="base64-UTF8" key="NSContents">572u5o+b44OG44Kt44K544OIA</string>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
+																			<string key="NSContents">置換テキスト</string>
 																			<reference key="NSSupport" ref="26"/>
 																			<reference key="NSBackgroundColor" ref="986372305"/>
 																			<reference key="NSTextColor" ref="773630303"/>
@@ -1132,8 +1131,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="194957984"/>
 																	</object>
 																</object>
-																<double key="NSIntercellSpacingWidth">3.000000e+00</double>
-																<double key="NSIntercellSpacingHeight">2.000000e+00</double>
+																<double key="NSIntercellSpacingWidth">3</double>
+																<double key="NSIntercellSpacingHeight">2</double>
 																<reference key="NSBackgroundColor" ref="905116506"/>
 																<object class="NSColor" key="NSGridColor" id="399305944">
 																	<int key="NSColorSpace">6</int>
@@ -1144,13 +1143,16 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<bytes key="NSWhite">MC41AA</bytes>
 																	</object>
 																</object>
-																<double key="NSRowHeight">1.700000e+01</double>
+																<double key="NSRowHeight">17</double>
 																<int key="NSTvFlags">-767557632</int>
+																<reference key="NSDelegate"/>
+																<reference key="NSDataSource"/>
 																<int key="NSGridStyleMask">1</int>
 																<int key="NSColumnAutoresizingStyle">4</int>
 																<int key="NSDraggingSourceMaskForLocal">15</int>
 																<int key="NSDraggingSourceMaskForNonLocal">0</int>
 																<bool key="NSAllowsTypeSelect">YES</bool>
+																<int key="NSTableViewDraggingDestinationStyle">0</int>
 															</object>
 														</object>
 														<string key="NSFrame">{{1, 17}, {256, 271}}</string>
@@ -1172,7 +1174,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<reference key="NSSuperview" ref="860594181"/>
 														<reference key="NSTarget" ref="860594181"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">9.446495e-01</double>
+														<double key="NSPercent">0.94464951753616333</double>
 													</object>
 													<object class="NSScroller" id="306458803">
 														<reference key="NSNextResponder" ref="860594181"/>
@@ -1182,7 +1184,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<int key="NSsFlags">1</int>
 														<reference key="NSTarget" ref="860594181"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">9.961089e-01</double>
+														<double key="NSPercent">0.99610888957977295</double>
 													</object>
 													<object class="NSClipView" id="693649883">
 														<reference key="NSNextResponder" ref="860594181"/>
@@ -1245,17 +1247,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSTableColumn" id="398163170">
 																		<string key="NSIdentifier">keyword</string>
-																		<double key="NSWidth">9.700000e+01</double>
-																		<double key="NSMinWidth">4.000000e+01</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">97</double>
+																		<double key="NSMinWidth">40</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">75628032</int>
-																			<int key="NSCellFlags2">0</int>
-																			<string type="base64-UTF8" key="NSContents">44Om44O844K244Kt44O844Ov44O844OJA</string>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
+																			<string key="NSContents">ユーザキーワード</string>
 																			<reference key="NSSupport" ref="26"/>
 																			<object class="NSColor" key="NSBackgroundColor" id="886341946">
 																				<int key="NSColorSpace">3</int>
-																				<bytes key="NSWhite">MC4zMzMzMzI5OQA</bytes>
+																				<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
 																			</object>
 																			<reference key="NSTextColor" ref="773630303"/>
 																		</object>
@@ -1274,13 +1276,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																	</object>
 																	<object class="NSTableColumn" id="691403562">
 																		<string key="NSIdentifier">replace</string>
-																		<double key="NSWidth">1.510000e+02</double>
-																		<double key="NSMinWidth">7.400000e+01</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">151</double>
+																		<double key="NSMinWidth">74</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">75628032</int>
-																			<int key="NSCellFlags2">0</int>
-																			<string type="base64-UTF8" key="NSContents">572u5o+b44OG44Kt44K544OIA</string>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
+																			<string key="NSContents">置換テキスト</string>
 																			<reference key="NSSupport" ref="26"/>
 																			<reference key="NSBackgroundColor" ref="886341946"/>
 																			<reference key="NSTextColor" ref="773630303"/>
@@ -1299,17 +1301,20 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="808758336"/>
 																	</object>
 																</object>
-																<double key="NSIntercellSpacingWidth">3.000000e+00</double>
-																<double key="NSIntercellSpacingHeight">2.000000e+00</double>
+																<double key="NSIntercellSpacingWidth">3</double>
+																<double key="NSIntercellSpacingHeight">2</double>
 																<reference key="NSBackgroundColor" ref="905116506"/>
 																<reference key="NSGridColor" ref="399305944"/>
-																<double key="NSRowHeight">1.700000e+01</double>
+																<double key="NSRowHeight">17</double>
 																<int key="NSTvFlags">-767557632</int>
+																<reference key="NSDelegate"/>
+																<reference key="NSDataSource"/>
 																<int key="NSGridStyleMask">1</int>
 																<int key="NSColumnAutoresizingStyle">4</int>
 																<int key="NSDraggingSourceMaskForLocal">15</int>
 																<int key="NSDraggingSourceMaskForNonLocal">0</int>
 																<bool key="NSAllowsTypeSelect">YES</bool>
+																<int key="NSTableViewDraggingDestinationStyle">0</int>
 															</object>
 														</object>
 														<string key="NSFrame">{{1, 17}, {254, 246}}</string>
@@ -1326,7 +1331,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<reference key="NSSuperview" ref="234149727"/>
 														<reference key="NSTarget" ref="234149727"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">9.631579e-01</double>
+														<double key="NSPercent">0.96315789222717285</double>
 													</object>
 													<object class="NSScroller" id="604084460">
 														<reference key="NSNextResponder" ref="234149727"/>
@@ -1336,7 +1341,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<int key="NSsFlags">1</int>
 														<reference key="NSTarget" ref="234149727"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">9.904762e-01</double>
+														<double key="NSPercent">0.99047619104385376</double>
 													</object>
 													<object class="NSClipView" id="1028619524">
 														<reference key="NSNextResponder" ref="234149727"/>
@@ -1377,8 +1382,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">6</int>
 													<reference key="NSControlView" ref="597605938"/>
+													<int key="NSTag">6</int>
 													<int key="NSButtonFlags">-2030812929</int>
 													<int key="NSButtonFlags2">6</int>
 													<object class="NSCustomResource" key="NSNormalImage" id="688675487">
@@ -1405,8 +1410,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">6</int>
 													<reference key="NSControlView" ref="151054173"/>
+													<int key="NSTag">6</int>
 													<int key="NSButtonFlags">-2032910081</int>
 													<int key="NSButtonFlags2">6</int>
 													<object class="NSCustomResource" key="NSNormalImage" id="716495124">
@@ -1424,7 +1429,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
 									</object>
-									<string type="base64-UTF8" key="NSLabel">572u5o+b5YWl5YqbA</string>
+									<string key="NSLabel">置換入力</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
@@ -1445,10 +1450,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSButtonCell" key="NSCell" id="521942426">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string type="base64-UTF8" key="NSContents">44OE44O844Or44OR44Os44OD44OI44KS6KGo56S6A</string>
+													<string key="NSContents">ツールパレットを表示</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">5</int>
 													<reference key="NSControlView" ref="15135529"/>
+													<int key="NSTag">5</int>
 													<int key="NSButtonFlags">1211912703</int>
 													<int key="NSButtonFlags2">2</int>
 													<reference key="NSAlternateImage" ref="641647502"/>
@@ -1467,7 +1472,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSTextFieldCell" key="NSCell" id="307782978">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">VGVYQnJpZGdlIOi1t+WLleaZguOBqw</string>
+													<string key="NSContents">TeXBridge 起動時に</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="291739789"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -1484,10 +1489,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSButtonCell" key="NSCell" id="656751752">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string type="base64-UTF8" key="NSContents">44Oq44OV44Kh44Os44Oz44K544OR44Os44OD44OI44KS6KGo56S6A</string>
+													<string key="NSContents">リファレンスパレットを表示</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">5</int>
 													<reference key="NSControlView" ref="905184081"/>
+													<int key="NSTag">5</int>
 													<int key="NSButtonFlags">1211912703</int>
 													<int key="NSButtonFlags2">2</int>
 													<reference key="NSAlternateImage" ref="641647502"/>
@@ -1511,7 +1516,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<reference key="NSBackgroundColor" ref="242870664"/>
 													<object class="NSColor" key="NSTextColor">
 														<int key="NSColorSpace">3</int>
-														<bytes key="NSWhite">MCAwLjgwMDAwMDAxAA</bytes>
+														<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
 													</object>
 												</object>
 												<int key="NSBorderType">3</int>
@@ -1529,10 +1534,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSButtonCell" key="NSCell" id="627632327">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">201326592</int>
-													<string type="base64-UTF8" key="NSContents">5b+F6KaB44Gq44KJ44Gw6Ieq5YuV55qE44GrMuWbnuOCv+OCpOODl+OCu+ODg+ODiOOBmeOCiw</string>
+													<string key="NSContents">必要ならば自動的に2回タイプセットする</string>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">4</int>
 													<reference key="NSControlView" ref="293707391"/>
+													<int key="NSTag">4</int>
 													<int key="NSButtonFlags">1211912703</int>
 													<int key="NSButtonFlags2">2</int>
 													<reference key="NSNormalImage" ref="312373722"/>
@@ -1567,17 +1572,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<object class="NSMutableArray" key="NSTableColumns">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
 																	<object class="NSTableColumn" id="833067958">
-																		<double key="NSWidth">2.500000e+01</double>
-																		<double key="NSMinWidth">2.500000e+01</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">25</double>
+																		<double key="NSMinWidth">25</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">75628032</int>
-																			<int key="NSCellFlags2">0</int>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
 																			<string key="NSContents"/>
 																			<reference key="NSSupport" ref="26"/>
 																			<object class="NSColor" key="NSBackgroundColor">
 																				<int key="NSColorSpace">3</int>
-																				<bytes key="NSWhite">MC4zMzMzMzI5OQA</bytes>
+																				<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
 																			</object>
 																			<reference key="NSTextColor" ref="773630303"/>
 																		</object>
@@ -1592,12 +1597,12 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="1006022605"/>
 																	</object>
 																	<object class="NSTableColumn" id="952061255">
-																		<double key="NSWidth">2.300000e+02</double>
-																		<double key="NSMinWidth">4.000000e+00</double>
-																		<double key="NSMaxWidth">1.000000e+03</double>
+																		<double key="NSWidth">230</double>
+																		<double key="NSMinWidth">4</double>
+																		<double key="NSMaxWidth">1000</double>
 																		<object class="NSTableHeaderCell" key="NSHeaderCell">
-																			<int key="NSCellFlags">67239424</int>
-																			<int key="NSCellFlags2">0</int>
+																			<int key="NSCellFlags">75628096</int>
+																			<int key="NSCellFlags2">2048</int>
 																			<string key="NSContents"/>
 																			<reference key="NSSupport" ref="26"/>
 																			<object class="NSColor" key="NSBackgroundColor">
@@ -1621,16 +1626,19 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																		<reference key="NSTableView" ref="1006022605"/>
 																	</object>
 																</object>
-																<double key="NSIntercellSpacingWidth">3.000000e+00</double>
-																<double key="NSIntercellSpacingHeight">2.000000e+00</double>
+																<double key="NSIntercellSpacingWidth">3</double>
+																<double key="NSIntercellSpacingHeight">2</double>
 																<reference key="NSBackgroundColor" ref="905116506"/>
 																<reference key="NSGridColor" ref="399305944"/>
-																<double key="NSRowHeight">1.700000e+01</double>
+																<double key="NSRowHeight">17</double>
 																<int key="NSTvFlags">-759169024</int>
+																<reference key="NSDelegate"/>
+																<reference key="NSDataSource"/>
 																<int key="NSColumnAutoresizingStyle">4</int>
 																<int key="NSDraggingSourceMaskForLocal">15</int>
 																<int key="NSDraggingSourceMaskForNonLocal">0</int>
 																<bool key="NSAllowsTypeSelect">YES</bool>
+																<int key="NSTableViewDraggingDestinationStyle">0</int>
 															</object>
 														</object>
 														<string key="NSFrame">{{1, 1}, {261, 159}}</string>
@@ -1647,7 +1655,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<reference key="NSSuperview" ref="692034439"/>
 														<reference key="NSTarget" ref="692034439"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">8.368421e-01</double>
+														<double key="NSPercent">0.8368421196937561</double>
 													</object>
 													<object class="NSScroller" id="101267425">
 														<reference key="NSNextResponder" ref="692034439"/>
@@ -1657,7 +1665,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														<int key="NSsFlags">1</int>
 														<reference key="NSTarget" ref="692034439"/>
 														<string key="NSAction">_doScroller:</string>
-														<double key="NSPercent">9.425287e-01</double>
+														<double key="NSPercent">0.94252872467041016</double>
 													</object>
 												</object>
 												<string key="NSFrame">{{256, 97}, {263, 161}}</string>
@@ -1678,8 +1686,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<object class="NSTextFieldCell" key="NSCell" id="579646940">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
-													<string type="base64-UTF8" key="NSContents">44OE44O844Or44OR44Os44OD44OI44KS6KGo56S644GZ44KL44Ki44OX44Oq44Kx44O844K344On44Oz
-A</string>
+													<string key="NSContents">ツールパレットを表示するアプリケーション</string>
 													<reference key="NSSupport" ref="102869663"/>
 													<reference key="NSControlView" ref="705909086"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -1698,8 +1705,8 @@ A</string>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">6</int>
 													<reference key="NSControlView" ref="784381913"/>
+													<int key="NSTag">6</int>
 													<int key="NSButtonFlags">-2030812929</int>
 													<int key="NSButtonFlags2">6</int>
 													<reference key="NSNormalImage" ref="688675487"/>
@@ -1723,8 +1730,8 @@ A</string>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents"/>
 													<reference key="NSSupport" ref="102869663"/>
-													<int key="NSTag">6</int>
 													<reference key="NSControlView" ref="254826219"/>
+													<int key="NSTag">6</int>
 													<int key="NSButtonFlags">-2032910081</int>
 													<int key="NSButtonFlags2">6</int>
 													<reference key="NSNormalImage" ref="716495124"/>
@@ -1745,8 +1752,7 @@ A</string>
 												<object class="NSTextFieldCell" key="NSCell" id="786486772">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">272629760</int>
-													<string type="base64-UTF8" key="NSContents">T0ZGIOOBq+OBmeOCi+OBqOOAgeWJjeWbnue1guS6huaZguOBrueKtuaFi+OCkuWGjeePvuOBl+OBvuOB
-meOAgg</string>
+													<string key="NSContents">OFF にすると、前回終了時の状態を再現します。</string>
 													<reference key="NSSupport" ref="26"/>
 													<reference key="NSControlView" ref="51681300"/>
 													<reference key="NSBackgroundColor" ref="398781134"/>
@@ -1756,19 +1762,19 @@ meOAgg</string>
 										</object>
 										<string key="NSFrame">{{10, 33}, {523, 289}}</string>
 									</object>
-									<string type="base64-UTF8" key="NSLabel">44Gd44Gu5LuWA</string>
+									<string key="NSLabel">その他</string>
 									<reference key="NSColor" ref="398781134"/>
 									<reference key="NSTabView" ref="1038363873"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="561284023"/>
+							<reference key="NSSelectedTabViewItem" ref="75198844"/>
 							<reference key="NSFont" ref="102869663"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="272574092"/>
+								<reference ref="722161720"/>
 							</object>
 						</object>
 						<object class="NSButton" id="950643852">
@@ -1949,7 +1955,7 @@ meOAgg</string>
 							<string key="NSKeyPath">selection.appName</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
+								<object class="NSArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<string>NSMultipleValuesPlaceholder</string>
 									<string>NSNoSelectionPlaceholder</string>
@@ -1959,10 +1965,10 @@ meOAgg</string>
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<integer value="1" id="9"/>
-									<reference ref="8"/>
-									<reference ref="8"/>
-									<reference ref="8"/>
+									<integer value="1"/>
+									<integer value="0"/>
+									<integer value="0"/>
+									<integer value="0"/>
 									<string>NSIsNotNil</string>
 								</object>
 							</object>
@@ -2220,7 +2226,7 @@ meOAgg</string>
 							<string key="NSKeyPath">values.ToolPaletteApplicationsFloatingOn</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSHandlesContentAsCompoundValue</string>
-								<reference key="NS.object.0" ref="9"/>
+								<integer value="1" key="NS.object.0"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
@@ -2296,7 +2302,7 @@ meOAgg</string>
 							<string key="NSKeyPath">arrangedInternalReplaceInputDict</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSConditionallySetsEditable</string>
-								<reference key="NS.object.0" ref="8"/>
+								<integer value="0" key="NS.object.0"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
@@ -2316,7 +2322,7 @@ meOAgg</string>
 							<string key="NSKeyPath">arrangedObjects.key</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSConditionallySetsEditable</string>
-								<reference key="NS.object.0" ref="9"/>
+								<integer value="1" key="NS.object.0"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
@@ -2464,7 +2470,7 @@ meOAgg</string>
 							<string key="NSKeyPath">values.SettingsSetName</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
+								<object class="NSArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<string>NSValidatesImmediately</string>
 									<string>NSValueTransformerName</string>
@@ -2496,7 +2502,7 @@ meOAgg</string>
 						<int key="objectID">-2</int>
 						<reference key="object" ref="252045561"/>
 						<reference key="parent" ref="0"/>
-						<string type="base64-UTF8" key="objectName">RmlsZSdzIE93bmVyA</string>
+						<string key="objectName">File's Owner</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">-1</int>
@@ -3548,10 +3554,8 @@ meOAgg</string>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="NSMutableArray" key="dict.sortedKeys">
+				<object class="NSArray" key="dict.sortedKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>-1.IBPluginDependency</string>
-					<string>-2.IBPluginDependency</string>
 					<string>-3.IBPluginDependency</string>
 					<string>1016.IBPluginDependency</string>
 					<string>1016.ImportedFromIB2</string>
@@ -3767,6 +3771,7 @@ meOAgg</string>
 					<string>2058.IBPluginDependency</string>
 					<string>21.IBAttributePlaceholdersKey</string>
 					<string>21.IBEditorWindowLastContentRect</string>
+					<string>21.IBPluginDependency</string>
 					<string>21.IBWindowTemplateEditedContentRect</string>
 					<string>21.ImportedFromIB2</string>
 					<string>21.windowTemplate.hasMinSize</string>
@@ -3829,572 +3834,315 @@ meOAgg</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="444430243"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">OpenInFinder</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="444430243"/>
-								<string type="base64-UTF8" key="toolTip">RFZJIOODleOCoeOCpOODq+OCkiBGaW5kZXIg44Gn6ZaL44GN44G+44GZ44CCA</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="444430243"/>
+							<string key="toolTip">DVI ファイルを Finder で開きます。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="983673652"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">UseMxdvi</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="983673652"/>
-								<string type="base64-UTF8" key="toolTip">RFZJIOODleOCoeOCpOODq+OCkiBNeGR2aSDjgafplovjgY3jgb7jgZnjgII</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="983673652"/>
+							<string key="toolTip">DVI ファイルを Mxdvi で開きます。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="52260601"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">UseXdvi</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="52260601"/>
-								<string type="base64-UTF8" key="toolTip">RFZJIOODleOCoeOCpOODq+OCkiB4ZHZpIOOBp+mWi+OBjeOBvuOBmeOAgg</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="52260601"/>
+							<string key="toolTip">DVI ファイルを xdvi で開きます。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="490594328"/>
-								<int key="appleScriptObjectID">0</int>
-								<int key="appleScriptScriptScope">0</int>
-								<nil key="appleScriptEventHandlerNames"/>
-								<nil key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">MxdviEditorSetting</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="490594328"/>
-								<string type="base64-UTF8" key="toolTip">TXhkdmkg44GuIHJldmVhcnNlIHNlYXJjaCDjga7oqK3lrprjgafjgZnjgII</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="490594328"/>
+							<string key="toolTip">Mxdvi の revearse search の設定です。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="725803712"/>
-							<string type="base64-UTF8" key="toolTip">TXhkdmkg44GuIE14ZHZpRWRpdG9yIOOBqOOBl+OBpiBtaWNsaWVudCDjgpLoqK3lrprjgZfjgb7jgZnj
-gII</string>
+							<string key="toolTip">Mxdvi の MxdviEditor として miclient を設定します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="15135529"/>
-							<string type="base64-UTF8" key="toolTip">VGVYQ29tcGlsZVNlcnZlciDjga7otbfli5XmmYLjgavjg4Tjg7zjg6vjg5Hjg6zjg4Pjg4jjgpLoh6rl
-i5XnmoTjgavooajnpLrjgZfjgb7jgZnjgII</string>
+							<string key="toolTip">TeXCompileServer の起動時にツールパレットを自動的に表示します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="905184081"/>
-							<string type="base64-UTF8" key="toolTip">VGVYQ29tcGlsZVNlcnZlciDjga7otbfli5XmmYLjgavjg6rjg5XjgqHjg6zjg7Pjgrnjg5Hjg6zjg4Pj
-g4jjgpLoh6rli5XnmoTjgavooajnpLrjgZfjgb7jgZnjgII</string>
+							<string key="toolTip">TeXCompileServer の起動時にリファレンスパレットを自動的に表示します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="964722500"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">ReplaceInputSettings</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
+						<reference key="dict.sortedKeys" ref="0"/>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="860594181"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">InternalReplaceScroll</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="860594181"/>
-								<string type="base64-UTF8" key="toolTip">5a6a576p5riI44G/44Gu572u5o+b5YWl5Yqb44Gu5aSJ5o+b44OG44O844OW44Or44CC57eo6ZuG44Gn
-44GN44G+44Gb44KT44CCA</string>
-							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="860594181"/>
+							<string key="toolTip">定義済みの置換入力の変換テーブル。編集できません。</string>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="194957984"/>
-							<string type="base64-UTF8" key="toolTip">5a6a576p5riI44G/44Gu572u5o+b5YWl5Yqb44Gu5aSJ5o+b44OG44O844OW44Or44CC57eo6ZuG44Gn
-44GN44G+44Gb44KT44CCA</string>
+							<string key="toolTip">定義済みの置換入力の変換テーブル。編集できません。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="234149727"/>
-							<string type="base64-UTF8" key="toolTip">572u5o+b5YWl5Yqb44Gu5aSJ5o+b44OG44O844OW44Or44CC44Om44O844K244GM5paw44Gf44Gr6aCF
-55uu44KS6L+95Yqg44Gn44GN44G+44GZ44CCA</string>
+							<string key="toolTip">置換入力の変換テーブル。ユーザが新たに項目を追加できます。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="808758336"/>
-							<string type="base64-UTF8" key="toolTip">572u5o+b5YWl5Yqb44Gu5aSJ5o+b44OG44O844OW44Or44CC44Om44O844K244GM5paw44Gf44Gr6aCF
-55uu44KS6L+95Yqg44Gn44GN44G+44GZ44CCA</string>
+							<string key="toolTip">置換入力の変換テーブル。ユーザが新たに項目を追加できます。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="1044286454"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">typesetCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="1044286454"/>
-								<string type="base64-UTF8" key="toolTip">44K/44Kk44OX44K744OD44OI44Gr5L2/55So44GV44KM44KL44Kz44Oe44Oz44OJA</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="1044286454"/>
+							<string key="toolTip">タイプセットに使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="408107626"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">dvipdfCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="408107626"/>
-								<string type="base64-UTF8" key="toolTip">RFZJIOOCkiBQREYg44Gr5aSJ5o+b44GZ44KL44Gu44Gr5L2/55So44GV44KM44KL44Kz44Oe44Oz44OJ
-A</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="408107626"/>
+							<string key="toolTip">DVI を PDF に変換するのに使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="17699929"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">dvipsCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="17699929"/>
-								<string type="base64-UTF8" key="toolTip">RFZJIOOCkiBQUyDjgavlpInmj5vjgZnjgovjga7jgavkvb/nlKjjgZXjgozjgovjgrPjg57jg7Pjg4k</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="17699929"/>
+							<string key="toolTip">DVI を PS に変換するのに使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="757541670"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">ebbCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="757541670"/>
-								<string type="base64-UTF8" key="toolTip">ZWJiIOOBq+S9v+eUqOOBleOCjOOCi+OCs+ODnuODs+ODiQ</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="757541670"/>
+							<string key="toolTip">ebb に使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="302036516"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">bibtexCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="302036516"/>
-								<string type="base64-UTF8" key="toolTip">QmliVGVYIOOBq+S9v+eUqOOBleOCjOOCi+OCs+ODnuODs+ODiQ</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="302036516"/>
+							<string key="toolTip">BibTeX に使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="710235234"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">mendexCommand</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="710235234"/>
-								<string type="base64-UTF8" key="toolTip">bWVuZGV4IOOBq+S9v+eUqOOBleOCjOOCi+OCs+ODnuODs+ODiQ</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="710235234"/>
+							<string key="toolTip">mendex に使用されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="597605938"/>
-							<string type="base64-UTF8" key="toolTip">44Om44O844K25a6a576p44Gu44Kt44O844Ov44O844OJ44Go572u5o+b44OG44Kt44K544OI44KS6L+9
-5Yqg44GX44G+44GZ44CCA</string>
+							<string key="toolTip">ユーザ定義のキーワードと置換テキストを追加します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="151054173"/>
-							<string type="base64-UTF8" key="toolTip">44Om44O844K25a6a576p44Gu44Kt44O844Ov44O844OJ44Go572u5o+b44OG44Kt44K544OI44KS5YmK
-6Zmk44GX44G+44GZ44CCA</string>
+							<string key="toolTip">ユーザ定義のキーワードと置換テキストを削除します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="950643852"/>
-							<string type="base64-UTF8" key="toolTip">6Kit5a6a44Gu44OY44Or44OX44KS6KGo56S644GX44G+44GZ44CCA</string>
+							<string key="toolTip">設定のヘルプを表示します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="293707391"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">AutoMultiTypeset</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="293707391"/>
-								<string type="base64-UTF8" key="toolTip">44Oq44OV44Kh44Os44Oz44K544Gr5aSJ5pu044GM44GC44Gj44Gf5aC05ZCI44K/44Kk44OW44K744OD
-44OI44KS6Ieq5YuV55qE44GrMuWbnuOBl+OBvuOBmeOAgg</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="293707391"/>
+							<string key="toolTip">リファレンスに変更があった場合タイブセットを自動的に2回します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="784381913"/>
-							<string type="base64-UTF8" key="toolTip">44Om44O844K25a6a576p44Gu44Kt44O844Ov44O844OJ44Go572u5o+b44OG44Kt44K544OI44KS6L+9
-5Yqg44GX44G+44GZ44CCA</string>
+							<string key="toolTip">ユーザ定義のキーワードと置換テキストを追加します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">ToolTip</string>
 						<object class="IBToolTipAttribute" key="NS.object.0">
 							<string key="name">ToolTip</string>
 							<reference key="object" ref="254826219"/>
-							<string type="base64-UTF8" key="toolTip">44Om44O844K25a6a576p44Gu44Kt44O844Ov44O844OJ44Go572u5o+b44OG44Kt44K544OI44KS5YmK
-6Zmk44GX44G+44GZ44CCA</string>
+							<string key="toolTip">ユーザ定義のキーワードと置換テキストを削除します。</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="470736217"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">MxdviEditorBox</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4429,31 +4177,33 @@ A</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4461,169 +4211,102 @@ A</string>
 					<string>{{131, 816}, {173, 33}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="235463019"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">Setting</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
 					<string>{{0, 473}, {569, 383}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{0, 473}, {569, 383}}</string>
-					<reference ref="9"/>
-					<reference ref="9"/>
+					<integer value="1"/>
+					<integer value="1"/>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>{569, 383}</string>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="860894661"/>
+							<string key="toolTip">設定を初期状態に戻します。</string>
 						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="860894661"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">RevertToDefault</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="860894661"/>
-								<string type="base64-UTF8" key="toolTip">6Kit5a6a44KS5Yid5pyf54q25oWL44Gr5oi744GX44G+44GZ44CCA</string>
-							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="561284023"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">TerminalSettings</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="671016109"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">TeXCommands</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="1038363873"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">SettingTabs</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="75198844"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">PreviewSettings</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="679642745"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName"/>
-							<string key="appleScriptObjectName">TheOtherSettings</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
-					<object class="NSMutableDictionary">
-						<string key="NS.key.0">IBAppleScriptAttributeName</string>
-						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
-							<string key="name">IBAppleScriptAttributeName</string>
-							<reference key="object" ref="574609608"/>
-							<int key="appleScriptObjectID">-1</int>
-							<int key="appleScriptScriptScope">0</int>
-							<object class="NSArray" key="appleScriptEventHandlerNames">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-							</object>
-							<string key="appleScriptScriptName">TeXBridge.applescript</string>
-							<string key="appleScriptObjectName">PreviewerMode</string>
-						</object>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<reference key="dict.sortedKeys" ref="0"/>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="1"/>
+					<object class="NSMutableDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IBAppleScriptAttributeName</string>
 							<string>ToolTip</string>
@@ -4640,50 +4323,29 @@ A</string>
 									<string>DidEndEditing</string>
 								</object>
 								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">dviViewCommand</string>
+								<string key="appleScriptObjectName"/>
 							</object>
 							<object class="IBToolTipAttribute">
 								<string key="name">ToolTip</string>
 								<reference key="object" ref="485346427"/>
-								<string type="base64-UTF8" key="toolTip">44CMeGR2aeOCkuS9v+OBhuOAjeOBjOmBuOaKnuOBleOCjOOBn+aZguOBq+Wun+ihjOOBleOCjOOCi+OC
-s+ODnuODs+ODiQ</string>
+								<string key="toolTip">「xdviを使う」が選択された時に実行されるコマンド</string>
 							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>IBAppleScriptAttributeName</string>
-							<string>ToolTip</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBAppleScriptInfoAttribute">
-								<string key="name">IBAppleScriptAttributeName</string>
-								<reference key="object" ref="796010348"/>
-								<int key="appleScriptObjectID">-1</int>
-								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
-								<string key="appleScriptScriptName"/>
-								<string key="appleScriptObjectName">ExecutionString</string>
-							</object>
-							<object class="IBToolTipAttribute">
-								<string key="name">ToolTip</string>
-								<reference key="object" ref="796010348"/>
-								<string type="base64-UTF8" key="toolTip">44K/44O844Of44OK44Or44GM5paw44Gf44Gr6ZaL44GL44KM44KL5pmC44Gr5a6f6KGM44GV44KM44KL
-44Kz44Oe44Oz44OJA</string>
-							</object>
+						<string key="NS.key.0">ToolTip</string>
+						<object class="IBToolTipAttribute" key="NS.object.0">
+							<string key="name">ToolTip</string>
+							<reference key="object" ref="796010348"/>
+							<string key="toolTip">ターミナルが新たに開かれる時に実行されるコマンド</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">IBAppleScriptAttributeName</string>
 						<object class="IBAppleScriptInfoAttribute" key="NS.object.0">
@@ -4700,10 +4362,10 @@ s+ODnuODs+ODiQ</string>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IBAppleScriptAttributeName</string>
 							<string>ToolTip</string>
@@ -4715,24 +4377,22 @@ s+ODnuODs+ODiQ</string>
 								<reference key="object" ref="1037697264"/>
 								<int key="appleScriptObjectID">-1</int>
 								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
+								<reference key="appleScriptEventHandlerNames" ref="0"/>
 								<string key="appleScriptScriptName"/>
 								<string key="appleScriptObjectName">OpenInFinder</string>
 							</object>
 							<object class="IBToolTipAttribute">
 								<string key="name">ToolTip</string>
 								<reference key="object" ref="1037697264"/>
-								<string type="base64-UTF8" key="toolTip">UERGIOODleOCoeOCpOODq+OCkiBGaW5kZXIg44Gn6ZaL44GN44G+44GZ44CCA</string>
+								<string key="toolTip">PDF ファイルを Finder で開きます。</string>
 							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IBAppleScriptAttributeName</string>
 							<string>ToolTip</string>
@@ -4744,24 +4404,22 @@ s+ODnuODs+ODiQ</string>
 								<reference key="object" ref="1004320856"/>
 								<int key="appleScriptObjectID">-1</int>
 								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
+								<reference key="appleScriptEventHandlerNames" ref="0"/>
 								<string key="appleScriptScriptName"/>
 								<string key="appleScriptObjectName">PreviewApp</string>
 							</object>
 							<object class="IBToolTipAttribute">
 								<string key="name">ToolTip</string>
 								<reference key="object" ref="1004320856"/>
-								<string type="base64-UTF8" key="toolTip">UERGIOODleOCoeOCpOODq+OCkuODl+ODrOODk+ODpeODvOOBp+mWi+OBjeOBvuOBmeOAgg</string>
+								<string key="toolTip">PDF ファイルをプレビューで開きます。</string>
 							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IBAppleScriptAttributeName</string>
 							<string>ToolTip</string>
@@ -4773,24 +4431,22 @@ s+ODnuODs+ODiQ</string>
 								<reference key="object" ref="61555511"/>
 								<int key="appleScriptObjectID">-1</int>
 								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
+								<reference key="appleScriptEventHandlerNames" ref="0"/>
 								<string key="appleScriptScriptName"/>
 								<string key="appleScriptObjectName">AdobeReader</string>
 							</object>
 							<object class="IBToolTipAttribute">
 								<string key="name">ToolTip</string>
 								<reference key="object" ref="61555511"/>
-								<string type="base64-UTF8" key="toolTip">UERGIOODleOCoeOCpOODq+OCkiBBZG9iZSBSZWFkZXIg44Gn6ZaL44GN44G+44GZ44CCA</string>
+								<string key="toolTip">PDF ファイルを Adobe Reader で開きます。</string>
 							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>IBAppleScriptAttributeName</string>
 							<string>ToolTip</string>
@@ -4802,28 +4458,24 @@ s+ODnuODs+ODiQ</string>
 								<reference key="object" ref="978459807"/>
 								<int key="appleScriptObjectID">-1</int>
 								<int key="appleScriptScriptScope">0</int>
-								<object class="NSArray" key="appleScriptEventHandlerNames">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-								</object>
+								<reference key="appleScriptEventHandlerNames" ref="0"/>
 								<string key="appleScriptScriptName"/>
 								<string key="appleScriptObjectName">Acrobat</string>
 							</object>
 							<object class="IBToolTipAttribute">
 								<string key="name">ToolTip</string>
 								<reference key="object" ref="978459807"/>
-								<string type="base64-UTF8" key="toolTip">UERGIOODleOCoeOCpOODq+OCkiBBZG9iZSBBY3JvYmF0IOOBp+mWi+OBjeOBvuOBmeOAgg</string>
+								<string key="toolTip">PDF ファイルを Adobe Acrobat で開きます。</string>
 							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="9"/>
+					<integer value="1"/>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="NSArray" key="dict.sortedKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-				</object>
+				<reference key="dict.sortedKeys" ref="0"/>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 				</object>
@@ -4831,9 +4483,7 @@ s+ODnuODs+ODiQ</string>
 			<nil key="activeLocalization"/>
 			<object class="NSMutableDictionary" key="localizations">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="NSArray" key="dict.sortedKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-				</object>
+				<reference key="dict.sortedKeys" ref="0"/>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 				</object>
@@ -4857,7 +4507,7 @@ s+ODnuODs+ODiQ</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addApp:</string>
 							<string>reloadSettingsMenu:</string>
@@ -4874,9 +4524,43 @@ s+ODnuODs+ODiQ</string>
 							<string>id</string>
 						</object>
 					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addApp:</string>
+							<string>reloadSettingsMenu:</string>
+							<string>revertToFactoryDefaults:</string>
+							<string>setMiClient:</string>
+							<string>showSettingHelp:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">addApp:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">reloadSettingsMenu:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">revertToFactoryDefaults:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">setMiClient:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showSettingHelp:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
+						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>appArrayController</string>
 							<string>settingMenu</string>
@@ -4889,6 +4573,35 @@ s+ODnuODs+ODiQ</string>
 							<string>NSPopUpButton</string>
 							<string>NSTabView</string>
 							<string>NSDictionaryController</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>appArrayController</string>
+							<string>settingMenu</string>
+							<string>tabView</string>
+							<string>userRIDictController</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">appArrayController</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">settingMenu</string>
+								<string key="candidateClassName">NSPopUpButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">tabView</string>
+								<string key="candidateClassName">NSTabView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">userRIDictController</string>
+								<string key="candidateClassName">NSDictionaryController</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -4905,9 +4618,656 @@ s+ODnuODs+ODiQ</string>
 					</object>
 				</object>
 			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSActionCell</string>
+					<string key="superclassName">NSCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSActionCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<string key="superclassName">NSResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="10253930">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSApplication.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="667406347">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSApplicationScripting.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="620352192">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSColorPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSHelpManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPageLayout.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSUserInterfaceItemSearching.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSArrayController</string>
+					<string key="superclassName">NSObjectController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSArrayController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSBox</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSBox.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSButton</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSButton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSButtonCell</string>
+					<string key="superclassName">NSActionCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSCell</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSControl</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="157477390">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSDictionaryController</string>
+					<string key="superclassName">NSArrayController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="836822421">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDictionaryController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSFormatter</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSFormatter.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSImageCell</string>
+					<string key="superclassName">NSCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSImageCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSMatrix</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMatrix.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSMenu</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="989972967">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMenu.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSMenuItem</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="219227495">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMenuItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSMenuItemCell</string>
+					<string key="superclassName">NSButtonCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMenuItemCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSAccessibility.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="10253930"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="667406347"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="620352192"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="157477390"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="836822421"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDragging.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSFontManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSFontPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSKeyValueBinding.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="989972967"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSNibLoading.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="212940892">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSOutlineView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPasteboard.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSSavePanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="385508863">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTableView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSToolbarItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="555821404">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSArchiver.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSClassDescription.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSError.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSFileManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyValueCoding.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyValueObserving.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSKeyedArchiver.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSObject.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSObjectScripting.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSPortCoder.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSRunLoop.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSScriptClassDescription.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSScriptKeyValueCoding.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSScriptObjectSpecifiers.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSScriptWhoseTests.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSThread.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSURL.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSURLConnection.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Foundation.framework/Headers/NSURLDownload.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">PrintCore.framework/Headers/PDEPluginInterface.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">ScriptingBridge.framework/Headers/SBApplication.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObjectController</string>
+					<string key="superclassName">NSController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSObjectController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSOutlineView</string>
+					<string key="superclassName">NSTableView</string>
+					<reference key="sourceIdentifier" ref="212940892"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSPopUpButton</string>
+					<string key="superclassName">NSButton</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPopUpButton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSPopUpButtonCell</string>
+					<string key="superclassName">NSMenuItemCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPopUpButtonCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSInterfaceStyle.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSResponder</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSResponder.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSScrollView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSScrollView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSScroller</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSScroller.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTabView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTabView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTabViewItem</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTabViewItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTableColumn</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTableColumn.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTableHeaderView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTableHeaderView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTableView</string>
+					<string key="superclassName">NSControl</string>
+					<reference key="sourceIdentifier" ref="385508863"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTextField</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTextFieldCell</string>
+					<string key="superclassName">NSActionCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTreeController</string>
+					<string key="superclassName">NSObjectController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTreeController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSUserDefaultsController</string>
+					<string key="superclassName">NSController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSUserDefaultsController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSClipView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<reference key="sourceIdentifier" ref="219227495"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSRulerView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<string key="superclassName">NSResponder</string>
+					<reference key="sourceIdentifier" ref="555821404"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDrawer.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindow</string>
+					<string key="superclassName">NSResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSWindow.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSWindowScripting.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSWindowController</string>
+					<string key="superclassName">NSResponder</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">showWindow:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">showWindow:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">showWindow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSWindowController.h</string>
+					</object>
+				</object>
+			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
+		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<integer value="1050" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<integer value="1050" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
+			<integer value="3000" key="NS.object.0"/>
+		</object>
+		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../TeXBridge.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>NSMenuCheckmark</string>
+				<string>NSMenuMixedState</string>
+				<string>NSSwitch</string>
+				<string>minus</string>
+				<string>plus</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{9, 8}</string>
+				<string>{7, 2}</string>
+				<string>{15, 15}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+			</object>
+		</object>
 	</data>
 </archive>

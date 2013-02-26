@@ -33,7 +33,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 - (IBAction)dviToPDF:(id)sender;
 - (IBAction)typesetPDFPreview:(id)sender;
 - (IBAction)showSettingWindow:(id)sender;
-
+- (IBAction)showToolPalette:(id)sender;
+- (IBAction)showRefPalette:(id)sender;
 @end
 
 
