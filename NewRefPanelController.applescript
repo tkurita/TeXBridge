@@ -1,10 +1,5 @@
-global Root
-global EditorClient
 property _window_controller : missing value
 property _window : missing value
-global _backslash
-
-property isWorkedTimer : missing value
 
 on window_controller()
 	return my _window_controller
@@ -49,42 +44,15 @@ on initilize()
 	set my _window_controller to call method "initWithWindowNibName:" of my _window_controller with parameter "NewReferencePalette"
 	set my _window to call method "window" of my _window_controller
 	call method "retain" of my _window
-	--set LabelListController to Root's import_script("LabelListController")
-	--initialize(data source "LabelDataSource") of LabelListController
-	--set outlineView of AuxData to outline view "LabelOutline" of scroll view "Scroll" of my _window
-	--set LabelListController of AuxData to LabelListController
 	--log "end initialize in RefPanelController"
 end initilize
 
-on toggle_visibility()
-	if my _window_controller is missing value then
-		open_window()
-		call method "activateSelf" of class "SmartActivate"
-	end if
-	
-	if (visible of my _window) then
-		close my _window
-	else
-		open_window()
-		call method "activateSelf" of class "SmartActivate"
-	end if
-end toggle_visibility
-
 on open_window()
 	--log "start open_window in RefPanelController"
-	--set is_first to false
 	if my _window_controller is missing value then
 		initilize()
-		--set is_first to true
 	end if
-	--activate
 	call method "showWindow:" of my _window_controller
-	--log "after showWIndow"
-	(*
-	if is_first then
-		watchmi of LabelListController without force_reloading
-	end if
-	*)
 	--log "end open_window in RefPanelController"
 end open_window
 
@@ -105,7 +73,3 @@ on is_opened_expanded()
 	return (a_result is not 1)
 end is_opened_expanded
 
-
-on display_alert(a_msg)
-	display alert a_msg attached to my _window as warning
-end display_alert

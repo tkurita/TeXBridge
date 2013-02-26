@@ -34,7 +34,6 @@ property TeXDocController : missing value
 property DVIController : missing value
 property RefPanelController : missing value
 property SheetManager : missing value
---property AuxData : missing value
 property EditorClient : missing value
 property Root : me
 
@@ -48,19 +47,6 @@ end import_script
 (* events of application*)
 on launched theObject
 	--log "start lanunched"
-	--log "will show toolpalette"
-	(*
-	set show_tool_palette_when_launched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
-	set is_opened_tool_palette to value_with_default("IsOpenedToolPalette", show_tool_palette_when_launched) of DefaultsManager
-	if not show_tool_palette_when_launched then
-		set show_tool_palette_when_launched to is_opened_tool_palette
-	end if
-	if show_tool_palette_when_launched then
-		show_startup_message("Opening Tool Palette ...")
-		open_window() of ToolPaletteController
-	end if
-	*)
-	
 	--log "will show refpalette"
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
 	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
@@ -245,7 +231,6 @@ on will finish launching theObject
 	set CompileCenter to import_script("CompileCenter")
 	set TeXDocController to import_script("TeXDocController")
 	set DVIController to import_script("DVIController")
-	--set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
 	tell TerminalCommander
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
@@ -253,7 +238,6 @@ on will finish launching theObject
 	
 	set RefPanelController to import_script("NewRefPanelController")
 	set SheetManager to import_script("SheetManager")
-	--set AuxData to import_script("AuxData")
 	set EditorClient to import_script("EditorClient")
 	set ReplaceInput to import_script("ReplaceInput")
 	
@@ -281,7 +265,7 @@ on perform_handler(a_name)
 			error msg number errno
 		end if
 	end try
-	--call method "showStatusMessage:" of appController with parameter ""
+	call method "showStatusMessage:" of appController with parameter ""
 end perform_handler
 
 on show_startup_message(a_msg)

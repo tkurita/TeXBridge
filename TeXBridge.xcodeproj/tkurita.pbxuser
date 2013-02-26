@@ -14,7 +14,7 @@
 			2C6C9D3D0B9269CC00B9C2CD /* SmartActivate.m:82 */,
 			2C6C9E030B9276F100B9C2CD /* SmartActivate.m:56 */,
 			2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:268 */,
-			2C639278112D2F1400427733 /* TeXBridge.applescript:203 */,
+			2C639278112D2F1400427733 /* TeXBridge.applescript:189 */,
 			2C089F9F14A00E4400515F0A /* WindowVisibilityController.m:106 */,
 			2C0BDD4016D7CCDE0005A62A /* PaletteWindowController.m:277 */,
 			2C0BE68716DD093F0005A62A /* AppController.m:293 */,
@@ -1555,6 +1555,35 @@
 			2C0BE70216DD0EB10005A62A /* PBXTextBookmark */ = 2C0BE70216DD0EB10005A62A /* PBXTextBookmark */;
 			2C0BE70316DD0EB10005A62A /* PBXTextBookmark */ = 2C0BE70316DD0EB10005A62A /* PBXTextBookmark */;
 			2C0BE70416DD0EB10005A62A /* PBXTextBookmark */ = 2C0BE70416DD0EB10005A62A /* PBXTextBookmark */;
+			2C0BE70F16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE70F16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71016DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71016DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71116DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71116DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71216DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71216DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71316DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71316DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71416DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71416DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71516DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71516DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71616DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71616DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71716DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71716DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71816DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71816DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71B16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71B16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71C16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71C16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71D16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71D16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71E16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71E16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE71F16DD15D30005A62A /* PBXTextBookmark */ = 2C0BE71F16DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE72016DD15D30005A62A /* PBXTextBookmark */ = 2C0BE72016DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE72116DD15D30005A62A /* PBXTextBookmark */ = 2C0BE72116DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE72216DD15D30005A62A /* PBXTextBookmark */ = 2C0BE72216DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE72316DD15D30005A62A /* PBXTextBookmark */ = 2C0BE72316DD15D30005A62A /* PBXTextBookmark */;
+			2C0BE72416DD170C0005A62A /* PBXBookmark */ = 2C0BE72416DD170C0005A62A /* PBXBookmark */;
+			2C0BE72516DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72516DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72616DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72616DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72716DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72716DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72A16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72A16DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72B16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72B16DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72C16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72C16DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72D16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72D16DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72E16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72E16DD17C10005A62A /* PBXTextBookmark */;
+			2C0BE72F16DD17C10005A62A /* PBXTextBookmark */ = 2C0BE72F16DD17C10005A62A /* PBXTextBookmark */;
 			2C4095D116A850130085CB9D = 2C4095D116A850130085CB9D /* mi.h */;
 			2C5C603516D27AB600214DDD = 2C5C603516D27AB600214DDD /* PBXTextBookmark */;
 			2C6CA39608CF5558005D5612 = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
@@ -1711,7 +1740,7 @@
 		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
 		name = "ReferenceDataController.h: 7";
 		rLen = 0;
-		rLoc = 192;
+		rLoc = 213;
 		rType = 0;
 		vrLen = 369;
 		vrLoc = 0;
@@ -1753,7 +1782,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 130";
 		rLen = 0;
-		rLoc = 4801;
+		rLoc = 5190;
 		rType = 0;
 		vrLen = 934;
 		vrLoc = 3197;
@@ -1873,7 +1902,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 535;
 		vrLoc = 0;
@@ -1883,7 +1912,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 107";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 386;
 		vrLoc = 0;
@@ -1943,7 +1972,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2003,7 +2032,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 107";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 386;
 		vrLoc = 0;
@@ -2013,7 +2042,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 26";
 		rLen = 7;
-		rLoc = 583;
+		rLoc = 493;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 1502;
@@ -2033,7 +2062,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 8153;
@@ -2082,7 +2111,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		rLen = 19;
-		rLoc = 1129;
+		rLoc = 1039;
 		rType = 0;
 	};
 	2C0BDE8916D9B6900005A62A /* PBXTextBookmark */ = {
@@ -2090,7 +2119,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 109";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 946;
@@ -2110,7 +2139,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 8153;
@@ -2164,7 +2193,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 70";
 		rLen = 11;
-		rLoc = 2239;
+		rLoc = 1537;
 		rType = 0;
 		vrLen = 591;
 		vrLoc = 1932;
@@ -2174,7 +2203,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4801;
+		rLoc = 5190;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 3110;
@@ -2184,7 +2213,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4801;
+		rLoc = 5190;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3110;
@@ -2204,7 +2233,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2252,7 +2281,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 132";
 		rLen = 0;
-		rLoc = 4801;
+		rLoc = 5190;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3110;
@@ -2262,7 +2291,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 32";
 		rLen = 23;
-		rLoc = 696;
+		rLoc = 606;
 		rType = 0;
 		vrLen = 865;
 		vrLoc = 624;
@@ -2329,7 +2358,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2403,7 +2432,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 32";
 		rLen = 23;
-		rLoc = 696;
+		rLoc = 606;
 		rType = 0;
 		vrLen = 520;
 		vrLoc = 624;
@@ -2470,7 +2499,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 312;
@@ -2500,7 +2529,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 99";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 2086;
@@ -2510,7 +2539,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2570,7 +2599,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2637,7 +2666,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 312;
@@ -2667,7 +2696,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2707,7 +2736,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2764,7 +2793,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 115";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1647;
 		vrLoc = 473;
@@ -2804,7 +2833,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2844,7 +2873,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2874,7 +2903,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 115";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1648;
 		vrLoc = 221;
@@ -2914,7 +2943,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -2954,7 +2983,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -2984,7 +3013,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 221;
@@ -3024,7 +3053,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -3064,7 +3093,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -3094,7 +3123,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3134,7 +3163,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 84";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 730;
 		vrLoc = 1847;
@@ -3174,7 +3203,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -3214,7 +3243,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 32";
 		rLen = 23;
-		rLoc = 696;
+		rLoc = 606;
 		rType = 0;
 		vrLen = 581;
 		vrLoc = 576;
@@ -3254,7 +3283,7 @@
 		comments = "'AuxFile' may not respond to '-clearLabelsFromEditorRecursively:'";
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BDF3B16DAE5AE0005A62A /* PBXTextBookmark */ = {
@@ -3262,7 +3291,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 2094;
@@ -3272,7 +3301,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 528;
 		vrLoc = 2094;
@@ -3282,7 +3311,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 93";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 697;
 		vrLoc = 2091;
@@ -3292,7 +3321,7 @@
 		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
 		name = "ReferenceDataController.h: 16";
 		rLen = 0;
-		rLoc = 421;
+		rLoc = 442;
 		rType = 0;
 		vrLen = 427;
 		vrLoc = 0;
@@ -3302,7 +3331,7 @@
 		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
 		name = "ReferenceDataController.h: 17";
 		rLen = 0;
-		rLoc = 426;
+		rLoc = 447;
 		rType = 0;
 		vrLen = 427;
 		vrLoc = 0;
@@ -3312,7 +3341,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -3322,7 +3351,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -3372,7 +3401,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3422,7 +3451,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -3432,7 +3461,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 2091;
@@ -3442,7 +3471,7 @@
 		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
 		name = "ReferenceDataController.h: 17";
 		rLen = 0;
-		rLoc = 426;
+		rLoc = 447;
 		rType = 0;
 		vrLen = 427;
 		vrLoc = 0;
@@ -3452,7 +3481,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -3482,7 +3511,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3532,7 +3561,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -3542,7 +3571,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 2091;
@@ -3562,7 +3591,7 @@
 		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
 		name = "ReferenceDataController.h: 17";
 		rLen = 0;
-		rLoc = 426;
+		rLoc = 447;
 		rType = 0;
 		vrLen = 427;
 		vrLoc = 0;
@@ -3572,7 +3601,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 96";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 2094;
@@ -3602,7 +3631,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3642,7 +3671,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 306";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1646;
 		vrLoc = 8206;
@@ -3652,7 +3681,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3672,7 +3701,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 630;
 		vrLoc = 3251;
@@ -3682,7 +3711,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 88";
 		rLen = 0;
-		rLoc = 2378;
+		rLoc = 2767;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 2094;
@@ -3722,7 +3751,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3762,7 +3791,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3772,7 +3801,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -3782,7 +3811,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 2094;
@@ -3822,7 +3851,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3862,7 +3891,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3872,7 +3901,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -3882,7 +3911,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 2094;
@@ -3922,7 +3951,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -3962,7 +3991,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 97";
 		rLen = 0;
-		rLoc = 2509;
+		rLoc = 2898;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 2176;
@@ -3972,7 +4001,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 94";
 		rLen = 0;
-		rLoc = 2496;
+		rLoc = 2885;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 2592;
@@ -3982,7 +4011,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 111";
 		rLen = 48;
-		rLoc = 2513;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 530;
 		vrLoc = 3074;
@@ -4022,7 +4051,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4081,7 +4110,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BDFA216DAF50C0005A62A /* PBXTextBookmark */ = {
@@ -4089,7 +4118,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 120";
 		rLen = 0;
-		rLoc = 3186;
+		rLoc = 3575;
 		rType = 0;
 		vrLen = 428;
 		vrLoc = 3020;
@@ -4099,7 +4128,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3186;
+		rLoc = 3575;
 		rType = 0;
 		vrLen = 532;
 		vrLoc = 3020;
@@ -4119,7 +4148,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 138";
 		rLen = 0;
-		rLoc = 3933;
+		rLoc = 4322;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 3335;
@@ -4149,7 +4178,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -4189,7 +4218,7 @@
 		comments = "'aux_file' undeclared (first use in this function)";
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BDFB516DAF9900005A62A /* PBXTextBookmark */ = {
@@ -4197,7 +4226,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2752;
+		rLoc = 3141;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 3020;
@@ -4217,7 +4246,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 155";
 		rLen = 0;
-		rLoc = 4583;
+		rLoc = 4972;
 		rType = 0;
 		vrLen = 982;
 		vrLoc = 3245;
@@ -4247,7 +4276,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4287,7 +4316,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2752;
+		rLoc = 3141;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 3020;
@@ -4317,7 +4346,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 3357;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 1131;
@@ -4327,7 +4356,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 120";
 		rLen = 0;
-		rLoc = 2926;
+		rLoc = 3315;
 		rType = 0;
 		vrLen = 949;
 		vrLoc = 3078;
@@ -4357,7 +4386,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4407,7 +4436,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 3357;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 1131;
@@ -4417,7 +4446,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 153";
 		rLen = 0;
-		rLoc = 4458;
+		rLoc = 4847;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 3565;
@@ -4447,7 +4476,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4506,7 +4535,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 	};
 	2C0BDFDE16DB02060005A62A /* PBXTextBookmark */ = {
@@ -4514,7 +4543,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 4368;
@@ -4524,7 +4553,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 3357;
 		rType = 0;
 		vrLen = 296;
 		vrLoc = 2964;
@@ -4534,7 +4563,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 2566;
@@ -4564,7 +4593,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4604,7 +4633,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 4368;
@@ -4631,7 +4660,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 3357;
 		rType = 0;
 		vrLen = 333;
 		vrLoc = 3694;
@@ -4641,7 +4670,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 3306;
@@ -4671,7 +4700,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4720,7 +4749,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BDFF716DB05560005A62A /* PBXTextBookmark */ = {
@@ -4728,7 +4757,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 122";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 2660;
@@ -4738,7 +4767,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 126";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 885;
 		vrLoc = 3183;
@@ -4758,7 +4787,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 21;
-		rLoc = 2684;
+		rLoc = 3073;
 		rType = 0;
 		vrLen = 714;
 		vrLoc = 3078;
@@ -4768,7 +4797,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 227";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 6557;
@@ -4798,7 +4827,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -4838,7 +4867,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 127";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 3296;
@@ -4858,7 +4887,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 228";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 6377;
@@ -4888,7 +4917,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -4928,7 +4957,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 127";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 3280;
@@ -4948,7 +4977,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 228";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 373;
 		vrLoc = 6939;
@@ -4978,7 +5007,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5018,7 +5047,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 128";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 3267;
@@ -5038,7 +5067,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 229";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 409;
 		vrLoc = 6903;
@@ -5068,7 +5097,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5117,7 +5146,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BE03D16DB1E660005A62A /* PBXTextBookmark */ = {
@@ -5125,7 +5154,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 119";
 		rLen = 0;
-		rLoc = 2575;
+		rLoc = 2964;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 453;
@@ -5162,7 +5191,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 119";
 		rLen = 0;
-		rLoc = 2575;
+		rLoc = 2964;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 453;
@@ -5229,7 +5258,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 6868;
@@ -5259,7 +5288,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5329,7 +5358,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 6868;
@@ -5359,7 +5388,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5449,7 +5478,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 6868;
@@ -5479,7 +5508,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5538,7 +5567,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BE08916DB2D9C0005A62A /* PBXTextBookmark */ = {
@@ -5546,7 +5575,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 167";
 		rLen = 0;
-		rLoc = 4789;
+		rLoc = 5178;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 107;
@@ -5556,7 +5585,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 167";
 		rLen = 0;
-		rLoc = 4789;
+		rLoc = 5178;
 		rType = 0;
 		vrLen = 469;
 		vrLoc = 36;
@@ -5603,7 +5632,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 6868;
@@ -5613,7 +5642,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 232";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 222;
 		vrLoc = 7090;
@@ -5643,7 +5672,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -5693,7 +5722,7 @@
 		comments = "'ALL_AUX_FILES' defined but not used";
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BE0A716DB38170005A62A /* PBXTextBookmark */ = {
@@ -5721,7 +5750,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 240";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 278;
 		vrLoc = 7034;
@@ -5761,7 +5790,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -5848,7 +5877,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 607;
 		vrLoc = 6416;
@@ -5888,7 +5917,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -5928,7 +5957,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 146";
 		rLen = 0;
-		rLoc = 4789;
+		rLoc = 5178;
 		rType = 0;
 		vrLen = 308;
 		vrLoc = 107;
@@ -6018,7 +6047,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2312;
+		rLoc = 2701;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 304;
@@ -6028,7 +6057,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -6068,7 +6097,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6118,7 +6147,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2312;
+		rLoc = 2701;
 		rType = 0;
 		vrLen = 545;
 		vrLoc = 326;
@@ -6128,7 +6157,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -6168,7 +6197,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6218,7 +6247,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2312;
+		rLoc = 2701;
 		rType = 0;
 		vrLen = 545;
 		vrLoc = 326;
@@ -6228,7 +6257,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -6268,7 +6297,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6318,7 +6347,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2312;
+		rLoc = 2701;
 		rType = 0;
 		vrLen = 604;
 		vrLoc = 355;
@@ -6328,7 +6357,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -6368,7 +6397,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6418,7 +6447,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 74";
 		rLen = 32;
-		rLoc = 2312;
+		rLoc = 2701;
 		rType = 0;
 		vrLen = 622;
 		vrLoc = 373;
@@ -6428,7 +6457,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 211";
 		rLen = 0;
-		rLoc = 8406;
+		rLoc = 8795;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 6104;
@@ -6468,7 +6497,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6508,7 +6537,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 2110;
@@ -6518,7 +6547,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6568,7 +6597,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6608,7 +6637,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 755;
 		vrLoc = 2110;
@@ -6618,7 +6647,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6628,7 +6657,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6678,7 +6707,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6718,7 +6747,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 3298;
@@ -6728,7 +6757,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6778,7 +6807,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6818,7 +6847,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 931;
 		vrLoc = 4117;
@@ -6828,7 +6857,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6838,7 +6867,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 671;
 		vrLoc = 3391;
@@ -6888,7 +6917,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -6963,7 +6992,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BE14716DB43250005A62A /* PBXTextBookmark */ = {
@@ -6971,7 +7000,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 141";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4410;
 		rType = 0;
 		vrLen = 541;
 		vrLoc = 3525;
@@ -6991,7 +7020,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 141";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4410;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 3467;
@@ -7001,7 +7030,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 767;
 		vrLoc = 3350;
@@ -7011,7 +7040,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4146;
+		rLoc = 4535;
 		rType = 0;
 		vrLen = 679;
 		vrLoc = 3391;
@@ -7061,7 +7090,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -7091,7 +7120,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4410;
 		rType = 0;
 		vrLen = 750;
 		vrLoc = 3467;
@@ -7101,7 +7130,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4229;
+		rLoc = 4618;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 3391;
@@ -7111,7 +7140,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 149";
 		rLen = 0;
-		rLoc = 4183;
+		rLoc = 4572;
 		rType = 0;
 		vrLen = 739;
 		vrLoc = 3522;
@@ -7161,7 +7190,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7191,7 +7220,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4410;
 		rType = 0;
 		vrLen = 813;
 		vrLoc = 2419;
@@ -7218,7 +7247,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 2232;
@@ -7228,7 +7257,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 147";
 		rLen = 22;
-		rLoc = 4095;
+		rLoc = 4484;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 3395;
@@ -7278,7 +7307,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7317,7 +7346,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 229;
 		rType = 1;
 	};
 	2C0BE17D16DB49A70005A62A /* PBXTextBookmark */ = {
@@ -7325,7 +7354,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 143";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3637;
@@ -7345,7 +7374,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 532;
 		vrLoc = 2294;
@@ -7355,7 +7384,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 147";
 		rLen = 22;
-		rLoc = 4095;
+		rLoc = 4484;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 3395;
@@ -7395,7 +7424,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7425,7 +7454,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 4089;
@@ -7435,7 +7464,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 549;
 		vrLoc = 3805;
@@ -7445,7 +7474,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 3810;
@@ -7495,7 +7524,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7525,7 +7554,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 6764;
@@ -7545,7 +7574,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 537;
 		vrLoc = 3821;
@@ -7555,7 +7584,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 3810;
@@ -7595,7 +7624,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7625,7 +7654,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 548;
 		vrLoc = 6764;
@@ -7672,7 +7701,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3948;
@@ -7682,7 +7711,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7722,7 +7751,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7772,7 +7801,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3952;
@@ -7782,7 +7811,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7822,7 +7851,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7882,7 +7911,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 529;
 		vrLoc = 3952;
@@ -7892,7 +7921,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -7932,7 +7961,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -7982,7 +8011,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 557;
 		vrLoc = 4056;
@@ -7992,7 +8021,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -8032,7 +8061,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8082,7 +8111,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 4063;
@@ -8092,7 +8121,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -8132,7 +8161,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8162,7 +8191,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4021;
+		rLoc = 4410;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 3805;
@@ -8202,7 +8231,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 4063;
@@ -8212,7 +8241,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 152";
 		rLen = 0;
-		rLoc = 4046;
+		rLoc = 4435;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 5215;
@@ -8242,7 +8271,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8312,7 +8341,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8412,7 +8441,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8482,7 +8511,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -8532,7 +8561,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 101";
 		rLen = 0;
-		rLoc = 2512;
+		rLoc = 2901;
 		rType = 0;
 		vrLen = 582;
 		vrLoc = 83;
@@ -8582,7 +8611,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -8693,7 +8722,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 191";
 		rLen = 0;
-		rLoc = 6433;
+		rLoc = 6822;
 		rType = 0;
 		vrLen = 701;
 		vrLoc = 4863;
@@ -8703,7 +8732,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 195";
 		rLen = 0;
-		rLoc = 6443;
+		rLoc = 6832;
 		rType = 0;
 		vrLen = 768;
 		vrLoc = 4769;
@@ -8743,7 +8772,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8803,7 +8832,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 200";
 		rLen = 0;
-		rLoc = 6580;
+		rLoc = 6969;
 		rType = 0;
 		vrLen = 718;
 		vrLoc = 5002;
@@ -8833,7 +8862,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -8873,7 +8902,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 250";
 		rLen = 0;
-		rLoc = 8694;
+		rLoc = 9083;
 		rType = 0;
 		vrLen = 1217;
 		vrLoc = 5688;
@@ -8910,7 +8939,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 194";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6471;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 5029;
@@ -8981,7 +9010,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9041,7 +9070,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 194";
 		rLen = 0;
-		rLoc = 6082;
+		rLoc = 6471;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 5029;
@@ -9091,7 +9120,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9181,7 +9210,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 205";
 		rLen = 0;
-		rLoc = 5990;
+		rLoc = 6379;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 5515;
@@ -9231,7 +9260,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9291,7 +9320,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 205";
 		rLen = 0;
-		rLoc = 5990;
+		rLoc = 6379;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 5515;
@@ -9341,7 +9370,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9391,7 +9420,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 467;
 		vrLoc = 5258;
@@ -9401,7 +9430,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 467;
 		vrLoc = 5258;
@@ -9425,7 +9454,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 5032;
@@ -9435,7 +9464,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 5032;
@@ -9455,7 +9484,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 205";
 		rLen = 0;
-		rLoc = 5990;
+		rLoc = 6379;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 5076;
@@ -9515,7 +9544,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 260;
@@ -9545,7 +9574,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 467;
 		vrLoc = 5258;
@@ -9555,7 +9584,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 467;
 		vrLoc = 5258;
@@ -9565,7 +9594,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 5032;
@@ -9585,7 +9614,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 201";
 		rLen = 0;
-		rLoc = 5895;
+		rLoc = 6284;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 5032;
@@ -9645,7 +9674,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9675,7 +9704,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 5032;
@@ -9685,7 +9714,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 845;
 		vrLoc = 5032;
@@ -9705,7 +9734,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 201";
 		rLen = 0;
-		rLoc = 5895;
+		rLoc = 6284;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 5032;
@@ -9715,7 +9744,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 201";
 		rLen = 0;
-		rLoc = 5895;
+		rLoc = 6284;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 5032;
@@ -9775,7 +9804,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9805,7 +9834,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 475;
 		vrLoc = 5258;
@@ -9815,7 +9844,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 5032;
@@ -9835,7 +9864,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 6731;
+		rLoc = 7120;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 5737;
@@ -9895,7 +9924,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -9925,7 +9954,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 189";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 5032;
@@ -9955,7 +9984,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 231";
 		rLen = 0;
-		rLoc = 6731;
+		rLoc = 7120;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 5737;
@@ -10005,7 +10034,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -10035,7 +10064,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 192";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 754;
 		vrLoc = 5131;
@@ -10115,7 +10144,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -10145,7 +10174,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 191";
 		rLen = 0;
-		rLoc = 5416;
+		rLoc = 5805;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 5084;
@@ -10225,7 +10254,7 @@
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 112";
 		rLen = 0;
-		rLoc = 3149;
+		rLoc = 2170;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 260;
@@ -10308,7 +10337,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 112";
 		rLen = 0;
-		rLoc = 2726;
+		rLoc = 3115;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 2496;
@@ -10465,7 +10494,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 3215;
 		rType = 0;
 	};
 	2C0BE36016DB91880005A62A /* PBXTextBookmark */ = {
@@ -10473,7 +10502,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 3215;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 2381;
@@ -10583,7 +10612,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 3215;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 2381;
@@ -10693,7 +10722,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 113";
 		rLen = 0;
-		rLoc = 2826;
+		rLoc = 3215;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -11100,7 +11129,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 13;
-		rLoc = 2998;
+		rLoc = 3387;
 		rType = 0;
 	};
 	2C0BE3C116DBA41C0005A62A /* PBXTextBookmark */ = {
@@ -11108,7 +11137,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 121";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3525;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 2496;
@@ -11198,7 +11227,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2819;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 2510;
@@ -11208,7 +11237,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2819;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 2510;
@@ -11298,7 +11327,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2819;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 2510;
@@ -11388,7 +11417,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 114";
 		rLen = 0;
-		rLoc = 2819;
+		rLoc = 3208;
 		rType = 0;
 		vrLen = 418;
 		vrLoc = 2827;
@@ -11424,7 +11453,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 37;
-		rLoc = 2998;
+		rLoc = 3387;
 		rType = 0;
 	};
 	2C0BE3EF16DBA7F20005A62A /* PBXTextBookmark */ = {
@@ -11432,7 +11461,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 122";
 		rLen = 0;
-		rLoc = 3051;
+		rLoc = 3440;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 2626;
@@ -11512,7 +11541,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 773;
 		vrLoc = 2618;
@@ -11592,7 +11621,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 773;
 		vrLoc = 2618;
@@ -11602,7 +11631,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 773;
 		vrLoc = 2618;
@@ -11682,7 +11711,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 2626;
@@ -11762,7 +11791,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 488;
 		vrLoc = 2842;
@@ -11772,7 +11801,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 832;
 		vrLoc = 2626;
@@ -12029,7 +12058,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 106";
 		rLen = 48;
-		rLoc = 2513;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 2301;
@@ -12039,7 +12068,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 106";
 		rLen = 48;
-		rLoc = 2513;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 1029;
 		vrLoc = 2301;
@@ -12129,7 +12158,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 119";
 		rLen = 0;
-		rLoc = 2929;
+		rLoc = 3318;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 2381;
@@ -12219,7 +12248,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 98";
 		rLen = 14;
-		rLoc = 2362;
+		rLoc = 2751;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5058;
@@ -12249,7 +12278,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 123";
 		rLen = 0;
-		rLoc = 3132;
+		rLoc = 3521;
 		rType = 0;
 		vrLen = 488;
 		vrLoc = 2842;
@@ -12370,7 +12399,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 194";
 		rLen = 0;
-		rLoc = 5463;
+		rLoc = 5852;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 5058;
@@ -12666,9 +12695,9 @@
 	};
 	2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {734, 598}}";
-			sepNavSelRange = "{1049, 0}";
-			sepNavVisRange = "{0, 1167}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 598}}";
+			sepNavSelRange = "{1097, 0}";
+			sepNavVisRange = "{761, 411}";
 			sepNavWindowFrame = "{{15, 215}, {793, 658}}";
 		};
 	};
@@ -12878,8 +12907,8 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 59";
-		rLen = 21;
-		rLoc = 2067;
+		rLen = 0;
+		rLoc = 1531;
 		rType = 0;
 		vrLen = 1678;
 		vrLoc = 988;
@@ -12908,8 +12937,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 109";
-		rLen = 13;
-		rLoc = 3055;
+		rLen = 0;
+		rLoc = 2169;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2077;
@@ -12962,8 +12991,8 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 59";
-		rLen = 21;
-		rLoc = 2067;
+		rLen = 0;
+		rLoc = 1531;
 		rType = 0;
 		vrLen = 1678;
 		vrLoc = 988;
@@ -12992,8 +13021,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 109";
-		rLen = 13;
-		rLoc = 3055;
+		rLen = 0;
+		rLoc = 2169;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2077;
@@ -13012,8 +13041,8 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 55";
-		rLen = 22;
-		rLoc = 1925;
+		rLen = 0;
+		rLoc = 1531;
 		rType = 0;
 		vrLen = 744;
 		vrLoc = 1330;
@@ -13080,7 +13109,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13109,8 +13138,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 109";
-		rLen = 13;
-		rLoc = 3055;
+		rLen = 0;
+		rLoc = 2169;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2077;
@@ -13160,7 +13189,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13189,8 +13218,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
 		name = "NewRefPanelController.applescript: 109";
-		rLen = 13;
-		rLoc = 3055;
+		rLen = 0;
+		rLoc = 2169;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 2077;
@@ -13240,7 +13269,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13329,7 +13358,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13409,7 +13438,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13529,7 +13558,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 303";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 7957;
@@ -13568,8 +13597,8 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 55";
-		rLen = 22;
-		rLoc = 1925;
+		rLen = 0;
+		rLoc = 1531;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 1312;
@@ -13579,7 +13608,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 289";
 		rLen = 0;
-		rLoc = 8855;
+		rLoc = 8169;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 8732;
@@ -13589,7 +13618,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 291";
 		rLen = 0;
-		rLoc = 8855;
+		rLoc = 8169;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 7957;
@@ -13647,7 +13676,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 194";
 		rLen = 0;
-		rLoc = 5463;
+		rLoc = 5852;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 5058;
@@ -13686,7 +13715,7 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		rLen = 17;
-		rLoc = 9451;
+		rLoc = 8763;
 		rType = 0;
 	};
 	2C0BE61D16DD04790005A62A /* PBXTextBookmark */ = {
@@ -13694,7 +13723,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 689;
 		vrLoc = 9525;
@@ -13734,7 +13763,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 292";
 		rLen = 0;
-		rLoc = 8855;
+		rLoc = 8169;
 		rType = 0;
 		vrLen = 1888;
 		vrLoc = 7073;
@@ -13744,7 +13773,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 1597;
@@ -13754,7 +13783,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 311";
 		rLen = 0;
-		rLoc = 9282;
+		rLoc = 8594;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 8732;
@@ -13764,7 +13793,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 8810;
@@ -13804,7 +13833,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 6819;
@@ -13842,7 +13871,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 1597;
@@ -13852,7 +13881,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 8810;
@@ -13876,7 +13905,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 831;
 		vrLoc = 6863;
@@ -13953,7 +13982,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 1597;
@@ -13963,7 +13992,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 1597;
@@ -13973,7 +14002,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 665;
 		vrLoc = 9525;
@@ -14023,7 +14052,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 788;
 		vrLoc = 9360;
@@ -14080,7 +14109,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14090,7 +14119,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 668;
 		vrLoc = 9454;
@@ -14150,7 +14179,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14160,7 +14189,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 668;
 		vrLoc = 9454;
@@ -14199,7 +14228,7 @@
 		isa = PBXTextBookmark;
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		rLen = 0;
-		rLoc = 121;
+		rLoc = 130;
 		rType = 1;
 	};
 	2C0BE66816DD08930005A62A /* PBXTextBookmark */ = {
@@ -14207,7 +14236,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 122";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3434;
 		rType = 0;
 		vrLen = 681;
 		vrLoc = 2649;
@@ -14237,7 +14266,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14247,7 +14276,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 668;
 		vrLoc = 9454;
@@ -14267,7 +14296,7 @@
 		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
 		name = "ReferenceDataController.m: 122";
 		rLen = 0;
-		rLoc = 3045;
+		rLoc = 3434;
 		rType = 0;
 		vrLen = 681;
 		vrLoc = 2649;
@@ -14324,7 +14353,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 9572;
@@ -14334,7 +14363,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 450;
 		vrLoc = 9544;
@@ -14364,7 +14393,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14374,7 +14403,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 9454;
@@ -14412,7 +14441,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 305";
 		rLen = 0;
-		rLoc = 9144;
+		rLoc = 8458;
 		rType = 0;
 		vrLen = 553;
 		vrLoc = 9571;
@@ -14452,7 +14481,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14462,7 +14491,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 9454;
@@ -14482,7 +14511,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 305";
 		rLen = 0;
-		rLoc = 9144;
+		rLoc = 8458;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 9599;
@@ -14512,7 +14541,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14522,7 +14551,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 9454;
@@ -14542,7 +14571,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 305";
 		rLen = 0;
-		rLoc = 9144;
+		rLoc = 8458;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 9599;
@@ -14572,7 +14601,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 999;
 		vrLoc = 1597;
@@ -14582,7 +14611,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 9454;
@@ -14602,7 +14631,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 305";
 		rLen = 0;
-		rLoc = 9144;
+		rLoc = 8458;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 9599;
@@ -14639,7 +14668,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 2101;
@@ -14649,7 +14678,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 9454;
@@ -14713,7 +14742,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 2101;
@@ -14723,7 +14752,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 9454;
@@ -14827,7 +14856,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 2101;
@@ -14837,7 +14866,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 9454;
@@ -14907,7 +14936,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 752;
 		vrLoc = 2101;
@@ -14917,7 +14946,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 319";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 9454;
@@ -14966,7 +14995,7 @@
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		rLen = 0;
-		rLoc = 5746;
+		rLoc = 5174;
 		rType = 0;
 	};
 	2C0BE6EF16DD0D700005A62A /* PBXTextBookmark */ = {
@@ -14974,7 +15003,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 183";
 		rLen = 0;
-		rLoc = 5746;
+		rLoc = 5174;
 		rType = 0;
 		vrLen = 284;
 		vrLoc = 5526;
@@ -15004,7 +15033,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 294";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 768;
 		vrLoc = 2101;
@@ -15014,7 +15043,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 294";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 685;
 		vrLoc = 8856;
@@ -15048,7 +15077,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 183";
 		rLen = 0;
-		rLoc = 5746;
+		rLoc = 5174;
 		rType = 0;
 		vrLen = 284;
 		vrLoc = 5526;
@@ -15108,7 +15137,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 294";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 739;
 		vrLoc = 2101;
@@ -15118,7 +15147,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 294";
 		rLen = 0;
-		rLoc = 9541;
+		rLoc = 8853;
 		rType = 0;
 		vrLen = 685;
 		vrLoc = 8856;
@@ -15141,6 +15170,284 @@
 		rLoc = 7993;
 		rType = 0;
 		vrLen = 842;
+		vrLoc = 6874;
+	};
+	2C0BE70F16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */;
+		name = "NewToolPaletteController.m: 41";
+		rLen = 0;
+		rLoc = 1097;
+		rType = 0;
+		vrLen = 411;
+		vrLoc = 761;
+	};
+	2C0BE71016DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 109";
+		rLen = 0;
+		rLoc = 2169;
+		rType = 0;
+		vrLen = 404;
+		vrLoc = 2745;
+	};
+	2C0BE71116DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
+		name = "LabelListController.applescript: 110";
+		rLen = 21;
+		rLoc = 3262;
+		rType = 0;
+		vrLen = 706;
+		vrLoc = 2824;
+	};
+	2C0BE71216DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40983716AD578D0085CB9D /* AuxFile.h */;
+		name = "AuxFile.h: 28";
+		rLen = 12;
+		rLoc = 838;
+		rType = 0;
+		vrLen = 1024;
+		vrLoc = 604;
+	};
+	2C0BE71316DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40983816AD578D0085CB9D /* AuxFile.m */;
+		name = "AuxFile.m: 125";
+		rLen = 12;
+		rLoc = 2982;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 2918;
+	};
+	2C0BE71416DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
+		name = "ReferenceDataController.m: 125";
+		rLen = 0;
+		rLoc = 3434;
+		rType = 0;
+		vrLen = 752;
+		vrLoc = 2478;
+	};
+	2C0BE71516DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */;
+		name = "AuxData.applescript: 99";
+		rLen = 17;
+		rLoc = 2199;
+		rType = 0;
+		vrLen = 677;
+		vrLoc = 1833;
+	};
+	2C0BE71616DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4095C716A79DA80085CB9D /* RefPanelController.applescript */;
+		name = "RefPanelController.applescript: 155";
+		rLen = 13;
+		rLoc = 4497;
+		rType = 0;
+		vrLen = 480;
+		vrLoc = 4284;
+	};
+	2C0BE71716DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */;
+		rLen = 5;
+		rLoc = 8572;
+		rType = 0;
+	};
+	2C0BE71816DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 243";
+		rLen = 316;
+		rLoc = 8568;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 8187;
+	};
+	2C0BE71B16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972E16AA4D820085CB9D /* ReferenceDataController.h */;
+		name = "ReferenceDataController.h: 7";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 448;
+		vrLoc = 0;
+	};
+	2C0BE71C16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
+		name = "ReferenceDataController.m: 94";
+		rLen = 0;
+		rLoc = 2247;
+		rType = 0;
+		vrLen = 1485;
+		vrLoc = 1748;
+	};
+	2C0BE71D16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
+		name = "ReferenceDataController.m: 100";
+		rLen = 0;
+		rLoc = 2567;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 1748;
+	};
+	2C0BE71E16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
+		name = display_alert;
+		rLen = 13;
+		rLoc = 1076;
+		rType = 0;
+		vrLen = 867;
+		vrLoc = 585;
+	};
+	2C0BE71F16DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 499";
+		rLen = 18;
+		rLoc = 14588;
+		rType = 0;
+		vrLen = 1449;
+		vrLoc = 13871;
+	};
+	2C0BE72016DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+		name = "TeXBridge.applescript: 294";
+		rLen = 0;
+		rLoc = 8853;
+		rType = 0;
+		vrLen = 768;
+		vrLoc = 2101;
+	};
+	2C0BE72116DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+		name = "TeXBridge.applescript: 294";
+		rLen = 0;
+		rLoc = 8853;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 8856;
+	};
+	2C0BE72216DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 295";
+		rLen = 0;
+		rLoc = 7949;
+		rType = 0;
+		vrLen = 461;
+		vrLoc = 7589;
+	};
+	2C0BE72316DD15D30005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 295";
+		rLen = 0;
+		rLoc = 7993;
+		rType = 0;
+		vrLen = 908;
+		vrLoc = 6874;
+	};
+	2C0BE72416DD170C0005A62A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+	};
+	2C0BE72516DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 246";
+		rLen = 0;
+		rLoc = 8761;
+		rType = 0;
+		vrLen = 795;
+		vrLoc = 8186;
+	};
+	2C0BE72616DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		rLen = 0;
+		rLoc = 1532;
+		rType = 0;
+	};
+	2C0BE72716DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 76";
+		rLen = 0;
+		rLoc = 2170;
+		rType = 0;
+		vrLen = 522;
+		vrLoc = 1648;
+	};
+	2C0BE72A16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */;
+		name = "NewRefPanelController.applescript: 76";
+		rLen = 0;
+		rLoc = 2170;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 702;
+	};
+	2C0BE72B16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
+		name = "rebuildLabelsFromAuxForDoc で aux ファイルが見つからない時に、alert sheet を出すようにした。";
+		rLen = 68;
+		rLoc = 1121;
+		rType = 0;
+		vrLen = 885;
+		vrLoc = 585;
+	};
+	2C0BE72C16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
+		name = "ReferenceDataController.m: 91";
+		rLen = 26;
+		rLoc = 2114;
+		rType = 0;
+		vrLen = 1468;
+		vrLoc = 1748;
+	};
+	2C0BE72D16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 499";
+		rLen = 18;
+		rLoc = 14588;
+		rType = 0;
+		vrLen = 1449;
+		vrLoc = 13871;
+	};
+	2C0BE72E16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 295";
+		rLen = 0;
+		rLoc = 7949;
+		rType = 0;
+		vrLen = 461;
+		vrLoc = 7589;
+	};
+	2C0BE72F16DD17C10005A62A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		name = "AppController.m: 295";
+		rLen = 0;
+		rLoc = 7993;
+		rType = 0;
+		vrLen = 908;
 		vrLoc = 6874;
 	};
 	2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {
@@ -15241,9 +15548,9 @@
 	};
 	2C4095C716A79DA80085CB9D /* RefPanelController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {847, 2423}}";
-			sepNavSelRange = "{4225, 8}";
-			sepNavVisRange = "{3864, 499}";
+			sepNavIntBoundsRect = "{{0, 0}, {847, 2427}}";
+			sepNavSelRange = "{4497, 13}";
+			sepNavVisRange = "{4284, 480}";
 			sepNavWindowFrame = "{{672, 88}, {749, 780}}";
 		};
 	};
@@ -15289,32 +15596,32 @@
 	};
 	2C40972E16AA4D820085CB9D /* ReferenceDataController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 352}}";
-			sepNavSelRange = "{427, 0}";
-			sepNavVisRange = "{0, 427}";
+			sepNavIntBoundsRect = "{{0, 0}, {752, 662}}";
+			sepNavSelRange = "{195, 0}";
+			sepNavVisRange = "{0, 448}";
 		};
 	};
 	2C40972F16AA4D820085CB9D /* ReferenceDataController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 3878}}";
-			sepNavSelRange = "{3045, 0}";
-			sepNavVisRange = "{2649, 681}";
+			sepNavIntBoundsRect = "{{0, 0}, {752, 4082}}";
+			sepNavSelRange = "{2114, 26}";
+			sepNavVisRange = "{1748, 1468}";
 			sepNavWindowFrame = "{{40, 119}, {811, 759}}";
 		};
 	};
 	2C40983716AD578D0085CB9D /* AuxFile.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {763, 624}}";
-			sepNavSelRange = "{1288, 0}";
-			sepNavVisRange = "{605, 958}";
+			sepNavSelRange = "{838, 12}";
+			sepNavVisRange = "{604, 1024}";
 			sepNavWindowFrame = "{{464, 208}, {769, 635}}";
 		};
 	};
 	2C40983816AD578D0085CB9D /* AuxFile.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 5538}}";
-			sepNavSelRange = "{521, 0}";
-			sepNavVisRange = "{285, 471}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 5798}}";
+			sepNavSelRange = "{2982, 12}";
+			sepNavVisRange = "{2918, 685}";
 			sepNavWindowFrame = "{{18, 219}, {905, 636}}";
 		};
 	};
@@ -15334,9 +15641,9 @@
 	};
 	2C4099BB16AECE4C0085CB9D /* History.rtf */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {730, 13679}}";
-			sepNavSelRange = "{1091, 0}";
-			sepNavVisRect = "{{0, 565}, {730, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {730, 13743}}";
+			sepNavSelRange = "{1121, 68}";
+			sepNavVisRect = "{{0, 565}, {730, 578}}";
 			sepNavWindowFrame = "{{659, 163}, {769, 635}}";
 		};
 	};
@@ -15397,7 +15704,7 @@
 		vrLen = 460;
 		vrLoc = 804;
 	};
-	2C639278112D2F1400427733 /* TeXBridge.applescript:203 */ = {
+	2C639278112D2F1400427733 /* TeXBridge.applescript:189 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15409,7 +15716,7 @@
 		functionName = "on check_mi_version()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 203;
+		lineNumber = 189;
 		modificationTime = 383584688.359713;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
@@ -15560,18 +15867,18 @@
 	};
 	2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {873, 1679}}";
-			sepNavSelRange = "{3055, 13}";
-			sepNavVisRange = "{2077, 1072}";
+			sepNavIntBoundsRect = "{{0, 0}, {970, 1139}}";
+			sepNavSelRange = "{2170, 0}";
+			sepNavVisRange = "{702, 1468}";
 			sepNavVisRect = "{{0, 180}, {758, 781}}";
 			sepNavWindowFrame = "{{603, 90}, {797, 788}}";
 		};
 	};
 	2C6CA3C008CF559E005D5612 /* LabelListController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 5158}}";
-			sepNavSelRange = "{3856, 39}";
-			sepNavVisRange = "{4065, 722}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 5293}}";
+			sepNavSelRange = "{3262, 21}";
+			sepNavVisRange = "{2824, 706}";
 			sepNavVisRect = "{{0, 418}, {747, 715}}";
 			sepNavWindowFrame = "{{575, 90}, {786, 788}}";
 		};
@@ -15580,7 +15887,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {751, 7786}}";
 			sepNavSelRange = "{14588, 18}";
-			sepNavVisRange = "{13871, 1355}";
+			sepNavVisRange = "{13871, 1449}";
 			sepNavVisRect = "{{0, 7058}, {982, 352}}";
 			sepNavWindowFrame = "{{85, 86}, {703, 792}}";
 		};
@@ -15596,9 +15903,9 @@
 	};
 	2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1034, 5083}}";
-			sepNavSelRange = "{2222, 13}";
-			sepNavVisRange = "{1753, 643}";
+			sepNavIntBoundsRect = "{{0, 0}, {1034, 5022}}";
+			sepNavSelRange = "{2199, 17}";
+			sepNavVisRange = "{1833, 677}";
 			sepNavVisRect = "{{0, 979}, {982, 379}}";
 			sepNavWindowFrame = "{{733, 89}, {690, 788}}";
 		};
@@ -15861,9 +16168,9 @@
 	};
 	2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 3990}}";
-			sepNavSelRange = "{9348, 0}";
-			sepNavVisRange = "{8568, 782}";
+			sepNavIntBoundsRect = "{{0, 0}, {803, 3679}}";
+			sepNavSelRange = "{8761, 0}";
+			sepNavVisRange = "{8186, 795}";
 			sepNavVisRect = "{{0, 0}, {849, 654}}";
 			sepNavWindowFrame = "{{334, 193}, {754, 727}}";
 		};
@@ -15881,7 +16188,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {887, 3848}}";
 			sepNavSelRange = "{7993, 0}";
-			sepNavVisRange = "{6874, 842}";
+			sepNavVisRange = "{6874, 908}";
 			sepNavVisRect = "{{0, 1984}, {982, 449}}";
 			sepNavWindowFrame = "{{76, 109}, {793, 769}}";
 		};
@@ -16001,11 +16308,11 @@
 	};
 	DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 3930}}";
-			sepNavSelRange = "{9541, 0}";
-			sepNavVisRange = "{8856, 685}";
+			sepNavIntBoundsRect = "{{0, 0}, {734, 3705}}";
+			sepNavSelRange = "{8853, 0}";
+			sepNavVisRange = "{0, 1506}";
 			sepNavVisRect = "{{0, 1263}, {650, 645}}";
-			sepNavWindowFrame = "{{23, 91}, {793, 786}}";
+			sepNavWindowFrame = "{{299, 90}, {793, 786}}";
 		};
 	};
 }

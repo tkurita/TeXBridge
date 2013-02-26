@@ -91,7 +91,16 @@ bail:
 - (BOOL)rebuildLabelsFromAuxForDoc:(TeXDocument *)texDoc
 {
 	AuxFile *aux_file = [self auxFileForDoc:texDoc];
-	if (![aux_file checkAuxFile]) return NO;
+	if (![aux_file checkAuxFile]) {
+		NSString *message = NSLocalizedString(@"auxFileIsNotFound", @"");
+		NSAlert *alert = [NSAlert alertWithMessageText:message 
+										 defaultButton:@"OK" alternateButton:nil otherButton:nil
+							 informativeTextWithFormat:@""];
+		[alert setAlertStyle: NSWarningAlertStyle];
+		[alert beginSheetModalForWindow:window modalDelegate:nil
+						 didEndSelector:nil contextInfo:nil];
+		return NO;
+	}
 	if (![aux_file parseAuxFile]) return NO;
 	
 	[aux_file clearLabelsFromEditorRecursively:YES];

@@ -4,6 +4,7 @@
 @interface ReferenceDataController : NSObject {
 	IBOutlet NSTreeController *treeController;
 	IBOutlet NSOutlineView *outlineView;
+	IBOutlet id window;
 	AuxFile *unsavedAuxFile;
 	NSTreeNode *rootNode;
 }
