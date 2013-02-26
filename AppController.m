@@ -9,6 +9,14 @@
 
 #define useLog 0
 
+
+@interface ASKScriptCache : NSObject
+{
+}
++ (ASKScriptCache *)sharedScriptCache;
+- (OSAScript *)scriptWithName:(NSString *)name;
+@end
+
 id EditorClient;
 static id sharedObj;
 
@@ -51,15 +59,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	return self;
 }
 
-
-- (void)showSettingWindow
-{
-	if (!settingWindow) {
-		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
-	}
-	[settingWindow showWindow:self];
-	[SmartActivate activateSelf];
-}
 
 - (void)checkQuit:(NSTimer *)aTimer
 {
@@ -197,6 +196,15 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #endif		
 }
 
+- (void)showToolPalette
+{
+	if (!toolPaletteController) {
+		toolPaletteController = [[NewToolPaletteController alloc] 
+									initWithWindowNibName:@"NewToolPalette"];
+	}
+	[toolPaletteController showWindow:self];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 #if useLog
@@ -213,15 +221,79 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 	id reminderWindow = [DonationReminder remindDonation];
 	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
+	
+	
+	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	toolPaletteController = nil;
+	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
+			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
+		[self showToolPalette];
+	}
 
 	// Test Code
 	/*
 	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
 	[wc showWindow:self];
 	 */
+
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	
+}
+
+- (void)awakeFromNib
+{
+	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
+}
+
+#pragma mark actions
+
+- (IBAction)showSettingWindow:(id)sender
+{
+	if (!settingWindow) {
+		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
+	}
+	[settingWindow showWindow:self];
+	[SmartActivate activateSelf];
+}
+
+- (IBAction)quickTypesetPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"quick_typeset_preview"]
+							 error:&error_info];
+}
+- (IBAction)dviPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"preview_dvi"]
+							 error:&error_info];
+	
+}
+- (IBAction)dviToPDF:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"dvi_to_pdf"]
+							 error:&error_info];
+	
+}
+- (IBAction)typesetPDFPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"typeset_preview_pdf"]
+							 error:&error_info];
+}
+
+- (void)showStatusMessage:(NSString *)msg
+{
+	if (! toolPaletteController) return;
+	if (! [toolPaletteController isOpened]) return;
+	if ([toolPaletteController isCollapsed]) return;
+	[toolPaletteController showStatusMessage:msg];
 }
 
 @end

@@ -73,6 +73,12 @@ extern id EditorClient;
 	[self setReloadTimer];
 }
 
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	[user_defaults setBool:[self isOpened] forKey:@"IsOpenedRefPalette"];
+}
+
 - (void)awakeFromNib
 {
 	[self setFrameName:@"ReferencePalettePalette"];
@@ -80,6 +86,10 @@ extern id EditorClient;
 	[self useFloating];
 	[self useWindowCollapse];
 	[dataController watchEditorWithReloading:NO];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(applicationWillTerminate:)
+												 name:NSApplicationWillTerminateNotification
+											   object:NSApp];
 }
 
 - (BOOL)windowShouldClose:(id)sender

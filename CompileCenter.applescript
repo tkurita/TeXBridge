@@ -24,6 +24,10 @@ global _backslash
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
+on show_status_message(msg)
+	call method "showStatusMessage:" of appController with parameter msg
+end show_status_message
+
 on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
 	if EditorClient's exists_document() then
 		set a_tex_file to EditorClient's document_file_as_alias()
@@ -229,7 +233,7 @@ end dvi_from_frontmost
 (*== actions *)
 on dvi_to_pdf()
 	--log "start dvi_to_pdf"
-	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
+	show_status_message("Converting DVI to PDF ...")
 	set a_dvi to dvi_from_frontmost()
 	if a_dvi is missing value then
 		set a_dvi to dvi_from_editor()
@@ -258,7 +262,7 @@ on dvi_to_ps()
 		end if
 		return
 	end try
-	show_status_message("Converting DVI to PDF ...") of ToolPaletteController
+	show_status_message("Converting DVI to PostScript ...")
 	set a_command to a_texdoc's dvips_command()
 	set cd_command to "cd " & (quoted form of (a_texdoc's cwd()'s posix_path()))
 	set a_command to build_command(a_command, "dvi") of a_texdoc
@@ -380,7 +384,7 @@ on quick_typeset_preview()
 	end if
 	
 	a_texdoc's set_use_term(false)
-	show_status_message("Typeseting...") of ToolPaletteController
+	show_status_message("Typeseting...")
 	--log "before typeset in quick_typeset_preview"
 	try
 		set a_dvi to a_texdoc's typeset()
@@ -388,12 +392,12 @@ on quick_typeset_preview()
 		return
 	end try
 	--log "after texCompile in quick_typeset_preview"
-	show_status_message("Analyzing log text ...") of ToolPaletteController
+	show_status_message("Analyzing log text ...")
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	--log "befor parseLogText in quick_typeset_preview"
 	parseLogText() of a_log_file_parser
 	--log "after parseLogText in quick_typeset_preview"
-	show_status_message("Opening DVI file  ...") of ToolPaletteController
+	show_status_message("Opening DVI file  ...")
 	set aFlag to is_no_error() of a_log_file_parser
 	if is_dvi_output() of a_log_file_parser then
 		try
@@ -413,12 +417,13 @@ on quick_typeset_preview()
 	end if
 	a_texdoc's preserve_terminal()
 	rebuild_labels_from_aux(a_texdoc) of RefPanelController
-	show_status_message("") of ToolPaletteController
+	show_status_message("")
 end quick_typeset_preview
 
 on typeset_preview()
 	set a_dvi to typeset()
-	show_status_message("Opening DVI file ...") of ToolPaletteController
+	
+	show_status_message("Opening DVI file ...")
 	set activate_flag to false
 	if a_dvi is not missing value then
 		set activate_flag to a_dvi's log_parser()'s is_no_error()
@@ -439,7 +444,7 @@ on typeset_preview_pdf()
 	end if
 	set a_pdf to a_dvi's dvi_to_pdf()
 	a_dvi's texdoc()'s preserve_terminal()
-	show_status_message("Opening PDF file ...") of ToolPaletteController
+	show_status_message("Opening PDF file ...")
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
 		show_message(a_msg) of MessageUtility
@@ -469,31 +474,31 @@ on typeset()
 	if a_texdoc is missing value then
 		return missing value
 	end if
-	show_status_message("Typeseting...") of ToolPaletteController
+	show_status_message("Typeseting...")
 	try
 		set a_dvi to a_texdoc's typeset()
 	on error number 1250
 		return missing value
 	end try
 	set a_log_file_parser to newLogFileParser(a_texdoc)
-	show_status_message("Analyzing log text ...") of ToolPaletteController
+	show_status_message("Analyzing log text ...")
 	parse_logfile() of a_log_file_parser
 	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
-		show_status_message("Typeseting...") of ToolPaletteController
+		show_status_message("Typeseting...")
 		try
 			set a_dvi to a_texdoc's typeset()
 		on error number 1250
 			return missing value
 		end try
-		show_status_message("Analyzing log text ...") of ToolPaletteController
+		show_status_message("Analyzing log text ...")
 		parse_logfile() of a_log_file_parser
 	end if
 	
 	-- log "befor rebuild_labels_from_aux in typeset"
 	RefPanelController's rebuild_labels_from_aux(a_texdoc)
 	-- log "after rebuild_labels_from_aux in typeset"
-	show_status_message("") of ToolPaletteController
+	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then
 		call method "activateSelf" of class "SmartActivate"
@@ -524,7 +529,7 @@ on preview_dvi()
 		return
 	end try
 	--log "before lookup_dvi"
-	show_status_message("Opening DVI file ...") of ToolPaletteController
+	show_status_message("Opening DVI file ...")
 	set a_dvi to a_texdoc's lookup_dvi()
 	--log "before open_dvi"
 	if a_dvi is not missing value then
@@ -551,7 +556,7 @@ on preview_pdf()
 		end if
 		return
 	end try
-	show_status_message("Opening PDF file ...") of ToolPaletteController
+	show_status_message("Opening PDF file ...")
 	set a_pdf to PDFController's make_with(a_texdoc)
 	a_pdf's setup()
 	if file_exists() of a_pdf then

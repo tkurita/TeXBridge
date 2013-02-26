@@ -3,6 +3,7 @@ property XDict : module
 property XFile : module
 property XList : module
 property XText : module
+property XHandler : module
 property FrontAccess : module
 property TerminalCommanderBase : module "TerminalCommander"
 property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(false)) for me
@@ -48,6 +49,7 @@ end import_script
 on launched theObject
 	--log "start lanunched"
 	--log "will show toolpalette"
+	(*
 	set show_tool_palette_when_launched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
 	set is_opened_tool_palette to value_with_default("IsOpenedToolPalette", show_tool_palette_when_launched) of DefaultsManager
 	if not show_tool_palette_when_launched then
@@ -57,6 +59,7 @@ on launched theObject
 		show_startup_message("Opening Tool Palette ...")
 		open_window() of ToolPaletteController
 	end if
+	*)
 	
 	--log "will show refpalette"
 	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
@@ -72,8 +75,6 @@ on launched theObject
 	
 	(*debug code*)
 	(*open window*)
-	--open_window() of RefPanelController
-	--open_window() of ToolPaletteController
 	--show_setting_window()
 	
 	(*exec tex commands*)
@@ -126,7 +127,7 @@ on open theObject
 					error msg number errno
 				end if
 			end try
-			show_status_message("") of ToolPaletteController
+			call method "showStatusMessage:" of appController with parameter ""
 			
 		else if command_class is "editSupport" then
 			theObject's commandScript's do(EditCommands)
@@ -180,21 +181,6 @@ on clicked theObject
 		--control_clicked(theObject)
 	end if
 end clicked
-(*
-on control_clicked(theObject)
-	set a_name to name of theObject
-	if a_name is "PeriodicReload" then
-		watchmi of RefPanelController without force_reloading
-	else if a_name is "Reload" then
-		watchmi of RefPanelController with force_reloading
-	end if
-end control_clicked
-*)
-(*
-on double clicked theObject
-	double_clicked(theObject) of RefPanelController
-end double clicked
-*)
 
 on choose menu item theObject
 	--log "start choose menu item"
@@ -202,7 +188,7 @@ on choose menu item theObject
 	if a_name is "Preference" then
 		show_setting_window()
 	else if a_name is "ShowToolPalette" then
-		open_window() of ToolPaletteController
+		--open_window() of ToolPaletteController
 	else if a_name is "ShowRefPalette" then
 		open_window() of RefPanelController
 	end if
@@ -259,7 +245,7 @@ on will finish launching theObject
 	set CompileCenter to import_script("CompileCenter")
 	set TeXDocController to import_script("TeXDocController")
 	set DVIController to import_script("DVIController")
-	set ToolPaletteController to import_script("ToolPaletteController")
+	--set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
 	tell TerminalCommander
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
@@ -284,22 +270,24 @@ on will finish launching theObject
 	--log "end will finish launching"
 end will finish launching
 
-on awake from nib theObject
-	--log "start awake from nib"
-	set a_class to class of theObject
-end awake from nib
-
-on will quit theObject
-	tell user defaults
-		set contents of default entry "IsOpenedToolPalette" to is_opened() of ToolPaletteController
-		set contents of default entry "IsOpenedRefPalette" to is_opened() of RefPanelController
-	end tell
-end will quit
+on perform_handler(a_name)
+	set x_handler to XHandler's make_with(a_name, 0)
+	try
+		x_handler's do(CompileCenter)
+	on error msg number errno
+		if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
+			MessageUtility's show_error(errno, "open", msg)
+		else
+			error msg number errno
+		end if
+	end try
+	--call method "showStatusMessage:" of appController with parameter ""
+end perform_handler
 
 on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
 end show_startup_message
 
 on show_setting_window()
-	call method "showSettingWindow" of appController
+	call method "showSettingWindow:" of appController with parameter missing value
 end show_setting_window
