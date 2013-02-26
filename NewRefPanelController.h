@@ -12,10 +12,10 @@
 	BOOL isWorkedReloadTimer;
 	
 }
+- (IBAction)forceReload:(id)sender;
 
 - (void)setReloadTimer;
 - (void)temporaryStopReloadTimer;
 - (void)restartReloadTimer;
-- (IBAction)forceReload:(id)sender;
-
+- (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName;
 @end

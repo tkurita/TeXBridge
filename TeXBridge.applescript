@@ -32,7 +32,6 @@ property CompileCenter : missing value
 property PDFController : missing value
 property TeXDocController : missing value
 property DVIController : missing value
-property RefPanelController : missing value
 property SheetManager : missing value
 property EditorClient : missing value
 property Root : me
@@ -48,15 +47,6 @@ end import_script
 on launched theObject
 	--log "start lanunched"
 	--log "will show refpalette"
-	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
-	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
-	if not showRefPaletteWhenLaunched then
-		set showRefPaletteWhenLaunched to IsOpenedRefPalette
-	end if
-	if showRefPaletteWhenLaunched then
-		show_startup_message("Opening Reference Palette ...")
-		open_window() of RefPanelController
-	end if
 	hide window "Startup"
 	
 	(*debug code*)
@@ -96,7 +86,7 @@ end do_replaceinput
 
 on open theObject
 	--log "start open"
-	stop_timer() of RefPanelController
+	call method "stopTimer" of appController
 	--call method "temporaryStopDisplayToggleTimer" of WindowVisibilityController
 	set a_class to class of theObject
 	if a_class is record then
@@ -154,7 +144,7 @@ on open theObject
 		
 	end if
 	
-	restart_timer() of RefPanelController
+	call method "restartTimer" of appController
 	return true
 end open
 
@@ -176,7 +166,7 @@ on choose menu item theObject
 	else if a_name is "ShowToolPalette" then
 		--open_window() of ToolPaletteController
 	else if a_name is "ShowRefPalette" then
-		open_window() of RefPanelController
+		--open_window() of RefPanelController
 	end if
 end choose menu item
 
@@ -236,7 +226,7 @@ on will finish launching theObject
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
 	end tell
 	
-	set RefPanelController to import_script("NewRefPanelController")
+	--set RefPanelController to import_script("NewRefPanelController")
 	set SheetManager to import_script("SheetManager")
 	set EditorClient to import_script("EditorClient")
 	set ReplaceInput to import_script("ReplaceInput")
@@ -272,6 +262,23 @@ on show_startup_message(a_msg)
 	set contents of text field "StartupMessage" of window "Startup" to a_msg
 end show_startup_message
 
+-- if moved ASObjC, call directry appController's methods
 on show_setting_window()
 	call method "showSettingWindow:" of appController with parameter missing value
 end show_setting_window
+
+on toggle_visibility_RefPalette()
+	call method "toggleRefPalette" of appController
+end toggle_visibility_RefPalette
+
+on open_RefPalette()
+	call method "showRefPalette" of appController
+end open_RefPalette
+
+on toggle_visibility_ToolPalette()
+	call method "toggleToolPalette" of appController
+end toggle_visibility_ToolPalette
+
+on open_ToolPalette()
+	call method "showToolPalette" of appController
+end open_ToolPalette

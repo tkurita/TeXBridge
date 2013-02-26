@@ -5,6 +5,7 @@
 #import "miClient.h"
 #import "SettingWindowController.h"
 #import "NewToolPaletteController.h"
+#import "NewRefPanelController.h"
 
 NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 
@@ -16,6 +17,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 	NSDictionary *factoryDefaults;
 	SettingWindowController *settingWindow;
 	NewToolPaletteController *toolPaletteController;
+	NewRefPanelController *refPanelController;
 	OSAScript *script; 
 }
 

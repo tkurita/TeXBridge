@@ -28,6 +28,12 @@ on show_status_message(msg)
 	call method "showStatusMessage:" of appController with parameter msg
 end show_status_message
 
+on rebuild_labels_from_aux(a_texdoc)
+	set tex_file_path to a_texdoc's tex_file()'s posix_path()
+	call method "rebuildLabelsFromAux:textEncoding:" of appController Å 
+		with parameters {tex_file_path, a_texdoc's text_encoding()}
+end rebuild_labels_from_aux
+
 on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
 	if EditorClient's exists_document() then
 		set a_tex_file to EditorClient's document_file_as_alias()
@@ -416,7 +422,7 @@ on quick_typeset_preview()
 		activate
 	end if
 	a_texdoc's preserve_terminal()
-	rebuild_labels_from_aux(a_texdoc) of RefPanelController
+	rebuild_labels_from_aux(a_texdoc)
 	show_status_message("")
 end quick_typeset_preview
 
@@ -496,7 +502,7 @@ on typeset()
 	end if
 	
 	-- log "befor rebuild_labels_from_aux in typeset"
-	RefPanelController's rebuild_labels_from_aux(a_texdoc)
+	rebuild_labels_from_aux(a_texdoc)
 	-- log "after rebuild_labels_from_aux in typeset"
 	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)

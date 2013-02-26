@@ -153,100 +153,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	return kShouldPostController;
 }
 
-#pragma mark delegate of NSApplication
-- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
-{
-#if useLog
-	NSLog(@"start applicationWillFinishLaunching");
-#endif	
-	/* regist FactorySettings into shared user defaults */
-	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
-																  ofType:@"plist"];
-	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults registerDefaults:factoryDefaults];
-	
-	/* checking checking UI Elements Scripting ... */
-	if (!AXAPIEnabled())
-    {
-		[startupWindow close];
-		[NSApp activateIgnoringOtherApps:YES];
-		int ret = NSRunAlertPanel(NSLocalizedString(@"disableGUIScripting", ""), @"", 
-							NSLocalizedString(@"Launch System Preferences", ""),
-							NSLocalizedString(@"Cancel",""), @"");
-		switch (ret)
-        {
-            case NSAlertDefaultReturn:
-                [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/UniversalAccessPref.prefPane"];
-                break;
-			default:
-                break;
-        }
-        
-		[NSApp terminate:self];
-		return;
-    }
-	EditorClient = [miClient sharedClient];
-	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
-	[wvController setDelegate:self];
-	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
-	[PaletteWindowController setVisibilityController:[wvController autorelease]];
-#if useLog
-	NSLog(@"end applicationWillFinishLaunching");
-#endif		
-}
 
-- (void)showToolPalette
-{
-	if (!toolPaletteController) {
-		toolPaletteController = [[NewToolPaletteController alloc] 
-									initWithWindowNibName:@"NewToolPalette"];
-	}
-	[toolPaletteController showWindow:self];
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-#if useLog
-	NSLog(@"start applicationDidFinishLaunching");
-#endif
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
-												  selector:@selector(checkQuit:) 
-												  userInfo:nil repeats:YES];
-	[appQuitTimer retain];
-	
-	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) 
-						 name:NSWorkspaceDidTerminateApplicationNotification object:nil];
-
-	id reminderWindow = [DonationReminder remindDonation];
-	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
-	
-	
-	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
-	toolPaletteController = nil;
-	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
-			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
-		[self showToolPalette];
-	}
-
-	// Test Code
-	/*
-	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
-	[wc showWindow:self];
-	 */
-
-#if useLog
-	NSLog(@"end applicationDidFinishLaunching");
-#endif	
-}
-
-- (void)awakeFromNib
-{
-	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
-}
-
-#pragma mark actions
+#pragma mark actions for tool palette
 
 - (IBAction)showSettingWindow:(id)sender
 {
@@ -295,5 +203,167 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	if ([toolPaletteController isCollapsed]) return;
 	[toolPaletteController showStatusMessage:msg];
 }
+
+- (void)showToolPalette
+{
+	if (!toolPaletteController) {
+		toolPaletteController = [[NewToolPaletteController alloc] 
+									initWithWindowNibName:@"NewToolPalette"];
+	}
+	[toolPaletteController showWindow:self];
+}
+
+- (void)toggleToolPalette
+{
+	if (!toolPaletteController) {
+		return [self showToolPalette];
+	}
+	
+	if ([toolPaletteController isOpened]) {
+		return [toolPaletteController close];
+	}
+	
+	[toolPaletteController showWindow:self];
+}
+
+#pragma mark control for reference palette
+- (void)stopTimer
+{
+	if (!refPanelController) return;
+	[refPanelController temporaryStopReloadTimer];
+}
+
+- (void)restartTimer
+{
+	if (!refPanelController) return;
+	[refPanelController restartReloadTimer];
+}
+
+- (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName
+{
+	if (!refPanelController) return;
+	if (![refPanelController isOpened]) return;
+	if ([refPanelController isCollapsed]) return;
+	[refPanelController rebuildLabelsFromAux:texFilePath textEncoding:encodingName];
+}
+
+- (void)showRefPalette
+{
+	if (!refPanelController) {
+		refPanelController = [[NewRefPanelController alloc]
+								initWithWindowNibName:@"NewReferencePalette"];
+	}
+	[refPanelController showWindow:self];
+}
+
+- (void)toggleRefPalette
+{
+	if (!refPanelController) {
+		return [self showRefPalette];
+	}
+	
+	if ([refPanelController isOpened]) {
+		return [refPanelController close];
+	}
+	
+	[refPanelController showWindow:self];
+}
+
+#pragma mark delegate of NSApplication
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+#if useLog
+	NSLog(@"start applicationWillFinishLaunching");
+#endif	
+	/* regist FactorySettings into shared user defaults */
+	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
+																  ofType:@"plist"];
+	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults registerDefaults:factoryDefaults];
+	
+	/* checking checking UI Elements Scripting ... */
+	if (!AXAPIEnabled())
+    {
+		[startupWindow close];
+		[NSApp activateIgnoringOtherApps:YES];
+		int ret = NSRunAlertPanel(NSLocalizedString(@"disableGUIScripting", ""), @"", 
+								  NSLocalizedString(@"Launch System Preferences", ""),
+								  NSLocalizedString(@"Cancel",""), @"");
+		switch (ret)
+        {
+            case NSAlertDefaultReturn:
+                [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/UniversalAccessPref.prefPane"];
+                break;
+			default:
+                break;
+        }
+        
+		[NSApp terminate:self];
+		return;
+    }
+	EditorClient = [miClient sharedClient];
+	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
+	[wvController setDelegate:self];
+	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
+	[PaletteWindowController setVisibilityController:[wvController autorelease]];
+#if useLog
+	NSLog(@"end applicationWillFinishLaunching");
+#endif		
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+#if useLog
+	NSLog(@"start applicationDidFinishLaunching");
+#endif
+	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
+												  selector:@selector(checkQuit:) 
+												  userInfo:nil repeats:YES];
+	[appQuitTimer retain];
+	
+	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
+	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) 
+						 name:NSWorkspaceDidTerminateApplicationNotification object:nil];
+
+	id reminderWindow = [DonationReminder remindDonation];
+	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
+	
+	
+	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	
+	toolPaletteController = nil;
+	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
+			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
+		//ToDo : show messsage "Opening Tool Palette..."
+		[self showToolPalette];
+	}
+	
+	refPanelController = nil;
+	if ([user_defaults boolForKey:@"ShowRefPaletteWhenLaunched"] 
+		||  [user_defaults boolForKey:@"IsOpenedRefPalette"]) {
+		//To Do :: show message "Opening Reference Palette..."
+		[self showRefPalette];
+	}
+	
+
+	// Test Code
+	/*
+	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
+	[wc showWindow:self];
+	 */
+
+#if useLog
+	NSLog(@"end applicationDidFinishLaunching");
+#endif	
+}
+
+- (void)awakeFromNib
+{
+	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
+}
+
+
+
 
 @end
