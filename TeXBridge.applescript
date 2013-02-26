@@ -47,7 +47,7 @@ end import_script
 on launched theObject
 	--log "start lanunched"
 	--log "will show refpalette"
-	hide window "Startup"
+	--hide window "Startup"
 	
 	(*debug code*)
 	(*open window*)
@@ -245,7 +245,8 @@ on perform_handler(a_name)
 end perform_handler
 
 on show_startup_message(a_msg)
-	set contents of text field "StartupMessage" of window "Startup" to a_msg
+	--set contents of text field "StartupMessage" of window "Startup" to a_msg
+	call method "setStartupMessage:" of appController with parameter a_msg
 end show_startup_message
 
 -- if moved ASObjC, call directry appController's methods

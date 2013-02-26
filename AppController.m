@@ -153,6 +153,11 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	return kShouldPostController;
 }
 
+- (void)setStartupMessage:(NSString *)message
+{
+	[startupMessageField setStringValue:message];
+	[startupWindow displayIfNeeded];
+}
 
 #pragma mark actions for tool palette
 
@@ -335,14 +340,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	toolPaletteController = nil;
 	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
 			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
-		//ToDo : show messsage "Opening Tool Palette..."
+		[self  setStartupMessage:@"Opening Tool Palette..."];
 		[self showToolPalette:self];
 	}
 	
 	refPanelController = nil;
 	if ([user_defaults boolForKey:@"ShowRefPaletteWhenLaunched"] 
 		||  [user_defaults boolForKey:@"IsOpenedRefPalette"]) {
-		//To Do :: show message "Opening Reference Palette..."
+		[self setStartupMessage:@"Opening Reference Palette..."];
 		[self showRefPalette:self];
 	}
 	
@@ -352,7 +357,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
 	[wc showWindow:self];
 	 */
-
+	[startupWindow close];
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	

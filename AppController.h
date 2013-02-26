@@ -12,7 +12,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 @interface AppController : NSObject
 {
 	IBOutlet id startupWindow;
-	
+	IBOutlet id startupMessageField;
 	NSTimer *appQuitTimer;
 	NSDictionary *factoryDefaults;
 	SettingWindowController *settingWindow;
