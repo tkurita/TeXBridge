@@ -186,6 +186,7 @@ bail:
 	}
 }
 
+#pragma mark delete methods
 - (void)outlineView:(NSOutlineView *)olv willDisplayCell:(NSCell*)cell 
 							forTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {
@@ -197,6 +198,17 @@ bail:
 	}
 }
 
+- (void)awakeFromNib
+{
+	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
+	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
+	[table_column setDataCell:image_text_cell];
+	self.rootNode = [NSTreeNode new];
+	[outlineView setDoubleAction:@selector(doubleAction:)];
+	[outlineView setTarget:self];
+}
+
+#pragma mark actions
 void jumpToLabel(LabelDatum *targetLabel)
 {
 	AuxFile *aux_file = [[[targetLabel treeNode] parentNode] representedObject];
@@ -204,7 +216,7 @@ void jumpToLabel(LabelDatum *targetLabel)
 	FSRef ref;
 	CFURLGetFSRef((CFURLRef)target_url, &ref);
 	NSString *label_command = [NSString stringWithFormat:@"\\label{%@}", targetLabel.name];
-
+	
 	miClient *mi_client = [miClient sharedClient];
 	[mi_client jumpToFile:&ref paragraph:nil];
 	NSString *doc_content = [mi_client currentDocumentContent];
@@ -281,14 +293,17 @@ inserted:
 	[SmartActivate activateAppOfIdentifier:@"net.mimikaki.mi"];
 }
 
-- (void)awakeFromNib
+- (IBAction)removeSelection:(id)sender
 {
-	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
-	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
-	[table_column setDataCell:image_text_cell];
-	self.rootNode = [NSTreeNode new];
-	[outlineView setDoubleAction:@selector(doubleAction:)];
-	[outlineView setTarget:self];
+	NSArray *nodes = [treeController selectedObjects];
+	NSMutableArray *remove_nodes = [NSMutableArray arrayWithCapacity:1];
+	for (NSTreeNode *a_node in nodes) {
+		NSIndexPath *index_path = [a_node indexPath];
+		if ([index_path length] > 1) continue;
+		[[a_node representedObject] remove];
+		[remove_nodes addObject:index_path];
+	}
+	[treeController removeObjectsAtArrangedObjectIndexPaths:remove_nodes];
 }
 
 @end

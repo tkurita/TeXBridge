@@ -38,6 +38,7 @@
 - (void)updateLabelsFromEditor;
 - (void)updateChildren;
 - (BOOL)parseAuxFile;
+- (void)remove;
 
 // methods for outline
 - (NSString *)name;

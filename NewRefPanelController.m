@@ -1,23 +1,13 @@
-#import "AppController.h"
 #import "NewRefPanelController.h"
-#import "miClient.h"
-#import <CoreServices/CoreServices.h>
-#import "CocoaLib/StringExtra.h"
 
 #define useLog 0
 
 extern id EditorClient;
 
-//const ItemCount		kMaxErrors= 10;
-//const ItemCount		kMaxFeatures= 100;
-
 @implementation NewRefPanelController
 
-- (IBAction)forceReload:(id)sender
-{
-	[dataController watchEditorWithReloading:YES];
-}
 
+#pragma mark methods for the timer
 - (void)periodicReload:(NSTimer *)theTimer
 {
 	if ([[self window] isVisible] && ![self isCollapsed]) {
@@ -67,12 +57,19 @@ extern id EditorClient;
 	}
 }
 
+#pragma mark actions
 - (IBAction)showWindow:(id)sender
 {
 	[super showWindow:self];
 	[self setReloadTimer];
 }
 
+- (IBAction)forceReload:(id)sender
+{
+	[dataController watchEditorWithReloading:YES];
+}
+
+#pragma mark delegete methods
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
 	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];

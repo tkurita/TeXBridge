@@ -14,5 +14,6 @@
 
 - (void)watchEditorWithReloading:(BOOL)reloading;
 - (BOOL)rebuildLabelsFromAuxForDoc:(TeXDocument *)texDoc;
+- (IBAction)removeSelection:(id)sender;
 
 @end

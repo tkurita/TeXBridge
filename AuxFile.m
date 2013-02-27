@@ -413,6 +413,16 @@ bail:
 	return YES;
 }
 
+- (void)remove
+{
+	[ALL_AUX_FILES removeObject:self];
+	for (id a_child in labelsFromAux) {
+		if ([a_child isKindOfClass:[AuxFile class]]) {
+			[a_child remove];
+		}
+	}
+}
+
 - (NSString *)name
 {
 	return basename;
