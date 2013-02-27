@@ -198,17 +198,6 @@ bail:
 	}
 }
 
-- (void)awakeFromNib
-{
-	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
-	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
-	[table_column setDataCell:image_text_cell];
-	self.rootNode = [NSTreeNode new];
-	[outlineView setDoubleAction:@selector(doubleAction:)];
-	[outlineView setTarget:self];
-}
-
-#pragma mark actions
 void jumpToLabel(LabelDatum *targetLabel)
 {
 	AuxFile *aux_file = [[[targetLabel treeNode] parentNode] representedObject];
@@ -230,9 +219,41 @@ void jumpToLabel(LabelDatum *targetLabel)
 	}
 	if (n > 0) {
 		[mi_client jumpToFile:&ref paragraph:[NSNumber numberWithInt:n]];
+	}	
+}
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification
+{
+	CGEventSourceStateID eventSource = kCGEventSourceStateCombinedSessionState;	
+	bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Command);
+	if (! is_command_down) return;
+	
+	NSArray *selection = [treeController selectedObjects];
+	id target_item = [[selection lastObject] representedObject];
+	if ([target_item isKindOfClass:[AuxFile class]]) {
+		FSRef fref;
+		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
+		CFURLGetFSRef((CFURLRef)file_url, &fref);
+		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
+		return;
 	}
 	
+	NSString *label_name = [target_item name];	
+	if (![label_name length]) return;
+	 jumpToLabel(target_item);
 }
+
+- (void)awakeFromNib
+{
+	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
+	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
+	[table_column setDataCell:image_text_cell];
+	self.rootNode = [NSTreeNode new];
+	[outlineView setDoubleAction:@selector(doubleAction:)];
+	[outlineView setTarget:self];
+}
+
+#pragma mark actions
 
 static NSString *EQREF_COMMAND = @"\\eqref";
 
@@ -254,8 +275,8 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 	if (![label_name length]) return;
 	
 	CGEventSourceStateID eventSource = kCGEventSourceStateCombinedSessionState;	
-	bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Control);
-	if (is_command_down) {
+	bool is_control_down = CGEventSourceKeyState(eventSource, kVK_Control);
+	if (is_control_down) {
 		return jumpToLabel(target_item);
 	}
 	
