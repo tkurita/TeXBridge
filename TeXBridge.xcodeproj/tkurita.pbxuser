@@ -14,7 +14,7 @@
 			2C6C9D3D0B9269CC00B9C2CD /* SmartActivate.m:82 */,
 			2C6C9E030B9276F100B9C2CD /* SmartActivate.m:56 */,
 			2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:268 */,
-			2C639278112D2F1400427733 /* TeXBridge.applescript:165 */,
+			2C639278112D2F1400427733 /* TeXBridge.applescript:164 */,
 			2C089F9F14A00E4400515F0A /* WindowVisibilityController.m:106 */,
 			2C0BDD4016D7CCDE0005A62A /* PaletteWindowController.m:277 */,
 			2C0BE68716DD093F0005A62A /* AppController.m:370 */,
@@ -519,7 +519,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 156";
 		rLen = 0;
-		rLoc = 4625;
+		rLoc = 4587;
 		rType = 0;
 		vrLen = 616;
 		vrLoc = 4168;
@@ -529,7 +529,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 272";
 		rLen = 0;
-		rLoc = 8590;
+		rLoc = 8433;
 		rType = 0;
 		vrLen = 1338;
 		vrLoc = 1015;
@@ -651,7 +651,7 @@
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 272";
 		rLen = 0;
-		rLoc = 8590;
+		rLoc = 8433;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 1054;
@@ -754,9 +754,9 @@
 	};
 	2C4095C716A79DA80085CB9D /* RefPanelController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {847, 2490}}";
-			sepNavSelRange = "{4497, 13}";
-			sepNavVisRange = "{1706, 1346}";
+			sepNavIntBoundsRect = "{{0, 0}, {847, 2443}}";
+			sepNavSelRange = "{4672, 12}";
+			sepNavVisRange = "{4323, 441}";
 			sepNavWindowFrame = "{{672, 88}, {749, 780}}";
 		};
 	};
@@ -825,9 +825,9 @@
 	};
 	2C40983816AD578D0085CB9D /* AuxFile.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {763, 5720}}";
-			sepNavSelRange = "{3270, 0}";
-			sepNavVisRange = "{2865, 917}";
+			sepNavIntBoundsRect = "{{0, 0}, {866, 5733}}";
+			sepNavSelRange = "{1737, 0}";
+			sepNavVisRange = "{1543, 1218}";
 			sepNavWindowFrame = "{{18, 219}, {905, 636}}";
 		};
 	};
@@ -900,7 +900,7 @@
 			sepNavWindowFrame = "{{38, 73}, {1078, 839}}";
 		};
 	};
-	2C639278112D2F1400427733 /* TeXBridge.applescript:165 */ = {
+	2C639278112D2F1400427733 /* TeXBridge.applescript:164 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -912,7 +912,7 @@
 		functionName = "on check_mi_version()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 165;
+		lineNumber = 164;
 		modificationTime = 383642410.606046;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
@@ -1077,6 +1077,13 @@
 			sepNavVisRange = "{2824, 706}";
 			sepNavVisRect = "{{0, 418}, {747, 715}}";
 			sepNavWindowFrame = "{{575, 90}, {786, 788}}";
+		};
+	};
+	2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 572}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 712}";
 		};
 	};
 	2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {
@@ -1504,9 +1511,9 @@
 	};
 	DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {780, 4034}}";
-			sepNavSelRange = "{8590, 0}";
-			sepNavVisRange = "{1054, 1299}";
+			sepNavIntBoundsRect = "{{0, 0}, {861, 3719}}";
+			sepNavSelRange = "{8433, 0}";
+			sepNavVisRange = "{5770, 1703}";
 			sepNavVisRect = "{{0, 1263}, {650, 645}}";
 			sepNavWindowFrame = "{{299, 90}, {793, 786}}";
 		};

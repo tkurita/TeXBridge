@@ -32,7 +32,6 @@ property CompileCenter : missing value
 property PDFController : missing value
 property TeXDocController : missing value
 property DVIController : missing value
-property SheetManager : missing value
 property EditorClient : missing value
 property Root : me
 
@@ -212,8 +211,6 @@ on will finish launching theObject
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
 	end tell
 	
-	--set RefPanelController to import_script("NewRefPanelController")
-	set SheetManager to import_script("SheetManager")
 	set EditorClient to import_script("EditorClient")
 	set ReplaceInput to import_script("ReplaceInput")
 	
