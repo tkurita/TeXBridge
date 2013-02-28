@@ -855,38 +855,6 @@
 			};
 			name = Release;
 		};
-		2C6D92DE0928239E005774F8 /* SDDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../DonationReminder/trunk/build/Release\"";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "";
-				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
-				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
-				PRODUCT_NAME = TeXBridge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = SDDebug;
-		};
 		2C6D92DF0928239E005774F8 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -942,16 +910,6 @@
 			};
 			name = Release;
 		};
-		2C6D92E30928239E005774F8 /* SDDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.5;
-			};
-			name = SDDebug;
-		};
 		2C6D92E40928239E005774F8 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -970,7 +928,6 @@
 			buildConfigurations = (
 				2C6D92DC0928239E005774F8 /* Debug */,
 				2C6D92DD0928239E005774F8 /* Release */,
-				2C6D92DE0928239E005774F8 /* SDDebug */,
 				2C6D92DF0928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -981,7 +938,6 @@
 			buildConfigurations = (
 				2C6D92E10928239E005774F8 /* Debug */,
 				2C6D92E20928239E005774F8 /* Release */,
-				2C6D92E30928239E005774F8 /* SDDebug */,
 				2C6D92E40928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;

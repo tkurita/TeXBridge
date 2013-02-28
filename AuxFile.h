@@ -34,7 +34,6 @@
 - (void)clearLabelsFromEditor;
 - (void)clearLabelsFromEditorRecursively:(BOOL)recursively;
 - (BOOL)findLabelsFromEditorWithForceUpdate:(BOOL)forceUpdate;
-//- (void)insertIntoTree:(NSTreeController *)treeController atIndexPath:(NSIndexPath *)indexPath;
 - (void)updateLabelsFromEditor;
 - (void)updateChildren;
 - (BOOL)parseAuxFile;

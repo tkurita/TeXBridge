@@ -163,7 +163,6 @@ bail:
 		
 		if (from_aux_updated) {
 			[master_aux_file updateChildren];
-			//[self expandChildrenIfNeeded:[master_aux_file treeNode]];
 		} else if (from_editor_updated) {
 			[current_aux_file updateLabelsFromEditor];
 		}
