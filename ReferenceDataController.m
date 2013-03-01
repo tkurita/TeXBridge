@@ -221,27 +221,6 @@ void jumpToLabel(LabelDatum *targetLabel)
 	}	
 }
 
-- (void)outlineViewSelectionDidChange:(NSNotification *)notification
-{
-	CGEventSourceStateID eventSource = kCGEventSourceStateCombinedSessionState;	
-	bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Command);
-	if (! is_command_down) return;
-	
-	NSArray *selection = [treeController selectedObjects];
-	id target_item = [[selection lastObject] representedObject];
-	if ([target_item isKindOfClass:[AuxFile class]]) {
-		FSRef fref;
-		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
-		CFURLGetFSRef((CFURLRef)file_url, &fref);
-		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
-		return;
-	}
-	
-	NSString *label_name = [target_item name];	
-	if (![label_name length]) return;
-	 jumpToLabel(target_item);
-}
-
 - (void)awakeFromNib
 {
 	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
@@ -324,6 +303,28 @@ inserted:
 		[remove_nodes addObject:index_path];
 	}
 	[treeController removeObjectsAtArrangedObjectIndexPaths:remove_nodes];
+}
+
+- (IBAction)clickAction:(id)sender
+{
+	CGEventSourceStateID eventSource = kCGEventSourceStateCombinedSessionState;	
+	//bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Command);
+	bool is_command_down = CGEventSourceKeyState(eventSource, kVK_Control);
+	if (! is_command_down) return;
+	
+	NSArray *selection = [treeController selectedObjects];
+	id target_item = [[selection lastObject] representedObject];
+	if ([target_item isKindOfClass:[AuxFile class]]) {
+		FSRef fref;
+		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
+		CFURLGetFSRef((CFURLRef)file_url, &fref);
+		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
+		return;
+	}
+	
+	NSString *label_name = [target_item name];	
+	if (![label_name length]) return;
+	jumpToLabel(target_item);
 }
 
 @end
