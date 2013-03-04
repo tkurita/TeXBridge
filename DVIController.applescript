@@ -147,7 +147,7 @@ script PictPrinterDriver
 		try
 			set pictprinter_app to path to application (get "PictPrinter") as alias
 		on error
-			set msg to localized string "pictPrinterIsnotFound"
+			set msg to localized string "pictPrinterIsNotFound"
 			error msg number 1260
 		end try
 		a_dvi's update_src_special_flag_from_file()

@@ -183,13 +183,13 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 383874653;
-			PBXWorkspaceStateSaveDate = 383874653;
+			PBXPerProjectTemplateStateSaveDate = 384101574;
+			PBXWorkspaceStateSaveDate = 384101574;
 		};
 		perUserProjectItems = {
+			2C0A8BD316E17D1F00142188 = 2C0A8BD316E17D1F00142188 /* PlistBookmark */;
 			2C0BE83816DDE9F00005A62A = 2C0BE83816DDE9F00005A62A /* PBXTextBookmark */;
 			2C0BE83916DDE9F00005A62A = 2C0BE83916DDE9F00005A62A /* PBXTextBookmark */;
-			2C0BE8A516DDF67E0005A62A = 2C0BE8A516DDF67E0005A62A /* PBXTextBookmark */;
 			2C12B30516E03D7D00B4CBA0 = 2C12B30516E03D7D00B4CBA0 /* PBXTextBookmark */;
 			2C12B30616E03D7D00B4CBA0 = 2C12B30616E03D7D00B4CBA0 /* PBXTextBookmark */;
 			2C12B30716E03D7D00B4CBA0 = 2C12B30716E03D7D00B4CBA0 /* PBXTextBookmark */;
@@ -204,12 +204,16 @@
 			2C12B31216E03D7D00B4CBA0 = 2C12B31216E03D7D00B4CBA0 /* PBXTextBookmark */;
 			2C12B31316E03D7D00B4CBA0 = 2C12B31316E03D7D00B4CBA0 /* PBXTextBookmark */;
 			2C12B31416E03D7D00B4CBA0 = 2C12B31416E03D7D00B4CBA0 /* PBXTextBookmark */;
-			2C12B34216E04AE800B4CBA0 = 2C12B34216E04AE800B4CBA0 /* PlistBookmark */;
-			2C12B34E16E054E900B4CBA0 = 2C12B34E16E054E900B4CBA0 /* PlistBookmark */;
-			2C12B34F16E054E900B4CBA0 = 2C12B34F16E054E900B4CBA0 /* PBXTextBookmark */;
+			2C1405FC16E4766D00C8754E = 2C1405FC16E4766D00C8754E /* PlistBookmark */;
+			2C1405FD16E4766D00C8754E = 2C1405FD16E4766D00C8754E /* PlistBookmark */;
+			2C1405FE16E4766D00C8754E = 2C1405FE16E4766D00C8754E /* PlistBookmark */;
+			2C14060816E4766D00C8754E = 2C14060816E4766D00C8754E /* PBXTextBookmark */;
 			2C4095D116A850130085CB9D = 2C4095D116A850130085CB9D /* mi.h */;
 			2C6CA39608CF5558005D5612 = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
 			2C6CA39708CF5558005D5612 = 2C6CA39708CF5558005D5612 /* NewRefPanelController.h */;
+			2CE0051F16E1D6AD005E6EAC = 2CE0051F16E1D6AD005E6EAC /* PBXTextBookmark */;
+			2CF6456016E4ECEE00AD0EED /* PlistBookmark */ = 2CF6456016E4ECEE00AD0EED /* PlistBookmark */;
+			2CF6456416E4ECEE00AD0EED /* PBXTextBookmark */ = 2CF6456416E4ECEE00AD0EED /* PBXTextBookmark */;
 		};
 		sourceControlManager = 2C69503A0A06E6D3008277ED /* Source Control */;
 		userBookmarkGroup = 2CCF93D710D7C0D6004E5A38 /* PBXBookmarkGroup */;
@@ -323,6 +327,18 @@
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
+	2C0A8BD316E17D1F00142188 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSMinimumSystemVersion,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
 	2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {763, 832}}";
@@ -419,16 +435,6 @@
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 0;
-	};
-	2C0BE8A516DDF67E0005A62A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
-		name = "TeXBridge.applescript: 272";
-		rLen = 0;
-		rLoc = 8433;
-		rType = 0;
-		vrLen = 1299;
-		vrLoc = 1054;
 	};
 	2C12B30516E03D7D00B4CBA0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -591,31 +597,40 @@
 		originalNumberOfMultipleMatches = 1;
 		state = 0;
 	};
-	2C12B34216E04AE800B4CBA0 /* PlistBookmark */ = {
+	2C1405FC16E4766D00C8754E /* PlistBookmark */ = {
 		isa = PlistBookmark;
-		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
-			CFBundleHelpBookFolder,
 		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/Info.plist";
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/HelpSetup.plist";
 		rLen = 0;
 		rLoc = 9223372036854775808;
 	};
-	2C12B34E16E054E900B4CBA0 /* PlistBookmark */ = {
+	2C1405FD16E4766D00C8754E /* PlistBookmark */ = {
 		isa = PlistBookmark;
-		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
-			LSMinimumSystemVersion,
 		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/Info.plist";
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/ToolSupport.plist";
 		rLen = 0;
 		rLoc = 9223372036854775808;
 	};
-	2C12B34F16E054E900B4CBA0 /* PBXTextBookmark */ = {
+	2C1405FE16E4766D00C8754E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/ToolSupport.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C14060816E4766D00C8754E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		name = "TeXBridge.applescript: 269";
@@ -1433,6 +1448,16 @@
 			sepNavWindowFrame = "{{282, 75}, {691, 862}}";
 		};
 	};
+	2CE0051F16E1D6AD005E6EAC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+		name = "TeXBridge.applescript: 269";
+		rLen = 0;
+		rLoc = 8433;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 5770;
+	};
 	2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {775, 988}}";
@@ -1478,9 +1503,30 @@
 			sepNavWindowFrame = "{{15, 393}, {821, 540}}";
 		};
 	};
+	2CF6456016E4ECEE00AD0EED /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/ToolSupport.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	2CF6456416E4ECEE00AD0EED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+		name = "TeXBridge.applescript: 269";
+		rLen = 0;
+		rLoc = 8433;
+		rType = 0;
+		vrLen = 1703;
+		vrLoc = 5770;
+	};
 	DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {861, 3719}}";
+			sepNavIntBoundsRect = "{{0, 0}, {780, 3800}}";
 			sepNavSelRange = "{8433, 0}";
 			sepNavVisRange = "{5770, 1703}";
 			sepNavVisRect = "{{0, 1263}, {650, 645}}";
