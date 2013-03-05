@@ -143,14 +143,14 @@
 														<reference key="NSTextColor" ref="767344091"/>
 													</object>
 													<object class="NSTextFieldCell" key="NSDataCell" id="328558773">
-														<int key="NSCellFlags">338820672</int>
-														<int key="NSCellFlags2">132096</int>
+														<int key="NSCellFlags">337772096</int>
+														<int key="NSCellFlags2">133632</int>
 														<reference key="NSSupport" ref="26"/>
 														<reference key="NSControlView" ref="58146271"/>
 														<reference key="NSBackgroundColor" ref="677343683"/>
 														<reference key="NSTextColor" ref="361318566"/>
 													</object>
-													<int key="NSResizingMask">3</int>
+													<int key="NSResizingMask">2</int>
 													<bool key="NSIsResizeable">YES</bool>
 													<reference key="NSTableView" ref="58146271"/>
 												</object>
@@ -168,7 +168,7 @@
 												</object>
 											</object>
 											<double key="NSRowHeight">16</double>
-											<int key="NSTvFlags">1396703232</int>
+											<int key="NSTvFlags">1405091840</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<string key="NSAutosaveName">References</string>
@@ -1432,13 +1432,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">PrintCore.framework/Headers/PDEPluginInterface.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">ScriptingBridge.framework/Headers/SBApplication.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

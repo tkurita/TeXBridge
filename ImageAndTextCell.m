@@ -69,7 +69,7 @@
 	
 	// we want a smaller font
 	[self setFont:[NSFont systemFontOfSize:[NSFont smallSystemFontSize]]];
-
+	[self setLineBreakMode:NSLineBreakByTruncatingTail];
 	return self;
 }
 
