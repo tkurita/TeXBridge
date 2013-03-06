@@ -167,7 +167,7 @@ on check_mi_version()
 		set a_ver to last word of a_ver
 	end if
 	considering numeric strings
-		if a_ver is not greater than or equal to "2.1.7" then
+		if a_ver is not greater than or equal to "2.1.11" then
 			set msg to UtilityHandlers's localized_string("mi $1 is not supported.", {a_ver})
 			hide window "Startup"
 			MessageUtility's show_message(msg)
