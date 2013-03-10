@@ -125,11 +125,11 @@
 	<key>dviViewCommand</key>
 	<string>pxdvi -postscript 0 -unique -editor %editor</string>
 	<key>dvipdfCommand</key>
-	<string>dvipdfmx -V 4</string>
+	<string>dvipdfmx</string>
 	<key>dvipsCommand</key>
 	<string>dvips</string>
 	<key>ebbCommand</key>
-	<string>xbb</string>
+	<string>extractbb</string>
 	<key>mendexCommand</key>
 	<string>mendex</string>
 	<key>typesetCommand</key>
