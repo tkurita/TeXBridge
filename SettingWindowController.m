@@ -64,8 +64,12 @@
 #pragma mark actions
 - (IBAction)setMiClient:(id)sender
 {
-	NSString *miclient_path = [[NSBundle mainBundle] pathForResource:@"miclient" ofType:nil];
-	[self setMxdviEditor:miclient_path];
+	//NSString *miclient_path = [[NSBundle mainBundle] pathForResource:@"miclient" ofType:nil];
+	NSString *mi_path = [[NSWorkspace sharedWorkspace] 
+							absolutePathForAppBundleWithIdentifier:@"net.mimikaki.mi"];
+	NSString *editor_setting = [NSString stringWithFormat:@"open %@ -n --args '%%f' +%%l",
+								mi_path];
+	[self setMxdviEditor:editor_setting];
 }
 
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
