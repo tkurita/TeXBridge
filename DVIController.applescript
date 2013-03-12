@@ -25,7 +25,8 @@ script XdviDriver
 		update_src_special_flag_from_file() of a_dvi
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
 		set dvi_file_name to a_dvi's fileName()
-		set dviViewCommand to contents of default entry "dviViewCommand" of user defaults
+		set dvi_command to contents of default entry "dviViewCommand" of user defaults
+		set dvi_command to XText's make_with(dvi_command)
 		set target_term to TerminalCommander
 		if (a_dvi's src_special()) then
 			if (a_texdoc is not missing value) then
@@ -36,17 +37,19 @@ script XdviDriver
 					set sourceFile to a_dvi's texdoc()'s fileName()
 				end if
 				set srcpos_option to "-sourceposition"
-				set dviViewCommand to dviViewCommand & space & srcpos_option & space & (quoted form of ((a_texdoc's doc_position() as Unicode text) & space & sourceFile))
+				set dvi_command to dvi_command's push(space & srcpos_option & space & (quoted form of ((a_texdoc's doc_position() as Unicode text) & space & sourceFile)))
 				set target_term to a_dvi's texdoc()'s target_terminal()
 			end if
-			set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
-			set dviViewCommand to replace of XText for dviViewCommand from "%editor" by (quoted form of (miclient_path & " -b %l '%f'"))
-			set dviViewCommand to replace of XText for dviViewCommand from " -unique" by ""
-			set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
+			--set miclient_path to quoted form of ((main bundle's resource path) & "/miclient")
+			--set dvi_command to dvi_command's replace("%editor", quoted form of (miclient_path & " -b %l '%f'"))
+			set mi_path to POSIX path of (path to application id "net.mimikaki.mi")
+			set dvi_command to dvi_command's replace("%editor", quoted form of ("open " & mi_path & " -n --args '%f' +%l"))
+			set dvi_command to dvi_command's replace(" -unique", "")
+			set all_command to cd_command & _com_delim & dvi_command's as_text() & space & quoted form of dvi_file_name & " &"
 			do_command of target_term for all_command without activation
 		else
 			set need_command to true
-			if (dviViewCommand does not contain "-unique") then
+			if (not dvi_command's include("-unique")) then
 				--log "no source special"
 				try
 					set pid to do shell script "/usr/sbin/lsof -a -Fp -c xdvi -u $USER " & quoted form of (a_dvi's posix_path())
@@ -64,8 +67,8 @@ script XdviDriver
 				if a_texdoc is not missing value then
 					set target_term to a_dvi's texdoc()'s target_terminal()
 				end if
-				set dviViewCommand to replace of XText for dviViewCommand from "-editor %editor" by ""
-				set all_command to cd_command & _com_delim & dviViewCommand & space & quoted form of dvi_file_name & " &"
+				set dvi_command to dvi_command's replace("-editor %editor", "")
+				set all_command to cd_command & _com_delim & dvi_command's posix_path() & space & quoted form of dvi_file_name & " &"
 				do_command of target_term for all_command without activation
 			end if
 		end if
