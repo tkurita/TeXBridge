@@ -121,9 +121,9 @@
 		</dict>
 	</array>
 	<key>bibtexCommand</key>
-	<string>jbibtex</string>
+	<string>pbibtex</string>
 	<key>dviViewCommand</key>
-	<string>pxdvi -postscript 0 -unique -editor %editor</string>
+	<string>xdvi -postscript 0 -unique -editor %editor</string>
 	<key>dvipdfCommand</key>
 	<string>dvipdfmx</string>
 	<key>dvipsCommand</key>
