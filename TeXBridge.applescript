@@ -5,6 +5,7 @@ property XList : module
 property XText : module
 property XHandler : module
 property FrontAccess : module
+property PathInfo : module
 property TerminalCommanderBase : module "TerminalCommander"
 property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(false)) for me
 
@@ -66,7 +67,7 @@ on launched theObject
 	--typeset_preview() of CompileCenter
 	--debug()
 	--checkmifiles with saving
-	quick_typeset_preview() of CompileCenter
+	--quick_typeset_preview() of CompileCenter
 	
 	(*misc*)
 	--openRelatedFile with revealOnly

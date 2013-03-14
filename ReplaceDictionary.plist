@@ -118,6 +118,8 @@
 		<string>parallel</string>
 		<key>/=</key>
 		<string>neq</string>
+		<key>=/</key>
+		<string>neq</string>
 		<key>&lt;&lt;</key>
 		<string>ll</string>
 		<key>&lt;_</key>
