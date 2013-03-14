@@ -320,7 +320,7 @@ script AcrobatDriver
 	on close_pdf(a_pdf)
 		--log "start close_pdf of AcrobatDriver"
 		set a_filename to a_pdf's fileName()
-		using terms from application "Adobe Acrobat Professional"
+		using terms from application "Adobe Acrobat Pro"
 			tell application ((a_pdf's app_name()) as Unicode text)
 				if exists document a_filename then
 					set theFileAliasPath to file alias of document a_filename as Unicode text
@@ -345,7 +345,7 @@ script AcrobatDriver
 	
 	on open_pdf(a_pdf)
 		--log "start open_pdf in AcrobatDriver"
-		using terms from application "Adobe Acrobat Professional"
+		using terms from application "Adobe Acrobat Pro"
 			tell application ((a_pdf's app_name()) as Unicode text)
 				activate
 				open a_pdf's file_as_alias()

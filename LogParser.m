@@ -17,6 +17,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 }
 
 @implementation LogParser
+@synthesize errorMessage;
 
 - (ErrorRecord *) makeErrorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn textRange:(NSValue *)theRange
 {
@@ -42,6 +43,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	errorRecordTree = [[NSMutableArray array] retain];
 	texFileExtensions = [[NSArray arrayWithObjects:@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind",nil] retain];
 	isNoError = YES;
+	errorMessage = nil;
 	return self;
 }
 
@@ -53,6 +55,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	[texFileExtensions release];
 	[errorRecordTree release];
 	[texFileExtensions release];
+	[errorMessage release];
 	[super dealloc];
 }
 
@@ -73,10 +76,18 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	[self setLogFilePath:path];
 	isReadFile = YES;
 	NSData *logData = [NSData dataWithContentsOfFile:logFilePath];
+	if (!logData) {
+		errorMessage = [[NSString stringWithFormat:@"Failed to Read File : %@", path] retain];
+		return self;
+	}
 	[logContents release];
-	//[self setLogContents:[[[NSString alloc] initWithData:logData encoding:NSShiftJISStringEncoding] autorelease]];
 	[self setLogContents:[NSString stringWithData:logData 
 								encodingCandidates:orderdEncodingCandidates(aEncName)]];
+	if (!logContents) {
+		errorMessage = [[NSString stringWithFormat:@"Failed to decode the log file contents with encoding %@",
+						 aEncName] retain];
+		return self;
+	}
 	int length = [logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;
@@ -108,7 +119,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 {
 #if useLog
 	NSLog(@"start parseLogTree");
-	NSLog([logTree description]);
+	NSLog(@"%@", [logTree description]);
 #endif
 	if ([logTree count] <= 1) {
 		return;
@@ -358,7 +369,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #endif
 	if (targetText == nil) return nil;
 #if useLog
-	NSLog(targetText);
+	NSLog(@"%@", targetText);
 #endif
 	if ([targetText hasPrefix:@"LaTeX Font Info:"] 
 			||[targetText hasPrefix:@"Latex Info"]
@@ -438,7 +449,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 - (NSString *) parseBodyWith:(NSMutableArray *)currentList startText:(NSString *)targetText isWholeLine:(BOOL *)wholeLineFlag {
 #if useLog
 	NSLog(@"start ParseBody");
-	NSLog(targetText);
+	NSLog(@"%@", targetText);
 #endif
 	NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()`"];
 	//NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()"];
@@ -533,13 +544,13 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #endif
 	NSString *theLine = [self getNextLine];
 #if useLog
-	NSLog(theLine);
+	NSLog(@"%@", theLine);
 #endif
 	NSRange beginningOne = NSMakeRange(0,1);
 	NSString * fistParenth = @"(";
 	while (theLine != NULL) {
 #if useLog
-	NSLog(theLine);
+	NSLog(@"%@", theLine);
 #endif
 		if([theLine compare:fistParenth options:0 range:beginningOne] == NSOrderedSame) {
 			break;
@@ -577,7 +588,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #endif
 	[self parseFooterWith:loglogTree startText:targetText];
 #if useLog
-	NSLog([loglogTree description]);
+	NSLog(@"%@", [loglogTree description]);
 #endif
 	/* log を parse した結果は loglogTerre に収められる。loglogTree から必要な情報を抜き出す。 */
 	isDviOutput = NO;
@@ -587,7 +598,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	[self parseLogTreeFirstLevel:loglogTree];
 #if useLog
-	NSLog([errorRecordTree description]);
+	NSLog(@"%@", [errorRecordTree description]);
 	NSLog(@"end of parseLog");
 #endif
 	[[LogWindowController sharedLogManager] addLogRecords:self] ;

@@ -123,7 +123,7 @@
 	<key>bibtexCommand</key>
 	<string>pbibtex</string>
 	<key>dviViewCommand</key>
-	<string>xdvi -postscript 0 -unique -editor %editor</string>
+	<string>pxdvi -postscript 0 -unique -editor %editor</string>
 	<key>dvipdfCommand</key>
 	<string>dvipdfmx</string>
 	<key>dvipsCommand</key>
