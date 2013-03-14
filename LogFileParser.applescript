@@ -56,7 +56,7 @@ on parseLogText()
 		set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
 	end if
 	set err_msg to call method "errorMessage" of logParser
-	if err_msg is not missing value then
+	if err_msg is not "" then
 		error err_msg number 1245
 	end if
 	parseLog(logParser)
@@ -67,7 +67,7 @@ on parse_logfile()
 	set logParser to call method "alloc" of class "LogParser"
 	set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
 	set err_msg to call method "errorMessage" of logParser
-	if err_msg is not missing value then
+	if err_msg is not "" then
 		error err_msg number 1245
 	end if
 	parseLog(logParser)

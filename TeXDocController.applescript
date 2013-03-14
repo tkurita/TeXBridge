@@ -98,7 +98,7 @@ on dvips_command()
 	if my _dvips_command is missing value then
 		return contents of default entry "dvipsCommand" of user defaults
 	end if
-	return my _dvipos_command
+	return my _dvips_command
 end dvips_command
 
 on dvipdf_command()
