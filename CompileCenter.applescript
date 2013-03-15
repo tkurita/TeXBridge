@@ -311,6 +311,12 @@ on seek_ebb()
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
 	set theRes to EditorClient's document_content()
+	set ebb_command to contents of default entry "ebbCommand" of user defaults
+	if ebb_command contains "-m" then
+		set bb_ext to "bb"
+	else
+		set bb_ext to "xbb"
+	end if
 	
 	--find graphic files
 	set noGraphicFlag to true
@@ -323,7 +329,7 @@ on seek_ebb()
 			repeat with an_extension in graphicExtensions
 				if a_path ends with an_extension then
 					set noGraphicFlag to false
-					if exec_ebb(a_path, an_extension, a_term) then
+					if exec_ebb(a_path, bb_ext, a_term) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -341,16 +347,23 @@ on seek_ebb()
 	end if
 end seek_ebb
 
-on exec_ebb(graphic_path, an_extension, a_term)
-	set graphic_file to XFile's make_with(graphic_path)
-	set bb_file to graphic_file's change_path_extension("bb")
+on need_update_bb(grf_file, bb_file)
 	if bb_file's item_exists() then
 		set bb_mod to modification date of (bb_file's info())
 		set g_mod to modification date of (graphic_file's info())
 		if (bb_mod > g_mod) then
 			return false
 		end if
+	else
+		return true
 	end if
+end need_update_bb
+
+on exec_ebb(graphic_path, bb_ext, a_term)
+	set bb_file to graphic_file's change_path_extension(bb_ext)
+	set graphic_file to XFile's make_with(graphic_path)
+	
+	if not neet_update_bb(graphic_file, bb_file) then return
 	
 	set target_dir to graphic_file's parent_folder()'s posix_path()
 	set a_name to graphic_file's item_name()
