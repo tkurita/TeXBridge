@@ -329,7 +329,7 @@ on seek_ebb()
 			repeat with an_extension in graphicExtensions
 				if a_path ends with an_extension then
 					set noGraphicFlag to false
-					if exec_ebb(a_path, bb_ext, a_term) then
+					if exec_ebb(a_path, bb_ext, a_term, ebb_command) then
 						set noNewBBFlag to false
 					end if
 					exit repeat
@@ -359,7 +359,7 @@ on need_update_bb(grf_file, bb_file)
 	end if
 end need_update_bb
 
-on exec_ebb(graphic_path, bb_ext, a_term)
+on exec_ebb(graphic_path, bb_ext, a_term, ebb_command)
 	set bb_file to graphic_file's change_path_extension(bb_ext)
 	set graphic_file to XFile's make_with(graphic_path)
 	
@@ -369,8 +369,7 @@ on exec_ebb(graphic_path, bb_ext, a_term)
 	set a_name to graphic_file's item_name()
 	
 	set cd_command to "cd '" & target_dir & "'"
-	set ebbCommand to contents of default entry "ebbCommand" of user defaults
-	set all_command to cd_command & _com_delim & ebbCommand & space & "'" & a_name & "'"
+	set all_command to cd_command & _com_delim & ebb_command & space & "'" & a_name & "'"
 	send_command of a_term for all_command
 	a_term's wait_termination(300)
 	return true
