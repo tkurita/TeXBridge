@@ -26,18 +26,24 @@ end set_doc_position
 on resolve_parent(a_paragraph)
 	--log "start resolveParentFile"
 	set parent_file to XText's make_with(a_paragraph)'s text_in_range(13, -2)
-	--log parent_file
-	if parent_file's starts_with(":") then
-		set pathconv to PathConverter's make_with(my _targetFileRef's hfs_path())
-		set tex_file to absolute_path of pathconv for parent_file's as_unicode()
-	else
-		set tex_file to parent_file's as_unicode()
-	end if
-	--tell me to log "tex_file : " & tex_file
-	if tex_file ends with ":" then
+	if parent_file's ends_with(":") then
 		set a_msg to UtilityHandlers's localized_string("ParentFileIsInvalid", {parent_file})
 		error a_msg number 1230
 	end if
+	--log parent_file
+	if parent_file's starts_with(":") then --  relative hfs path
+		tell PathConverter's make_with(my _targetFileRef's hfs_path())
+			set tex_file to absolute_path for parent_file's as_unicode()
+		end tell
+	else if parent_file's starts_with("/") then --  absolute posix path
+		set tex_file to POSIX file (parent_file's as_unicode())
+	else -- relative posix path
+		tell PathConverter's make_with(my _targetFileRef's posix_path())
+			set tex_file to absolute_path for parent_file's as_unicode()
+		end tell
+		set tex_file to POSIX file tex_file
+	end if
+	--tell me to log "tex_file : " & tex_file
 	try
 		set tex_file to tex_file as alias
 	on error
@@ -92,7 +98,7 @@ on dvips_command()
 	if my _dvips_command is missing value then
 		return contents of default entry "dvipsCommand" of user defaults
 	end if
-	return my _dvipos_command
+	return my _dvips_command
 end dvips_command
 
 on dvipdf_command()
@@ -196,15 +202,17 @@ on typeset()
 		set command_elems to tex_command's as_xlist_with(space)
 		if tex_command's include("-interaction=") then
 			script ChangeInteractionMode
-				on do(an_elem)
+				on do(an_elem, sender)
 					if an_elem starts with "-interaction=" then
-						set contents of an_elem to "-interaction=nonstopmode"
+						tell sender
+							set_item_at("-interaction=nonstopmode", current_index())
+						end tell
 						return false
 					end if
 					return true
 				end do
 			end script
-			command_elems's each(ChangeInteractionMode)
+			command_elems's enumerate(ChangeInteractionMode)
 		else
 			set new_command to command_elems's item_at(1) & space & "-interaction=nonstopmode"
 			set_item of command_elems for new_command at 1

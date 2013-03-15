@@ -3,7 +3,9 @@ property XDict : module
 property XFile : module
 property XList : module
 property XText : module
+property XHandler : module
 property FrontAccess : module
+property PathInfo : module
 property TerminalCommanderBase : module "TerminalCommander"
 property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(false)) for me
 
@@ -31,9 +33,6 @@ property CompileCenter : missing value
 property PDFController : missing value
 property TeXDocController : missing value
 property DVIController : missing value
-property RefPanelController : missing value
-property SheetManager : missing value
-property AuxData : missing value
 property EditorClient : missing value
 property Root : me
 
@@ -47,33 +46,11 @@ end import_script
 (* events of application*)
 on launched theObject
 	--log "start lanunched"
-	--log "will show toolpalette"
-	set show_tool_palette_when_launched to contents of default entry "ShowToolPaletteWhenLaunched" of user defaults
-	set is_opened_tool_palette to value_with_default("IsOpenedToolPalette", show_tool_palette_when_launched) of DefaultsManager
-	if not show_tool_palette_when_launched then
-		set show_tool_palette_when_launched to is_opened_tool_palette
-	end if
-	if show_tool_palette_when_launched then
-		show_startup_message("Opening Tool Palette ...")
-		open_window() of ToolPaletteController
-	end if
-	
 	--log "will show refpalette"
-	set showRefPaletteWhenLaunched to contents of default entry "ShowRefPaletteWhenLaunched" of user defaults
-	set IsOpenedRefPalette to value_with_default("IsOpenedRefPalette", showRefPaletteWhenLaunched) of DefaultsManager
-	if not showRefPaletteWhenLaunched then
-		set showRefPaletteWhenLaunched to IsOpenedRefPalette
-	end if
-	if showRefPaletteWhenLaunched then
-		show_startup_message("Opening Reference Palette ...")
-		open_window() of RefPanelController
-	end if
-	hide window "Startup"
+	--hide window "Startup"
 	
 	(*debug code*)
 	(*open window*)
-	--open_window() of RefPanelController
-	--open_window() of ToolPaletteController
 	--show_setting_window()
 	
 	(*exec tex commands*)
@@ -109,7 +86,7 @@ end do_replaceinput
 
 on open theObject
 	--log "start open"
-	stop_timer() of RefPanelController
+	call method "stopTimer" of appController
 	--call method "temporaryStopDisplayToggleTimer" of WindowVisibilityController
 	set a_class to class of theObject
 	if a_class is record then
@@ -126,7 +103,7 @@ on open theObject
 					error msg number errno
 				end if
 			end try
-			show_status_message("") of ToolPaletteController
+			call method "showStatusMessage:" of appController with parameter ""
 			
 		else if command_class is "editSupport" then
 			theObject's commandScript's do(EditCommands)
@@ -167,7 +144,7 @@ on open theObject
 		
 	end if
 	
-	restart_timer() of RefPanelController
+	call method "restartTimer" of appController
 	return true
 end open
 
@@ -176,35 +153,8 @@ on clicked theObject
 	set a_tag to tag of theObject
 	if a_tag is 7 then
 		control_clicked(theObject) of PDFController
-	else
-		control_clicked(theObject)
 	end if
 end clicked
-
-on control_clicked(theObject)
-	set a_name to name of theObject
-	if a_name is "PeriodicReload" then
-		watchmi of RefPanelController without force_reloading
-	else if a_name is "Reload" then
-		watchmi of RefPanelController with force_reloading
-	end if
-end control_clicked
-
-on double clicked theObject
-	double_clicked(theObject) of RefPanelController
-end double clicked
-
-on choose menu item theObject
-	--log "start choose menu item"
-	set a_name to name of theObject
-	if a_name is "Preference" then
-		show_setting_window()
-	else if a_name is "ShowToolPalette" then
-		open_window() of ToolPaletteController
-	else if a_name is "ShowRefPalette" then
-		open_window() of RefPanelController
-	end if
-end choose menu item
 
 on check_mi_version()
 	-- log "start check_mi_version"
@@ -218,7 +168,7 @@ on check_mi_version()
 		set a_ver to last word of a_ver
 	end if
 	considering numeric strings
-		if a_ver is not greater than or equal to "2.1.7" then
+		if a_ver is not greater than or equal to "2.1.11" then
 			set msg to UtilityHandlers's localized_string("mi $1 is not supported.", {a_ver})
 			hide window "Startup"
 			MessageUtility's show_message(msg)
@@ -257,15 +207,11 @@ on will finish launching theObject
 	set CompileCenter to import_script("CompileCenter")
 	set TeXDocController to import_script("TeXDocController")
 	set DVIController to import_script("DVIController")
-	set ToolPaletteController to import_script("ToolPaletteController")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
 	tell TerminalCommander
 		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
 	end tell
 	
-	set RefPanelController to import_script("RefPanelController")
-	set SheetManager to import_script("SheetManager")
-	set AuxData to import_script("AuxData")
 	set EditorClient to import_script("EditorClient")
 	set ReplaceInput to import_script("ReplaceInput")
 	
@@ -282,22 +228,42 @@ on will finish launching theObject
 	--log "end will finish launching"
 end will finish launching
 
-on awake from nib theObject
-	--log "start awake from nib"
-	set a_class to class of theObject
-end awake from nib
-
-on will quit theObject
-	tell user defaults
-		set contents of default entry "IsOpenedToolPalette" to is_opened() of ToolPaletteController
-		set contents of default entry "IsOpenedRefPalette" to is_opened() of RefPanelController
-	end tell
-end will quit
+on perform_handler(a_name)
+	set x_handler to XHandler's make_with(a_name, 0)
+	try
+		x_handler's do(CompileCenter)
+	on error msg number errno
+		if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
+			MessageUtility's show_error(errno, "open", msg)
+		else
+			error msg number errno
+		end if
+	end try
+	call method "showStatusMessage:" of appController with parameter ""
+end perform_handler
 
 on show_startup_message(a_msg)
-	set contents of text field "StartupMessage" of window "Startup" to a_msg
+	--set contents of text field "StartupMessage" of window "Startup" to a_msg
+	call method "setStartupMessage:" of appController with parameter a_msg
 end show_startup_message
 
+-- if moved ASObjC, call directry appController's methods
 on show_setting_window()
-	call method "showSettingWindow" of appController
+	call method "showSettingWindow:" of appController with parameter missing value
 end show_setting_window
+
+on toggle_visibility_RefPalette()
+	call method "toggleRefPalette" of appController
+end toggle_visibility_RefPalette
+
+on open_RefPalette()
+	call method "showRefPalette:" of appController with parameter missing value
+end open_RefPalette
+
+on toggle_visibility_ToolPalette()
+	call method "toggleToolPalette" of appController
+end toggle_visibility_ToolPalette
+
+on open_ToolPalette()
+	call method "showToolPalette:" of appController with parameter missing value
+end open_ToolPalette

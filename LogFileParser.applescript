@@ -27,10 +27,10 @@ end labels_changed
 
 on parseLog(logParser)
 	call method "setBaseURLWithPath:" of logParser with parameter (my _texdoc's no_suffix_posix_path())
-	set preDelim to AppleScript's text item delimiters
+	set pre_delim to AppleScript's text item delimiters
 	set AppleScript's text item delimiters to space
 	set commandName to text item 1 of (my _texdoc's typeset_command())
-	set AppleScript's text item delimiters to preDelim
+	set AppleScript's text item delimiters to pre_delim
 	call method "setJobName:" of logParser with parameter (commandName & space & (my _texdoc's fileName()))
 	try
 		set parseResult to call method "parseLog" of logParser
@@ -49,10 +49,15 @@ on parseLogText()
 	--log "start parseLogText"
 	set logParser to call method "alloc" of class "LogParser"
 	set a_log_contents to log_contents()
+	--log a_log_contents
 	if (a_log_contents starts with "This is") then
 		set logParser to call method "initWithString:" of logParser with parameter (a_log_contents & return)
 	else
 		set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
+	end if
+	set err_msg to call method "errorMessage" of logParser
+	if err_msg is not "" then
+		error err_msg number 1245
 	end if
 	parseLog(logParser)
 	--log "end parseLogText"
@@ -61,6 +66,10 @@ end parseLogText
 on parse_logfile()
 	set logParser to call method "alloc" of class "LogParser"
 	set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
+	set err_msg to call method "errorMessage" of logParser
+	if err_msg is not "" then
+		error err_msg number 1245
+	end if
 	parseLog(logParser)
 end parse_logfile
 

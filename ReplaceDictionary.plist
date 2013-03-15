@@ -63,6 +63,8 @@
 		<string>gamma</string>
 		<key>h</key>
 		<string>eta</string>
+		<key>i</key>
+		<string>iota</string>
 		<key>j</key>
 		<string>psi</string>
 		<key>k</key>
@@ -83,6 +85,10 @@
 		<string>sigma</string>
 		<key>t</key>
 		<string>tau</string>
+		<key>u</key>
+		<string>upsilon</string>
+		<key>v</key>
+		<string>varpi</string>
 		<key>w</key>
 		<string>omega</string>
 		<key>x</key>
@@ -111,6 +117,8 @@
 		<key>//</key>
 		<string>parallel</string>
 		<key>/=</key>
+		<string>neq</string>
+		<key>=/</key>
 		<string>neq</string>
 		<key>&lt;&lt;</key>
 		<string>ll</string>

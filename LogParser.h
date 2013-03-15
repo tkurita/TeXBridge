@@ -10,6 +10,7 @@
 	NSArray *texFileExtensions;
 	BOOL isReadFile;
 	NSString *_jobName;
+	NSString *errorMessage;
 	
 	//show results
 	BOOL isNoError;
@@ -61,5 +62,7 @@
 -(NSMutableArray *) errorRecordTree;
 -(BOOL) isDviOutput;
 -(BOOL) isNoError;
+
+@property (retain) NSString *errorMessage;
 
 @end

@@ -24,6 +24,7 @@ on open_parentfile()
 	on error msg number 1200
 		return
 	end try
+	
 	if a_texdoc's has_parent() then
 		tell application "Finder"
 			open (a_texdoc's file_ref()'s as_alias())

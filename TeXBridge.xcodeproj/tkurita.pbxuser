@@ -9,19 +9,19 @@
 			2C4E27AD084273B000004A96 /* TeXBridge */,
 		);
 		breakpoints = (
-			2CD956070ADE4C310086AFAD /* LogWindowController.m:142 */,
-			2C1548DB0B1ED1E3005D565B /* WindowVisibilityController.m:18 */,
-			2C2849390B257FDA00930DCD /* SettingWindowController.m:135 */,
+			2C2849390B257FDA00930DCD /* SettingWindowController.m:139 */,
 			2C6C9D3D0B9269CC00B9C2CD /* SmartActivate.m:82 */,
 			2C6C9E030B9276F100B9C2CD /* SmartActivate.m:56 */,
-			2C4B2EC80D053AF400280BE6 /* RefPanelController.m:93 */,
-			2C4E2AD80D06520F0012372E /* AppController.m:15 */,
-			2CB721910F32C77C00995D8A /* DefaultToNilTransformer.m:5 */,
-			2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:268 */,
-			2C639278112D2F1400427733 /* TeXBridge.applescript:215 */,
+			2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:272 */,
+			2C639278112D2F1400427733 /* TeXBridge.applescript:165 */,
 			2C089F9F14A00E4400515F0A /* WindowVisibilityController.m:106 */,
-			2C089FDB14A012D000515F0A /* -[DefaultToNilTransformer nilWord] */,
-			2C089FDC14A012D000515F0A /* -[DefaultToNilTransformer setNilWord:] */,
+			2C0BDD4016D7CCDE0005A62A /* PaletteWindowController.m:277 */,
+			2C0BE68716DD093F0005A62A /* AppController.m:370 */,
+			2C12B32016E03DCE00B4CBA0 /* ReferenceDataController.m:327 */,
+			2C62B98B16F07F330045F488 /* LogParser.m:573 */,
+			2C62B99716F0801E0045F488 /* LogParser.m:75 */,
+			2C62B9A416F082ED0045F488 /* StringExtra.m:66 */,
+			2C62B9DE16F16B9B0045F488 /* LogParser.m:64 */,
 		);
 		codeSenseManager = 2C69503B0A06E6D3008277ED /* Code sense */;
 		executables = (
@@ -52,13 +52,37 @@
 					PBXBreakpointsDataSource_ContinueID,
 				);
 			};
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA23EDF0692099D00951B8B" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					341,
+					20,
+					241,
+					241,
+					171,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_IgnoreCountID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					200,
 					200,
-					300,
+					395,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXBookmarksDataSource_LocationID,
@@ -86,7 +110,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					555,
+					561,
 					20,
 					48,
 					43,
@@ -145,7 +169,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					539,
+					748,
 					60,
 					20,
 					48,
@@ -162,54 +186,34 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 365350588;
-			PBXWorkspaceStateSaveDate = 365350588;
+			PBXPerProjectTemplateStateSaveDate = 385021806;
+			PBXWorkspaceStateSaveDate = 385021806;
 		};
 		perUserProjectItems = {
-			2C01D33015C6CD6D00C061F3 = 2C01D33015C6CD6D00C061F3 /* PBXTextBookmark */;
-			2C01D33115C6CD6D00C061F3 = 2C01D33115C6CD6D00C061F3 /* PBXTextBookmark */;
-			2C01D33515C6CDA400C061F3 = 2C01D33515C6CDA400C061F3 /* PBXBookmark */;
-			2C01D33A15C6CE6A00C061F3 = 2C01D33A15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D33B15C6CE6A00C061F3 = 2C01D33B15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D33C15C6CE6A00C061F3 = 2C01D33C15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D33D15C6CE6A00C061F3 = 2C01D33D15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D33E15C6CE6A00C061F3 = 2C01D33E15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D33F15C6CE6A00C061F3 = 2C01D33F15C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34015C6CE6A00C061F3 = 2C01D34015C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34115C6CE6A00C061F3 = 2C01D34115C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34215C6CE6A00C061F3 = 2C01D34215C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34315C6CE6A00C061F3 = 2C01D34315C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34415C6CE6A00C061F3 = 2C01D34415C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34515C6CE6A00C061F3 = 2C01D34515C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34615C6CE6A00C061F3 = 2C01D34615C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C01D34915C6CE6A00C061F3 = 2C01D34915C6CE6A00C061F3 /* PBXTextBookmark */;
-			2C08A01C14A01DA000515F0A = 2C08A01C14A01DA000515F0A /* PBXTextBookmark */;
-			2C3D58871573E5D3002F73FA = 2C3D58871573E5D3002F73FA /* PBXTextBookmark */;
-			2C3D58881573E5D3002F73FA = 2C3D58881573E5D3002F73FA /* PBXBookmark */;
-			2C3D58891573E5D3002F73FA = 2C3D58891573E5D3002F73FA /* PBXTextBookmark */;
-			2C50424114A05CCA00739206 = 2C50424114A05CCA00739206 /* PBXTextBookmark */;
-			2C5C63B60F39FFD800B0AE1D = 2C5C63B60F39FFD800B0AE1D /* PlistBookmark */;
-			2C5C63B70F39FFD800B0AE1D = 2C5C63B70F39FFD800B0AE1D /* PlistBookmark */;
-			2C64E0C10F8603A700A664B1 = 2C64E0C10F8603A700A664B1 /* PBXTextBookmark */;
-			2C83216D0E9A7B33009F6A8B = 2C83216D0E9A7B33009F6A8B /* PBXTextBookmark */;
-			2C8321D40E9A840D009F6A8B = 2C8321D40E9A840D009F6A8B /* PBXTextBookmark */;
-			2CA9B34B0E97C419009C0C2A = 2CA9B34B0E97C419009C0C2A /* PBXTextBookmark */;
-			2CB721C20F32CC3800995D8A = 2CB721C20F32CC3800995D8A /* PBXTextBookmark */;
-			2CB721C40F32CC3800995D8A = 2CB721C40F32CC3800995D8A /* PBXTextBookmark */;
-			2CC57AEB15993A5600274375 = 2CC57AEB15993A5600274375 /* PBXTextBookmark */;
-			2CC57AEC15993A5600274375 = 2CC57AEC15993A5600274375 /* PBXTextBookmark */;
-			2CC57AFC159968D300274375 = 2CC57AFC159968D300274375 /* PBXTextBookmark */;
-			2CD5554D08BEC77E007E43D1 = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
-			2CE026EC0EB0C9A400925F15 = 2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */;
-			2CE6662B14FBD98400B3755C = 2CE6662B14FBD98400B3755C /* PlistBookmark */;
-			2CE6F48514A0588300255449 = 2CE6F48514A0588300255449 /* PlistBookmark */;
-			2CE6F48614A0588300255449 = 2CE6F48614A0588300255449 /* PBXTextBookmark */;
-			2CE6F48714A0588300255449 = 2CE6F48714A0588300255449 /* PBXTextBookmark */;
-			2CE6F49014A05BBF00255449 = 2CE6F49014A05BBF00255449 /* PBXTextBookmark */;
-			2CE6F49114A05BBF00255449 = 2CE6F49114A05BBF00255449 /* PBXTextBookmark */;
-			2CF03EE10EA78B0D0044339F = 2CF03EE10EA78B0D0044339F /* PBXTextBookmark */;
-			2CF8424D15833DA1004E5E20 = 2CF8424D15833DA1004E5E20 /* PBXTextBookmark */;
-			DA206CF3015C4E8B03C91932 = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+			2C03CC8916F2C88000F244BB /* PBXTextBookmark */ = 2C03CC8916F2C88000F244BB /* PBXTextBookmark */;
+			2C03CC8A16F2C88000F244BB /* PBXTextBookmark */ = 2C03CC8A16F2C88000F244BB /* PBXTextBookmark */;
+			2C03CC8C16F2C88000F244BB /* PBXTextBookmark */ = 2C03CC8C16F2C88000F244BB /* PBXTextBookmark */;
+			2C4095D116A850130085CB9D /* mi.h */ = 2C4095D116A850130085CB9D /* mi.h */;
+			2C62B96916F07ED10045F488 /* PlistBookmark */ = 2C62B96916F07ED10045F488 /* PlistBookmark */;
+			2C62B96B16F07ED10045F488 /* PBXTextBookmark */ = 2C62B96B16F07ED10045F488 /* PBXTextBookmark */;
+			2C62B9BE16F1611E0045F488 /* PBXTextBookmark */ = 2C62B9BE16F1611E0045F488 /* PBXTextBookmark */;
+			2C62B9C516F167BC0045F488 /* PBXTextBookmark */ = 2C62B9C516F167BC0045F488 /* PBXTextBookmark */;
+			2C62B9C816F16ABC0045F488 /* PBXTextBookmark */ = 2C62B9C816F16ABC0045F488 /* PBXTextBookmark */;
+			2C62B9C916F16ABC0045F488 /* PBXTextBookmark */ = 2C62B9C916F16ABC0045F488 /* PBXTextBookmark */;
+			2C62B9CB16F16ABC0045F488 /* PBXTextBookmark */ = 2C62B9CB16F16ABC0045F488 /* PBXTextBookmark */;
+			2C62BA3216F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3216F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA3316F1FEA90045F488 /* PlistBookmark */ = 2C62BA3316F1FEA90045F488 /* PlistBookmark */;
+			2C62BA3516F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3516F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA3716F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3716F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA3816F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3816F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA3916F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3916F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA3A16F1FEA90045F488 /* PBXTextBookmark */ = 2C62BA3A16F1FEA90045F488 /* PBXTextBookmark */;
+			2C62BA4416F1FF790045F488 /* PBXTextBookmark */ = 2C62BA4416F1FF790045F488 /* PBXTextBookmark */;
+			2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
+			2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = 2C6CA39708CF5558005D5612 /* NewRefPanelController.h */;
+			2C79A83016F2F8510054A09E /* PBXTextBookmark */ = 2C79A83016F2F8510054A09E /* PBXTextBookmark */;
+			2CBFF92D16EF5F2D00CD19E8 /* PBXTextBookmark */ = 2CBFF92D16EF5F2D00CD19E8 /* PBXTextBookmark */;
+			DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
 		};
 		sourceControlManager = 2C69503A0A06E6D3008277ED /* Source Control */;
 		userBookmarkGroup = 2CCF93D710D7C0D6004E5A38 /* PBXBookmarkGroup */;
@@ -225,222 +229,58 @@
 			sepNavWindowFrame = "{{15, 169}, {932, 764}}";
 		};
 	};
-	2C01D33015C6CD6D00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
-		name = "UtilityHandlers.applescript: 69";
-		rLen = 0;
-		rLoc = 2142;
-		rType = 0;
-		vrLen = 589;
-		vrLoc = 1464;
-	};
-	2C01D33115C6CD6D00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */;
-		name = "StringExtra.m: 130";
-		rLen = 0;
-		rLoc = 4157;
-		rType = 0;
-		vrLen = 528;
-		vrLoc = 674;
-	};
-	2C01D33515C6CDA400C061F3 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
-	};
-	2C01D33A15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C30E7101095A65800605969 /* FrontAppMonitor.m */;
-		name = "FrontAppMonitor.m: 42";
-		rLen = 0;
-		rLoc = 827;
-		rType = 0;
-		vrLen = 717;
-		vrLoc = 643;
-	};
-	2C01D33B15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C30E70F1095A65800605969 /* FrontAppMonitor.h */;
-		name = "FrontAppMonitor.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 244;
-		vrLoc = 0;
-	};
-	2C01D33C15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A10AACA0F2005B592F /* PaletteWindowController.h */;
-		name = "PaletteWindowController.h: 27";
-		rLen = 11;
-		rLoc = 737;
-		rType = 0;
-		vrLen = 669;
-		vrLoc = 419;
-	};
-	2C01D33D15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A20AACA0F2005B592F /* PaletteWindowController.m */;
-		name = "PaletteWindowController.m: 293";
-		rLen = 0;
-		rLoc = 7537;
-		rType = 0;
-		vrLen = 626;
-		vrLoc = 2788;
-	};
-	2C01D33E15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A30AACA0F2005B592F /* PathExtra.h */;
-		name = "PathExtra.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 777;
-		vrLoc = 0;
-	};
-	2C01D33F15C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A40AACA0F2005B592F /* PathExtra.m */;
-		name = "PathExtra.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 546;
-		vrLoc = 0;
-	};
-	2C01D34015C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A50AACA0F2005B592F /* StringExtra.h */;
-		name = "StringExtra.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 970;
-		vrLoc = 0;
-	};
-	2C01D34115C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */;
-		name = "StringExtra.m: 131";
-		rLen = 0;
-		rLoc = 4215;
-		rType = 0;
-		vrLen = 692;
-		vrLoc = 464;
-	};
-	2C01D34215C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */;
-		name = "WindowVisibilityController.h: 15";
-		rLen = 9;
-		rLoc = 328;
-		rType = 0;
-		vrLen = 619;
-		vrLoc = 0;
-	};
-	2C01D34315C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */;
-		name = "WindowVisibilityController.m: 47";
-		rLen = 0;
-		rLoc = 1073;
-		rType = 0;
-		vrLen = 531;
-		vrLoc = 1095;
-	};
-	2C01D34415C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
-		name = "TeXBridge.applescript: 304";
-		rLen = 0;
-		rLoc = 9833;
-		rType = 0;
-		vrLen = 1396;
-		vrLoc = 7815;
-	};
-	2C01D34515C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */;
-		name = "TerminalCommander.applescript: 46";
-		rLen = 0;
-		rLoc = 1311;
-		rType = 0;
-		vrLen = 995;
-		vrLoc = 316;
-	};
-	2C01D34615C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */;
-		name = "TerminalCommander.applescript: 28";
-		rLen = 0;
-		rLoc = 795;
-		rType = 0;
-		vrLen = 1034;
-		vrLoc = 0;
-	};
-	2C01D34915C6CE6A00C061F3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
-		name = "TeXBridge.applescript: 304";
-		rLen = 0;
-		rLoc = 9833;
-		rType = 0;
-		vrLen = 1647;
-		vrLoc = 6168;
-	};
 	2C0311A10AACA0F2005B592F /* PaletteWindowController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 611}}";
-			sepNavSelRange = "{737, 11}";
-			sepNavVisRange = "{419, 669}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 611}}";
+			sepNavSelRange = "{456, 28}";
+			sepNavVisRange = "{55, 496}";
 			sepNavVisRect = "{{0, 0}, {798, 515}}";
 			sepNavWindowFrame = "{{111, 85}, {663, 833}}";
 		};
 	};
 	2C0311A20AACA0F2005B592F /* PaletteWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 3731}}";
-			sepNavSelRange = "{7537, 0}";
-			sepNavVisRange = "{2788, 626}";
+			sepNavIntBoundsRect = "{{0, 0}, {880, 3744}}";
+			sepNavSelRange = "{3936, 0}";
+			sepNavVisRange = "{3689, 603}";
 			sepNavVisRect = "{{0, 3564}, {624, 760}}";
-			sepNavWindowFrame = "{{38, 79}, {663, 833}}";
+			sepNavWindowFrame = "{{38, 83}, {663, 795}}";
 		};
 	};
 	2C0311A30AACA0F2005B592F /* PathExtra.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {831, 468}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 777}";
+			sepNavIntBoundsRect = "{{0, 0}, {831, 502}}";
+			sepNavSelRange = "{701, 10}";
+			sepNavVisRange = "{0, 1092}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
-			sepNavWindowFrame = "{{450, 360}, {658, 574}}";
+			sepNavWindowFrame = "{{450, 304}, {658, 574}}";
 		};
 	};
 	2C0311A40AACA0F2005B592F /* PathExtra.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 5512}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 546}";
+			sepNavIntBoundsRect = "{{0, 0}, {964, 5694}}";
+			sepNavSelRange = "{8107, 20}";
+			sepNavVisRange = "{7625, 871}";
 			sepNavVisRect = "{{0, 2149}, {928, 703}}";
-			sepNavWindowFrame = "{{15, 101}, {967, 832}}";
+			sepNavWindowFrame = "{{617, 265}, {658, 574}}";
 		};
 	};
 	2C0311A50AACA0F2005B592F /* StringExtra.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {845, 377}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 970}";
+			sepNavIntBoundsRect = "{{0, 0}, {966, 416}}";
+			sepNavSelRange = "{906, 0}";
+			sepNavVisRange = "{0, 974}";
 			sepNavVisRect = "{{37, 0}, {506, 653}}";
-			sepNavWindowFrame = "{{84, 88}, {545, 782}}";
+			sepNavWindowFrame = "{{276, 57}, {819, 821}}";
 		};
 	};
 	2C0311A60AACA0F2005B592F /* StringExtra.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {845, 1768}}";
-			sepNavSelRange = "{4215, 0}";
-			sepNavVisRange = "{464, 692}";
+			sepNavIntBoundsRect = "{{0, 0}, {1080, 2002}}";
+			sepNavSelRange = "{1878, 14}";
+			sepNavVisRange = "{1721, 665}";
 			sepNavVisRect = "{{0, 0}, {778, 431}}";
-			sepNavWindowFrame = "{{276, 97}, {819, 821}}";
+			sepNavWindowFrame = "{{276, 86}, {819, 792}}";
 		};
 	};
 	2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */ = {
@@ -454,9 +294,9 @@
 	};
 	2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {796, 3731}}";
-			sepNavSelRange = "{1073, 0}";
-			sepNavVisRange = "{1008, 438}";
+			sepNavIntBoundsRect = "{{0, 0}, {1080, 3822}}";
+			sepNavSelRange = "{445, 0}";
+			sepNavVisRange = "{199, 511}";
 			sepNavVisRect = "{{0, 1300}, {908, 700}}";
 			sepNavWindowFrame = "{{124, 105}, {947, 773}}";
 		};
@@ -469,6 +309,36 @@
 			sepNavWindowFrame = "{{153, 492}, {1013, 390}}";
 		};
 	};
+	2C03CC8916F2C88000F244BB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
+		name = "TeXBridge.applescript: 270";
+		rLen = 0;
+		rLoc = 8461;
+		rType = 0;
+		vrLen = 726;
+		vrLoc = 1566;
+	};
+	2C03CC8A16F2C88000F244BB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
+		name = "EditCommands.applescript: 49";
+		rLen = 0;
+		rLoc = 1316;
+		rType = 0;
+		vrLen = 714;
+		vrLoc = 0;
+	};
+	2C03CC8C16F2C88000F244BB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 586";
+		rLen = 0;
+		rLoc = 17007;
+		rType = 0;
+		vrLen = 683;
+		vrLoc = 10460;
+	};
 	2C089F9F14A00E4400515F0A /* WindowVisibilityController.m:106 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
@@ -479,55 +349,29 @@
 		delayBeforeContinue = 0;
 		fileReference = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */;
 		functionName = "-setupFocusChangeObserver";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 106;
 		location = TeXBridge;
-		modificationTime = 346035810.5853819;
+		modificationTime = 384920475.139326;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
-	2C089FDB14A012D000515F0A /* -[DefaultToNilTransformer nilWord] */ = {
-		isa = PBXSymbolicBreakpoint;
-		breakpointStyle = 1;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		hitCount = 0;
-		ignoreCount = 0;
-		location = TeXBridge;
-		modificationTime = 346034896.996161;
-		originalNumberOfMultipleMatches = 0;
-		parentBreakpoint = 2CB721910F32C77C00995D8A /* DefaultToNilTransformer.m:5 */;
-		state = 2;
-		symbolName = "-[DefaultToNilTransformer nilWord]";
+	2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 832}}";
+			sepNavSelRange = "{2617, 15}";
+			sepNavVisRange = "{2328, 490}";
+		};
 	};
-	2C089FDC14A012D000515F0A /* -[DefaultToNilTransformer setNilWord:] */ = {
-		isa = PBXSymbolicBreakpoint;
-		breakpointStyle = 1;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		hitCount = 0;
-		ignoreCount = 0;
-		location = TeXBridge;
-		modificationTime = 346034896.996276;
-		originalNumberOfMultipleMatches = 0;
-		parentBreakpoint = 2CB721910F32C77C00995D8A /* DefaultToNilTransformer.m:5 */;
-		state = 2;
-		symbolName = "-[DefaultToNilTransformer setNilWord:]";
+	2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 3315}}";
+			sepNavSelRange = "{3191, 0}";
+			sepNavVisRange = "{2679, 726}";
+		};
 	};
-	2C08A01C14A01DA000515F0A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */;
-		name = "WindowVisibilityController.m: 47";
-		rLen = 0;
-		rLoc = 1073;
-		rType = 0;
-		vrLen = 840;
-		vrLoc = 963;
-	};
-	2C1548DB0B1ED1E3005D565B /* WindowVisibilityController.m:18 */ = {
+	2C0BDD4016D7CCDE0005A62A /* PaletteWindowController.m:277 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -535,35 +379,98 @@
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
-		fileReference = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */;
-		functionName = "focusChanged()";
+		fileReference = 2C0311A20AACA0F2005B592F /* PaletteWindowController.m */;
+		functionName = "-windowWillClose:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 18;
+		lineNumber = 277;
 		location = TeXBridge;
-		modificationTime = 346034881.176318;
+		modificationTime = 384920482.459682;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C0BE33416DB872D0005A62A /* Error Numbers.rtf */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {783, 349}}";
+			sepNavSelRange = "{153, 0}";
+			sepNavVisRect = "{{0, 0}, {783, 349}}";
+			sepNavWindowFrame = "{{15, 593}, {704, 280}}";
+		};
+	};
+	2C0BE4CE16DC4C0C0005A62A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */;
+	};
+	2C0BE4D116DC4C810005A62A /* NewToolPaletteController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 227}}";
+			sepNavSelRange = "{190, 0}";
+			sepNavVisRange = "{0, 241}";
+		};
+	};
+	2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 598}}";
+			sepNavSelRange = "{1097, 0}";
+			sepNavVisRange = "{761, 411}";
+			sepNavWindowFrame = "{{15, 215}, {793, 658}}";
+		};
+	};
+	2C0BE68716DD093F0005A62A /* AppController.m:370 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
+		functionName = "-showStatusMessage:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 370;
+		location = TeXBridge;
+		modificationTime = 384920500.285493;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C12B32016E03DCE00B4CBA0 /* ReferenceDataController.m:327 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */;
+		functionName = "-clickAction:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 327;
+		location = TeXBridge;
+		modificationTime = 384920482.486182;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
 	2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 1001}}";
-			sepNavSelRange = "{2142, 0}";
-			sepNavVisRange = "{1464, 589}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 861}}";
+			sepNavSelRange = "{1629, 6}";
+			sepNavVisRange = "{1361, 461}";
 			sepNavVisRect = "{{0, 699}, {982, 320}}";
 			sepNavWindowFrame = "{{452, 106}, {967, 832}}";
 		};
 	};
 	2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {984, 530}}";
-			sepNavSelRange = "{818, 12}";
-			sepNavVisRange = "{0, 894}";
+			sepNavIntBoundsRect = "{{0, 0}, {1043, 345}}";
+			sepNavSelRange = "{647, 10}";
+			sepNavVisRange = "{125, 769}";
 			sepNavVisRect = "{{0, 0}, {737, 549}}";
 			sepNavWindowFrame = "{{39, 290}, {776, 622}}";
 		};
 	};
-	2C2849390B257FDA00930DCD /* SettingWindowController.m:135 */ = {
+	2C2849390B257FDA00930DCD /* SettingWindowController.m:139 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -575,9 +482,9 @@
 		functionName = "-openPanelDidEnd:returnCode:contextInfo:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 135;
+		lineNumber = 139;
 		location = TeXBridge;
-		modificationTime = 346034881.209532;
+		modificationTime = 384920482.413785;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -601,50 +508,123 @@
 	};
 	2C30E70F1095A65800605969 /* FrontAppMonitor.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 300}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 358}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 244}";
 		};
 	};
 	2C30E7101095A65800605969 /* FrontAppMonitor.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 962}}";
-			sepNavSelRange = "{827, 0}";
-			sepNavVisRange = "{643, 717}";
+			sepNavIntBoundsRect = "{{0, 0}, {1080, 1105}}";
+			sepNavSelRange = "{28, 25}";
+			sepNavVisRange = "{0, 283}";
 		};
 	};
 	2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1534}}";
-			sepNavSelRange = "{525, 10}";
-			sepNavVisRange = "{229, 961}";
+			sepNavIntBoundsRect = "{{0, 0}, {1018, 1659}}";
+			sepNavSelRange = "{3234, 0}";
+			sepNavVisRange = "{2018, 661}";
 			sepNavVisRect = "{{0, 839}, {982, 379}}";
 			sepNavWindowFrame = "{{61, 79}, {791, 799}}";
 		};
 	};
-	2C3D58871573E5D3002F73FA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
-		name = "CompileCenter.applescript: 508";
-		rLen = 0;
-		rLoc = 15271;
-		rType = 0;
-		vrLen = 707;
-		vrLoc = 15971;
-	};
-	2C3D58881573E5D3002F73FA /* PBXBookmark */ = {
+	2C4095BA16A79B7B0085CB9D /* PBXBookmark */ = {
 		isa = PBXBookmark;
-		fRef = 2CE026E20EB0C98500925F15 /* KTeXEdit.sdef */;
+		fRef = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
 	};
-	2C3D58891573E5D3002F73FA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */;
-		name = "DVIController.applescript: 190";
-		rLen = 11;
-		rLoc = 6787;
-		rType = 0;
-		vrLen = 973;
-		vrLoc = 6319;
+	2C4095D116A850130085CB9D /* mi.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1118, 4030}}";
+			sepNavSelRange = "{5109, 0}";
+			sepNavVisRange = "{4515, 1296}";
+			sepNavWindowFrame = "{{247, 124}, {1193, 689}}";
+		};
+	};
+	2C4095D416A8C3E60085CB9D /* TeXDocument.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 484}}";
+			sepNavSelRange = "{590, 0}";
+			sepNavVisRange = "{0, 597}";
+			sepNavWindowFrame = "{{357, 56}, {1193, 689}}";
+		};
+	};
+	2C4095D516A8C3E60085CB9D /* TeXDocument.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 2132}}";
+			sepNavSelRange = "{2277, 0}";
+			sepNavVisRange = "{0, 1166}";
+			sepNavWindowFrame = "{{62, 189}, {1193, 689}}";
+		};
+	};
+	2C40972416A96F410085CB9D /* LabelDatum.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 484}}";
+			sepNavSelRange = "{94, 4}";
+			sepNavVisRange = "{0, 353}";
+			sepNavWindowFrame = "{{38, 401}, {725, 451}}";
+		};
+	};
+	2C40972516A96F410085CB9D /* LabelDatum.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 520}}";
+			sepNavSelRange = "{282, 0}";
+			sepNavVisRange = "{24, 728}";
+			sepNavWindowFrame = "{{38, 401}, {725, 451}}";
+		};
+	};
+	2C40972E16AA4D820085CB9D /* ReferenceDataController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 687}}";
+			sepNavSelRange = "{518, 0}";
+			sepNavVisRange = "{0, 524}";
+		};
+	};
+	2C40972F16AA4D820085CB9D /* ReferenceDataController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 4294}}";
+			sepNavSelRange = "{6352, 0}";
+			sepNavVisRange = "{514, 1524}";
+			sepNavWindowFrame = "{{40, 119}, {811, 759}}";
+		};
+	};
+	2C40983716AD578D0085CB9D /* AuxFile.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 585}}";
+			sepNavSelRange = "{335, 0}";
+			sepNavVisRange = "{208, 1015}";
+			sepNavWindowFrame = "{{464, 208}, {769, 635}}";
+		};
+	};
+	2C40983816AD578D0085CB9D /* AuxFile.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 5759}}";
+			sepNavSelRange = "{1737, 0}";
+			sepNavVisRange = "{0, 521}";
+			sepNavWindowFrame = "{{18, 219}, {905, 636}}";
+		};
+	};
+	2C4098EF16AE2C6A0085CB9D /* RegexKitLite.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1062, 4004}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 478}";
+		};
+	};
+	2C4098F016AE2C6A0085CB9D /* RegexKitLite.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {966, 34515}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 480}";
+		};
+	};
+	2C4099BB16AECE4C0085CB9D /* History.rtf */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {730, 13888}}";
+			sepNavSelRange = "{1262, 0}";
+			sepNavVisRect = "{{0, 566}, {730, 578}}";
+			sepNavWindowFrame = "{{659, 163}, {769, 635}}";
+		};
 	};
 	2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {
 		uiCtxt = {
@@ -661,33 +641,6 @@
 			sepNavVisRect = "{{0, 214}, {982, 388}}";
 		};
 	};
-	2C47F6EF0A7618B6001809FA /* History.rd */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 7881}}";
-			sepNavSelRange = "{934, 0}";
-			sepNavVisRange = "{420, 768}";
-			sepNavVisRect = "{{0, 168}, {573, 636}}";
-			sepNavWindowFrame = "{{141, 128}, {612, 750}}";
-		};
-	};
-	2C4B2EC80D053AF400280BE6 /* RefPanelController.m:93 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 2C6CA39608CF5558005D5612 /* RefPanelController.m */;
-		functionName = "-sniffRead:encodingCandidate:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 93;
-		location = TeXBridge;
-		modificationTime = 346034881.287341;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
 	2C4E27AD084273B000004A96 /* TeXBridge */ = {
 		activeExec = 0;
 		executables = (
@@ -702,39 +655,11 @@
 			sepNavWindowFrame = "{{176, 310}, {950, 476}}";
 		};
 	};
-	2C4E2AD80D06520F0012372E /* AppController.m:15 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
-		functionName = "orderdEncodingCandidates()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 15;
-		location = TeXBridge;
-		modificationTime = 346034881.321395;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
-	2C50424114A05CCA00739206 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */;
-		name = "TerminalCommander.applescript: 46";
-		rLen = 0;
-		rLoc = 1311;
-		rType = 0;
-		vrLen = 638;
-		vrLoc = 662;
-	};
 	2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1299}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 1183}}";
 			sepNavSelRange = "{2260, 0}";
-			sepNavVisRange = "{1535, 725}";
+			sepNavVisRange = "{1859, 400}";
 			sepNavVisRect = "{{0, 3946}, {982, 320}}";
 			sepNavWindowFrame = "{{223, 99}, {1078, 839}}";
 		};
@@ -745,32 +670,237 @@
 			sepNavSelRange = "{189, 0}";
 			sepNavVisRange = "{0, 764}";
 			sepNavVisRect = "{{0, 0}, {1039, 710}}";
-			sepNavWindowFrame = "{{38, 73}, {1078, 839}}";
+			sepNavWindowFrame = "{{64, 37}, {1078, 839}}";
 		};
 	};
-	2C5C63B60F39FFD800B0AE1D /* PlistBookmark */ = {
+	2C62B96916F07ED10045F488 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C7C498707962E380026564C /* FactorySettings.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			bibtexCommand,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/FactorySettings.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C62B96B16F07ED10045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */;
+		name = "MessageUtility.applescript: 13";
+		rLen = 10;
+		rLoc = 647;
+		rType = 0;
+		vrLen = 769;
+		vrLoc = 125;
+	};
+	2C62B98B16F07F330045F488 /* LogParser.m:573 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2CDACD820813BE3F000B9086 /* LogParser.m */;
+		functionName = "-parseLog";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 573;
+		location = TeXBridge;
+		modificationTime = 384920482.5011889;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C62B99716F0801E0045F488 /* LogParser.m:75 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2CDACD820813BE3F000B9086 /* LogParser.m */;
+		functionName = "-initWithContentsOfFile:encodingName:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 75;
+		location = TeXBridge;
+		modificationTime = 384920482.5207111;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C62B9A416F082ED0045F488 /* StringExtra.m:66 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2C0311A60AACA0F2005B592F /* StringExtra.m */;
+		functionName = "+stringWithData:encodingCandidates:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 66;
+		location = TeXBridge;
+		modificationTime = 384920482.5417079;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C62B9BE16F1611E0045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */;
+		name = "StringExtra.m: 58";
+		rLen = 14;
+		rLoc = 1878;
+		rType = 0;
+		vrLen = 782;
+		vrLoc = 1636;
+	};
+	2C62B9C516F167BC0045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40983716AD578D0085CB9D /* AuxFile.h */;
+		name = "AuxFile.h: 15";
+		rLen = 0;
+		rLoc = 335;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 208;
+	};
+	2C62B9C816F16ABC0045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C40983816AD578D0085CB9D /* AuxFile.m */;
+		name = "AuxFile.m: 74";
+		rLen = 0;
+		rLoc = 1737;
+		rType = 0;
+		vrLen = 521;
+		vrLoc = 0;
+	};
+	2C62B9C916F16ABC0045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CDACD7F0813BE3F000B9086 /* LogParser.h */;
+		name = "LogParser.h: 66";
+		rLen = 12;
+		rLoc = 1801;
+		rType = 0;
+		vrLen = 811;
+		vrLoc = 1010;
+	};
+	2C62B9CB16F16ABC0045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0BE33416DB872D0005A62A /* Error Numbers.rtf */;
+		name = "Error Numbers.rtf: 4";
+		rLen = 0;
+		rLoc = 153;
+		rType = 0;
+		vrLen = 153;
+		vrLoc = 0;
+	};
+	2C62B9DE16F16B9B0045F488 /* LogParser.m:64 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 2CDACD820813BE3F000B9086 /* LogParser.m */;
+		functionName = "-initWithString:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 64;
+		location = TeXBridge;
+		modificationTime = 384920482.56026;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	2C62BA3216F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CDACD820813BE3F000B9086 /* LogParser.m */;
+		name = "LogParser.m: 46";
+		rLen = 0;
+		rLoc = 1532;
+		rType = 0;
+		vrLen = 783;
+		vrLoc = 1071;
+	};
+	2C62BA3316F1FEA90045F488 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
+			Greek,
+			"γ",
 		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/ReplaceDictionary.plist";
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/ReplaceDictionary.plist";
 		rLen = 0;
-		rLoc = 2147483647;
+		rLoc = 9223372036854775808;
 	};
-	2C5C63B70F39FFD800B0AE1D /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/ToolSupport.plist";
+	2C62BA3516F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */;
+		name = "TeXDocController.applescript: 151";
+		rLen = 21;
+		rLoc = 3569;
+		rType = 0;
+		vrLen = 589;
+		vrLoc = 3206;
+	};
+	2C62BA3716F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */;
+		name = "EditorClient.applescript: 1";
 		rLen = 0;
-		rLoc = 2147483647;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 316;
+		vrLoc = 0;
 	};
-	2C639278112D2F1400427733 /* TeXBridge.applescript:215 */ = {
+	2C62BA3816F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */;
+		name = "LogFileParser.applescript: 104";
+		rLen = 0;
+		rLoc = 3234;
+		rType = 0;
+		vrLen = 661;
+		vrLoc = 2018;
+	};
+	2C62BA3916F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */;
+		name = "ReplaceInput.applescript: 78";
+		rLen = 0;
+		rLoc = 2260;
+		rType = 0;
+		vrLen = 400;
+		vrLoc = 1859;
+	};
+	2C62BA3A16F1FEA90045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */;
+		name = "PDFController.applescript: 464";
+		rLen = 0;
+		rLoc = 12343;
+		rType = 0;
+		vrLen = 387;
+		vrLoc = 8063;
+	};
+	2C62BA4416F1FF790045F488 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
+		name = "UtilityHandlers.applescript: 50";
+		rLen = 6;
+		rLoc = 1629;
+		rType = 0;
+		vrLen = 461;
+		vrLoc = 1361;
+	};
+	2C639278112D2F1400427733 /* TeXBridge.applescript:165 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -782,20 +912,10 @@
 		functionName = "on check_mi_version()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 215;
-		modificationTime = 346034879.20043;
+		lineNumber = 165;
+		modificationTime = 384920475.139246;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
-	};
-	2C64E0C10F8603A700A664B1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */;
-		name = "ToolPaletteController.m: 26";
-		rLen = 4;
-		rLoc = 509;
-		rType = 0;
-		vrLen = 637;
-		vrLoc = 0;
 	};
 	2C6950330A06E6C9008277ED /* TeXBridge */ = {
 		isa = PBXExecutable;
@@ -867,6 +987,7 @@
 		sourceDirectories = (
 		);
 		variableFormatDictionary = {
+			"_elementCode-DescType--[TeXDocument resolveMasterFromEditorReturningError:]" = 5;
 		};
 	};
 	2C69503A0A06E6D3008277ED /* Source Control */ = {
@@ -900,7 +1021,7 @@
 		ignoreCount = 0;
 		lineNumber = 82;
 		location = TeXBridge;
-		modificationTime = 346034881.233099;
+		modificationTime = 384920482.422734;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -918,87 +1039,92 @@
 		ignoreCount = 0;
 		lineNumber = 56;
 		location = TeXBridge;
-		modificationTime = 346034881.265058;
+		modificationTime = 384920482.437137;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	2C6CA39608CF5558005D5612 /* RefPanelController.m */ = {
+	2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1526}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 568}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 1508}}";
+			sepNavSelRange = "{34, 0}";
+			sepNavVisRange = "{1620, 1040}";
 			sepNavVisRect = "{{0, 0}, {805, 744}}";
-			sepNavWindowFrame = "{{510, 99}, {844, 817}}";
+			sepNavWindowFrame = "{{495, 110}, {877, 768}}";
 		};
 	};
-	2C6CA39708CF5558005D5612 /* RefPanelController.h */ = {
+	2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 426}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 304}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 484}}";
+			sepNavSelRange = "{141, 23}";
+			sepNavVisRange = "{0, 567}";
 			sepNavVisRect = "{{0, 0}, {693, 756}}";
-			sepNavWindowFrame = "{{446, 90}, {732, 829}}";
-		};
-	};
-	2C6CA3AB08CF5572005D5612 /* RefPanelController.applescript */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 2759}}";
-			sepNavSelRange = "{4764, 0}";
-			sepNavVisRange = "{1153, 800}";
-			sepNavVisRect = "{{0, 180}, {758, 781}}";
-			sepNavWindowFrame = "{{485, 69}, {797, 809}}";
+			sepNavWindowFrame = "{{446, 86}, {732, 792}}";
 		};
 	};
 	2C6CA3C008CF559E005D5612 /* LabelListController.applescript */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.applescript;
+		name = LabelListController.applescript;
+		path = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_5/LabelListController.applescript";
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 5392}}";
-			sepNavSelRange = "{3607, 0}";
-			sepNavVisRange = "{3896, 754}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 5293}}";
+			sepNavSelRange = "{3262, 21}";
+			sepNavVisRange = "{2824, 706}";
 			sepNavVisRect = "{{0, 418}, {747, 715}}";
-			sepNavWindowFrame = "{{558, 90}, {786, 788}}";
+			sepNavWindowFrame = "{{575, 90}, {786, 788}}";
+		};
+	};
+	2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {763, 572}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 712}";
 		};
 	};
 	2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 7458}}";
-			sepNavSelRange = "{15271, 0}";
-			sepNavVisRange = "{15971, 707}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 8001}}";
+			sepNavSelRange = "{17007, 0}";
+			sepNavVisRange = "{10503, 640}";
 			sepNavVisRect = "{{0, 7058}, {982, 352}}";
-			sepNavWindowFrame = "{{85, 75}, {703, 803}}";
+			sepNavWindowFrame = "{{436, 86}, {703, 792}}";
 		};
 	};
 	2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 732}}";
-			sepNavSelRange = "{64, 0}";
-			sepNavVisRange = "{0, 578}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 735}}";
+			sepNavSelRange = "{1316, 0}";
+			sepNavVisRange = "{0, 714}";
 			sepNavVisRect = "{{0, 220}, {982, 394}}";
-			sepNavWindowFrame = "{{419, 167}, {932, 764}}";
-		};
-	};
-	2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {981, 5286}}";
-			sepNavSelRange = "{10470, 0}";
-			sepNavVisRange = "{2057, 714}";
-			sepNavVisRect = "{{0, 979}, {982, 379}}";
-			sepNavWindowFrame = "{{446, 79}, {690, 799}}";
+			sepNavWindowFrame = "{{419, 114}, {932, 764}}";
 		};
 	};
 	2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 735}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 585}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1032}";
+			sepNavVisRange = "{0, 316}";
 			sepNavVisRect = "{{0, 0}, {982, 413}}";
-			sepNavWindowFrame = "{{353, 98}, {967, 832}}";
+			sepNavWindowFrame = "{{353, 46}, {967, 832}}";
 		};
+	};
+	2C79A83016F2F8510054A09E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */;
+		name = "CompileCenter.applescript: 586";
+		rLen = 0;
+		rLoc = 17007;
+		rType = 0;
+		vrLen = 640;
+		vrLoc = 10503;
 	};
 	2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 1217}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1062, 1133}}";
 			sepNavSelRange = "{141, 8}";
-			sepNavVisRange = "{1243, 470}";
+			sepNavVisRange = "{1045, 787}";
 			sepNavVisRect = "{{0, 0}, {982, 320}}";
 			sepNavWindowFrame = "{{123, 211}, {754, 727}}";
 		};
@@ -1020,9 +1146,9 @@
 	};
 	2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 490}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 455}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 477}";
+			sepNavVisRange = "{0, 316}";
 		};
 	};
 	2C808ACE0E9BDC2E006F19EB /* DefaultToNilTransformer.h */ = {
@@ -1031,26 +1157,6 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 160}";
 		};
-	};
-	2C83216D0E9A7B33009F6A8B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */;
-		name = "AppNameToIconImageTransformer.m: 5";
-		rLen = 29;
-		rLoc = 61;
-		rType = 0;
-		vrLen = 500;
-		vrLoc = 0;
-	};
-	2C8321D40E9A840D009F6A8B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A30AACA0F2005B592F /* PathExtra.h */;
-		name = "PathExtra.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 363;
-		vrLoc = 0;
 	};
 	2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {
 		uiCtxt = {
@@ -1068,11 +1174,11 @@
 	};
 	2C9E42C1052215F000248965 /* Japanese */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1632}}";
-			sepNavSelRange = "{2121, 17}";
-			sepNavVisRange = "{1600, 1142}";
+			sepNavIntBoundsRect = "{{0, 0}, {914, 1682}}";
+			sepNavSelRange = "{1616, 0}";
+			sepNavVisRange = "{1468, 639}";
 			sepNavVisRect = "{{0, 0}, {876, 430}}";
-			sepNavWindowFrame = "{{662, 79}, {716, 799}}";
+			sepNavWindowFrame = "{{560, 80}, {716, 792}}";
 		};
 	};
 	2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {
@@ -1085,31 +1191,12 @@
 	};
 	2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 448}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 416}}";
 			sepNavSelRange = "{442, 188}";
-			sepNavVisRange = "{0, 632}";
+			sepNavVisRange = "{81, 550}";
 			sepNavVisRect = "{{0, 0}, {1185, 591}}";
 			sepNavWindowFrame = "{{38, 192}, {1224, 720}}";
 		};
-	};
-	2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 628}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{438, 680}";
-			sepNavVisRect = "{{0, 0}, {650, 701}}";
-			sepNavWindowFrame = "{{38, 138}, {689, 774}}";
-		};
-	};
-	2CA9B34B0E97C419009C0C2A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */;
-		name = "AppNameToIconImageTransformer.h: 3";
-		rLen = 29;
-		rLoc = 36;
-		rType = 0;
-		vrLen = 97;
-		vrLoc = 0;
 	};
 	2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {
 		uiCtxt = {
@@ -1129,33 +1216,13 @@
 	};
 	2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {982, 405}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1062, 445}}";
+			sepNavSelRange = "{447, 0}";
+			sepNavVisRange = "{0, 447}";
 			sepNavVisRect = "{{0, 0}, {982, 405}}";
 		};
 	};
-	2CB721910F32C77C00995D8A /* DefaultToNilTransformer.m:5 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		currentMultipleMatches = (
-			2C089FDB14A012D000515F0A /* -[DefaultToNilTransformer nilWord] */,
-			2C089FDC14A012D000515F0A /* -[DefaultToNilTransformer setNilWord:] */,
-		);
-		delayBeforeContinue = 0;
-		fileReference = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */;
-		functionName = "-transformedValue:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 5;
-		modificationTime = 346034896.996304;
-		originalNumberOfMultipleMatches = 2;
-		state = 1;
-	};
-	2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:268 */ = {
+	2CB721AC0F32CA5C00995D8A /* SettingWindowController.m:272 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1167,31 +1234,11 @@
 		functionName = "-windowWillLoad";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 268;
+		lineNumber = 272;
 		location = TeXBridge;
-		modificationTime = 346034881.880933;
+		modificationTime = 384920482.445416;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
-	};
-	2CB721C20F32CC3800995D8A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C808A8D0E9BD985006F19EB /* Terminal.h */;
-		name = "Terminal.h: 33";
-		rLen = 76;
-		rLoc = 807;
-		rType = 0;
-		vrLen = 1062;
-		vrLoc = 413;
-	};
-	2CB721C40F32CC3800995D8A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */;
-		name = "DefaultToNilTransformer.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 447;
-		vrLoc = 38;
 	};
 	2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */ = {
 		uiCtxt = {
@@ -1213,7 +1260,7 @@
 	};
 	2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 426}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 365}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 776}";
 			sepNavVisRect = "{{0, 0}, {789, 477}}";
@@ -1222,35 +1269,46 @@
 	};
 	2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 2002}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 748}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 1547}}";
+			sepNavSelRange = "{1232, 51}";
+			sepNavVisRange = "{785, 676}";
 			sepNavVisRect = "{{0, 1250}, {789, 477}}";
 			sepNavWindowFrame = "{{423, 64}, {633, 816}}";
 		};
 	};
 	2CBFD209097DFA9200BCEB43 /* miClient.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 426}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 314}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 330}}";
+			sepNavSelRange = "{350, 22}";
+			sepNavVisRange = "{0, 380}";
 			sepNavVisRect = "{{0, 0}, {982, 567}}";
+			sepNavWindowFrame = "{{153, 92}, {972, 715}}";
 		};
 	};
 	2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1230, 2698}}";
-			sepNavSelRange = "{2191, 0}";
-			sepNavVisRange = "{1722, 856}";
+			sepNavIntBoundsRect = "{{0, 0}, {824, 3692}}";
+			sepNavSelRange = "{5431, 64}";
+			sepNavVisRange = "{5291, 614}";
 			sepNavVisRect = "{{0, 2481}, {982, 463}}";
 			sepNavWindowFrame = "{{153, 105}, {888, 702}}";
 		};
 	};
+	2CBFF92D16EF5F2D00CD19E8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 71";
+		rLen = 0;
+		rLoc = 2314;
+		rType = 0;
+		vrLen = 1596;
+		vrLoc = 6619;
+	};
 	2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 690}}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 667}}";
 			sepNavSelRange = "{795, 0}";
-			sepNavVisRange = "{0, 1034}";
+			sepNavVisRange = "{344, 690}";
 			sepNavVisRect = "{{0, 0}, {704, 665}}";
 			sepNavWindowFrame = "{{38, 140}, {743, 738}}";
 		};
@@ -1264,47 +1322,20 @@
 			sepNavWindowFrame = "{{134, 126}, {870, 805}}";
 		};
 	};
-	2CC57AEB15993A5600274375 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */;
-		name = "StringExtra.m: 130";
-		rLen = 0;
-		rLoc = 4157;
-		rType = 0;
-		vrLen = 628;
-		vrLoc = 574;
-	};
-	2CC57AEC15993A5600274375 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
-		rLen = 0;
-		rLoc = 1482;
-		rType = 0;
-	};
-	2CC57AFC159968D300274375 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */;
-		name = "UtilityHandlers.applescript: 69";
-		rLen = 0;
-		rLoc = 2142;
-		rType = 0;
-		vrLen = 766;
-		vrLoc = 1287;
-	};
 	2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1019, 6032}}";
-			sepNavSelRange = "{3058, 4}";
-			sepNavVisRange = "{2802, 678}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 6489}}";
+			sepNavSelRange = "{3569, 21}";
+			sepNavVisRange = "{3206, 589}";
 			sepNavVisRect = "{{0, 2774}, {982, 352}}";
-			sepNavWindowFrame = "{{241, 76}, {902, 802}}";
+			sepNavWindowFrame = "{{241, 90}, {902, 788}}";
 		};
 	};
 	2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 5751}}";
-			sepNavSelRange = "{4667, 16}";
-			sepNavVisRange = "{3935, 1035}";
+			sepNavIntBoundsRect = "{{0, 0}, {895, 5948}}";
+			sepNavSelRange = "{3822, 18}";
+			sepNavVisRange = "{3822, 1152}";
 			sepNavVisRect = "{{0, 340}, {982, 352}}";
 			sepNavWindowFrame = "{{67, 113}, {965, 765}}";
 		};
@@ -1313,6 +1344,8 @@
 		isa = PBXBookmarkGroup;
 		children = (
 			2CCF943010D8B2D3004E5A38 /* PBXTextBookmark */,
+			2C4095BA16A79B7B0085CB9D /* PBXBookmark */,
+			2C0BE4CE16DC4C0C0005A62A /* PBXBookmark */,
 		);
 		name = Root;
 	};
@@ -1337,29 +1370,29 @@
 	};
 	2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 3990}}";
-			sepNavSelRange = "{9348, 0}";
-			sepNavVisRange = "{8568, 782}";
+			sepNavIntBoundsRect = "{{0, 0}, {803, 3588}}";
+			sepNavSelRange = "{2314, 0}";
+			sepNavVisRange = "{6619, 1596}";
 			sepNavVisRect = "{{0, 0}, {849, 654}}";
 			sepNavWindowFrame = "{{334, 193}, {754, 727}}";
 		};
 	};
 	2CD5554C08BEC77E007E43D1 /* AppController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 530}}";
-			sepNavSelRange = "{45, 21}";
-			sepNavVisRange = "{0, 581}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 533}}";
+			sepNavSelRange = "{348, 0}";
+			sepNavVisRange = "{369, 734}";
 			sepNavVisRect = "{{0, 0}, {982, 405}}";
 			sepNavWindowFrame = "{{15, 213}, {1224, 720}}";
 		};
 	};
 	2CD5554D08BEC77E007E43D1 /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1034, 2639}}";
-			sepNavSelRange = "{4993, 0}";
-			sepNavVisRange = "{4541, 1327}";
+			sepNavIntBoundsRect = "{{0, 0}, {782, 4901}}";
+			sepNavSelRange = "{556, 14}";
+			sepNavVisRange = "{451, 793}";
 			sepNavVisRect = "{{0, 1984}, {982, 449}}";
-			sepNavWindowFrame = "{{244, 86}, {955, 792}}";
+			sepNavWindowFrame = "{{76, 109}, {793, 769}}";
 		};
 	};
 	2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */ = {
@@ -1367,47 +1400,29 @@
 			sepNavWindowFrame = "{{61, 159}, {1179, 732}}";
 		};
 	};
-	2CD956070ADE4C310086AFAD /* LogWindowController.m:142 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 2CDBE609097BA7FE00C3300B /* LogWindowController.m */;
-		functionName = "-outlineView:shouldSelectItem:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 142;
-		location = TeXBridge;
-		modificationTime = 346034881.146392;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
-	};
 	2CDA10AA069404FE00467991 /* PDFController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {757, 5941}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 774}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 6214}}";
+			sepNavSelRange = "{12343, 0}";
+			sepNavVisRange = "{8063, 387}";
 			sepNavVisRect = "{{0, 6103}, {982, 175}}";
 			sepNavWindowFrame = "{{61, 137}, {878, 741}}";
 		};
 	};
 	2CDACD7F0813BE3F000B9086 /* LogParser.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1036}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 710}";
+			sepNavIntBoundsRect = "{{0, 0}, {894, 897}}";
+			sepNavSelRange = "{1801, 12}";
+			sepNavVisRange = "{1010, 811}";
 			sepNavVisRect = "{{0, 150}, {650, 645}}";
 			sepNavWindowFrame = "{{38, 138}, {689, 774}}";
 		};
 	};
 	2CDACD820813BE3F000B9086 /* LogParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 9492}}";
-			sepNavSelRange = "{17073, 0}";
-			sepNavVisRange = "{16702, 609}";
+			sepNavIntBoundsRect = "{{0, 0}, {1080, 9035}}";
+			sepNavSelRange = "{1817, 14}";
+			sepNavVisRange = "{1595, 609}";
 			sepNavVisRect = "{{0, 1068}, {728, 285}}";
 			sepNavWindowFrame = "{{546, 111}, {767, 736}}";
 		};
@@ -1423,37 +1438,26 @@
 	};
 	2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 2640}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{1972, 743}";
+			sepNavIntBoundsRect = "{{0, 0}, {831, 2499}}";
+			sepNavSelRange = "{2039, 0}";
+			sepNavVisRange = "{1892, 619}";
 			sepNavVisRect = "{{0, 434}, {794, 764}}";
 			sepNavWindowFrame = "{{282, 75}, {691, 862}}";
 		};
 	};
 	2CE026EC0EB0C9A400925F15 /* FindRoughlyCommand.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 1064}}";
-			sepNavSelRange = "{69, 0}";
-			sepNavVisRange = "{0, 529}";
+			sepNavIntBoundsRect = "{{0, 0}, {775, 988}}";
+			sepNavSelRange = "{2134, 0}";
+			sepNavVisRange = "{1373, 1003}";
 		};
 	};
 	2CE026ED0EB0C9A400925F15 /* FindRoughlyCommand.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {914, 530}}";
-			sepNavSelRange = "{58, 15}";
+			sepNavIntBoundsRect = "{{0, 0}, {962, 376}}";
+			sepNavSelRange = "{37, 9}";
 			sepNavVisRange = "{0, 85}";
 		};
-	};
-	2CE6662B14FBD98400B3755C /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
 	};
 	2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {
 		uiCtxt = {
@@ -1469,77 +1473,6 @@
 			sepNavVisRange = "{0, 149}";
 		};
 	};
-	2CE6F48514A0588300255449 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 2C7C498707962E380026564C /* FactorySettings.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			ExecutionString,
-		);
-		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/FactorySettings.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
-	2CE6F48614A0588300255449 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C47F6EF0A7618B6001809FA /* History.rd */;
-		name = "History.rd: 40";
-		rLen = 0;
-		rLoc = 934;
-		rType = 0;
-		vrLen = 768;
-		vrLoc = 420;
-	};
-	2CE6F48714A0588300255449 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C6CA3C008CF559E005D5612 /* LabelListController.applescript */;
-		name = "LabelListController.applescript: 123";
-		rLen = 0;
-		rLoc = 3607;
-		rType = 0;
-		vrLen = 754;
-		vrLoc = 3896;
-	};
-	2CE6F49014A05BBF00255449 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 217;
-		vrLoc = 0;
-	};
-	2CE6F49114A05BBF00255449 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CBFD20A097DFA9200BCEB43 /* miClient.m */;
-		name = "miClient.m: 71";
-		rLen = 0;
-		rLoc = 2191;
-		rType = 0;
-		vrLen = 856;
-		vrLoc = 1722;
-	};
-	2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {758, 320}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 467}";
-			sepNavVisRect = "{{0, 0}, {544, 327}}";
-			sepNavWindowFrame = "{{637, 474}, {583, 400}}";
-		};
-	};
-	2CF03EE10EA78B0D0044339F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */;
-		name = "EditorClient.applescript: 27";
-		rLen = 12;
-		rLoc = 700;
-		rType = 0;
-		vrLen = 554;
-		vrLoc = 478;
-	};
 	2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {797, 944}}";
@@ -1548,23 +1481,13 @@
 			sepNavWindowFrame = "{{15, 393}, {821, 540}}";
 		};
 	};
-	2CF8424D15833DA1004E5E20 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */;
-		name = "PDFController.applescript: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 774;
-		vrLoc = 0;
-	};
 	DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {780, 4306}}";
-			sepNavSelRange = "{9833, 0}";
-			sepNavVisRange = "{6168, 1647}";
+			sepNavIntBoundsRect = "{{0, 0}, {763, 3802}}";
+			sepNavSelRange = "{8461, 0}";
+			sepNavVisRange = "{1566, 726}";
 			sepNavVisRect = "{{0, 1263}, {650, 645}}";
-			sepNavWindowFrame = "{{555, 84}, {793, 786}}";
+			sepNavWindowFrame = "{{299, 90}, {793, 786}}";
 		};
 	};
 }

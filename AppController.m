@@ -4,8 +4,18 @@
 #import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder/DonationReminder.h"
 #import "SmartActivate.h"
+#import "TeXDocument.h"
+#import "NewRefPanelController.h"
 
 #define useLog 0
+
+
+@interface ASKScriptCache : NSObject
+{
+}
++ (ASKScriptCache *)sharedScriptCache;
+- (OSAScript *)scriptWithName:(NSString *)name;
+@end
 
 id EditorClient;
 static id sharedObj;
@@ -49,15 +59,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	return self;
 }
 
-
-- (void)showSettingWindow
-{
-	if (!settingWindow) {
-		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
-	}
-	[settingWindow showWindow:self];
-	[SmartActivate activateSelf];
-}
 
 - (void)checkQuit:(NSTimer *)aTimer
 {
@@ -152,6 +153,127 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	return kShouldPostController;
 }
 
+- (void)setStartupMessage:(NSString *)message
+{
+	[startupMessageField setStringValue:message];
+	[startupWindow displayIfNeeded];
+}
+
+#pragma mark actions for tool palette
+
+- (IBAction)showSettingWindow:(id)sender
+{
+	if (!settingWindow) {
+		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
+	}
+	[settingWindow showWindow:self];
+	[SmartActivate activateSelf];
+}
+
+- (IBAction)quickTypesetPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"quick_typeset_preview"]
+							 error:&error_info];
+}
+- (IBAction)dviPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"preview_dvi"]
+							 error:&error_info];
+	
+}
+- (IBAction)dviToPDF:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"dvi_to_pdf"]
+							 error:&error_info];
+	
+}
+- (IBAction)typesetPDFPreview:(id)sender
+{
+	NSDictionary *error_info = nil;
+	[script executeHandlerWithName:@"perform_handler"
+						 arguments:[NSArray arrayWithObject:@"typeset_preview_pdf"]
+							 error:&error_info];
+}
+
+- (void)showStatusMessage:(NSString *)msg
+{
+	if (! toolPaletteController) return;
+	if (! [toolPaletteController isOpened]) return;
+	if ([toolPaletteController isCollapsed]) return;
+	[toolPaletteController showStatusMessage:msg];
+}
+
+- (IBAction)showToolPalette:(id)sender
+{
+	if (!toolPaletteController) {
+		toolPaletteController = [[NewToolPaletteController alloc] 
+									initWithWindowNibName:@"NewToolPalette"];
+	}
+	[toolPaletteController showWindow:self];
+}
+
+- (void)toggleToolPalette
+{
+	if (!toolPaletteController) {
+		return [self showToolPalette:self];
+	}
+	
+	if ([toolPaletteController isOpened]) {
+		return [toolPaletteController close];
+	}
+	
+	[toolPaletteController showWindow:self];
+}
+
+#pragma mark control for reference palette
+- (void)stopTimer
+{
+	if (!refPanelController) return;
+	[refPanelController temporaryStopReloadTimer];
+}
+
+- (void)restartTimer
+{
+	if (!refPanelController) return;
+	[refPanelController restartReloadTimer];
+}
+
+- (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName
+{
+	if (!refPanelController) return;
+	if (![refPanelController isOpened]) return;
+	if ([refPanelController isCollapsed]) return;
+	[refPanelController rebuildLabelsFromAux:texFilePath textEncoding:encodingName];
+}
+
+- (IBAction)showRefPalette:(id)sender
+{
+	if (!refPanelController) {
+		refPanelController = [[NewRefPanelController alloc]
+								initWithWindowNibName:@"NewReferencePalette"];
+	}
+	[refPanelController showWindow:self];
+}
+
+- (void)toggleRefPalette
+{
+	if (!refPanelController) {
+		return [self showRefPalette:self];
+	}
+	
+	if ([refPanelController isOpened]) {
+		return [refPanelController close];
+	}
+	
+	[refPanelController showWindow:self];
+}
+
 #pragma mark delegate of NSApplication
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
@@ -159,7 +281,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NSLog(@"start applicationWillFinishLaunching");
 #endif	
 	/* regist FactorySettings into shared user defaults */
-	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
+	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
+																  ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:factoryDefaults];
@@ -170,8 +293,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		[startupWindow close];
 		[NSApp activateIgnoringOtherApps:YES];
 		int ret = NSRunAlertPanel(NSLocalizedString(@"disableGUIScripting", ""), @"", 
-							NSLocalizedString(@"Launch System Preferences", ""),
-							NSLocalizedString(@"Cancel",""), @"");
+								  NSLocalizedString(@"Launch System Preferences", ""),
+								  NSLocalizedString(@"Cancel",""), @"");
 		switch (ret)
         {
             case NSAlertDefaultReturn:
@@ -184,7 +307,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		[NSApp terminate:self];
 		return;
     }
-	EditorClient = [[miClient alloc] init];
+	EditorClient = [miClient sharedClient];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
 	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
@@ -199,17 +322,51 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #if useLog
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(checkQuit:) userInfo:nil repeats:YES];
+	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
+												  selector:@selector(checkQuit:) 
+												  userInfo:nil repeats:YES];
 	[appQuitTimer retain];
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
+	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) 
+						 name:NSWorkspaceDidTerminateApplicationNotification object:nil];
 
 	id reminderWindow = [DonationReminder remindDonation];
 	if (reminderWindow != nil) [NSApp activateIgnoringOtherApps:YES];
+	
+	
+	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	
+	toolPaletteController = nil;
+	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
+			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
+		[self  setStartupMessage:@"Opening Tool Palette..."];
+		[self showToolPalette:self];
+	}
+	
+	refPanelController = nil;
+	if ([user_defaults boolForKey:@"ShowRefPaletteWhenLaunched"] 
+		||  [user_defaults boolForKey:@"IsOpenedRefPalette"]) {
+		[self setStartupMessage:@"Opening Reference Palette..."];
+		[self showRefPalette:self];
+	}
+	
+
+	// Test Code
+	/*
+	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
+	[wc showWindow:self];
+	 */
+	[startupWindow close];
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	
 }
+
+- (void)awakeFromNib
+{
+	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
+}
+
 
 @end
