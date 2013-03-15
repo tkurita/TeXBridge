@@ -170,9 +170,6 @@
 		2C30E7101095A65800605969 /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C4095B616A79B120085CB9D /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
-		2C4095BF16A79BD10085CB9D /* RefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefPanelController.h; sourceTree = "<group>"; };
-		2C4095C016A79BD10085CB9D /* RefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefPanelController.m; sourceTree = "<group>"; };
-		2C4095C716A79DA80085CB9D /* RefPanelController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = RefPanelController.applescript; sourceTree = "<group>"; };
 		2C4095C916A84D810085CB9D /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		2C4095D116A850130085CB9D /* mi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mi.h; sourceTree = "<group>"; };
 		2C4095D416A8C3E60085CB9D /* TeXDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeXDocument.h; sourceTree = "<group>"; };
@@ -197,21 +194,16 @@
 		2C4E27E4084273B000004A96 /* TeXBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInput.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
-		2C6CA37608CF54DD005D5612 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ReferencePalette.nib; sourceTree = "<group>"; };
 		2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = NewRefPanelController.m; sourceTree = "<group>"; };
 		2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = NewRefPanelController.h; sourceTree = "<group>"; };
 		2C6CA3A308CF5565005D5612 /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = images/Reload.png; sourceTree = "<group>"; };
-		2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = NewRefPanelController.applescript; sourceTree = "<group>"; };
-		2C6CA3C008CF559E005D5612 /* LabelListController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = LabelListController.applescript; sourceTree = "<group>"; };
 		2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = SheetManager.applescript; sourceTree = "<group>"; };
 		2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = CompileCenter.applescript; sourceTree = "<group>"; };
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
 		2C71167D07D177B8008BCAEF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		2C71167E07D177B8008BCAEF /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = images/minus.png; sourceTree = "<group>"; };
 		2C732C7C07AE666B005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
-		2C732C7F07AE667D005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/ToolPalette.nib; sourceTree = "<group>"; };
 		2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = AuxData.applescript; sourceTree = "<group>"; };
 		2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = DefaultsManager.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
@@ -226,7 +218,6 @@
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
-		2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteController.applescript; sourceTree = "<group>"; };
 		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
 		2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
@@ -262,7 +253,6 @@
 		2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OldKTeXEdit.scriptSuite; sourceTree = "<group>"; };
 		2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_TeXFileUtilities.m; sourceTree = "<group>"; };
 		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
-		2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ToolPaletteButtons.applescript; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
@@ -355,7 +345,6 @@
 				2C49445407AD219B00B2A8D8 /* images */,
 				2C4098F316AE2C700085CB9D /* RegexKitLite */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				2C0BDE4516D9B0A40005A62A /* Old Code */,
 				2CB63A5D08CF038D002FCC88 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -419,23 +408,6 @@
 				2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */,
 			);
 			path = CocoaLib;
-			sourceTree = "<group>";
-		};
-		2C0BDE4516D9B0A40005A62A /* Old Code */ = {
-			isa = PBXGroup;
-			children = (
-				2C6CA3AB08CF5572005D5612 /* NewRefPanelController.applescript */,
-				2C732C7E07AE667D005ACE75 /* ToolPalette.nib */,
-				2CA3F88208BEE59500F997B9 /* ToolPaletteController.applescript */,
-				2CE77AD408E257D200C3AD21 /* ToolPaletteButtons.applescript */,
-				2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */,
-				2C77C4950D03CCB900C4E9D3 /* AuxData.applescript */,
-				2C4095C716A79DA80085CB9D /* RefPanelController.applescript */,
-				2C6CA3C008CF559E005D5612 /* LabelListController.applescript */,
-				2C4095BF16A79BD10085CB9D /* RefPanelController.h */,
-				2C4095C016A79BD10085CB9D /* RefPanelController.m */,
-			);
-			name = "Old Code";
 			sourceTree = "<group>";
 		};
 		2C0BE4CA16DC4B9E0005A62A /* ToolPalette */ = {
@@ -739,28 +711,12 @@
 			name = NewReferencePalette.nib;
 			sourceTree = "<group>";
 		};
-		2C6CA37508CF54DD005D5612 /* ReferencePalette.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C6CA37608CF54DD005D5612 /* Japanese */,
-			);
-			name = ReferencePalette.nib;
-			sourceTree = "<group>";
-		};
 		2C732C7B07AE666B005ACE75 /* Setting.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2C732C7C07AE666B005ACE75 /* Japanese */,
 			);
 			name = Setting.nib;
-			sourceTree = "<group>";
-		};
-		2C732C7E07AE667D005ACE75 /* ToolPalette.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C732C7F07AE667D005ACE75 /* Japanese */,
-			);
-			name = ToolPalette.nib;
 			sourceTree = "<group>";
 		};
 		2C9E42BE052215CB00248965 /* Localizable.strings */ = {
