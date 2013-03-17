@@ -79,7 +79,7 @@ extern id EditorClient;
 - (void)awakeFromNib
 {
 	[self setFrameName:@"ReferencePalettePalette"];
-	[self setApplicationsFloatingOnFromDefaultName:@"ReferencePaletteApplicationsFloatingOn"];
+	[self bindApplicationsFloatingOnForKey:@"ReferencePaletteApplicationsFloatingOn"];
 	[self useFloating];
 	[self useWindowCollapse];
 	[dataController watchEditorWithReloading:NO];
