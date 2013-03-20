@@ -286,17 +286,16 @@
 								<string>2CD553EC08BCDE96007E43D1</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05539CD112110102</string>
+								<string>1C77FABC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
-									<integer>9</integer>
-									<integer>0</integer>
+									<integer>57</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 19}, {295, 625}}</string>
+							<string>{{0, 395}, {295, 625}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -333,7 +332,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>2C6E886D169B08E500CDEE1D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ReferenceDataController.m</string>
+								<string>AppController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -341,32 +340,14 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ReferenceDataController.m</string>
+										<string>AppController.m</string>
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2C25689816F9FCBA00CF5686</string>
+										<string>2C2568DA16FA0F1100CF5686</string>
 										<key>history</key>
 										<array>
-											<string>2C62BA3716F1FEA90045F488</string>
-											<string>2C62BA3916F1FEA90045F488</string>
-											<string>2C62BA4416F1FF790045F488</string>
-											<string>2C03CC8A16F2C88000F244BB</string>
-											<string>2C5FA06C16F32761004CDA54</string>
-											<string>2C5FA09F16F46BC2004CDA54</string>
-											<string>2C17958716F5B57600894353</string>
-											<string>2C17958A16F5B57600894353</string>
-											<string>2C17959816F5B59F00894353</string>
-											<string>2C1795A016F5B63900894353</string>
-											<string>2C1795AF16F5B7C500894353</string>
-											<string>2C1795B016F5B7C500894353</string>
-											<string>2C1795B116F5B7C500894353</string>
-											<string>2C25687A16F9F99600CF5686</string>
-											<string>2C25687B16F9F99600CF5686</string>
-											<string>2C25687C16F9F99600CF5686</string>
-											<string>2C25687D16F9F99600CF5686</string>
-											<string>2C25689616F9FCBA00CF5686</string>
-											<string>2C25689716F9FCBA00CF5686</string>
+											<string>2C2568D916FA0F1100CF5686</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -706,6 +687,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C2568DB16FA0F1100CF5686</string>
 		<string>2C25689416F9FBCF00CF5686</string>
 		<string>2C25689516F9FBCF00CF5686</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
