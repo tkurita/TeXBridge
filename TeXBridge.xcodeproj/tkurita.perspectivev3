@@ -283,19 +283,20 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>2C4096E816A95F850085CB9D</string>
+								<string>2CD553EC08BCDE96007E43D1</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05539CD112110102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
+									<integer>23</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {295, 625}}</string>
+							<string>{{0, 19}, {295, 625}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -344,7 +345,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2C25687F16F9F99600CF5686</string>
+										<string>2C25689816F9FCBA00CF5686</string>
 										<key>history</key>
 										<array>
 											<string>2C62BA3716F1FEA90045F488</string>
@@ -354,7 +355,6 @@
 											<string>2C5FA06C16F32761004CDA54</string>
 											<string>2C5FA09F16F46BC2004CDA54</string>
 											<string>2C17958716F5B57600894353</string>
-											<string>2C17958816F5B57600894353</string>
 											<string>2C17958A16F5B57600894353</string>
 											<string>2C17959816F5B59F00894353</string>
 											<string>2C1795A016F5B63900894353</string>
@@ -365,7 +365,8 @@
 											<string>2C25687B16F9F99600CF5686</string>
 											<string>2C25687C16F9F99600CF5686</string>
 											<string>2C25687D16F9F99600CF5686</string>
-											<string>2C25687E16F9F99600CF5686</string>
+											<string>2C25689616F9FCBA00CF5686</string>
+											<string>2C25689716F9FCBA00CF5686</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -664,14 +665,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C17958D16F5B57600894353</string>
+				<string>2C25688D16F9FBCF00CF5686</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>2C17958E16F5B57600894353</string>
-				<string>2C17958F16F5B57600894353</string>
-				<string>2C17959016F5B57600894353</string>
-				<string>2C17959116F5B57600894353</string>
-				<string>2C17959216F5B57600894353</string>
+				<string>2C25688E16F9FBCF00CF5686</string>
+				<string>2C25688F16F9FBCF00CF5686</string>
+				<string>2C25689016F9FBCF00CF5686</string>
+				<string>2C25689116F9FBCF00CF5686</string>
+				<string>2C25689216F9FBCF00CF5686</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -705,6 +706,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C25689416F9FBCF00CF5686</string>
+		<string>2C25689516F9FBCF00CF5686</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

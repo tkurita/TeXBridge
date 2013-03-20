@@ -120,8 +120,14 @@ bail:
 	NSError *error = nil;
 	AuxFile *current_aux_file = [self findAuxFileFromEditorReturningError:&error];
 	if (! current_aux_file) {
-		if ([error code] != 1205) { /* 1205 -- invalid mode */
-			NSLog(@"Failed to findAuxFileFromEditorReturningError : %@", error);
+		switch ([error code]) {
+			case 1205: // invalid mode
+				break;
+			case 1240: // no opened document
+				break;
+			default:
+				NSLog(@"Failed to findAuxFileFromEditorReturningError : %@", error);
+				break;
 		}
 		return;
 	}
