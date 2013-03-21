@@ -777,7 +777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
