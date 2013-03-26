@@ -197,7 +197,8 @@ bail:
 {
 #if useLog
 	NSLog(@"start clearLabelsFromEditorRecursively");
-#endif	
+#endif
+	if (![self hasTreeNode]) return;
 	NSTreeNode *current_node = [self treeNode];
 	NSMutableArray *child_nodes = [current_node mutableChildNodes];
 	NSArray *array = [NSArray arrayWithArray:labelsFromEditor];
