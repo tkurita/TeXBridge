@@ -347,7 +347,7 @@ on seek_ebb()
 	end if
 end seek_ebb
 
-on need_update_bb(grf_file, bb_file)
+on need_update_bb(graphic_file, bb_file)
 	if bb_file's item_exists() then
 		set bb_mod to modification date of (bb_file's info())
 		set g_mod to modification date of (graphic_file's info())
@@ -360,10 +360,10 @@ on need_update_bb(grf_file, bb_file)
 end need_update_bb
 
 on exec_ebb(graphic_path, bb_ext, a_term, ebb_command)
-	set bb_file to graphic_file's change_path_extension(bb_ext)
 	set graphic_file to XFile's make_with(graphic_path)
+	set bb_file to graphic_file's change_path_extension(bb_ext)
 	
-	if not neet_update_bb(graphic_file, bb_file) then return
+	if not need_update_bb(graphic_file, bb_file) then return
 	
 	set target_dir to graphic_file's parent_folder()'s posix_path()
 	set a_name to graphic_file's item_name()
