@@ -85,8 +85,10 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #if useLog
 	NSLog(@"anApplicationIsTerminated");
 #endif
-	NSString *appName = [[aNotification userInfo] objectForKey:@"NSApplicationName"];
-	if ([appName isEqualToString:@"mi"] ) [NSApp terminate:self];
+	NSDictionary *user_info = [aNotification userInfo];
+	NSString *identifier = [user_info objectForKey:@"NSApplicationBundleIdentifier"];
+	if ([identifier isEqualToString:@"net.mimikaki.mi"] ) [[NSApplication sharedApplication] terminate:self];
+	
 }
 
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
