@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Project</string>
+	<string>Debug</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -335,8 +335,6 @@
 							<string>MainColumn</string>
 							<real>302</real>
 						</array>
-						<key>RubberWindowFrame</key>
-						<string>0 43 1440 835 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -347,8 +345,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -366,7 +362,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2CCA1E9117E1CFEF001DB91D</string>
+										<string>2CCA1EA017E1D2AC001DB91D</string>
 										<key>history</key>
 										<array>
 											<string>2C5222F617E1460C003C1272</string>
@@ -386,7 +382,7 @@
 											<string>2C98315817E1CA0B00FB939C</string>
 											<string>2CCA1E8E17E1CFEF001DB91D</string>
 											<string>2CCA1E8F17E1CFEF001DB91D</string>
-											<string>2CCA1E9017E1CFEF001DB91D</string>
+											<string>2CCA1E9817E1D282001DB91D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -401,8 +397,6 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {1094, 451}}</string>
-								<key>RubberWindowFrame</key>
-								<string>0 43 1440 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -442,8 +436,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1094, 289}}</string>
-										<key>RubberWindowFrame</key>
-										<string>0 43 1440 835 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -502,7 +494,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1094, 241}}</string>
+										<string>{{10, 27}, {1094, 289}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -578,6 +570,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
@@ -589,6 +583,8 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1440, 182}}</string>
+						<key>RubberWindowFrame</key>
+						<string>0 43 1440 835 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -663,7 +659,11 @@
 							</array>
 							<key>Frame</key>
 							<string>{{706, 0}, {734, 125}}</string>
+							<key>RubberWindowFrame</key>
+							<string>0 43 1440 835 0 0 1440 878 </string>
 						</dict>
+						<key>RubberWindowFrame</key>
+						<string>0 43 1440 835 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -727,6 +727,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2CCA1E9E17E1D2A4001DB91D</string>
 		<string>2CCA1E8817E1CF5F001DB91D</string>
 		<string>2CCA1E8917E1CF5F001DB91D</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_6/3_6/TeXBridge.xcodeproj</string>
