@@ -2,7 +2,7 @@
 {
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = x86_64;
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 2C6950330A06E6C9008277ED /* TeXBridge */;
 		activeTarget = 2C4E27AD084273B000004A96 /* TeXBridge */;
 		addToTargets = (
@@ -106,7 +106,7 @@
 			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
-				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_SCM_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
@@ -298,6 +298,16 @@
 			2C5222F717E1460C003C1272 /* PBXTextBookmark */ = 2C5222F717E1460C003C1272 /* PBXTextBookmark */;
 			2C5222F817E1460C003C1272 /* PBXTextBookmark */ = 2C5222F817E1460C003C1272 /* PBXTextBookmark */;
 			2C5222F917E1460C003C1272 /* PBXTextBookmark */ = 2C5222F917E1460C003C1272 /* PBXTextBookmark */;
+			2C52230317E14682003C1272 /* PBXTextBookmark */ = 2C52230317E14682003C1272 /* PBXTextBookmark */;
+			2C52230417E14682003C1272 /* PBXTextBookmark */ = 2C52230417E14682003C1272 /* PBXTextBookmark */;
+			2C52230517E14682003C1272 /* PBXTextBookmark */ = 2C52230517E14682003C1272 /* PBXTextBookmark */;
+			2C52230617E14682003C1272 /* PBXTextBookmark */ = 2C52230617E14682003C1272 /* PBXTextBookmark */;
+			2C52230717E14682003C1272 /* PBXBookmark */ = 2C52230717E14682003C1272 /* PBXBookmark */;
+			2C52230817E14682003C1272 /* PBXTextBookmark */ = 2C52230817E14682003C1272 /* PBXTextBookmark */;
+			2C52230917E14682003C1272 /* PBXTextBookmark */ = 2C52230917E14682003C1272 /* PBXTextBookmark */;
+			2C52230A17E14682003C1272 /* PBXTextBookmark */ = 2C52230A17E14682003C1272 /* PBXTextBookmark */;
+			2C52230B17E14682003C1272 /* PBXBookmark */ = 2C52230B17E14682003C1272 /* PBXBookmark */;
+			2C52230C17E14682003C1272 /* PBXTextBookmark */ = 2C52230C17E14682003C1272 /* PBXTextBookmark */;
 			2C6CA39608CF5558005D5612 = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
 			2C6CA39708CF5558005D5612 = 2C6CA39708CF5558005D5612 /* NewRefPanelController.h */;
 			2CCDB6BD17DD8A3900E98804 = 2CCDB6BD17DD8A3900E98804 /* PBXBookmark */;
@@ -1795,11 +1805,99 @@
 		vrLen = 937;
 		vrLoc = 0;
 	};
+	2C52230317E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDB6C117DD9BA900E98804 /* UtilityHandlers.applescript */;
+		name = "UtilityHandlers.applescript: 35";
+		rLen = 0;
+		rLoc = 1006;
+		rType = 0;
+		vrLen = 937;
+		vrLoc = 0;
+	};
+	2C52230417E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */;
+		name = "PDFController.applescript: 389";
+		rLen = 0;
+		rLoc = 10291;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 11891;
+	};
+	2C52230517E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */;
+		name = "ReplaceInput.applescript: 75";
+		rLen = 19;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 867;
+		vrLoc = 1335;
+	};
+	2C52230617E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDB6BE17DD9B3300E98804 /* TerminalCommander.applescript */;
+		name = "TerminalCommander.applescript: 14";
+		rLen = 0;
+		rLoc = 412;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 29;
+	};
+	2C52230717E14682003C1272 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2CCDB79117DDF43C00E98804 /* TeXBridge.sdef */;
+	};
+	2C52230817E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDBB1817DF04FC00E98804 /* ActivateProcessCommand.h */;
+		name = "ActivateProcessCommand.h: 9";
+		rLen = 0;
+		rLoc = 89;
+		rType = 0;
+		vrLen = 89;
+		vrLoc = 0;
+	};
+	2C52230917E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDBABF17DEE5AB00E98804 /* AppleEventExtra.h */;
+		name = "AppleEventExtra.h: 4";
+		rLen = 0;
+		rLoc = 125;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 0;
+	};
+	2C52230A17E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDB94F17DE9D1100E98804 /* DefaultsForKeyCommand.h */;
+		name = "DefaultsForKeyCommand.h: 4";
+		rLen = 0;
+		rLoc = 58;
+		rType = 0;
+		vrLen = 88;
+		vrLoc = 0;
+	};
+	2C52230B17E14682003C1272 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2CCDB79417DDF4FC00E98804 /* ShowHelpCommand.h */;
+	};
+	2C52230C17E14682003C1272 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CCDB79417DDF4FC00E98804 /* ShowHelpCommand.h */;
+		name = "ShowHelpCommand.h: 1";
+		rLen = 82;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 82;
+		vrLoc = 0;
+	};
 	2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 1154}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 1155}}";
 			sepNavSelRange = "{2181, 19}";
-			sepNavVisRange = "{1382, 820}";
+			sepNavVisRange = "{1335, 867}";
 			sepNavVisRect = "{{0, 3946}, {982, 320}}";
 			sepNavWindowFrame = "{{223, 39}, {1078, 839}}";
 		};
@@ -2287,9 +2385,9 @@
 	};
 	2CCDB6BE17DD9B3300E98804 /* TerminalCommander.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1062, 877}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 850}}";
 			sepNavSelRange = "{412, 0}";
-			sepNavVisRange = "{29, 1003}";
+			sepNavVisRange = "{29, 904}";
 			sepNavWindowFrame = "{{38, 84}, {916, 768}}";
 		};
 	};
@@ -2326,7 +2424,7 @@
 	};
 	2CCDB79417DDF4FC00E98804 /* ShowHelpCommand.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 506}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 467}}";
 			sepNavSelRange = "{0, 82}";
 			sepNavVisRange = "{0, 82}";
 		};
@@ -2360,7 +2458,7 @@
 	};
 	2CCDB94F17DE9D1100E98804 /* DefaultsForKeyCommand.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 506}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 467}}";
 			sepNavSelRange = "{58, 0}";
 			sepNavVisRange = "{0, 88}";
 			sepNavWindowFrame = "{{84, 244}, {877, 566}}";
@@ -2451,7 +2549,7 @@
 	};
 	2CCDBABF17DEE5AB00E98804 /* AppleEventExtra.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 529}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 467}}";
 			sepNavSelRange = "{125, 0}";
 			sepNavVisRange = "{0, 401}";
 		};
@@ -2475,7 +2573,7 @@
 	};
 	2CCDBB1817DF04FC00E98804 /* ActivateProcessCommand.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 506}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 467}}";
 			sepNavSelRange = "{89, 0}";
 			sepNavVisRange = "{0, 89}";
 		};
@@ -2698,9 +2796,9 @@
 	};
 	2CDA10AA069404FE00467991 /* PDFController.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 6601}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 6561}}";
 			sepNavSelRange = "{10291, 0}";
-			sepNavVisRange = "{11900, 725}";
+			sepNavVisRange = "{11891, 734}";
 			sepNavVisRect = "{{0, 6103}, {982, 175}}";
 			sepNavWindowFrame = "{{61, 137}, {878, 741}}";
 		};
