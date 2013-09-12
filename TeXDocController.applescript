@@ -9,6 +9,8 @@ global MessageUtility
 global DVIController
 global ToolPaletteController
 
+global NSUserDefaults
+
 property name : "TeXDocController"
 property _log_suffix : "log"
 property _terminal : missing value
@@ -96,10 +98,8 @@ on set_typeset_command(a_command)
 end set_typeset_command
 
 on string_from_user_defaults(a_key)
-	tell current application's class "NSUserDefaults"
-		tell its standardUserDefaults()
-			return stringForKey_(a_key) as text
-		end tell
+	tell NSUserDefaults's standardUserDefaults()
+		return stringForKey_(a_key) as text
 	end tell
 end string_from_user_defaults
 
@@ -392,9 +392,9 @@ on make_with_dvifile(dvi_file_ref)
 	else
 		set basepath to dvi_path
 	end if
-	set a_pathinfo to PathInfo's make_with((basepath & ".tex") as POSIX file)
+	set a_xfile to XFile's make_with((basepath & ".tex") as POSIX file)
 	if a_pathinfo's item_exists() then
-		set tex_doc_obj to make_with(a_pathinfo, missing value)
+		set tex_doc_obj to make_with(a_xfile, missing value)
 		tex_doc_obj's lookup_header_commands_from_file()
 	else
 		set tex_doc_obj to make_with(basepath as POSIX file, missing value)

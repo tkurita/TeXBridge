@@ -172,7 +172,7 @@
 		2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = NewRefPanelController.h; sourceTree = "<group>"; };
 		2C6CA3A308CF5565005D5612 /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = images/Reload.png; sourceTree = "<group>"; };
 		2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = SheetManager.applescript; sourceTree = "<group>"; };
-		2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = CompileCenter.applescript; sourceTree = "<group>"; };
+		2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = CompileCenter.applescript; sourceTree = "<group>"; };
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
 		2C71167D07D177B8008BCAEF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		2C71167E07D177B8008BCAEF /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = images/minus.png; sourceTree = "<group>"; };
@@ -242,7 +242,6 @@
 		2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_TeXFileUtilities.m; sourceTree = "<group>"; };
 		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
-		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
 		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -294,7 +293,6 @@
 				2C03136E0AAD0F21005B592F /* DonationReminder.framework */,
 				2C2E545708062E8E0015E9EB /* ApplicationServices.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */,
 				2C4095C916A84D810085CB9D /* ScriptingBridge.framework */,
 				2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */,
 			);

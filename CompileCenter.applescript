@@ -16,6 +16,7 @@ global TerminalCommander
 global PathConverter
 global FrontAccess
 global XFile
+global PathInfo
 
 --special values
 global _com_delim
@@ -142,7 +143,7 @@ on preview_dvi_for_frontdoc()
 	on error number 1750
 		return false
 	end try
-	set a_xfile to XFile's make_with(a_file)
+	set a_xfile to PathInfo's make_with(a_file)
 	if a_xfile's path_extension() is "dvi" then
 		return true
 	end if
@@ -157,7 +158,7 @@ on preview_dvi_for_frontdoc()
 	try
 		open_dvi of a_dvi with activation
 	on error msg number errno
-		MessageUtility(errno, "preview_dvi_for_frontdoc", msg) of MessageUtility
+		MessageUtility's show_error(errno, "preview_dvi_for_frontdoc", msg)
 	end try
 	--log "end preview_dvi_for_frontdoc"
 	return true

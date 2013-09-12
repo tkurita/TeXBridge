@@ -12,7 +12,7 @@ global NSString
 script XdviDriver
 	property parent : AppleScript
 	on set_file_type(a_xfile)
-		a_xfile's set_types(my _my_signature, "JDVI")
+		a_xfile's set_types(_my_signature, "JDVI")
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag

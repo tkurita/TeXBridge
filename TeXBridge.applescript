@@ -172,7 +172,6 @@ script TeXBridgeController
 			set my _my_signature to objectForInfoDictionaryKey_("CFBundleSignature") as text
 			set plist_path to pathForResource_ofType_("ToolSupport", "plist") as text
 		end tell
-		
 		tell NSDictionary's dictionaryWithContentsOfFile_(plist_path)
 			set my _backslash to objectForKey_("backslash") as text
 		end tell
