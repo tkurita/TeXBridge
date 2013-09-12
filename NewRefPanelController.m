@@ -91,18 +91,13 @@ extern id EditorClient;
 
 - (BOOL)windowShouldClose:(id)sender
 {
-
 	if (reloadTimer != nil) {
 		[reloadTimer invalidate];
 		[reloadTimer release];
 		reloadTimer = nil;
 	}
 
-	return [super windowShouldClose:sender];
-	
-	/* To support AppleScript Studio of MacOS 10.4 */
-	[[self window] orderOut:self];
-	return NO;
+	return YES;
 }
 
 //texFileFilePath must be master file.

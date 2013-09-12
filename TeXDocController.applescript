@@ -1,6 +1,7 @@
 global PathConverter
 global XFile
 global XText
+global PathInfo
 
 global UtilityHandlers
 global TerminalCommander
@@ -36,12 +37,12 @@ on resolve_parent(a_paragraph)
 			set tex_file to absolute_path for parent_file's as_unicode()
 		end tell
 	else if parent_file's starts_with("/") then --  absolute posix path
-		set tex_file to POSIX file (parent_file's as_unicode())
+		set tex_file to (parent_file's as_unicode()) as POSIX file
 	else -- relative posix path
 		tell PathConverter's make_with(my _targetFileRef's posix_path())
 			set tex_file to absolute_path for parent_file's as_unicode()
 		end tell
-		set tex_file to POSIX file tex_file
+		set tex_file to tex_file as POSIX file
 	end if
 	--tell me to log "tex_file : " & tex_file
 	try
@@ -94,16 +95,24 @@ on set_typeset_command(a_command)
 	set my _typeset_command to a_command
 end set_typeset_command
 
+on string_from_user_defaults(a_key)
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			return stringForKey_(a_key) as text
+		end tell
+	end tell
+end string_from_user_defaults
+
 on dvips_command()
 	if my _dvips_command is missing value then
-		return contents of default entry "dvipsCommand" of user defaults
+		return string_from_user_defaults("dvipsCommand")
 	end if
 	return my _dvips_command
 end dvips_command
 
 on dvipdf_command()
 	if (my _dvipdf_command is missing value) then
-		return contents of default entry "dvipdfCommand" of user defaults
+		return string_from_user_defaults("dvipdfCommand")
 	end if
 	
 	return my _dvipdf_command
@@ -111,7 +120,7 @@ end dvipdf_command
 
 on typeset_command()
 	if my _typeset_command is missing value then
-		return contents of default entry "typesetCommand" of user defaults
+		return string_from_user_defaults("typesetCommand")
 	end if
 	return my _typeset_command
 end typeset_command
@@ -218,7 +227,6 @@ on typeset()
 			set_item of command_elems for new_command at 1
 		end if
 		set tex_command to command_elems's as_unicode_with(space)
-		--set shell_path to TerminalCommander's shell_path()
 		set shell_path to system attribute "SHELL"
 		set all_command to cd_command & ";exec " & shell_path & " -lc " & quote & tex_command & space & (quoted form of my _texFileName) & " 2>&1" & quote
 		try
@@ -229,7 +237,7 @@ on typeset()
 				set my _logContents to msg
 			else if errno is 127 then
 				-- maybe comannd name or path setting is not correct
-				show_error(errno, "texCompile", msg) of MessageUtility
+				show_error(errno, "typeset", msg) of MessageUtility
 				log all_command
 				error "Typeset is not executed." number 1250
 			else
@@ -237,7 +245,7 @@ on typeset()
 			end if
 		end try
 	end if
-	--log "after Typeset"
+	--log "after typeset"
 	set a_dvi to lookup_dvi()
 	--log "after lookup_dvi"
 	if a_dvi is not missing value then
@@ -364,10 +372,10 @@ on lookup_dvi()
 	--log "start lookup_dvi"
 	set a_dvifile to my _file_ref's change_path_extension("dvi")
 	if a_dvifile's item_exists() then
-		--log "dviFilePath exists"
-		set a_dvi to make_with(me) of DVIController
+		--log "a_dvifile exists"
+		set a_dvi to DVIController's make_with(me)
 		a_dvi's set_dvifile(a_dvifile)
-		set_file_type() of a_dvi
+		a_dvi's set_file_type()
 		return a_dvi
 	else
 		return missing value
@@ -376,24 +384,22 @@ end lookup_dvi
 
 (*== Constructors *)
 on make_with_dvifile(dvi_file_ref)
-	--log "start makeObjFromDVIFile"
+	--log "start make_with_dvifile"
 	local basepath
-	set dvi_path to dvi_file_ref as Unicode text
+	set dvi_path to dvi_file_ref as text
 	if dvi_path ends with ".dvi" then
 		set basepath to text 1 thru -5 of dvi_path
 	else
 		set basepath to dvi_path
 	end if
-	set tex_path to basepath & ".tex"
-	
-	--if isExists(POSIX file tex_path) of UtilityHandlers then
-	if XFile's make_with(POSIX file tex_path)'s item_exists() then
-		set tex_doc_obj to make_with(POSIX file tex_path, missing value)
+	set a_pathinfo to PathInfo's make_with((basepath & ".tex") as POSIX file)
+	if a_pathinfo's item_exists() then
+		set tex_doc_obj to make_with(a_pathinfo, missing value)
 		tex_doc_obj's lookup_header_commands_from_file()
 	else
-		set tex_doc_obj to make_with(POSIX file basepath, missing value)
+		set tex_doc_obj to make_with(basepath as POSIX file, missing value)
 	end if
-	
+	--log "end make_with_dvifile"
 	return tex_doc_obj
 end make_with_dvifile
 
@@ -435,5 +441,6 @@ on make_with(a_xfile, an_encoding)
 		set its _texFileName to a_xfile's item_name()
 		set its _workingDirectory to a_xfile's parent_folder()
 	end tell
+	--log "end make_with of TeXDocController"
 	return TeXDocController
 end make_with

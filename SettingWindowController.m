@@ -222,6 +222,10 @@
 	}
 }
 
+- (IBAction)changePDFPreviewer:(id)sender
+{
+	[[[AppController sharedAppController] texBridgeController] changePDFPreviewer:sender];
+}
 
 #pragma mark delegate methods
 - (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem

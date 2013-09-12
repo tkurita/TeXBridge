@@ -6,11 +6,13 @@ global PathConverter
 global _my_signature
 global _com_delim
 global _backslash
+global NSUserDefaults
+global NSString
 
 script XdviDriver
 	property parent : AppleScript
 	on set_file_type(a_xfile)
-		a_xfile's set_types(_my_signature, "JDVI")
+		a_xfile's set_types(my _my_signature, "JDVI")
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
@@ -25,7 +27,9 @@ script XdviDriver
 		update_src_special_flag_from_file() of a_dvi
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
 		set dvi_file_name to a_dvi's fileName()
-		set dvi_command to contents of default entry "dviViewCommand" of user defaults
+		tell NSUserDefaults's standardUserDefaults()
+			set dvi_command to stringForKey_("dviViewCommand") as text
+		end tell
 		set dvi_command to XText's make_with(dvi_command)
 		set target_term to TerminalCommander
 		if (a_dvi's src_special()) then
@@ -146,7 +150,7 @@ script PictPrinterDriver
 	end set_file_type
 	
 	on open_dvi given sender:a_dvi, activation:aFlag
-		--log "start open_dvi of MxdviDriver"
+		-- log "start open_dvi of PictPrinterDriver"
 		try
 			set pictprinter_app to path to application (get "PictPrinter") as alias
 		on error
@@ -154,10 +158,10 @@ script PictPrinterDriver
 			error msg number 1260
 		end try
 		a_dvi's update_src_special_flag_from_file()
-		--log "success update_src_special_flag_from_file"
+		-- log "success update_src_special_flag_from_file"
 		set a_texdoc to a_dvi's texdoc()
 		set target_dvi_path to a_dvi's posix_path()
-		set target_dvi_file to POSIX file target_dvi_path
+		set target_dvi_file to target_dvi_path as POSIX file
 		if a_dvi's src_special() and (a_texdoc is not missing value) then
 			--log "open dvi with forward search"
 			if a_texdoc's has_parent() then
@@ -213,8 +217,12 @@ script PictPrinterDriver
 				end tell
 			end using terms from
 		end if
-		if aFlag then call method "activateAppOfType:" of class "SmartActivate" with parameter "pPrn"
-		--log "end open_dvi"
+		if aFlag then
+			tell current application's class "SmartActivate"
+				activateAppOfType_("pPrn")
+			end tell
+		end if
+		-- log "end open_dvi"
 	end open_dvi
 end script
 
@@ -300,14 +308,18 @@ end remove_src_special_flag_in_comment
 
 on set_src_special_flag()
 	set a_path to my _dvifile's posix_path()
-	call method "setHasSourceSpecials:" of a_path with parameter ((my _texdoc's typeset_command()) contains "-src")
+	tell NSString's stringWithString_(a_path)
+		setHasSourceSpecials_((my _texdoc's typeset_command()) contains "-src")
+	end tell
 end set_src_special_flag
 
 on update_src_special_flag_from_file()
 	--log "start update_src_special_flag_from_file"
 	if src_special() is missing value then
 		set a_path to my _dvifile's posix_path()
-		set a_flag to call method "hasSourceSpecials" of a_path
+		tell NSString's stringWithString_(a_path)
+			set a_flag to hasSourceSpecials() as integer
+		end tell
 		if a_flag is -1 then
 			tell application "Finder"
 				set a_comment to comment of (my _dvifile's as_alias())
@@ -320,7 +332,9 @@ on update_src_special_flag_from_file()
 					end tell
 				end ignoring
 			end if
-			call method "setHasSourceSpecials:" of a_path with parameter src_flag
+			tell NSString's stringWithString_(a_path)
+				setHasSourceSpecials_(src_flag)
+			end tell
 			set_src_special(src_flag)
 		else if a_flag is 1 then
 			set_src_special(true)
@@ -332,6 +346,7 @@ on update_src_special_flag_from_file()
 end update_src_special_flag_from_file
 
 on open_dvi given activation:aFlag
+	-- log "start open_dvi of DVIController"
 	open_dvi of (my _dvi_driver) given sender:a reference to me, activation:aFlag
 end open_dvi
 
@@ -394,7 +409,9 @@ on log_parser()
 end log_parser
 
 on make
-	set a_mode to contents of default entry "DVIPreviewMode" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set a_mode to integerForKey_("DVIPreviewMode") as integer
+	end tell
 	return make_with_mode(a_mode)
 end make
 

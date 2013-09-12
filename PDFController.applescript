@@ -1,5 +1,4 @@
 global UtilityHandlers
-global DefaultsManager
 global MessageUtility
 global appController
 
@@ -10,35 +9,45 @@ property _adobeReaderPath : ""
 property _hasAcrobat : false -- not used ?
 property _hasReader : false -- not used ?
 
-on control_clicked(theObject)
-	set a_name to name of theObject
-	if a_name is "PDFPreview" then
-		set a_name to name of current cell of theObject
-		--log a_name
-		if a_name is "AdobeReader" then
-			try
-				find_adobe_reader()
-			on error msg number -128
-				set contents of default entry "PDFPreviewMode" of user defaults to my _prePDFPreviewMode
-				set a_msg to localized string "PDFPreviewIsInvalid"
-				show_message(a_msg) of MessageUtility
-				return
-			end try
-		else if a_name is "Acrobat" then
-			try
-				find_acrobat()
-			on error msg number -128
-				set contents of default entry "PDFPreviewMode" of user defaults to my _prePDFPreviewMode
-				set a_msg to localized string "PDFPreviewIsInvalid"
-				show_message(a_msg) of MessageUtility
-				return
-			end try
-		end if
-		
-		set my _prePDFPreviewMode to default entry "PDFPreviewMode" of user defaults
-		--set contents of default entry "PDFPreviewMode" of user defaults to PDFPreviewMode
+on integer_from_user_defaults(a_key)
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			return integerForKey_(a_key)
+		end tell
+	end tell
+end integer_from_user_defaults
+
+on changePDFPreviewer(sender)
+	set new_mode to integer_from_user_defaults("PDFPreviewMode") as integer
+	if new_mode is 3 then -- AdobeReader
+		try
+			find_adobe_reader()
+		on error msg number -128
+			tell current application's class "NSUserDefaults"
+				tell its standardUserDefaults()
+					setInteger_ForKey_(my _prePDFPreviewMode, "PDFPreviewMode")
+				end tell
+			end tell
+			set a_msg to localized string "PDFPreviewIsInvalid"
+			show_message(a_msg) of MessageUtility
+			return
+		end try
+	else if new_mode is 3 then -- Acrobat
+		try
+			find_acrobat()
+		on error msg number -128
+			tell current application's class "NSUserDefaults"
+				tell its standardUserDefaults()
+					setInteger_ForKey_(my _prePDFPreviewMode, "PDFPreviewMode")
+				end tell
+			end tell
+			set a_msg to localized string "PDFPreviewIsInvalid"
+			show_message(a_msg) of MessageUtility
+			return
+		end try
 	end if
-end control_clicked
+	set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
+end changePDFPreviewer
 
 on find_caro() -- find acrobat or adobe reader from creator code
 	try
@@ -52,31 +61,33 @@ on find_caro() -- find acrobat or adobe reader from creator code
 end find_caro
 
 on find_acrobat()
-	if class of _acrobatPath is alias then
+	if class of my _acrobatPath is alias then
 		return
 	end if
 	
 	try
-		set _acrobatPath to (POSIX file _acrobatPath) as alias
+		set my _acrobatPath to (my _acrobatPath as POSIX file) as alias
 	on error
-		set _acrobatPath to find_caro()
+		set my _acrobatPath to find_caro()
 	end try
 	
-	if _acrobatPath is missing value then
+	if my _acrobatPath is missing value then
 		set a_msg to localized string "whereisAdobeAcrobat"
-		set _acrobatPath to choose application with prompt a_msg as alias
+		set my _acrobatPath to choose application with prompt a_msg as alias
 	else
 		tell application "Finder"
-			set a_name to name of _acrobatPath
+			set a_name to name of my _acrobatPath
 		end tell
 		if a_name contains "Reader" then
-			set _acrobatPath to missing value
+			set my _acrobatPath to missing value
 			set a_msg to localized string "whereisAdobeAcrobat"
-			set _acrobatPath to choose application with prompt a_msg as alias
+			set my _acrobatPath to choose application with prompt a_msg as alias
 		end if
 	end if
-	tell user defaults
-		set contents of default entry "AcrobatPath" to _acrobatPath
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			setString_ForKey_(my _acrobatPath's POSIX path, "AcrobatPath")
+		end tell
 	end tell
 end find_acrobat
 
@@ -88,7 +99,7 @@ on find_adobe_reader()
 	end if
 	
 	try
-		set _adobeReaderPath to (POSIX file _adobeReaderPath) as alias
+		set _adobeReaderPath to (my _adobeReaderPath as POSIX file) as alias
 	on error
 		set _adobeReaderPath to find_caro()
 	end try
@@ -106,33 +117,37 @@ on find_adobe_reader()
 			set _adobeReaderPath to choose application with prompt a_msg as alias
 		end if
 	end if
-	tell user defaults
-		set contents of default entry "AdobeReaderPath" to _adobeReaderPath
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			setString_ForKey_(my _adobeReaderPath, "AdobeReaderPath")
+		end tell
 	end tell
 	--log "end find_adobe_reader"
 end find_adobe_reader
 
 on checkPDFApp()
-	set _prePDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
-	if _prePDFPreviewMode is 2 then
+	set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
+	if my _prePDFPreviewMode is 2 then
 		try
 			find_adobe_reader()
 		on error msg number -128
-			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
+			appController's revertToFactoryDefaultForKey_("PDFPreviewMode")
 		end try
-	else if _prePDFPreviewMode is 3 then
+	else if my _prePDFPreviewMode is 3 then
 		try
 			find_acrobat()
 		on error msg number -128
-			call method "revertToFactoryDefaultForKey:" of appController with parameter "PDFPreviewMode"
+			appController's revertToFactoryDefaultForKey_("PDFPreviewMode")
 		end try
 	end if
-	set _prePDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
 end checkPDFApp
 
 on load_settings()
-	set acrobatPath to value_with_default("AcrobatPath", _acrobatPath) of DefaultsManager
-	set _adobeReaderPath to value_with_default("AdobeReaderPath", _adobeReaderPath) of DefaultsManager
+	tell NSUserDefaults's standardUserDefaults()
+		set my _acrobatPath to stringForKey("AcrobatPath")
+		set my _adobeReaderPath to stringForKey("AdobeReaderPath")
+	end tell
 	--log "success read default value of PDFPreviewIndex"
 	checkPDFApp()
 end load_settings
@@ -203,7 +218,7 @@ end fileName
 
 on setup_pdfdriver()
 	--log "start setup_pdfdriver()"
-	set PDFPreviewMode to contents of default entry "PDFPreviewMode" of user defaults
+	set PDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
 	if PDFPreviewMode is 0 then
 		set my _pdfdriver to my AutoDriver
 	else if PDFPreviewMode is 1 then
@@ -216,7 +231,7 @@ on setup_pdfdriver()
 		set my _pdfdriver to my PreviewDriver
 		set my _process_name to "Adobe Reader"
 		tell application "Finder"
-			set my _app_name to name of _adobeReaderPath
+			set my _app_name to name of my _adobeReaderPath
 		end tell
 	else if PDFPreviewMode is 3 then
 		set my _pdfdriver to my AcrobatDriver
@@ -369,7 +384,9 @@ script ReloadablePreviewDriver
 		tell application id (an_id)
 			open a_pdf's file_as_alias()
 		end tell
-		call method "activateAppOfIdentifier:" of class "SmartActivate" with parameter an_id
+		tell current application's class "SmartActivate"
+			activateAppOfIdentifier_(an_id)
+		end tell
 	end open_pdf
 end script
 

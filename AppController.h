@@ -1,7 +1,7 @@
 /* AppController */
 
 #import <Cocoa/Cocoa.h>
-#import <OSAKit/OSAScript.h>
+//#import <OSAKit/OSAScript.h>
 #import "miClient.h"
 #import "SettingWindowController.h"
 #import "NewToolPaletteController.h"
@@ -9,16 +9,24 @@
 
 NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 
+@interface TeXBridgeController : NSObject
+- (void)setup;
+- (void)changePDFPreviewer:(id)sender;
+- (id)performTask:(id)script;
+- (void)performHandler:(NSString *)handlerName;
+@end
+
 @interface AppController : NSObject
 {
 	IBOutlet id startupWindow;
 	IBOutlet id startupMessageField;
+	IBOutlet id texBridgeController;
 	NSTimer *appQuitTimer;
 	NSDictionary *factoryDefaults;
 	SettingWindowController *settingWindow;
 	NewToolPaletteController *toolPaletteController;
 	NewRefPanelController *refPanelController;
-	OSAScript *script; 
+//	OSAScript *script; 
 }
 
 + (id)sharedAppController;
@@ -35,6 +43,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 - (IBAction)showSettingWindow:(id)sender;
 - (IBAction)showToolPalette:(id)sender;
 - (IBAction)showRefPalette:(id)sender;
+- (TeXBridgeController *)texBridgeController;
 @end
 
 

@@ -21,17 +21,19 @@ global XFile
 global _com_delim
 global _backslash
 
+-- Cocoa classes
+global NSUserDefaults
+
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
 on show_status_message(msg)
-	call method "showStatusMessage:" of appController with parameter msg
+	appController's showStatusMessage_(msg)
 end show_status_message
 
 on rebuild_labels_from_aux(a_texdoc)
 	set tex_file_path to a_texdoc's tex_file()'s posix_path()
-	call method "rebuildLabelsFromAux:textEncoding:" of appController Å 
-		with parameters {tex_file_path, a_texdoc's text_encoding()}
+	appController's rebuildLabelsFromAux_textEncoding_(tex_file_path, a_texdoc's text_encoding())
 end rebuild_labels_from_aux
 
 on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
@@ -228,8 +230,11 @@ on dvi_from_frontmost()
 	if file_url does not end with ".dvi" then
 		return missing value
 	end if
-	set an_url to call method "URLWithString:" of class "NSURL" with parameter file_url
-	set a_path to call method "path" of an_url
+	
+	tell current application's class "NSURL"
+		set a_path to (URLWithString_(file_url)'s |path|()) as text
+	end tell
+	
 	set a_texdoc to TeXDocController's make_with_dvifile(a_path)
 	set a_dvi to a_texdoc's lookup_dvi()
 	--log "end dvi_from_frontmost"
@@ -311,7 +316,14 @@ on seek_ebb()
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
 	set theRes to EditorClient's document_content()
+	(* #ASStudo
 	set ebb_command to contents of default entry "ebbCommand" of user defaults
+	*)
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			set ebbCommand to stringForKey_("ebbCommand")
+		end tell
+	end tell
 	if ebb_command contains "-m" then
 		set bb_ext to "bb"
 	else
@@ -376,12 +388,16 @@ end exec_ebb
 
 on mendex()
 	--log "start execmendex"
-	set a_command to contents of default entry "mendexCommand" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set a_command to stringForKey_("mendexCommand") as text
+	end tell
 	exec_tex_command(a_command, "idx", false)
 end mendex
 
 on bibtex()
-	set a_command to contents of default entry "bibtexCommand" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set a_command to stringForKey_("bibtexCommand") as text
+	end tell
 	exec_tex_command(a_command, missing value, true)
 end bibtex
 
@@ -408,32 +424,34 @@ on quick_typeset_preview()
 	on error number 1250
 		return
 	end try
-	--log "after texCompile in quick_typeset_preview"
+	--log "after typeset in quick_typeset_preview"
 	show_status_message("Analyzing log text ...")
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	--log "befor parseLogText in quick_typeset_preview"
-	parseLogText() of a_log_file_parser
-	--log "after parseLogText in quick_typeset_preview"
+	a_log_file_parser's parseLogText()
+	-- log "after parseLogText in quick_typeset_preview"
 	show_status_message("Opening DVI file  ...")
-	set aFlag to is_no_error() of a_log_file_parser
-	if is_dvi_output() of a_log_file_parser then
+	set a_flag to a_log_file_parser's is_no_error()
+	if a_log_file_parser's is_dvi_output() then
 		try
-			open_dvi of a_dvi given activation:aFlag
+			open_dvi of a_dvi given activation:a_flag
 		on error msg number errno
 			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of MessageUtility
 		end try
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		MessageUtility's show_message(a_msg)
 	end if
-	
-	if not aFlag then
-		set logManager to call method "sharedLogManager" of class "LogWindowController"
-		call method "bringToFront" of logManager
+	if not a_flag then
+		tell current application's class "LogWindowController"
+			its sharedLogManager()'s bringToFront()
+		end tell
 		activate
 	end if
 	a_texdoc's preserve_terminal()
+	--log "before rebuild_labels_from_aux in quick_typeset_preview"
 	rebuild_labels_from_aux(a_texdoc)
+	--log "after rebuild_labels_from_aux in quick_typeset_preview"
 	show_status_message("")
 end quick_typeset_preview
 
@@ -500,7 +518,9 @@ on typeset()
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	show_status_message("Analyzing log text ...")
 	parse_logfile() of a_log_file_parser
-	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set autoMultiTypeset to boolForKey_("AutoMultiTypeset") as boolean
+	end tell
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
 		show_status_message("Typeseting...")
 		try
@@ -518,7 +538,9 @@ on typeset()
 	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then
-		call method "activateSelf" of class "SmartActivate"
+		tell current application's class "SmartActivate"
+			its activateSelf()
+		end tell
 	end if
 	if (is_dvi_output() of a_log_file_parser) then
 		return a_dvi
