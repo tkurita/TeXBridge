@@ -9,7 +9,6 @@ global appController
 global RefPanelController
 global ToolPaletteController
 global EditorClient
-global FrontAccess
 
 --general libs
 global TerminalCommander
