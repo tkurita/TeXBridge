@@ -5,7 +5,6 @@ global PathInfo
 
 global UtilityHandlers
 global TerminalCommander
-global MessageUtility
 global DVIController
 global ToolPaletteController
 
@@ -237,7 +236,7 @@ on typeset()
 				set my _logContents to msg
 			else if errno is 127 then
 				-- maybe comannd name or path setting is not correct
-				show_error(errno, "typeset", msg) of MessageUtility
+				show_error(errno, "typeset", msg) of UtilityHandlers
 				log all_command
 				error "Typeset is not executed." number 1250
 			else

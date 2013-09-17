@@ -1,7 +1,6 @@
 global EditCommands
 global UtilityHandlers
 global LogFileParser
-global MessageUtility
 global PDFController
 global DVIController
 global TeXDocController
@@ -55,7 +54,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 			if message_flag then
 				set docname to EditorClient's document_name()
 				set a_msg to UtilityHandlers's localized_string("invalidMode", {docname})
-				show_message(a_msg) of MessageUtility
+				UtilityHandlers's show_message(a_msg)
 				error "The mode of the document is not supported." number 1205
 			end if
 			return missing value
@@ -63,7 +62,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 	else
 		if message_flag then
 			set a_msg to localized string "noDocument"
-			show_message(a_msg) of MessageUtility
+			UtilityHandlers's show_message(a_msg)
 			error "No opened documents." number 1240
 		end if
 		return missing value
@@ -157,7 +156,7 @@ on preview_dvi_for_frontdoc()
 	try
 		open_dvi of a_dvi with activation
 	on error msg number errno
-		MessageUtility's show_error(errno, "preview_dvi_for_frontdoc", msg)
+		UtilityHandlers's show_error(errno, "preview_dvi_for_frontdoc", msg)
 	end try
 	--log "end preview_dvi_for_frontdoc"
 	return true
@@ -168,7 +167,7 @@ on openOutputHadler(an_extension)
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "openOutputHadler", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "openOutputHadler", msg)
 		end if
 		return
 	end try
@@ -199,7 +198,7 @@ on dvi_from_editor()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "dvi_to_pdf", msg) of MessageUtility
+			UtilityHandlers's showError(errno, "dvi_to_pdf", msg)
 		end if
 		return missing value
 	end try
@@ -269,7 +268,7 @@ on dvi_to_ps()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "dvi_to_ps", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "dvi_to_ps", msg)
 		end if
 		return
 	end try
@@ -287,7 +286,7 @@ on exec_tex_command(texCommand, a_suffix, checkSaved)
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "exec_tex_command", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "exec_tex_command", msg)
 		end if
 		return
 	end try
@@ -305,7 +304,7 @@ on seek_ebb()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "seek_ebb", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "seek_ebb", msg)
 		end if
 		return
 	end try
@@ -407,7 +406,7 @@ on quick_typeset_preview()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			MessageUtility's show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg)
+			UtilityHandlers's show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg)
 		end if
 		return
 	end try
@@ -436,11 +435,11 @@ on quick_typeset_preview()
 		try
 			open_dvi of a_dvi given activation:a_flag
 		on error msg number errno
-			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of MessageUtility
+			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of UtilityHandlers
 		end try
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		MessageUtility's show_message(a_msg)
+		UtilityHandlers's show_message(a_msg)
 	end if
 	if not a_flag then
 		tell current application's class "LogWindowController"
@@ -465,7 +464,7 @@ on typeset_preview()
 		try
 			open_dvi of a_dvi given activation:activate_flag
 		on error msg number errno
-			show_error(errno, "typeset_preview", msg) of MessageUtility
+			show_error(errno, "typeset_preview", msg) of UtilityHandlers
 		end try
 	end if
 	a_dvi's texdoc()'s preserve_terminal()
@@ -482,7 +481,7 @@ on typeset_preview_pdf()
 	show_status_message("Opening PDF file ...")
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		show_message(a_msg) of UtilityHandlers
 	else
 		open_pdf() of a_pdf
 	end if
@@ -502,7 +501,7 @@ on typeset()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "typeset after calling prepare_typeset", msg) of MessageUtility
+			show_error(errno, "typeset after calling prepare_typeset", msg) of UtilityHandlers
 		end if
 		return missing value
 	end try
@@ -546,7 +545,7 @@ on typeset()
 		return a_dvi
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		show_message(a_msg) of UtilityHandlers
 		return missing value
 	end if
 end typeset
@@ -563,7 +562,7 @@ on preview_dvi()
 		a_texdoc's set_use_term(true)
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end if
 		return
 	end try
@@ -575,7 +574,7 @@ on preview_dvi()
 		try
 			open_dvi of a_dvi with activation
 		on error msg number errno
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end try
 	else
 		set dviName to name_for_suffix("dvi") of a_texdoc
@@ -591,7 +590,7 @@ on preview_pdf()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end if
 		return
 	end try

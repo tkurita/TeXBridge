@@ -220,7 +220,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>2C815C7D17E88C22003CBF44</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>TeXBridge.applescript</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>2C815C7E17E88C22003CBF44</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>TeXBridge.applescript</string>
+						<key>_historyCapacity</key>
+						<integer>20</integer>
+						<key>bookmark</key>
+						<string>2C815C7F17E88C22003CBF44</string>
+						<key>history</key>
+						<array>
+							<string>2C815C6517E88AF6003CBF44</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {738, 768}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>702 63 738 809 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1440</integer>
@@ -256,8 +297,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -297,11 +336,10 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>2C0BE4CA16DC4B9E0005A62A</string>
+								<string>2C1DAE3709F5F7EE00139324</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>2C0BE4C416DC42590005A62A</string>
-								<string>2C4095B516A79B120085CB9D</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>2CB63A5D08CF038D002FCC88</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1058C7A0FEA54F0111CA2CBB</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
@@ -312,8 +350,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
-									<integer>13</integer>
+									<integer>20</integer>
+									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -348,12 +386,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>2C6E886D169B08E500CDEE1D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CompileCenter.applescript</string>
+								<string>EditCommands.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -361,14 +401,13 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CompileCenter.applescript</string>
+										<string>EditCommands.applescript</string>
+										<key>_historyCapacity</key>
+										<integer>20</integer>
+										<key>bookmark</key>
+										<string>2C815C7317E88C22003CBF44</string>
 										<key>history</key>
 										<array>
-											<string>2C5222F617E1460C003C1272</string>
-											<string>2C5222F717E1460C003C1272</string>
-											<string>2C52230317E14682003C1272</string>
-											<string>2C52230517E14682003C1272</string>
-											<string>2C52230717E14682003C1272</string>
 											<string>2C52230817E14682003C1272</string>
 											<string>2C52230917E14682003C1272</string>
 											<string>2C52230A17E14682003C1272</string>
@@ -376,12 +415,19 @@
 											<string>2C7284EE17E1B30600EE5ACF</string>
 											<string>2C72851017E1BABF00EE5ACF</string>
 											<string>2C72851117E1BABF00EE5ACF</string>
-											<string>2C98313517E1C30C00FB939C</string>
 											<string>2C98314217E1C5E700FB939C</string>
-											<string>2C98315817E1CA0B00FB939C</string>
 											<string>2CCA1E8E17E1CFEF001DB91D</string>
-											<string>2C9E84EA17E8777C000B2B51</string>
-											<string>2C9E84EB17E8777C000B2B51</string>
+											<string>2C815C6817E88C22003CBF44</string>
+											<string>2C815C6917E88C22003CBF44</string>
+											<string>2C815C6A17E88C22003CBF44</string>
+											<string>2C815C6B17E88C22003CBF44</string>
+											<string>2C815C6C17E88C22003CBF44</string>
+											<string>2C815C6D17E88C22003CBF44</string>
+											<string>2C815C6E17E88C22003CBF44</string>
+											<string>2C815C6F17E88C22003CBF44</string>
+											<string>2C815C7017E88C22003CBF44</string>
+											<string>2C815C7117E88C22003CBF44</string>
+											<string>2C815C7217E88C22003CBF44</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -395,18 +441,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1094, 587}}</string>
+								<string>{{0, 0}, {1094, 480}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 43 1440 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>587pt</string>
+							<string>480pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>180pt</string>
+							<string>287pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -420,9 +466,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1094, 153}}</string>
-										<key>RubberWindowFrame</key>
-										<string>0 43 1440 835 0 0 1440 878 </string>
+										<string>{{10, 27}, {1094, 174}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -438,7 +482,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1094, 143}}</string>
+										<string>{{10, 27}, {1094, 260}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 43 1440 835 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -525,11 +571,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C9E851017E87E0E000B2B51</string>
+				<string>2C815C7417E88C22003CBF44</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>2C9E851117E87E0E000B2B51</string>
+				<string>2C815C7517E88C22003CBF44</string>
 				<string>2C6E886D169B08E500CDEE1D</string>
-				<string>2C9E851217E87E0E000B2B51</string>
+				<string>2C815C7617E88C22003CBF44</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -681,14 +727,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C9E851317E87E0E000B2B51</string>
+				<string>2C815C7717E88C22003CBF44</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>2C9E851417E87E0E000B2B51</string>
-				<string>2C9E851517E87E0E000B2B51</string>
-				<string>2C9E851617E87E0E000B2B51</string>
-				<string>2C9E851717E87E0E000B2B51</string>
-				<string>2C6E886D169B08E500CDEE1D</string>
+				<string>2C815C7817E88C22003CBF44</string>
+				<string>2C815C7917E88C22003CBF44</string>
+				<string>2C815C7A17E88C22003CBF44</string>
+				<string>2C815C7B17E88C22003CBF44</string>
+				<string>2C815C7C17E88C22003CBF44</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -722,6 +768,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C815C7D17E88C22003CBF44</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/3_6/3_6/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

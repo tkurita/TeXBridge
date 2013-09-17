@@ -1,5 +1,4 @@
 global UtilityHandlers
-global MessageUtility
 global appController
 
 global NSUserDefaults
@@ -28,7 +27,7 @@ on changePDFPreviewer(sender)
 				setInteger_forKey_(my _prePDFPreviewMode, "PDFPreviewMode")
 			end tell
 			set a_msg to localized string "PDFPreviewIsInvalid"
-			show_message(a_msg) of MessageUtility
+			show_message(a_msg) of UtilityHandlers
 			return
 		end try
 	else if new_mode is 3 then -- Acrobat
@@ -39,7 +38,7 @@ on changePDFPreviewer(sender)
 				setInteger_forKey_(my _prePDFPreviewMode, "PDFPreviewMode")
 			end tell
 			set a_msg to localized string "PDFPreviewIsInvalid"
-			show_message(a_msg) of MessageUtility
+			show_message(a_msg) of UtilityHandlers
 			return
 		end try
 	end if

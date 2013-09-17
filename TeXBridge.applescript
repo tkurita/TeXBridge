@@ -23,7 +23,6 @@ script TeXBridgeController
 	
 	(*=== dynamically loaded script objects ===*)
 	property UtilityHandlers : missing value
-	property MessageUtility : missing value
 	property ToolPaletteController : missing value
 	property LogFileParser : missing value
 	property ReplaceInput : missing value
@@ -77,7 +76,7 @@ script TeXBridgeController
 					theObject's commandScript's do(CompileCenter)
 				on error msg number errno
 					if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-						MessageUtility's show_error(errno, "open", msg)
+						UtilityHandlers's show_error(errno, "open", msg)
 					else
 						error msg number errno
 					end if
@@ -86,7 +85,7 @@ script TeXBridgeController
 			else if command_class is "editSupport" then
 				theObject's commandScript's do(EditCommands)
 			else
-				show_message("Unknown commandClass : " & command_class) of MessageUtility
+				UtilityHandlers's show_message("Unknown commandClass : " & command_class)
 			end if
 		else
 			set command_id to item 1 of theObject
@@ -119,7 +118,7 @@ script TeXBridgeController
 					open_dvi of a_dvi with activation
 				end if
 			else
-				show_message("Unknown argument : " & command_id) of MessageUtility
+				UtilityHandlers's show_message("Unknown argument : " & command_id)
 			end if
 			
 		end if
@@ -160,7 +159,7 @@ script TeXBridgeController
 			if a_ver is not greater than or equal to "2.1.11" then
 				set msg to UtilityHandlers's localized_string("mi $1 is not supported.", {a_ver})
 				startupWindow's orderOut_(missing value)
-				MessageUtility's show_message(msg)
+				UtilityHandlers's show_message(msg)
 				return false
 			end if
 		end considering
@@ -182,7 +181,6 @@ script TeXBridgeController
 	
 	on setup()
 		startupMessageField's setStringValue_("Loading Scripts ...")
-		set MessageUtility to import_script("MessageUtility") -- TODO
 		set UtilityHandlers to import_script("UtilityHandlers")
 		set LogFileParser to import_script("LogFileParser")
 		set EditCommands to import_script("EditCommands")
@@ -215,7 +213,7 @@ script TeXBridgeController
 			set a_result to x_handler's do(CompileCenter)
 		on error msg number errno
 			if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-				MessageUtility's show_error(errno, "open", msg)
+				UtilityHandlers's show_error(errno, "open", msg)
 			else
 				error msg number errno
 			end if

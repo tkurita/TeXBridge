@@ -1,6 +1,5 @@
 global PathConverter
 global CompileCenter
-global MessageUtility
 global EditorClient
 global UtilityHandlers
 

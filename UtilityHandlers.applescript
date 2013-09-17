@@ -33,3 +33,14 @@ on is_running(app_name)
 		return exists application process app_name
 	end tell
 end is_running
+
+on show_error(errno, place, msg)
+	activate
+	set a_msg to localized_string("error_msg", {errno, place, msg})
+	display alert message a_msg
+end show_error
+
+on show_message(a_msg)
+	activate
+	display alert message a_msg
+end show_message
