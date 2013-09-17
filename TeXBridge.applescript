@@ -63,69 +63,6 @@ script TeXBridgeController
 		ReplaceInput's do()
 	end do_replaceinput
 	
-	on open theObject
-		--log "start open"
-		appController's stopTimer()
-		set a_class to class of theObject
-		if a_class is record then
-			set command_class to commandClass of theObject
-			if command_class is "action" then
-				theObject's commandScript's do(me)
-			else if command_class is "compile" then
-				try
-					theObject's commandScript's do(CompileCenter)
-				on error msg number errno
-					if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-						UtilityHandlers's show_error(errno, "open", msg)
-					else
-						error msg number errno
-					end if
-				end try
-				appController's showStatusMessage_("")
-			else if command_class is "editSupport" then
-				theObject's commandScript's do(EditCommands)
-			else
-				UtilityHandlers's show_message("Unknown commandClass : " & command_class)
-			end if
-		else
-			set command_id to item 1 of theObject
-			if command_id starts with "." then
-				openOutputHadler(command_id) of CompileCenter
-			else if (command_id as Unicode text) ends with ".dvi" then
-				set a_xfile to XFile's make_with(command_id)
-				tell NSUserDefaults's standardUserDefaults()
-					set a_mode to integerForKey_("DVIPreviewMode") as integer
-				end tell
-				if a_mode is 0 then
-					set def_app to a_xfile's info()'s default application
-					if def_app is (path to me) then
-						activate
-						set a_result to choose from list {"xdvi", "PictPrinter"} with prompt "Choose a DVI Previewer :"
-						if class of a_result is not list then
-							set a_mode to -1
-						else
-							set a_result to item 1 of a_result
-							if a_result is "xdvi" then
-								set a_mode to 2
-							else
-								set a_mode to 3
-							end if
-						end if
-					end if
-				end if
-				if a_mode is not -1 then
-					set a_dvi to DVIController's make_with_xfile_mode(a_xfile, a_mode)
-					open_dvi of a_dvi with activation
-				end if
-			else
-				UtilityHandlers's show_message("Unknown argument : " & command_id)
-			end if
-			
-		end if
-		appController's restartTimer()
-		return true
-	end open
-	
 	on performTask_(a_script)
 		appController's stopTimer()
 		set a_script to a_script as script

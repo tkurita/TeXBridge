@@ -239,7 +239,7 @@
 						<key>_historyCapacity</key>
 						<integer>20</integer>
 						<key>bookmark</key>
-						<string>2C815C9F17E88CDA003CBF44</string>
+						<string>2C815CA317E88DE9003CBF44</string>
 						<key>history</key>
 						<array>
 							<string>2C815C6517E88AF6003CBF44</string>
@@ -297,8 +297,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -351,6 +349,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>13</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -385,12 +385,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>2C6E886D169B08E500CDEE1D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>EditCommands.applescript</string>
+								<string>TeXBridge.applescript</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -398,11 +400,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>EditCommands.applescript</string>
+										<string>TeXBridge.applescript</string>
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2C815C9E17E88CDA003CBF44</string>
+										<string>2C815CA217E88DE9003CBF44</string>
 										<key>history</key>
 										<array>
 											<string>2C52230817E14682003C1272</string>
@@ -418,11 +420,11 @@
 											<string>2C815C6B17E88C22003CBF44</string>
 											<string>2C815C6C17E88C22003CBF44</string>
 											<string>2C815C6D17E88C22003CBF44</string>
-											<string>2C815C6E17E88C22003CBF44</string>
 											<string>2C815C6F17E88C22003CBF44</string>
 											<string>2C815C7017E88C22003CBF44</string>
 											<string>2C815C7117E88C22003CBF44</string>
-											<string>2C815C7217E88C22003CBF44</string>
+											<string>2C815CA017E88DE9003CBF44</string>
+											<string>2C815CA117E88DE9003CBF44</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
