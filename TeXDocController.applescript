@@ -393,7 +393,7 @@ on make_with_dvifile(dvi_file_ref)
 		set basepath to dvi_path
 	end if
 	set a_xfile to XFile's make_with((basepath & ".tex") as POSIX file)
-	if a_pathinfo's item_exists() then
+	if a_xfile's item_exists() then
 		set tex_doc_obj to make_with(a_xfile, missing value)
 		tex_doc_obj's lookup_header_commands_from_file()
 	else
