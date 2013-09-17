@@ -35,7 +35,6 @@
 		2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (); }; };
-		2C4E27B9084273B000004A96 /* MessageUtility.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BB084273B000004A96 /* PDFController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -135,8 +134,6 @@
 		2C0BE4D116DC4C810005A62A /* NewToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewToolPaletteController.h; sourceTree = "<group>"; };
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
 		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
-		2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
-		2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
 		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
 		2C2E5294080625270015E9EB /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -171,7 +168,6 @@
 		2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = NewRefPanelController.m; sourceTree = "<group>"; };
 		2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = NewRefPanelController.h; sourceTree = "<group>"; };
 		2C6CA3A308CF5565005D5612 /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = images/Reload.png; sourceTree = "<group>"; };
-		2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = SheetManager.applescript; sourceTree = "<group>"; };
 		2C6FB9BD06255005004731C7 /* CompileCenter.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = CompileCenter.applescript; sourceTree = "<group>"; };
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
 		2C71167D07D177B8008BCAEF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
@@ -179,7 +175,6 @@
 		2C732C7C07AE666B005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
 		2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
-		2C7C492E07960C830026564C /* DefaultsManager.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = DefaultsManager.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
 		2C808A8D0E9BD985006F19EB /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
@@ -202,7 +197,6 @@
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
 		2CBFD209097DFA9200BCEB43 /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miClient.h; sourceTree = "<group>"; };
 		2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = miClient.m; sourceTree = "<group>"; };
-		2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
 		2CC4852C099040B0004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocController.applescript; sourceTree = "<group>"; };
 		2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = DVIController.applescript; sourceTree = "<group>"; };
@@ -326,7 +320,6 @@
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
 				2C1656E209F90C3200CE5422 /* miClientLib */,
 				2C1DB15709F687D000139324 /* SmartActivateLib */,
-				2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */,
 				2C0311A00AACA0F2005B592F /* CocoaLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				2CCDB95317DE9E0A00E98804 /* Script Commands */,
@@ -417,18 +410,6 @@
 				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
 			);
 			path = miClientLib;
-			sourceTree = "<group>";
-		};
-		2C1DAE3709F5F7EE00139324 /* ASStudioScriptLib */ = {
-			isa = PBXGroup;
-			children = (
-				2CC144FA08067AB000F04B63 /* TerminalCommander.applescript */,
-				2C1732F7063C1BD0000FEAF8 /* MessageUtility.applescript */,
-				2C1732F1063C1A19000FEAF8 /* UtilityHandlers.applescript */,
-				2C7C492E07960C830026564C /* DefaultsManager.applescript */,
-				2C6CA44108CFC6D2005D5612 /* SheetManager.applescript */,
-			);
-			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
 		2C1DB15709F687D000139324 /* SmartActivateLib */ = {
@@ -659,7 +640,6 @@
 				2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */,
 				2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */,
 				2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */,
-				2C4E27B9084273B000004A96 /* MessageUtility.applescript in Sources */,
 				2C4E27BB084273B000004A96 /* PDFController.applescript in Sources */,
 				2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */,
 				2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */,
