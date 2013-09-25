@@ -67,6 +67,7 @@
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
+		2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
@@ -184,6 +185,8 @@
 		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
 		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXBridge.nib; sourceTree = "<group>"; };
+		2C9BE72E17F35F16003DA783 /* NSURL+NDCarbonUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NDCarbonUtilities.h"; sourceTree = "<group>"; };
+		2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NDCarbonUtilities.m"; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 		2C0311A00AACA0F2005B592F /* CocoaLib */ = {
 			isa = PBXGroup;
 			children = (
+				2C9BE72E17F35F16003DA783 /* NSURL+NDCarbonUtilities.h */,
+				2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */,
 				2C30E70F1095A65800605969 /* FrontAppMonitor.h */,
 				2C30E7101095A65800605969 /* FrontAppMonitor.m */,
 				2C0311A10AACA0F2005B592F /* PaletteWindowController.h */,
@@ -680,6 +685,7 @@
 				2CCDB95217DE9D1100E98804 /* DefaultsForKeyCommand.m in Sources */,
 				2CCDBAC217DEE5AB00E98804 /* AppleEventExtra.m in Sources */,
 				2CCDBB1B17DF04FC00E98804 /* ActivateProcessCommand.m in Sources */,
+				2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
