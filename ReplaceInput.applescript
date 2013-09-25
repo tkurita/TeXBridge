@@ -6,12 +6,12 @@ global UtilityHandlers
 
 on findReplaceText(a_key)
 	--log "start findReplaceText for " & a_key
-	set new_text to call method "findTextForKey:" of class "ReplaceInputData" with parameter a_key
-	try
-		get new_text
-		return new_text
-	end try
-	
+	tell current application's class "ReplaceInputData"
+		set new_text to findTextForKey_(a_key)
+	end tell
+	if new_text is not missing value then
+		return new_text as text
+	end if
 	-- replace text is not found associated for key value
 	error "replace text is not found." number 1270
 end findReplaceText
@@ -42,7 +42,6 @@ on do()
 	set keyText to text (lastYenPosition + 1) thru -1 of targetText
 	
 	set newText to missing value
-	--set newText to getKeyValue of UtilityHandlers for keyText from my _internalReplaceDict
 	try
 		set newText to findReplaceText(keyText)
 	on error number 1270

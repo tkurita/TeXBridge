@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="Dictionary">
+	<suite hidden="yes" name="Old KTeXEdit Suite" code="misc" description="Terms for KTeXEdit">
+		<cocoa name="OldKTeXEdit"/>
+		<command name="FindRoughly" code="miscFndR" description="find text ignorering tex-control sequences or mathematical symbols">
+			<cocoa class="FindRoughlyCommand"/>
+			<direct-parameter description="search text" type="text" optional="yes"/>
+			<parameter name="previous text" code="prev" description="text before the searching text" type="text" optional="yes">
+				<cocoa key="previousText"/>
+			</parameter>
+			<parameter name="untilLine" code="FndE" description="maximum of source line number (exclusive)" type="integer" optional="yes">
+				<cocoa key="untilLine"/>
+			</parameter>
+			<parameter name="inDvi" code="file" description="dvi file in which the text is" type="file" optional="yes">
+				<cocoa key="inDvi"/>
+			</parameter>
+			<parameter name="selecting" code="selc" description="select found text or select its first char" type="boolean" optional="yes">
+				<cocoa key="selecting"/>
+			</parameter>
+			<parameter name="startLine" code="FndB" description="minimum of source line number" type="integer" optional="yes">
+				<cocoa key="startLine"/>
+			</parameter>
+			<parameter name="text" code="TEXT" description="text to search" type="text" optional="yes">
+				<cocoa key="text"/>
+			</parameter>
+			<parameter name="withSource" code="at  " description="tex source path (ptex only)" type="text" optional="yes">
+				<cocoa key="withSource"/>
+			</parameter>
+			<parameter name="reopen" code="FndO" description="reopen dvi" type="boolean" optional="yes">
+				<cocoa key="reopen"/>
+			</parameter>
+			<result type="integer"/>
+		</command>
+	</suite>
+	<suite name="KTeXEdit Suite" code="ktxE" description="Terms for KTeXEdit">
+		<cocoa name="KTeXEdit"/>
+		<command name="FindRoughly" code="ktxEFndR" description="find text ignorering tex-control sequences or mathematical symbols">
+			<cocoa class="FindRoughlyCommand"/>
+			<direct-parameter description="search text" type="text" optional="yes"/>
+			<parameter name="previous text" code="Prev" description="text before the searching text" type="text" optional="yes">
+				<cocoa key="previousText"/>
+			</parameter>
+			<parameter name="untilLine" code="FndE" description="maximum of source line number (exclusive)" type="integer" optional="yes">
+				<cocoa key="untilLine"/>
+			</parameter>
+			<parameter name="inDvi" code="iDvi" description="dvi file in which the text is" type="file" optional="yes">
+				<cocoa key="inDvi"/>
+			</parameter>
+			<parameter name="selecting" code="Selc" description="select found text or select its first char" type="boolean" optional="yes">
+				<cocoa key="selecting"/>
+			</parameter>
+			<parameter name="startLine" code="FndB" description="minimum of source line number" type="integer" optional="yes">
+				<cocoa key="startLine"/>
+			</parameter>
+			<parameter name="text" code="Text" description="text to search" type="text" optional="yes">
+				<cocoa key="text"/>
+			</parameter>
+			<parameter name="withSource" code="At  " description="tex source path (ptex only)" type="text" optional="yes">
+				<cocoa key="withSource"/>
+			</parameter>
+			<parameter name="reopen" code="FndO" description="reopen dvi" type="boolean" optional="yes">
+				<cocoa key="reopen"/>
+			</parameter>
+			<result type="integer"/>
+		</command>
+	</suite>
+	<suite name="TeXBridge Suite" code="TmBd">
+		<command name="perform task" code="TmBdPfTs" description="order a task to TeXBridge">
+			<cocoa class="PerformScriptCommand"/>
+			<parameter name="with script" code="whSp" description="script object" type="any">
+				<cocoa key="withScript"/>
+			</parameter>
+			<result type="any"/>
+		</command>
+		<command name="show help" code="TmBdsHHp" description="open a helpbook in the HelpViewer.">
+			<cocoa class="ShowHelpCommand"/>
+		</command>
+		<command name="defaults for key" code="TmBdDefK" description="get user defaults value">
+			<cocoa class="DefaultsForKeyCommand"/>
+			<direct-parameter type="text"/>
+			<result type="any"/>
+		</command>
+		<command name="activate process" code="smAtsmAt" description="Activate an application process with only font window">
+			<direct-parameter type="text" optional="yes"/>
+			<parameter hidden="yes" name="creatorType" code="cTyp" description="creator type of the process. The value of &quot;CFBundleSignature&quot; in info.plist of an application bundle" type="text" optional="yes">
+				<cocoa key="creatorType"/>
+			</parameter>
+			<parameter hidden="yes" name="identifier" code="buID" description="Bundle Identifer of the process" type="text" optional="yes">
+				<cocoa key="identifier"/>
+			</parameter>
+			<result description="true if successed to activate specified process." type="boolean"/>
+		</command>
+	</suite>
+</dictionary>

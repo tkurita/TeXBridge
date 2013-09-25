@@ -1,5 +1,7 @@
 global PathConverter
 
+global LogParser
+
 on boolValue(theValue)
 	return theValue is 1
 end boolValue
@@ -25,52 +27,58 @@ on labels_changed()
 	return my _isLabelsChanged
 end labels_changed
 
-on parseLog(logParser)
-	call method "setBaseURLWithPath:" of logParser with parameter (my _texdoc's no_suffix_posix_path())
+on parseLog(a_log_parser)
+	a_log_parser's setBaseURLWithPath_(my _texdoc's no_suffix_posix_path())
 	set pre_delim to AppleScript's text item delimiters
 	set AppleScript's text item delimiters to space
 	set commandName to text item 1 of (my _texdoc's typeset_command())
 	set AppleScript's text item delimiters to pre_delim
-	call method "setJobName:" of logParser with parameter (commandName & space & (my _texdoc's fileName()))
+	a_log_parser's setJobName_(commandName & space & (my _texdoc's fileName()))
 	try
-		set parseResult to call method "parseLog" of logParser
+		set parseResult to a_log_parser's parseLog()
 	on error msg number errno
 		error "Error when parsing log. message : " & msg number errno
 	end try
 	--log parseResult
-	set my _isDviOutput to boolValue(call method "isDviOutput" of logParser)
-	set my _isNoError to boolValue(call method "isNoError" of logParser)
-	set my _isLabelsChanged to boolValue(call method "isLabelsChanged" of logParser)
-	call method "release" of logParser
+	tell a_log_parser
+		set my _isDviOutput to isDviOutput() as boolean
+		set my _isNoError to isNoError() as boolean
+		set my _isLabelsChanged to isLabelsChanged() as boolean
+	end tell
 	--log "end parseLog"
 end parseLog
 
 on parseLogText()
 	--log "start parseLogText"
-	set logParser to call method "alloc" of class "LogParser"
+	tell LogParser
+		set a_log_parser to alloc()
+	end tell
 	set a_log_contents to log_contents()
 	--log a_log_contents
 	if (a_log_contents starts with "This is") then
-		set logParser to call method "initWithString:" of logParser with parameter (a_log_contents & return)
+		set a_log_parser to a_log_parser's initWithString_(a_log_contents & return)
 	else
-		set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
+		set a_log_parser to a_log_parser's initWithContentsOfFile_encodingName_(logfile()'s posix_path(), my _texdoc's text_encoding())
 	end if
-	set err_msg to call method "errorMessage" of logParser
+	
+	set err_msg to a_log_parser's errorMessage() as text
 	if err_msg is not "" then
 		error err_msg number 1245
 	end if
-	parseLog(logParser)
+	parseLog(a_log_parser)
 	--log "end parseLogText"
 end parseLogText
 
 on parse_logfile()
-	set logParser to call method "alloc" of class "LogParser"
-	set logParser to call method "initWithContentsOfFile:encodingName:" of logParser with parameters {(logfile()'s posix_path()), my _texdoc's text_encoding()}
-	set err_msg to call method "errorMessage" of logParser
+	set logfile_path to logfile()'s posix_path()
+	tell LogParser
+		set a_log_parser to alloc()'s initWithContentsOfFile_encodingName_(logfile_path, my _texdoc's text_encoding())
+	end tell
+	set err_msg to a_log_parser's errorMessage() as text
 	if err_msg is not "" then
 		error err_msg number 1245
 	end if
-	parseLog(logParser)
+	parseLog(a_log_parser)
 end parse_logfile
 
 on resolveTargetFile(theTargetFile)
@@ -79,7 +87,7 @@ on resolveTargetFile(theTargetFile)
 		set theTargetFile to absolute_path of (my _pathConverter) for theTargetFile
 		set theTargetFile to theTargetFile as alias
 	else
-		set theTargetFile to (POSIX file theTargetFile) as alias
+		set theTargetFile to (theTargetFile as POSIX file) as alias
 	end if
 	return theTargetFile
 end resolveTargetFile
@@ -93,8 +101,6 @@ on make_with(a_texdoc)
 		property _texdoc : a_texdoc
 		property _isDviOutput : true
 		property _isNoError : true
-		--property _retryCompile : false -- obsoleted ?
-		--property _isNoMessages : false
 		property _isLabelsChanged : false
 		property _pathConverter : missing value
 	end script

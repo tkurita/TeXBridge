@@ -1,7 +1,6 @@
 global EditCommands
 global UtilityHandlers
 global LogFileParser
-global MessageUtility
 global PDFController
 global DVIController
 global TeXDocController
@@ -9,29 +8,31 @@ global appController
 global RefPanelController
 global ToolPaletteController
 global EditorClient
-global FrontAccess
 
 --general libs
 global TerminalCommander
 global PathConverter
 global FrontAccess
 global XFile
+global PathInfo
 
 --special values
 global _com_delim
 global _backslash
 
+-- Cocoa classes
+global NSUserDefaults
+
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
 
 on show_status_message(msg)
-	call method "showStatusMessage:" of appController with parameter msg
+	appController's showStatusMessage_(msg)
 end show_status_message
 
 on rebuild_labels_from_aux(a_texdoc)
 	set tex_file_path to a_texdoc's tex_file()'s posix_path()
-	call method "rebuildLabelsFromAux:textEncoding:" of appController Å 
-		with parameters {tex_file_path, a_texdoc's text_encoding()}
+	appController's rebuildLabelsFromAux_textEncoding_(tex_file_path, a_texdoc's text_encoding())
 end rebuild_labels_from_aux
 
 on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_flag
@@ -53,7 +54,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 			if message_flag then
 				set docname to EditorClient's document_name()
 				set a_msg to UtilityHandlers's localized_string("invalidMode", {docname})
-				show_message(a_msg) of MessageUtility
+				UtilityHandlers's show_message(a_msg)
 				error "The mode of the document is not supported." number 1205
 			end if
 			return missing value
@@ -61,7 +62,7 @@ on texdoc_for_firstdoc given showing_message:message_flag, need_file:need_file_f
 	else
 		if message_flag then
 			set a_msg to localized string "noDocument"
-			show_message(a_msg) of MessageUtility
+			UtilityHandlers's show_message(a_msg)
 			error "No opened documents." number 1240
 		end if
 		return missing value
@@ -140,7 +141,7 @@ on preview_dvi_for_frontdoc()
 	on error number 1750
 		return false
 	end try
-	set a_xfile to XFile's make_with(a_file)
+	set a_xfile to PathInfo's make_with(a_file)
 	if a_xfile's path_extension() is "dvi" then
 		return true
 	end if
@@ -155,7 +156,7 @@ on preview_dvi_for_frontdoc()
 	try
 		open_dvi of a_dvi with activation
 	on error msg number errno
-		MessageUtility(errno, "preview_dvi_for_frontdoc", msg) of MessageUtility
+		UtilityHandlers's show_error(errno, "preview_dvi_for_frontdoc", msg)
 	end try
 	--log "end preview_dvi_for_frontdoc"
 	return true
@@ -166,7 +167,7 @@ on openOutputHadler(an_extension)
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "openOutputHadler", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "openOutputHadler", msg)
 		end if
 		return
 	end try
@@ -197,7 +198,7 @@ on dvi_from_editor()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			showError(errno, "dvi_to_pdf", msg) of MessageUtility
+			UtilityHandlers's showError(errno, "dvi_to_pdf", msg)
 		end if
 		return missing value
 	end try
@@ -228,8 +229,11 @@ on dvi_from_frontmost()
 	if file_url does not end with ".dvi" then
 		return missing value
 	end if
-	set an_url to call method "URLWithString:" of class "NSURL" with parameter file_url
-	set a_path to call method "path" of an_url
+	
+	tell current application's class "NSURL"
+		set a_path to (URLWithString_(file_url)'s |path|()) as text
+	end tell
+	
 	set a_texdoc to TeXDocController's make_with_dvifile(a_path)
 	set a_dvi to a_texdoc's lookup_dvi()
 	--log "end dvi_from_frontmost"
@@ -264,7 +268,7 @@ on dvi_to_ps()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "dvi_to_ps", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "dvi_to_ps", msg)
 		end if
 		return
 	end try
@@ -282,7 +286,7 @@ on exec_tex_command(texCommand, a_suffix, checkSaved)
 		set a_texdoc to checkmifiles without autosave given saving:checkSaved
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "exec_tex_command", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "exec_tex_command", msg)
 		end if
 		return
 	end try
@@ -300,7 +304,7 @@ on seek_ebb()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "seek_ebb", msg) of MessageUtility
+			UtilityHandlers's show_error(errno, "seek_ebb", msg)
 		end if
 		return
 	end try
@@ -311,7 +315,14 @@ on seek_ebb()
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	
 	set theRes to EditorClient's document_content()
+	(* #ASStudo
 	set ebb_command to contents of default entry "ebbCommand" of user defaults
+	*)
+	tell current application's class "NSUserDefaults"
+		tell its standardUserDefaults()
+			set ebbCommand to stringForKey_("ebbCommand")
+		end tell
+	end tell
 	if ebb_command contains "-m" then
 		set bb_ext to "bb"
 	else
@@ -376,12 +387,16 @@ end exec_ebb
 
 on mendex()
 	--log "start execmendex"
-	set a_command to contents of default entry "mendexCommand" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set a_command to stringForKey_("mendexCommand") as text
+	end tell
 	exec_tex_command(a_command, "idx", false)
 end mendex
 
 on bibtex()
-	set a_command to contents of default entry "bibtexCommand" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set a_command to stringForKey_("bibtexCommand") as text
+	end tell
 	exec_tex_command(a_command, missing value, true)
 end bibtex
 
@@ -391,7 +406,7 @@ on quick_typeset_preview()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			MessageUtility's show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg)
+			UtilityHandlers's show_error(errno, "quick_typeset_preview after calling prepare_typeset", msg)
 		end if
 		return
 	end try
@@ -408,32 +423,34 @@ on quick_typeset_preview()
 	on error number 1250
 		return
 	end try
-	--log "after texCompile in quick_typeset_preview"
+	--log "after typeset in quick_typeset_preview"
 	show_status_message("Analyzing log text ...")
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	--log "befor parseLogText in quick_typeset_preview"
-	parseLogText() of a_log_file_parser
-	--log "after parseLogText in quick_typeset_preview"
+	a_log_file_parser's parseLogText()
+	-- log "after parseLogText in quick_typeset_preview"
 	show_status_message("Opening DVI file  ...")
-	set aFlag to is_no_error() of a_log_file_parser
-	if is_dvi_output() of a_log_file_parser then
+	set a_flag to a_log_file_parser's is_no_error()
+	if a_log_file_parser's is_dvi_output() then
 		try
-			open_dvi of a_dvi given activation:aFlag
+			open_dvi of a_dvi given activation:a_flag
 		on error msg number errno
-			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of MessageUtility
+			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of UtilityHandlers
 		end try
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		UtilityHandlers's show_message(a_msg)
 	end if
-	
-	if not aFlag then
-		set logManager to call method "sharedLogManager" of class "LogWindowController"
-		call method "bringToFront" of logManager
+	if not a_flag then
+		tell current application's class "LogWindowController"
+			its sharedLogManager()'s bringToFront()
+		end tell
 		activate
 	end if
 	a_texdoc's preserve_terminal()
+	--log "before rebuild_labels_from_aux in quick_typeset_preview"
 	rebuild_labels_from_aux(a_texdoc)
+	--log "after rebuild_labels_from_aux in quick_typeset_preview"
 	show_status_message("")
 end quick_typeset_preview
 
@@ -447,7 +464,7 @@ on typeset_preview()
 		try
 			open_dvi of a_dvi given activation:activate_flag
 		on error msg number errno
-			show_error(errno, "typeset_preview", msg) of MessageUtility
+			show_error(errno, "typeset_preview", msg) of UtilityHandlers
 		end try
 	end if
 	a_dvi's texdoc()'s preserve_terminal()
@@ -464,7 +481,7 @@ on typeset_preview_pdf()
 	show_status_message("Opening PDF file ...")
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		show_message(a_msg) of UtilityHandlers
 	else
 		open_pdf() of a_pdf
 	end if
@@ -484,7 +501,7 @@ on typeset()
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "typeset after calling prepare_typeset", msg) of MessageUtility
+			show_error(errno, "typeset after calling prepare_typeset", msg) of UtilityHandlers
 		end if
 		return missing value
 	end try
@@ -500,7 +517,9 @@ on typeset()
 	set a_log_file_parser to newLogFileParser(a_texdoc)
 	show_status_message("Analyzing log text ...")
 	parse_logfile() of a_log_file_parser
-	set autoMultiTypeset to contents of default entry "AutoMultiTypeset" of user defaults
+	tell NSUserDefaults's standardUserDefaults()
+		set autoMultiTypeset to boolForKey_("AutoMultiTypeset") as boolean
+	end tell
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
 		show_status_message("Typeseting...")
 		try
@@ -518,13 +537,15 @@ on typeset()
 	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then
-		call method "activateSelf" of class "SmartActivate"
+		tell current application's class "SmartActivate"
+			its activateSelf()
+		end tell
 	end if
 	if (is_dvi_output() of a_log_file_parser) then
 		return a_dvi
 	else
 		set a_msg to localized string "DVIisNotGenerated"
-		show_message(a_msg) of MessageUtility
+		show_message(a_msg) of UtilityHandlers
 		return missing value
 	end if
 end typeset
@@ -541,7 +562,7 @@ on preview_dvi()
 		a_texdoc's set_use_term(true)
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end if
 		return
 	end try
@@ -553,7 +574,7 @@ on preview_dvi()
 		try
 			open_dvi of a_dvi with activation
 		on error msg number errno
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end try
 	else
 		set dviName to name_for_suffix("dvi") of a_texdoc
@@ -569,7 +590,7 @@ on preview_pdf()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "preview_dvi", msg) of MessageUtility
+			show_error(errno, "preview_dvi", msg) of UtilityHandlers
 		end if
 		return
 	end try

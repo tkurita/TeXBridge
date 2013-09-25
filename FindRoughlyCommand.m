@@ -48,10 +48,10 @@ void showAEDesc(const AppleEvent *ev)
 	NSLog([[self evaluatedReceivers] description]);
 	NSLog(@"with source : %@", [[self arguments] objectForKey:@"withSource"]);
 #endif	
-	NSString *dvi_path = [[self arguments] objectForKey:@"inDvi"];
+	NSString *dvi_path = [[[self arguments] objectForKey:@"inDvi"] path];
 	NSString *source_name = [[self arguments] objectForKey:@"withSource"];
 	NSNumber *start_pos = [[self arguments] objectForKey:@"startLine"];
-	
+
 	NSString *tex_path;
 	if (source_name) {
 		tex_path = [[dvi_path stringByDeletingLastPathComponent] stringByAppendingPathComponent:source_name];

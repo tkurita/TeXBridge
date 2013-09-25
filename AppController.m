@@ -9,16 +9,17 @@
 
 #define useLog 0
 
-
+/*
 @interface ASKScriptCache : NSObject
 {
 }
 + (ASKScriptCache *)sharedScriptCache;
 - (OSAScript *)scriptWithName:(NSString *)name;
 @end
+*/
 
 id EditorClient;
-static id sharedObj;
+static id sharedObj = nil;
 
 NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 {
@@ -42,11 +43,43 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 + (id)sharedAppController
 {
-	if (sharedObj == nil) {
-		sharedObj = [[self alloc] init];
+	@synchronized(self) {
+		if (sharedObj == nil) {
+			sharedObj = [[self alloc] init];
+		}
 	}
 	return sharedObj;
 }
+
++ (id)allocWithZone:(NSZone *)zone {  
+    @synchronized(self) {  
+        if (sharedObj == nil) {  
+            sharedObj = [super allocWithZone:zone];  
+            return sharedObj;  
+        }  
+    }  
+    return nil;  
+}  
+
+- (id)copyWithZone:(NSZone*)zone {  
+    return self;  // シングルトン状態を保持するため何もせず self を返す  
+}  
+
+- (id)retain {  
+    return self;  // シングルトン状態を保持するため何もせず self を返す  
+}  
+
+- (unsigned)retainCount {  
+    return UINT_MAX;  // 解放できないインスタンスを表すため unsigned int 値の最大値 UINT_MAX を返す  
+}  
+
+- (void)release {  
+    // シングルトン状態を保持するため何もしない  
+}  
+
+- (id)autorelease {  
+    return self;  // シングルトン状態を保持するため何もせず self を返す  
+} 
 
 - (id)init
 {
@@ -174,33 +207,22 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 - (IBAction)quickTypesetPreview:(id)sender
 {
-	NSDictionary *error_info = nil;
-	[script executeHandlerWithName:@"perform_handler"
-						 arguments:[NSArray arrayWithObject:@"quick_typeset_preview"]
-							 error:&error_info];
+	[texBridgeController performHandler:@"quick_typeset_preview"];
+
 }
 - (IBAction)dviPreview:(id)sender
 {
-	NSDictionary *error_info = nil;
-	[script executeHandlerWithName:@"perform_handler"
-						 arguments:[NSArray arrayWithObject:@"preview_dvi"]
-							 error:&error_info];
-	
+	[texBridgeController performHandler:@"preview_dvi"];
+	 
 }
 - (IBAction)dviToPDF:(id)sender
 {
-	NSDictionary *error_info = nil;
-	[script executeHandlerWithName:@"perform_handler"
-						 arguments:[NSArray arrayWithObject:@"dvi_to_pdf"]
-							 error:&error_info];
+	[texBridgeController performHandler:@"dvi_to_pdf"];
 	
 }
 - (IBAction)typesetPDFPreview:(id)sender
 {
-	NSDictionary *error_info = nil;
-	[script executeHandlerWithName:@"perform_handler"
-						 arguments:[NSArray arrayWithObject:@"typeset_preview_pdf"]
-							 error:&error_info];
+	[texBridgeController performHandler:@"typeset_preview_pdf"];
 }
 
 - (void)showStatusMessage:(NSString *)msg
@@ -314,6 +336,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[wvController setDelegate:self];
 	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
 	[PaletteWindowController setVisibilityController:[wvController autorelease]];
+	
+	[texBridgeController setup];
 #if useLog
 	NSLog(@"end applicationWillFinishLaunching");
 #endif		
@@ -365,10 +389,11 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #endif	
 }
 
-- (void)awakeFromNib
-{
-	script = [[ASKScriptCache sharedScriptCache] scriptWithName:@"TeXBridge"];
-}
+#pragma mark Accessors
 
+- (TeXBridgeController *)texBridgeController
+{
+	return texBridgeController;
+}
 
 @end

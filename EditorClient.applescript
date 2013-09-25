@@ -1,7 +1,9 @@
 property parent : load("miClient") of application (get "TeXToolsLib")
 
 on show_message_asking(msg)
-	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
+	tell current application's class "SmartActivate"
+		activateAppOfIdentifier_("net.mimikaki.mi")
+	end tell
 	tell application "mi"
 		try
 			display dialog msg
@@ -13,7 +15,9 @@ on show_message_asking(msg)
 end show_message_asking
 
 on show_message_buttons(msg, button_list, default_button)
-	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
+	tell current application's class "SmartActivate"
+		activateAppOfIdentifier_("net.mimikaki.mi")
+	end tell
 	tell application "mi"
 		try
 			set a_result to display dialog msg buttons button_list default button default_button
@@ -25,15 +29,10 @@ on show_message_buttons(msg, button_list, default_button)
 end show_message_buttons
 
 on show_message(msg)
-	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
+	tell current application's class "SmartActivate"
+		activateAppOfIdentifier_("net.mimikaki.mi")
+	end tell
 	tell application "mi"
 		display alert msg
 	end tell
 end show_message
-
-(*
-on open_with_activating(a_file)
-	open_file(a_file)
-	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
-end open_with_activating
-*)

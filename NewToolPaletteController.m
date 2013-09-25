@@ -8,14 +8,17 @@
 	return currentRect.size;
 }
 */
+
+/*
 - (BOOL)windowShouldClose:(id)sender
 {
 	[super windowShouldClose:sender];
 	
-	/* To support AppleScript Studio of MacOS 10.4 */
+	// To support AppleScript Studio of MacOS 10.4
 	[[self window] orderOut:self];
 	return NO;
 }
+*/
 
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
