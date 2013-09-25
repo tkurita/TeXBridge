@@ -69,7 +69,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
     return self;  // シングルトン状態を保持するため何もせず self を返す  
 }  
 
-- (unsigned)retainCount {  
+- (NSUInteger)retainCount {  
     return UINT_MAX;  // 解放できないインスタンスを表すため unsigned int 値の最大値 UINT_MAX を返す  
 }  
 

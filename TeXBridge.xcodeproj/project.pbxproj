@@ -153,7 +153,7 @@
 		2C40983816AD578D0085CB9D /* AuxFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxFile.m; sourceTree = "<group>"; };
 		2C4098EF16AE2C6A0085CB9D /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = RegexKitLite/RegexKitLite.h; sourceTree = "<group>"; };
 		2C4098F016AE2C6A0085CB9D /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
-		2C4099BB16AECE4C0085CB9D /* History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = History.rtf; path = ../../../History.rtf; sourceTree = SOURCE_ROOT; };
+		2C4099BB16AECE4C0085CB9D /* History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = History.rtf; path = ../../History.rtf; sourceTree = SOURCE_ROOT; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
 		2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoPDFIcon.png; path = images/TeXtoPDFIcon.png; sourceTree = "<group>"; };
@@ -777,7 +777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
