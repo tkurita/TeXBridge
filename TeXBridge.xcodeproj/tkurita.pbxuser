@@ -229,6 +229,9 @@
 			2C9BE73717F35F3B003DA783 /* PBXTextBookmark */ = 2C9BE73717F35F3B003DA783 /* PBXTextBookmark */;
 			2C9BE73817F35F3B003DA783 /* PBXTextBookmark */ = 2C9BE73817F35F3B003DA783 /* PBXTextBookmark */;
 			2C9BE73917F35F3B003DA783 /* PBXTextBookmark */ = 2C9BE73917F35F3B003DA783 /* PBXTextBookmark */;
+			2C9BE89417F3BE7F003DA783 /* PBXTextBookmark */ = 2C9BE89417F3BE7F003DA783 /* PBXTextBookmark */;
+			2C9BE89517F3BE7F003DA783 /* PBXTextBookmark */ = 2C9BE89517F3BE7F003DA783 /* PBXTextBookmark */;
+			2C9BE89617F3BE7F003DA783 /* PBXTextBookmark */ = 2C9BE89617F3BE7F003DA783 /* PBXTextBookmark */;
 			2CD5554C08BEC77E007E43D1 = 2CD5554C08BEC77E007E43D1 /* AppController.h */;
 			2CD5554D08BEC77E007E43D1 = 2CD5554D08BEC77E007E43D1 /* AppController.m */;
 			DA206CF3015C4E8B03C91932 = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */;
@@ -267,7 +270,7 @@
 	};
 	2C0311A30AACA0F2005B592F /* PathExtra.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 455}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 429}}";
 			sepNavSelRange = "{701, 10}";
 			sepNavVisRange = "{0, 1037}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
@@ -276,7 +279,7 @@
 	};
 	2C0311A40AACA0F2005B592F /* PathExtra.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1033, 5564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1033, 5343}}";
 			sepNavSelRange = "{31, 25}";
 			sepNavVisRange = "{0, 713}";
 			sepNavVisRect = "{{0, 2149}, {928, 703}}";
@@ -341,7 +344,7 @@
 		ignoreCount = 0;
 		lineNumber = 106;
 		location = TeXBridge;
-		modificationTime = 401822876.289017;
+		modificationTime = 401849212.71013;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -399,7 +402,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 397;
-		modificationTime = 401822947.066846;
+		modificationTime = 401849980.849823;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -416,7 +419,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 335;
-		modificationTime = 401822947.065867;
+		modificationTime = 401849980.847765;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -433,7 +436,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 139;
-		modificationTime = 401822947.065044;
+		modificationTime = 401849980.848571;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -733,7 +736,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 573;
-		modificationTime = 401822947.066188;
+		modificationTime = 401849980.84825;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -750,7 +753,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 75;
-		modificationTime = 401822947.067146;
+		modificationTime = 401849980.849506;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -767,7 +770,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 64;
-		modificationTime = 401822947.066488;
+		modificationTime = 401849980.849206;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -784,7 +787,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 14;
-		modificationTime = 401822876.28876;
+		modificationTime = 401849212.709643;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -892,7 +895,7 @@
 		ignoreCount = 0;
 		lineNumber = 82;
 		location = MergePDF;
-		modificationTime = 401822877.17781;
+		modificationTime = 401849212.680342;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -910,7 +913,7 @@
 		ignoreCount = 0;
 		lineNumber = 56;
 		location = MergePDF;
-		modificationTime = 401822877.183587;
+		modificationTime = 401849212.680767;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1021,7 +1024,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 107;
-		modificationTime = 401822876.29094;
+		modificationTime = 401849212.712844;
 		originalNumberOfMultipleMatches = 0;
 		state = 1;
 	};
@@ -1284,6 +1287,36 @@
 		vrLen = 1024;
 		vrLoc = 0;
 	};
+	2C9BE89417F3BE7F003DA783 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C9BE72E17F35F16003DA783 /* NSURL+NDCarbonUtilities.h */;
+		name = "NSURL+NDCarbonUtilities.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1024;
+		vrLoc = 0;
+	};
+	2C9BE89517F3BE7F003DA783 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0311A30AACA0F2005B592F /* PathExtra.h */;
+		name = "PathExtra.h: 21";
+		rLen = 10;
+		rLoc = 701;
+		rType = 0;
+		vrLen = 1037;
+		vrLoc = 0;
+	};
+	2C9BE89617F3BE7F003DA783 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0311A40AACA0F2005B592F /* PathExtra.m */;
+		name = "PathExtra.m: 2";
+		rLen = 25;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 713;
+		vrLoc = 0;
+	};
 	2C9E42C1052215F000248965 /* Japanese */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {936, 1730}}";
@@ -1349,7 +1382,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 276;
-		modificationTime = 401822947.065556;
+		modificationTime = 401849980.848864;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1516,7 +1549,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 11;
-		modificationTime = 401822947.067447;
+		modificationTime = 401849980.850113;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};

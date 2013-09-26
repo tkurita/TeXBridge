@@ -256,6 +256,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -313,7 +315,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
 									<integer>9</integer>
 									<integer>0</integer>
 								</array>
@@ -354,7 +355,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>2C6E886D169B08E500CDEE1D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>NSURL+NDCarbonUtilities.h</string>
+								<string>PathExtra.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -362,11 +363,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>NSURL+NDCarbonUtilities.h</string>
+										<string>PathExtra.m</string>
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2C9BE73917F35F3B003DA783</string>
+										<string>2C9BE89617F3BE7F003DA783</string>
 										<key>history</key>
 										<array>
 											<string>2C7284EE17E1B30600EE5ACF</string>
@@ -385,10 +386,10 @@
 											<string>2C9BE73217F35F3B003DA783</string>
 											<string>2C9BE73317F35F3B003DA783</string>
 											<string>2C9BE73417F35F3B003DA783</string>
-											<string>2C9BE73517F35F3B003DA783</string>
-											<string>2C9BE73617F35F3B003DA783</string>
 											<string>2C9BE73717F35F3B003DA783</string>
-											<string>2C9BE73817F35F3B003DA783</string>
+											<string>2C9BE89417F3BE7F003DA783</string>
+											<string>2C9BE89517F3BE7F003DA783</string>
+											<string>2C9BE73617F35F3B003DA783</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -728,9 +729,7 @@
 	<key>WindowJustification</key>
 	<integer>5</integer>
 	<key>WindowOrderList</key>
-	<array>
-		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
-	</array>
+	<array/>
 	<key>WindowString</key>
 	<string>0 43 1440 835 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
