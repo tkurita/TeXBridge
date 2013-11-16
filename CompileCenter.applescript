@@ -298,6 +298,7 @@ on exec_tex_command(texCommand, a_suffix, checkSaved)
 end exec_tex_command
 
 on seek_ebb()
+	-- log "start seek_ebb"
 	set graphicCommand to _backslash & "includegraphics"
 	
 	try
@@ -308,19 +309,13 @@ on seek_ebb()
 		end if
 		return
 	end try
-	
-	--set theOriginPath to POSIX path of (a_texdoc's file_ref())
 	set theOriginPath to (a_texdoc's file_ref()'s posix_path())
-	set_base_path(theOriginPath) of PathConverter
+	PathConverter's set_base_path(theOriginPath)
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
-	
 	set theRes to EditorClient's document_content()
-	(* #ASStudo
-	set ebb_command to contents of default entry "ebbCommand" of user defaults
-	*)
 	tell current application's class "NSUserDefaults"
 		tell its standardUserDefaults()
-			set ebbCommand to stringForKey_("ebbCommand")
+			set ebb_command to stringForKey_("ebbCommand") as text
 		end tell
 	end tell
 	if ebb_command contains "-m" then
@@ -328,7 +323,6 @@ on seek_ebb()
 	else
 		set bb_ext to "xbb"
 	end if
-	
 	--find graphic files
 	set noGraphicFlag to true
 	set noNewBBFlag to true
@@ -348,7 +342,6 @@ on seek_ebb()
 			end repeat
 		end if
 	end repeat
-	
 	TerminalCommander's register_from_commander(a_term)
 	if noGraphicFlag then
 		set a_msg to UtilityHandlers's localized_string("noGraphicFile", {a_texdoc's a_name()})
@@ -359,6 +352,7 @@ on seek_ebb()
 end seek_ebb
 
 on need_update_bb(graphic_file, bb_file)
+	-- log "start need_update_bb"
 	if bb_file's item_exists() then
 		set bb_mod to modification date of (bb_file's info())
 		set g_mod to modification date of (graphic_file's info())
@@ -366,10 +360,12 @@ on need_update_bb(graphic_file, bb_file)
 			return false
 		end if
 	end if
+	-- log "end need_update_bb"
 	return true
 end need_update_bb
 
 on exec_ebb(graphic_path, bb_ext, a_term, ebb_command)
+	-- log "start exec_bb"
 	set graphic_file to XFile's make_with(graphic_path)
 	set bb_file to graphic_file's change_path_extension(bb_ext)
 	
@@ -382,6 +378,7 @@ on exec_ebb(graphic_path, bb_ext, a_term, ebb_command)
 	set all_command to cd_command & _com_delim & ebb_command & space & "'" & a_name & "'"
 	send_command of a_term for all_command
 	a_term's wait_termination(300)
+	-- log "end exec_bb"
 	return true
 end exec_ebb
 
