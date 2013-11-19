@@ -97,7 +97,7 @@ extern id EditorClient;
 		reloadTimer = nil;
 	}
 
-	return YES;
+	return [super windowShouldClose:sender];
 }
 
 //texFileFilePath must be master file.
