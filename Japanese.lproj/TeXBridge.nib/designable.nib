@@ -11,6 +11,7 @@
 			<string key="NS.object.0">851</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
+			<integer value="1321"/>
 			<integer value="57"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -345,7 +346,7 @@
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSWindowContentMinSize">{213, 107}</string>
 				<object class="NSView" key="NSWindowView" id="370733117">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSImageView" id="452968040">
@@ -414,6 +415,7 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{306, 128}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 938}}</string>
 				<string key="NSMinSize">{213, 129}</string>
@@ -603,6 +605,14 @@
 						<reference key="destination" ref="743643864"/>
 					</object>
 					<int key="connectionID">1381</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">startupMessageField</string>
+						<reference key="source" ref="321159322"/>
+						<reference key="destination" ref="79986856"/>
+					</object>
+					<int key="connectionID">1382</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1018,7 +1028,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1381</int>
+			<int key="maxID">1382</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1148,7 +1158,6 @@
 						<string key="EditCommands">id</string>
 						<string key="EditorClient">id</string>
 						<string key="LogFileParser">id</string>
-						<string key="MessageUtility">id</string>
 						<string key="PDFController">id</string>
 						<string key="ReplaceInput">id</string>
 						<string key="TeXDocController">id</string>
@@ -1181,10 +1190,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="LogFileParser">
 							<string key="name">LogFileParser</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="MessageUtility">
-							<string key="name">MessageUtility</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="PDFController">

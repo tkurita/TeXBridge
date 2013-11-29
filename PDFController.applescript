@@ -332,19 +332,19 @@ script AcrobatDriver
 	on close_pdf(a_pdf)
 		--log "start close_pdf of AcrobatDriver"
 		set a_filename to a_pdf's fileName()
-		using terms from application "Adobe Reader"
+		using terms from application "Adobe Acrobat Pro"
 			tell application ((a_pdf's app_name()) as Unicode text)
 				if exists document a_filename then
-					set theFileAliasPath to «class pfal» of document a_filename as Unicode text
+					set theFileAliasPath to file alias of document a_filename as Unicode text
 					if theFileAliasPath is (a_pdf's file_hfs_path()) then
-						«event CARObfrt» document a_filename
-						a_pdf's set_page_number(«class ppg#» of «class PdWd» 1 of «class padc»)
+						bring to front document a_filename
+						a_pdf's set_page_number(page number of PDF Window 1 of active doc)
 						--close PDF Window 1
 						try
-							close «class padc»
+							close active doc
 						on error
 							delay 1
-							close «class padc»
+							close active doc
 						end try
 					end if
 				else
@@ -357,12 +357,12 @@ script AcrobatDriver
 	
 	on open_pdf(a_pdf)
 		--log "start open_pdf in AcrobatDriver"
-		using terms from application "Adobe Reader"
+		using terms from application "Adobe Acrobat Pro"
 			tell application ((a_pdf's app_name()) as Unicode text)
 				activate
 				open a_pdf's file_as_alias()
 				if a_pdf's page_number() is not missing value then
-					a_pdf's set_page_number(«class ppg#» of «class PdWd» 1 of «class padc»)
+					a_pdf's set_page_number(page number of PDF Window 1 of active doc)
 				end if
 			end tell
 		end using terms from

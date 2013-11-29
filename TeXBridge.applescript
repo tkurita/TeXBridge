@@ -9,8 +9,9 @@ script TeXBridgeController
 	property XHandler : module
 	property FrontAccess : module
 	property PathInfo : module
+	property GUIScriptingChecker : module
 	property TerminalCommanderBase : module "TerminalCommander"
-	property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(false)) for me
+	property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(true)) for me
 	
 	(*=== shared constants ===*)
 	property _backslash : missing value
@@ -56,6 +57,11 @@ script TeXBridgeController
 		set a_script to load script (path to resource a_name & ".scpt")
 		return a_script
 	end import_script
+	
+	on import_script_subfolder(a_name)
+		set a_script to load script (path to resource a_name & ".scpt" in directory "Scripts")
+		return a_script
+	end import_script_subfolder
 	
 	(* events of application*)
 	
@@ -115,13 +121,45 @@ script TeXBridgeController
 		return true
 	end setup_constants
 	
+	on checkGUIScripting()
+		log "start checkGUIScripting"
+		startupMessageField's setStringValue_("Checking GUI Scrpting ...")
+		tell GUIScriptingChecker
+			if is_mavericks() then
+				script MessageProvider109
+					on ok_button()
+						return localized string "Open System Preferences"
+					end ok_button
+					
+					on cancel_button()
+						return localized string "Deny"
+					end cancel_button
+					
+					on title_message()
+						set a_format to localized string "need accessibility"
+						return XText's formatted_text(a_format, {name of current application})
+					end title_message
+					
+					on detail_message()
+						return localized string "Grant access"
+					end detail_message
+				end script
+				set_delegate(MessageProvider109)
+			else
+				loccalize_messages()
+			end if
+		end tell
+		log "will end checkGUIScripting"
+		return GUIScriptingChecker's do()
+	end checkGUIScripting
 	
 	on setup()
+		log "start setup"
 		startupMessageField's setStringValue_("Loading Scripts ...")
 		set UtilityHandlers to import_script("UtilityHandlers")
 		set LogFileParser to import_script("LogFileParser")
 		set EditCommands to import_script("EditCommands")
-		set PDFController to import_script("PDFController")
+		set PDFController to import_script_subfolder("PDFController")
 		set CompileCenter to import_script("CompileCenter")
 		set TeXDocController to import_script("TeXDocController")
 		set DVIController to import_script("DVIController")
@@ -137,11 +175,13 @@ script TeXBridgeController
 		startupMessageField's setStringValue_("Checking mi version ...")
 		if not check_mi_version() then -- TODO
 			quit
+			return false
 		end if
 		startupMessageField's setStringValue_("Loading Preferences ...")
 		setup_constants()
 		--log "start of initializeing PDFController"
 		PDFController's load_settings()
+		log "end setup"
 	end setup
 	
 	on performHandler_(a_name)

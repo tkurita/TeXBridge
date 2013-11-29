@@ -35,7 +35,6 @@
 		2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (); }; };
-		2C4E27BB084273B000004A96 /* PDFController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA10AA069404FE00467991 /* PDFController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27C1084273B000004A96 /* ReplaceInput.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -240,7 +239,6 @@
 		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
-		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,7 +356,6 @@
 				2C4E27E3084273B000004A96 /* Info.plist */,
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
 				2C7C498707962E380026564C /* FactorySettings.plist */,
-				DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
 				2CDACE460813EF6B000B9086 /* miclient */,
 				2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */,
@@ -564,6 +561,7 @@
 				2C4E27D5084273B000004A96 /* Sources */,
 				2C4E27DA084273B000004A96 /* Frameworks */,
 				2C0313740AAD0F47005B592F /* CopyFiles */,
+				2CE61F98184811FF00063F1B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -635,6 +633,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CE61F98184811FF00063F1B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/PDFController.applescript",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(SCRIPTS_FOLDER_PATH)/PDFController.scpt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p ${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\nosacompile -l AppleScript -d -o \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}/PDFController.scpt\" PDFController.applescript\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2C4E27D5084273B000004A96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -645,7 +661,6 @@
 				2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */,
 				2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */,
 				2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */,
-				2C4E27BB084273B000004A96 /* PDFController.applescript in Sources */,
 				2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */,
 				2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */,
 				2C4E27C1084273B000004A96 /* ReplaceInput.applescript in Sources */,
@@ -783,7 +798,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,16 +7,7 @@
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
 
-#define useLog 0
-
-/*
-@interface ASKScriptCache : NSObject
-{
-}
-+ (ASKScriptCache *)sharedScriptCache;
-- (OSAScript *)scriptWithName:(NSString *)name;
-@end
-*/
+#define useLog 1
 
 id EditorClient;
 static id sharedObj = nil;
@@ -157,7 +148,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		}
 		@catch(NSException *exception){
 			#if useLog
-			NSLog([exception description]);
+			NSLog(@"%@", [exception description]);
 			#endif
 			 NSNumber *err = [[exception userInfo] objectForKey:@"result code"];
 			 if ([err intValue] == -1704) {
@@ -170,7 +161,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 			 }	
 		 }
 		 #if useLog
-		 NSLog([NSString stringWithFormat:@"current mode : %@", theMode]);
+		 NSLog(@"current mode : %@", theMode);
 		 #endif
 		 
 		 if (!theMode) {
@@ -310,8 +301,16 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:factoryDefaults];
+	if (! [[texBridgeController checkGUIScripting] boolValue]) {
+#if useLog		
+		NSLog(@"%@", @"should quit because checkGUIScripting is disabled.");
+#endif		
+		[NSApp terminate:nil];
+		return;
+	}
 	
 	/* checking checking UI Elements Scripting ... */
+	/*
 	if (!AXAPIEnabled())
     {
 		[startupWindow close];
@@ -330,7 +329,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
         
 		[NSApp terminate:self];
 		return;
-    }
+    }*/
 	EditorClient = [miClient sharedClient];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
