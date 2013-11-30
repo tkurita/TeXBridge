@@ -294,14 +294,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>2C0311A00AACA0F2005B592F</string>
-								<string>2CD553EC08BCDE96007E43D1</string>
-								<string>080E96DDFE201D6D7F000001</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>29B97318FDCFA39411CA2CEA</string>
 								<string>2CB63A5D08CF038D002FCC88</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>2CE61F651847AD8A00063F1B</string>
-								<string>2CE61F97184811FF00063F1B</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05539CD112110102</string>
 								<string>1C77FABC04509CD000000102</string>
@@ -309,13 +306,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>76</integer>
-									<integer>70</integer>
-									<integer>69</integer>
+									<integer>18</integer>
+									<integer>11</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 725}, {324, 754}}</string>
+							<string>{{0, 0}, {324, 754}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -345,14 +342,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>2C6E886D169B08E500CDEE1D</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PDFController.applescript</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -360,16 +355,13 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PDFController.applescript</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>2CE6200018481B9000063F1B</string>
+										<string>2CE6206D1849702300063F1B</string>
 										<key>history</key>
 										<array>
-											<string>2C42259317F2F1B200ED27C6</string>
-											<string>2C42259417F2F1B200ED27C6</string>
-											<string>2C42259617F2F1B200ED27C6</string>
 											<string>2C9BE6F117F35217003DA783</string>
 											<string>2C9BE73217F35F3B003DA783</string>
 											<string>2C9BE73417F35F3B003DA783</string>
@@ -377,15 +369,19 @@
 											<string>2C9BE89517F3BE7F003DA783</string>
 											<string>2CB349FA182B7D3A00F985AB</string>
 											<string>2C43B32E1835E12100CF95E2</string>
-											<string>2CE0614A183BA84500B6DAB2</string>
 											<string>2CE06164183BAA9E00B6DAB2</string>
 											<string>2CE06168183BAA9E00B6DAB2</string>
 											<string>2CDCE2CF18418CA2004CD8F9</string>
-											<string>2CDCE2D118418CA2004CD8F9</string>
-											<string>2CDCE34D1841D456004CD8F9</string>
-											<string>2CE61F711847AFDF00063F1B</string>
 											<string>2CE61F9B1848121A00063F1B</string>
 											<string>2CE61FE81848197500063F1B</string>
+											<string>2CE62053184965E100063F1B</string>
+											<string>2CE62054184965E100063F1B</string>
+											<string>2CE620631849698900063F1B</string>
+											<string>2CE620691849702300063F1B</string>
+											<string>2CE6206A1849702300063F1B</string>
+											<string>2CE6206B1849702300063F1B</string>
+											<string>2CE6206C1849702300063F1B</string>
+											<string>2CE6202D18482D4700063F1B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -399,18 +395,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1094, 397}}</string>
+								<string>{{0, 0}, {1094, 432}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 43 1440 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>397pt</string>
+							<string>432pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>370pt</string>
+							<string>335pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -424,7 +420,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1094, 343}}</string>
+										<string>{{10, 27}, {1094, 167}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -440,7 +436,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{0, 0}, {614, 336}}</string>
+										<string>{{10, 27}, {1094, 308}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 43 1440 835 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -500,8 +498,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1094, 343}}</string>
-										<key>RubberWindowFrame</key>
-										<string>0 43 1440 835 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -529,11 +525,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CE61F511847A7AF00063F1B</string>
+				<string>2CE62057184965E100063F1B</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>2CE61F521847A7AF00063F1B</string>
+				<string>2CE62058184965E100063F1B</string>
 				<string>2C6E886D169B08E500CDEE1D</string>
-				<string>2CE61F531847A7AF00063F1B</string>
+				<string>2CE62059184965E100063F1B</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -726,9 +722,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2CE61FFC18481A6500063F1B</string>
-		<string>2CE61FFD18481A6500063F1B</string>
-		<string>2CE61F541847A7AF00063F1B</string>
 		<string>/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/TeXBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

@@ -11,8 +11,8 @@
 			<string key="NS.object.0">851</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="1321"/>
 			<integer value="57"/>
+			<integer value="1321"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -967,7 +967,7 @@
 				<string key="1321.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1321.IBWindowTemplateEditedContentRect">{{0, 717}, {306, 128}}</string>
 				<boolean value="YES" key="1321.ImportedFromIB2"/>
-				<boolean value="YES" key="1321.NSWindowTemplate.visibleAtLaunch"/>
+				<boolean value="NO" key="1321.NSWindowTemplate.visibleAtLaunch"/>
 				<boolean value="YES" key="1321.windowTemplate.hasMinSize"/>
 				<string key="1321.windowTemplate.minSize">{213, 107}</string>
 				<string key="1322.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

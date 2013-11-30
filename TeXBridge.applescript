@@ -122,8 +122,8 @@ script TeXBridgeController
 	end setup_constants
 	
 	on checkGUIScripting()
-		log "start checkGUIScripting"
-		startupMessageField's setStringValue_("Checking GUI Scrpting ...")
+		--log "start checkGUIScripting"
+		-- startupMessageField's setStringValue_("Checking GUI Scrpting ...")
 		tell GUIScriptingChecker
 			if is_mavericks() then
 				script MessageProvider109
@@ -149,12 +149,12 @@ script TeXBridgeController
 				loccalize_messages()
 			end if
 		end tell
-		log "will end checkGUIScripting"
+		--log "will end checkGUIScripting"
 		return GUIScriptingChecker's do()
 	end checkGUIScripting
 	
 	on setup()
-		log "start setup"
+		--log "start setup"
 		startupMessageField's setStringValue_("Loading Scripts ...")
 		set UtilityHandlers to import_script("UtilityHandlers")
 		set LogFileParser to import_script("LogFileParser")
@@ -181,7 +181,7 @@ script TeXBridgeController
 		setup_constants()
 		--log "start of initializeing PDFController"
 		PDFController's load_settings()
-		log "end setup"
+		--log "end setup"
 	end setup
 	
 	on performHandler_(a_name)

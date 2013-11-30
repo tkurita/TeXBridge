@@ -7,7 +7,7 @@
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
 
-#define useLog 1
+#define useLog 0
 
 id EditorClient;
 static id sharedObj = nil;
@@ -330,6 +330,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		[NSApp terminate:self];
 		return;
     }*/
+	[startupWindow orderFront:self];
 	EditorClient = [miClient sharedClient];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
