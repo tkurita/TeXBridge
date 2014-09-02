@@ -37,10 +37,10 @@ end is_running
 on show_error(errno, place, msg)
 	activate
 	set a_msg to localized_string("error_msg", {errno, place, msg})
-	display alert message a_msg
+	display alert a_msg
 end show_error
 
 on show_message(a_msg)
 	activate
-	display alert message a_msg
+	display alert a_msg
 end show_message

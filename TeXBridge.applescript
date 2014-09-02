@@ -146,7 +146,7 @@ script TeXBridgeController
 				end script
 				set_delegate(MessageProvider109)
 			else
-				loccalize_messages()
+				localize_messages()
 			end if
 		end tell
 		--log "will end checkGUIScripting"
