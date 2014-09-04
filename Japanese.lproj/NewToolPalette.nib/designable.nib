@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">10K549</string>
-		<string key="IBDocument.InterfaceBuilderVersion">851</string>
+		<string key="IBDocument.InterfaceBuilderVersion">788</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">851</string>
+			<string key="NS.object.0">788</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<integer value="1415"/>
@@ -45,7 +45,7 @@
 					<bool key="NSToolbarPrefersToBeShown">YES</bool>
 					<bool key="NSToolbarShowsBaselineSeparator">YES</bool>
 					<bool key="NSToolbarAllowsUserCustomization">YES</bool>
-					<bool key="NSToolbarAutosavesConfiguration">NO</bool>
+					<bool key="NSToolbarAutosavesConfiguration">YES</bool>
 					<int key="NSToolbarDisplayMode">2</int>
 					<int key="NSToolbarSizeMode">1</int>
 					<dictionary class="NSMutableDictionary" key="NSToolbarIBIdentifiedItems">
@@ -249,7 +249,7 @@
 									<string key="NSColorName">controlColor</string>
 									<object class="NSColor" key="NSColor">
 										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
+										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 									</object>
 								</object>
 								<object class="NSColor" key="NSTextColor">
@@ -456,9 +456,9 @@
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
 				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="1414.IBEditorWindowLastContentRect">{{388, 748}, {250, 16}}</string>
+				<string key="1414.IBEditorWindowLastContentRect">{{388, 674}, {250, 16}}</string>
 				<string key="1414.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="1414.IBWindowTemplateEditedContentRect">{{388, 748}, {250, 16}}</string>
+				<string key="1414.IBWindowTemplateEditedContentRect">{{388, 674}, {250, 16}}</string>
 				<boolean value="NO" key="1414.NSWindowTemplate.visibleAtLaunch"/>
 				<boolean value="YES" key="1414.windowTemplate.hasMaxSize"/>
 				<boolean value="YES" key="1414.windowTemplate.hasMinSize"/>
@@ -467,6 +467,7 @@
 				<string key="1415.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1418.IBEditorWindowLastContentRect">{{205, 764}, {616, 0}}</string>
 				<string key="1418.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1418.designableToolbarIdentifier">ToolPaletteToolbar</string>
 				<string key="1425.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1426.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1426.designableToolbarItemIdentifier">QuickTeXtoDVI</string>
