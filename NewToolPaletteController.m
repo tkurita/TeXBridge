@@ -1,29 +1,22 @@
 #import "NewToolPaletteController.h"
 
 @implementation NewToolPaletteController
-/*
-- (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
-{
-	NSRect currentRect = [sender frame];
-	return currentRect.size;
-}
-*/
 
-/*
 - (BOOL)windowShouldClose:(id)sender
 {
-	[super windowShouldClose:sender];
-	
-	// To support AppleScript Studio of MacOS 10.4
-	[[self window] orderOut:self];
-	return NO;
+	[[NSUserDefaults standardUserDefaults] setBool:NO 
+											forKey:@"IsOpenedRefPalette"];
+	return [super windowShouldClose:sender];	
 }
-*/
 
-- (void)applicationWillTerminate:(NSNotification *)notification
+- (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
-	[user_defaults setBool:[self isOpened] forKey:@"IsOpenedToolPalette"];
+#if useLog
+	NSLog(@"start applicationWillTerminate in NewRefPanelController");
+#endif	
+	[[NSUserDefaults standardUserDefaults] setBool:[self isOpened] 
+											forKey:@"IsOpenedRefPalette"];	
+	[super applicationWillTerminate:aNotification];
 }
 
 - (void)awakeFromNib
@@ -32,10 +25,6 @@
 	[self bindApplicationsFloatingOnForKey:@"ToolPaletteApplicationsFloatingOn"];
 	[self useFloating];
 	[self useWindowCollapse];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(applicationWillTerminate:)
-												 name:NSApplicationWillTerminateNotification
-											   object:NSApp];
 	[self.window setShowsToolbarButton:NO];
 }
 

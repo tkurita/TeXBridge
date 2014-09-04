@@ -70,11 +70,6 @@ extern id EditorClient;
 }
 
 #pragma mark delegete methods
-- (void)applicationWillTerminate:(NSNotification *)notification
-{
-	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
-	[user_defaults setBool:[self isOpened] forKey:@"IsOpenedRefPalette"];
-}
 
 - (void)awakeFromNib
 {
@@ -83,10 +78,16 @@ extern id EditorClient;
 	[self useFloating];
 	[self useWindowCollapse];
 	[dataController watchEditorWithReloading:NO];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(applicationWillTerminate:)
-												 name:NSApplicationWillTerminateNotification
-											   object:NSApp];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
+#if useLog
+	NSLog(@"start applicationWillTerminate in NewRefPanelController");
+#endif	
+	[[NSUserDefaults standardUserDefaults] setBool:[self isOpened] 
+											forKey:@"IsOpenedRefPalette"];
+	[super applicationWillTerminate:aNotification];
 }
 
 - (BOOL)windowShouldClose:(id)sender
@@ -96,7 +97,8 @@ extern id EditorClient;
 		[reloadTimer release];
 		reloadTimer = nil;
 	}
-
+	[[NSUserDefaults standardUserDefaults] setBool:NO 
+											forKey:@"IsOpenedRefPalette"];
 	return [super windowShouldClose:sender];
 }
 
