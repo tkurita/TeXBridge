@@ -5,17 +5,17 @@
 - (BOOL)windowShouldClose:(id)sender
 {
 	[[NSUserDefaults standardUserDefaults] setBool:NO 
-											forKey:@"IsOpenedRefPalette"];
+											forKey:@"IsOpenedToolPalette"];
 	return [super windowShouldClose:sender];	
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
 #if useLog
-	NSLog(@"start applicationWillTerminate in NewRefPanelController");
+	NSLog(@"start applicationWillTerminate in NewToolPaletteController");
 #endif	
 	[[NSUserDefaults standardUserDefaults] setBool:[self isOpened] 
-											forKey:@"IsOpenedRefPalette"];	
+											forKey:@"IsOpenedToolPalette"];	
 	[super applicationWillTerminate:aNotification];
 }
 
