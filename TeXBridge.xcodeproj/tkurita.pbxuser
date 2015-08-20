@@ -112,7 +112,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					10,
+					831,
 					20,
 					48,
 					43,
@@ -188,19 +188,21 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 461775691;
-			PBXWorkspaceStateSaveDate = 461775691;
+			PBXPerProjectTemplateStateSaveDate = 461779033;
+			PBXWorkspaceStateSaveDate = 461779033;
 		};
 		perUserProjectItems = {
 			2C4095D116A850130085CB9D = 2C4095D116A850130085CB9D /* mi.h */;
 			2C4099BB16AECE4C0085CB9D = 2C4099BB16AECE4C0085CB9D /* History.rtf */;
-			2C5EF6F31AB89C9100F376FD = 2C5EF6F31AB89C9100F376FD /* PBXTextBookmark */;
-			2C5EF6F41AB89C9100F376FD = 2C5EF6F41AB89C9100F376FD /* PBXTextBookmark */;
 			2C6CA39608CF5558005D5612 = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */;
 			2C6CA39708CF5558005D5612 = 2C6CA39708CF5558005D5612 /* NewRefPanelController.h */;
 			2C9BE73417F35F3B003DA783 = 2C9BE73417F35F3B003DA783 /* PBXTextBookmark */;
 			2C9BE89417F3BE7F003DA783 = 2C9BE89417F3BE7F003DA783 /* PBXTextBookmark */;
 			2C9BE89517F3BE7F003DA783 = 2C9BE89517F3BE7F003DA783 /* PBXTextBookmark */;
+			2C9C8F841B862EF800683AA8 = 2C9C8F841B862EF800683AA8 /* PBXTextBookmark */;
+			2C9C8F851B862EF800683AA8 = 2C9C8F851B862EF800683AA8 /* PlistBookmark */;
+			2C9C8F861B862EF800683AA8 = 2C9C8F861B862EF800683AA8 /* PlistBookmark */;
+			2C9C8FA71B86305100683AA8 = 2C9C8FA71B86305100683AA8 /* PlistBookmark */;
 			2C9DD85E19FB718A00E2650A = 2C9DD85E19FB718A00E2650A /* PBXTextBookmark */;
 			2C9DD85F19FB718A00E2650A = 2C9DD85F19FB718A00E2650A /* PBXTextBookmark */;
 			2C9DD86019FB718A00E2650A = 2C9DD86019FB718A00E2650A /* PBXTextBookmark */;
@@ -612,26 +614,6 @@
 			sepNavWindowFrame = "{{64, 37}, {1078, 839}}";
 		};
 	};
-	2C5EF6F31AB89C9100F376FD /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
-		name = "EditCommands.applescript: 38";
-		rLen = 13;
-		rLoc = 1040;
-		rType = 0;
-		vrLen = 486;
-		vrLoc = 773;
-	};
-	2C5EF6F41AB89C9100F376FD /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
-		name = "EditCommands.applescript: 38";
-		rLen = 13;
-		rLoc = 1040;
-		rType = 0;
-		vrLen = 1123;
-		vrLoc = 0;
-	};
 	2C62B98B16F07F330045F488 /* LogParser.m:573 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
@@ -868,7 +850,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 720}}";
 			sepNavSelRange = "{1040, 13}";
-			sepNavVisRange = "{0, 1123}";
+			sepNavVisRange = "{85, 1038}";
 			sepNavVisRect = "{{0, 220}, {982, 394}}";
 			sepNavWindowFrame = "{{419, 114}, {932, 764}}";
 		};
@@ -978,6 +960,52 @@
 		rType = 0;
 		vrLen = 1037;
 		vrLoc = 0;
+	};
+	2C9C8F841B862EF800683AA8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */;
+		name = "EditCommands.applescript: 38";
+		rLen = 13;
+		rLoc = 1040;
+		rType = 0;
+		vrLen = 1038;
+		vrLoc = 85;
+	};
+	2C9C8F851B862EF800683AA8 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleHelpBookName,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C9C8F861B862EF800683AA8 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIconFile,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C9C8FA71B86305100683AA8 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C4E27E3084273B000004A96 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIconFile,
+		);
+		name = "/Users/tkurita/Dev/Projects/TeX Tools for mi/TeXBridge/trunk/Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
 	};
 	2C9DD85E19FB718A00E2650A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
