@@ -328,14 +328,15 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 
 	NSString *targetFile = [[enumerator nextObject] objectForKey:@"content"];
 	NSString *checkedPath;
-	
-	if (checkedPath = [self checkTexFileExtensions:targetFile]){
+	checkedPath = [self checkTexFileExtensions:targetFile];
+	if (checkedPath){
 		return checkedPath;
 	}
 	
 	if ([targetFile length] >= 79) {
 		NSString * nextCandidate = [targetFile stringByAppendingString:[[enumerator nextObject] objectForKey:@"content"]];
-		if (checkedPath = [self checkTexFileExtensions:nextCandidate]) {
+        checkedPath = [self checkTexFileExtensions:nextCandidate];
+		if (checkedPath) {
 			return checkedPath;
 		}
 		else{

@@ -96,25 +96,25 @@
 	return iconImage;
 }
 
-- (void)openPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)appChooserDidEnd:(NSOpenPanel *)openPanel withResult:(NSUInteger)result
 {
-	if(returnCode == NSCancelButton) {
+	if(result == NSFileHandlingPanelCancelButton) {
         return;
     }
-    else if(returnCode == NSOKButton) {
-		NSEnumerator *enumerator = [[sheet filenames] objectEnumerator];
-		NSString *app_path;
+    else if(result == NSFileHandlingPanelOKButton) {
 		NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
 		NSArray *app_name_list = [[appArrayController arrangedObjects] valueForKey:@"appName"];
 		NSArray *identifier_list = [[appArrayController arrangedObjects] valueForKey:@"identifier"];
-		while(app_path = [enumerator nextObject]) {
+		
+        for (NSURL *app_url in [openPanel URLs]) {
+            NSString *app_path = [app_url path];
 			NSString *app_name = nil;
 			NSString *app_identifier = nil;
 			if ([workspace isFilePackageAtPath:app_path]) {
 				NSBundle *appBundle = [NSBundle bundleWithPath:app_path];
 				NSDictionary *loc_info_dict = [appBundle localizedInfoDictionary];
 				NSDictionary *info_dict = [appBundle infoDictionary];
-				app_name = [loc_info_dict objectForKey:@"CFBundleName"];				
+				app_name = [loc_info_dict objectForKey:@"CFBundleName"];
 				if (app_name == nil)
 					app_name = [info_dict objectForKey:@"CFBundleName"];
 				if (app_name == nil)
@@ -144,12 +144,12 @@
 
 - (IBAction)addApp:(id)sender
 {
-	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	NSOpenPanel *open_panel = [NSOpenPanel openPanel];
 	NSArray *fileTypes = [NSArray arrayWithObjects: @"app",NSFileTypeForHFSTypeCode('APPL'), nil];
-	
-	[openPanel beginSheetForDirectory:nil file:nil types:fileTypes modalForWindow:[self window]
-						modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
-						  contextInfo:nil];
+	[open_panel setAllowedFileTypes:fileTypes];
+    [open_panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        [self appChooserDidEnd:open_panel withResult:result];
+    }];
 }
 
 - (IBAction)showSettingHelp:(id)sender
