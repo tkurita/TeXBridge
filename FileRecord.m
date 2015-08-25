@@ -7,15 +7,12 @@ extern id EditorClient;
 
 @implementation FileRecord
 
+@synthesize logContents;
+
 #pragma mark initialize and dealloc
 -(void) dealloc
 {
-	[_targetFile release];
-	[errorRecords release];
-	[_targetURL release];
-	[logContents release];
 	DisposeHandle((Handle)aliasHandle);
-	[super dealloc];
 }
 
 + (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array parent:(id <LogWindowItem>)parent
@@ -31,19 +28,18 @@ extern id EditorClient;
 	[newInstance setErrorRecords:array];
 	[newInstance setTargetFile:path];
 	
-	return [newInstance autorelease];
+	return newInstance;
 }
 
 - (BOOL)setBaseURL:(NSURL *)baseURL
 {
-	[_targetURL release];
 	if ([_targetFile isAbsolutePath]) {
-		_targetURL = [[NSURL fileURLWithPath:_targetFile] retain];
+		_targetURL = [NSURL fileURLWithPath:_targetFile];
 		NSString *relPath = [_targetFile relativePathWithBase:[baseURL path]];
 		[self setTargetFile: relPath];
 	}
 	else {
-		_targetURL = [[NSURL URLWithString:_targetFile relativeToURL:baseURL] retain];
+		_targetURL = [NSURL URLWithString:_targetFile relativeToURL:baseURL];
 	}
 	
 	OSErr theError = noErr;
@@ -103,8 +99,6 @@ extern id EditorClient;
 
 -(void) setErrorRecords:(NSArray *)array
 {
-	[array retain];
-	[errorRecords release];
 	errorRecords = array;
 	
 	NSEnumerator *enumerator = [array objectEnumerator];
@@ -115,22 +109,8 @@ extern id EditorClient;
 	
 }
 
--(NSString *) logContents
-{
-	return logContents;
-}
-
--(void) setLogContents:(NSString *)string
-{
-	[string retain];
-	[logContents release];
-	logContents = string;
-}
-
 -(void) setTargetFile: (NSString *)path
 {
-	[path retain];
-	[_targetFile release];
 	_targetFile = path;
 }
 

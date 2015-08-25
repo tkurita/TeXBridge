@@ -15,7 +15,7 @@ static NSArray *SUPPORTED_MODES = nil;
 + (void)initialize
 {
 	if (! SUPPORTED_MODES) {
-		SUPPORTED_MODES = [[NSArray arrayWithObjects:@"TEX", @"TeX", @"LaTeX", nil] retain];
+		SUPPORTED_MODES = [NSArray arrayWithObjects:@"TEX", @"TeX", @"LaTeX", nil];
 	}
 }
 
@@ -31,7 +31,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1240 
 								 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(reason, @"")
 																	  forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	NSString *mode = [front_doc mode];
 	if (! [SUPPORTED_MODES containsObject:mode]) {
@@ -40,7 +40,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1205 
 								 userInfo:[NSDictionary dictionaryWithObject:reason
 																	  forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	
 	NSURL *url = [front_doc file];
@@ -57,13 +57,12 @@ static NSArray *SUPPORTED_MODES = nil;
 	
 	result.textEncoding = [front_doc textEncoding];
 	
-bail:
 	return result;
 }
 
 + (TeXDocument *)texDocumentWithPath:(NSString *)pathname textEncoding:(NSString *)encodingName
 {
-	TeXDocument *tex_doc = [[TeXDocument new] autorelease];
+	TeXDocument *tex_doc = [TeXDocument new];
 	tex_doc.file = [NSURL fileURLWithPath:pathname];
 	tex_doc.textEncoding = encodingName;
 	tex_doc.pathWithoutSuffix = [pathname stringByDeletingPathExtension];
@@ -81,7 +80,7 @@ bail:
 	NSString *masterfile_command = @"%ParentFile";
 	for (miParagraph *a_line in lines) {
 		line_content = [a_line content];
-		if (! [line_content hasPrefix:@"%"] ) goto bail;
+		if (! [line_content hasPrefix:@"%"] ) return result;
 		if ([line_content hasPrefix:masterfile_command]) break;
 	}
 	NSUInteger command_len = [masterfile_command length];
@@ -92,7 +91,7 @@ bail:
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
 								 userInfo:[NSDictionary dictionaryWithObject:reason
 																	  forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	
 	NSRange range = NSMakeRange(command_len+1, line_length-command_len-2);
@@ -105,7 +104,7 @@ bail:
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
 								 userInfo:[NSDictionary dictionaryWithObject:reason
 																	  forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	
 	if ([masterfile_path hasPrefix:@":"]) { //relative HFS path
@@ -114,7 +113,8 @@ bail:
 		masterfile_path = [hfs_abs_path posixPath];
 		
 	} else if (! [masterfile_path hasPrefix:@"/"]) { //relative POSIX Path
-		masterfile_path = [[NSURL URLWithString:masterfile_path relativeToURL:file] path];
+        NSURL *url = [NSURL URLWithString:masterfile_path relativeToURL:file];
+		masterfile_path = [url path];
 	}
 	
 	NSFileManager *fm = [NSFileManager defaultManager];
@@ -124,16 +124,16 @@ bail:
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1220
 								 userInfo:[NSDictionary dictionaryWithObject:reason
 																	 forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	NSDictionary *info = [fm attributesOfItemAtPath:masterfile_path error:error];
-	if (!info) goto bail;
+	if (!info) return result;
 	NSString *file_type = [info objectForKey:NSFileType];
 	if ([file_type isEqualToString:NSFileTypeSymbolicLink]) {
 		masterfile_path = [fm destinationOfSymbolicLinkAtPath:masterfile_path error:error];
-		if (!masterfile_path) goto bail;
+		if (!masterfile_path) return result;
 		info = [fm attributesOfItemAtPath:masterfile_path error:error];
-		if (!info) goto bail;
+		if (!info) return result;;
 	}
 	
 	if (![[info objectForKey:NSFileType] isEqualToString:NSFileTypeRegular]) {
@@ -142,22 +142,12 @@ bail:
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
 								userInfo:[NSDictionary dictionaryWithObject:reason
 																   forKey:NSLocalizedDescriptionKey]];
-		goto bail;
+		return result;
 	}
 	
 	result = [TeXDocument texDocumentWithPath:masterfile_path textEncoding:textEncoding];
 	if (result) hasMaster = YES;
-bail:	
 	return result;
-}
-
-- (void)dealloc
-{
-	[file release];
-	[textEncoding release];
-	[name release];
-	[pathWithoutSuffix release];
-	[super dealloc];
 }
 
 @end

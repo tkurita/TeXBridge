@@ -29,4 +29,6 @@
 
 - (void)setParent:(id <LogWindowItem>)parent;
 
+@property (retain) NSString *logContents;
+
 @end

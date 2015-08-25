@@ -55,8 +55,6 @@
 - (NSString *)checkTexFileExtensions:(NSString *)targetFile;
 
 #pragma mark accessor methods
--(NSString *) logContents;
--(void) setLogContents:(NSString *)logText;
 -(void) setLogFilePath:(NSString *)path;
 -(void) setBaseURLWithPath:(NSString *)path;
 -(NSMutableArray *) errorRecordTree;
@@ -64,5 +62,7 @@
 -(BOOL) isNoError;
 
 @property (retain) NSString *errorMessage;
+@property (retain) NSString *logContents;
+
 
 @end

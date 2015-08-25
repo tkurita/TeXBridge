@@ -11,7 +11,7 @@ static NSString *DVI_SOURCE_SPECIALS = @"DVISourceSpecials";
 	if (!data) {
 		return -1;
 	}
-	NSString *a_str = [[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding] autorelease];
+	NSString *a_str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
 	return [a_str intValue];
 }
 

@@ -354,10 +354,6 @@
 										<string>2C6E886E169B08E500CDEE1D</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>Info.plist</string>
-										<key>_historyCapacity</key>
-										<integer>20</integer>
-										<key>bookmark</key>
-										<string>2C9C8FAB1B86305800683AA8</string>
 										<key>history</key>
 										<array>
 											<string>2C9BE73417F35F3B003DA783</string>
@@ -393,18 +389,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1094, 352}}</string>
+								<string>{{0, 0}, {1094, 331}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 127 1440 751 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>352pt</string>
+							<string>331pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>331pt</string>
+							<string>352pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -420,7 +416,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1094, 304}}</string>
+										<string>{{10, 27}, {1094, 325}}</string>
 										<key>RubberWindowFrame</key>
 										<string>0 127 1440 751 0 0 1440 878 </string>
 									</dict>
@@ -525,11 +521,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C9C8FA81B86305100683AA8</string>
+				<string>2C9C8FC51B86345600683AA8</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>2C9C8FA91B86305100683AA8</string>
+				<string>2C9C8FC61B86345600683AA8</string>
 				<string>2C6E886D169B08E500CDEE1D</string>
-				<string>2C9C8FAA1B86305100683AA8</string>
+				<string>2C9C8FC71B86345600683AA8</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -680,14 +676,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C9C8F8A1B862EF800683AA8</string>
+				<string>2C9C8FC81B86345600683AA8</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>2C9C8F8B1B862EF800683AA8</string>
-				<string>2C9C8F8C1B862EF800683AA8</string>
-				<string>2C9C8F8D1B862EF800683AA8</string>
-				<string>2C9C8F8E1B862EF800683AA8</string>
-				<string>2C9C8F8F1B862EF800683AA8</string>
+				<string>2C9C8FC91B86345600683AA8</string>
+				<string>2C9C8FCA1B86345600683AA8</string>
+				<string>2C9C8FCB1B86345600683AA8</string>
+				<string>2C9C8FCC1B86345600683AA8</string>
+				<string>2C9C8FCD1B86345600683AA8</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>

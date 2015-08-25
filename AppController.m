@@ -36,10 +36,10 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 {
 	@synchronized(self) {
 		if (sharedObj == nil) {
-			sharedObj = [[self alloc] init];
+			(void) [[self alloc] init]; // ここでは代入していない
 		}
 	}
-	return sharedObj;
+    return sharedObj;
 }
 
 + (id)allocWithZone:(NSZone *)zone {  
@@ -55,34 +55,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 - (id)copyWithZone:(NSZone*)zone {  
     return self;  // シングルトン状態を保持するため何もせず self を返す  
 }  
-
-- (id)retain {  
-    return self;  // シングルトン状態を保持するため何もせず self を返す  
-}  
-
-- (NSUInteger)retainCount {  
-    return UINT_MAX;  // 解放できないインスタンスを表すため unsigned int 値の最大値 UINT_MAX を返す  
-}  
-
-- (void)release {  
-    // シングルトン状態を保持するため何もしない  
-}  
-
-- (id)autorelease {  
-    return self;  // シングルトン状態を保持するため何もせず self を返す  
-} 
-
-- (id)init
-{
-	if (self = [super init]) {
-		if (sharedObj == nil) {
-			sharedObj = self;
-		}
-	}
-	
-	return self;
-}
-
 
 - (void)checkQuit:(NSTimer *)aTimer
 {
@@ -298,7 +270,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	/* regist FactorySettings into shared user defaults */
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
 																  ofType:@"plist"];
-	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
+	factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:factoryDefaults];
 	if (! [[texBridgeController checkGUIScripting] boolValue]) {
@@ -335,7 +307,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];
 	[wvController setDelegate:self];
 	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
-	[PaletteWindowController setVisibilityController:[wvController autorelease]];
+	[PaletteWindowController setVisibilityController:wvController];
 	
 	[texBridgeController setup];
 #if useLog
@@ -351,7 +323,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
 												  selector:@selector(checkQuit:) 
 												  userInfo:nil repeats:YES];
-	[appQuitTimer retain];
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) 

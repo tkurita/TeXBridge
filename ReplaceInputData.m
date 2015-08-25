@@ -6,7 +6,7 @@ static NSDictionary *INTERNAL_REPLACE_DICT = nil;
 + (void)initialize
 {
 	NSString *a_file = [[NSBundle mainBundle] pathForResource:@"ReplaceDictionary" ofType:@"plist"];
-	INTERNAL_REPLACE_DICT = [[NSDictionary dictionaryWithContentsOfFile:a_file] retain];
+	INTERNAL_REPLACE_DICT = [NSDictionary dictionaryWithContentsOfFile:a_file];
 }
 + (NSDictionary *)internalReplaceDict {
 	return INTERNAL_REPLACE_DICT;

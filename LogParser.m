@@ -17,7 +17,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 }
 
 @implementation LogParser
+
 @synthesize errorMessage;
+@synthesize logContents;
 
 - (ErrorRecord *) makeErrorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn textRange:(NSValue *)theRange
 {
@@ -35,33 +37,21 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #pragma mark initilize and dealloc
 - (id)init
 {
-	[super init];
+	self = [super init];
 	currentLineNumber = 0;
-	newlineCharacterSet = [[NSCharacterSet characterSetWithCharactersInString:@"\r\n"] retain];
-	whitespaceCharSet = [[NSCharacterSet whitespaceCharacterSet] retain];
+	newlineCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+	whitespaceCharSet = [NSCharacterSet whitespaceCharacterSet];
 	isLabelsChanged = NO;
-	errorRecordTree = [[NSMutableArray array] retain];
-	texFileExtensions = [[NSArray arrayWithObjects:@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind",nil] retain];
+	errorRecordTree = [NSMutableArray array];
+	texFileExtensions = [NSArray arrayWithObjects:@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind",nil];
 	isNoError = YES;
 	errorMessage = @"";
 	return self;
 }
 
--(void)dealloc{
-	[newlineCharacterSet release];
-	[whitespaceCharSet release];
-	[logFilePath release];
-	[logContents release];
-	[texFileExtensions release];
-	[errorRecordTree release];
-	[texFileExtensions release];
-	[errorMessage release];
-	[super dealloc];
-}
-
 - (id)initWithString:(NSString*)targetText
 {
-	[self init];
+	self = [self init];
 	isReadFile = NO;
 	[self setLogFilePath:@""];
 	[self setLogContents:targetText];
@@ -72,20 +62,19 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 
 - (id)initWithContentsOfFile:(NSString *)path encodingName:(NSString *)aEncName
 {
-	[self init];
+	self = [self init];
 	[self setLogFilePath:path];
 	isReadFile = YES;
 	NSData *logData = [NSData dataWithContentsOfFile:logFilePath];
 	if (!logData) {
-		errorMessage = [[NSString stringWithFormat:@"Failed to Read File : %@", path] retain];
+		errorMessage = [NSString stringWithFormat:@"Failed to Read File : %@", path];
 		return self;
 	}
-	[logContents release];
 	[self setLogContents:[NSString stringWithData:logData 
 								encodingCandidates:orderdEncodingCandidates(aEncName)]];
 	if (!logContents) {
-		errorMessage = [[NSString stringWithFormat:@"Failed to decode the log file contents with encoding %@",
-						 aEncName] retain];
+		errorMessage = [NSString stringWithFormat:@"Failed to decode the log file contents with encoding %@",
+						 aEncName];
 		return self;
 	}
 	int length = [logContents length];
@@ -642,34 +631,18 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 {
 	NSString *timeStamp = [[NSDate date] descriptionWithCalendarFormat:@" :%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil];
 	NSString *nameWithTimeStamp = [jobName stringByAppendingString:timeStamp];
-	[_jobName release];
-	_jobName = [nameWithTimeStamp retain];
+	_jobName = nameWithTimeStamp;
 }
 
-
-- (NSString *)logContents
-{
-	return logContents;
-}
-
-- (void)setLogContents:(NSString *)logText
-{
-	[logText retain];
-	[logContents release];
-	logContents = logText;
-}
 
 - (void)setLogFilePath:(NSString *)path
 {
-	[path retain];
-	[logFilePath release];
 	logFilePath = path;
 }
 
 - (void)setBaseURLWithPath:(NSString *)path
 {
-	[_baseURL release];
-	_baseURL = [[NSURL fileURLWithPath: path] retain];
+	_baseURL = [NSURL fileURLWithPath: path];
 }
 
 - (NSMutableArray *)errorRecordTree

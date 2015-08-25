@@ -44,14 +44,6 @@ static id sharedLogManager;
 }
 
 #pragma mark initialize and dealloc
-- (void)dealloc
-{
-	[rootItem release];
-	[rootArray release];
-	[_detailTextOwner release];
-	[super dealloc];
-}
-
 + (void)initialize
 {
 	sharedLogManager = nil;
@@ -162,8 +154,6 @@ static id sharedLogManager;
 #pragma mark accessor methods
 - (void)setDetailTextOwner:(id)jobRecord
 {
-	[_detailTextOwner release];
-	[jobRecord retain];
 	_detailTextOwner = jobRecord;
 }
 
@@ -177,15 +167,11 @@ static id sharedLogManager;
 
 - (void)setRootArray:(NSMutableArray *)logArray
 {
-	[logArray retain];
-	[rootArray release];
 	rootArray = logArray;
 }
 
 - (void)setRootItem:(NSDictionary *)logItem
 {
-	[logItem retain];
-	[rootItem release];
 	rootItem = logItem;
 }
 

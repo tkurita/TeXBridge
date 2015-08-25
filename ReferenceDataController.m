@@ -18,12 +18,6 @@
 @synthesize	rootNode;
 @synthesize unsavedAuxFile;
 
-- (void)dealloc
-{
-	[rootNode release];
-	[super dealloc];
-}
-
 - (AuxFile *)auxFileForDoc:(TeXDocument *)texDoc
 {
 	AuxFile *result = nil;
@@ -232,7 +226,7 @@ void jumpToLabel(LabelDatum *targetLabel)
 - (void)awakeFromNib
 {
 	NSTableColumn *table_column = [outlineView tableColumnWithIdentifier:@"label"];
-	ImageAndTextCell *image_text_cell = [[ImageAndTextCell new] autorelease];
+	ImageAndTextCell *image_text_cell = [ImageAndTextCell new];
 	[table_column setDataCell:image_text_cell];
 	self.rootNode = [NSTreeNode new];
 	[outlineView setDoubleAction:@selector(doubleAction:)];

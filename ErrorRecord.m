@@ -5,6 +5,7 @@
 extern id EditorClient;
 
 @implementation ErrorRecord
+@synthesize logContents;
 
 - (BOOL)jumpToFile
 {
@@ -14,21 +15,12 @@ extern id EditorClient;
 }
 
 #pragma mark initilize and dealloc
--(void) dealloc
-{
-	[logContents release];
-	[comment release];
-	[paragraph release];
-	[super dealloc];
-}
-
-
 +(id) errorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn
 {
 	id newInstance = [[[self class] alloc] init];
 	[newInstance setComment:errMsg];
 	[newInstance setParagraph:errpn];
-	return [newInstance autorelease];
+	return newInstance;
 }
 
 #pragma mark methods for outlineview
@@ -64,41 +56,21 @@ extern id EditorClient;
 
 -(void) setTextRange:(NSValue *) theRange
 {
-	[theRange retain];
-	[textRange release];
 	textRange = theRange;
-}
-
--(NSString *) logContents
-{
-	return logContents;
-}
-
--(void) setLogContents:(NSString *)string
-{
-	[string retain];
-	[logContents release];
-	logContents = string;
 }
 
 -(void) setComment:(NSString *)string
 {
-	[string retain];
-	[comment release];
 	comment = string;
 }
 
 -(void) setParagraph:(NSNumber *)lineNumber
 {
-	[lineNumber retain];
-	[paragraph release];
 	paragraph = lineNumber;
 }
 
 - (void)setParent:(id <LogWindowItem>)parentItem
 {
-//	[parentItem retain];
-//	[_parent release];
 	_parent = parentItem;
 }
 

@@ -22,4 +22,7 @@
 - (void)setLogContents:(NSString *)string;
 - (void)setTargetFile: (NSString *)path;
 - (void)setParent:(id <LogWindowItem>)parent;
+
+@property (strong) NSString *logContents;
+
 @end

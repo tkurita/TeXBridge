@@ -32,17 +32,6 @@ static NSMutableArray *ALL_AUX_FILES = nil;
 	return nodeIcon;
 }
 
-- (void)dealloc
-{
-	[basename release];
-	[texDocument release];
-	[auxFilePath release];
-	[labelsFromAux release];
-	[labelsFromEditor release];
-	[checkedTime release];
-	[super dealloc];
-}
-
 AuxFile *findAuxFileWithKey(NSString* keyPath)
 {
 	AuxFile *result = nil;
@@ -67,11 +56,10 @@ AuxFile *findAuxFileWithKey(NSString* keyPath)
 		}
 	}
 
-	result = [[AuxFile new] autorelease];
+	result = [AuxFile new];
 	result.basename = [texDoc.name stringByDeletingPathExtension];
 	result.texDocument = texDoc;
 	result.labelsFromEditor = [NSMutableArray array];
-	//result.labelsFromAux = [NSMutableArray array];
 	result.labelsFromEditor = [NSMutableArray array];
 	if (texDoc.file) {
 		[result checkAuxFile];
@@ -93,7 +81,7 @@ bail:
 											   textEncoding:encodingName];	
 	result = findAuxFileWithKey(key_path);
 	if (!result) {
-		result = [[AuxFile new] autorelease];
+		result = [AuxFile new];
 		result.basename = [tex_doc.name stringByDeletingPathExtension];
 		result.auxFilePath = anAuxFilePath;
 		//result.labelsFromAux = [NSMutableArray array];
@@ -237,14 +225,14 @@ bail:
 	for (NSString *a_line in paragraphs ) {
 #if useLog
 		NSLog(@"findLabelsFromEditor : %@", a_line);
-#endif		
-		a_line = [a_line stringByTrimmingCharactersInSet:spaces_set];		
-		if (! [a_line length] ) continue;
-		if ([a_line hasPrefix:@"%"]) continue;
+#endif
+        NSString *trimmed_line = [a_line stringByTrimmingCharactersInSet:spaces_set];
+		if (! [trimmed_line length] ) continue;
+		if ([trimmed_line hasPrefix:@"%"]) continue;
 		
 		// remove comment
-		NSScanner *scanner = [NSScanner scannerWithString:a_line];
-		NSMutableString *clean_line = [NSMutableString stringWithCapacity:[a_line length]];
+		NSScanner *scanner = [NSScanner scannerWithString:trimmed_line];
+		NSMutableString *clean_line = [NSMutableString stringWithCapacity:[trimmed_line length]];
 		while (![scanner isAtEnd]) {
 			if ([scanner scanUpToString:@"%" intoString:&scaned_string]) {
 				[clean_line appendString:scaned_string];

@@ -26,7 +26,6 @@ extern id EditorClient;
 {
 	if (reloadTimer != nil) {
 		[reloadTimer invalidate];
-		[reloadTimer release];
 		reloadTimer = nil;		
 		isWorkedReloadTimer = YES;
 	}
@@ -44,16 +43,12 @@ extern id EditorClient;
 		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
 													 selector:@selector(periodicReload:) 
 													 userInfo:nil repeats:YES];
-		[reloadTimer retain];
-
 	} 
 	else if (![reloadTimer isValid]) {
 		[reloadTimer invalidate];
-		[reloadTimer release];
 		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
 													 selector:@selector(periodicReload:) 
 													 userInfo:nil repeats:YES];
-		[reloadTimer retain];
 	}
 }
 
@@ -94,7 +89,6 @@ extern id EditorClient;
 {
 	if (reloadTimer != nil) {
 		[reloadTimer invalidate];
-		[reloadTimer release];
 		reloadTimer = nil;
 	}
 	[[NSUserDefaults standardUserDefaults] setBool:NO 

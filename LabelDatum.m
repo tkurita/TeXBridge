@@ -13,16 +13,9 @@
 	return nodeIcon;
 }
 
-- (void)dealloc
-{
-	[name release];
-	[referenceName release];
-	[super dealloc];
-}
-
 + (LabelDatum *)labelDatumWithName:(NSString *)aName referenceName:(NSString *)aRefName
 {
-	LabelDatum *result = [[LabelDatum new] autorelease];
+	LabelDatum *result = [LabelDatum new];
 	result.name = aName;
 	result.referenceName = aRefName;
 	return result;

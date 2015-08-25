@@ -10,15 +10,9 @@
 
 + (void)initialize
 {	
-	DefaultToNilTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	DefaultToNilTransformer *transformer = [[DefaultToNilTransformer alloc] init];
 	[transformer setNilWord:@"Default"];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
-}
-
-- (void) dealloc
-{
-	[arrangedInternalReplaceInputDict release];
-	[super dealloc];
 }
 
 
@@ -58,7 +52,7 @@
 			[NSDictionary dictionaryWithObjectsAndKeys: localized_category_name, @"key",
 				replace_array, @"children", nil]];
 	}
-	return [arrangedInternalReplaceInputDict retain];
+	return arrangedInternalReplaceInputDict;
 }
 
 #pragma mark actions
