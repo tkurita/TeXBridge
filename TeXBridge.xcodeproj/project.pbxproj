@@ -638,7 +638,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p ${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\nosacompile -l AppleScript -d -o \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}/PDFController.scpt\" PDFController.applescript\n";
+			shellScript = "mkdir -p \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\nosacompile -l AppleScript -d -o \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}/PDFController.scpt\" PDFController.applescript\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -799,7 +799,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -835,7 +835,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../DonationReminder/trunk/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
