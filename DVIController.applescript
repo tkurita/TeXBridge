@@ -106,6 +106,7 @@ script SimpleDriver
 	end open_dvi
 end script
 
+(*
 script MxdviDriver
 	property parent : AppleScript
 	on set_file_type(a_dvi)
@@ -142,6 +143,7 @@ script MxdviDriver
 		--log "end open_dvi"
 	end open_dvi
 end script
+*)
 
 script PictPrinterDriver
 	property parent : AppleScript
@@ -276,8 +278,6 @@ end set_file_type
 on set_dvi_driver(a_mode)
 	if a_mode is 0 then
 		set my _dvi_driver to SimpleDriver
-	else if a_mode is 1 then
-		set my _dvi_driver to MxdviDriver
 	else if a_mode is 2 then
 		set my _dvi_driver to XdviDriver
 	else if a_mode is 3 then

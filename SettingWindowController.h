@@ -15,7 +15,7 @@
 - (IBAction)addApp:(id)sender;
 - (IBAction)reloadSettingsMenu:(id)sender;
 - (IBAction)revertToFactoryDefaults:(id)sender;
-- (IBAction)setMiClient:(id)sender;
+//- (IBAction)setMiClient:(id)sender;
 - (IBAction)changePDFPreviewer:(id)sender;
 - (NSMutableArray *)arrangedInternalReplaceInputDict;
 

@@ -18,11 +18,7 @@
 
 #pragma mark binding
 
-- (NSString *)mxdviEditor
-{
-	return [[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"Mxdvi"] valueForKey:@"MxdviEditor"];
-}
-
+/*
 - (void) setMxdviEditor:(NSString *)aValue
 {
 	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
@@ -30,6 +26,7 @@
 	[dict setObject:aValue forKey:@"MxdviEditor"];
 	[user_defaults setPersistentDomain:dict forName:@"Mxdvi"];
 }
+ */
 
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
@@ -56,6 +53,7 @@
 }
 
 #pragma mark actions
+/*
 - (IBAction)setMiClient:(id)sender
 {
 	//NSString *miclient_path = [[NSBundle mainBundle] pathForResource:@"miclient" ofType:nil];
@@ -65,6 +63,7 @@
 								mi_path];
 	[self setMxdviEditor:editor_setting];
 }
+*/
 
 - (NSImage *)convertToSize16Image:(NSImage *)iconImage
 {

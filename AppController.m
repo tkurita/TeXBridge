@@ -6,6 +6,7 @@
 #import "SmartActivate.h"
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
+#import "DVIPreviewModeTransformer.h"
 
 #define useLog 0
 
@@ -29,7 +30,10 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 + (void)initialize	// Early initialization
 {		
-	sharedObj = nil;
+	if ([AppController class] == self) {
+        sharedObj = nil;
+		[NSValueTransformer setValueTransformer:[DVIPreviewModeTransformer new] forName:@"DVIPreviewModeTransformer"];
+    }
 }
 
 + (id)sharedAppController
