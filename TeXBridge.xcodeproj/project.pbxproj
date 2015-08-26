@@ -48,7 +48,6 @@
 		2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */; };
 		2C4E27D2084273B000004A96 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167D07D177B8008BCAEF /* plus.png */; };
 		2C4E27D3084273B000004A96 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167E07D177B8008BCAEF /* minus.png */; };
-		2C4E27D4084273B000004A96 /* miclient in Resources */ = {isa = PBXBuildFile; fileRef = 2CDACE460813EF6B000B9086 /* miclient */; };
 		2C4E27D6084273B000004A96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		2C4E27D7084273B000004A96 /* SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E5294080625270015E9EB /* SmartActivate.m */; };
 		2C4E27D9084273B000004A96 /* LogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDACD820813BE3F000B9086 /* LogParser.m */; };
@@ -58,9 +57,7 @@
 		2C6CA3A408CF5565005D5612 /* Reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA3A308CF5565005D5612 /* Reload.png */; };
 		2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */; };
 		2C77C6DE0D041C7200C4E9D3 /* EditorClient.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */; settings = {ATTRIBUTES = (); }; };
-		2C803ABB1B8DA6BA00F21455 /* DVIPreviewModeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C803AB91B8DA6BA00F21455 /* DVIPreviewModeTransformer.h */; };
 		2C803ABC1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C803ABA1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m */; };
-		2C808AAD0E9BD9C2006F19EB /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */; };
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
@@ -90,6 +87,23 @@
 		2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */; };
 		2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C803AC71B8E00B500F21455 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C803AC31B8E00B400F21455 /* miclient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76F7E0486A8DE00D96B5E;
+			remoteInfo = miclient;
+		};
+		2C803AC91B8E014300F21455 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C803AC31B8E00B400F21455 /* miclient.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD76F740486A8DE00D96B5E;
+			remoteInfo = miclient;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2C0313740AAD0F47005B592F /* CopyFiles */ = {
@@ -171,6 +185,7 @@
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
 		2C803AB91B8DA6BA00F21455 /* DVIPreviewModeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIPreviewModeTransformer.h; sourceTree = "<group>"; };
 		2C803ABA1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVIPreviewModeTransformer.m; sourceTree = "<group>"; };
+		2C803AC31B8E00B400F21455 /* miclient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = miclient.xcodeproj; path = miclient/miclient.xcodeproj; sourceTree = "<group>"; };
 		2C808A8D0E9BD985006F19EB /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultToNilTransformer.m; sourceTree = "<group>"; };
@@ -219,7 +234,6 @@
 		2CDA10AA069404FE00467991 /* PDFController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = PDFController.applescript; sourceTree = "<group>"; };
 		2CDACD7F0813BE3F000B9086 /* LogParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogParser.h; sourceTree = "<group>"; };
 		2CDACD820813BE3F000B9086 /* LogParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogParser.m; sourceTree = "<group>"; };
-		2CDACE460813EF6B000B9086 /* miclient */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = miclient; path = ../miclient/build/Release/miclient; sourceTree = SOURCE_ROOT; };
 		2CDB46FE09F951AD00F1ABA4 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		2CDBE608097BA7FE00C3300B /* LogWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowController.h; sourceTree = "<group>"; };
 		2CDBE609097BA7FE00C3300B /* LogWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWindowController.m; sourceTree = "<group>"; };
@@ -247,7 +261,6 @@
 				2CDB471309F951AD00F1ABA4 /* Carbon.framework in Frameworks */,
 				2C03136F0AAD0F21005B592F /* DonationReminder.framework in Frameworks */,
 				2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */,
-				2C808AAD0E9BD9C2006F19EB /* ScriptingBridge.framework in Frameworks */,
 				2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */,
 				2CCDB65017DD6FEE00E98804 /* AppleScriptObjC.framework in Frameworks */,
 			);
@@ -326,6 +339,7 @@
 				2CB63A5D08CF038D002FCC88 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				2C803AC31B8E00B400F21455 /* miclient.xcodeproj */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -351,7 +365,6 @@
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
 				2C7C498707962E380026564C /* FactorySettings.plist */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
-				2CDACE460813EF6B000B9086 /* miclient */,
 				2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */,
 				29B97318FDCFA39411CA2CEA /* TeXBridge.nib */,
 				2C732C7B07AE666B005ACE75 /* Setting.nib */,
@@ -405,7 +418,8 @@
 				2CBFD209097DFA9200BCEB43 /* miClient.h */,
 				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
 			);
-			path = miClientLib;
+			name = miClientLib;
+			path = miclient/miClientLib;
 			sourceTree = "<group>";
 		};
 		2C1DB15709F687D000139324 /* SmartActivateLib */ = {
@@ -415,7 +429,8 @@
 				2CC4852C099040B0004E4BDE /* SmartActivate.c */,
 				2C2E5294080625270015E9EB /* SmartActivate.m */,
 			);
-			path = SmartActivateLib;
+			name = SmartActivateLib;
+			path = miclient/SmartAcrivateLib;
 			sourceTree = "<group>";
 		};
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
@@ -456,6 +471,14 @@
 				2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		2C803AC41B8E00B400F21455 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C803AC81B8E00B500F21455 /* miclient */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		2CB63A5D08CF038D002FCC88 /* Unused */ = {
@@ -522,32 +545,22 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		2C4E27AE084273B000004A96 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2C803ABB1B8DA6BA00F21455 /* DVIPreviewModeTransformer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		2C4E27AD084273B000004A96 /* TeXBridge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C6D92DB0928239D005774F8 /* Build configuration list for PBXNativeTarget "TeXBridge" */;
 			buildPhases = (
-				2C4E27AE084273B000004A96 /* Headers */,
 				2C4E27C4084273B000004A96 /* Resources */,
 				2C4E27D5084273B000004A96 /* Sources */,
 				2C4E27DA084273B000004A96 /* Frameworks */,
 				2C0313740AAD0F47005B592F /* CopyFiles */,
 				2CE61F98184811FF00063F1B /* ShellScript */,
+				2C803ACB1B8E03EC00F21455 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2C803ACA1B8E014300F21455 /* PBXTargetDependency */,
 			);
 			name = TeXBridge;
 			productInstallPath = "$(HOME)/Applications";
@@ -575,12 +588,28 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2C803AC41B8E00B400F21455 /* Products */;
+					ProjectRef = 2C803AC31B8E00B400F21455 /* miclient.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2C4E27AD084273B000004A96 /* TeXBridge */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2C803AC81B8E00B500F21455 /* miclient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = miclient;
+			remoteRef = 2C803AC71B8E00B500F21455 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2C4E27C4084273B000004A96 /* Resources */ = {
@@ -600,7 +629,6 @@
 				2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */,
 				2C4E27D2084273B000004A96 /* plus.png in Resources */,
 				2C4E27D3084273B000004A96 /* minus.png in Resources */,
-				2C4E27D4084273B000004A96 /* miclient in Resources */,
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
 				2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */,
 				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
@@ -619,6 +647,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C803ACB1B8E03EC00F21455 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/miclient/build/${CONFIGURATION}/miclient",
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/miclient",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp \"${SRCROOT}/miclient/build/${CONFIGURATION}/miclient\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/miclient\"  ";
+		};
 		2CE61F98184811FF00063F1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -633,6 +676,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}\"\nosacompile -l AppleScript -d -o \"${BUILT_PRODUCTS_DIR}/${SCRIPTS_FOLDER_PATH}/PDFController.scpt\" PDFController.applescript\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -690,6 +734,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C803ACA1B8E014300F21455 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = miclient;
+			targetProxy = 2C803AC91B8E014300F21455 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		29B97318FDCFA39411CA2CEA /* TeXBridge.nib */ = {
