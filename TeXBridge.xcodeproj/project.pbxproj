@@ -29,7 +29,6 @@
 		2C40972716A96F410085CB9D /* LabelDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40972516A96F410085CB9D /* LabelDatum.m */; };
 		2C40973116AA4D820085CB9D /* ReferenceDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40972F16AA4D820085CB9D /* ReferenceDataController.m */; };
 		2C40983A16AD578D0085CB9D /* AuxFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40983816AD578D0085CB9D /* AuxFile.m */; };
-		2C4098F216AE2C6A0085CB9D /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4098F016AE2C6A0085CB9D /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9BD06255005004731C7 /* CompileCenter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB9C906255508004731C7 /* EditCommands.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C329BDD063AB42000C9A56F /* LogFileParser.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -147,8 +146,6 @@
 		2C40972F16AA4D820085CB9D /* ReferenceDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceDataController.m; sourceTree = "<group>"; };
 		2C40983716AD578D0085CB9D /* AuxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxFile.h; sourceTree = "<group>"; };
 		2C40983816AD578D0085CB9D /* AuxFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxFile.m; sourceTree = "<group>"; };
-		2C4098EF16AE2C6A0085CB9D /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = RegexKitLite/RegexKitLite.h; sourceTree = "<group>"; };
-		2C4098F016AE2C6A0085CB9D /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = RegexKitLite/RegexKitLite.m; sourceTree = "<group>"; };
 		2C4099BB16AECE4C0085CB9D /* History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = History.rtf; path = ../../History.rtf; sourceTree = SOURCE_ROOT; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
@@ -325,7 +322,6 @@
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				2C49445407AD219B00B2A8D8 /* images */,
-				2C4098F316AE2C700085CB9D /* RegexKitLite */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				2CB63A5D08CF038D002FCC88 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -439,15 +435,6 @@
 				2C40983816AD578D0085CB9D /* AuxFile.m */,
 			);
 			name = ReferencePalette;
-			sourceTree = "<group>";
-		};
-		2C4098F316AE2C700085CB9D /* RegexKitLite */ = {
-			isa = PBXGroup;
-			children = (
-				2C4098EF16AE2C6A0085CB9D /* RegexKitLite.h */,
-				2C4098F016AE2C6A0085CB9D /* RegexKitLite.m */,
-			);
-			name = RegexKitLite;
 			sourceTree = "<group>";
 		};
 		2C49445407AD219B00B2A8D8 /* images */ = {
@@ -690,7 +677,6 @@
 				2C40972716A96F410085CB9D /* LabelDatum.m in Sources */,
 				2C40973116AA4D820085CB9D /* ReferenceDataController.m in Sources */,
 				2C40983A16AD578D0085CB9D /* AuxFile.m in Sources */,
-				2C4098F216AE2C6A0085CB9D /* RegexKitLite.m in Sources */,
 				2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */,
 				2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */,
 				2CCDB78F17DDF38F00E98804 /* PerformScriptCommand.m in Sources */,

@@ -4,7 +4,6 @@
 #import "AppController.h"
 #import "LabelDatum.h"
 #import "miClient.h"
-#import "RegexKitLite.h"
 
 @implementation AuxFile
 @synthesize basename;
@@ -210,6 +209,18 @@ bail:
 
 - (BOOL)findLabelsFromEditorWithForceUpdate:(BOOL)forceUpdate
 {
+    
+    static NSRegularExpression *label_regexp = nil;
+    if (!label_regexp) {
+        NSError *error = nil;
+        label_regexp = [NSRegularExpression regularExpressionWithPattern:@"\\\\label\\{([^{}]+)\\}"
+                                                options:0 error:&error];
+        if (error) {
+            NSLog(@"Error : %@", [error localizedDescription]);
+            return NO;
+        }
+    }
+    
 	miClient *editor_client = [miClient sharedClient];
 	NSString *content = [editor_client currentDocumentContent];
 	if (! content) return NO;
@@ -221,7 +232,7 @@ bail:
 	
 	[self clearLabelsFromEditorRecursively:NO];
 	NSCharacterSet *spaces_set = [NSCharacterSet whitespaceCharacterSet];
-	NSString *scaned_string;	
+	NSString *scaned_string;
 	for (NSString *a_line in paragraphs ) {
 #if useLog
 		NSLog(@"findLabelsFromEditor : %@", a_line);
@@ -243,14 +254,15 @@ bail:
 		}
 		
 		// find label command
-		NSArray *captures = [clean_line arrayOfCaptureComponentsMatchedByRegex:@"\\\\label\\{([^{}]+)\\}"];
-		if (! [captures count]) continue;
-		for (NSArray *a_capture in captures) {
-			NSString *label_name = [a_capture objectAtIndex:1];
-			if (![self hasLabel:label_name]) {
+        NSArray *match_results = [label_regexp matchesInString:clean_line options:0
+                                                   range:NSMakeRange(0, clean_line.length)];
+        for (NSTextCheckingResult *chk_result in match_results ){
+            NSString *label_name = [clean_line substringWithRange:[chk_result rangeAtIndex:1]];
+            if (![self hasLabel:label_name]) {
 				[self addLabelFromEditor:label_name];
 			}
-		}
+        }
+                                                       
 #if useLog
 		NSLog(@"%@", captures);
 #endif				
@@ -327,6 +339,40 @@ bail:
 
 - (BOOL)parseAuxFile
 {
+    static NSRegularExpression *newlabel_regexp = nil;
+    if (!newlabel_regexp) {
+        NSError *error = nil;
+        newlabel_regexp = [NSRegularExpression
+                               regularExpressionWithPattern:@"\\\\newlabel\\{([^{}]+)\\}\\{((\\{[^{}]*\\})+)\\}"
+                           options:0 error:&error];
+        if (error) {
+            NSLog(@"Error : %@", [error localizedDescription]);
+            return NO;
+        }
+    }
+    static NSRegularExpression *input_regexp = nil;
+    if (!input_regexp) {
+        NSError *error = nil;
+        input_regexp = [NSRegularExpression
+                            regularExpressionWithPattern:@"\\\\@input\\{([^{}]+)\\}"
+                        options:0 error:&error];
+        if (error) {
+            NSLog(@"Error : %@", [error localizedDescription]);
+            return NO;
+        }
+    }
+    static NSRegularExpression *refname_regexp = nil;
+    if (!refname_regexp) {
+        NSError *error = nil;
+        refname_regexp = [NSRegularExpression
+                            regularExpressionWithPattern:@"\\{([^{}]*)\\}"
+                          options:0 error:&error];
+        if (error) {
+            NSLog(@"Error : %@", [error localizedDescription]);
+            return NO;
+        }
+    }
+    
 	self.labelsFromAux = [NSMutableArray array];
 	NSError *error = nil;
 	NSString *aux_text = [self readAuxFileReturningError:&error];
@@ -335,7 +381,6 @@ bail:
 		return NO;
 	}
 	
-	
 	NSArray *paragraphs = [aux_text paragraphs];
 	
 	for (NSString *a_line in paragraphs) {
@@ -343,43 +388,37 @@ bail:
 		NSLog(@"a line in aux : %@", a_line);
 #endif
 		// pickup newlabel commands
-		NSArray *captures = [a_line captureComponentsMatchedByRegex:@"\\\\newlabel\\{([^{}]+)\\}\\{((\\{[^{}]*\\})+)\\}"];
-#if useLog
-		NSLog(@"captures : %@", captures);
-#endif		
-		if ([captures count] > 2) {
-			NSString *label_name = [captures objectAtIndex:1];
-			NSArray *second_captures = [[captures objectAtIndex:2] 
-										arrayOfCaptureComponentsMatchedByRegex:@"\\{([^{}]*)\\}"];
-#if useLog
-			NSLog(@"second_captures : %@", second_captures);
-#endif
-			NSString *ref_name = nil;
-			NSUInteger second_captures_count = [second_captures count];
-			if ( second_captures_count > 3) { // hyperref
-				ref_name = [[second_captures objectAtIndex:second_captures_count-2] lastObject];
+        NSTextCheckingResult *a_match = [newlabel_regexp firstMatchInString:a_line
+                                                                  options:0
+                                                                    range:NSMakeRange(0, a_line.length)];
+        if (a_match.numberOfRanges > 2) {
+            NSString *label_name = [a_line substringWithRange:[a_match rangeAtIndex:1]];
+            NSString *label_args = [a_line substringWithRange:[a_match rangeAtIndex:2]];
+            NSArray *matches = [refname_regexp matchesInString:label_args
+                                                       options:0 range:NSMakeRange(0, label_args.length)];
+            NSString *ref_name = nil;
+            NSUInteger second_matches_count = [matches count];
+            if ( second_matches_count > 3) { // hyperref
+				ref_name = [label_args substringWithRange:
+                            [[matches objectAtIndex:second_matches_count-2] rangeAtIndex:1]];
 			} else {
-				ref_name = [[second_captures objectAtIndex:0] lastObject];
+				ref_name = [label_args substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
 			}
 			
 			if ( [label_name length] || ![label_name hasPrefix:@"SC@"]) {
 				[self addLabelFromAux:label_name referenceName:ref_name];
 			}
 			continue;
-		}
-		// pickup input commands
-		captures = [a_line captureComponentsMatchedByRegex:@"\\\\@input\\{([^{}]+)\\}"];
-#if useLo
-		NSLog(@"%@", captures);
-#endif
-		if ([captures count] > 1) {
-			NSString *input_file = [captures objectAtIndex:1];
-			NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[texDocument file]] 
+        }
+        
+
+        a_match = [input_regexp firstMatchInString:a_line options:0
+                                                        range:NSMakeRange(0, a_line.length)];
+        if (a_match.numberOfRanges > 1) {
+            NSString *input_file = [a_line substringWithRange:[a_match rangeAtIndex:1]];
+            NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[texDocument file]]
 									absoluteURL];
-#if useLog
-			NSLog(@"%@", input_aux_url);
-#endif			
-			NSString *input_aux_path = [input_aux_url path];
+            NSString *input_aux_path = [input_aux_url path];
 			if ([input_aux_path fileExists]) {
 				AuxFile *child_aux_file = [AuxFile auxFileWithPath:input_aux_path
 													  textEncoding:texDocument.textEncoding];
@@ -397,7 +436,7 @@ bail:
 				
 			}
 			continue;
-		}
+        }
 	}
 	return YES;
 }

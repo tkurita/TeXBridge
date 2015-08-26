@@ -3,7 +3,6 @@
 #import "LabelDatum.h"
 #import "TeXDocument.h"
 #import "StringExtra.h"
-#import "RegexKitLite.h"
 #import "PathExtra.h"
 #import "miClient.h"
 #import "ImageAndTextCell.h"
