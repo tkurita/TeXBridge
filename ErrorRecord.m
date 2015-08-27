@@ -9,9 +9,8 @@ extern id EditorClient;
 
 - (BOOL)jumpToFile
 {
-	FSRef fileRef;
-	[(FileRecord *)_parent getFSRef:&fileRef];
-	return [EditorClient jumpToFile:&fileRef paragraph:paragraph];
+    NSURL *url = [(FileRecord *)_parent URLResolvingAlias];
+    return [EditorClient jumpToFileURL:url paragraph:paragraph];
 }
 
 #pragma mark initilize and dealloc

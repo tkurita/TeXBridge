@@ -7,14 +7,7 @@ extern id EditorClient;
 
 @implementation FileRecord
 
-@synthesize logContents;
-
 #pragma mark initialize and dealloc
--(void) dealloc
-{
-	DisposeHandle((Handle)aliasHandle);
-}
-
 + (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array parent:(id <LogWindowItem>)parent
 {
 	id newInstance = [[self class] fileRecordForPath:path errorRecords:array];
@@ -34,7 +27,7 @@ extern id EditorClient;
 - (BOOL)setBaseURL:(NSURL *)baseURL
 {
 	if ([_targetFile isAbsolutePath]) {
-		_targetURL = [NSURL fileURLWithPath:_targetFile];
+		self.targetURL = [NSURL fileURLWithPath:_targetFile];
 		NSString *relPath = [_targetFile relativePathWithBase:[baseURL path]];
 		[self setTargetFile: relPath];
 	}
@@ -42,21 +35,33 @@ extern id EditorClient;
 		_targetURL = [NSURL URLWithString:_targetFile relativeToURL:baseURL];
 	}
 	
-	OSErr theError = noErr;
-	FSRef theReference;
-	CFURLGetFSRef((CFURLRef)_targetURL, &theReference);
-	theError = FSNewAliasMinimal( &theReference, &aliasHandle );
-	
-	return theError == noErr;
+    CFErrorRef error = NULL;
+    self.bookmarkData =  CFBridgingRelease(CFURLCreateBookmarkData(kCFAllocatorDefault,
+                                       (__bridge CFURLRef)_targetURL,
+                                       0, NULL, NULL, &error));
+    if (error) {
+        NSLog(@"Failed to CFURLCreateBookmarkDataFromFile: %@", (__bridge NSError *)error);
+        [NSApp presentError: (__bridge NSError *)error];
+        CFRelease(error);
+        return NO;
+    }
+    return YES;
 }
 
-- (BOOL)getFSRef:(FSRef *)theRef
+- (NSURL *)URLResolvingAlias
 {
-	OSErr theError = noErr;
-	Boolean wasChanged;
-	
-	theError = FSResolveAlias(NULL, aliasHandle, theRef, &wasChanged);
-	return theError == noErr;
+    Boolean isState;
+    CFErrorRef error = NULL;
+    CFURLRef url = CFURLCreateByResolvingBookmarkData (kCFAllocatorDefault,
+                                                      (__bridge CFDataRef)_bookmarkData,
+                                                       0, NULL, NULL, &isState, &error);
+    if (error) {
+        NSLog(@"Failed to CFURLCreateByResolvingBookmarkData: %@", (__bridge NSError *)error);
+        [NSApp presentError: (__bridge NSError *)error];
+        CFRelease(error);
+        return nil;
+    }
+    return CFBridgingRelease(url);
 }
 
 #pragma mark medhots for outlineview
@@ -65,11 +70,9 @@ extern id EditorClient;
 	return [_parent jobRecord];
 }
 
--(BOOL) jumpToFile {
-	//return NO;
-	FSRef fileRef;
-	[self getFSRef:&fileRef];
-	return [EditorClient jumpToFile:&fileRef paragraph:nil];
+-(BOOL) jumpToFile
+{
+	return [EditorClient jumpToFileURL:_targetURL paragraph:nil];
 }
 
 -(id) child {
