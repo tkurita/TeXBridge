@@ -381,7 +381,7 @@ script ReloadablePreviewDriver
 		tell application id (an_id)
 			open a_pdf's file_as_alias()
 		end tell
-		tell current application's class "SmartActivate"
+		tell current application's class "NSRunningApplication"
 			activateAppOfIdentifier_(an_id)
 		end tell
 	end open_pdf

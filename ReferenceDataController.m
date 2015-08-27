@@ -7,7 +7,7 @@
 #import "miClient.h"
 #import "ImageAndTextCell.h"
 #import "mi.h"
-#import "SmartActivate.h"
+#import "NSRunningApplication+SmartActivate.h"
 #import "miClient.h"
 
 
@@ -286,7 +286,7 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 	} 
 	[first_selection setContent: [NSString stringWithFormat:@"%@{%@}", ref_command, label_name]];
 inserted:
-	[SmartActivate activateAppOfIdentifier:@"net.mimikaki.mi"];
+	[NSRunningApplication activateAppOfIdentifier:@"net.mimikaki.mi"];
 }
 
 - (IBAction)removeSelection:(id)sender

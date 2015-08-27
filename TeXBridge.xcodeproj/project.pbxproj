@@ -49,7 +49,6 @@
 		2C4E27D2084273B000004A96 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167D07D177B8008BCAEF /* plus.png */; };
 		2C4E27D3084273B000004A96 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167E07D177B8008BCAEF /* minus.png */; };
 		2C4E27D6084273B000004A96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		2C4E27D7084273B000004A96 /* SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2E5294080625270015E9EB /* SmartActivate.m */; };
 		2C4E27D9084273B000004A96 /* LogParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDACD820813BE3F000B9086 /* LogParser.m */; };
 		2C4E27DB084273B000004A96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E545708062E8E0015E9EB /* ApplicationServices.framework */; };
@@ -58,6 +57,7 @@
 		2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */; };
 		2C77C6DE0D041C7200C4E9D3 /* EditorClient.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C803ABC1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C803ABA1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m */; };
+		2C803AD01B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C803ACF1B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m */; };
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
@@ -68,7 +68,6 @@
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
 		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
 		2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD20A097DFA9200BCEB43 /* miClient.m */; };
-		2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CC4852C099040B0004E4BDE /* SmartActivate.c */; };
 		2CCDB65017DD6FEE00E98804 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */; };
 		2CCDB6BF17DD9B3300E98804 /* TerminalCommander.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6BE17DD9B3300E98804 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CCDB6C217DD9BA900E98804 /* UtilityHandlers.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6C117DD9BA900E98804 /* UtilityHandlers.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -186,6 +185,8 @@
 		2C803AB91B8DA6BA00F21455 /* DVIPreviewModeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVIPreviewModeTransformer.h; sourceTree = "<group>"; };
 		2C803ABA1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVIPreviewModeTransformer.m; sourceTree = "<group>"; };
 		2C803AC31B8E00B400F21455 /* miclient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = miclient.xcodeproj; path = miclient/miclient.xcodeproj; sourceTree = "<group>"; };
+		2C803ACE1B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunningApplication+SmartActivate.h"; sourceTree = "<group>"; };
+		2C803ACF1B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRunningApplication+SmartActivate.m"; sourceTree = "<group>"; };
 		2C808A8D0E9BD985006F19EB /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
 		2C808AAC0E9BD9C2006F19EB /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultToNilTransformer.m; sourceTree = "<group>"; };
@@ -513,6 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				2C4095D116A850130085CB9D /* mi.h */,
+				2C803ACE1B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.h */,
+				2C803ACF1B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m */,
 				2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */,
 				2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */,
 				2C803AB91B8DA6BA00F21455 /* DVIPreviewModeTransformer.h */,
@@ -696,7 +699,6 @@
 				2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */,
 				2C77C6DE0D041C7200C4E9D3 /* EditorClient.applescript in Sources */,
 				2C4E27D6084273B000004A96 /* main.m in Sources */,
-				2C4E27D7084273B000004A96 /* SmartActivate.m in Sources */,
 				2C4E27D9084273B000004A96 /* LogParser.m in Sources */,
 				2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */,
 				2CD5554F08BEC77F007E43D1 /* AppController.m in Sources */,
@@ -707,7 +709,6 @@
 				2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */,
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
 				2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */,
-				2CC4852D099040B0004E4BDE /* SmartActivate.c in Sources */,
 				2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */,
 				2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */,
 				2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */,
@@ -730,6 +731,7 @@
 				2CCDBB1B17DF04FC00E98804 /* ActivateProcessCommand.m in Sources */,
 				2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */,
 				2C803ABC1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m in Sources */,
+				2C803AD01B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

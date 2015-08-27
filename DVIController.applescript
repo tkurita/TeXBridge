@@ -220,8 +220,8 @@ script PictPrinterDriver
 			end using terms from
 		end if
 		if aFlag then
-			tell current application's class "SmartActivate"
-				activateAppOfType_("pPrn")
+			tell current application's class "NSRunningApplication"
+				activateAppOfIdentifier_("PictPrinter.system")
 			end tell
 		end if
 		-- log "end open_dvi"

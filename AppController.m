@@ -3,7 +3,7 @@
 #import "CocoaLib/PathExtra.h"
 #import "CocoaLib/WindowVisibilityController.h"
 #import "DonationReminder/DonationReminder.h"
-#import "SmartActivate.h"
+#import "NSRunningApplication+SmartActivate.h"
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
 #import "DVIPreviewModeTransformer.h"
@@ -169,7 +169,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
 	}
 	[settingWindow showWindow:self];
-	[SmartActivate activateSelf];
+	[NSRunningApplication activateSelf];
 }
 
 - (IBAction)quickTypesetPreview:(id)sender

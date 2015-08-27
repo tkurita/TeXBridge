@@ -534,7 +534,7 @@ on typeset()
 	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then
-		tell current application's class "SmartActivate"
+		tell current application's class "NSRunningApplication"
 			its activateSelf()
 		end tell
 	end if

@@ -13,7 +13,7 @@ on buildup()
 		end send_command
 		
 		on activate_terminal()
-			tell current application's class "SmartActivate"
+			tell current application's class "NSRunningApplication"
 				activateAppOfIdentifier_("com.apple.Terminal")
 			end tell
 			return true
