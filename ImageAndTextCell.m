@@ -79,7 +79,7 @@
 - (id)copyWithZone:(NSZone*)zone
 {
     ImageAndTextCell *cell = (ImageAndTextCell*)[super copyWithZone:zone];
-    cell->image = image;
+    cell.image_ = _image_;
     return cell;
 }
 
@@ -88,10 +88,10 @@
 // -------------------------------------------------------------------------------
 - (void)setImage:(NSImage*)anImage
 {
-    if (anImage != image)
+    if (anImage != _image_)
 	{
-        image = anImage;
-		[image setSize:NSMakeSize(kIconImageSize, kIconImageSize)];
+        self.image_ = anImage;
+		[_image_ setSize:NSMakeSize(kIconImageSize, kIconImageSize)];
     }
 }
 
@@ -100,7 +100,7 @@
 // -------------------------------------------------------------------------------
 - (NSImage*)image
 {
-    return image;
+    return _image_;
 }
 
 // -------------------------------------------------------------------------------
@@ -122,7 +122,7 @@
 	NSSize imageSize;
 	NSRect imageFrame;
 
-	imageSize = [image size];
+	imageSize = [_image_ size];
 	NSDivideRect(cellRect, &imageFrame, &cellRect, 3 + imageSize.width, NSMinXEdge);
 
 	imageFrame.origin.x += kImageOriginXOffset;
@@ -162,13 +162,13 @@
 // -------------------------------------------------------------------------------
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView*)controlView
 {
-	if (image != nil)
+	if (_image_ != nil)
 	{
 		// the cell has an image: draw the normal item cell
 		NSSize imageSize;
         NSRect imageFrame;
 
-        imageSize = [image size];
+        imageSize = [_image_ size];
         NSDivideRect(cellFrame, &imageFrame, &cellFrame, 3 + imageSize.width, NSMinXEdge);
  
         imageFrame.origin.x += kImageOriginXOffset;
@@ -179,7 +179,13 @@
             imageFrame.origin.y += ceil((cellFrame.size.height + imageFrame.size.height) / 2);
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
-		[image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
+        
+		[_image_ compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
+        /*[_image_ drawAtPoint:imageFrame.origin // does not work
+                        fromRect:NSZeroRect
+                       operation:NSCompositeSourceOver
+                        fraction:1.0];
+         */
 
 		NSRect newFrame = cellFrame;
 		newFrame.origin.x += kTextOriginXOffset;
@@ -206,7 +212,7 @@
 - (NSSize)cellSize
 {
     NSSize cellSize = [super cellSize];
-    cellSize.width += (image ? [image size].width : 0) + 3;
+    cellSize.width += (_image_ ? [_image_ size].width : 0) + 3;
     return cellSize;
 }
 
