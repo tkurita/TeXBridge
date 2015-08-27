@@ -190,6 +190,10 @@ on working_directory()
 	return my _workingDirectory
 end working_directory
 
+on texdoc()
+    return me
+end texdoc
+
 (*== Instance methods *)
 on typeset()
 	--log "start typeset"

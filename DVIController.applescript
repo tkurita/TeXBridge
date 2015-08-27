@@ -106,45 +106,6 @@ script SimpleDriver
 	end open_dvi
 end script
 
-(*
-script MxdviDriver
-	property parent : AppleScript
-	on set_file_type(a_dvi)
-		a_dvi's set_types("Mxdv", "JDVI")
-	end set_file_type
-	
-	on open_dvi given sender:a_dvi, activation:aFlag
-		--log "start open_dvi of MxdviDriver"
-		try
-			set mxdviApp to path to application (get "Mxdvi") as alias
-		on error
-			set msg to localized string "mxdviIsnotFound"
-			error msg number 1260
-		end try
-		update_src_special_flag_from_file() of a_dvi
-		--log "success update_src_special_flag_from_file"
-		set a_texdoc to a_dvi's texdoc()
-		if a_dvi's src_special() and (a_texdoc is not missing value) then
-			set mxdviPath to quoted form of POSIX path of ((mxdviApp as Unicode text) & "Contents:MacOS:Mxdvi")
-			set target_dvi_path to quoted form of (a_dvi's posix_path())
-			set all_command to mxdviPath & "  -sourceposition " & (a_texdoc's doc_position()) & space & target_dvi_path & " &"
-			--log all_command
-			if a_texdoc's is_use_term() then
-				do_command of (a_dvi's texdoc()'s target_terminal()) for all_command without activation
-			else
-				do shell script all_command
-			end if
-		else
-			tell application (mxdviApp as Unicode text)
-				if aFlag then activate
-				open a_dvi's file_as_alias()
-			end tell
-		end if
-		--log "end open_dvi"
-	end open_dvi
-end script
-*)
-
 script PictPrinterDriver
 	property parent : AppleScript
 	on set_file_type(a_dvi)

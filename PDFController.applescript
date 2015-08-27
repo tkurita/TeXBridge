@@ -1,5 +1,6 @@
 global UtilityHandlers
 global appController
+global XText
 
 global NSUserDefaults
 
@@ -19,7 +20,7 @@ end integer_from_user_defaults
 on changePDFPreviewer(sender)
 	--log "start changePDFPreviewer"
 	set new_mode to integer_from_user_defaults("PDFPreviewMode")
-	if new_mode is 3 then -- AdobeReader
+	if new_mode is 2 then -- AdobeReader
 		try
 			find_adobe_reader()
 		on error msg number -128
@@ -213,6 +214,10 @@ on fileName()
 	return my _pdffile's item_name()
 end fileName
 
+on posix_path()
+	return my _pdffile's posix_path()
+end posix_path
+
 on setup_pdfdriver()
 	--log "start setup_pdfdriver()"
 	set PDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
@@ -234,6 +239,8 @@ on setup_pdfdriver()
 		set my _pdfdriver to my AcrobatDriver
 		set my _process_name to "Acrobat"
 		set my _app_name to _acrobatPath
+    else if PDFPreviewMode is 4 then
+        set my _pdfdriver to my CLIDriver
 	else
 		error "PDF Preview Setting is invalid." number 1280
 	end if
@@ -388,7 +395,6 @@ script ReloadablePreviewDriver
 end script
 
 script PreviewDriver
-	
 	on prepare(a_pdf)
 		if is_running(a_pdf's process_name()) of UtilityHandlers then
 			tell application "System Events"
@@ -474,4 +480,25 @@ script AutoDriver
 		end if
 		a_pdf's target_driver()'s open_pdf(a_pdf)
 	end open_pdf
+end script
+
+script CLIDriver
+    on prepare(a_pdf)
+        return true
+    end prepare
+    
+    on open_pdf(a_pdf)
+        -- log "start open_pdf of CLIDriver"
+        tell NSUserDefaults's standardUserDefaults()
+            set command_template to stringForKey_("PDFPreviewCommand") as text
+        end tell
+        set a_pdfpath to a_pdf's posix_path()'s quoted form
+        set a_texdoc to a_pdf's _dvi's texdoc()
+        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
+        set linenum to a_texdoc's doc_position()
+        set x_text to XText's make_with(command_template)'s replace("%line", (linenum as text))
+        set x_text to x_text's replace("%pdffile", a_pdfpath)
+        set x_text to x_text's replace("%texfile", a_texpath)
+        do shell script (x_text's as_text())
+    end open_pdf
 end script
