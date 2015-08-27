@@ -1,16 +1,10 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TeXDocument : NSObject {
-	NSURL *file;
-	NSString *textEncoding;
-	NSString *name;
-	NSString *pathWithoutSuffix;
-	BOOL hasMaster;
-}
+@interface TeXDocument : NSObject
 
-@property (retain) NSURL *file;
-@property (retain) NSString *textEncoding;
+@property NSURL *file;
+@property NSString *textEncoding;
 @property (retain) NSString *name;
 @property (retain) NSString *pathWithoutSuffix;
 @property BOOL hasMaster;

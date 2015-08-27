@@ -4,12 +4,6 @@
 
 @implementation TeXDocument
 
-@synthesize file;
-@synthesize textEncoding;
-@synthesize name;
-@synthesize pathWithoutSuffix;
-@synthesize hasMaster;
-
 static NSArray *SUPPORTED_MODES = nil;
 
 + (void)initialize
@@ -108,12 +102,12 @@ static NSArray *SUPPORTED_MODES = nil;
 	}
 	
 	if ([masterfile_path hasPrefix:@":"]) { //relative HFS path
-		NSString *hfs_base_path = [[[file path] stringByDeletingLastPathComponent] hfsPath];
+		NSString *hfs_base_path = [[[_file path] stringByDeletingLastPathComponent] hfsPath];
 		NSString *hfs_abs_path = [hfs_base_path stringByAppendingString:masterfile_path];
 		masterfile_path = [hfs_abs_path posixPath];
 		
 	} else if (! [masterfile_path hasPrefix:@"/"]) { //relative POSIX Path
-        NSURL *url = [NSURL URLWithString:masterfile_path relativeToURL:file];
+        NSURL *url = [NSURL URLWithString:masterfile_path relativeToURL:_file];
 		masterfile_path = [url path];
 	}
 	
@@ -145,8 +139,8 @@ static NSArray *SUPPORTED_MODES = nil;
 		return result;
 	}
 	
-	result = [TeXDocument texDocumentWithPath:masterfile_path textEncoding:textEncoding];
-	if (result) hasMaster = YES;
+	result = [TeXDocument texDocumentWithPath:masterfile_path textEncoding:_textEncoding];
+	if (result) self.hasMaster = YES;
 	return result;
 }
 
