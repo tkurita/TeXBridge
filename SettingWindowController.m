@@ -30,12 +30,12 @@
 
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
-	if (arrangedInternalReplaceInputDict) {
-		return arrangedInternalReplaceInputDict;
+	if (_arrangedInternalReplaceInputDict_) {
+		return _arrangedInternalReplaceInputDict_;
 	}
 	
 	NSDictionary *a_dict = [ReplaceInputData internalReplaceDict];
-	arrangedInternalReplaceInputDict = [NSMutableArray array];
+	self.arrangedInternalReplaceInputDict_ = [NSMutableArray array];
 	for (id category_name in a_dict ) {
 		id replace_dict = [a_dict objectForKey:category_name];
 		NSMutableArray *replace_array = [NSMutableArray array];
@@ -45,11 +45,11 @@
 									  [replace_dict objectForKey:keytext], @"value", nil]];
 		}
 		NSString *localized_category_name = NSLocalizedString(category_name, nil);
-		[arrangedInternalReplaceInputDict addObject:
+		[_arrangedInternalReplaceInputDict_ addObject:
 			[NSDictionary dictionaryWithObjectsAndKeys: localized_category_name, @"key",
 				replace_array, @"children", nil]];
 	}
-	return arrangedInternalReplaceInputDict;
+	return _arrangedInternalReplaceInputDict_;
 }
 
 #pragma mark actions
