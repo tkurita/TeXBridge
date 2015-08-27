@@ -2,9 +2,6 @@
 
 @implementation LabelDatum
 
-@synthesize name;
-@synthesize referenceName;
-
 - (NSImage *)nodeIcon
 {
 	static NSImage *nodeIcon = nil;
@@ -23,10 +20,10 @@
 
 - (NSTreeNode *)treeNode
 {
-	if (! treeNode) {
-		treeNode = [NSTreeNode treeNodeWithRepresentedObject:self];
+	if (! _treeNodeRef) {
+		self.treeNodeRef = [NSTreeNode treeNodeWithRepresentedObject:self];
 	}
-	return treeNode;
+	return _treeNodeRef;
 }
 
 @end

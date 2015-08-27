@@ -1,13 +1,10 @@
 #import <Cocoa/Cocoa.h>
 
-@interface LabelDatum : NSObject {
-	NSTreeNode *treeNode;
-	NSString *name;
-	NSString *referenceName;
-}
+@interface LabelDatum : NSObject
 
-@property (retain) NSString *name;
-@property (retain) NSString *referenceName;
+@property NSString *name;
+@property NSString *referenceName;
+@property NSTreeNode *treeNodeRef;
 
 + (LabelDatum *)labelDatumWithName:(NSString *)aName referenceName:(NSString *)aRefName;
 - (NSTreeNode *)treeNode;
