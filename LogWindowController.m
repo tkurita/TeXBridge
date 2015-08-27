@@ -13,15 +13,15 @@ static id sharedLogManager;
 
 - (void)addLogRecords:(id <LogWindowItem>)logRecords
 {
-	[rootArray insertObject:logRecords atIndex:0];
+	[_rootArray insertObject:logRecords atIndex:0];
 	
-	if ([rootArray count] > 21) {
-		[rootArray removeLastObject];
+	if ([_rootArray count] > 21) {
+		[_rootArray removeLastObject];
 	}
 	
 	[logOutline reloadData];
 	
-	NSEnumerator *enumerator = [rootArray objectEnumerator];
+	NSEnumerator *enumerator = [_rootArray objectEnumerator];
 	id object;
 	object = [enumerator nextObject];
 	while (object = [enumerator nextObject]) {
@@ -91,7 +91,7 @@ static id sharedLogManager;
 {
     if (!item) {
         //root
-		return [rootArray count];
+		return [_rootArray count];
     }
     
 	return [[item child] count];
@@ -102,7 +102,7 @@ static id sharedLogManager;
 - (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
 {
     if (!item) {
-       return [rootArray objectAtIndex:index];;
+       return [_rootArray objectAtIndex:index];;
     }
     return [[item child] objectAtIndex:index];
 }
@@ -148,27 +148,11 @@ static id sharedLogManager;
 }
 
 #pragma mark accessor methods
-- (void)setDetailTextOwner:(id)jobRecord
-{
-	_detailTextOwner = jobRecord;
-}
-
 - (void)initRootItem
 {
-	NSMutableArray *logArray = [NSMutableArray array];
-	NSDictionary *logItem = [NSDictionary dictionaryWithObjectsAndKeys:logArray, @"child", nil];
-	[self setRootArray:logArray];
-	[self setRootItem:logItem];
+	self.rootArray = [NSMutableArray array];
+	self.rootItem = [NSDictionary dictionaryWithObjectsAndKeys:_rootArray, @"child", nil];
 }
 
-- (void)setRootArray:(NSMutableArray *)logArray
-{
-	rootArray = logArray;
-}
-
-- (void)setRootItem:(NSDictionary *)logItem
-{
-	rootItem = logItem;
-}
 
 @end

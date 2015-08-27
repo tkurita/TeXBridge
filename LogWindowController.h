@@ -6,11 +6,10 @@
     IBOutlet id detailText;
     IBOutlet id logOutline;
     IBOutlet id logSplitView;
-	
-	NSDictionary *rootItem;
-	NSMutableArray *rootArray;
-	id _detailTextOwner;
 }
+@property NSDictionary *rootItem;
+@property NSMutableArray *rootArray;
+@property id detailTextOwner;
 
 + (id)sharedLogManager;
 - (void)addLogRecords:(id <LogWindowItem>)logRecords;
@@ -18,11 +17,7 @@
 -(void) bringToFront;
 
 #pragma mark accessor methods
-
 - (void)initRootItem;
-- (void)setRootArray:(NSMutableArray *)logArray;
-- (void)setRootItem:(NSDictionary *)logItem;
-- (void)setDetailTextOwner:(id)jobRecord;
 
 @end
 
