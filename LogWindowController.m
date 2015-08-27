@@ -118,10 +118,6 @@ static id sharedLogManager;
 #pragma mark delegate for outlineview
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 {
-	//NSString *logContents = [item logContents];
-	//NSString *currentText = [detailText string];
-	//BOOL isTextShouldChanged = ![currentText isEqualToString: logContents];
-	//BOOL isTextShouldChanged = (logContents != currentText);
 	id jobRecord = [item jobRecord];
 	NSAssert(jobRecord != nil, @"can't obtain jobRecord");
 	
@@ -132,8 +128,8 @@ static id sharedLogManager;
 	}
 
 	if ([item respondsToSelector:@selector(textRange)]) {
-		[detailText setSelectedRange:[item textRange]];
-		[detailText scrollRangeToVisible:[item textRange]];
+		[detailText setSelectedRange:((ErrorRecord *)item).textRange.rangeValue];
+		[detailText scrollRangeToVisible:((ErrorRecord *)item).textRange.rangeValue];
 	}
 	else {
 		if (isTextShouldChanged) {
