@@ -142,8 +142,6 @@
 		2C0BE4D116DC4C810005A62A /* NewToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewToolPaletteController.h; sourceTree = "<group>"; };
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
 		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
-		2C2E5293080625270015E9EB /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
-		2C2E5294080625270015E9EB /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		2C30E70F1095A65800605969 /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
 		2C30E7101095A65800605969 /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
 		2CBFD209097DFA9200BCEB43 /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miClient.h; sourceTree = "<group>"; };
 		2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = miClient.m; sourceTree = "<group>"; };
-		2CC4852C099040B0004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocController.applescript; sourceTree = "<group>"; };
 		2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = DVIController.applescript; sourceTree = "<group>"; };
 		2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
@@ -329,7 +326,6 @@
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
 				2C1656E209F90C3200CE5422 /* miClientLib */,
-				2C1DB15709F687D000139324 /* SmartActivateLib */,
 				2C0311A00AACA0F2005B592F /* CocoaLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				2CCDB95317DE9E0A00E98804 /* Script Commands */,
@@ -421,17 +417,6 @@
 			);
 			name = miClientLib;
 			path = miclient/miClientLib;
-			sourceTree = "<group>";
-		};
-		2C1DB15709F687D000139324 /* SmartActivateLib */ = {
-			isa = PBXGroup;
-			children = (
-				2C2E5293080625270015E9EB /* SmartActivate.h */,
-				2CC4852C099040B0004E4BDE /* SmartActivate.c */,
-				2C2E5294080625270015E9EB /* SmartActivate.m */,
-			);
-			name = SmartActivateLib;
-			path = miclient/SmartAcrivateLib;
 			sourceTree = "<group>";
 		};
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
