@@ -2,33 +2,13 @@
 #import "LogWindowItem.h"
 
 @interface ErrorRecord : NSObject <LogWindowItem> {
-	NSString *logContents;
-	NSString *comment;
-	NSNumber *paragraph;
-	NSValue *textRange;
-	id <LogWindowItem> _parent;
 }
+@property (strong) NSString *comment;
+@property (strong) NSString *logContents;
+@property (strong) NSNumber *paragraph;
+@property (strong) NSValue *textRange;
+@property (strong) id <LogWindowItem> parent;
 
 +(id) errorRecordWithString: (NSString*) errMsg paragraph:(NSNumber *) errpn;
-
-#pragma mark accesor methods
-
--(void) setTextRange:(NSValue *) theRange;
-
--(NSRange) textRange;
-
--(NSString *) logContents;
-
--(void) setLogContents:(NSString *)string;
-
--(void) setComment:(NSString *)string;
--(id) comment;
-
--(void) setParagraph:(NSNumber *)lineNumber;
--(id) paragraph;
-
-- (void)setParent:(id <LogWindowItem>)parent;
-
-@property (retain) NSString *logContents;
 
 @end
