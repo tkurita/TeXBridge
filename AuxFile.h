@@ -1,24 +1,16 @@
 #import <Cocoa/Cocoa.h>
 #import "TeXDocument.h"
 
-@interface AuxFile : NSObject {
-	NSTreeNode *treeNode;
-	NSString *basename;
-	TeXDocument *texDocument;
-	NSString *auxFilePath;
-	NSMutableArray *labelsFromAux;
-	NSMutableArray *labelsFromEditor;
-	NSDate *checkedTime;
-	NSUInteger texDocumentSize;
-}
+@interface AuxFile : NSObject
 
-@property (retain) NSString *basename;
-@property (retain) TeXDocument *texDocument;
-@property (retain) NSString *auxFilePath;
-@property (retain) NSMutableArray *labelsFromAux;
-@property (retain) NSMutableArray *labelsFromEditor;
-@property (retain) NSDate *checkedTime;
+@property NSString *basename;
+@property TeXDocument *texDocument;
+@property NSString *auxFilePath;
+@property NSMutableArray *labelsFromAux;
+@property NSMutableArray *labelsFromEditor;
+@property NSDate *checkedTime;
 @property NSUInteger texDocumentSize;
+@property NSTreeNode *treeNodeRef;
 
 + (AuxFile *)auxFileWithTexDocument:(TeXDocument *)aTeXDocument;
 + (AuxFile *)auxFileWithPath:(NSString *)anAuxFilePath textEncoding:(NSString *)encodingName;

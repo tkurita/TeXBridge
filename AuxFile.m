@@ -6,13 +6,6 @@
 #import "miClient.h"
 
 @implementation AuxFile
-@synthesize basename;
-@synthesize texDocument;
-@synthesize auxFilePath;
-@synthesize labelsFromAux;
-@synthesize labelsFromEditor;
-@synthesize checkedTime;
-@synthesize texDocumentSize;
 
 #define useLog 0
 
@@ -93,26 +86,26 @@ bail:
 
 - (NSTreeNode *)treeNode
 {
-	if (! treeNode) {
-		treeNode = [NSTreeNode treeNodeWithRepresentedObject:self];
+	if (! _treeNodeRef) {
+		self.treeNodeRef = [NSTreeNode treeNodeWithRepresentedObject:self];
 	}
-	return treeNode;
+	return _treeNodeRef;
 }
 
 - (BOOL)hasTreeNode
 {
-	return (treeNode != nil);
+	return (_treeNodeRef != nil);
 }
 
 - (BOOL)hasMaster
 {
-	return [texDocument hasMaster];
+	return [_texDocument hasMaster];
 }
 
 - (BOOL)checkAuxFile
 {
-	if (! auxFilePath) {
-		NSString *aux_file_path = [[[texDocument.file path] stringByDeletingPathExtension]
+	if (! _auxFilePath) {
+		NSString *aux_file_path = [[[_texDocument.file path] stringByDeletingPathExtension]
 								   stringByAppendingPathExtension:@"aux"];
 		if ([aux_file_path fileExists]) {
 			self.auxFilePath = aux_file_path;
@@ -126,33 +119,33 @@ bail:
 
 - (NSString *)readAuxFileReturningError:(NSError **)error
 {
-	NSData *data = [NSData dataWithContentsOfFile:auxFilePath options:0 error:error];
+	NSData *data = [NSData dataWithContentsOfFile:_auxFilePath options:0 error:error];
 	if (! data) return nil;
-	NSArray *encodings = orderdEncodingCandidates(texDocument.textEncoding);
+	NSArray *encodings = orderdEncodingCandidates(_texDocument.textEncoding);
 	return [NSString stringWithData:data encodingCandidates:encodings];
 }
 
 - (void)addLabelFromAux:(NSString *)labelName referenceName:(NSString *)refName
 {
-	[labelsFromAux addObject:
+	[_labelsFromAux addObject:
 		[LabelDatum labelDatumWithName:labelName referenceName:refName]];
 }
 
 - (void)addLabelFromEditor:(NSString *)labelNamel
 {
-	[labelsFromEditor addObject:
+	[_labelsFromEditor addObject:
 	 [LabelDatum labelDatumWithName:labelNamel referenceName:@"--"]];
 }
 
 - (void)addChildAuxFile:(AuxFile *)childAuxFile
 {
-	[labelsFromAux addObject:childAuxFile];
+	[_labelsFromAux addObject:childAuxFile];
 }
 
 - (BOOL)hasLabel:(NSString *)labelName
 {
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", labelName];
-	NSArray *array = [labelsFromAux filteredArrayUsingPredicate:predicate];
+	NSArray *array = [_labelsFromAux filteredArrayUsingPredicate:predicate];
 	return ([array count] > 0);
 }
 
@@ -163,16 +156,16 @@ bail:
 
 - (BOOL)isTexFileUpdated
 {
-	if (!texDocument.file) return NO;
+	if (!_texDocument.file) return NO;
 	
 	NSError *error = nil;
-	NSDictionary *dict = [[NSFileManager defaultManager] attributesOfItemAtPath:[texDocument.file path]
+	NSDictionary *dict = [[NSFileManager defaultManager] attributesOfItemAtPath:[_texDocument.file path]
 																		  error:&error];
 	if (! dict) return NO; // unknown error
 	
 	NSDate *mod_date = [dict fileModificationDate];
 	
-	return ([mod_date compare:checkedTime] == NSOrderedDescending);
+	return ([mod_date compare:_checkedTime] == NSOrderedDescending);
 }
 
 - (void)clearLabelsFromEditor
@@ -188,15 +181,15 @@ bail:
 	if (![self hasTreeNode]) return;
 	NSTreeNode *current_node = [self treeNode];
 	NSMutableArray *child_nodes = [current_node mutableChildNodes];
-	NSArray *array = [NSArray arrayWithArray:labelsFromEditor];
+	NSArray *array = [NSArray arrayWithArray:_labelsFromEditor];
 	for (id label_item in array) {
 		NSTreeNode *a_node = [label_item treeNode];
 		[child_nodes removeObject:a_node];
-		[labelsFromEditor removeObject:label_item];
+		[_labelsFromEditor removeObject:label_item];
 	}
 	
 	if (recursively) {
-		for (id label_item in labelsFromAux) {
+		for (id label_item in _labelsFromAux) {
 			if ([label_item isKindOfClass:[AuxFile class]]) {
 				[label_item clearLabelsFromEditorRecursively:YES];
 			}
@@ -227,7 +220,7 @@ bail:
 	NSArray *paragraphs = [content paragraphs];
 	NSUInteger current_doc_size = [content length];
 	if ((!forceUpdate) && (![self isTexFileUpdated])) {
-		if (texDocumentSize == current_doc_size) return NO;
+		if (_texDocumentSize == current_doc_size) return NO;
 	}
 	
 	[self clearLabelsFromEditorRecursively:NO];
@@ -268,7 +261,7 @@ bail:
 #endif				
 	}
 	[self updateCheckTime];
-	texDocumentSize = current_doc_size;
+	_texDocumentSize = current_doc_size;
 	return YES;
 }
 
@@ -277,14 +270,14 @@ bail:
 #if useLog
 	NSLog(@"start updateLabelsFromEditor");
 #endif	
-	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
-	NSUInteger n_labels_from_editor = [labelsFromEditor count];
+	NSMutableArray *child_nodes = [_treeNodeRef mutableChildNodes];
+	NSUInteger n_labels_from_editor = [_labelsFromEditor count];
 	NSUInteger lab_count = 0;
 	
-	for (NSUInteger n=[labelsFromAux count]; n < [child_nodes count]; n++) {
+	for (NSUInteger n=[_labelsFromAux count]; n < [child_nodes count]; n++) {
 		if (lab_count < n_labels_from_editor) {
 			[child_nodes replaceObjectAtIndex:n 
-						   withObject:[[labelsFromEditor objectAtIndex:lab_count] treeNode]];
+						   withObject:[[_labelsFromEditor objectAtIndex:lab_count] treeNode]];
 		} else {
 			[child_nodes removeObjectAtIndex:n];
 		}
@@ -292,7 +285,7 @@ bail:
 	}
 
 	for (NSUInteger n=lab_count; n < n_labels_from_editor; n++) {
-		[child_nodes addObject:[[labelsFromEditor objectAtIndex:n] treeNode]];
+		[child_nodes addObject:[[_labelsFromEditor objectAtIndex:n] treeNode]];
 	}
 #if useLog
 	NSLog(@"end updateLabelsFromEditor");
@@ -304,11 +297,11 @@ bail:
 #if useLog
 	NSLog(@"start updateChildren");
 #endif	
-	NSMutableArray *child_nodes = [treeNode mutableChildNodes];
+	NSMutableArray *child_nodes = [_treeNodeRef mutableChildNodes];
 	NSUInteger pre_children_count = [child_nodes count];
 	
 	NSUInteger update_index = 0;
-	NSArray *array_of_labels[] = {labelsFromAux, labelsFromEditor};
+	NSArray *array_of_labels[] = {_labelsFromAux, _labelsFromEditor};
 
 	for (int n = 0; n < 2; n++) {
 		NSArray *labels = array_of_labels[n];
@@ -416,14 +409,14 @@ bail:
                                                         range:NSMakeRange(0, a_line.length)];
         if (a_match.numberOfRanges > 1) {
             NSString *input_file = [a_line substringWithRange:[a_match rangeAtIndex:1]];
-            NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[texDocument file]]
+            NSURL *input_aux_url = [[NSURL URLWithString:input_file relativeToURL:[_texDocument file]]
 									absoluteURL];
             NSString *input_aux_path = [input_aux_url path];
 			if ([input_aux_path fileExists]) {
 				AuxFile *child_aux_file = [AuxFile auxFileWithPath:input_aux_path
-													  textEncoding:texDocument.textEncoding];
+													  textEncoding:_texDocument.textEncoding];
 				
-				if (!treeNode && [child_aux_file hasTreeNode]) { //child item has already exists before its parent.
+				if (!_treeNodeRef && [child_aux_file hasTreeNode]) { //child item has already exists before its parent.
 					NSMutableArray *nodes = [child_aux_file.treeNode mutableChildNodes];
 					NSArray* nodes_copy = [NSArray arrayWithArray:nodes];
 					for (id a_node in nodes_copy) {
@@ -444,7 +437,7 @@ bail:
 - (void)remove
 {
 	[ALL_AUX_FILES removeObject:self];
-	for (id a_child in labelsFromAux) {
+	for (id a_child in _labelsFromAux) {
 		if ([a_child isKindOfClass:[AuxFile class]]) {
 			[a_child remove];
 		}
@@ -453,7 +446,7 @@ bail:
 
 - (NSString *)name
 {
-	return basename;
+	return _basename;
 }
 
 - (NSString *)referenceName
@@ -463,6 +456,6 @@ bail:
 
 - (NSString *)pathWithoutSuffix
 {
-	return texDocument.pathWithoutSuffix;
+	return _texDocument.pathWithoutSuffix;
 }
 @end
