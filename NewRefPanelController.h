@@ -8,14 +8,14 @@
 	IBOutlet NSTreeController *treeController;
 	IBOutlet ReferenceDataController *dataController;
 
-	NSTimer *reloadTimer;
 	BOOL isWorkedReloadTimer;
-	
 }
-- (IBAction)forceReload:(id)sender;
 
-- (void)setReloadTimer;
+@property NSTimer *reloadTimer;
+
+- (IBAction)forceReload:(id)sender;
 - (void)temporaryStopReloadTimer;
 - (void)restartReloadTimer;
 - (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName;
+- (void)setupReloadTimer;
 @end

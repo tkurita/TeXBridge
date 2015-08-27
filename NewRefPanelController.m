@@ -18,15 +18,15 @@ extern id EditorClient;
 - (void)restartReloadTimer
 {
 	if (isWorkedReloadTimer) {
-		[self setReloadTimer];
+		[self setupReloadTimer];
 	}
 }
 
 - (void)temporaryStopReloadTimer
 {
-	if (reloadTimer != nil) {
-		[reloadTimer invalidate];
-		reloadTimer = nil;		
+	if (_reloadTimer != nil) {
+		[_reloadTimer invalidate];
+		self.reloadTimer = nil;
 		isWorkedReloadTimer = YES;
 	}
 	else {
@@ -34,19 +34,19 @@ extern id EditorClient;
 	}
 }
 
-- (void)setReloadTimer
+- (void)setupReloadTimer
 {
 #if useLog
 	NSLog(@"setReloadTimer");
 #endif
-	if (reloadTimer == nil) {
-		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
+	if (_reloadTimer == nil) {
+		self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self
 													 selector:@selector(periodicReload:) 
 													 userInfo:nil repeats:YES];
 	} 
-	else if (![reloadTimer isValid]) {
-		[reloadTimer invalidate];
-		reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
+	else if (![_reloadTimer isValid]) {
+		[_reloadTimer invalidate];
+		self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self
 													 selector:@selector(periodicReload:) 
 													 userInfo:nil repeats:YES];
 	}
@@ -56,7 +56,7 @@ extern id EditorClient;
 - (IBAction)showWindow:(id)sender
 {
 	[super showWindow:self];
-	[self setReloadTimer];
+	[self setupReloadTimer];
 }
 
 - (IBAction)forceReload:(id)sender
@@ -87,9 +87,9 @@ extern id EditorClient;
 
 - (BOOL)windowShouldClose:(id)sender
 {
-	if (reloadTimer != nil) {
-		[reloadTimer invalidate];
-		reloadTimer = nil;
+	if (_reloadTimer != nil) {
+		[_reloadTimer invalidate];
+		self.reloadTimer = nil;
 	}
 	[[NSUserDefaults standardUserDefaults] setBool:NO 
 											forKey:@"IsOpenedRefPalette"];
