@@ -18,7 +18,7 @@ extern id EditorClient;
 + (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array
 {
 	id newInstance = [[[self class] alloc] init];
-	[newInstance setErrorRecords:array];
+	[newInstance setupErrorRecords:array];
 	[newInstance setTargetFile:path];
 	
 	return newInstance;
@@ -95,7 +95,7 @@ extern id EditorClient;
 
 #pragma mark accesor methods
 
--(void) setErrorRecords:(NSArray *)array
+-(void) setupErrorRecords:(NSArray *)array
 {
 	self.errorRecords = array;
 	

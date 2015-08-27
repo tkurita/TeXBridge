@@ -8,12 +8,12 @@
 @property NSData *bookmarkData;
 @property NSURL *targetURL;
 @property id <LogWindowItem> parent;
-@property (readonly) NSArray *errorRecords;
+@property NSArray *errorRecords;
 
 - (NSURL *)URLResolvingAlias;
 + (id)fileRecordForPath:(NSString*)path errorRecords:(NSArray *)array parent:(id <LogWindowItem>)parent;
 + (id)fileRecordForPath: (NSString*)path errorRecords:(NSArray *)array;
 -(BOOL) setBaseURL:(NSURL *)baseURL;
--(void) setErrorRecords:(NSArray *)array;
+-(void) setupErrorRecords:(NSArray *)array;
 
 @end
