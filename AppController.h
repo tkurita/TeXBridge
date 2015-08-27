@@ -21,14 +21,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 {
 	IBOutlet id startupWindow;
 	IBOutlet id startupMessageField;
-	IBOutlet id texBridgeController;
-	NSTimer *appQuitTimer;
-	NSDictionary *factoryDefaults;
-	SettingWindowController *settingWindow;
-	NewToolPaletteController *toolPaletteController;
-	NewRefPanelController *refPanelController;
-//	OSAScript *script; 
 }
+
+@property NSTimer *appQuitTimer;
+@property NSDictionary *factoryDefaults;
+@property SettingWindowController *settingWindow;
+@property NewToolPaletteController *toolPaletteController;
+@property NewRefPanelController *refPanelController;
+@property (assign) IBOutlet id texBridgeController;
 
 + (id)sharedAppController;
 
@@ -44,7 +44,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 - (IBAction)showSettingWindow:(id)sender;
 - (IBAction)showToolPalette:(id)sender;
 - (IBAction)showRefPalette:(id)sender;
-- (TeXBridgeController *)texBridgeController;
+
 @end
 
 

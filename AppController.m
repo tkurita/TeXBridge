@@ -93,14 +93,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
-	id factorySetting = [factoryDefaults objectForKey:theKey];
+	id factorySetting = [_factoryDefaults objectForKey:theKey];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:factorySetting forKey:theKey];
 }
 
 - (id)factoryDefaultForKey:(NSString *)theKey
 {
-	return [factoryDefaults objectForKey:theKey];
+	return [_factoryDefaults objectForKey:theKey];
 }
 
 - (int)judgeVisibilityForApp:(NSDictionary *)appDict
@@ -165,104 +165,105 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 - (IBAction)showSettingWindow:(id)sender
 {
-	if (!settingWindow) {
-		settingWindow = [[SettingWindowController alloc] initWithWindowNibName:@"Setting"];
+	if (!_settingWindow) {
+		self.settingWindow = [[SettingWindowController alloc]
+                              initWithWindowNibName:@"Setting"];
 	}
-	[settingWindow showWindow:self];
+	[_settingWindow showWindow:self];
 	[NSRunningApplication activateSelf];
 }
 
 - (IBAction)quickTypesetPreview:(id)sender
 {
-	[texBridgeController performHandler:@"quick_typeset_preview"];
+	[_texBridgeController performHandler:@"quick_typeset_preview"];
 
 }
 - (IBAction)dviPreview:(id)sender
 {
-	[texBridgeController performHandler:@"preview_dvi"];
+	[_texBridgeController performHandler:@"preview_dvi"];
 	 
 }
 - (IBAction)dviToPDF:(id)sender
 {
-	[texBridgeController performHandler:@"dvi_to_pdf"];
+	[_texBridgeController performHandler:@"dvi_to_pdf"];
 	
 }
 - (IBAction)typesetPDFPreview:(id)sender
 {
-	[texBridgeController performHandler:@"typeset_preview_pdf"];
+	[_texBridgeController performHandler:@"typeset_preview_pdf"];
 }
 
 - (void)showStatusMessage:(NSString *)msg
 {
-	if (! toolPaletteController) return;
-	if (! [toolPaletteController isOpened]) return;
-	if ([toolPaletteController isCollapsed]) return;
-	[toolPaletteController showStatusMessage:msg];
+	if (!_toolPaletteController) return;
+	if (! [_toolPaletteController isOpened]) return;
+	if ([_toolPaletteController isCollapsed]) return;
+	[_toolPaletteController showStatusMessage:msg];
 }
 
 - (IBAction)showToolPalette:(id)sender
 {
-	if (!toolPaletteController) {
-		toolPaletteController = [[NewToolPaletteController alloc] 
+	if (!_toolPaletteController) {
+		self.toolPaletteController = [[NewToolPaletteController alloc]
 									initWithWindowNibName:@"NewToolPalette"];
 	}
-	[toolPaletteController showWindow:self];
+	[_toolPaletteController showWindow:self];
 }
 
 - (void)toggleToolPalette
 {
-	if (!toolPaletteController) {
+	if (!_toolPaletteController) {
 		return [self showToolPalette:self];
 	}
 	
-	if ([toolPaletteController isOpened]) {
-		return [toolPaletteController close];
+	if ([_toolPaletteController isOpened]) {
+		return [_toolPaletteController close];
 	}
 	
-	[toolPaletteController showWindow:self];
+	[_toolPaletteController showWindow:self];
 }
 
 #pragma mark control for reference palette
 - (void)stopTimer
 {
-	if (!refPanelController) return;
-	[refPanelController temporaryStopReloadTimer];
+	if (!_refPanelController) return;
+	[_refPanelController temporaryStopReloadTimer];
 }
 
 - (void)restartTimer
 {
-	if (!refPanelController) return;
-	[refPanelController restartReloadTimer];
+	if (!_refPanelController) return;
+	[_refPanelController restartReloadTimer];
 }
 
 - (void)rebuildLabelsFromAux:(NSString *)texFilePath textEncoding:(NSString *)encodingName
 {
-	if (!refPanelController) return;
-	if (![refPanelController isOpened]) return;
-	if ([refPanelController isCollapsed]) return;
-	[refPanelController rebuildLabelsFromAux:texFilePath textEncoding:encodingName];
+	if (!_refPanelController) return;
+	if (![_refPanelController isOpened]) return;
+	if ([_refPanelController isCollapsed]) return;
+	[_refPanelController rebuildLabelsFromAux:texFilePath textEncoding:encodingName];
 }
 
 - (IBAction)showRefPalette:(id)sender
 {
-	if (!refPanelController) {
-		refPanelController = [[NewRefPanelController alloc]
+	if (!_refPanelController) {
+		self.refPanelController = [[NewRefPanelController alloc]
 								initWithWindowNibName:@"NewReferencePalette"];
 	}
-	[refPanelController showWindow:self];
+	[_refPanelController showWindow:self];
 }
 
 - (void)toggleRefPalette
 {
-	if (!refPanelController) {
+	if (!_refPanelController) {
 		return [self showRefPalette:self];
 	}
 	
-	if ([refPanelController isOpened]) {
-		return [refPanelController close];
+	if ([_refPanelController isOpened]) {
+		return [_refPanelController close];
 	}
 	
-	[refPanelController showWindow:self];
+	[_refPanelController showWindow:self];
 }
 
 #pragma mark delegate of NSApplication
@@ -274,10 +275,10 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	/* regist FactorySettings into shared user defaults */
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" 
 																  ofType:@"plist"];
-	factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
+	self.factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults registerDefaults:factoryDefaults];
-	if (! [[texBridgeController checkGUIScripting] boolValue]) {
+	[userDefaults registerDefaults:_factoryDefaults];
+	if (! [[_texBridgeController checkGUIScripting] boolValue]) {
 #if useLog		
 		NSLog(@"%@", @"should quit because checkGUIScripting is disabled.");
 #endif		
@@ -313,7 +314,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[wvController setFocusWatchApplication:@"net.mimikaki.mi"];
 	[PaletteWindowController setVisibilityController:wvController];
 	
-	[texBridgeController setup];
+	[_texBridgeController setup];
 #if useLog
 	NSLog(@"end applicationWillFinishLaunching");
 #endif		
@@ -324,7 +325,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #if useLog
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
+	self.appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self
 												  selector:@selector(checkQuit:) 
 												  userInfo:nil repeats:YES];
 	
@@ -338,14 +339,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	
 	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
 	
-	toolPaletteController = nil;
+	self.toolPaletteController = nil;
 	if ([user_defaults boolForKey:@"ShowToolPaletteWhenLaunched"] 
 			||  [user_defaults boolForKey:@"IsOpenedToolPalette"]) {
 		[self  setStartupMessage:@"Opening Tool Palette..."];
 		[self showToolPalette:self];
 	}
 	
-	refPanelController = nil;
+	self.refPanelController = nil;
 	if ([user_defaults boolForKey:@"ShowRefPaletteWhenLaunched"] 
 		||  [user_defaults boolForKey:@"IsOpenedRefPalette"]) {
 		[self setStartupMessage:@"Opening Reference Palette..."];
@@ -362,13 +363,6 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	
-}
-
-#pragma mark Accessors
-
-- (TeXBridgeController *)texBridgeController
-{
-	return texBridgeController;
 }
 
 @end

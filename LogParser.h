@@ -3,42 +3,37 @@
 #import "StringExtra.h"
 #import "LogWindowItem.h"
 
-@interface LogParser : NSObject <LogWindowItem>{
-	//setting parameters
-	NSString *logFilePath;
-	NSString *logContents;
-	NSArray *texFileExtensions;
-	BOOL isReadFile;
-	NSString *_jobName;
-	NSString *errorMessage;
-	
-	//show results
-	BOOL isNoError;
-	BOOL isLabelsChanged;
-	BOOL isDviOutput;	
-	
+@interface LogParser : NSObject <LogWindowItem>{	
 	//internal use
+	BOOL isReadFile;
+	NSArray *texFileExtensions;
 	NSCharacterSet *newlineCharacterSet;
 	NSCharacterSet *whitespaceCharSet;	
 	unsigned int currentLineNumber;
-	NSString *currentString;
 	NSRange range, currentRange, nextRange;
-	NSMutableArray *errorRecordTree;
-	NSURL *_baseURL;
 }
+#pragma mark public
+@property NSString *errorMessage;
+@property NSString *logContents;
+@property NSString *logFilePath;
+@property NSURL *baseURL;
+@property NSMutableArray *errorRecordTree;
+@property NSString *jobName;
+@property BOOL isDviOutput;
+@property BOOL isNoError;
+@property BOOL isLabelsChanged;
 
-//puclic method
+
 - (id)initWithContentsOfFile:(NSString *)path encodingName:(NSString *)aEncName;
-
 - (id) initWithString:(NSString *)targetText;
-
 - (NSMutableArray *) parseLog;
+-(void) setBaseURLWithPath:(NSString *)path;
+- (void)setupJobName:(NSString *)jobName;
 
--(BOOL) isLabelsChanged;
+#pragma mark private
+@property NSString *currentString;
 
-//internal use
 - (NSString *) skipHeader;
-
 - (NSString *) parseBodyWith:(NSMutableArray *)currentList startText:(NSString *)targetText isWholeLine:(BOOL *)wholeLineFlag;
 
 - (NSString *) parseLines:(NSString *)targetText withList:(NSMutableArray *)currentList;
@@ -54,15 +49,8 @@
 - (NSString *)getTargetFilePath:(NSEnumerator *) enumerator;
 - (NSString *)checkTexFileExtensions:(NSString *)targetFile;
 
-#pragma mark accessor methods
--(void) setLogFilePath:(NSString *)path;
--(void) setBaseURLWithPath:(NSString *)path;
--(NSMutableArray *) errorRecordTree;
--(BOOL) isDviOutput;
--(BOOL) isNoError;
 
-@property (retain) NSString *errorMessage;
-@property (retain) NSString *logContents;
+
 
 
 @end
