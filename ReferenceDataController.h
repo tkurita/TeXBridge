@@ -5,12 +5,10 @@
 	IBOutlet NSTreeController *treeController;
 	IBOutlet NSOutlineView *outlineView;
 	IBOutlet id window;
-	AuxFile *unsavedAuxFile;
-	NSTreeNode *rootNode;
 }
 
-@property (retain) NSTreeNode *rootNode;
-@property (retain) AuxFile *unsavedAuxFile;
+@property NSTreeNode *rootNode;
+@property AuxFile *unsavedAuxFile;
 
 - (void)watchEditorWithReloading:(BOOL)reloading;
 - (BOOL)rebuildLabelsFromAuxForDoc:(TeXDocument *)texDoc;

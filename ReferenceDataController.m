@@ -14,16 +14,13 @@
 #define useLog 0
 @implementation ReferenceDataController
 
-@synthesize	rootNode;
-@synthesize unsavedAuxFile;
-
 - (AuxFile *)auxFileForDoc:(TeXDocument *)texDoc
 {
 	AuxFile *result = nil;
 	result = [AuxFile auxFileWithTexDocument:texDoc];
 	if (! texDoc.file) {
-		if (unsavedAuxFile) {
-			[[rootNode mutableChildNodes] removeObject:[unsavedAuxFile treeNode]];
+		if (_unsavedAuxFile) {
+			[[_rootNode mutableChildNodes] removeObject:[_unsavedAuxFile treeNode]];
 		}
 		self.unsavedAuxFile = result;
 	}
@@ -177,7 +174,7 @@ bail:
 		}
 		[current_aux_file findLabelsFromEditorWithForceUpdate:reloading];
 		NSTreeNode *new_node = [self appendToOutline:master_aux_file 
-										  parentNode:rootNode];		
+										  parentNode:_rootNode];		
 		NSArray *pre_selected = [treeController selectionIndexPaths];
 		[treeController setSelectionIndexPath:[new_node indexPath]];
 		id row_item = [outlineView itemAtRow:[outlineView selectedRow]];
