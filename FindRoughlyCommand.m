@@ -1,4 +1,5 @@
 #import "FindRoughlyCommand.h"
+#import "PathExtra.h"
 #import "miClient.h"
 
 #define useLog 0
@@ -58,16 +59,14 @@ void showAEDesc(const AppleEvent *ev)
 	} else {
 		tex_path = [[dvi_path stringByDeletingPathExtension] stringByAppendingPathExtension:@"tex"];
 	}
-	
-	FSRef ref;
-	OSStatus status = FSPathMakeRef((UInt8 *)[tex_path fileSystemRepresentation], &ref, NULL);
-	if (status == noErr) {
-		id miclient = [miClient sharedClient];
-		[miclient setUseBookmarkBeforeJump:YES];
-		[miclient jumpToFile:&ref paragraph:start_pos];
-	} else {
-		NSLog(@"Can't find %@", tex_path);
-	}
+    
+	if (![tex_path fileExists]) {
+        id miclient = [miClient sharedClient];
+        [miclient setUseBookmarkBeforeJump:YES];
+        [miclient jumpToFileURL:[NSURL fileURLWithPath:tex_path] paragraph:start_pos];
+    } else {
+        NSLog(@"Can't find %@", tex_path);
+    }
 	return [NSNumber numberWithInteger:0];
 	//return [super performDefaultImplementation];
 }

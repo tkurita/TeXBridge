@@ -32,7 +32,7 @@ extern id EditorClient;
 		[self setTargetFile: relPath];
 	}
 	else {
-		_targetURL = [NSURL URLWithString:_targetFile relativeToURL:baseURL];
+		self.targetURL = [NSURL URLWithString:_targetFile relativeToURL:baseURL];
 	}
 	
     CFErrorRef error = NULL;
@@ -76,7 +76,7 @@ extern id EditorClient;
 }
 
 -(id) child {
-	return errorRecords;
+	return _errorRecords;
 }
 
 -(id) comment
@@ -90,19 +90,14 @@ extern id EditorClient;
 }
 
 -(BOOL) hasChild {
-	return errorRecords!=nil;
+	return _errorRecords!=nil;
 }
 
 #pragma mark accesor methods
 
-- (void)setParent:(id <LogWindowItem>)parent
-{
-	_parent = parent;
-}
-
 -(void) setErrorRecords:(NSArray *)array
 {
-	errorRecords = array;
+	self.errorRecords = array;
 	
 	NSEnumerator *enumerator = [array objectEnumerator];
 	id object;
@@ -110,11 +105,6 @@ extern id EditorClient;
 		[object setParent:self];
 	}
 	
-}
-
--(void) setTargetFile: (NSString *)path
-{
-	_targetFile = path;
 }
 
 @end

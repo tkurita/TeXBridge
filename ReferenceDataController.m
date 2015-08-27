@@ -202,12 +202,10 @@ void jumpToLabel(LabelDatum *targetLabel)
 {
 	AuxFile *aux_file = [[[targetLabel treeNode] parentNode] representedObject];
 	NSURL *target_url = aux_file.texDocument.file;
-	FSRef ref;
-	CFURLGetFSRef((CFURLRef)target_url, &ref);
 	NSString *label_command = [NSString stringWithFormat:@"\\label{%@}", targetLabel.name];
 	
 	miClient *mi_client = [miClient sharedClient];
-	[mi_client jumpToFile:&ref paragraph:nil];
+	[mi_client jumpToFileURL:target_url paragraph:nil];
 	NSString *doc_content = [mi_client currentDocumentContent];
 	int n = -1; 
 	for (NSString *a_line in [doc_content paragraphs]) {
@@ -218,7 +216,7 @@ void jumpToLabel(LabelDatum *targetLabel)
 		n--;
 	}
 	if (n > 0) {
-		[mi_client jumpToFile:&ref paragraph:[NSNumber numberWithInt:n]];
+		[mi_client jumpToFileURL:target_url paragraph:[NSNumber numberWithInt:n]];
 	}	
 }
 
@@ -242,10 +240,8 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 	NSArray  *selection = [treeController selectedObjects];
 	id target_item = [[selection lastObject] representedObject];
 	if ([target_item isKindOfClass:[AuxFile class]]) {
-		FSRef fref;
 		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
-		CFURLGetFSRef((CFURLRef)file_url, &fref);
-		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
+		[[miClient sharedClient] jumpToFileURL:file_url paragraph:nil];
 		return;
 	}
 	
@@ -316,10 +312,8 @@ inserted:
 	NSArray *selection = [treeController selectedObjects];
 	id target_item = [[selection lastObject] representedObject];
 	if ([target_item isKindOfClass:[AuxFile class]]) {
-		FSRef fref;
 		NSURL *file_url = ((AuxFile *)target_item).texDocument.file;
-		CFURLGetFSRef((CFURLRef)file_url, &fref);
-		[[miClient sharedClient] jumpToFile:&fref paragraph:nil];
+		[[miClient sharedClient] jumpToFileURL:file_url paragraph:nil];
 		return;
 	}
 	
