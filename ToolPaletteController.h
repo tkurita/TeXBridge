@@ -1,7 +1,7 @@
 /* ToolPaletteController */
 
 #import <Cocoa/Cocoa.h>
-#import "CocoaLib/PaletteWindowController.h"
+#import "PaletteWindowController.h"
 
 @interface ToolPaletteController : PaletteWindowController
 {

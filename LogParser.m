@@ -2,7 +2,7 @@
 #import "LogWindowController.h"
 #import "FileRecord.h"
 #import "AppController.h"
-#import "CocoaLib/StringExtra.h"
+#import "StringExtra.h"
 
 #define useLog 0 //Yes:1, No:0
 

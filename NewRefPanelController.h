@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-#import "CocoaLib/PaletteWindowController.h"
+#import "PaletteWindowController.h"
 #import "ReferenceDataController.h"
 
 @interface NewRefPanelController : PaletteWindowController
