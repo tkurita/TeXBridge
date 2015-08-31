@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A20AACA0F2005B592F /* PaletteWindowController.m */; };
-		2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A40AACA0F2005B592F /* PathExtra.m */; };
-		2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */; };
-		2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */; };
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
 		2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */; };
 		2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC5A16D783470005A62A /* tag-gray-16.png */; };
@@ -20,7 +16,6 @@
 		2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */; };
 		2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D916DC5DB70005A62A /* helpIcon.png */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
-		2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C30E7101095A65800605969 /* FrontAppMonitor.m */; };
 		2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4095B516A79B120085CB9D /* NewReferencePalette.nib */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
 		2C4095D716A8C3E60085CB9D /* TeXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4095D516A8C3E60085CB9D /* TeXDocument.m */; };
@@ -59,7 +54,6 @@
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
-		2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
 		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; };
@@ -69,6 +63,11 @@
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
 		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
+		2CC8248F1B949088008B47AC /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824841B949088008B47AC /* FrontAppMonitor.m */; };
+		2CC824901B949088008B47AC /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824861B949088008B47AC /* PaletteWindowController.m */; };
+		2CC824911B949088008B47AC /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824881B949088008B47AC /* WindowVisibilityController.m */; };
+		2CC824921B949088008B47AC /* PathExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8248B1B949088008B47AC /* PathExtra.m */; };
+		2CC824931B949088008B47AC /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8248E1B949088008B47AC /* StringExtra.m */; };
 		2CCDB65017DD6FEE00E98804 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */; };
 		2CCDB6BF17DD9B3300E98804 /* TerminalCommander.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6BE17DD9B3300E98804 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CCDB6C217DD9BA900E98804 /* UtilityHandlers.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6C117DD9BA900E98804 /* UtilityHandlers.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -147,14 +146,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		2C0311A10AACA0F2005B592F /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
-		2C0311A20AACA0F2005B592F /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
-		2C0311A30AACA0F2005B592F /* PathExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathExtra.h; sourceTree = "<group>"; };
-		2C0311A40AACA0F2005B592F /* PathExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathExtra.m; sourceTree = "<group>"; };
-		2C0311A50AACA0F2005B592F /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
-		2C0311A60AACA0F2005B592F /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
-		2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
-		2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C03136E0AAD0F21005B592F /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = DonationReminder/build/Release/DonationReminder.framework; sourceTree = SOURCE_ROOT; };
 		2C0315700AAD154A005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpSetup.plist; sourceTree = "<group>"; };
 		2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
@@ -168,8 +159,6 @@
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
 		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
-		2C30E70F1095A65800605969 /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
-		2C30E7101095A65800605969 /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C4095B616A79B120085CB9D /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
 		2C4095C916A84D810085CB9D /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
@@ -219,21 +208,29 @@
 		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
 		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXBridge.nib; sourceTree = "<group>"; };
-		2C9BE72E17F35F16003DA783 /* NSURL+NDCarbonUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NDCarbonUtilities.h"; sourceTree = "<group>"; };
-		2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NDCarbonUtilities.m"; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
 		2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
-		2CBD26EE1B941C7B00A761DF /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = miClient.h; sourceTree = "<group>"; };
+		2CBD26EE1B941C7B00A761DF /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miClient.h; sourceTree = "<group>"; };
 		2CBD26EF1B941C7B00A761DF /* miClient.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = miClient.m; sourceTree = "<group>"; };
 		2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorRecord.h; sourceTree = "<group>"; };
 		2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorRecord.m; sourceTree = "<group>"; };
 		2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecord.h; sourceTree = "<group>"; };
 		2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecord.m; sourceTree = "<group>"; };
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
+		2CC824831B949088008B47AC /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
+		2CC824841B949088008B47AC /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
+		2CC824851B949088008B47AC /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
+		2CC824861B949088008B47AC /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
+		2CC824871B949088008B47AC /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
+		2CC824881B949088008B47AC /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
+		2CC8248A1B949088008B47AC /* PathExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathExtra.h; sourceTree = "<group>"; };
+		2CC8248B1B949088008B47AC /* PathExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathExtra.m; sourceTree = "<group>"; };
+		2CC8248D1B949088008B47AC /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
+		2CC8248E1B949088008B47AC /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocController.applescript; sourceTree = "<group>"; };
 		2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = DVIController.applescript; sourceTree = "<group>"; };
 		2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
@@ -352,7 +349,9 @@
 				2CBD26F01B941C7B00A761DF /* miClientLib */,
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
-				2C0311A00AACA0F2005B592F /* CocoaLib */,
+				2CC824821B949088008B47AC /* PaletteWindowController */,
+				2CC824891B949088008B47AC /* PathExtra */,
+				2CC8248C1B949088008B47AC /* StringExtra */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				2CCDB95317DE9E0A00E98804 /* Script Commands */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
@@ -406,25 +405,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2C0311A00AACA0F2005B592F /* CocoaLib */ = {
-			isa = PBXGroup;
-			children = (
-				2C9BE72E17F35F16003DA783 /* NSURL+NDCarbonUtilities.h */,
-				2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */,
-				2C30E70F1095A65800605969 /* FrontAppMonitor.h */,
-				2C30E7101095A65800605969 /* FrontAppMonitor.m */,
-				2C0311A10AACA0F2005B592F /* PaletteWindowController.h */,
-				2C0311A20AACA0F2005B592F /* PaletteWindowController.m */,
-				2C0311A30AACA0F2005B592F /* PathExtra.h */,
-				2C0311A40AACA0F2005B592F /* PathExtra.m */,
-				2C0311A50AACA0F2005B592F /* StringExtra.h */,
-				2C0311A60AACA0F2005B592F /* StringExtra.m */,
-				2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */,
-				2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */,
-			);
-			path = CocoaLib;
 			sourceTree = "<group>";
 		};
 		2C0BE4CA16DC4B9E0005A62A /* ToolPalette */ = {
@@ -509,6 +489,37 @@
 			);
 			name = miClientLib;
 			path = miclient/miClientLib;
+			sourceTree = "<group>";
+		};
+		2CC824821B949088008B47AC /* PaletteWindowController */ = {
+			isa = PBXGroup;
+			children = (
+				2CC824831B949088008B47AC /* FrontAppMonitor.h */,
+				2CC824841B949088008B47AC /* FrontAppMonitor.m */,
+				2CC824851B949088008B47AC /* PaletteWindowController.h */,
+				2CC824861B949088008B47AC /* PaletteWindowController.m */,
+				2CC824871B949088008B47AC /* WindowVisibilityController.h */,
+				2CC824881B949088008B47AC /* WindowVisibilityController.m */,
+			);
+			path = PaletteWindowController;
+			sourceTree = "<group>";
+		};
+		2CC824891B949088008B47AC /* PathExtra */ = {
+			isa = PBXGroup;
+			children = (
+				2CC8248A1B949088008B47AC /* PathExtra.h */,
+				2CC8248B1B949088008B47AC /* PathExtra.m */,
+			);
+			path = PathExtra;
+			sourceTree = "<group>";
+		};
+		2CC8248C1B949088008B47AC /* StringExtra */ = {
+			isa = PBXGroup;
+			children = (
+				2CC8248D1B949088008B47AC /* StringExtra.h */,
+				2CC8248E1B949088008B47AC /* StringExtra.m */,
+			);
+			path = StringExtra;
 			sourceTree = "<group>";
 		};
 		2CCDB95317DE9E0A00E98804 /* Script Commands */ = {
@@ -726,15 +737,10 @@
 				2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */,
 				2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */,
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
-				2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */,
-				2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */,
-				2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */,
-				2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */,
 				2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */,
 				2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */,
 				2CE026EE0EB0C9A400925F15 /* FindRoughlyCommand.m in Sources */,
 				2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */,
-				2C30E7121095A65800605969 /* FrontAppMonitor.m in Sources */,
 				2C4095D716A8C3E60085CB9D /* TeXDocument.m in Sources */,
 				2C40972716A96F410085CB9D /* LabelDatum.m in Sources */,
 				2C40973116AA4D820085CB9D /* ReferenceDataController.m in Sources */,
@@ -746,9 +752,13 @@
 				2CCDB95217DE9D1100E98804 /* DefaultsForKeyCommand.m in Sources */,
 				2CCDBAC217DEE5AB00E98804 /* AppleEventExtra.m in Sources */,
 				2CCDBB1B17DF04FC00E98804 /* ActivateProcessCommand.m in Sources */,
-				2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */,
 				2C803ABC1B8DA6BA00F21455 /* DVIPreviewModeTransformer.m in Sources */,
 				2C803AD01B8EDB7D00F21455 /* NSRunningApplication+SmartActivate.m in Sources */,
+				2CC8248F1B949088008B47AC /* FrontAppMonitor.m in Sources */,
+				2CC824901B949088008B47AC /* PaletteWindowController.m in Sources */,
+				2CC824911B949088008B47AC /* WindowVisibilityController.m in Sources */,
+				2CC824921B949088008B47AC /* PathExtra.m in Sources */,
+				2CC824931B949088008B47AC /* StringExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
