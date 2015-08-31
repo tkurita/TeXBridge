@@ -4,7 +4,7 @@
 
 #define useLog 0
 @implementation FindRoughlyCommand
-
+#if useLog
 void showAEDesc(const AppleEvent *ev)
 {
 	Handle result;
@@ -13,7 +13,7 @@ void showAEDesc(const AppleEvent *ev)
 	printf("%s\n",*result);
 	DisposeHandle(result);
 }
-
+#endif
 - (id)performDefaultImplementation
 {
 

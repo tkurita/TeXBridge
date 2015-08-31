@@ -62,20 +62,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 - (void)checkQuit:(NSTimer *)aTimer
 {
-	NSArray *appList = [[NSWorkspace sharedWorkspace] launchedApplications];
-	NSEnumerator *enumerator = [appList objectEnumerator];
-	
-	id appDict;
-	BOOL isMiLaunched = NO;
-	while (appDict = [enumerator nextObject]) {
-		NSString *app_identifier = [appDict objectForKey:@"NSApplicationBundleIdentifier"];
-		if ([app_identifier isEqualToString:@"net.mimikaki.mi"] ) {
-			isMiLaunched = YES;
-			break;
-		}		
-	}
-	
-	if (! isMiLaunched) {
+	if (![[NSRunningApplication runningApplicationsWithBundleIdentifier:@"net.mimikaki.mi"] count]) {
 		[NSApp terminate:self];
 	}
 }
