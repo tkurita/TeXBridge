@@ -11,8 +11,6 @@
 		2C0311AC0AACA0F2005B592F /* PathExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A40AACA0F2005B592F /* PathExtra.m */; };
 		2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A60AACA0F2005B592F /* StringExtra.m */; };
 		2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */; };
-		2C03136F0AAD0F21005B592F /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
-		2C0313760AAD0F6B005B592F /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C03136E0AAD0F21005B592F /* DonationReminder.framework */; };
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
 		2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */; };
 		2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC5A16D783470005A62A /* tag-gray-16.png */; };
@@ -64,10 +62,13 @@
 		2C9BE73117F35F16003DA783 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BE72F17F35F16003DA783 /* NSURL+NDCarbonUtilities.m */; };
 		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
+		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; };
+		2CBD26E91B93DFA800A761DF /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
+		2CBD26EC1B94137100A761DF /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
+		2CBD26F51B94303900A761DF /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD26EF1B941C7B00A761DF /* miClient.m */; };
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
 		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
-		2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFD20A097DFA9200BCEB43 /* miClient.m */; };
 		2CCDB65017DD6FEE00E98804 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */; };
 		2CCDB6BF17DD9B3300E98804 /* TerminalCommander.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6BE17DD9B3300E98804 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CCDB6C217DD9BA900E98804 /* UtilityHandlers.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDB6C117DD9BA900E98804 /* UtilityHandlers.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -88,6 +89,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2C4E8BD91B8F9C5A00862C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = DonationReminder;
+		};
+		2C4E8BDD1B8F9C7B00862C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C4A363119E61FC40031E521;
+			remoteInfo = "DonationReminder-ARC";
+		};
 		2C803AC71B8E00B500F21455 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C803AC31B8E00B400F21455 /* miclient.xcodeproj */;
@@ -105,13 +120,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2C0313740AAD0F47005B592F /* CopyFiles */ = {
+		2CBD264D1B91E16400A761DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CBD264F1B91E1A500A761DF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2C0313760AAD0F6B005B592F /* DonationReminder.framework in CopyFiles */,
+				2CBD26EC1B94137100A761DF /* DonationReminder.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +155,7 @@
 		2C0311A60AACA0F2005B592F /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
 		2C0311A70AACA0F2005B592F /* WindowVisibilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowVisibilityController.h; sourceTree = "<group>"; };
 		2C0311A80AACA0F2005B592F /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
-		2C03136E0AAD0F21005B592F /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = ../DonationReminder.framework; sourceTree = SOURCE_ROOT; };
+		2C03136E0AAD0F21005B592F /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = DonationReminder/build/Release/DonationReminder.framework; sourceTree = SOURCE_ROOT; };
 		2C0315700AAD154A005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpSetup.plist; sourceTree = "<group>"; };
 		2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
 		2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
@@ -167,6 +192,7 @@
 		2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVIPreviewIcon.png; path = images/DVIPreviewIcon.png; sourceTree = "<group>"; };
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
 		2C4E27E4084273B000004A96 /* TeXBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DonationReminder.xcodeproj; path = DonationReminder/DonationReminder.xcodeproj; sourceTree = "<group>"; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInput.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
 		2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = NewRefPanelController.m; sourceTree = "<group>"; };
@@ -201,13 +227,13 @@
 		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
 		2CB63A6B08CF053A002FCC88 /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
+		2CBD26EE1B941C7B00A761DF /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = miClient.h; sourceTree = "<group>"; };
+		2CBD26EF1B941C7B00A761DF /* miClient.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = miClient.m; sourceTree = "<group>"; };
 		2CBFCCC6097CA75900BCEB43 /* ErrorRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorRecord.h; sourceTree = "<group>"; };
 		2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorRecord.m; sourceTree = "<group>"; };
 		2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecord.h; sourceTree = "<group>"; };
 		2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecord.m; sourceTree = "<group>"; };
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
-		2CBFD209097DFA9200BCEB43 /* miClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miClient.h; sourceTree = "<group>"; };
-		2CBFD20A097DFA9200BCEB43 /* miClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = miClient.m; sourceTree = "<group>"; };
 		2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TeXDocController.applescript; sourceTree = "<group>"; };
 		2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = DVIController.applescript; sourceTree = "<group>"; };
 		2CCDB64F17DD6FEE00E98804 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
@@ -253,11 +279,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBD26E91B93DFA800A761DF /* DonationReminder.framework in Frameworks */,
 				2C4E27DB084273B000004A96 /* Cocoa.framework in Frameworks */,
 				2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */,
 				2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */,
 				2CDB471309F951AD00F1ABA4 /* Carbon.framework in Frameworks */,
-				2C03136F0AAD0F21005B592F /* DonationReminder.framework in Frameworks */,
 				2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */,
 				2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */,
 				2CCDB65017DD6FEE00E98804 /* AppleScriptObjC.framework in Frameworks */,
@@ -323,9 +349,9 @@
 			children = (
 				2C4099BB16AECE4C0085CB9D /* History.rtf */,
 				2C0BE33416DB872D0005A62A /* Error Numbers.rtf */,
+				2CBD26F01B941C7B00A761DF /* miClientLib */,
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
-				2C1656E209F90C3200CE5422 /* miClientLib */,
 				2C0311A00AACA0F2005B592F /* CocoaLib */,
 				2CD553EC08BCDE96007E43D1 /* Classes */,
 				2CCDB95317DE9E0A00E98804 /* Script Commands */,
@@ -336,6 +362,7 @@
 				2CB63A5D08CF038D002FCC88 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */,
 				2C803AC31B8E00B400F21455 /* miclient.xcodeproj */,
 			);
 			name = Application;
@@ -409,16 +436,6 @@
 			name = ToolPalette;
 			sourceTree = "<group>";
 		};
-		2C1656E209F90C3200CE5422 /* miClientLib */ = {
-			isa = PBXGroup;
-			children = (
-				2CBFD209097DFA9200BCEB43 /* miClient.h */,
-				2CBFD20A097DFA9200BCEB43 /* miClient.m */,
-			);
-			name = miClientLib;
-			path = miclient/miClientLib;
-			sourceTree = "<group>";
-		};
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +476,14 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		2C4E8BD51B8F9C5900862C76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2C803AC41B8E00B400F21455 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +499,16 @@
 				2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */,
 			);
 			name = Unused;
+			sourceTree = "<group>";
+		};
+		2CBD26F01B941C7B00A761DF /* miClientLib */ = {
+			isa = PBXGroup;
+			children = (
+				2CBD26EE1B941C7B00A761DF /* miClient.h */,
+				2CBD26EF1B941C7B00A761DF /* miClient.m */,
+			);
+			name = miClientLib;
+			path = miclient/miClientLib;
 			sourceTree = "<group>";
 		};
 		2CCDB95317DE9E0A00E98804 /* Script Commands */ = {
@@ -541,13 +576,14 @@
 				2C4E27C4084273B000004A96 /* Resources */,
 				2C4E27D5084273B000004A96 /* Sources */,
 				2C4E27DA084273B000004A96 /* Frameworks */,
-				2C0313740AAD0F47005B592F /* CopyFiles */,
 				2CE61F98184811FF00063F1B /* ShellScript */,
-				2C803ACB1B8E03EC00F21455 /* ShellScript */,
+				2CBD264D1B91E16400A761DF /* CopyFiles */,
+				2CBD264F1B91E1A500A761DF /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2C4E8BDE1B8F9C7B00862C76 /* PBXTargetDependency */,
 				2C803ACA1B8E014300F21455 /* PBXTargetDependency */,
 			);
 			name = TeXBridge;
@@ -578,6 +614,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 2C4E8BD51B8F9C5900862C76 /* Products */;
+					ProjectRef = 2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */;
+				},
+				{
 					ProductGroup = 2C803AC41B8E00B400F21455 /* Products */;
 					ProjectRef = 2C803AC31B8E00B400F21455 /* miclient.xcodeproj */;
 				},
@@ -590,6 +630,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DonationReminder.framework;
+			remoteRef = 2C4E8BD91B8F9C5A00862C76 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2C803AC81B8E00B500F21455 /* miclient */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
@@ -635,21 +682,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C803ACB1B8E03EC00F21455 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/miclient/build/${CONFIGURATION}/miclient",
-			);
-			outputPaths = (
-				"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/miclient",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp \"${SRCROOT}/miclient/build/${CONFIGURATION}/miclient\" \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/miclient\"  ";
-		};
 		2CE61F98184811FF00063F1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBD26F51B94303900A761DF /* miClient.m in Sources */,
 				2CCDB6BF17DD9B3300E98804 /* TerminalCommander.applescript in Sources */,
 				2CCDB6C217DD9BA900E98804 /* UtilityHandlers.applescript in Sources */,
 				2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */,
@@ -693,7 +726,6 @@
 				2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */,
 				2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */,
 				2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */,
-				2CBFD20C097DFA9200BCEB43 /* miClient.m in Sources */,
 				2C0311AA0AACA0F2005B592F /* PaletteWindowController.m in Sources */,
 				2C0311AE0AACA0F2005B592F /* StringExtra.m in Sources */,
 				2C0311B00AACA0F2005B592F /* WindowVisibilityController.m in Sources */,
@@ -723,6 +755,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2C4E8BDE1B8F9C7B00862C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DonationReminder-ARC";
+			targetProxy = 2C4E8BDD1B8F9C7B00862C76 /* PBXContainerItemProxy */;
+		};
 		2C803ACA1B8E014300F21455 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = miclient;
@@ -791,20 +828,18 @@
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = "";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
-				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TeXBridge;
@@ -815,7 +850,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
@@ -829,18 +863,16 @@
 				CURRENT_PROJECT_VERSION = 50;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_MODE_FLAG = "a+rX";
-				INSTALL_PATH = "/Library/Application Support/mi/mode/TEX";
-				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
+				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				OTHER_OSAFLAGS = "-x";
@@ -853,7 +885,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -865,17 +896,15 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
+					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/..";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
-				JAVAC_SOURCE_FILE_ENCODING = "X-MAC-JAPANESE";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TeXBridge;
@@ -894,7 +923,7 @@
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -909,7 +938,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -919,7 +948,7 @@
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
 			name = Default;
