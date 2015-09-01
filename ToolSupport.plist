@@ -14,9 +14,8 @@
 	<string>\end</string>
 	<key>figEnvBlock</key>
 	<string>\begin{figure}[htbp]
-\begin{center}
+\centering
 $1
-\end{center}
 \end{figure}</string>
 	<key>hline</key>
 	<string>\hline</string>
