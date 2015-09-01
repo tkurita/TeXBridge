@@ -189,6 +189,27 @@ script PictPrinterDriver
 	end open_dvi
 end script
 
+script CLIDriver
+    property parent : AppleScript
+    on set_file_type(a_dvi)
+		a_dvi's set_types(_my_signature, "JDVI")
+	end set_file_type
+    
+    on open_dvi given sender:a_dvi, activation:aFlag
+        tell NSUserDefaults's standardUserDefaults()
+            set command_template to stringForKey_("DVIPreviewCommand") as text
+        end tell
+		set a_dvipath to a_dvi's posix_path()'s quoted form
+        set a_texdoc to a_dvi's texdoc()
+        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
+        set linenum to a_texdoc's doc_position()
+        set x_text to XText's make_with(command_template)'s replace("%line", (linenum as text))
+        set x_text to x_text's replace("%dvifile", a_dvipath)
+        set x_text to x_text's replace("%texfile", a_texpath)
+        do shell script (x_text's as_text())
+	end open_dvi
+end script
+    
 on file_ref()
 	return my _dvifile
 end file_ref
@@ -243,6 +264,8 @@ on set_dvi_driver(a_mode)
 		set my _dvi_driver to XdviDriver
 	else if a_mode is 3 then
 		set my _dvi_driver to PictPrinterDriver
+    else if a_mode is 4 then
+        set my _dvi_driver to CLIDriver
 	else
 		--log "DVI Preview setting is invalid."
 		error "DVI Preview setting is invalid." number 1290

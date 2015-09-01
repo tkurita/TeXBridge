@@ -284,6 +284,7 @@ on make_with(a_dvi)
 end make_with
 
 script GenericDriver
+    property parent : AppleScript
 	on prepare(a_pdf)
 		set an_info to a_pdf's file_info()
 		set is_file_busy to busy status of an_info
@@ -320,6 +321,7 @@ script GenericDriver
 end script
 
 script AcrobatDriver
+    property parent : AppleScript
 	on prepare(a_pdf)
 		--log "start prepare of AcrobatDriver"
 		set a_processname to a_pdf's process_name()
@@ -378,7 +380,7 @@ script AcrobatDriver
 end script
 
 script ReloadablePreviewDriver
-	
+    property parent : AppleScript
 	on prepare(a_pdf)
 		return true
 	end prepare
@@ -395,6 +397,7 @@ script ReloadablePreviewDriver
 end script
 
 script PreviewDriver
+    property parent : AppleScript
 	on prepare(a_pdf)
 		if is_running(a_pdf's process_name()) of UtilityHandlers then
 			tell application "System Events"
@@ -440,6 +443,7 @@ script PreviewDriver
 end script
 
 script AutoDriver
+    property parent : AppleScript
 	on prepare(a_pdf)
 		setup_target_driver(a_pdf)
 		return a_pdf's target_driver()'s prepare(a_pdf)
@@ -483,6 +487,7 @@ script AutoDriver
 end script
 
 script CLIDriver
+    property parent : AppleScript
     on prepare(a_pdf)
         return true
     end prepare

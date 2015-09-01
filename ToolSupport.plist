@@ -20,7 +20,7 @@ $1
 	<key>hline</key>
 	<string>\hline</string>
 	<key>incGraphicBlock</key>
-	<string>\includegraphics[width = 0.8\textwidth,keepaspectratio,clip]{$1}
+	<string>\includegraphics[width = 0.8\linewidth]{$1}
 \caption{}
 \label{$2}</string>
 	<key>incGraphicCommand</key>
