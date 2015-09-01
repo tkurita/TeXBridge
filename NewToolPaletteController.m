@@ -1,5 +1,6 @@
 #import "NewToolPaletteController.h"
 
+#define useLog 0
 @implementation NewToolPaletteController
 
 - (BOOL)windowShouldClose:(id)sender
@@ -13,11 +14,12 @@
 {
 #if useLog
 	NSLog(@"start applicationWillTerminate in NewToolPaletteController");
-#endif	
-	[[NSUserDefaults standardUserDefaults] setBool:[self isOpened] 
-											forKey:@"IsOpenedToolPalette"];	
+#endif
+    NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
+	[user_defaults setBool:[self isOpened] forKey:@"IsOpenedToolPalette"];
 	[super applicationWillTerminate:aNotification];
 }
+
 
 - (void)awakeFromNib
 {
@@ -25,6 +27,7 @@
 	[self bindApplicationsFloatingOnForKey:@"ToolPaletteApplicationsFloatingOn"];
 	[self useFloating];
 	[self useWindowCollapse];
+    [self setCollapsedStateName:@"IsCollapsedToolPalette"];
 	[self.window setShowsToolbarButton:NO];
 }
 
