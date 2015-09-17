@@ -18,16 +18,6 @@
 
 #pragma mark binding
 
-/*
-- (void) setMxdviEditor:(NSString *)aValue
-{
-	NSUserDefaults *user_defaults = [NSUserDefaults standardUserDefaults];
-	NSMutableDictionary *dict = [[user_defaults persistentDomainForName:@"Mxdvi"] mutableCopy];
-	[dict setObject:aValue forKey:@"MxdviEditor"];
-	[user_defaults setPersistentDomain:dict forName:@"Mxdvi"];
-}
- */
-
 - (NSMutableArray *)arrangedInternalReplaceInputDict
 {
 	if (_arrangedInternalReplaceInputDict_) {
@@ -213,6 +203,11 @@
 		[app_controller revertToFactoryDefaultForKey:@"ShowRefPaletteWhenLaunched"];
 		[app_controller revertToFactoryDefaultForKey:@"ToolPaletteApplicationsFloatingOn"];
 	}
+}
+
+- (IBAction)changeDVIPreviewer:(id)sender
+{
+	[[[AppController sharedAppController] texBridgeController] changeDVIPreviewer:sender];
 }
 
 - (IBAction)changePDFPreviewer:(id)sender

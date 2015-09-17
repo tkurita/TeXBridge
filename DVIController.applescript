@@ -6,8 +6,14 @@ global PathConverter
 global _my_signature
 global _com_delim
 global _backslash
+
 global NSUserDefaults
 global NSString
+global NSRunningApplication
+
+property _preDVIPreviewMode : missing value
+-- 0: open in Finder, 1: Mxdvi, 2: xdvi, 3: PictPrinter
+-- 4: Skim, 5: command line
 
 script XdviDriver
 	property parent : AppleScript
@@ -15,7 +21,7 @@ script XdviDriver
 		a_xfile's set_types(_my_signature, "JDVI")
 	end set_file_type
 	
-	on open_dvi given sender:a_dvi, activation:aFlag
+	on open_dvi(a_dvi, should_activate)
 		--log "start open_dvi in XdviDriver"
 		set x11AppName to "X11"
 		if not (is_running(x11AppName) of UtilityHandlers) then
@@ -91,7 +97,7 @@ script SimpleDriver
 		end if
 	end set_file_type
 	
-	on open_dvi given sender:a_dvi, activation:aFlag
+	on open_dvi(a_dvi, should_activate)
 		set an_alias to a_dvi's file_as_alias()
 		if an_alias is not missing value then
 			tell application "Finder"
@@ -106,20 +112,48 @@ script SimpleDriver
 	end open_dvi
 end script
 
-script PictPrinterDriver
+script BaseDriver
 	property parent : AppleScript
+    
+    on find_app(sender)
+        try
+            set my _app_alias to (my _app_alias as POSIX file) as alias
+        on error
+            set my _app_alias to UtilityHandlers's find_app_with_ideintifier(my _app_identifier)
+        end try
+        
+        if my _app_alias is missing value then
+            set a_msg to localized string my _whareIsAppMesssage
+            try
+                set my _app_alias to choose application with prompt a_msg as alias
+            on error number -128
+                return false
+            end try
+        end if
+        return true
+    end find_app
+    
+end script
+
+script PictPrinterDriver
+	property parent : BaseDriver
+    property _app_identifier : "PictPrinter.system"
+    property _app_alias : missing value
+    property _whareIsAppMesssage : "whereisPictPrinter"
+
 	on set_file_type(a_dvi)
 		a_dvi's set_types(_my_signature, "JDVI")
 	end set_file_type
 	
-	on open_dvi given sender:a_dvi, activation:aFlag
+	on open_dvi(a_dvi, should_activate)
 		-- log "start open_dvi of PictPrinterDriver"
-		try
+		(* try
 			set pictprinter_app to path to application (get "PictPrinter") as alias
 		on error
 			set msg to localized string "pictPrinterIsNotFound"
 			error msg number 1260
 		end try
+         *)
 		a_dvi's update_src_special_flag_from_file()
 		-- log "success update_src_special_flag_from_file"
 		set a_texdoc to a_dvi's texdoc()
@@ -130,7 +164,7 @@ script PictPrinterDriver
 			if a_texdoc's has_parent() then
 				--log "has parent"
 				using terms from application "PictPrinter"
-					tell application (pictprinter_app as Unicode text)
+					tell application (my _app_alias as text)
 						open target_dvi_file
 						set dvis_list to DVIsList
 					end tell
@@ -156,7 +190,7 @@ script PictPrinterDriver
 						end if
 						if a_path is a_source_path then
 							using terms from application "PictPrinter"
-								tell application (pictprinter_app as Unicode text)
+								tell application (my _app_alias as text)
 									FindRoughly in dvi target_dvi_path startLine (a_texdoc's doc_position()) with source a_subpath
 								end tell
 							end using terms from
@@ -167,7 +201,7 @@ script PictPrinterDriver
 			else
 				set source_file to a_dvi's texdoc()'s fileName()
 				using terms from application "PictPrinter"
-					tell application (pictprinter_app as Unicode text)
+					tell application (my _app_alias as text)
 						FindRoughly in dvi target_dvi_path startLine (a_texdoc's doc_position()) with source source_file
 					end tell
 				end using terms from
@@ -175,15 +209,13 @@ script PictPrinterDriver
 		else
 			--log "open dvi without forward search"
 			using terms from application "PictPrinter"
-				tell application (pictprinter_app as Unicode text)
+				tell application (my _app_alias as text)
 					open target_dvi_file
 				end tell
 			end using terms from
 		end if
-		if aFlag then
-			tell current application's class "NSRunningApplication"
-				activateAppOfIdentifier_("PictPrinter.system")
-			end tell
+		if should_activate then
+            NSRunningApplication's activateAppOfIdentifier_(my _app_identifier)
 		end if
 		-- log "end open_dvi"
 	end open_dvi
@@ -195,7 +227,7 @@ script CLIDriver
 		a_dvi's set_types(_my_signature, "JDVI")
 	end set_file_type
     
-    on open_dvi given sender:a_dvi, activation:aFlag
+    on open_dvi(a_dvi, should_activate)
         tell NSUserDefaults's standardUserDefaults()
             set command_template to stringForKey_("DVIPreviewCommand") as text
         end tell
@@ -207,6 +239,28 @@ script CLIDriver
         set x_text to x_text's replace("%dvifile", a_dvipath)
         set x_text to x_text's replace("%texfile", a_texpath)
         do shell script (x_text's as_text())
+	end open_dvi
+end script
+
+script SkimDriver
+    property parent : BaseDriver
+    property _app_identifier : "net.sourceforge.skim-app.skim"
+    property _app_alias : missing value
+    property _whareIsAppMesssage : "whereisSkim"
+    
+    on set_file_type(a_dvi)
+		a_dvi's set_types("SKim", "JDVI")
+	end set_file_type
+    
+    on open_dvi(a_dvi, should_activate)
+        set my _app_alias to UtilityHandlers's find_app_with_ideintifier("net.sourceforge.skim-app.skim")
+        set displayline to (POSIX path of my _app_alias)&"Contents/SharedSupport/displayline" -- %line %dvifile %texfile
+        set a_dvipath to a_dvi's posix_path()'s quoted form
+        set a_texdoc to a_dvi's texdoc()
+        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
+        set linenum to a_texdoc's doc_position() as text
+        set a_command to displayline & space & linenum & space & a_dvipath & space & a_texpath
+        do shell script a_command
 	end open_dvi
 end script
     
@@ -265,6 +319,8 @@ on set_dvi_driver(a_mode)
 	else if a_mode is 3 then
 		set my _dvi_driver to PictPrinterDriver
     else if a_mode is 4 then
+        set my _dvi_driver to SkimDriver
+    else if a_mode is 5 then
         set my _dvi_driver to CLIDriver
 	else
 		--log "DVI Preview setting is invalid."
@@ -329,9 +385,9 @@ on update_src_special_flag_from_file()
 	--log "end update_src_special_flag_from_file"
 end update_src_special_flag_from_file
 
-on open_dvi given activation:aFlag
+on open_dvi given activation:should_activate
 	-- log "start open_dvi of DVIController"
-	open_dvi of (my _dvi_driver) given sender:a reference to me, activation:aFlag
+    my _dvi_driver's open_dvi(me, should_activate)
 end open_dvi
 
 on dvi_to_pdf()
@@ -429,3 +485,37 @@ on make_with_xfile_mode(a_dvifile, a_mode)
 	set a_dvi's _dvifile to a_dvifile
 	return a_dvi
 end make_with_xfile_mode
+
+on check_app(mode_idx)
+    set a_driver to item (mode_idx+1) of ¬
+    {missing value, missing value, missing value, PictPrinterDriver, SkimDriver, missing value}
+    if a_driver is missing value then
+        return true
+    end if
+    
+    return a_driver's find_app(me)
+end check_pdf_app
+
+on changeDVIPreviewer(sender)
+    set user_defaults to NSUserDefaults's standardUserDefaults()
+    set a_mode to user_defaults's integerForKey_("DVIPreviewMode") as integer
+    
+    if not check_app(a_mode) then
+        user_defaults's setInteger_forKey_(my _preDVIPreviewMode, "DVIPreviewMode")
+        UtilityHandlers's show_localized_essage("DVIPreviewIsInvalid")
+        return
+    end if
+
+    set my _preDVIPreviewMode to user_defaults's integerForKey_("DVIPreviewMode") as integer
+end changeDVIPreviewer
+
+on load_settings()
+    --log "start load_settings of DVIController"
+    set user_defaults to NSUserDefaults's standardUserDefaults()
+    set my _preDVIPreviewMode to user_defaults's integerForKey_("DVIPreviewMode") as integer
+	if not check_app(my _preDVIPreviewMode) then
+        appController's revertToFactoryDefaultForKey_("DVIPreviewMode")
+        set my _preDVIPreviewMode to user_defaults's integerForKey_("DVIPreviewMode") as integer
+    end if
+    --log "end load_settings of DVIController"
+end load_settings

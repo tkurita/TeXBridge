@@ -3,11 +3,11 @@ global appController
 global XText
 
 global NSUserDefaults
+global NSRunningApplication
 
-property _prePDFPreviewMode : 1 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
-property _pdfPreviewBox : missing value
-property _acrobatPath : ""
-property _adobeReaderPath : ""
+property _prePDFPreviewMode : 1
+-- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat
+-- 4: Skim, 5: command line
 
 on integer_from_user_defaults(a_key)
 	tell NSUserDefaults's standardUserDefaults()
@@ -18,7 +18,7 @@ end integer_from_user_defaults
 on changePDFPreviewer(sender)
 	--log "start changePDFPreviewer"
 	set new_mode to integer_from_user_defaults("PDFPreviewMode")
-    if not check_pdf_app(new_mode) then
+    if not check_app(new_mode) then
         tell NSUserDefaults's standardUserDefaults()
             setInteger_forKey_(my _prePDFPreviewMode, "PDFPreviewMode")
         end tell
@@ -178,11 +178,11 @@ script GenericDriver
         set my _app_identifier to app_id
     end set_app_identifier
 
-    on find_app(pdf_controller)
+    on find_app(sender)
         try
             set my _app_alias to (my _app_alias as POSIX file) as alias
         on error
-            set my _app_alias to pdf_controller's find_app_with_ideintifier(my _app_identifier)
+            set my _app_alias to sender's find_app_with_ideintifier(my _app_identifier)
         end try
         
         if my _app_alias is missing value then
@@ -215,9 +215,7 @@ script GenericDriver
 				end tell
 			end tell
 			
-            tell current application's class "NSRunningApplication"
-                activateAppOfIdentifier_(my _app_identifier)
-            end tell
+            NSRunningApplication's activateAppOfIdentifier_(my _app_identifier)
 			
 			if my _window_count is current_win_counts then
 				tell application "System Events"
@@ -244,7 +242,6 @@ script AdobeReaderDriver
     property _app_alias : missing value
     property _whareIsAppMesssage : "whereisAdobeAcrobat"
 end script
-
 
 script AcrobatDriver
     property parent : GenericDriver
@@ -313,9 +310,7 @@ script AcrobatDriver
                 end if
 			end tell
 		end using terms from
-        tell current application's class "NSRunningApplication"
-            activateAppOfIdentifier_(_app_identifier)
-        end tell
+        NSRunningApplication's activateAppOfIdentifier_(_app_identifier)
 		--log "end open_pdf in AcrobatDriver"
 	end open_pdf
 end script
@@ -332,9 +327,7 @@ script ReloadablePreviewDriver
 		tell application id (my _app_identifier)
 			open a_pdf's file_as_alias()
 		end tell
-		tell current application's class "NSRunningApplication"
-			activateAppOfIdentifier_(my _app_identifier)
-		end tell
+        NSRunningApplication's activateAppOfIdentifier_(my _app_identifier)
 	end open_pdf
 end script
 
@@ -349,12 +342,12 @@ script SkimDriver
     end prepare
     
     on open_pdf(a_pdf)
-        set a_path to (POSIX path of _skim_app)&"Contents/SharedSupport/displayline" -- %line %dvifile %texfile
+        set a_path to (POSIX path of my _app_alias)&"Contents/SharedSupport/displayline" -- %line %dvifile %texfile
         set a_pdfpath to a_pdf's posix_path()'s quoted form
         set a_texdoc to a_pdf's _dvi's texdoc()
         set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
         set linenum to a_texdoc's doc_position() as text
-        set a_command to a_path&space&linum&space&a_pdfpath&space&a_texpath
+        set a_command to a_path &space &linenum &space &a_pdfpath &space &a_texpath
         do shell script a_command
     end open_pdf
 end script
@@ -414,7 +407,7 @@ script CLIDriver
     end open_pdf
 end script
 
-on check_pdf_app(mode_idx)
+on check_app(mode_idx)
     set a_driver to item (mode_idx+1) of {missing value, AdobeReaderDriver, AcrobatDriver, SkimDriver, missing value, missing value}
     if a_driver is missing value then
         return true
@@ -426,11 +419,12 @@ on check_pdf_app(mode_idx)
         return false
     end try
     return true
-end check_pdf_app
+end check_app
 
 on load_settings()
     set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
-	if not check_pdf_app(my _prePDFPreviewMode) then
+	if not check_app(my _prePDFPreviewMode) then
+        appController's revertToFactoryDefaultForKey_("PDFPreviewMode")
         set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
     end if
 end load_settings

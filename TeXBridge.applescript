@@ -48,6 +48,7 @@ script TeXBridgeController
 	property NSDictionary : class "NSDictionary"
 	property NSOpenPanel : class "NSOpenPanel"
 	property NSUserDefaults : class "NSUserDefaults"
+    property NSRunningApplication : class "NSRunningApplication"
 	property NSPasteboard : class "NSPasteboard"
 	property LogWindowController : class "LogWindowController"
 	property LogParser : class "LogParser"
@@ -83,6 +84,10 @@ script TeXBridgeController
 		return a_result
 	end performTask_
 	
+    on changeDVIPreviewer_(sender)
+		DVIController's changeDVIPreviewer(sender)
+	end changeDVIPreviewer_
+    
 	on changePDFPreviewer_(sender)
 		PDFController's changePDFPreviewer(sender)
 	end changePDFPreviewer_
@@ -179,8 +184,9 @@ script TeXBridgeController
 		end if
 		startupMessageField's setStringValue_("Loading Preferences ...")
 		setup_constants()
+        DVIController's load_settings()
 		--log "start of initializeing PDFController"
-		PDFController's load_settings()
+        PDFController's load_settings()
 		--log "end setup"
 	end setup
 	

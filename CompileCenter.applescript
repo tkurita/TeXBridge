@@ -22,6 +22,7 @@ global _backslash
 
 -- Cocoa classes
 global NSUserDefaults
+global NSRunningApplication
 
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
@@ -534,9 +535,7 @@ on typeset()
 	show_status_message("")
 	a_dvi's set_log_parser(a_log_file_parser)
 	if (not (a_log_file_parser's is_no_error())) then
-		tell current application's class "NSRunningApplication"
-			its activateSelf()
-		end tell
+        NSRunningApplication's activateSelf()
 	end if
 	if (is_dvi_output() of a_log_file_parser) then
 		return a_dvi

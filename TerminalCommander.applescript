@@ -1,5 +1,6 @@
 global TerminalCommanderBase
 global NSUserDefaults
+global NSRunningApplication
 
 on buildup()
 	script TerminalCommanderExtend
@@ -13,9 +14,7 @@ on buildup()
 		end send_command
 		
 		on activate_terminal()
-			tell current application's class "NSRunningApplication"
-				activateAppOfIdentifier_("com.apple.Terminal")
-			end tell
+			NSRunningApplication's activateAppOfIdentifier_("com.apple.Terminal")
 			return true
 		end activate_terminal
 		

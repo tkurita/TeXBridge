@@ -28,7 +28,7 @@ on localized_string(a_keyword, insert_texts)
 	return xlocalized_string(a_keyword, insert_texts)'s as_unicode()
 end localized_string
 
-on is_running(app_name)
+on is_running(app_name) -- deprecated
 	tell application "System Events"
 		return exists application process app_name
 	end tell
@@ -49,3 +49,18 @@ on show_localized_message(a_msg)
     activate
     display alert (localized string a_msg)
 end show_localized_message
+
+on find_app_with_ideintifier(app_id)
+    tell current application's class "NSWorkspace"
+        tell its sharedWorkspace
+            set a_path to its absolutePathForAppBundleWithIdentifier_(app_id) as text
+        end tell
+    end tell
+    
+    try
+        set a_result to ((a_path as posix file) as alias)
+        on error
+        set a_result to missing value
+    end try
+    return a_result
+end find_app_with_ideintifier
