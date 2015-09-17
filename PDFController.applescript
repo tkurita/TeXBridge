@@ -29,13 +29,14 @@ on changePDFPreviewer(sender)
 	set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
 end changePDFPreviewer
 
-on target_driver()
-	return my _target_driver
-end target_driver
+on append_aux_record(a_record)
+    set my _aux_record to a_record & my _aux_record
+    return me
+end append_aux_record
 
-on set_target_driver(a_driver)
-	set my _target_driver to a_driver
-end set_target_driver
+on aux_record()
+    return my _aux_record
+end aux_record
 
 on file_hfs_path()
 	return my _pdffile's hfs_path()
@@ -129,9 +130,9 @@ on make_with(a_dvi)
 	script PDFController
 		property _dvi : a_dvi
 		property _pdffile : missing value
-		property _target_driver : missing value -- used when _pdifdrive is AutoDriver
 		property _pdfdriver : my AutoDriver
         property _log_parser : missing value
+        property _aux_record : {}
 	end script
 	
 	PDFController's setup_pdfdriver()
@@ -261,11 +262,9 @@ script AcrobatDriver
     property _process_name : missing value
     property _app_alias  : missing value
     property _whareIsAppMesssage : "whereisAdobeAcrobat"
-    property _page_number : missing value
     
 	on prepare(a_pdf)
 		--log "start prepare of AcrobatDriver"
-        set my _page_number to missing value
         set my _is_app_running to false
         
         if application id _app_identifier is running then
@@ -282,6 +281,18 @@ script AcrobatDriver
 		return true
 	end prepare
 	
+    on set_page_number(a_pdf, pnum)
+        a_pdf's append_aux_record({page_number:pnum})
+    end set_page_number
+    
+    on page_number(a_pdf)
+        try
+            return a_pdf's aux_record()'s page_number
+        on error number -1728
+            return missing value
+        end try
+    end page_number
+        
 	on close_pdf(a_pdf)
 		--log "start close_pdf of AcrobatDriver"
 		set a_filename to a_pdf's filename()
@@ -291,7 +302,7 @@ script AcrobatDriver
 					set a_path to file alias of document a_filename as Unicode text
 					if a_path is (a_pdf's file_hfs_path()) then
 						bring to front document a_filename
-						set my _page_number to (page number of PDF Window 1 of active doc)
+                        my set_page_number(a_pdf, page number of PDF Window 1 of active doc)
 						try
 							close active doc
 						on error
@@ -299,8 +310,6 @@ script AcrobatDriver
 							close active doc
 						end try
 					end if
-				else
-					set my _page_number to missing value
 				end if
 			end tell
 		end using terms from
@@ -315,12 +324,13 @@ script AcrobatDriver
                     launch
                 end if
 				open a_pdf's file_as_alias()
-				if my _page_number is not missing value then
-					set page number of PDF Window 1 of active doc to my _page_number
+                set pnum to my page_number(a_pdf)
+				if pnum is not missing value then
+					set page number of PDF Window 1 of active doc to pnum
                 end if
 			end tell
 		end using terms from
-        NSRunningApplication's activateAppOfIdentifier_(_app_identifier)
+        NSRunningApplication's activateAppOfIdentifier_(my _app_identifier)
 		--log "end open_pdf in AcrobatDriver"
 	end open_pdf
 end script
@@ -374,33 +384,40 @@ script AutoDriver
     property parent : AppleScript
     
 	on prepare(a_pdf)
-		setup_target_driver(a_pdf)
-		return a_pdf's target_driver()'s prepare(a_pdf)
+        set app_info to info for (default application of (a_pdf's file_info()))
+        set app_id to bundle identifier of app_info
+        
+        if ("com.adobe.Reader" is app_id) then
+            set a_driver to AdobeReaderDriver
+            else if ("com.adobe.Acrobat.Pro" is app_id) then
+            set a_driver to AcrobatDriver
+            else if ("com.apple.Preview" is app_id) then
+            set a_driver to ReloadablePreviewDriver
+            else if ("net.sourceforge.skim-app.skim" is app_id) then
+            set a_driver to SkimDriver
+            else
+			set a_driver to GenericDriver
+		end if
+        a_pdf's append_aux_record({target_driver: a_driver})
+        
+		return a_driver's prepare(a_pdf)
 	end prepare
 	
-	on setup_target_driver(a_pdf)
-		set app_info to info for (default application of (a_pdf's file_info()))
-        set app_id to bundle identifier of app_info
-
-        if ("com.adobe.Reader" is app_id) then
-            a_pdf's set_target_driver(AdobeReaderDriver)
-        else if ("com.adobe.Acrobat.Pro" is app_id) then
-            a_pdf's set_target_driver(AcrobatDriver)
-        else if ("com.apple.Preview" is app_id) then
-            a_pdf's set_target_driver(ReloadablePreviewDriver)
-        else if ("net.sourceforge.skim-app.skim" is app_id) then
-            a_pdf's set_target_driver(SkimDriver)
-        else
-			a_pdf's set_target_driver(GenericDriver)
-		end if
-        a_pdf's set_app_identifier(app_id)
-	end setup_target_driver
-	
+    on resolve_target_driver(a_pdf)
+        try
+            return a_pdf's aux_record()'s target_driver
+        on error number -1728
+            return missing value
+        end try
+    end resolve_target_driver
+    
 	on open_pdf(a_pdf)
-		if a_pdf's target_driver() is missing value then
-			setup_target_driver(a_pdf)
-		end if
-		a_pdf's target_driver()'s open_pdf(a_pdf)
+        set a_driver to resolve_target_driver(a_pdf)
+        if a_driver is missing value then
+            prepare(a_pdf)
+            set a_driver to resolve_target_driver(a_pdf)
+        end if
+		a_driver's open_pdf(a_pdf)
 	end open_pdf
 end script
 

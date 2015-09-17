@@ -195,7 +195,9 @@
 	else if ([identifier isEqualToString:@"PreviewSettings"]) {
 		[app_controller revertToFactoryDefaultForKey:@"dviViewCommand"];
 		[app_controller revertToFactoryDefaultForKey:@"DVIPreviewMode"];
+        [app_controller revertToFactoryDefaultForKey:@"DVIPreviewCommand"];
 		[app_controller revertToFactoryDefaultForKey:@"PDFPreviewMode"];
+        [app_controller revertToFactoryDefaultForKey:@"PDFPreviewCommand"];
 	}
 	else if ([identifier isEqualToString:@"TheOtherSettings"]) {
 		[app_controller revertToFactoryDefaultForKey:@"AutoMultiTypeset"];
