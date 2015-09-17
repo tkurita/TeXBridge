@@ -29,21 +29,6 @@ on changePDFPreviewer(sender)
 	set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
 end changePDFPreviewer
 
-on find_app_with_ideintifier(app_id)
-    tell current application's class "NSWorkspace"
-        tell its sharedWorkspace
-            set a_path to its absolutePathForAppBundleWithIdentifier_(app_id) as text
-        end tell
-    end tell
-    
-    try
-        set a_result to ((a_path as posix file) as alias)
-    on error
-        set a_result to missing value
-    end try
-    return a_result
-end find_app_with_ideintifier
-
 on target_driver()
 	return my _target_driver
 end target_driver
@@ -182,7 +167,7 @@ script GenericDriver
         try
             set my _app_alias to (my _app_alias as POSIX file) as alias
         on error
-            set my _app_alias to sender's find_app_with_ideintifier(my _app_identifier)
+            set my _app_alias to UtilityHandlers's find_app_with_ideintifier(my _app_identifier)
         end try
         
         if my _app_alias is missing value then
