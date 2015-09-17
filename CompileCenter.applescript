@@ -198,7 +198,7 @@ on dvi_from_editor()
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			UtilityHandlers's showError(errno, "dvi_to_pdf", msg)
+			UtilityHandlers's show_error(errno, "dvi_to_pdf", msg)
 		end if
 		return missing value
 	end try
@@ -478,7 +478,7 @@ on typeset_preview_pdf()
 	show_status_message("Opening PDF file ...")
 	if a_pdf is missing value then
 		set a_msg to localized string "PDFisNotGenerated"
-		show_message(a_msg) of UtilityHandlers
+		UtilityHandlers's show_message(a_msg)
 	else
 		open_pdf() of a_pdf
 	end if

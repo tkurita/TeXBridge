@@ -44,3 +44,8 @@ on show_message(a_msg)
 	activate
 	display alert a_msg
 end show_message
+
+on show_localized_message(a_msg)
+    activate
+    display alert (localized string a_msg)
+end show_localized_message
