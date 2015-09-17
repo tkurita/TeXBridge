@@ -153,9 +153,9 @@ on preview_dvi_for_frontdoc()
 	end if
 	
 	set a_dvi to DVIController's make_with_xfile(dvi_file)
-	--log "before open dvi"
+	--log "before perform_preview"
 	try
-		open_dvi of a_dvi with activation
+        a_dvi's perform_preview({should_activate:true})
 	on error msg number errno
 		UtilityHandlers's show_error(errno, "preview_dvi_for_frontdoc", msg)
 	end try
@@ -204,7 +204,7 @@ on dvi_from_editor()
 		return missing value
 	end try
 	
-	set a_dvi to lookup_dvi() of a_texdoc
+	set a_dvi to DVIController's make_with(a_texdoc)'s lookup_file()
 	if a_dvi is missing value then
 		set dviName to a_texdoc's name_for_suffix("dvi")
 		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
@@ -236,7 +236,7 @@ on dvi_from_frontmost()
 	end tell
 	
 	set a_texdoc to TeXDocController's make_with_dvifile(a_path)
-	set a_dvi to a_texdoc's lookup_dvi()
+	set a_dvi to DVIController's make_with(a_texdoc)'s lookup_file()
 	--log "end dvi_from_frontmost"
 	return a_dvi
 end dvi_from_frontmost
@@ -260,8 +260,9 @@ on dvi_to_pdf()
 	if a_pdf is missing value then
 		EditorClient's show_message(localized string "PDFisNotGenerated")
 	else
-		open_pdf() of a_pdf
+		a_pdf's perform_preview({})
 	end if
+    --log "end dvi_to_pdf"
 end dvi_to_pdf
 
 on dvi_to_ps()
@@ -398,8 +399,35 @@ on bibtex()
 	exec_tex_command(a_command, missing value, true)
 end bibtex
 
+on lookup_typeset_output(a_texdoc, a_log_parser)
+    set a_name to a_log_parser's output_file()
+    set outfile to a_texdoc's tex_file()'s change_name(a_name)
+    if not outfile's item_exists() then
+        return missing value
+    end if
+
+    if a_log_parser's is_dvi_output()
+        tell DVIController's make_with(a_texdoc)
+            set_dvifile(outfile)
+            set_file_type()
+            set_src_special_flag()
+            set typeset_out to it
+        end tell
+    else
+        tell PDFController's make_with(a_texdoc)
+            set_pdffile(outfile)
+            set typeset_out to it
+        end tell
+    end if
+
+    tell typeset_out
+        set_log_parser(a_log_parser)
+    end tell
+    return typeset_out
+end
+
 on quick_typeset_preview()
-	--log "start quick_typeset_preview"
+    --log "start quick_typeset_preview"
 	try
 		set a_texdoc to prepare_typeset()
 	on error msg number errno
@@ -417,7 +445,7 @@ on quick_typeset_preview()
 	show_status_message("Typeseting...")
 	--log "before typeset in quick_typeset_preview"
 	try
-		set a_dvi to a_texdoc's typeset()
+		a_texdoc's typeset()
 	on error number 1250
 		return
 	end try
@@ -427,17 +455,22 @@ on quick_typeset_preview()
 	--log "befor parseLogText in quick_typeset_preview"
 	a_log_file_parser's parseLogText()
 	-- log "after parseLogText in quick_typeset_preview"
-	show_status_message("Opening DVI file  ...")
 	set a_flag to a_log_file_parser's is_no_error()
-	if a_log_file_parser's is_dvi_output() then
-		try
-			open_dvi of a_dvi given activation:a_flag
-		on error msg number errno
-			show_error(errno, "quick_typeset_preview after calling open_dvi", msg) of UtilityHandlers
-		end try
+	if a_log_file_parser's has_output() then
+        if a_log_file_parser's is_dvi_output() then
+            show_status_message("Opening DVI file  ...")
+        else
+            show_status_message("Opening PDF file  ...")
+        end if
+        
+        set typeset_out to lookup_typeset_output(a_texdoc, a_log_file_parser)
+        try
+            typeset_out's perform_preview({should_activate:a_flag})
+        on error msg number errno
+			UtilityHandlers's show_error(errno, "quick_typeset_preview after calling perform_preview", msg)
+        end try
 	else
-		set a_msg to localized string "DVIisNotGenerated"
-		UtilityHandlers's show_message(a_msg)
+		UtilityHandlers's show_localized_message("NoTypesetProduct")
 	end if
 	if not a_flag then
 		tell current application's class "LogWindowController"
@@ -453,44 +486,49 @@ on quick_typeset_preview()
 end quick_typeset_preview
 
 on typeset_preview()
-	set a_dvi to typeset()
-	
-	show_status_message("Opening DVI file ...")
+	set typeset_out to typeset()
 	set activate_flag to false
-	if a_dvi is not missing value then
-		set activate_flag to a_dvi's log_parser()'s is_no_error()
+	if typeset_out is not missing value then
+        if typeset_out's is_dvi() then
+            show_status_message("Opening DVI file ...")
+        else
+            show_status_message("Opening PDF file ...")
+        end if
+		set activate_flag to typeset_out's log_parser()'s is_no_error()
 		try
-			open_dvi of a_dvi given activation:activate_flag
+			typeset_out's perform_preview({should_activate:activate_flag})
 		on error msg number errno
-			show_error(errno, "typeset_preview", msg) of UtilityHandlers
+			UtilityHandlers's show_error(errno, "perfom_preview", msg)
 		end try
 	end if
-	a_dvi's texdoc()'s preserve_terminal()
+	typeset_out's texdoc()'s preserve_terminal()
+    show_status_message("")
 end typeset_preview
 
 on typeset_preview_pdf()
-	set a_dvi to typeset()
-	
-	if a_dvi is missing value then
+	set typeset_out to typeset()
+	if typeset_out is missing value then
 		return
 	end if
-	set a_pdf to a_dvi's dvi_to_pdf()
-	a_dvi's texdoc()'s preserve_terminal()
+    if typeset_out's is_dvi() then
+        set typeset_out to typeset_out's dvi_to_pdf()
+    end if
+	typeset_out's texdoc()'s preserve_terminal()
 	show_status_message("Opening PDF file ...")
-	if a_pdf is missing value then
-		set a_msg to localized string "PDFisNotGenerated"
-		UtilityHandlers's show_message(a_msg)
+	if typeset_out is missing value then
+		UtilityHandlers's show_localized_message("PDFisNotGenerated")
 	else
-		open_pdf() of a_pdf
+		typeset_out's perform_preview({})
 	end if
+    show_status_message("")
 end typeset_preview_pdf
 
 on do_typeset()
-	set a_dvi to typeset()
-	if a_dvi is missing value then
+	set typeset_out to typeset()
+	if typeset_out is missing value then
 		return
 	end if
-	a_dvi's texdoc()'s preserve_terminal()
+	typeset_out's texdoc()'s preserve_terminal()
 end do_typeset
 
 on typeset()
@@ -508,7 +546,7 @@ on typeset()
 	end if
 	show_status_message("Typeseting...")
 	try
-		set a_dvi to a_texdoc's typeset()
+		a_texdoc's typeset()
 	on error number 1250
 		return missing value
 	end try
@@ -518,10 +556,11 @@ on typeset()
 	tell NSUserDefaults's standardUserDefaults()
 		set autoMultiTypeset to boolForKey_("AutoMultiTypeset") as boolean
 	end tell
+    
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
 		show_status_message("Typeseting...")
 		try
-			set a_dvi to a_texdoc's typeset()
+			a_texdoc's typeset()
 		on error number 1250
 			return missing value
 		end try
@@ -533,15 +572,15 @@ on typeset()
 	rebuild_labels_from_aux(a_texdoc)
 	-- log "after rebuild_labels_from_aux in typeset"
 	show_status_message("")
-	a_dvi's set_log_parser(a_log_file_parser)
+    
 	if (not (a_log_file_parser's is_no_error())) then
         NSRunningApplication's activateSelf()
 	end if
-	if (is_dvi_output() of a_log_file_parser) then
-		return a_dvi
+    
+	if (a_log_file_parser's has_output()) then
+        return lookup_typeset_output(a_texdoc, a_log_file_parser)
 	else
-		set a_msg to localized string "DVIisNotGenerated"
-		show_message(a_msg) of UtilityHandlers
+		UtilityHandlers's show_localized_message("NoTypesetProduct")
 		return missing value
 	end if
 end typeset
@@ -564,7 +603,7 @@ on preview_dvi()
 	end try
 	--log "before lookup_dvi"
 	show_status_message("Opening DVI file ...")
-	set a_dvi to a_texdoc's lookup_dvi()
+    set a_dvi to DVIController's make_with(a_texdoc)'s lookup_file()
 	--log "before open_dvi"
 	if a_dvi is not missing value then
 		try
@@ -574,14 +613,15 @@ on preview_dvi()
 		end try
 	else
 		set dviName to name_for_suffix("dvi") of a_texdoc
-		set a_msg to UtilityHandlers's localized_string("DviFileIsNotFound", {dviName})
-		EditorClient's show_message(a_msg)
+        tell UtilityHandlers
+            set a_msg to localized_string("DviFileIsNotFound", {dviName})
+            show_message(a_msg)
+        end tell
 	end if
 	--log "end preview_dvi"
 end preview_dvi
 
 on preview_pdf()
-	
 	try
 		set a_texdoc to checkmifiles without saving and autosave
 	on error msg number errno
@@ -591,11 +631,10 @@ on preview_pdf()
 		return
 	end try
 	show_status_message("Opening PDF file ...")
-	set a_pdf to PDFController's make_with(a_texdoc)
-	a_pdf's setup()
-	if file_exists() of a_pdf then
-		open_pdf() of a_pdf
+	set a_pdf to PDFController's make_with(a_texdoc)'s lookup_file()
+	if a_pdf is not missing value then
+		a_pdf's perform_preview({})
 	else
-		EditorClient's show_message(localized string "noPDFfile")
+		UtilityHandlers's show_localized_message("noPDFfile")
 	end if
 end preview_pdf

@@ -19,6 +19,8 @@
 @property NSURL *baseURL;
 @property NSMutableArray *errorRecordTree;
 @property NSString *jobName;
+@property NSString *outputFile;
+@property BOOL hasOutput;
 @property BOOL isDviOutput;
 @property BOOL isNoError;
 @property BOOL isLabelsChanged;

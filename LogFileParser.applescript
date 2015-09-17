@@ -1,5 +1,4 @@
 global PathConverter
-
 global LogParser
 
 on boolValue(theValue)
@@ -16,16 +15,24 @@ on log_contents()
 end log_contents
 
 on is_dvi_output()
-	return my _isDviOutput
+	return my _logParserCore's isDviOutput() as boolean
 end is_dvi_output
 
+on has_output()
+    return my _logParserCore's hasOutput() as boolean
+end has_output
+
 on is_no_error()
-	return my _isNoError
+	return my _logParserCore's isNoError() as boolean
 end is_no_error
 
 on labels_changed()
-	return my _isLabelsChanged
+	return my _logParserCore's isLabelsChanged() as boolean
 end labels_changed
+
+on output_file()
+    return my _logParserCore's outputFile() as text
+end output_file
 
 on parseLog(a_log_parser)
 	a_log_parser's setBaseURLWithPath_(my _texdoc's no_suffix_posix_path())
@@ -40,11 +47,7 @@ on parseLog(a_log_parser)
 		error "Error when parsing log. message : " & msg number errno
 	end try
 	--log parseResult
-	tell a_log_parser
-		set my _isDviOutput to isDviOutput() as boolean
-		set my _isNoError to isNoError() as boolean
-		set my _isLabelsChanged to isLabelsChanged() as boolean
-	end tell
+    set my _logParserCore to a_log_parser
 	--log "end parseLog"
 end parseLog
 
@@ -81,17 +84,6 @@ on parse_logfile()
 	parseLog(a_log_parser)
 end parse_logfile
 
-on resolveTargetFile(theTargetFile)
-	if (theTargetFile starts with "./") or (theTargetFile starts with "../") then
-		set theTargetFile to hfs_from_posix(theTargetFile) of my _pathConverter
-		set theTargetFile to absolute_path of (my _pathConverter) for theTargetFile
-		set theTargetFile to theTargetFile as alias
-	else
-		set theTargetFile to (theTargetFile as POSIX file) as alias
-	end if
-	return theTargetFile
-end resolveTargetFile
-
 on texdoc()
 	return my _texdoc
 end texdoc
@@ -99,10 +91,11 @@ end texdoc
 on make_with(a_texdoc)
 	script LogFileParser
 		property _texdoc : a_texdoc
+        property _hasOutput : false
 		property _isDviOutput : true
 		property _isNoError : true
 		property _isLabelsChanged : false
-		property _pathConverter : missing value
+        property _logParserCore : missing value
 	end script
 	
 	return LogFileParser

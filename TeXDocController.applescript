@@ -151,9 +151,9 @@ on set_filename(a_name)
 	set my _texFileName to a_name
 end set_filename
 
-on fileName()
+on filename()
 	return my _texFileName
-end fileName
+end filename
 
 on no_suffix_posix_path()
 	return my _file_ref's change_path_extension(missing value)'s posix_path()
@@ -248,14 +248,6 @@ on typeset()
 			end if
 		end try
 	end if
-	--log "after typeset"
-	set a_dvi to lookup_dvi()
-	--log "after lookup_dvi"
-	if a_dvi is not missing value then
-		set_src_special_flag() of a_dvi
-	end if
-	--log "end typeset"
-	return a_dvi
 end typeset
 
 on check_logfile()
@@ -371,20 +363,6 @@ on open_outfile(an_extension)
 	end try
 end open_outfile
 
-on lookup_dvi()
-	--log "start lookup_dvi"
-	set a_dvifile to my _file_ref's change_path_extension("dvi")
-	if a_dvifile's item_exists() then
-		--log "a_dvifile exists"
-		set a_dvi to DVIController's make_with(me)
-		a_dvi's set_dvifile(a_dvifile)
-		a_dvi's set_file_type()
-		return a_dvi
-	else
-		return missing value
-	end if
-end lookup_dvi
-
 (*== Constructors *)
 on make_with_dvifile(dvi_file_ref)
 	--log "start make_with_dvifile"
@@ -419,7 +397,7 @@ on make_with(a_xfile, an_encoding)
 		property _texFileName : missing value
 		
 		property _targetFileRef : missing value -- a document applied tools. alias class
-		property _doc_position : missing value
+		property _doc_position : ""
 		
 		property _logFileRef : missing value
 		property _logContents : missing value

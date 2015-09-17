@@ -247,7 +247,8 @@ bail:
 		}
 		
 		// find label command
-        NSArray *match_results = [label_regexp matchesInString:clean_line options:0
+        NSArray *match_results = [label_regexp matchesInString:clean_line
+                                                       options:0
                                                    range:NSMakeRange(0, clean_line.length)];
         for (NSTextCheckingResult *chk_result in match_results ){
             NSString *label_name = [clean_line substringWithRange:[chk_result rangeAtIndex:1]];

@@ -150,11 +150,23 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		return nil;
 	}
 	
+    static NSRegularExpression *output_regexp = nil;
+    if (!output_regexp) {
+        NSError *error = nil;
+        output_regexp = [NSRegularExpression regularExpressionWithPattern:
+                         @"\\s*(.+\\.(dvi|pdf))"
+                                                options:0 error:&error];
+        if (error) {
+            NSLog(@"Error : %@", [error localizedDescription]);
+            return nil;
+        }
+    }
+    
 	int errpInt;
 	NSNumber *errpn = nil;
 	id object;
 	NSString *nextLogContent;
-	NSString *errMsg = nil;	
+	NSString *errMsg = nil;
 	
 	if ([logContent hasPrefix:@"!"]) {
 		errMsg = [NSString stringWithString:logContent];
@@ -226,7 +238,16 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	
 	else if ([logContent hasPrefix:@"Output written on"]) {
-		_isDviOutput = YES;
+        NSTextCheckingResult *result = [output_regexp
+                                firstMatchInString:logContent
+                                  options:0
+                                range:NSMakeRange(17, logContent.length-17)];
+#if useLog
+        NSLog(@"%@", [logContent substringWithRange:[result rangeAtIndex:1]]);
+#endif
+        self.outputFile = [logContent substringWithRange:[result rangeAtIndex:1]];
+        _hasOutput = YES;
+		_isDviOutput = [_outputFile hasSuffix:@".dvi"];
 	}
 	
 #if useLog

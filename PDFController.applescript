@@ -55,7 +55,7 @@ end file_ref
 
 on filename()
 	return my _pdffile's item_name()
-end fileName
+end filename
 
 on posix_path()
 	return my _pdffile's posix_path()
@@ -82,9 +82,17 @@ on setup_pdfdriver()
 	--log "end of setup_pdfdriver()"
 end setup_pdfdriver
 
-on setup()
-	set my _pdffile to my _dvi's file_ref()'s change_path_extension("pdf")
+on lookup_file()
+    set my _pdffile to my _dvi's file_ref()'s change_path_extension("pdf")
+    if my _pdffile's item_exists() then
+        return me
+    end if
+    return missing value
 end setup
+
+on set_pdffile(x_file)
+    set my _pdffile to x_file
+end set_pdffile
 
 on file_exists()
 	return my _pdffile's item_exists()
@@ -100,12 +108,30 @@ on open_pdf()
 	--log "end open_pdf"
 end open_pdf
 
+on perform_preview(opts)
+    my _pdfdriver's open_pdf(me)
+end perform_preview
+
+on texdoc()
+    return my _dvi's texdoc()
+end texdoc
+
+on log_parser()
+    return my _log_parser
+end log_parser
+
+on set_log_parser(a_log_parser)
+    set my _log_parser to a_log_parser
+    return me
+end set_log_parser
+
 on make_with(a_dvi)
 	script PDFController
 		property _dvi : a_dvi
 		property _pdffile : missing value
 		property _target_driver : missing value -- used when _pdifdrive is AutoDriver
 		property _pdfdriver : my AutoDriver
+        property _log_parser : missing value
 	end script
 	
 	PDFController's setup_pdfdriver()
@@ -326,18 +352,27 @@ script SkimDriver
     end prepare
     
     on open_pdf(a_pdf)
-        set a_path to (POSIX path of my _app_alias)&"Contents/SharedSupport/displayline" -- %line %dvifile %texfile
+        --log "start open_pdf in SkimDriver"
         set a_pdfpath to a_pdf's posix_path()'s quoted form
         set a_texdoc to a_pdf's _dvi's texdoc()
-        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
         set linenum to a_texdoc's doc_position() as text
-        set a_command to a_path &space &linenum &space &a_pdfpath &space &a_texpath
+        if linenum is "" then
+            set a_command to "open -a "&(quoted form of POSIX path of my _app_alias)& space & a_pdfpath
+        else
+            set displayline to (POSIX path of my _app_alias)&"Contents/SharedSupport/displayline"
+            
+            set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
+            set a_command to displayline &space &linenum &space &a_pdfpath &space &a_texpath
+        end if
+        
         do shell script a_command
+        --log "end open_pdf in SkimDriver"
     end open_pdf
 end script
 
 script AutoDriver
     property parent : AppleScript
+    
 	on prepare(a_pdf)
 		setup_target_driver(a_pdf)
 		return a_pdf's target_driver()'s prepare(a_pdf)
@@ -348,7 +383,7 @@ script AutoDriver
         set app_id to bundle identifier of app_info
 
         if ("com.adobe.Reader" is app_id) then
-            a_pdf's set_target_driver(PreviewDriver)
+            a_pdf's set_target_driver(AdobeReaderDriver)
         else if ("com.adobe.Acrobat.Pro" is app_id) then
             a_pdf's set_target_driver(AcrobatDriver)
         else if ("com.apple.Preview" is app_id) then
@@ -356,7 +391,7 @@ script AutoDriver
         else if ("net.sourceforge.skim-app.skim" is app_id) then
             a_pdf's set_target_driver(SkimDriver)
         else
-			a_pdf's set_target_driver(PreviewDriver)
+			a_pdf's set_target_driver(GenericDriver)
 		end if
         a_pdf's set_app_identifier(app_id)
 	end setup_target_driver
@@ -413,3 +448,7 @@ on load_settings()
         set my _prePDFPreviewMode to integer_from_user_defaults("PDFPreviewMode")
     end if
 end load_settings
+
+on is_dvi()
+    return false
+end is_dvi

@@ -385,10 +385,14 @@ on update_src_special_flag_from_file()
 	--log "end update_src_special_flag_from_file"
 end update_src_special_flag_from_file
 
-on open_dvi given activation:should_activate
+on open_dvi given activation:should_activate -- deprecated use_perform_preview
 	-- log "start open_dvi of DVIController"
     my _dvi_driver's open_dvi(me, should_activate)
 end open_dvi
+
+on perform_preview({should_activate:a_flag})
+    my _dvi_driver's open_dvi(me, a_flag)
+end perform_preview
 
 on dvi_to_pdf()
 	--log "start dvi_to_pdf"
@@ -415,10 +419,6 @@ on dvi_to_pdf()
 	
 	if a_pdf is missing value then
 		set a_pdf to lookup_pdf_file()
-	else
-		if not (file_exists() of a_pdf) then
-			set a_pdf to missing value
-		end if
 	end if
 	
 	--log "end of dvi_to_pdf"
@@ -427,14 +427,19 @@ end dvi_to_pdf
 
 on lookup_pdf_file()
 	--log "start lookup_pdf_file"
-	set a_pdf to PDFController's make_with(a reference to me)
-	a_pdf's setup()
-	if file_exists() of a_pdf then
-		return a_pdf
-	else
-		return missing value
-	end if
+	return PDFController's make_with(me)'s lookup_file()
 end lookup_pdf_file
+
+on lookup_file()
+	--log "start lookup_file in DVIController"
+	set a_dvifile to texdoc()'s tex_file()'s change_path_extension("dvi")
+	if a_dvifile's item_exists() then
+		set_dvifile(a_dvifile)
+		set_file_type()
+		return me
+	end if
+    return missing value
+end lookup_dvi
 
 on set_dvifile(a_xfile)
 	set my _dvifile to a_xfile
@@ -519,3 +524,7 @@ on load_settings()
     end if
     --log "end load_settings of DVIController"
 end load_settings
+
+on is_dvi()
+    return true
+end is_dvi
