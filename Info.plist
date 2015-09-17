@@ -32,19 +32,19 @@
 	<key>CFBundleExecutable</key>
 	<string>TeXBridge</string>
 	<key>CFBundleVersion</key>
-	<string>50</string>
+	<string>51</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.7b</string>
+	<string>4.0b</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>copyright 2003-2015, Tetsuro KURITA</string>
 	<key>CFBundleGetInfoString</key>
-	<string>3.7 copyright 2003-2015, Tetsuro KURITA</string>
+	<string>4.0 copyright 2003-2015, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>TeX Tools for mi ヘルプ</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.6</string>
+	<string>10.8</string>
 	<key>CFBundleIconFile</key>
 	<string>TeXBridge</string>
 	<key>CFBundleIdentifier</key>
