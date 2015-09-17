@@ -164,6 +164,7 @@ script GenericDriver
     end set_app_identifier
 
     on find_app(sender)
+        -- log ("start find_app for " & my _app_identifier)
         try
             set my _app_alias to (my _app_alias as POSIX file) as alias
         on error
@@ -207,7 +208,6 @@ script GenericDriver
 					tell application process (my _process_name)
 						set closeButton to buttons of window 1 whose subrole is "AXCloseButton"
 						perform action "AXPress" of item 1 of closeButton
-						--keystroke "w" using command down
 					end tell
 				end tell
 				delay 1
@@ -266,7 +266,6 @@ script AcrobatDriver
 					if a_path is (a_pdf's file_hfs_path()) then
 						bring to front document a_filename
 						set my _page_number to (page number of PDF Window 1 of active doc)
-						--close PDF Window 1
 						try
 							close active doc
 						on error
@@ -320,7 +319,7 @@ script SkimDriver
     property parent : GenericDriver
     property _app_identifier : "net.sourceforge.skim-app.skim"
     property _app_alias : missing value
-     property _whareIsAppMesssage : "whereisSkim"
+    property _whareIsAppMesssage : "whereisSkim"
     
     on prepare(a_pdf)
         return true
@@ -393,7 +392,8 @@ script CLIDriver
 end script
 
 on check_app(mode_idx)
-    set a_driver to item (mode_idx+1) of {missing value, AdobeReaderDriver, AcrobatDriver, SkimDriver, missing value, missing value}
+    --log "start check_app in PDFController for index :" & (mode_idx as text)
+    set a_driver to item (mode_idx+1) of {missing value, missing value, AdobeReaderDriver, AcrobatDriver, SkimDriver, missing value, missing value}
     if a_driver is missing value then
         return true
     end if
