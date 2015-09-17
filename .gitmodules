@@ -1,0 +1,51 @@
+[submodule "DonationReminder"]
+	path = DonationReminder
+	url = https://github.com/tkurita/DonationReminder.git
+[submodule "PathExtra"]
+	path = PathExtra
+	url = https://github.com/tkurita/PathExtra.git
+[submodule "StringExtra"]
+	path = StringExtra
+	url = https://github.com/tkurita/StringExtra.git
+[submodule "miclient"]
+	path = miclient
+	url = https://github.com/tkurita/miclient.git
+[submodule "PaletteWindowController"]
+	path = PaletteWindowController
+	url = https://github.com/tkurita/PaletteWindowController.git
+[submodule "LibraryScripts/XFile.scptd"]
+	path = LibraryScripts/XFile.scptd
+	url = https://github.com/tkurita/XFile.scptd.git
+[submodule "LibraryScripts/XDict.scptd"]
+	path = LibraryScripts/XDict.scptd
+	url = https://github.com/tkurita/XDict.scptd.git
+[submodule "LibraryScripts/XList.scptd"]
+	path = LibraryScripts/XList.scptd
+	url = https://github.com/tkurita/XList.scptd.git
+[submodule "LibraryScripts/XText.scptd"]
+	path = LibraryScripts/XText.scptd
+	url = https://github.com/tkurita/XText.scptd.git
+[submodule "LibraryScripts/FrontAccess.scptd"]
+	path = LibraryScripts/FrontAccess.scptd
+	url = https://github.com/tkurita/FrontAccess.scptd.git
+[submodule "LibraryScripts/XHandler.scptd"]
+	path = LibraryScripts/XHandler.scptd
+	url = https://github.com/tkurita/XHandler.scptd.git
+[submodule "LibraryScripts/XCharacterSet.scptd"]
+	path = LibraryScripts/XCharacterSet.scptd
+	url = https://github.com/tkurita/XCharacterSet.scptd.git
+[submodule "LibraryScripts/TerminalCommander.scptd"]
+	path = LibraryScripts/TerminalCommander.scptd
+	url = https://github.com/tkurita/TerminalCommander.scptd.git
+[submodule "LibraryScripts/PathInfo.scptd"]
+	path = LibraryScripts/PathInfo.scptd
+	url = https://github.com/tkurita/PathInfo.scptd.git
+[submodule "LibraryScripts/GUIScriptingChecker.scptd"]
+	path = LibraryScripts/GUIScriptingChecker.scptd
+	url = https://github.com/tkurita/GUIScriptingChecker.scptd.git
+[submodule "LibraryScripts/PathConverter.scptd"]
+	path = LibraryScripts/PathConverter.scptd
+	url = https://github.com/tkurita/PathConverter.scptd.git
+[submodule "LibraryScripts/miClient.scptd"]
+	path = LibraryScripts/miClient.scptd
+	url = https://github.com/tkurita/miClient.scptd.git
