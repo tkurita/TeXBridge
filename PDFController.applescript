@@ -388,7 +388,7 @@ script CLIDriver
         set x_text to XText's make_with(command_template)'s replace("%line", (linenum as text))
         set x_text to x_text's replace("%pdffile", a_pdfpath)
         set x_text to x_text's replace("%texfile", a_texpath)
-        do shell script (x_text's as_text())
+        do shell script "$SHELL -lc " & x_text's as_text()'s quoted form
     end open_pdf
 end script
 

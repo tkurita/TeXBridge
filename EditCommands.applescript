@@ -29,7 +29,7 @@ on open_parentfile()
 			open (a_texdoc's file_ref()'s as_alias())
 		end tell
 	else
-		set a_msg to UtilityHandlers's localized_string("noParentFile", a_texdoc's fileName())
+		set a_msg to UtilityHandlers's localized_string("noParentFile", a_texdoc's filename())
 		EditorClient's show_message(a_msg)
 	end if
 end open_parentfile

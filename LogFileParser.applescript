@@ -33,7 +33,7 @@ on parseLog(a_log_parser)
 	set AppleScript's text item delimiters to space
 	set commandName to text item 1 of (my _texdoc's typeset_command())
 	set AppleScript's text item delimiters to pre_delim
-	a_log_parser's setupJobName_(commandName & space & (my _texdoc's fileName()))
+	a_log_parser's setupJobName_(commandName & space & (my _texdoc's filename()))
 	try
 		set parseResult to a_log_parser's parseLog()
 	on error msg number errno

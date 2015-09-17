@@ -32,7 +32,7 @@ script XdviDriver
 		set a_texdoc to a_dvi's texdoc()
 		update_src_special_flag_from_file() of a_dvi
 		set cd_command to "cd " & (quoted form of (a_dvi's cwd()'s posix_path()))
-		set dvi_file_name to a_dvi's fileName()
+		set dvi_file_name to a_dvi's filename()
 		tell NSUserDefaults's standardUserDefaults()
 			set dvi_command to stringForKey_("dviViewCommand") as text
 		end tell
@@ -106,7 +106,7 @@ script SimpleDriver
 			return
 		else
 			activate
-			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's fileName()})
+			set a_msg to UtilityHandler's localized_string("DviFileIsNotFound", {a_dvi's filename()})
 			display alert a_msg
 		end if
 	end open_dvi
@@ -199,7 +199,7 @@ script PictPrinterDriver
 					end repeat
 				end if
 			else
-				set source_file to a_dvi's texdoc()'s fileName()
+				set source_file to a_dvi's texdoc()'s filename()
 				using terms from application "PictPrinter"
 					tell application (my _app_alias as text)
 						FindRoughly in dvi target_dvi_path startLine (a_texdoc's doc_position()) with source source_file
@@ -238,7 +238,7 @@ script CLIDriver
         set x_text to XText's make_with(command_template)'s replace("%line", (linenum as text))
         set x_text to x_text's replace("%dvifile", a_dvipath)
         set x_text to x_text's replace("%texfile", a_texpath)
-        do shell script (x_text's as_text())
+        do shell script "$SHELL -lc " & x_text's as_text()'s quoted form
 	end open_dvi
 end script
 
@@ -268,12 +268,12 @@ on file_ref()
 	return my _dvifile
 end file_ref
 
-on fileName()
+on filename()
 	if my _dvifile is not missing value then
 		return my _dvifile's item_name()
 	end if
 	return my _texdoc's name_for_suffix("dvi")
-end fileName
+end filename
 
 on texdoc()
 	return my _texdoc
