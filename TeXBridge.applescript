@@ -169,9 +169,6 @@ script TeXBridgeController
 		set TeXDocController to import_script("TeXDocController")
 		set DVIController to import_script("DVIController")
 		set TerminalCommander to buildup() of (import_script("TerminalCommander"))
-		tell TerminalCommander
-			set_custom_title(appController's factoryDefaultForKey_("CustomTitle") as text)
-		end tell
 		
 		set EditorClient to import_script("EditorClient")
 		set ReplaceInput to import_script("ReplaceInput")

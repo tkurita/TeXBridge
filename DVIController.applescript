@@ -147,13 +147,6 @@ script PictPrinterDriver
 	
 	on open_dvi(a_dvi, should_activate)
 		-- log "start open_dvi of PictPrinterDriver"
-		(* try
-			set pictprinter_app to path to application (get "PictPrinter") as alias
-		on error
-			set msg to localized string "pictPrinterIsNotFound"
-			error msg number 1260
-		end try
-         *)
 		a_dvi's update_src_special_flag_from_file()
 		-- log "success update_src_special_flag_from_file"
 		set a_texdoc to a_dvi's texdoc()
@@ -400,7 +393,7 @@ on dvi_to_pdf()
 	--log "success lookup_pdf_file"
 	--check busy status of pdf file.
 	if a_pdf is not missing value then
-		if not prepare_dvi_to_pdf() of a_pdf then
+		if not a_pdf's prepare_dvi_to_pdf() then
 			return missing value
 		end if
 	end if
@@ -411,7 +404,6 @@ on dvi_to_pdf()
 	set targetFileName to my _texdoc's name_for_suffix("dvi")
 	set all_command to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
-	--send_command of TerminalCommander for all_command
 	set a_term to texdoc()'s target_terminal()
 	do_command of (a_term) for all_command without activation
 	--copy TerminalCommander to a_term

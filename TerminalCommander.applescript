@@ -1,6 +1,7 @@
 global TerminalCommanderBase
 global NSUserDefaults
 global NSRunningApplication
+global appController
 
 on buildup()
 	script TerminalCommanderExtend
@@ -29,10 +30,6 @@ on buildup()
 			return exec_string
 		end execution_string
 		
-		on custom_title()
-			return continue custom_title()
-		end custom_title
-		
 		on settings_name()
 			--log "start settings_name"
 			set a_name to missing value
@@ -50,5 +47,10 @@ on buildup()
 			return a_name
 		end settings_name
 	end script
-	return TerminalCommanderExtend
+
+	tell TerminalCommanderExtend
+        set_use_osax_for_customtitle(false)
+        set_custom_title(appController's factoryDefaultForKey_("CustomTitle") as text)
+        return it
+    end tell
 end buildup

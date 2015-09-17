@@ -511,6 +511,7 @@ on typeset_preview_pdf()
 		return
 	end if
     if typeset_out's is_dvi() then
+        show_status_message("Converting DVI to PDF ...")
         set typeset_out to typeset_out's dvi_to_pdf()
     end if
 	typeset_out's texdoc()'s preserve_terminal()
