@@ -1,4 +1,5 @@
 #import "ActivateProcessCommand.h"
+#import "NSRunningApplication+SmartActivate.h"
 
 @implementation ActivateProcessCommand
 - (id)performDefaultImplementation
@@ -9,8 +10,7 @@
         identifier = [[self arguments] objectForKey:@"identifier"];
     }
     if (identifier) {
-        result = [[[NSRunningApplication runningApplicationsWithBundleIdentifier:identifier]
-                        lastObject] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
+        result = [NSRunningApplication activateAppOfIdentifier:identifier];
     }
     	
 	return [NSAppleEventDescriptor descriptorWithBoolean:result];

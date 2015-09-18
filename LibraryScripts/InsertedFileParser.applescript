@@ -5,6 +5,23 @@ property _graphic_suffixes : {".pdf", ".eps", ".png", ".jpg", ".jpeg"}
 
 property _is_graphic : false
 
+on make
+	set a_class to me
+	script InsertedFileParserInstance
+		property parent : a_class
+		property _texbridge : missing value
+		property _is_graphic : my _is_graphic
+	end script
+	return InsertedFileParserInstance
+end make
+
+on make_with_texbridge(a_texbridge)
+	tell (make)
+		set its _texbridge to a_texbridge
+		return it
+	end tell
+end make_with_texbridge
+
 on is_graphic()
 	return my _is_graphic
 end is_graphic
@@ -23,20 +40,22 @@ on extract_filepath(a_command, a_paragraph)
 	return full_path
 end extract_filepath
 
+
 on do()
-	set TeXBridge to TeXBridgeProxy's shared_instance()
 	set a_file to EditorClient's document_file_as_alias()
 	if a_file is missing value then
 		set docname to EditorClient's document_name()
-		display alert TeXBridge's localized_string("DocumentIsNotSaved", {docname})
+		display alert my _texbridge's localized_string("DocumentIsNotSaved", {docname})
 		return
 	end if
 	
 	--log "start openRelatedFile"
 	set_base_path(POSIX path of a_file) of PathConverter
-	TeXBridge's resolve_support_plist()
-	set backslash to TeXBridge's plist_value("backslash")
-	set incGraphicCommand to TeXBridge's plist_value("incGraphicCommand")
+	tell my _texbridge
+		resolve_support_plist()
+		set backslash to plist_value("backslash")
+		set incGraphicCommand to plist_value("incGraphicCommand")
+	end tell
 	set bibCommand to backslash & "bibliography"
 	set commandList to {incGraphicCommand, backslash & "input", backslash & "include", bibCommand}
 	
@@ -70,7 +89,7 @@ on do()
 							end try
 						end repeat
 						if file_alias is missing value then
-							set a_msg to TeXBridge's localized_string("FileIsNotFound", path_with_suffix)
+							set a_msg to my _texbridge's localized_string("FileIsNotFound", path_with_suffix)
 							error a_msg number 1320
 							return
 						end if
@@ -88,6 +107,7 @@ end do
 on graphic_suffixes()
 	return my _graphic_suffixes
 end graphic_suffixes
+
 
 on debug()
 	boot (module loader of application (get "TeXToolsLib")) for me

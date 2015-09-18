@@ -8,19 +8,18 @@ property _headingList : missing value
 property _docClass : missing value
 property _nHead : 0
 
-
 on debug()
 	initialize()
 	set headRecord to search_preheading()
 	set preHeadLevel to previousLevel of headRecord
-	if preHeadLevel is _nHead then
+	if preHeadLevel is my _nHead then
 		display alert previousHeading of headRecord & " ÇÃéüÇÃÉåÉxÉãÇÕÇ†ÇËÇ‹ÇπÇÒÅB"
 		return
 	else if preHeadLevel is missing value then
 		set preHeadLevel to 1
 	end if
 	set a_text to selection_contents() of EditorClient
-	set pretext to (item (preHeadLevel + 1) of _headingList) & "{"
+	set pretext to (item (preHeadLevel + 1) of my _headingList) & "{"
 	EditorClient's insert_text(pretext & a_text & "}")
 	set selinfo to EditorClient's selection_info()
 	EditorClient's select_in_range((selinfo's cursorPosition) + (length of pretext), (length of a_text))
@@ -33,10 +32,26 @@ end run
 on initialize()
 	tell (make ToolServerProxy)
 		resolve_support_plist()
-		set _backslash to plist_value("backslash")
+		set my _backslash to plist_value("backslash")
 	end tell
 	build_heading_list()
 end initialize
+
+on make
+	set a_class to me
+	script SectionCoreInstance
+		property parent : a_class
+		property _backslash : missing value
+		property _headingList : missing value
+		property _docClass : missing value
+		property _nHead : 0
+	end script
+	
+	tell SectionCoreInstance
+		initialize()
+		return it
+	end tell
+end make
 
 on sectioning_command(a_level)
 	item a_level of my _headingList
@@ -49,8 +64,8 @@ on pickout_parameter(targetText)
 end pickout_parameter
 
 on find_doc_class()
-	set docClassCommand to _backslash & "documentclass"
-	set beginDocCommand to _backslash & "begin{document}"
+	set docClassCommand to my _backslash & "documentclass"
+	set beginDocCommand to my _backslash & "begin{document}"
 	set docClass to missing value
 	tell application "mi"
 		tell front document
@@ -76,11 +91,11 @@ on build_heading_list()
 	else
 		set sectionList to _reportHeadings & _commonHeadings
 	end if
-	set _headingList to {_backslash & "part"}
+	set my _headingList to {my _backslash & "part"}
 	repeat with theItem in sectionList
-		set end of _headingList to _backslash & theItem
+		set end of my _headingList to my _backslash & theItem
 	end repeat
-	set _nHead to length of _headingList
+	set my _nHead to length of my _headingList
 end build_heading_list
 
 on search_preheading()
@@ -91,8 +106,8 @@ on search_preheading()
 			set parPosition to index of paragraph 1 of selection object 1
 			repeat with i from parPosition to 1 by -1
 				set currentPar to paragraph i
-				repeat with j from 1 to _nHead
-					set preHead to item j of _headingList
+				repeat with j from 1 to my _nHead
+					set preHead to item j of my _headingList
 					if currentPar contains preHead then
 						set preHeadLevel to j
 						exit repeat
