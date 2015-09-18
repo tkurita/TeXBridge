@@ -6,7 +6,7 @@ property PathConverter : module
 property XText : module
 --property PathInfo : module
 
-property TeXBridge : missing value
+property _texbridge : missing value
 
 property _graphicFileSuffixes : {"eps", "pdf", "png", "jpg", "jpeg"}
 property _bib_suffixes : {"bib"}
@@ -17,23 +17,22 @@ property _figlabel_prefix : "fig:"
 (* values in plist file *)
 property _incGraphicCommand : "\\includegraphics"
 property _incGraphicBlock : missing value
---property _figEnvBlock : missing value
-property _labelCommand : "\\label"
+--property _labelCommand : "\\label"
 property _labelBracket : "\\label{"
 property _beginBracket : "\\begin{"
 property _endBracket : "\\end{"
 
 on debug()
 	boot (module loader of application (get "TeXToolsLib")) for me
-	set TeXBridge to make TeXBridgeProxy
-	if TeXBridge is missing value then
+	set my _texbridge to make TeXBridgeProxy
+	if my _texbridge is missing value then
 		return
 	end if
 	
 	set target_file to EditorClient's document_file_as_alias()
 	if target_file is missing value then
 		set docname to EditorClient's document_name()
-		display alert TeXBridge's localized_string("DocumentIsNotSaved", {docname})
+		display alert my _texbridge's localized_string("DocumentIsNotSaved", {docname})
 		return
 	end if
 	
@@ -46,7 +45,7 @@ on debug()
 end debug
 
 on debug2()
-	set TeXBridge to make TeXBridgeProxy
+	set my _texbridge to make TeXBridgeProxy
 	EnvScanner's initialize()
 	is_in_float_env()
 end debug2
@@ -56,8 +55,29 @@ on run
 	debug()
 end run
 
+on make
+	set a_class to me
+	script InsertFileInstance
+		property parent : a_class
+		property _texbridge : missing value
+		property _incGraphicBlock : my _incGraphicBlock
+		property _incGraphicCommand : my _incGraphicCommand
+		property _labelBracket : my _labelBracket
+		property _beginBracket : my _beginBracket
+		property _endBracket : my _endBracket
+	end script
+	return InsertFileInstance
+end make
+
+on make_with_texbridge(a_texbridge)
+	tell (make)
+		set its _texbridge to a_texbridge
+		return it
+	end tell
+end make_with_texbridge
+
 on set_compile_server(an_object)
-	set TeXBridge to an_object
+	set my _texbridge to an_object
 end set_compile_server
 
 on replace_paragraph(a_text, selection_rec)
@@ -79,8 +99,8 @@ on insert_source(a_pathinfo)
 	set rel_path to relative_path of PathConverter for a_pathinfo's posix_path()
 	set a_suffix to a_pathinfo's path_extension()
 	set selection_rec to EditorClient's selection_info()
-	set include_command to TeXBridge's plist_value("includeCommand")
-	set input_command to TeXBridge's plist_value("inputCommand")
+	set include_command to my _texbridge's plist_value("includeCommand")
+	set input_command to my _texbridge's plist_value("inputCommand")
 	
 	set new_text to change_command_param(include_command, currentParagraph of selection_rec, cursorInParagraph of selection_rec, rel_path_no_suffix)
 	if new_text is missing value then
@@ -92,7 +112,7 @@ on insert_source(a_pathinfo)
 		set new_text to change_command_param(include_command, currentParagraph of selection_rec, cursorInParagraph of selection_rec, a_rel_path)
 	else
 		if a_suffix is not "tex" then
-			display alert (TeXBridge's localized_string("'include' command can accept only a file of which path extension is '.tex'.", {}))
+			display alert (my _texbridge's localized_string("'include' command can accept only a file of which path extension is '.tex'.", {}))
 			return
 		end if
 	end if
@@ -105,7 +125,7 @@ on insert_source(a_pathinfo)
 				set a_rel_path to rel_path_no_suffix
 			else
 				if a_command is include_command then
-					display alert (TeXBridge's localized_string("'include' command can accept only a file of which path extension is '.tex'.", {}))
+					display alert (my _texbridge's localized_string("'include' command can accept only a file of which path extension is '.tex'.", {}))
 					return
 				end if
 				set a_rel_path to rel_path
@@ -121,9 +141,9 @@ end insert_source
 on insert_graphic(a_pathinfo)
 	set rel_path to relative_path of PathConverter for a_pathinfo's posix_path()
 	EnvScanner's initialize()
-	set _incGraphicCommand to TeXBridge's plist_value("incGraphicCommand")
-	set _beginBracket to (EnvScanner's begin_text() & "{")
-	set _endBracket to (EnvScanner's end_text() & "{")
+	set my _incGraphicCommand to my _texbridge's plist_value("incGraphicCommand")
+	set my _beginBracket to (EnvScanner's begin_text() & "{")
+	set my _endBracket to (EnvScanner's end_text() & "{")
 	set label_name to XText's make_with(_figlabel_prefix & a_pathinfo's basename())'s replace("_", "-")'s as_unicode()
 	if not change_graphic_command(rel_path, label_name) then
 		insert_graphic_commands(rel_path, label_name)
@@ -133,7 +153,7 @@ end insert_graphic
 on insert_bib(a_pathinfo)
 	set rel_path_no_suffix to relative_path of PathConverter for a_pathinfo's change_path_extension(missing value)'s posix_path()
 	set selection_rec to EditorClient's selection_info()
-	set bib_command to TeXBridge's plist_value("bibliographyCommand")
+	set bib_command to my _texbridge's plist_value("bibliographyCommand")
 	set new_text to change_command_param(bib_command, currentParagraph of selection_rec, cursorInParagraph of selection_rec, rel_path_no_suffix)
 	
 	if new_text is missing value then
@@ -145,8 +165,8 @@ on insert_bib(a_pathinfo)
 end insert_bib
 
 on do(a_pathinfo, tex_file)
-	set TeXBridge to TeXBridgeProxy's shared_instance()
-	TeXBridge's resolve_support_plist()
+	--set my _texbridge to TeXBridgeProxy's shared_instance()
+	my _texbridge's resolve_support_plist()
 	PathConverter's set_base_path(tex_file's posix_path())
 	set a_suffix to a_pathinfo's path_extension()
 	if a_suffix is in my _graphicFileSuffixes then
@@ -184,12 +204,10 @@ on is_in_float_env()
 end is_in_float_env
 
 on insert_graphic_commands(graphicPath, labelName)
-	set my _incGraphicBlock to TeXBridge's plist_value("incGraphicBlock")
-	--set theText to formated_text of StringEngine given template:my _incGraphicBlock, args:{graphicPath, labelName}
+	set my _incGraphicBlock to my _texbridge's plist_value("incGraphicBlock")
 	set a_text to XText's make_with(my _incGraphicBlock)'s format_with({graphicPath, labelName})
 	if not is_in_float_env() then
-		set fig_env to TeXBridge's plist_value("figEnvBlock")
-		--set theText to formated_text of StringEngine given template:fig_env, args:{theText}
+		set fig_env to my _texbridge's plist_value("figEnvBlock")
 		set a_text to XText's make_with(fig_env)'s format_with({a_text})
 	end if
 	
@@ -232,7 +250,7 @@ end findCommandInSameEnvBefore
 
 on findCommandInSameEnvAfter(target_text, targetCommand, new_value)
 	set com_pos to offset of targetCommand in target_text
-	set beginEnvPosition to offset of _beginBracket in target_text
+	set beginEnvPosition to offset of my _beginBracket in target_text
 	
 	if (beginEnvPosition is 0) or (com_pos < beginEnvPosition) then
 		set pre_text to text 1 thru com_pos of target_text
@@ -291,12 +309,12 @@ on change_graphic_command(graphicPath, labelName)
 	--EditorClient's set_paragraph_at(new_text, par_position)
 	replace_paragraph(new_text, selection_rec)
 	
-	set label_command to TeXBridge's plist_value("labelText")
+	set label_command to my _texbridge's plist_value("labelText")
 	set my _labelBracket to (label_command & "{")
 	repeat with ith from (selection_rec's paragraphIndex) to (selection_rec's paragraphIndex) + 5
 		set a_line to EditorClient's paragraph_at(ith)
 		
-		if a_line contains _labelBracket then
+		if a_line contains my _labelBracket then
 			set new_text to findCommandInSameEnvAfter(a_line, label_command, labelName)
 			if new_text is 0 then
 				exit repeat

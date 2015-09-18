@@ -18,6 +18,39 @@ on initialize()
 	set my _current_text to currentParagraph of my _selection_rec
 end initialize
 
+on make
+	set a_class to me
+	set selection_rec to EditorClient's selection_info()
+	script ScannerSourceInstance
+		property parent : a_class
+		property _selection_rec : selection_rec
+		property _parPosition : paragraphIndex of selection_rec
+		property _cursorPosition : cursorPosition of selection_rec
+		property _nParagraph : totalParapraphs of selection_rec
+		property _cursorPositionInPar : (cursorInParagraph of selection_rec) + 1
+		property _current_text : currentParagraph of selection_rec
+		property _parNumber : missing value
+		property _charNumber : missing value
+	end script
+	return ScannerSourceInstance
+end make
+
+on make_with_copying(a_scanner_source)
+	set a_class to me
+	script ScannerSourceInstance
+		property parent : a_class
+		property _selection_rec : a_scanner_source's _selection_rec
+		property _parPosition : a_scanner_source's _parPosition
+		property _cursorPosition : a_scanner_source's _cursorPosition
+		property _nParagraph : a_scanner_source's _nParagraph
+		property _cursorPositionInPar : a_scanner_source's _cursorPositionInPar
+		property _current_text : a_scanner_source's _current_text
+		property _parNumber : a_scanner_source's _parNumber
+		property _charNumber : a_scanner_source's _charNumber
+	end script
+	return ScannerSourceInstance
+end make_with_copying
+
 on paragraph_for_forwarding()
 	set my _parNumber to my _parPosition
 	set my _charNumber to my _cursorPositionInPar

@@ -1,21 +1,21 @@
 property TeXBridgeProxy : module
 property EditorClient : module "miClient"
 property ScannerSource : module
---global ScannerSource
 
 property name : "EnvScanner"
 property version : "1.1"
 
-property beginText : missing value
-property beginTextLength : missing value
-property endText : missing value
-property endTextLength : missing value
-property backslash : missing value
+property _beginText : missing value
+property _beginTextLength : missing value
+property _endText : missing value
+property _endTextLength : missing value
+property _backslash : missing value
 
 --global variable
-property beginStack : {}
-property endStack : {}
+property _beginStack : {}
+property _endStack : {}
 property _target_text : missing value
+property _scanner_source : missing value
 
 on debug()
 	
@@ -35,26 +35,51 @@ on run
 end run
 
 on begin_text()
-	return my beginText
+	return my _beginText
 end begin_text
 
 on end_text()
-	return my endText
+	return my _endText
 end end_text
 
+on scanner_source()
+	return my _scanner_source
+end scanner_source
+
 on initialize()
-	set beginStack to {}
-	set endStack to {}
+	set my _beginStack to {}
+	set my _endStack to {}
 	tell TeXBridgeProxy's shared_instance()
 		resolve_support_plist()
-		set beginText to plist_value("beginText")
-		set beginTextLength to length of beginText
-		set endText to plist_value("endText")
-		set endTextLength to length of endText
-		set backslash to plist_value("backslash")
+		set my _beginText to plist_value("beginText")
+		set my _beginTextLength to length of my _beginText
+		set my _endText to plist_value("endText")
+		set my _endTextLength to length of my _endText
+		set my _backslash to plist_value("backslash")
 	end tell
-	ScannerSource's initialize()
+	set my _scanner_source to make ScannerSource
 end initialize
+
+on make_with(a_texbridge)
+	set a_class to me
+	tell a_texbridge
+		resolve_support_plist()
+		script EnvScannerInstance
+			property parent : a_class
+			property _texbridge : it
+			property _scanner_source : make ScannerSource
+			property _beginText : plist_value("beginText")
+			property _beginTextLength : length of my _beginText
+			property _endText : plist_value("endText")
+			property _endTextLength : length of my _endText
+			property _backslash : plist_value("backslash")
+			property _beginStack : {}
+			property _endStack : {}
+			property _target_text : missing value
+		end script
+	end tell
+	return EnvScannerInstance
+end make_with
 
 -- handlers for finding both of \begin and \end
 on stripCommentText(theText, line_step)
@@ -63,10 +88,10 @@ on stripCommentText(theText, line_step)
 	if percentOffset is 0 then
 		return theText
 	else if percentOffset is 1 then
-		return stripCommentText(ScannerSource's paragraph_with_increment(line_step), line_step)
+		return stripCommentText(my _scanner_source's paragraph_with_increment(line_step), line_step)
 	else
 		set newText to text 1 thru (percentOffset - 1) of theText
-		if newText ends with backslash then
+		if newText ends with my _backslash then
 			set restText to stripCommentText(text (percentOffset + 1) thru -1 of theText, line_step)
 			return newText & "%" & restText
 		else
@@ -94,25 +119,25 @@ on getEnvRecord(targetPos)
 	set endEnvIndex to targetPos + endEnvIndex - 2
 	set envName to text startEnvIndex thru endEnvIndex of my _target_text
 	--log envName
-	set cha_pos to ScannerSource's position_in_paragraph()
+	set cha_pos to my _scanner_source's position_in_paragraph()
 	
-	return {enviroment:envName, startPosition:startEnvIndex + cha_pos - 1, endPosition:endEnvIndex + cha_pos - 1, linePosition:ScannerSource's index_of_paragraph(), lineContents:""}
+	return {enviroment:envName, startPosition:startEnvIndex + cha_pos - 1, endPosition:endEnvIndex + cha_pos - 1, linePosition:my _scanner_source's index_of_paragraph(), lineContents:""}
 end getEnvRecord
 
 on update_target_text(line_step)
 	try
-		set_target_text(ScannerSource's paragraph_with_increment(line_step), line_step)
+		set_target_text(my _scanner_source's paragraph_with_increment(line_step), line_step)
 	on error msg number errno
 		if errno is 1300 then
-			if beginStack is {} then
+			if my _beginStack is {} then
 				return
 			end if
-			error endText & space & "command can not be found."
+			error my _endText & space & "command can not be found."
 		else if errno is 1301 then
-			if endStack is {} then
+			if my _endStack is {} then
 				return
 			end if
-			error beginText & space & "command can not be found."
+			error my _beginText & space & "command can not be found."
 		else
 			error msg number errno
 		end if
@@ -124,11 +149,11 @@ on getEnvRecordForEnd(targetPos)
 	local envRecord
 	local endEnvIndex
 	set envRecord to getEnvRecord(targetPos)
-	set endEnvIndex to (endPosition of envRecord) - (ScannerSource's position_in_paragraph())
+	set endEnvIndex to (endPosition of envRecord) - (my _scanner_source's position_in_paragraph())
 	if length of my _target_text is endEnvIndex + 2 then
 		update_target_text(1)
 	else
-		set my _target_text to ScannerSource's forward_in_paragraph(endEnvIndex + 1)
+		set my _target_text to my _scanner_source's forward_in_paragraph(endEnvIndex + 1)
 	end if
 	return envRecord
 end getEnvRecordForEnd
@@ -138,40 +163,40 @@ on set_target_text(a_text, line_step)
 end set_target_text
 
 on find_end()
-	set_target_text(ScannerSource's paragraph_for_forwarding(), 1)
+	set_target_text(my _scanner_source's paragraph_for_forwarding(), 1)
 	repeat 100 times
-		set endoffset to offset of endText in my _target_text
-		set beginoffset to offset of beginText in my _target_text
+		set endoffset to offset of my _endText in my _target_text
+		set beginoffset to offset of my _beginText in my _target_text
 		
 		if endoffset is 0 then
 			if beginoffset is 0 then
 				update_target_text(1)
 			else
-				set beginRecord to getEnvRecordForEnd(beginoffset + beginTextLength)
-				set beginning of beginStack to beginRecord
+				set beginRecord to getEnvRecordForEnd(beginoffset + (my _beginTextLength))
+				set beginning of my _beginStack to beginRecord
 			end if
 		else
 			if (beginoffset is 0) then
 				-- find end
-				set endRecord to getEnvRecordForEnd(endoffset + endTextLength)
-				if beginStack is {} then
+				set endRecord to getEnvRecordForEnd(endoffset + (my _endTextLength))
+				if my _beginStack is {} then
 					return endRecord
 				else
-					if (enviroment of endRecord) is (enviroment of item 1 of beginStack) then
-						set beginStack to rest of beginStack
+					if (enviroment of endRecord) is (enviroment of item 1 of my _beginStack) then
+						set my _beginStack to rest of my _beginStack
 					end if
 				end if
 			else
 				if (beginoffset > endoffset) then
-					set beginRecord to getEnvRecordForEnd(beginoffset + beginTextLength)
-					set beginning of beginStack to beginRecord
+					set beginRecord to getEnvRecordForEnd(beginoffset + (my _beginTextLength))
+					set beginning of my _beginStack to beginRecord
 				else
-					set endRecord to getEnvRecordForEnd(endoffset + endTextLength)
-					if beginStack is {} then
+					set endRecord to getEnvRecordForEnd(endoffset + (my _endTextLength))
+					if my _beginStack is {} then
 						return endRecord
 					else
-						if (enviroment of endRecord) is (enviroment of item 1 of beginStack) then
-							set beginStack to rest of beginStack
+						if (enviroment of endRecord) is (enviroment of item 1 of my _beginStack) then
+							set my _beginStack to rest of my _beginStack
 						end if
 					end if
 				end if
@@ -201,56 +226,55 @@ on getEnvRecordAtLast(firstOffset, comText, comLength)
 	set envRecord to getEnvRecord(lastOffset + comLength)
 	set endOfLine to lastOffset - 1
 	if endOfLine is 0 then
-		if ScannerSource's index_of_paragraph() is 1 then
+		if my _scanner_source's index_of_paragraph() is 1 then
 			set my _target_text to ""
 		else
 			update_target_text(-1)
 		end if
 	else
-		set my _target_text to ScannerSource's reverse_in_paragraph(endOfLine)
+		set my _target_text to my _scanner_source's reverse_in_paragraph(endOfLine)
 	end if
 	return envRecord
 end getEnvRecordAtLast
 
 on find_next_begin()
 	repeat 100 times
-		set endoffset to offset of endText in my _target_text
-		set beginoffset to offset of beginText in my _target_text
+		set endoffset to offset of my _endText in my _target_text
+		set beginoffset to offset of my _beginText in my _target_text
 		
 		if beginoffset is 0 then
 			if endoffset is 0 then
 				update_target_text(-1)
 			else
-				set endRecord to getEnvRecordAtLast(endoffset, endText, endTextLength)
-				set beginning of endStack to endRecord
+				set endRecord to getEnvRecordAtLast(endoffset, my _endText, my _endTextLength)
+				set beginning of my _endStack to endRecord
 			end if
 		else
 			if (endoffset is 0) then
-				set beginRecord to getEnvRecordAtLast(beginoffset, beginText, beginTextLength)
-				if endStack is {} then
+				set beginRecord to getEnvRecordAtLast(beginoffset, my _beginText, my _beginTextLength)
+				if my _endStack is {} then
 					return beginRecord
 				else
-					if (enviroment of beginRecord) is (enviroment of item 1 of endStack) then
-						set endStack to rest of endStack
+					if (enviroment of beginRecord) is (enviroment of item 1 of my _endStack) then
+						set my _endStack to rest of my _endStack
 					end if
 				end if
 			else
-				
-				copy ScannerSource to before_text_source
-				set endRecord to getEnvRecordAtLast(endoffset, endText, endTextLength)
-				copy ScannerSource to after_text_source
-				set ScannerSource to before_text_source
-				set beginRecord to getEnvRecordAtLast(beginoffset, beginText, beginTextLength)
+				set before_text_source to my _scanner_source's make_with_copying(my _scanner_source)
+				set endRecord to getEnvRecordAtLast(endoffset, my _endText, my _endTextLength)
+				set after_text_source to my _scanner_source's make_with_copying(my _scanner_source)
+				set my _scanner_source to before_text_source
+				set beginRecord to getEnvRecordAtLast(beginoffset, my _beginText, my _beginTextLength)
 				
 				if (startPosition of endRecord) > (startPosition of beginRecord) then
-					set beginning of endStack to endRecord
-					set ScannerSource to after_text_source
+					set beginning of my _endStack to endRecord
+					set my _scanner_source to after_text_source
 				else
-					if endStack is {} then
+					if my _endStack is {} then
 						return beginRecord
 					else
-						if (enviroment of beginRecord) is (enviroment of item 1 of endStack) then
-							set endStack to rest of endStack
+						if (enviroment of beginRecord) is (enviroment of item 1 of my _endStack) then
+							set my _endStack to rest of my _endStack
 						end if
 					end if
 				end if
@@ -261,6 +285,6 @@ on find_next_begin()
 end find_next_begin
 
 on find_begin()
-	set_target_text(ScannerSource's paragraph_for_reversing(), -1)
+	set_target_text(my _scanner_source's paragraph_for_reversing(), -1)
 	return find_next_begin()
 end find_begin

@@ -47,8 +47,32 @@ on set_declarative_command(a_command)
 	set my _declarative_command to a_command
 end set_declarative_command
 
+on setup_string_constants()
+	tell TeXBridgeProxy's shared_instance()
+		resolve_support_plist()
+		set my _beginText to plist_value("beginText")
+		set my _endText to plist_value("endText")
+		set my _backslash to plist_value("backslash")
+	end tell
+end setup_string_constants
+
+on make_with(a_texbridge)
+	set a_class to me
+	tell a_texbridge
+		resolve_support_plist()
+		script FormattingCoreInstance
+			property parent : a_class
+			property _texbridge : it
+			property _beginText : plist_value("beginText")
+			property _endText : plist_value("endText")
+			property _backslash : plist_value("backslash")
+		end script
+	end tell
+	return FormattingCoreInstance
+end make_wtih
+
 on do()
-	setup_string_constants()
+	--setup_string_constants()
 	set a_text to selection_contents() of EditorClient
 	set nPar to count paragraph of a_text
 	set selinfo to missing value
@@ -94,15 +118,6 @@ on wrap_with_command(a_text, a_command)
 	set pretext to my _backslash & a_command & "{"
 	return {pretext & a_text & "}", length of pretext}
 end wrap_with_command
-
-on setup_string_constants()
-	tell TeXBridgeProxy's shared_instance()
-		resolve_support_plist()
-		set my _beginText to plist_value("beginText")
-		set my _endText to plist_value("endText")
-		set my _backslash to plist_value("backslash")
-	end tell
-end setup_string_constants
 
 on wrap_with_env(a_text, an_env)
 	if a_text does not end with return then
