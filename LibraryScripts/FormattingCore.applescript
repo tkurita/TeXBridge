@@ -47,7 +47,7 @@ on set_declarative_command(a_command)
 	set my _declarative_command to a_command
 end set_declarative_command
 
-on setup_string_constants()
+on setup_string_constants() -- deprecated. use make_with
 	tell TeXBridgeProxy's shared_instance()
 		resolve_support_plist()
 		set my _beginText to plist_value("beginText")
@@ -69,11 +69,11 @@ on make_with(a_texbridge)
 		end script
 	end tell
 	return FormattingCoreInstance
-end make_wtih
+end make_with
 
 on do()
 	--setup_string_constants()
-	set a_text to selection_contents() of EditorClient
+	set a_text to EditorClient's selection_contents()
 	set nPar to count paragraph of a_text
 	set selinfo to missing value
 	if a_text is "" then
@@ -89,10 +89,10 @@ on do()
 			if my _env_command is not missing value then
 				set {a_text, shiftlen} to wrap_with_env(a_text, my _env_command)
 			else
-				if my _line_command is not missing value then
-					set {a_text, shiftlen} to wrap_with_command(a_text, my _line_command)
-				else
+				if my _declarative_command is not missing value then
 					set {a_text, shiftlen} to wrap_with_declalative(a_text, my _declarative_command)
+				else
+					set {a_text, shiftlen} to wrap_with_command(a_text, my _line_command)
 				end if
 			end if
 		else
