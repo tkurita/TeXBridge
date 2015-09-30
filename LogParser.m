@@ -153,8 +153,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
     static NSRegularExpression *output_regexp = nil;
     if (!output_regexp) {
         NSError *error = nil;
+        //output_regexp = [NSRegularExpression regularExpressionWithPattern:
+        //                 @"\\s*(.+\\.(dvi|pdf))"
         output_regexp = [NSRegularExpression regularExpressionWithPattern:
-                         @"\\s*(.+\\.(dvi|pdf))"
+                                          @"\\s*(\\\"?)(.+\\.(dvi|pdf))\\1"
                                                 options:0 error:&error];
         if (error) {
             NSLog(@"Error : %@", [error localizedDescription]);
@@ -245,7 +247,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #if useLog
         NSLog(@"%@", [logContent substringWithRange:[result rangeAtIndex:1]]);
 #endif
-        self.outputFile = [logContent substringWithRange:[result rangeAtIndex:1]];
+        self.outputFile = [logContent substringWithRange:[result rangeAtIndex:2]];
         _hasOutput = YES;
 		_isDviOutput = [_outputFile hasSuffix:@".dvi"];
 	}
@@ -255,7 +257,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #endif
 	
 	if (errMsg != nil) {
-		return [self makeErrorRecordWithString:errMsg paragraph:errpn textRange:[logTree objectForKey:@"range"]];
+		return [self makeErrorRecordWithString:errMsg paragraph:errpn
+                                     textRange:[logTree objectForKey:@"range"]];
 	}
 	else {
 		return nil;
@@ -424,7 +427,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		while ([targetText hasPrefix:@" "]) {
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
-		//return [self parseLines:[self addCurrentLineAndNextLine:currentList] withList:currentList];
 		return [self parseLines:targetText withList:currentList];
 
 	} else if ([targetText hasPrefix:@"!"]) {
@@ -457,7 +459,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSLog(@"%@", targetText);
 #endif
 	NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()`"];
-	//NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()"];
 	NSString *scannedText;
 	NSRange subRange;
 	NSScanner *scanner;
@@ -603,7 +604,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	[self parseLogTreeFirstLevel:loglogTree];
 #if useLog
-	NSLog(@"%@", [errorRecordTree description]);
 	NSLog(@"end of parseLog");
 #endif
 	[[LogWindowController sharedLogManager] addLogRecords:self] ;
