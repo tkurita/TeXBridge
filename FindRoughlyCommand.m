@@ -60,7 +60,7 @@ void showAEDesc(const AppleEvent *ev)
 		tex_path = [[dvi_path stringByDeletingPathExtension] stringByAppendingPathExtension:@"tex"];
 	}
     
-	if (![tex_path fileExists]) {
+	if ([tex_path fileExists]) {
         id miclient = [miClient sharedClient];
         [miclient setUseBookmarkBeforeJump:YES];
         [miclient jumpToFileURL:[NSURL fileURLWithPath:tex_path] paragraph:start_pos];

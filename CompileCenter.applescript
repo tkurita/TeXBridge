@@ -424,7 +424,7 @@ on lookup_typeset_output(a_texdoc, a_log_parser)
         set_log_parser(a_log_parser)
     end tell
     return typeset_out
-end
+end lookup_typeset_output
 
 on quick_typeset_preview()
     --log "start quick_typeset_preview"
@@ -464,14 +464,19 @@ on quick_typeset_preview()
         end if
         
         set typeset_out to lookup_typeset_output(a_texdoc, a_log_file_parser)
-        try
-            typeset_out's perform_preview({should_activate:a_flag})
-        on error msg number errno
-			UtilityHandlers's show_error(errno, "quick_typeset_preview after calling perform_preview", msg)
-        end try
+        if typeset_out is missing value then
+            UtilityHandlers's show_localized_message("CantFindTypesetProduct")
+        else
+            try
+                typeset_out's perform_preview({should_activate:a_flag})
+            on error msg number errno
+                UtilityHandlers's show_error(errno, "quick_typeset_preview after calling perform_preview", msg)
+            end try
+        end if
 	else
 		UtilityHandlers's show_localized_message("NoTypesetProduct")
 	end if
+    
 	if not a_flag then
 		tell current application's class "LogWindowController"
 			its sharedLogManager()'s bringToFront()
@@ -578,12 +583,16 @@ on typeset()
         NSRunningApplication's activateSelf()
 	end if
     
+    set typeset_out to "missing value"
 	if (a_log_file_parser's has_output()) then
-        return lookup_typeset_output(a_texdoc, a_log_file_parser)
+        set typeset_out to lookup_typeset_output(a_texdoc, a_log_file_parser)
+        if typeset_out is missing value then
+             UtilityHandlers's show_localized_message("CantFindTypesetProduct")
+        end if
 	else
 		UtilityHandlers's show_localized_message("NoTypesetProduct")
-		return missing value
 	end if
+    return typeset_out
 end typeset
 
 on preview_dvi()
