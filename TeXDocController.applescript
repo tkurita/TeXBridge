@@ -45,11 +45,11 @@ on resolve_parent(a_paragraph)
 		end tell
 		set tex_file to tex_file as POSIX file
 	end if
-	--tell me to log "tex_file : " & tex_file
+	--log "tex_file : " & tex_file
 	try
 		set tex_file to tex_file as alias
 	on error
-		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", {tex_file})
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", {tex_file as text})
 		error a_msg number 1220
 	end try
 	
