@@ -442,7 +442,7 @@ on quick_typeset_preview()
 	end if
 	
 	a_texdoc's set_use_term(false)
-	show_status_message("Typeseting...")
+	show_status_message("Typesetting ...")
 	--log "before typeset in quick_typeset_preview"
 	try
 		a_texdoc's typeset()
@@ -550,7 +550,7 @@ on typeset()
 	if a_texdoc is missing value then
 		return missing value
 	end if
-	show_status_message("Typeseting...")
+	show_status_message("Typesetting ...")
 	try
 		a_texdoc's typeset()
 	on error number 1250
@@ -564,10 +564,11 @@ on typeset()
 	end tell
     
 	if (autoMultiTypeset and (a_log_file_parser's labels_changed())) then
-		show_status_message("Typeseting...")
+		show_status_message("Typesetting ...")
 		try
 			a_texdoc's typeset()
 		on error number 1250
+            show_status_message("")
 			return missing value
 		end try
 		show_status_message("Analyzing log text ...")
@@ -583,7 +584,7 @@ on typeset()
         NSRunningApplication's activateSelf()
 	end if
     
-    set typeset_out to "missing value"
+    set typeset_out to missing value
 	if (a_log_file_parser's has_output()) then
         set typeset_out to lookup_typeset_output(a_texdoc, a_log_file_parser)
         if typeset_out is missing value then

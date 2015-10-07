@@ -593,6 +593,7 @@
 				2CE61F98184811FF00063F1B /* ShellScript */,
 				2CBD264D1B91E16400A761DF /* CopyFiles */,
 				2CBD264F1B91E1A500A761DF /* CopyFiles */,
+				2C273C091BC492A8009709C6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -697,6 +698,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C273C091BC492A8009709C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" = 'Release' ]; then\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\nfi";
+		};
 		2CE61F98184811FF00063F1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -874,7 +888,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 56;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
