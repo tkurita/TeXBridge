@@ -17,7 +17,7 @@ static NSDictionary *INTERNAL_REPLACE_DICT = nil;
 	NSString *a_result = nil;
 	NSDictionary *user_dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"UserReplaceInputDict"];
 	if (user_dict) {
-		a_result = [user_dict objectForKey:aKey];
+		a_result = user_dict[aKey];
 	}
 	
 	if (a_result) {
@@ -25,7 +25,7 @@ static NSDictionary *INTERNAL_REPLACE_DICT = nil;
 	}
 	
 	for (NSString *categoly_name in INTERNAL_REPLACE_DICT) {
-		a_result = [[INTERNAL_REPLACE_DICT objectForKey:categoly_name] objectForKey:aKey];
+		a_result = INTERNAL_REPLACE_DICT[categoly_name][aKey];
 		if (a_result) break;
 	}
 	return a_result;

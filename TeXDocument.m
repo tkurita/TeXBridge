@@ -9,7 +9,7 @@ static NSArray *SUPPORTED_MODES = nil;
 + (void)initialize
 {
 	if (! SUPPORTED_MODES) {
-		SUPPORTED_MODES = [NSArray arrayWithObjects:@"TEX", @"TeX", @"LaTeX", nil];
+		SUPPORTED_MODES = @[@"TEX", @"TeX", @"LaTeX"];
 	}
 }
 
@@ -18,13 +18,12 @@ static NSArray *SUPPORTED_MODES = nil;
 	miDocument *front_doc = nil;
 	TeXDocument *result = nil;
 	miApplication *mi_app = [SBApplication applicationWithBundleIdentifier:@"net.mimikaki.mi"];
-	if ([[[mi_app documents] objectAtIndex:0] exists]) {
-		front_doc = [[mi_app documents] objectAtIndex:0];
+	if ([[mi_app documents][0] exists]) {
+		front_doc = [mi_app documents][0];
 	} else {
 		NSString *reason = @"noDocument";
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1240 
-								 userInfo:[NSDictionary dictionaryWithObject:NSLocalizedString(reason, @"")
-																	  forKey:NSLocalizedDescriptionKey]];
+								 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(reason, @"")}];
 		return result;
 	}
 	NSString *mode = [front_doc mode];
@@ -32,8 +31,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		NSString *localized_format = NSLocalizedString(@"The mode setting of '%@' is invalid", @"");
 		NSString *reason = [NSString stringWithFormat:localized_format, [front_doc name]];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1205 
-								 userInfo:[NSDictionary dictionaryWithObject:reason
-																	  forKey:NSLocalizedDescriptionKey]];
+								 userInfo:@{NSLocalizedDescriptionKey: reason}];
 		return result;
 	}
 	
@@ -68,7 +66,7 @@ static NSArray *SUPPORTED_MODES = nil;
 {
 	TeXDocument *result = self;
 	miApplication *mi_app = [SBApplication applicationWithBundleIdentifier:@"net.mimikaki.mi"];
-	miDocument *front_doc = [[mi_app documents] objectAtIndex:0];
+	miDocument *front_doc = [mi_app documents][0];
 	SBElementArray *lines = [front_doc paragraphs];
 	NSString *line_content = nil;
 	NSString *masterfile_command = @"%ParentFile";
@@ -83,8 +81,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
 		NSString *reason = [NSString stringWithFormat:localized_format, @""];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
-								 userInfo:[NSDictionary dictionaryWithObject:reason
-																	  forKey:NSLocalizedDescriptionKey]];
+								 userInfo:@{NSLocalizedDescriptionKey: reason}];
 		return result;
 	}
 	
@@ -96,8 +93,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
 		NSString *reason = [NSString stringWithFormat:localized_format, @""];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
-								 userInfo:[NSDictionary dictionaryWithObject:reason
-																	  forKey:NSLocalizedDescriptionKey]];
+								 userInfo:@{NSLocalizedDescriptionKey: reason}];
 		return result;
 	}
 	
@@ -116,13 +112,12 @@ static NSArray *SUPPORTED_MODES = nil;
 		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is not Found", @"");
 		NSString *reason = [NSString stringWithFormat:localized_format, masterfile_path];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1220
-								 userInfo:[NSDictionary dictionaryWithObject:reason
-																	 forKey:NSLocalizedDescriptionKey]];
+								 userInfo:@{NSLocalizedDescriptionKey: reason}];
 		return result;
 	}
 	NSDictionary *info = [fm attributesOfItemAtPath:masterfile_path error:error];
 	if (!info) return result;
-	NSString *file_type = [info objectForKey:NSFileType];
+	NSString *file_type = info[NSFileType];
 	if ([file_type isEqualToString:NSFileTypeSymbolicLink]) {
 		masterfile_path = [fm destinationOfSymbolicLinkAtPath:masterfile_path error:error];
 		if (!masterfile_path) return result;
@@ -130,12 +125,11 @@ static NSArray *SUPPORTED_MODES = nil;
 		if (!info) return result;;
 	}
 	
-	if (![[info objectForKey:NSFileType] isEqualToString:NSFileTypeRegular]) {
+	if (![info[NSFileType] isEqualToString:NSFileTypeRegular]) {
 		NSString *localized_format = NSLocalizedString(@"ParentFile '%@' is invalid", @"");
 		NSString *reason = [NSString stringWithFormat:localized_format, masterfile_path];
 		*error = [NSError errorWithDomain:@"TeXBridgeErrorDomain" code:1230
-								userInfo:[NSDictionary dictionaryWithObject:reason
-																   forKey:NSLocalizedDescriptionKey]];
+								userInfo:@{NSLocalizedDescriptionKey: reason}];
 		return result;
 	}
 	

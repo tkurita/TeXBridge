@@ -24,7 +24,7 @@
             break;
     }
     
-    return [NSNumber numberWithInt:mode];
+    return @(mode);
 }
 
 - (id)reverseTransformedValue:(NSNumber *)number
@@ -38,7 +38,7 @@
             break;
     }
     
-    return [NSNumber numberWithInt:mode];
+    return @(mode);
 }
 
 @end

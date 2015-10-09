@@ -102,9 +102,9 @@ static id sharedLogManager;
 - (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
 {
     if (!item) {
-       return [_rootArray objectAtIndex:index];;
+       return _rootArray[index];;
     }
-    return [[item child] objectAtIndex:index];
+    return [item child][index];
 }
 
 /* itemから、指定した列の値を返します */
@@ -151,7 +151,7 @@ static id sharedLogManager;
 - (void)initRootItem
 {
 	self.rootArray = [NSMutableArray array];
-	self.rootItem = [NSDictionary dictionaryWithObjectsAndKeys:_rootArray, @"child", nil];
+	self.rootItem = @{@"child": _rootArray};
 }
 
 

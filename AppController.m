@@ -73,21 +73,21 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NSLog(@"anApplicationIsTerminated");
 #endif
 	NSDictionary *user_info = [aNotification userInfo];
-	NSString *identifier = [user_info objectForKey:@"NSApplicationBundleIdentifier"];
+	NSString *identifier = user_info[@"NSApplicationBundleIdentifier"];
 	if ([identifier isEqualToString:@"net.mimikaki.mi"] ) [[NSApplication sharedApplication] terminate:self];
 	
 }
 
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
-	id factorySetting = [_factoryDefaults objectForKey:theKey];
+	id factorySetting = _factoryDefaults[theKey];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:factorySetting forKey:theKey];
 }
 
 - (id)factoryDefaultForKey:(NSString *)theKey
 {
-	return [_factoryDefaults objectForKey:theKey];
+	return _factoryDefaults[theKey];
 }
 
 - (int)judgeVisibilityForApp:(NSDictionary *)appDict
@@ -102,7 +102,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 		return kShouldHide;
 	}
 	
-	NSString *app_name = [appDict objectForKey:@"NSApplicationName"];
+	NSString *app_name = appDict[@"NSApplicationName"];
 
 	if ([app_name isEqualToString:[EditorClient name]]) {
 		NSString *theMode;
@@ -113,7 +113,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 			#if useLog
 			NSLog(@"%@", [exception description]);
 			#endif
-			 NSNumber *err = [[exception userInfo] objectForKey:@"result code"];
+			 NSNumber *err = [exception userInfo][@"result code"];
 			 if ([err intValue] == -1704) {
 				 // maybe menu is opened
 				 return kShouldNotChange;

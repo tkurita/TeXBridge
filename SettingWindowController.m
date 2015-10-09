@@ -27,17 +27,16 @@
 	NSDictionary *a_dict = [ReplaceInputData internalReplaceDict];
 	self.arrangedInternalReplaceInputDict_ = [NSMutableArray array];
 	for (id category_name in a_dict ) {
-		id replace_dict = [a_dict objectForKey:category_name];
+		id replace_dict = a_dict[category_name];
 		NSMutableArray *replace_array = [NSMutableArray array];
 		for (id keytext in replace_dict) {
-			[replace_array addObject:[NSDictionary
-									  dictionaryWithObjectsAndKeys:keytext, @"key",
-									  [replace_dict objectForKey:keytext], @"value", nil]];
+			[replace_array addObject:@{@"key": keytext,
+									  @"value": replace_dict[keytext]}];
 		}
 		NSString *localized_category_name = NSLocalizedString(category_name, nil);
 		[_arrangedInternalReplaceInputDict_ addObject:
-			[NSDictionary dictionaryWithObjectsAndKeys: localized_category_name, @"key",
-				replace_array, @"children", nil]];
+			@{@"key": localized_category_name,
+				@"children": replace_array}];
 	}
 	return _arrangedInternalReplaceInputDict_;
 }
@@ -103,13 +102,13 @@
 				NSBundle *appBundle = [NSBundle bundleWithPath:app_path];
 				NSDictionary *loc_info_dict = [appBundle localizedInfoDictionary];
 				NSDictionary *info_dict = [appBundle infoDictionary];
-				app_name = [loc_info_dict objectForKey:@"CFBundleName"];
+				app_name = loc_info_dict[@"CFBundleName"];
 				if (app_name == nil)
-					app_name = [info_dict objectForKey:@"CFBundleName"];
+					app_name = info_dict[@"CFBundleName"];
 				if (app_name == nil)
-					app_name = [info_dict objectForKey:@"CFBundleExecutable"];
+					app_name = info_dict[@"CFBundleExecutable"];
 				
-				app_identifier = [info_dict objectForKey:@"CFBundleIdentifier"];
+				app_identifier = info_dict[@"CFBundleIdentifier"];
 			}
 			
 			if (app_name == nil)
@@ -122,9 +121,9 @@
 				NSImage *app_icon = [self convertToSize16Image:[workspace iconForFile:app_path]];
 				NSData *icon_data = [NSArchiver archivedDataWithRootObject:app_icon];
 				NSMutableDictionary *new_entry = [NSMutableDictionary dictionaryWithCapacity:3];
-				[new_entry setObject:app_name forKey:@"appName"];
-				[new_entry setObject:icon_data forKey:@"appIcon"];
-				if (app_identifier != nil) [new_entry setObject:app_identifier forKey:@"identifier"];
+				new_entry[@"appName"] = app_name;
+				new_entry[@"appIcon"] = icon_data;
+				if (app_identifier != nil) new_entry[@"identifier"] = app_identifier;
 				[appArrayController addObject:new_entry];
 			}
 		}
@@ -134,7 +133,7 @@
 - (IBAction)addApp:(id)sender
 {
 	NSOpenPanel *open_panel = [NSOpenPanel openPanel];
-	NSArray *fileTypes = [NSArray arrayWithObjects: @"app",NSFileTypeForHFSTypeCode('APPL'), nil];
+	NSArray *fileTypes = @[@"app",NSFileTypeForHFSTypeCode('APPL')];
 	[open_panel setAllowedFileTypes:fileTypes];
     [open_panel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
         [self appChooserDidEnd:open_panel withResult:result];
@@ -153,9 +152,9 @@
 	NSHelpManager *help_manager = [NSHelpManager sharedHelpManager];
 	NSBundle *main_bundle = [NSBundle mainBundle];
 	NSDictionary *info_dict = [main_bundle localizedInfoDictionary];
-	NSString *book_name = [info_dict objectForKey:@"CFBundleHelpBookName"];
+	NSString *book_name = info_dict[@"CFBundleHelpBookName"];
 	if (book_name == nil)
-		book_name = [[main_bundle infoDictionary] objectForKey:@"CFBundleHelpBookName"];
+		book_name = [main_bundle infoDictionary][@"CFBundleHelpBookName"];
 	
 	[help_manager openHelpAnchor:tab_name inBook:book_name];
 }

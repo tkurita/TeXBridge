@@ -277,8 +277,7 @@ bail:
 	
 	for (NSUInteger n=[_labelsFromAux count]; n < [child_nodes count]; n++) {
 		if (lab_count < n_labels_from_editor) {
-			[child_nodes replaceObjectAtIndex:n 
-						   withObject:[[_labelsFromEditor objectAtIndex:lab_count] treeNode]];
+			child_nodes[n] = [_labelsFromEditor[lab_count] treeNode];
 		} else {
 			[child_nodes removeObjectAtIndex:n];
 		}
@@ -286,7 +285,7 @@ bail:
 	}
 
 	for (NSUInteger n=lab_count; n < n_labels_from_editor; n++) {
-		[child_nodes addObject:[[_labelsFromEditor objectAtIndex:n] treeNode]];
+		[child_nodes addObject:[_labelsFromEditor[n] treeNode]];
 	}
 #if useLog
 	NSLog(@"end updateLabelsFromEditor");
@@ -309,9 +308,9 @@ bail:
 		for (id an_item in labels) {
 			NSTreeNode *new_node = [an_item treeNode];
 			if (update_index < pre_children_count) {
-				NSTreeNode *old_node = [child_nodes objectAtIndex:update_index];
+				NSTreeNode *old_node = child_nodes[update_index];
 				if (![old_node isEqual:new_node]) {
-					[child_nodes replaceObjectAtIndex:update_index withObject:new_node];
+					child_nodes[update_index] = new_node;
 				}
 			} else {
 				[child_nodes addObject:new_node];
@@ -394,9 +393,9 @@ bail:
             NSUInteger second_matches_count = [matches count];
             if ( second_matches_count > 3) { // hyperref
 				ref_name = [label_args substringWithRange:
-                            [[matches objectAtIndex:second_matches_count-2] rangeAtIndex:1]];
+                            [matches[second_matches_count-2] rangeAtIndex:1]];
 			} else {
-				ref_name = [label_args substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
+				ref_name = [label_args substringWithRange:[matches[0] rangeAtIndex:1]];
 			}
 			
 			if ( [label_name length] || ![label_name hasPrefix:@"SC@"]) {

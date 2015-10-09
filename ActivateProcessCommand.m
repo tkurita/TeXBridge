@@ -7,7 +7,7 @@
 	BOOL result = NO;
 	NSString *identifier = [self directParameter];
     if (!identifier) {
-        identifier = [[self arguments] objectForKey:@"identifier"];
+        identifier = [self arguments][@"identifier"];
     }
     if (identifier) {
         result = [NSRunningApplication activateAppOfIdentifier:identifier];

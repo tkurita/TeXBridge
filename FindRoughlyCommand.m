@@ -49,9 +49,9 @@ void showAEDesc(const AppleEvent *ev)
 	NSLog([[self evaluatedReceivers] description]);
 	NSLog(@"with source : %@", [[self arguments] objectForKey:@"withSource"]);
 #endif	
-	NSString *dvi_path = [[[self arguments] objectForKey:@"inDvi"] path];
-	NSString *source_name = [[self arguments] objectForKey:@"withSource"];
-	NSNumber *start_pos = [[self arguments] objectForKey:@"startLine"];
+	NSString *dvi_path = [[self arguments][@"inDvi"] path];
+	NSString *source_name = [self arguments][@"withSource"];
+	NSNumber *start_pos = [self arguments][@"startLine"];
 
 	NSString *tex_path;
 	if (source_name) {
@@ -67,7 +67,7 @@ void showAEDesc(const AppleEvent *ev)
     } else {
         NSLog(@"Can't find %@", tex_path);
     }
-	return [NSNumber numberWithInteger:0];
+	return @0;
 	//return [super performDefaultImplementation];
 }
 

@@ -213,7 +213,7 @@ void jumpToLabel(LabelDatum *targetLabel)
 		n--;
 	}
 	if (n > 0) {
-		[mi_client jumpToFileURL:target_url paragraph:[NSNumber numberWithInt:n]];
+		[mi_client jumpToFileURL:target_url paragraph:@(n)];
 	}	
 }
 
@@ -264,12 +264,12 @@ static NSString *EQREF_COMMAND = @"\\eqref";
 	}
 	
 	miApplication *mi_app = [SBApplication applicationWithBundleIdentifier:@"net.mimikaki.mi"];
-	miDocument *front_doc = [[mi_app documents] objectAtIndex:0];
-	miSelectionObject *first_selection = [[front_doc selectionObjects] objectAtIndex:0];
-	NSUInteger cursor_position = [[[first_selection insertionPoints] objectAtIndex:0] index];
+	miDocument *front_doc = [mi_app documents][0];
+	miSelectionObject *first_selection = [front_doc selectionObjects][0];
+	NSUInteger cursor_position = [[first_selection insertionPoints][0] index];
 	SBElementArray *paragraphs_in_selection = [first_selection elementArrayWithCode:'cpar'];
-	miParagraph *first_paragraph_in_selection = [paragraphs_in_selection objectAtIndex:0];
-	NSUInteger line_position = [[[first_paragraph_in_selection insertionPoints] objectAtIndex:0] index];
+	miParagraph *first_paragraph_in_selection = paragraphs_in_selection[0];
+	NSUInteger line_position = [[first_paragraph_in_selection insertionPoints][0] index];
 	NSUInteger position_in_line = cursor_position - line_position;
 	
 	NSString *text_before_cursor = @"";

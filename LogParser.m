@@ -8,10 +8,10 @@
 
 NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber, NSRange theRange) {
 	NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-	NSNumber * lineNumber = [NSNumber numberWithUnsignedInt:theNumber];
-	[dict setObject:logContents forKey:@"content"];
-	[dict setObject:lineNumber forKey:@"lineNumber"];
-	[dict setObject:[NSValue valueWithRange:theRange] forKey:@"range"];
+	NSNumber * lineNumber = @(theNumber);
+	dict[@"content"] = logContents;
+	dict[@"lineNumber"] = lineNumber;
+	dict[@"range"] = [NSValue valueWithRange:theRange];
 
 	return dict;
 }
@@ -35,7 +35,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	whitespaceCharSet = [NSCharacterSet whitespaceCharacterSet];
 	_isLabelsChanged = NO;
 	_errorRecordTree = [NSMutableArray array];
-	texFileExtensions = [NSArray arrayWithObjects:@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind",nil];
+	texFileExtensions = @[@".tex", @".cls", @".sty", @".aux", @".dtx", @".txt", @".bbl", @".ind"];
 	_isNoError = YES;
 	self.errorMessage = @"";
 	return self;
@@ -143,7 +143,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		return nil;
 	}
 	else {
-		logContent = [logTree objectForKey:@"content"];
+		logContent = logTree[@"content"];
 	}
 
 	if ([logContent length] < 1) {
@@ -174,10 +174,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		
 		while(object = [enumerator nextObject]) {
 			if ([object isKindOfClass: [NSMutableDictionary class]]) {
-				nextLogContent = [object objectForKey:@"content"];
+				nextLogContent = object[@"content"];
 			}
 			else {
-				nextLogContent = [[object objectAtIndex:0] objectForKey:@"content"];
+				nextLogContent = object[0][@"content"];
 			}
 			
 			if ([nextLogContent hasPrefix:@"l."]) {
@@ -185,7 +185,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 				NSString * scannedText;
 				if ([scanner scanUpToCharactersFromSet:whitespaceCharSet intoString:&scannedText]) {
 					errpInt =  [[scannedText substringWithRange:NSMakeRange(2,[scannedText length]-2)] intValue];
-					errpn = [NSNumber numberWithInt:errpInt];
+					errpn = @(errpInt);
 				}
 				
 				break;
@@ -202,7 +202,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		if (![logContent hasSuffix:@"."]) {
 			object = [enumerator nextObject];
 			if ([object isKindOfClass: [NSMutableDictionary class]]) {
-				errMsg = [logContent stringByAppendingString:[object objectForKey:@"content"]];
+				errMsg = [logContent stringByAppendingString:object[@"content"]];
 			}			
 		}
 		
@@ -211,9 +211,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		}
 		
 		NSMutableArray *wordList = [errMsg splitWithCharacterSet:whitespaceCharSet];
-		if ([[wordList objectAtIndex:([wordList count] -2)] isEqualToString:@"line"]) {
+		if ([wordList[([wordList count] -2)] isEqualToString:@"line"]) {
 			errpInt = [[wordList lastObject] intValue];
-			errpn = [NSNumber numberWithInt:errpInt];
+			errpn = @(errpInt);
 		}
 	}
 	
@@ -222,7 +222,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		NSMutableArray *wordList = [logContent splitWithCharacterSet:whitespaceCharSet];
 		NSScanner *scanner = [NSScanner scannerWithString:[wordList lastObject]];
 		if ([scanner scanInt:&errpInt]) {
-			errpn = [NSNumber numberWithInt:errpInt];	
+			errpn = @(errpInt);	
 		}
 	}
 	
@@ -241,7 +241,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
         NSMutableString *a_text = [NSMutableString stringWithString:logContent];
         if (![a_text hasSuffix:@")."]) {
             while(object = [enumerator nextObject]) {
-                NSString *next_log = [object objectForKey:@"content"];
+                NSString *next_log = object[@"content"];
                 [a_text appendString:next_log];
                 if ([next_log hasSuffix:@")."]) {
                     break;
@@ -272,7 +272,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	
 	if (errMsg != nil) {
 		return [self makeErrorRecordWithString:errMsg paragraph:errpn
-                                     textRange:[logTree objectForKey:@"range"]];
+                                     textRange:logTree[@"range"]];
 	}
 	else {
 		return nil;
@@ -282,7 +282,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 - (void) parseLogTreeFirstLevel:(NSMutableArray *)logTree
 {
 	NSEnumerator *enumerator = [logTree objectEnumerator];
-	NSString * targetFile = [[enumerator nextObject] objectForKey:@"content"];
+	NSString * targetFile = [enumerator nextObject][@"content"];
 	BOOL noLogFileRef = [targetFile isEqualToString:@""]; //when parsing STDOUT, targetFile will be ""
 
 	ErrorRecord *theErrorRecord;
@@ -293,7 +293,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 		theErrorRecord = [self findErrors:logItem withEnumerator:enumerator];
 		if (theErrorRecord) {
 			if (!noLogFileRef) {
-				[theErrorRecord setParagraph:[logItem objectForKey:@"lineNumber"]];
+				[theErrorRecord setParagraph:logItem[@"lineNumber"]];
 			}
  			[theErrorRecord setParent:self];
 			[errorRecordList addObject:theErrorRecord];
@@ -358,7 +358,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 - (NSString *) getTargetFilePath:(NSEnumerator *) enumerator
 {
 
-	NSString *targetFile = [[enumerator nextObject] objectForKey:@"content"];
+	NSString *targetFile = [enumerator nextObject][@"content"];
 	NSString *checkedPath;
 	checkedPath = [self checkTexFileExtensions:targetFile];
 	if (checkedPath){
@@ -366,7 +366,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	
 	if ([targetFile length] >= 79) {
-		NSString * nextCandidate = [targetFile stringByAppendingString:[[enumerator nextObject] objectForKey:@"content"]];
+		NSString * nextCandidate = [targetFile stringByAppendingString:[enumerator nextObject][@"content"]];
         checkedPath = [self checkTexFileExtensions:nextCandidate];
 		if (checkedPath) {
 			return checkedPath;

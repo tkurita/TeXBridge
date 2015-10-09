@@ -6,7 +6,7 @@
 - (id)performDefaultImplementation
 {
 	// NSLog(@"%@", [self appleEvent]);
-	NSAppleEventDescriptor *desc = [[self arguments] objectForKey:@"withScript"];
+	NSAppleEventDescriptor *desc = [self arguments][@"withScript"];
 	[[[AppController sharedAppController] texBridgeController] performTask:desc];
 	return nil;
 }

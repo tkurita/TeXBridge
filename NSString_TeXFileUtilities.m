@@ -17,7 +17,7 @@ static NSString *DVI_SOURCE_SPECIALS = @"DVISourceSpecials";
 
 - (BOOL)setHasSourceSpecials:(BOOL)aFlag
 {
-	NSNumber *a_flag = [NSNumber numberWithBool:aFlag];
+	NSNumber *a_flag = @(aFlag);
 	NSData *data = [[a_flag stringValue] dataUsingEncoding:NSUTF8StringEncoding];
 	return [self setExtendAttribute:data forName:DVI_SOURCE_SPECIALS
 												transverseLink:YES error:nil];
