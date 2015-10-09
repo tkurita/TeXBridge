@@ -400,12 +400,20 @@ on bibtex()
 end bibtex
 
 on lookup_typeset_output(a_texdoc, a_log_parser)
-    set a_name to a_log_parser's output_file()
-    set outfile to a_texdoc's tex_file()'s change_name(a_name)
-    if not outfile's item_exists() then
-        return missing value
+    set a_name to a_log_parser's output_file() as text
+    if a_name is "missing value" then
+        if a_log_parser's is_dvi_output() then
+            set outfile to a_texdoc's tex_file()'s change_path_extension("dvi")
+        else
+            set outfile to a_texdoc's tex_file()'s change_path_extension("pdf")
+        end if
+    else
+        set outfile to a_texdoc's tex_file()'s change_name(a_name)
+        if not outfile's item_exists() then
+            return missing value
+        end if
     end if
-
+    
     if a_log_parser's is_dvi_output()
         tell DVIController's make_with(a_texdoc)
             set_dvifile(outfile)

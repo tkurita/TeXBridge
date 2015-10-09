@@ -153,8 +153,6 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
     static NSRegularExpression *output_regexp = nil;
     if (!output_regexp) {
         NSError *error = nil;
-        //output_regexp = [NSRegularExpression regularExpressionWithPattern:
-        //                 @"\\s*(.+\\.(dvi|pdf))"
         output_regexp = [NSRegularExpression regularExpressionWithPattern:
                                           @"\\s*(\\\"?)(.+\\.(dvi|pdf))\\1"
                                                 options:0 error:&error];
@@ -240,16 +238,32 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	}
 	
 	else if ([logContent hasPrefix:@"Output written on"]) {
+        NSMutableString *a_text = [NSMutableString stringWithString:logContent];
+        if (![a_text hasSuffix:@")."]) {
+            while(object = [enumerator nextObject]) {
+                NSString *next_log = [object objectForKey:@"content"];
+                [a_text appendString:next_log];
+                if ([next_log hasSuffix:@")."]) {
+                    break;
+                }
+            }
+        }
         NSTextCheckingResult *result = [output_regexp
-                                firstMatchInString:logContent
+                                firstMatchInString:a_text
                                   options:0
                                 range:NSMakeRange(17, logContent.length-17)];
 #if useLog
-        NSLog(@"%@", [logContent substringWithRange:[result rangeAtIndex:1]]);
+        NSLog(@"%@", [a_text substringWithRange:[result rangeAtIndex:1]]);
 #endif
-        self.outputFile = [logContent substringWithRange:[result rangeAtIndex:2]];
+        if (result) {
+            self.outputFile = [a_text substringWithRange:
+                                        [result rangeAtIndex:2]];
+            _isDviOutput = [_outputFile hasSuffix:@".dvi"];
+        } else {
+            _isDviOutput = [a_text contain:@".dvi"];
+        }
+        
         _hasOutput = YES;
-		_isDviOutput = [_outputFile hasSuffix:@".dvi"];
 	}
 	
 #if useLog

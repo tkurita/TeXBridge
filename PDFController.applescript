@@ -389,13 +389,13 @@ script AutoDriver
         
         if ("com.adobe.Reader" is app_id) then
             set a_driver to AdobeReaderDriver
-            else if ("com.adobe.Acrobat.Pro" is app_id) then
+        else if ("com.adobe.Acrobat.Pro" is app_id) then
             set a_driver to AcrobatDriver
-            else if ("com.apple.Preview" is app_id) then
+        else if ("com.apple.Preview" is app_id) then
             set a_driver to ReloadablePreviewDriver
-            else if ("net.sourceforge.skim-app.skim" is app_id) then
+        else if ("net.sourceforge.skim-app.skim" is app_id) then
             set a_driver to SkimDriver
-            else
+        else
 			set a_driver to GenericDriver
 		end if
         a_pdf's append_aux_record({target_driver: a_driver})
