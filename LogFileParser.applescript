@@ -26,6 +26,10 @@ on is_no_error()
 	return my _logParserCore's isNoError() as boolean
 end is_no_error
 
+on is_found_outputfile()
+    return my _logParserCore's isFoundOutputfile() as boolean
+end is_found_outputfile
+
 on labels_changed()
 	return my _logParserCore's isLabelsChanged() as boolean
 end labels_changed

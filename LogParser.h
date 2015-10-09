@@ -31,6 +31,7 @@
 - (NSMutableArray *) parseLog;
 -(void) setBaseURLWithPath:(NSString *)path;
 - (void)setupJobName:(NSString *)jobName;
+- (BOOL)isFoundOutputfile;
 
 #pragma mark private
 @property NSString *currentString;

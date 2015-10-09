@@ -657,6 +657,11 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 }
 
 #pragma mark accessor methods
+- (BOOL)isFoundOutputfile
+{
+    return _outputFile ? YES : NO;
+}
+
 - (void)setupJobName:(NSString *)jobName
 {
 	NSString *timeStamp = [[NSDate date] descriptionWithCalendarFormat:@" :%Y-%m-%d %H:%M:%S" timeZone:nil locale:nil];
