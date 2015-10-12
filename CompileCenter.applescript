@@ -420,25 +420,28 @@ on lookup_typeset_output(a_texdoc, a_log_parser)
     end script
 
     set a_name to a_log_parser's output_file()
-
     if a_log_parser's is_found_outputfile() then
         set outfile to a_texdoc's tex_file()'s change_name(a_name)
+        if outfile's item_exists() then
+            if a_log_parser's is_dvi_output()
+                return run DVIControllerMaker
+            else
+                return run PDFControllerMaker
+            end if
+        end if
+    end if
+
+    if a_log_parser's is_dvi_output() then
+        set outfile to a_texdoc's tex_file()'s change_path_extension("dvi")
         if not outfile's item_exists() then
             return missing value
         end if
-    else
-        if a_log_parser's is_dvi_output() then
-            set outfile to a_texdoc's tex_file()'s change_path_extension("dvi")
-            return run DVIControllerMaker
-        else
-            set outfile to a_texdoc's tex_file()'s change_path_extension("pdf")
-            return run PDFControllerMaker
-        end if
-    end if
-    
-    if a_log_parser's is_dvi_output()
         return run DVIControllerMaker
     else
+        set outfile to a_texdoc's tex_file()'s change_path_extension("pdf")
+        if not outfile's item_exists() then
+            return missing value
+        end if
         return run PDFControllerMaker
     end if
 end lookup_typeset_output
