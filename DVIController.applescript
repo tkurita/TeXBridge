@@ -435,10 +435,12 @@ end lookup_dvi
 
 on set_dvifile(a_xfile)
 	set my _dvifile to a_xfile
+    return me
 end set_dvifile
 
 on set_log_parser(a_log_parser)
 	set my _log_parser to a_log_parser
+    return me
 end set_log_parser
 
 on log_parser()

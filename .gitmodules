@@ -25,9 +25,6 @@
 [submodule "LibraryScripts/XText.scptd"]
 	path = LibraryScripts/XText.scptd
 	url = https://github.com/tkurita/XText.scptd.git
-[submodule "LibraryScripts/FrontAccess.scptd"]
-	path = LibraryScripts/FrontAccess.scptd
-	url = https://github.com/tkurita/FrontAccess.scptd.git
 [submodule "LibraryScripts/XHandler.scptd"]
 	path = LibraryScripts/XHandler.scptd
 	url = https://github.com/tkurita/XHandler.scptd.git
@@ -49,3 +46,6 @@
 [submodule "LibraryScripts/miClient.scptd"]
 	path = LibraryScripts/miClient.scptd
 	url = https://github.com/tkurita/miClient.scptd.git
+[submodule "TXFrontAccess"]
+	path = TXFrontAccess
+	url = https://github.com/tkurita/TXFrontAccess.git

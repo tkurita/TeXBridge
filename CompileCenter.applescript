@@ -137,12 +137,19 @@ end logParseOnly
 
 on preview_dvi_for_frontdoc()
 	--log "start preview_dvi_for_frontdoc"
-	try
-		set a_file to (make FrontAccess)'s document_alias()
-	on error number 1750
-		return false
-	end try
-	set a_xfile to PathInfo's make_with(a_file)
+    set a_front to FrontAccess's frontAccessForFrontmostApp()
+    set frontdoc to a_front's documentURL()
+    if frontdoc is missing value then
+        log a_front's |error|()'s localizedDescription()
+        (*
+        tell current application's NSApp
+            presentError_(a_front's |error|())
+        end tell
+         *)
+        return false
+    end if
+
+	set a_xfile to PathInfo's make_with(frontdoc's |path|() as text)
 	if a_xfile's path_extension() is "dvi" then
 		return true
 	end if
@@ -217,26 +224,25 @@ end dvi_from_editor
 
 on dvi_from_frontmost()
 	--log "start dvi_from_frontmost"
-	set a_front to make FrontAccess
-	try
-		set file_url to a_front's document_url()
-	on error msg number errno
-		log msg
-		set file_url to missing value
-	end try
-	if file_url is missing value then
-		return missing value
-	end if
-	if file_url does not end with ".dvi" then
-		return missing value
-	end if
-	
-	tell current application's class "NSURL"
-		set a_path to (URLWithString_(file_url)'s |path|()) as text
-	end tell
-	
-	set a_texdoc to TeXDocController's make_with_dvifile(a_path)
-	set a_dvi to DVIController's make_with(a_texdoc)'s lookup_file()
+    set a_front to FrontAccess's frontAccessForFrontmostApp()
+    set frontdoc to a_front's documentURL()
+    if frontdoc is missing value then
+        log a_front's |error|()'s localizedDescription()
+        (*
+        tell current application's NSApp
+            presentError_(a_front's |error|())
+        end tell
+         *)
+        return missing value
+    end if
+    
+    set a_path to frontdoc's |path|() as text
+    set a_xfile to XFile's make_with(a_path)
+    if a_xfile's path_extension() is not "dvi" then
+        return missing value
+    end if
+    set a_texdoc to TeXDocController's make_with_dvifile(a_path)
+    set a_dvi to DVIController's make_with(a_texdoc)'s set_dvifile(a_xfile)
 	--log "end dvi_from_frontmost"
 	return a_dvi
 end dvi_from_frontmost
@@ -619,7 +625,9 @@ end typeset
 on preview_dvi()
 	--log "start preview_dvi"
 	if not EditorClient's is_frontmost() then
-		if preview_dvi_for_frontdoc() then return
+		if preview_dvi_for_frontdoc() then
+            return
+        end if
 	end if
 	
 	try
@@ -628,7 +636,7 @@ on preview_dvi()
 		a_texdoc's set_use_term(true)
 	on error msg number errno
 		if errno is not in my _ignoring_errors then
-			show_error(errno, "preview_dvi", msg) of UtilityHandlers
+			UtilityHandlers's show_error(errno, "preview_dvi", msg)
 		end if
 		return
 	end try
@@ -640,7 +648,7 @@ on preview_dvi()
 		try
 			open_dvi of a_dvi with activation
 		on error msg number errno
-			show_error(errno, "preview_dvi", msg) of UtilityHandlers
+			UtilityHandlers's show_error(errno, "preview_dvi", msg)
 		end try
 	else
 		set dviName to name_for_suffix("dvi") of a_texdoc

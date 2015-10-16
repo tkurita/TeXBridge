@@ -16,6 +16,8 @@
 		2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */; };
 		2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D916DC5DB70005A62A /* helpIcon.png */; };
 		2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F664D1BB184BB003E0E24 /* ReadMe.txt */; };
+		2C1D0BB71BD08C1900C99A1D /* TXFrontAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D0BB51BD08C1900C99A1D /* TXFrontAccess.m */; };
+		2C1D0BB81BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0BB61BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4095B516A79B120085CB9D /* NewReferencePalette.nib */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
@@ -55,7 +57,6 @@
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
-		2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
 		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; };
 		2CBD26E91B93DFA800A761DF /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
@@ -160,6 +161,9 @@
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
 		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
 		2C0F664D1BB184BB003E0E24 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		2C1D0BB41BD08C1900C99A1D /* TXFrontAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXFrontAccess.h; sourceTree = "<group>"; };
+		2C1D0BB51BD08C1900C99A1D /* TXFrontAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXFrontAccess.m; sourceTree = "<group>"; };
+		2C1D0BB61BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TXFrontAccessLocalizedStrings.strings; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C4095B616A79B120085CB9D /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				2C4099BB16AECE4C0085CB9D /* History.rtf */,
 				2C0BE33416DB872D0005A62A /* Error Numbers.rtf */,
 				2C0F664D1BB184BB003E0E24 /* ReadMe.txt */,
+				2C1D0BB31BD08C1900C99A1D /* TXFrontAccess */,
 				2CBD26F01B941C7B00A761DF /* miClientLib */,
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
@@ -419,6 +424,16 @@
 			name = ToolPalette;
 			sourceTree = "<group>";
 		};
+		2C1D0BB31BD08C1900C99A1D /* TXFrontAccess */ = {
+			isa = PBXGroup;
+			children = (
+				2C1D0BB41BD08C1900C99A1D /* TXFrontAccess.h */,
+				2C1D0BB51BD08C1900C99A1D /* TXFrontAccess.m */,
+				2C1D0BB61BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings */,
+			);
+			path = TXFrontAccess;
+			sourceTree = "<group>";
+		};
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +493,8 @@
 		2CB63A5D08CF038D002FCC88 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */,
+				2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */,
 				2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */,
 				2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */,
 			);
@@ -563,8 +580,6 @@
 				2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */,
 				2CD5554C08BEC77E007E43D1 /* AppController.h */,
 				2CD5554D08BEC77E007E43D1 /* AppController.m */,
-				2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */,
-				2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */,
 				2CDACD7F0813BE3F000B9086 /* LogParser.h */,
 				2CDACD820813BE3F000B9086 /* LogParser.m */,
 				2CDBE608097BA7FE00C3300B /* LogWindowController.h */,
@@ -692,6 +707,7 @@
 				2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */,
 				2CCDB79217DDF43C00E98804 /* TeXBridge.sdef in Resources */,
 				2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */,
+				2C1D0BB81BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,7 +765,6 @@
 				2C4E27D9084273B000004A96 /* LogParser.m in Sources */,
 				2CD553F008BCDEB8007E43D1 /* SettingWindowController.m in Sources */,
 				2CD5554F08BEC77F007E43D1 /* AppController.m in Sources */,
-				2CA3F86008BEE2AB00F997B9 /* ToolPaletteController.m in Sources */,
 				2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */,
 				2C6CA39808CF5558005D5612 /* NewRefPanelController.m in Sources */,
 				2CDBE60B097BA7FE00C3300B /* LogWindowController.m in Sources */,
@@ -777,6 +792,7 @@
 				2CC824911B949088008B47AC /* WindowVisibilityController.m in Sources */,
 				2CC824921B949088008B47AC /* PathExtra.m in Sources */,
 				2CC824931B949088008B47AC /* StringExtra.m in Sources */,
+				2C1D0BB71BD08C1900C99A1D /* TXFrontAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,7 +904,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 60;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",

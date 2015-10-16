@@ -7,7 +7,6 @@ script TeXBridgeController
 	property XList : module
 	property XText : module
 	property XHandler : module
-	property FrontAccess : module
 	property PathInfo : module
 	property GUIScriptingChecker : module
 	property TerminalCommanderBase : module "TerminalCommander"
@@ -52,7 +51,8 @@ script TeXBridgeController
 	property NSPasteboard : class "NSPasteboard"
 	property LogWindowController : class "LogWindowController"
 	property LogParser : class "LogParser"
-	
+	property FrontAccess : class "TXFrontAccess"
+    
 	on import_script(a_name)
 		--log "start import_script"
 		set a_script to load script (path to resource a_name & ".scpt")
