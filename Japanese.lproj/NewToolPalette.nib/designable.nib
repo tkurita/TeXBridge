@@ -37,7 +37,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="73020557">
-				<int key="NSWindowStyleMask">159</int>
+				<int key="NSWindowStyleMask">155</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{162, 478}, {250, 16}}</string>
 				<int key="NSWTFlags">1685594112</int>
@@ -240,7 +240,6 @@
 							<string key="NSFrame">{{4, 0}, {240, 16}}</string>
 							<reference key="NSSuperview" ref="393433591"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="474693032">
 								<int key="NSCellFlags">67108864</int>
