@@ -49,3 +49,6 @@
 [submodule "TXFrontAccess"]
 	path = TXFrontAccess
 	url = https://github.com/tkurita/TXFrontAccess.git
+[submodule "ImageAndTextCell"]
+	path = ImageAndTextCell
+	url = https://github.com/tkurita/ImageAndTextCell.git
