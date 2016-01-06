@@ -15,19 +15,20 @@ property _float_enviroments : {"figure", "wrapfigure"}
 property _figlabel_prefix : "fig:"
 
 (* values in plist file *)
-property _incGraphicCommand : "\\includegraphics"
+property _backslash : character id 92
+property _incGraphicCommand : _backslash&"includegraphics"
 property _incGraphicBlock : missing value
---property _labelCommand : "\\label"
-property _labelBracket : "\\label{"
-property _beginBracket : "\\begin{"
-property _endBracket : "\\end{"
+--property _labelCommand : _backslash&"label"
+property _labelBracket : _backslash&"label{"
+property _beginBracket : _backslash&"begin{"
+property _endBracket : _backslash&"end{"
+property _scanner_source : missing value
+property _env_scanner: missing value
+
 
 on debug()
-	boot (module loader of application (get "TeXToolsLib")) for me
-	set my _texbridge to make TeXBridgeProxy
-	if my _texbridge is missing value then
-		return
-	end if
+	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+	set PathInfo to loader's load("PathInfo")
 	
 	set target_file to EditorClient's document_file_as_alias()
 	if target_file is missing value then
@@ -36,23 +37,37 @@ on debug()
 		return
 	end if
 	
-	--set PathInfo to load module "PathInfo"
 	set target_file to PathInfo's make_with(target_file)
 	set a_folder to target_file's parent_folder()
 	
 	set a_file to choose file with prompt "Choose a file to insert." default location a_folder's as_alias() without invisibles
-	do(a_file, target_file)
+	tell make_with_texbridge(make TeXBridgeProxy)
+		do(PathInfo's make_with(a_file), target_file)
+	end tell
 end debug
 
 on debug2()
+	set loader to boot (module loader of application (get "TeXToolsLib")) for me
 	set my _texbridge to make TeXBridgeProxy
 	EnvScanner's initialize()
 	is_in_float_env()
 end debug2
 
+on debug3()
+	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+	set PathInfo to loader's load("PathInfo")
+	
+	set target_file to EditorClient's document_file_as_alias()
+	set insert_file to PathInfo's make_with("/Users/tkurita/WorkSpace/加速器勉強会/イオン源プラズマ-slide/figure/parallel-magnetic-field.pdf")
+	tell make_with_texbridge(make TeXBridgeProxy)
+		do(insert_file, PathInfo's make_with(target_file))
+	end tell
+end debug3
+
 on run
+	debug3()
 	--debug2()
-	debug()
+	--debug()
 end run
 
 on make
@@ -60,6 +75,8 @@ on make
 	script InsertFileInstance
 		property parent : a_class
 		property _texbridge : missing value
+		property _scanner_source : make ScannerSource
+		property _env_scanner : missing value
 		property _incGraphicBlock : my _incGraphicBlock
 		property _incGraphicCommand : my _incGraphicCommand
 		property _labelBracket : my _labelBracket
@@ -140,10 +157,10 @@ end insert_source
 
 on insert_graphic(a_pathinfo)
 	set rel_path to relative_path of PathConverter for a_pathinfo's posix_path()
-	EnvScanner's initialize()
+	set my _env_scanner to EnvScanner's make_with(my _texbridge)
 	set my _incGraphicCommand to my _texbridge's plist_value("incGraphicCommand")
-	set my _beginBracket to (EnvScanner's begin_text() & "{")
-	set my _endBracket to (EnvScanner's end_text() & "{")
+	set my _beginBracket to (my _env_scanner's begin_text() & "{")
+	set my _endBracket to (my _env_scanner's end_text() & "{")
 	set label_name to XText's make_with(_figlabel_prefix & a_pathinfo's basename())'s replace("_", "-")'s as_unicode()
 	if not change_graphic_command(rel_path, label_name) then
 		insert_graphic_commands(rel_path, label_name)
@@ -181,23 +198,23 @@ on do(a_pathinfo, tex_file)
 end do
 
 on is_in_float_env()
-	if ScannerSource's cursor_position() is 1 then
+	if my _scanner_source's cursor_position() is 1 then
 		return false
 	end if
-	set beg_rec to EnvScanner's find_begin()
-	if beg_rec is missing value then
-		return false
-	end if
+	set beg_rec to my _env_scanner's find_begin()
 	
 	repeat 5 times
-		--log beg_rec
+		if beg_rec is missing value then
+			return false
+		end if
+		
 		set env_name to enviroment of beg_rec
 		if env_name is in my _float_enviroments then
 			return true
 		else if env_name is "document" then
 			return false
 		end if
-		set beg_rec to EnvScanner's find_next_begin()
+		set beg_rec to my _env_scanner's find_next_begin()
 	end repeat
 	
 	return false
@@ -263,7 +280,7 @@ on findCommandInSameEnvAfter(target_text, targetCommand, new_value)
 end findCommandInSameEnvAfter
 
 (*
-@param a_command : ex) "\input"
+@param a_command : ex) "input"
 @param a_tex : 
 @param a_pos : caret position in a_text. The caret at the beginning of a_text is 0.
 @param a_path : a relative path
@@ -296,12 +313,8 @@ on change_command_param(a_command, a_text, a_pos, a_path)
 end change_command_param
 
 on change_graphic_command(graphicPath, labelName)
-	(*
-	set par_position to ScannerSource's paragraph_position()
-	set caret_in_par to ScannerSource's cursor_in_paragraph()
-	*)
-	set selection_rec to ScannerSource's selection_info()
-	set current_line to ScannerSource's current_text()
+	set selection_rec to my _scanner_source's selection_info()
+	set current_line to my _scanner_source's current_text()
 	set new_text to change_command_param(my _incGraphicCommand, current_line, cursorInParagraph of selection_rec, graphicPath)
 	if new_text is missing value then
 		return false
