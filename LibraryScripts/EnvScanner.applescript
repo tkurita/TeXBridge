@@ -18,20 +18,15 @@ property _target_text : missing value
 property _scanner_source : missing value
 
 on debug()
-	
+	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+	tell make_with(make (loader's load("TeXBridgeProxy")))
+		log find_begin()
+		find_next_begin()
+	end tell
 end debug
 
 on run
-	--getEnvName(("\\begin{gather} "), 6)
-	--find_endPosition((" \\end{gather}"))
-	try
-		main()
-		--debug()
-	on error msg number errno
-		if errno is not -128 then
-			display alert msg
-		end if
-	end try
+	debug()
 end run
 
 on begin_text()
@@ -281,7 +276,7 @@ on find_next_begin()
 			end if
 		end if
 	end repeat
-	return missing value
+	return missing value -- should consider no next enviroment
 end find_next_begin
 
 on find_begin()
