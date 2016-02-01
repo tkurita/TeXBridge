@@ -40,8 +40,8 @@ extern id EditorClient;
                                        (__bridge CFURLRef)_targetURL,
                                        0, NULL, NULL, &error));
     if (error) {
-        NSLog(@"Failed to CFURLCreateBookmarkDataFromFile: %@", (__bridge NSError *)error);
-        [NSApp presentError: (__bridge NSError *)error];
+        NSLog(@"Failed to CFURLCreateBookmarkDataFromFile with error :%@ for path : %@", (__bridge NSError *)error, [_targetURL path]);
+        //[NSApp presentError: (__bridge NSError *)error];
         CFRelease(error);
         return NO;
     }

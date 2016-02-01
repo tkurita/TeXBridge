@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0315700AAD154A005B592F /* HelpSetup.plist */; };
-		2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */; };
 		2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC5A16D783470005A62A /* tag-gray-16.png */; };
 		2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC6616D783A20005A62A /* mi-document.icns */; };
 		2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */; };
@@ -19,6 +18,7 @@
 		2C1D0BB71BD08C1900C99A1D /* TXFrontAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D0BB51BD08C1900C99A1D /* TXFrontAccess.m */; };
 		2C1D0BB81BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C1D0BB61BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
+		2C2D93FD1C312391005D8C3E /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */; };
 		2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4095B516A79B120085CB9D /* NewReferencePalette.nib */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
 		2C4095D716A8C3E60085CB9D /* TeXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4095D516A8C3E60085CB9D /* TeXDocument.m */; };
@@ -150,8 +150,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C03136E0AAD0F21005B592F /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = DonationReminder/build/Release/DonationReminder.framework; sourceTree = SOURCE_ROOT; };
 		2C0315700AAD154A005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpSetup.plist; sourceTree = "<group>"; };
-		2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
-		2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
 		2C0BDC5A16D783470005A62A /* tag-gray-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-gray-16.png"; sourceTree = "<group>"; };
 		2C0BDC6616D783A20005A62A /* mi-document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "mi-document.icns"; sourceTree = "<group>"; };
 		2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-blue-16.png"; sourceTree = "<group>"; };
@@ -164,6 +162,8 @@
 		2C1D0BB41BD08C1900C99A1D /* TXFrontAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXFrontAccess.h; sourceTree = "<group>"; };
 		2C1D0BB51BD08C1900C99A1D /* TXFrontAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXFrontAccess.m; sourceTree = "<group>"; };
 		2C1D0BB61BD08C1900C99A1D /* TXFrontAccessLocalizedStrings.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TXFrontAccessLocalizedStrings.strings; sourceTree = "<group>"; };
+		2C2D93FB1C312391005D8C3E /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
+		2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
 		2C4095B616A79B120085CB9D /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
@@ -357,6 +357,7 @@
 				2CBD26F01B941C7B00A761DF /* miClientLib */,
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
 				2C4096E816A95F850085CB9D /* ReferencePalette */,
+				2C2D93FA1C312391005D8C3E /* ImageAndTextCell */,
 				2CC824821B949088008B47AC /* PaletteWindowController */,
 				2CC824891B949088008B47AC /* PathExtra */,
 				2CC8248C1B949088008B47AC /* StringExtra */,
@@ -434,11 +435,18 @@
 			path = TXFrontAccess;
 			sourceTree = "<group>";
 		};
+		2C2D93FA1C312391005D8C3E /* ImageAndTextCell */ = {
+			isa = PBXGroup;
+			children = (
+				2C2D93FB1C312391005D8C3E /* ImageAndTextCell.h */,
+				2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */,
+			);
+			path = ImageAndTextCell;
+			sourceTree = "<group>";
+		};
 		2C4096E816A95F850085CB9D /* ReferencePalette */ = {
 			isa = PBXGroup;
 			children = (
-				2C0BDB2516D75A410005A62A /* ImageAndTextCell.h */,
-				2C0BDB2616D75A410005A62A /* ImageAndTextCell.m */,
 				2C4095D416A8C3E60085CB9D /* TeXDocument.h */,
 				2C4095D516A8C3E60085CB9D /* TeXDocument.m */,
 				2C40972416A96F410085CB9D /* LabelDatum.h */,
@@ -778,7 +786,6 @@
 				2C40972716A96F410085CB9D /* LabelDatum.m in Sources */,
 				2C40973116AA4D820085CB9D /* ReferenceDataController.m in Sources */,
 				2C40983A16AD578D0085CB9D /* AuxFile.m in Sources */,
-				2C0BDB2816D75A410005A62A /* ImageAndTextCell.m in Sources */,
 				2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */,
 				2CCDB78F17DDF38F00E98804 /* PerformScriptCommand.m in Sources */,
 				2CCDB79717DDF4FC00E98804 /* ShowHelpCommand.m in Sources */,
@@ -793,6 +800,7 @@
 				2CC824921B949088008B47AC /* PathExtra.m in Sources */,
 				2CC824931B949088008B47AC /* StringExtra.m in Sources */,
 				2C1D0BB71BD08C1900C99A1D /* TXFrontAccess.m in Sources */,
+				2C2D93FD1C312391005D8C3E /* ImageAndTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
