@@ -274,6 +274,8 @@
 		2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_TeXFileUtilities.m; sourceTree = "<group>"; };
 		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
+		2CFB3A9C1C5FD2ED002E91D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
+		2CFB3A9E1C5FD307002E91D5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -535,6 +537,7 @@
 		2CC824891B949088008B47AC /* PathExtra */ = {
 			isa = PBXGroup;
 			children = (
+				2CFB3A9B1C5FD2ED002E91D5 /* PathExtra_Localizable.strings */,
 				2CC8248A1B949088008B47AC /* PathExtra.h */,
 				2CC8248B1B949088008B47AC /* PathExtra.m */,
 			);
@@ -647,6 +650,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
@@ -866,6 +870,15 @@
 				2CBFCF12097CFF8700BCEB43 /* Japanese */,
 			);
 			name = LogWindow.nib;
+			sourceTree = "<group>";
+		};
+		2CFB3A9B1C5FD2ED002E91D5 /* PathExtra_Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CFB3A9C1C5FD2ED002E91D5 /* en */,
+				2CFB3A9E1C5FD307002E91D5 /* ja */,
+			);
+			name = PathExtra_Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
