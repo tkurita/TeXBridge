@@ -925,7 +925,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 61;
+				CURRENT_PROJECT_VERSION = 62;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -986,9 +986,11 @@
 		2C6D92E10928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1001,9 +1003,11 @@
 					ppc,
 					i386,
 				);
+				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1011,9 +1015,11 @@
 		2C6D92E40928239E005774F8 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
 			name = Default;
