@@ -31,40 +31,40 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>TeXBridge</string>
-	<key>CFBundleVersion</key>
-	<string>62</string>
-	<key>CFBundleShortVersionString</key>
-	<string>${PRODUCT_VERSION}</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>${COPYRIGHT}</string>
 	<key>CFBundleGetInfoString</key>
 	<string>${PRODUCT_VERSION} ${COPYRIGHT}</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TeXBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>TeX Tools for mi ヘルプ</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.8</string>
 	<key>CFBundleIconFile</key>
 	<string>TeXBridge</string>
 	<key>CFBundleIdentifier</key>
-	<string>TeXBridge</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>TeXBridge</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleSignature</key>
 	<string>TeXB</string>
+	<key>CFBundleVersion</key>
+	<string>62</string>
+	<key>DonationURL</key>
+	<string>http://www.script-factory.net/donationproxy.html</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.8</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>${COPYRIGHT}</string>
 	<key>NSMainNibFile</key>
 	<string>TeXBridge</string>
-	<key>DonationURL</key>
-	<string>http://www.script-factory.net/donationproxy.html</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>

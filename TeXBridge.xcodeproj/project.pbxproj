@@ -58,9 +58,9 @@
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
-		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; };
+		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2CBD26E91B93DFA800A761DF /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
-		2CBD26EC1B94137100A761DF /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
+		2CBD26EC1B94137100A761DF /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2CBD26F51B94303900A761DF /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD26EF1B941C7B00A761DF /* miClient.m */; };
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
@@ -639,7 +639,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -887,7 +887,6 @@
 		2C6D92DC0928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -907,6 +906,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
 				PRODUCT_NAME = TeXBridge;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -921,7 +921,6 @@
 		2C6D92DD0928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -941,6 +940,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				OTHER_OSAFLAGS = "-x";
+				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
 				PRODUCT_NAME = TeXBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -956,7 +956,6 @@
 		2C6D92DF0928239E005774F8 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "";
@@ -972,6 +971,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
 				PRODUCT_NAME = TeXBridge;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -987,9 +987,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
@@ -998,15 +1000,10 @@
 		2C6D92E20928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					ppc,
-					i386,
-				);
 				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
@@ -1018,7 +1015,7 @@
 				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_VERSION = 4.0.5;
 				SDKROOT = macosx;
 			};
