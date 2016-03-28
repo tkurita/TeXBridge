@@ -49,7 +49,6 @@ on buildup()
 	end script
 
 	tell TerminalCommanderExtend
-        set_use_osax_for_customtitle(false)
         set_custom_title(appController's factoryDefaultForKey_("CustomTitle") as text)
         return it
     end tell
