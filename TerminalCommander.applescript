@@ -11,7 +11,7 @@ on buildup()
 			tell NSUserDefaults's standardUserDefaults()
 				set activate_flag to boolForKey_("ActivateTerminal") as boolean
 			end tell
-			do_command for a_command given activation:activate_flag
+            do_with({command:a_command, with_activation:activate_flag})
 		end send_command
 		
 		on activate_terminal()

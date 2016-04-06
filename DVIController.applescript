@@ -56,7 +56,7 @@ script XdviDriver
 			set dvi_command to dvi_command's replace("%editor", quoted form of ("open " & mi_path & " -n --args '%f' +%l"))
 			set dvi_command to dvi_command's replace(" -unique", "")
 			set all_command to cd_command & _com_delim & dvi_command's as_text() & space & quoted form of dvi_file_name & " &"
-			do_command of target_term for all_command without activation
+            target_term's do_with({command:all_command,  with_activation:false})
 		else
 			set need_command to true
 			if (not dvi_command's include("-unique")) then
@@ -79,7 +79,7 @@ script XdviDriver
 				end if
 				set dvi_command to dvi_command's replace("-editor %editor", "")
 				set all_command to cd_command & _com_delim & dvi_command's posix_path() & space & quoted form of dvi_file_name & " &"
-				do_command of target_term for all_command without activation
+                target_term's do_with({command:all_command,  with_activation:false})
 			end if
 		end if
 		--log "end open_dvi in XdviDriver"
@@ -405,7 +405,7 @@ on dvi_to_pdf()
 	set all_command to cd_command & _com_delim & a_command & space & "'" & targetFileName & "'"
 	
 	set a_term to texdoc()'s target_terminal()
-	do_command of (a_term) for all_command without activation
+    a_term's do_with({command:all_command, with_activation:false})
 	--copy TerminalCommander to a_term
 	a_term's wait_termination(300)
 	
