@@ -65,6 +65,7 @@
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
 		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
+		2CC494E81CE786FA00B3BB03 /* TeXBridgeHelp in Resources */ = {isa = PBXBuildFile; fileRef = 2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */; };
 		2CC8248F1B949088008B47AC /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824841B949088008B47AC /* FrontAppMonitor.m */; };
 		2CC824901B949088008B47AC /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824861B949088008B47AC /* PaletteWindowController.m */; };
 		2CC824911B949088008B47AC /* WindowVisibilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824881B949088008B47AC /* WindowVisibilityController.m */; };
@@ -228,6 +229,7 @@
 		2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecord.h; sourceTree = "<group>"; };
 		2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecord.m; sourceTree = "<group>"; };
 		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
+		2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TeXBridgeHelp; sourceTree = "<group>"; };
 		2CC824831B949088008B47AC /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
 		2CC824841B949088008B47AC /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
 		2CC824851B949088008B47AC /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */,
 				2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */,
 				2CE026E00EB0C98500925F15 /* KTeXEdit.scriptSuite */,
 				2CE026E10EB0C98500925F15 /* KTeXEdit.scriptTerminology */,
@@ -707,6 +710,7 @@
 				2C4E27CE084273B000004A96 /* DVIPreviewIcon.png in Resources */,
 				2C4E27CF084273B000004A96 /* Setting.nib in Resources */,
 				2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */,
+				2CC494E81CE786FA00B3BB03 /* TeXBridgeHelp in Resources */,
 				2C4E27D2084273B000004A96 /* plus.png in Resources */,
 				2C4E27D3084273B000004A96 /* minus.png in Resources */,
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
@@ -935,7 +939,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 62;
+				CURRENT_PROJECT_VERSION = 63;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -1003,7 +1007,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_VERSION = 4.0.5;
+				PRODUCT_VERSION = 4.0.6;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1015,7 +1019,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_VERSION = 4.0.5;
+				PRODUCT_VERSION = 4.0.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1027,7 +1031,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_VERSION = 4.0.5;
+				PRODUCT_VERSION = 4.0.6;
 				SDKROOT = macosx;
 			};
 			name = Default;
