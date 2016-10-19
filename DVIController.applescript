@@ -7,9 +7,9 @@ global _my_signature
 global _com_delim
 global _backslash
 
-global NSUserDefaults
-global NSString
-global NSRunningApplication
+property NSUserDefaults : class "NSUserDefaults"
+property NSString : class "NSString"
+property NSRunningApplication : class "NSRunningApplication"
 
 property _preDVIPreviewMode : missing value
 -- 0: open in Finder, 1: Mxdvi, 2: xdvi, 3: PictPrinter

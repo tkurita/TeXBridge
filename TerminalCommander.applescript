@@ -1,6 +1,7 @@
+property NSUserDefaults : class "NSUserDefaults"
+property NSRunningApplication : class "NSRunningApplication"
+
 global TerminalCommanderBase
-global NSUserDefaults
-global NSRunningApplication
 global appController
 
 on buildup()

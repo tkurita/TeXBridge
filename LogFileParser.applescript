@@ -1,5 +1,5 @@
 global PathConverter
-global LogParser
+property LogParser : class "LogParser"
 
 on boolValue(theValue)
 	return theValue is 1

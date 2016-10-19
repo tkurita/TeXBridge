@@ -1,7 +1,8 @@
 property parent : load("miClient") of application (get "TeXToolsLib")
+property NSRunningApplication : class "NSRunningApplication"
 
 on show_message_asking(msg)
-	tell current application's class "NSRunningApplication"
+	tell NSRunningApplication
 		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	tell application "mi"
@@ -15,7 +16,7 @@ on show_message_asking(msg)
 end show_message_asking
 
 on show_message_buttons(msg, button_list, default_button)
-	tell current application's class "NSRunningApplication"
+	tell NSRunningApplication
 		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	tell application "mi"
@@ -29,7 +30,7 @@ on show_message_buttons(msg, button_list, default_button)
 end show_message_buttons
 
 on show_message(msg)
-	tell current application's class "NSRunningApplication"
+	tell NSRunningApplication
 		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	tell application "mi"

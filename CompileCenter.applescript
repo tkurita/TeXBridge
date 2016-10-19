@@ -21,8 +21,8 @@ global _com_delim
 global _backslash
 
 -- Cocoa classes
-global NSUserDefaults
-global NSRunningApplication
+property NSUserDefaults : class "NSUserDefaults"
+property NSRunningApplication : class "NSRunningApplication"
 
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
@@ -321,10 +321,8 @@ on seek_ebb()
 	PathConverter's set_base_path(theOriginPath)
 	set graphicExtensions to {".pdf", ".jpg", ".jpeg", ".png"}
 	set theRes to EditorClient's document_content()
-	tell current application's class "NSUserDefaults"
-		tell its standardUserDefaults()
-			set ebb_command to stringForKey_("ebbCommand") as text
-		end tell
+	tell NSUserDefaults's standardUserDefaults()
+        set ebb_command to stringForKey_("ebbCommand") as text
 	end tell
 	if ebb_command contains "-m" then
 		set bb_ext to "bb"

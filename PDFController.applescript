@@ -2,8 +2,8 @@ global UtilityHandlers
 global appController
 global XText
 
-global NSUserDefaults
-global NSRunningApplication
+property NSUserDefaults : class "NSUserDefaults"
+property NSRunningApplication : class "NSRunningApplication"
 
 property _prePDFPreviewMode : 1
 -- 0: open in Finder, 1: Preview.app, 2: Adobe Reader, 3: Acrobat

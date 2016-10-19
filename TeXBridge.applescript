@@ -1,3 +1,14 @@
+property NSBundle : class "NSBundle"
+property NSString : class "NSString"
+property NSDictionary : class "NSDictionary"
+property NSOpenPanel : class "NSOpenPanel"
+property NSUserDefaults : class "NSUserDefaults"
+property NSRunningApplication : class "NSRunningApplication"
+property NSPasteboard : class "NSPasteboard"
+property LogWindowController : class "LogWindowController"
+property LogParser : class "LogParser"
+property FrontAccess : class "TXFrontAccess"
+
 script TeXBridgeController
 	property parent : class "NSObject"
 	
@@ -40,18 +51,6 @@ script TeXBridgeController
 	property appController : missing value
 	property startupMessageField : missing value
 	property startupWindow : missing value
-	
-	(* class definition *)
-	property NSString : class "NSString"
-	property NSBundle : class "NSBundle"
-	property NSDictionary : class "NSDictionary"
-	property NSOpenPanel : class "NSOpenPanel"
-	property NSUserDefaults : class "NSUserDefaults"
-    property NSRunningApplication : class "NSRunningApplication"
-	property NSPasteboard : class "NSPasteboard"
-	property LogWindowController : class "LogWindowController"
-	property LogParser : class "LogParser"
-	property FrontAccess : class "TXFrontAccess"
     
 	on import_script(a_name)
 		--log "start import_script"
@@ -115,14 +114,13 @@ script TeXBridgeController
 	end check_mi_version
 	
 	on setup_constants()
-		tell NSBundle's mainBundle()
+        tell NSBundle's mainBundle()
 			set my _my_signature to objectForInfoDictionaryKey_("CFBundleSignature") as text
 			set plist_path to pathForResource_ofType_("ToolSupport", "plist") as text
 		end tell
 		tell NSDictionary's dictionaryWithContentsOfFile_(plist_path)
 			set my _backslash to objectForKey_("backslash") as text
 		end tell
-		
 		return true
 	end setup_constants
 	
@@ -182,9 +180,7 @@ script TeXBridgeController
 		startupMessageField's setStringValue_("Loading Preferences ...")
 		setup_constants()
         DVIController's load_settings()
-		--log "start of initializeing PDFController"
         PDFController's load_settings()
-		--log "end setup"
 	end setup
 	
 	on performHandler_(a_name)

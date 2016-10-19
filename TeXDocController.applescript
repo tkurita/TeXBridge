@@ -8,7 +8,7 @@ global TerminalCommander
 global DVIController
 global ToolPaletteController
 
-global NSUserDefaults
+property NSUserDefaults : class "NSUserDefaults"
 
 property name : "TeXDocController"
 property _log_suffix : "log"
