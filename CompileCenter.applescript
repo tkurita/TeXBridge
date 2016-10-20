@@ -12,7 +12,6 @@ global EditorClient
 --general libs
 global TerminalCommander
 global PathConverter
-global FrontAccess
 global XFile
 global PathInfo
 
@@ -23,6 +22,7 @@ global _backslash
 -- Cocoa classes
 property NSUserDefaults : class "NSUserDefaults"
 property NSRunningApplication : class "NSRunningApplication"
+property FrontAccess : class "TXFrontAccess"
 
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
