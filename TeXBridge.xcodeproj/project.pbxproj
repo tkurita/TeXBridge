@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -647,11 +647,12 @@
 				TargetAttributes = {
 					2C4E27AD084273B000004A96 = {
 						DevelopmentTeam = 5VBC6385DN;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
 			buildConfigurationList = 2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -911,6 +912,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -947,6 +949,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 64;
+				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -975,37 +978,6 @@
 			};
 			name = Release;
 		};
-		2C6D92DF0928239E005774F8 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
-					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
-				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
-				PRODUCT_NAME = TeXBridge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		2C6D92E10928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1032,18 +1004,6 @@
 			};
 			name = Release;
 		};
-		2C6D92E40928239E005774F8 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_VERSION = 4.0.7;
-				SDKROOT = macosx;
-			};
-			name = Default;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1052,7 +1012,6 @@
 			buildConfigurations = (
 				2C6D92DC0928239E005774F8 /* Debug */,
 				2C6D92DD0928239E005774F8 /* Release */,
-				2C6D92DF0928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1062,7 +1021,6 @@
 			buildConfigurations = (
 				2C6D92E10928239E005774F8 /* Debug */,
 				2C6D92E20928239E005774F8 /* Release */,
-				2C6D92E40928239E005774F8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
