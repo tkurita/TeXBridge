@@ -1,13 +1,5 @@
 property NSBundle : class "NSBundle"
-property NSString : class "NSString"
 property NSDictionary : class "NSDictionary"
-property NSOpenPanel : class "NSOpenPanel"
-property NSUserDefaults : class "NSUserDefaults"
-property NSRunningApplication : class "NSRunningApplication"
-property NSPasteboard : class "NSPasteboard"
-property LogWindowController : class "LogWindowController"
-property LogParser : class "LogParser"
-property FrontAccess : class "TXFrontAccess"
 
 script TeXBridgeController
 	property parent : class "NSObject"

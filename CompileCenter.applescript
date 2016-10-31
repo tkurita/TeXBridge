@@ -23,6 +23,7 @@ global _backslash
 property NSUserDefaults : class "NSUserDefaults"
 property NSRunningApplication : class "NSRunningApplication"
 property FrontAccess : class "TXFrontAccess"
+property LogWindowController : class "LogWindowController"
 
 property _ignoring_errors : {1200, 1205, 1210, 1220, 1230, 1240}
 property supportedMode : {"TEX", "LaTeX"}
@@ -502,9 +503,7 @@ on quick_typeset_preview()
 	end if
     
 	if not a_flag then
-		tell current application's class "LogWindowController"
-			its sharedLogManager()'s bringToFront()
-		end tell
+		LogWindowController's sharedLogManager()'s bringToFront()
 		activate
 	end if
 	a_texdoc's preserve_terminal()
