@@ -11,13 +11,11 @@
 		2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC5A16D783470005A62A /* tag-gray-16.png */; };
 		2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC6616D783A20005A62A /* mi-document.icns */; };
 		2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */; };
-		2C0BE4C616DC42590005A62A /* NewToolPalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4C416DC42590005A62A /* NewToolPalette.nib */; };
 		2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */; };
 		2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D916DC5DB70005A62A /* helpIcon.png */; };
 		2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F664D1BB184BB003E0E24 /* ReadMe.txt */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C2D93FD1C312391005D8C3E /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */; };
-		2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4095B516A79B120085CB9D /* NewReferencePalette.nib */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
 		2C4095D716A8C3E60085CB9D /* TeXDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4095D516A8C3E60085CB9D /* TeXDocument.m */; };
 		2C40972716A96F410085CB9D /* LabelDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C40972516A96F410085CB9D /* LabelDatum.m */; };
@@ -29,8 +27,6 @@
 		2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD19FA06BE5DF800B6B166 /* TeXDocController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD1A4A06BE616C00B6B166 /* DVIController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27C1084273B000004A96 /* ReplaceInput.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */; settings = {ATTRIBUTES = (); }; };
-		2C4E27C5084273B000004A96 /* TeXBridge.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* TeXBridge.nib */; };
-		2C4E27C6084273B000004A96 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C9E42BE052215CB00248965 /* Localizable.strings */; };
 		2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */; };
 		2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C498707962E380026564C /* FactorySettings.plist */; };
 		2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */; };
@@ -38,7 +34,6 @@
 		2C4E27CC084273B000004A96 /* generalpref.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445C07AD21E900B2A8D8 /* generalpref.png */; };
 		2C4E27CD084273B000004A96 /* DVItoPDFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */; };
 		2C4E27CE084273B000004A96 /* DVIPreviewIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */; };
-		2C4E27CF084273B000004A96 /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C732C7B07AE666B005ACE75 /* Setting.nib */; };
 		2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */; };
 		2C4E27D2084273B000004A96 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167D07D177B8008BCAEF /* plus.png */; };
 		2C4E27D3084273B000004A96 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167E07D177B8008BCAEF /* minus.png */; };
@@ -64,7 +59,6 @@
 		2CBD26F51B94303900A761DF /* miClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD26EF1B941C7B00A761DF /* miClient.m */; };
 		2CBFCCC9097CA75900BCEB43 /* ErrorRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */; };
 		2CBFCCF4097CAF2600BCEB43 /* FileRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */; };
-		2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */; };
 		2CC494E81CE786FA00B3BB03 /* TeXBridgeHelp in Resources */ = {isa = PBXBuildFile; fileRef = 2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */; };
 		2CC8248F1B949088008B47AC /* FrontAppMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824841B949088008B47AC /* FrontAppMonitor.m */; };
 		2CC824901B949088008B47AC /* PaletteWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC824861B949088008B47AC /* PaletteWindowController.m */; };
@@ -88,6 +82,12 @@
 		2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CE026F00EB0CAB600925F15 /* DVIDocument.icns */; };
 		2CE680060EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */; };
 		2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF1023109AA25A1007DD27C /* ToolSupport.plist */; };
+		2CF638071DD1920300C149CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638051DD1920300C149CF /* Localizable.strings */; };
+		2CF6380A1DD1922400C149CF /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638081DD1922400C149CF /* LogWindow.nib */; };
+		2CF6380D1DD1924700C149CF /* TeXBridge.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6380B1DD1924700C149CF /* TeXBridge.nib */; };
+		2CF638101DD1928200C149CF /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6380E1DD1928200C149CF /* Setting.nib */; };
+		2CF638131DD192BB00C149CF /* NewToolPalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638111DD192BB00C149CF /* NewToolPalette.nib */; };
+		2CF638161DD192EA00C149CF /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638141DD192EA00C149CF /* NewReferencePalette.nib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,7 +155,6 @@
 		2C0BDC6616D783A20005A62A /* mi-document.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "mi-document.icns"; sourceTree = "<group>"; };
 		2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-blue-16.png"; sourceTree = "<group>"; };
 		2C0BE33416DB872D0005A62A /* Error Numbers.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Error Numbers.rtf"; sourceTree = "<group>"; };
-		2C0BE4C516DC42590005A62A /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewToolPalette.nib; sourceTree = "<group>"; };
 		2C0BE4D116DC4C810005A62A /* NewToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewToolPaletteController.h; sourceTree = "<group>"; };
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
 		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
@@ -165,7 +164,6 @@
 		2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
 		2C2E545708062E8E0015E9EB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		2C329BDD063AB42000C9A56F /* LogFileParser.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = LogFileParser.applescript; sourceTree = "<group>"; };
-		2C4095B616A79B120085CB9D /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
 		2C4095C916A84D810085CB9D /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		2C4095D116A850130085CB9D /* mi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mi.h; sourceTree = "<group>"; };
 		2C4095D416A8C3E60085CB9D /* TeXDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeXDocument.h; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 		2C6FB9C906255508004731C7 /* EditCommands.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditCommands.applescript; sourceTree = "<group>"; };
 		2C71167D07D177B8008BCAEF /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		2C71167E07D177B8008BCAEF /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = images/minus.png; sourceTree = "<group>"; };
-		2C732C7C07AE666B005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
 		2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		2C77C6DD0D041C7200C4E9D3 /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2C7C498707962E380026564C /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = FactorySettings.plist; sourceTree = "<group>"; };
@@ -215,8 +212,6 @@
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
 		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
-		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/TeXBridge.nib; sourceTree = "<group>"; };
-		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
@@ -228,7 +223,6 @@
 		2CBFCCC7097CA75900BCEB43 /* ErrorRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorRecord.m; sourceTree = "<group>"; };
 		2CBFCCF1097CAF2600BCEB43 /* FileRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecord.h; sourceTree = "<group>"; };
 		2CBFCCF2097CAF2600BCEB43 /* FileRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecord.m; sourceTree = "<group>"; };
-		2CBFCF12097CFF8700BCEB43 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/LogWindow.nib; sourceTree = "<group>"; };
 		2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TeXBridgeHelp; sourceTree = "<group>"; };
 		2CC824831B949088008B47AC /* FrontAppMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrontAppMonitor.h; sourceTree = "<group>"; };
 		2CC824841B949088008B47AC /* FrontAppMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrontAppMonitor.m; sourceTree = "<group>"; };
@@ -277,6 +271,12 @@
 		2CE680040EB9FC4F00E600A2 /* NSString_TeXFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_TeXFileUtilities.m; sourceTree = "<group>"; };
 		2CE680050EB9FC4F00E600A2 /* NSString_TeXFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_TeXFileUtilities.h; sourceTree = "<group>"; };
 		2CF1023109AA25A1007DD27C /* ToolSupport.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ToolSupport.plist; sourceTree = "<group>"; };
+		2CF638061DD1920300C149CF /* ja */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CF638091DD1922400C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/LogWindow.nib; sourceTree = "<group>"; };
+		2CF6380C1DD1924700C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/TeXBridge.nib; sourceTree = "<group>"; };
+		2CF6380F1DD1928200C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/Setting.nib; sourceTree = "<group>"; };
+		2CF638121DD192BB00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewToolPalette.nib; sourceTree = "<group>"; };
+		2CF638151DD192EA00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
 		2CFB3A9C1C5FD2ED002E91D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
 		2CFB3A9E1C5FD307002E91D5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
@@ -392,6 +392,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CF638141DD192EA00C149CF /* NewReferencePalette.nib */,
+				2CF638111DD192BB00C149CF /* NewToolPalette.nib */,
+				2CF6380E1DD1928200C149CF /* Setting.nib */,
+				2CF6380B1DD1924700C149CF /* TeXBridge.nib */,
+				2CF638081DD1922400C149CF /* LogWindow.nib */,
+				2CF638051DD1920300C149CF /* Localizable.strings */,
 				2CC494E71CE786FA00B3BB03 /* TeXBridgeHelp */,
 				2CE680020EB9FC4400E600A2 /* OldKTeXEdit.scriptSuite */,
 				2CE026E00EB0C98500925F15 /* KTeXEdit.scriptSuite */,
@@ -402,12 +408,6 @@
 				2C4E27E3084273B000004A96 /* Info.plist */,
 				2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */,
 				2C7C498707962E380026564C /* FactorySettings.plist */,
-				2C9E42BE052215CB00248965 /* Localizable.strings */,
-				2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */,
-				29B97318FDCFA39411CA2CEA /* TeXBridge.nib */,
-				2C732C7B07AE666B005ACE75 /* Setting.nib */,
-				2C0BE4C416DC42590005A62A /* NewToolPalette.nib */,
-				2C4095B516A79B120085CB9D /* NewReferencePalette.nib */,
 				2CF1023109AA25A1007DD27C /* ToolSupport.plist */,
 			);
 			name = Resources;
@@ -704,33 +704,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF638131DD192BB00C149CF /* NewToolPalette.nib in Resources */,
 				2C5070D21CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings in Resources */,
-				2C4E27C5084273B000004A96 /* TeXBridge.nib in Resources */,
-				2C4E27C6084273B000004A96 /* Localizable.strings in Resources */,
 				2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */,
 				2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */,
 				2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */,
+				2CF638101DD1928200C149CF /* Setting.nib in Resources */,
 				2C4E27CB084273B000004A96 /* TeXtoDVIIcon.png in Resources */,
 				2C4E27CC084273B000004A96 /* generalpref.png in Resources */,
+				2CF6380D1DD1924700C149CF /* TeXBridge.nib in Resources */,
 				2C4E27CD084273B000004A96 /* DVItoPDFIcon.png in Resources */,
 				2C4E27CE084273B000004A96 /* DVIPreviewIcon.png in Resources */,
-				2C4E27CF084273B000004A96 /* Setting.nib in Resources */,
 				2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */,
 				2CC494E81CE786FA00B3BB03 /* TeXBridgeHelp in Resources */,
 				2C4E27D2084273B000004A96 /* plus.png in Resources */,
+				2CF638161DD192EA00C149CF /* NewReferencePalette.nib in Resources */,
 				2C4E27D3084273B000004A96 /* minus.png in Resources */,
 				2C6CA3A408CF5565005D5612 /* Reload.png in Resources */,
-				2CBFCF11097CFF8600BCEB43 /* LogWindow.nib in Resources */,
 				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
+				2CF638071DD1920300C149CF /* Localizable.strings in Resources */,
 				2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */,
 				2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */,
-				2C4095B716A79B120085CB9D /* NewReferencePalette.nib in Resources */,
 				2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */,
 				2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */,
 				2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */,
-				2C0BE4C616DC42590005A62A /* NewToolPalette.nib in Resources */,
 				2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */,
 				2CCDB79217DDF43C00E98804 /* TeXBridge.sdef in Resources */,
+				2CF6380A1DD1922400C149CF /* LogWindow.nib in Resources */,
 				2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,30 +836,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		29B97318FDCFA39411CA2CEA /* TeXBridge.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C8C1DD80520B0DB009688D1 /* Japanese */,
-			);
-			name = TeXBridge.nib;
-			sourceTree = "<group>";
-		};
-		2C0BE4C416DC42590005A62A /* NewToolPalette.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C0BE4C516DC42590005A62A /* Japanese */,
-			);
-			name = NewToolPalette.nib;
-			sourceTree = "<group>";
-		};
-		2C4095B516A79B120085CB9D /* NewReferencePalette.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C4095B616A79B120085CB9D /* Japanese */,
-			);
-			name = NewReferencePalette.nib;
-			sourceTree = "<group>";
-		};
 		2C5070D41CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -869,28 +845,52 @@
 			name = TXFrontAccessLocalizedStrings.strings;
 			sourceTree = "<group>";
 		};
-		2C732C7B07AE666B005ACE75 /* Setting.nib */ = {
+		2CF638051DD1920300C149CF /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2C732C7C07AE666B005ACE75 /* Japanese */,
-			);
-			name = Setting.nib;
-			sourceTree = "<group>";
-		};
-		2C9E42BE052215CB00248965 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C9E42C1052215F000248965 /* Japanese */,
+				2CF638061DD1920300C149CF /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		2CBFCF10097CFF8600BCEB43 /* LogWindow.nib */ = {
+		2CF638081DD1922400C149CF /* LogWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2CBFCF12097CFF8700BCEB43 /* Japanese */,
+				2CF638091DD1922400C149CF /* ja */,
 			);
 			name = LogWindow.nib;
+			sourceTree = "<group>";
+		};
+		2CF6380B1DD1924700C149CF /* TeXBridge.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CF6380C1DD1924700C149CF /* ja */,
+			);
+			name = TeXBridge.nib;
+			sourceTree = "<group>";
+		};
+		2CF6380E1DD1928200C149CF /* Setting.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CF6380F1DD1928200C149CF /* ja */,
+			);
+			name = Setting.nib;
+			sourceTree = "<group>";
+		};
+		2CF638111DD192BB00C149CF /* NewToolPalette.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CF638121DD192BB00C149CF /* ja */,
+			);
+			name = NewToolPalette.nib;
+			sourceTree = "<group>";
+		};
+		2CF638141DD192EA00C149CF /* NewReferencePalette.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CF638151DD192EA00C149CF /* ja */,
+			);
+			name = NewReferencePalette.nib;
 			sourceTree = "<group>";
 		};
 		2CFB3A9B1C5FD2ED002E91D5 /* PathExtra_Localizable.strings */ = {
