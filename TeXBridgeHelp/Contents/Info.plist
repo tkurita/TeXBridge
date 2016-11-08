@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>Japanese</string>
 	<key>CFBundleIdentifier</key>
-	<string>Scriptfactory.TeXBridge.help</string>
+	<string>net.script-factory.TeXBridge.help</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -21,7 +21,7 @@
 	<key>HPDBookAccessPath</key>
 	<string>index.html</string>
 	<key>HPDBookIconPath</key>
-	<string>TeXBridge64.png</string>
+	<string>TeXBridge32@2x.png</string>
 	<key>HPDBookIndexPath</key>
 	<string>search.helpindex</string>
 	<key>HPDBookKBProduct</key>
