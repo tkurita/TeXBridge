@@ -3,7 +3,7 @@ property EditorClient : module "miClient"
 property ScannerSource : module
 
 property name : "EnvScanner"
-property version : "1.1"
+property version : "1.1.1"
 
 property _beginText : missing value
 property _beginTextLength : missing value
@@ -40,20 +40,6 @@ end end_text
 on scanner_source()
 	return my _scanner_source
 end scanner_source
-
-on initialize()
-	set my _beginStack to {}
-	set my _endStack to {}
-	tell TeXBridgeProxy's shared_instance()
-		resolve_support_plist()
-		set my _beginText to plist_value("beginText")
-		set my _beginTextLength to length of my _beginText
-		set my _endText to plist_value("endText")
-		set my _endTextLength to length of my _endText
-		set my _backslash to plist_value("backslash")
-	end tell
-	set my _scanner_source to make ScannerSource
-end initialize
 
 on make_with(a_texbridge)
 	set a_class to me
