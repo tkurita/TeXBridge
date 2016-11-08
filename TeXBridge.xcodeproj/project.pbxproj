@@ -943,7 +943,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -952,23 +951,13 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
-				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
-				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -979,7 +968,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 65;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
@@ -987,25 +975,16 @@
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
 					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
 				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
-				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				OTHER_OSAFLAGS = "-x";
-				PRODUCT_BUNDLE_IDENTIFIER = TeXBridge;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
-				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = "apple-generic";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1014,10 +993,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_VERSION = 4.0.8;
 				SDKROOT = macosx;
@@ -1029,8 +1005,6 @@
 			buildSettings = {
 				COPYRIGHT = "Copyright 2003-2016, Tetsuro KURITA";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_VERSION = 4.0.8;
 				SDKROOT = macosx;
 			};

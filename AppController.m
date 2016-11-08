@@ -266,6 +266,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	self.factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:_factoryDefaults];
+    [userDefaults addSuiteNamed:@"TeXBridge"]; // to referer old settings
     if (! [GUIScriptingChecker check]) {
 #if useLog		
 		NSLog(@"%@", @"should quit because checkGUIScripting is disabled.");
