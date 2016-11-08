@@ -1,5 +1,6 @@
 property NSBundle : class "NSBundle"
 property NSDictionary : class "NSDictionary"
+property GUIScriptingChecker : class "GUIScriptingChecker"
 
 script TeXBridgeController
 	property parent : class "NSObject"
@@ -11,7 +12,6 @@ script TeXBridgeController
 	property XText : module
 	property XHandler : module
 	property PathInfo : module
-	property GUIScriptingChecker : module
 	property TerminalCommanderBase : module "TerminalCommander"
 	property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(true)) for me
 	
@@ -115,39 +115,7 @@ script TeXBridgeController
 		end tell
 		return true
 	end setup_constants
-	
-	on checkGUIScripting()
-		--log "start checkGUIScripting"
-		-- startupMessageField's setStringValue_("Checking GUI Scrpting ...")
-		tell GUIScriptingChecker
-			if is_mavericks() then
-				script MessageProvider109
-					on ok_button()
-						return localized string "Open System Preferences"
-					end ok_button
-					
-					on cancel_button()
-						return localized string "Deny"
-					end cancel_button
-					
-					on title_message()
-						set a_format to localized string "need accessibility"
-						return XText's formatted_text(a_format, {name of current application})
-					end title_message
-					
-					on detail_message()
-						return localized string "Grant access"
-					end detail_message
-				end script
-				set_delegate(MessageProvider109)
-			else
-				localize_messages()
-			end if
-		end tell
-		--log "will end checkGUIScripting"
-		return GUIScriptingChecker's do()
-	end checkGUIScripting
-	
+
 	on setup()
 		--log "start setup"
 		startupMessageField's setStringValue_("Loading Scripts ...")

@@ -7,6 +7,7 @@
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
 #import "DVIPreviewModeTransformer.h"
+#import "GUIScriptingChecker.h"
 
 #define useLog 0
 
@@ -265,35 +266,14 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	self.factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:_factoryDefaults];
-	if (! [[_texBridgeController checkGUIScripting] boolValue]) {
+    if (! [GUIScriptingChecker check]) {
 #if useLog		
 		NSLog(@"%@", @"should quit because checkGUIScripting is disabled.");
 #endif		
 		[NSApp terminate:nil];
 		return;
 	}
-	
-	/* checking checking UI Elements Scripting ... */
-	/*
-	if (!AXAPIEnabled())
-    {
-		[startupWindow close];
-		[NSApp activateIgnoringOtherApps:YES];
-		int ret = NSRunAlertPanel(NSLocalizedString(@"disableGUIScripting", ""), @"", 
-								  NSLocalizedString(@"Launch System Preferences", ""),
-								  NSLocalizedString(@"Cancel",""), @"");
-		switch (ret)
-        {
-            case NSAlertDefaultReturn:
-                [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/UniversalAccessPref.prefPane"];
-                break;
-			default:
-                break;
-        }
-        
-		[NSApp terminate:self];
-		return;
-    }*/
+
 	[startupWindow orderFront:self];
 	EditorClient = [miClient sharedClient];
 	WindowVisibilityController *wvController = [[WindowVisibilityController alloc] init];

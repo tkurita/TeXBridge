@@ -88,6 +88,8 @@
 		2CF638101DD1928200C149CF /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6380E1DD1928200C149CF /* Setting.nib */; };
 		2CF638131DD192BB00C149CF /* NewToolPalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638111DD192BB00C149CF /* NewToolPalette.nib */; };
 		2CF638161DD192EA00C149CF /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638141DD192EA00C149CF /* NewReferencePalette.nib */; };
+		2CF638231DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6381C1DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings */; };
+		2CF638241DD1AA8B00C149CF /* GUIScriptingChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6381F1DD1AA8B00C149CF /* GUIScriptingChecker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -277,6 +279,12 @@
 		2CF6380F1DD1928200C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/Setting.nib; sourceTree = "<group>"; };
 		2CF638121DD192BB00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewToolPalette.nib; sourceTree = "<group>"; };
 		2CF638151DD192EA00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
+		2CF6381D1DD1AA8B00C149CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GUIScriptingChecker_Localizable.strings; sourceTree = "<group>"; };
+		2CF6381E1DD1AA8B00C149CF /* GUIScriptingChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIScriptingChecker.h; sourceTree = "<group>"; };
+		2CF6381F1DD1AA8B00C149CF /* GUIScriptingChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GUIScriptingChecker.m; sourceTree = "<group>"; };
+		2CF638201DD1AA8B00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GUIScriptingChecker_Localizable.strings; sourceTree = "<group>"; };
+		2CF638211DD1AA8B00C149CF /* SystemEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
+		2CF638221DD1AA8B00C149CF /* SystemPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemPreferences.h; sourceTree = "<group>"; };
 		2CFB3A9C1C5FD2ED002E91D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
 		2CFB3A9E1C5FD307002E91D5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PathExtra_Localizable.strings; sourceTree = "<group>"; };
 		DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TeXBridge.applescript; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 				2C4099BB16AECE4C0085CB9D /* History.rtf */,
 				2C0BE33416DB872D0005A62A /* Error Numbers.rtf */,
 				2C0F664D1BB184BB003E0E24 /* ReadMe.txt */,
+				2CF6381B1DD1AA8B00C149CF /* GUIScriptingChecker */,
 				2C1D0BB31BD08C1900C99A1D /* TXFrontAccess */,
 				2CBD26F01B941C7B00A761DF /* miClientLib */,
 				2C0BE4CA16DC4B9E0005A62A /* ToolPalette */,
@@ -610,6 +619,18 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		2CF6381B1DD1AA8B00C149CF /* GUIScriptingChecker */ = {
+			isa = PBXGroup;
+			children = (
+				2CF6381C1DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings */,
+				2CF6381E1DD1AA8B00C149CF /* GUIScriptingChecker.h */,
+				2CF6381F1DD1AA8B00C149CF /* GUIScriptingChecker.m */,
+				2CF638211DD1AA8B00C149CF /* SystemEvents.h */,
+				2CF638221DD1AA8B00C149CF /* SystemPreferences.h */,
+			);
+			path = GUIScriptingChecker;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -705,6 +726,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF638131DD192BB00C149CF /* NewToolPalette.nib in Resources */,
+				2CF638231DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings in Resources */,
 				2C5070D21CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings in Resources */,
 				2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */,
 				2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */,
@@ -779,6 +801,7 @@
 				2CCDB6C217DD9BA900E98804 /* UtilityHandlers.applescript in Sources */,
 				2C4E27B4084273B000004A96 /* CompileCenter.applescript in Sources */,
 				2C4E27B5084273B000004A96 /* EditCommands.applescript in Sources */,
+				2CF638241DD1AA8B00C149CF /* GUIScriptingChecker.m in Sources */,
 				2C4E27B6084273B000004A96 /* LogFileParser.applescript in Sources */,
 				2C4E27BC084273B000004A96 /* TeXDocController.applescript in Sources */,
 				2C4E27BD084273B000004A96 /* DVIController.applescript in Sources */,
@@ -891,6 +914,15 @@
 				2CF638151DD192EA00C149CF /* ja */,
 			);
 			name = NewReferencePalette.nib;
+			sourceTree = "<group>";
+		};
+		2CF6381C1DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CF6381D1DD1AA8B00C149CF /* en */,
+				2CF638201DD1AA8B00C149CF /* ja */,
+			);
+			name = GUIScriptingChecker_Localizable.strings;
 			sourceTree = "<group>";
 		};
 		2CFB3A9B1C5FD2ED002E91D5 /* PathExtra_Localizable.strings */ = {
