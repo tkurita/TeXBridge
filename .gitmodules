@@ -37,9 +37,6 @@
 [submodule "LibraryScripts/PathInfo.scptd"]
 	path = LibraryScripts/PathInfo.scptd
 	url = https://github.com/tkurita/PathInfo.scptd.git
-[submodule "LibraryScripts/GUIScriptingChecker.scptd"]
-	path = LibraryScripts/GUIScriptingChecker.scptd
-	url = https://github.com/tkurita/GUIScriptingChecker.scptd.git
 [submodule "LibraryScripts/PathConverter.scptd"]
 	path = LibraryScripts/PathConverter.scptd
 	url = https://github.com/tkurita/PathConverter.scptd.git
