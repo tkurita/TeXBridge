@@ -16,14 +16,14 @@ property _figlabel_prefix : "fig:"
 
 (* values in plist file *)
 property _backslash : character id 92
-property _incGraphicCommand : _backslash&"includegraphics"
+property _incGraphicCommand : _backslash & "includegraphics"
 property _incGraphicBlock : missing value
 --property _labelCommand : _backslash&"label"
-property _labelBracket : _backslash&"label{"
-property _beginBracket : _backslash&"begin{"
-property _endBracket : _backslash&"end{"
+property _labelBracket : _backslash & "label{"
+property _beginBracket : _backslash & "begin{"
+property _endBracket : _backslash & "end{"
 property _scanner_source : missing value
-property _env_scanner: missing value
+property _env_scanner : missing value
 
 
 on debug()
