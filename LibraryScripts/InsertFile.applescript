@@ -58,7 +58,7 @@ on debug3()
 	set PathInfo to loader's load("PathInfo")
 	
 	set target_file to EditorClient's document_file_as_alias()
-	set insert_file to PathInfo's make_with("/Users/tkurita/WorkSpace/‰Á‘¬Ší•×‹­‰ï/ƒCƒIƒ“Œ¹ƒvƒ‰ƒYƒ}-slide/figure/parallel-magnetic-field.pdf")
+	set insert_file to PathInfo's make_with("/Users/tkurita/WorkSpace/åŠ é€Ÿå™¨å‹‰å¼·ä¼š/ã‚¤ã‚ªãƒ³æºãƒ—ãƒ©ã‚ºãƒ-slide/figure/parallel-magnetic-field.pdf")
 	tell make_with_texbridge(make TeXBridgeProxy)
 		do(insert_file, PathInfo's make_with(target_file))
 	end tell
@@ -280,7 +280,7 @@ on findCommandInSameEnvAfter(target_text, targetCommand, new_value)
 end findCommandInSameEnvAfter
 
 (*
-@param a_command : ex) "€input"
+@param a_command : ex) "\input"
 @param a_tex : 
 @param a_pos : caret position in a_text. The caret at the beginning of a_text is 0.
 @param a_path : a relative path
