@@ -47,7 +47,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	isReadFile = NO;
 	self.logFilePath = @"";
 	self.logContents = targetText;
-	int length = [_logContents length];
+	NSUInteger length = [_logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;
 }
@@ -71,7 +71,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 						 aEncName];
 		return self;
 	}
-	int length = [_logContents length];
+	NSUInteger length = [_logContents length];
 	nextRange = NSMakeRange(0, length);
 	return self;
 }
@@ -476,7 +476,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSString *scannedText;
 	NSRange subRange;
 	NSScanner *scanner;
-	int matchLength;
+	NSUInteger matchLength;
 	
 	while(targetText != nil) {
 		

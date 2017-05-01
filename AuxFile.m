@@ -418,7 +418,7 @@ bail:
 				
 				if (!_treeNodeRef && [child_aux_file hasTreeNode]) { //child item has already exists before its parent.
 					NSMutableArray *nodes = [child_aux_file.treeNode mutableChildNodes];
-                    int node_count = [nodes count];
+                    NSUInteger node_count = [nodes count];
                     for (int n = 0; n < node_count; n++ ) {
 						[nodes removeLastObject];
 					}

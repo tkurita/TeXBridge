@@ -76,9 +76,9 @@
 	else if(strcmp(type, @encode(unsigned int)) == 0)
 		return [NSAppleEventDescriptor descriptorWithUnsignedLong:[self unsignedIntValue]];
 	else if(strcmp(type, @encode(long)) == 0)
-		return [NSAppleEventDescriptor descriptorWithInt32:[self longValue]];
+		return [NSAppleEventDescriptor descriptorWithInt32:(int)[self longValue]];
 	else if(strcmp(type, @encode(unsigned long)) == 0)
-		return [NSAppleEventDescriptor descriptorWithInt32:[self unsignedLongValue]];
+		return [NSAppleEventDescriptor descriptorWithUnsignedLong:[self unsignedLongValue]];
 	else if(strcmp(type, @encode(float)) == 0)
 		return [NSAppleEventDescriptor descriptorWithFloat:[self floatValue]];
 	else if(strcmp(type, @encode(double)) == 0)

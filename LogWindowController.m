@@ -35,7 +35,7 @@ static id sharedLogManager;
 
 - (BOOL)jumpToFile:(id)sender
 {
-	int theRow = [logOutline selectedRow];
+	long theRow = [logOutline selectedRow];
 	id item = [logOutline itemAtRow:theRow];
 	if ([item respondsToSelector:@selector(jumpToFile)]) {
 		return [item jumpToFile];
@@ -87,7 +87,7 @@ static id sharedLogManager;
 }
 
 /* itemの子の数を返します */
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSUInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if (!item) {
         //root
