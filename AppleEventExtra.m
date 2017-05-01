@@ -44,13 +44,6 @@
 										bytes:&a_value
 									   length:sizeof(a_value)];
 }
-
-+ (NSAppleEventDescriptor *)descriptorWithDouble:(double)a_value
-{
-	return [self descriptorWithDescriptorType:typeIEEE32BitFloatingPoint 
-										bytes:&a_value
-									   length:sizeof(a_value)];
-}
 @end
 
 @implementation NSString (AppleEventExtra)
