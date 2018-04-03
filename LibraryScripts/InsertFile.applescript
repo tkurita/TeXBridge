@@ -4,6 +4,8 @@ property EditorClient : module "miClient"
 property TeXBridgeProxy : module
 property PathConverter : module
 property XText : module
+property XCharacterSet : module
+property XList : module
 --property PathInfo : module
 
 property _texbridge : missing value
@@ -58,7 +60,7 @@ on debug3()
 	set PathInfo to loader's load("PathInfo")
 	
 	set target_file to EditorClient's document_file_as_alias()
-	set insert_file to PathInfo's make_with("/Users/tkurita/WorkSpace/加速器勉強会/イオン源プラズマ-slide/figure/parallel-magnetic-field.pdf")
+	set insert_file to PathInfo's make_with("/Users/tkurita/WorkSpace/Synchrotron/2017-04_tune��COD/slide/VCOD-status/BM-level-alignment.pdf")
 	tell make_with_texbridge(make TeXBridgeProxy)
 		do(insert_file, PathInfo's make_with(target_file))
 	end tell
@@ -220,6 +222,31 @@ on is_in_float_env()
 	return false
 end is_in_float_env
 
+on format_indent(x_text)
+	set selinfo to EditorClient's selection_info()
+	if selinfo's cursorInParagraph > 0 then
+		set before_cursor to text 1 thru (selinfo's cursorInParagraph) of (selinfo's currentParagraph)
+	else
+		set before_cursor to ""
+	end if
+	
+	set indent_text to ""
+	tell XCharacterSet's make_whitespaces()
+		if its is_member(before_cursor) then
+			set indent_text to before_cursor
+		else
+			return x_text
+		end if
+	end tell
+	set x_list to XList's make_with(every paragraph of x_text)
+	set new_list to make XList
+	new_list's push(x_list's next())
+	repeat while x_list's has_next()
+		new_list's push(indent_text & x_list's next())
+	end repeat
+	return new_list's as_xtext_with(return)
+end format_indent
+
 on insert_graphic_commands(graphicPath, labelName)
 	set my _incGraphicBlock to my _texbridge's plist_value("incGraphicBlock")
 	set a_text to XText's make_with(my _incGraphicBlock)'s format_with({graphicPath, labelName})
@@ -227,7 +254,7 @@ on insert_graphic_commands(graphicPath, labelName)
 		set fig_env to my _texbridge's plist_value("figEnvBlock")
 		set a_text to XText's make_with(fig_env)'s format_with({a_text})
 	end if
-	
+	set a_text to format_indent(a_text)
 	EditorClient's insert_text(a_text's as_unicode())
 end insert_graphic_commands
 
@@ -280,7 +307,7 @@ on findCommandInSameEnvAfter(target_text, targetCommand, new_value)
 end findCommandInSameEnvAfter
 
 (*
-@param a_command : ex) "\input"
+@param a_command : ex) "�input"
 @param a_tex : 
 @param a_pos : caret position in a_text. The caret at the beginning of a_text is 0.
 @param a_path : a relative path
