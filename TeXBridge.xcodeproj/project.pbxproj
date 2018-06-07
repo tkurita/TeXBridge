@@ -13,7 +13,6 @@
 		2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */; };
 		2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */; };
 		2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D916DC5DB70005A62A /* helpIcon.png */; };
-		2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F664D1BB184BB003E0E24 /* ReadMe.txt */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C2D93FD1C312391005D8C3E /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
@@ -667,8 +666,7 @@
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					2C4E27AD084273B000004A96 = {
-						DevelopmentTeam = 5VBC6385DN;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -753,7 +751,6 @@
 				2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */,
 				2CCDB79217DDF43C00E98804 /* TeXBridge.sdef in Resources */,
 				2CF6380A1DD1922400C149CF /* LogWindow.nib in Resources */,
-				2C0F664E1BB184BB003E0E24 /* ReadMe.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,9 +938,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 5VBC6385DN;
+				DEVELOPMENT_TEAM = N3YK2F43T4;
 				DSTROOT = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -967,10 +964,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 66;
-				DEVELOPMENT_TEAM = 5VBC6385DN;
+				CURRENT_PROJECT_VERSION = 67;
+				DEVELOPMENT_TEAM = N3YK2F43T4;
 				DSTROOT = "${HOME}";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
@@ -993,7 +990,6 @@
 		2C6D92E10928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1004,7 +1000,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPYRIGHT = "Copyright 2003-2017, Tetsuro KURITA";
+				COPYRIGHT = "Copyright 2003-2018, Tetsuro KURITA";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1024,7 +1020,6 @@
 		2C6D92E20928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1035,7 +1030,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPYRIGHT = "Copyright 2003-2017, Tetsuro KURITA";
+				COPYRIGHT = "Copyright 2003-2018, Tetsuro KURITA";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
