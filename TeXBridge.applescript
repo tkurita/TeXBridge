@@ -86,9 +86,7 @@ script TeXBridgeController
 	on check_mi_version()
 		-- log "start check_mi_version"
 		set app_file to EditorClient's application_file()
-		tell application "System Events"
-			set a_ver to version of app_file
-		end tell
+        set a_ver to version of (app_file as text)
 		if (count word of a_ver) > 1 then
 			-- before 2.1.11r1 , the version number was "mi version x.x.x". 
 			-- obtain "x.x.x" from "mi version x.x.x"
@@ -102,6 +100,7 @@ script TeXBridgeController
 				return false
 			end if
 		end considering
+        -- log "end check_mi_version"
 		return true
 	end check_mi_version
 	
@@ -117,7 +116,7 @@ script TeXBridgeController
 	end setup_constants
 
 	on setup()
-		--log "start setup"
+		-- log "start setup"
 		startupMessageField's setStringValue_("Loading Scripts ...")
 		set UtilityHandlers to import_script("UtilityHandlers")
 		set LogFileParser to import_script("LogFileParser")
@@ -131,16 +130,19 @@ script TeXBridgeController
 		set EditorClient to import_script("EditorClient")
 		set ReplaceInput to import_script("ReplaceInput")
 		
-		--log "end of import library"
+		-- log "end of import library"
 		startupMessageField's setStringValue_("Checking mi version ...")
-		if not check_mi_version() then -- TODO
+
+		if not check_mi_version() then
 			quit
 			return false
 		end if
+        
 		startupMessageField's setStringValue_("Loading Preferences ...")
 		setup_constants()
         DVIController's load_settings()
         PDFController's load_settings()
+        -- log "end of setup"
 	end setup
 	
 	on performHandler_(a_name)
