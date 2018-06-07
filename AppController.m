@@ -9,6 +9,8 @@
 #import "DVIPreviewModeTransformer.h"
 #import "GUIScriptingChecker.h"
 
+#import "LogParser.h"
+
 #define useLog 0
 
 id EditorClient;
@@ -41,7 +43,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 {
 	@synchronized(self) {
 		if (sharedObj == nil) {
-			(void) [[self alloc] init]; // ‚±‚±‚Å‚Í‘ã“ü‚µ‚Ä‚¢‚È‚¢
+			(void) [[self alloc] init]; // ã“ã“ã§ã¯ä»£å…¥ã—ã¦ã„ãªã„
 		}
 	}
     return sharedObj;
@@ -58,7 +60,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 }  
 
 - (id)copyWithZone:(NSZone*)zone {  
-    return self;  // ƒVƒ“ƒOƒ‹ƒgƒ“ó‘Ô‚ğ•Û‚·‚é‚½‚ß‰½‚à‚¹‚¸ self ‚ğ•Ô‚·  
+    return self;  // ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³çŠ¶æ…‹ã‚’ä¿æŒã™ã‚‹ãŸã‚ä½•ã‚‚ã›ãš self ã‚’è¿”ã™  
 }  
 
 - (void)checkQuit:(NSTimer *)aTimer
@@ -327,7 +329,15 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NewRefPanelController *wc = [[NewRefPanelController alloc] initWithWindowNibName:@"NewReferencePalette"];
 	[wc showWindow:self];
 	 */
+    
 	[startupWindow close];
+    
+    /*
+    LogParser *p = [[LogParser alloc] initWithContentsOfFile:@"/Users/tkurita/Dropbox/Study/åˆ¶å¾¡/2æ¬¡é…ã‚Œè¦ç´ ã®ã‚¹ãƒ†ãƒƒãƒ•ã‚šå¿œç­”/Contents/step-response-2nd-delay.log" encodingName: @"UTF-8"];
+    [p setBaseURLWithPath:@"/Users/tkurita/Dropbox/Study/åˆ¶å¾¡/2æ¬¡é…ã‚Œè¦ç´ ã®ã‚¹ãƒ†ãƒƒãƒ•ã‚šå¿œç­”/Contents/step-response-2nd-delay"];
+    [p parseLog];
+    */
+    
 #if useLog
 	NSLog(@"end applicationDidFinishLaunching");
 #endif	

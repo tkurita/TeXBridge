@@ -241,6 +241,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
         NSMutableString *a_text = [NSMutableString stringWithString:logContent];
         if (![a_text hasSuffix:@")."]) {
             while(object = [enumerator nextObject]) {
+#if useLog
+                NSLog(@"object : %@", object);
+#endif
                 NSString *next_log = object[@"content"];
                 [a_text appendString:next_log];
                 if ([next_log hasSuffix:@")."]) {
@@ -395,7 +398,8 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #endif
 	if ([targetText hasPrefix:@"LaTeX Font Info:"] 
 			||[targetText hasPrefix:@"Latex Info"]
-			||[targetText hasPrefix:@"\\"]) {
+			||[targetText hasPrefix:@"\\"]
+            ||[targetText hasPrefix:@". Defining command"] ) {
 		//skip this line
 		return [self parseLines:[self getNextLine] withList:currentList];
 		
@@ -470,7 +474,7 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 - (NSString *) parseBodyWith:(NSMutableArray *)currentList startText:(NSString *)targetText isWholeLine:(BOOL *)wholeLineFlag {
 #if useLog
 	NSLog(@"start ParseBody");
-	NSLog(@"%@", targetText);
+	NSLog(@"targetText : %@", targetText);
 #endif
 	NSCharacterSet* chSet = [NSCharacterSet characterSetWithCharactersInString:@"()`"];
 	NSString *scannedText;

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -255,7 +255,7 @@
 		2CD553ED08BCDEB8007E43D1 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
 		2CD553EE08BCDEB8007E43D1 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
 		2CD5554C08BEC77E007E43D1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
-		2CD5554D08BEC77E007E43D1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		2CD5554D08BEC77E007E43D1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXBridge.icns; path = images/TeXBridge.icns; sourceTree = "<group>"; };
 		2CDA10AA069404FE00467991 /* PDFController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = PDFController.applescript; sourceTree = "<group>"; };
 		2CDACD7F0813BE3F000B9086 /* LogParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogParser.h; sourceTree = "<group>"; };
@@ -673,7 +673,7 @@
 				};
 			};
 			buildConfigurationList = 2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -951,6 +951,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
@@ -992,6 +993,7 @@
 		2C6D92E10928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1022,6 +1024,7 @@
 		2C6D92E20928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
