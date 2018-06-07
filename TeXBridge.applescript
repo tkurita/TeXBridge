@@ -85,8 +85,13 @@ script TeXBridgeController
 	
 	on check_mi_version()
 		-- log "start check_mi_version"
-		set app_file to EditorClient's application_file()
-        set a_ver to version of (app_file as text)
+        try
+            set app_file to EditorClient's application_file()
+            set a_ver to version of application (app_file as text)
+        on error errmsg number errno
+            UtilityHandlers's show_error(errno, "check_mi_version", errmsg)
+            return false
+        end try
 		if (count word of a_ver) > 1 then
 			-- before 2.1.11r1 , the version number was "mi version x.x.x". 
 			-- obtain "x.x.x" from "mi version x.x.x"
