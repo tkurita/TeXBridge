@@ -12,7 +12,11 @@
 		2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDC6616D783A20005A62A /* mi-document.icns */; };
 		2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */; };
 		2C0BE4D416DC4C810005A62A /* NewToolPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */; };
-		2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BE4D916DC5DB70005A62A /* helpIcon.png */; };
+		2C16217420CD5AC10026BC2B /* General.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C16217320CD5AC10026BC2B /* General.icns */; };
+		2C16217620CD5CA30026BC2B /* DVIPreviewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C16217520CD5CA30026BC2B /* DVIPreviewIcon.icns */; };
+		2C16217A20CD5CC90026BC2B /* DVIToPDFIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C16217720CD5CC90026BC2B /* DVIToPDFIcon.icns */; };
+		2C16217B20CD5CC90026BC2B /* TeXToDVIIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C16217820CD5CC90026BC2B /* TeXToDVIIcon.icns */; };
+		2C16217C20CD5CC90026BC2B /* TeXToPDFIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C16217920CD5CC90026BC2B /* TeXToPDFIcon.icns */; };
 		2C2B7B9309BC172500B6B3F6 /* TeXBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TeXBridge.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C2D93FD1C312391005D8C3E /* ImageAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */; };
 		2C4095CA16A84D810085CB9D /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4095C916A84D810085CB9D /* ScriptingBridge.framework */; };
@@ -28,11 +32,6 @@
 		2C4E27C1084273B000004A96 /* ReplaceInput.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */; };
 		2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C498707962E380026564C /* FactorySettings.plist */; };
-		2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */; };
-		2C4E27CB084273B000004A96 /* TeXtoDVIIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */; };
-		2C4E27CC084273B000004A96 /* generalpref.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445C07AD21E900B2A8D8 /* generalpref.png */; };
-		2C4E27CD084273B000004A96 /* DVItoPDFIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */; };
-		2C4E27CE084273B000004A96 /* DVIPreviewIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */; };
 		2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */; };
 		2C4E27D2084273B000004A96 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167D07D177B8008BCAEF /* plus.png */; };
 		2C4E27D3084273B000004A96 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C71167E07D177B8008BCAEF /* minus.png */; };
@@ -158,8 +157,12 @@
 		2C0BE33416DB872D0005A62A /* Error Numbers.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Error Numbers.rtf"; sourceTree = "<group>"; };
 		2C0BE4D116DC4C810005A62A /* NewToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewToolPaletteController.h; sourceTree = "<group>"; };
 		2C0BE4D216DC4C810005A62A /* NewToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewToolPaletteController.m; sourceTree = "<group>"; };
-		2C0BE4D916DC5DB70005A62A /* helpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = helpIcon.png; sourceTree = "<group>"; };
 		2C0F664D1BB184BB003E0E24 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		2C16217320CD5AC10026BC2B /* General.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = General.icns; path = images/General.icns; sourceTree = "<group>"; };
+		2C16217520CD5CA30026BC2B /* DVIPreviewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DVIPreviewIcon.icns; path = images/DVIPreviewIcon.icns; sourceTree = "<group>"; };
+		2C16217720CD5CC90026BC2B /* DVIToPDFIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = DVIToPDFIcon.icns; path = images/DVIToPDFIcon.icns; sourceTree = "<group>"; };
+		2C16217820CD5CC90026BC2B /* TeXToDVIIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXToDVIIcon.icns; path = images/TeXToDVIIcon.icns; sourceTree = "<group>"; };
+		2C16217920CD5CC90026BC2B /* TeXToPDFIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TeXToPDFIcon.icns; path = images/TeXToPDFIcon.icns; sourceTree = "<group>"; };
 		2C1D0BB41BD08C1900C99A1D /* TXFrontAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXFrontAccess.h; sourceTree = "<group>"; };
 		2C2D93FB1C312391005D8C3E /* ImageAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAndTextCell.h; sourceTree = "<group>"; };
 		2C2D93FC1C312391005D8C3E /* ImageAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAndTextCell.m; sourceTree = "<group>"; };
@@ -178,11 +181,6 @@
 		2C4099BB16AECE4C0085CB9D /* History.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = History.rtf; path = ../../History.rtf; sourceTree = SOURCE_ROOT; };
 		2C42F0DD08CDF41D00765CCF /* AppNameToIconImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppNameToIconImageTransformer.h; sourceTree = "<group>"; };
 		2C42F0DE08CDF41D00765CCF /* AppNameToIconImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppNameToIconImageTransformer.m; sourceTree = "<group>"; };
-		2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoPDFIcon.png; path = images/TeXtoPDFIcon.png; sourceTree = "<group>"; };
-		2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TeXtoDVIIcon.png; path = images/TeXtoDVIIcon.png; sourceTree = "<group>"; };
-		2C49445C07AD21E900B2A8D8 /* generalpref.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = generalpref.png; path = images/generalpref.png; sourceTree = "<group>"; };
-		2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVItoPDFIcon.png; path = images/DVItoPDFIcon.png; sourceTree = "<group>"; };
-		2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DVIPreviewIcon.png; path = images/DVIPreviewIcon.png; sourceTree = "<group>"; };
 		2C4E27E3084273B000004A96 /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
 		2C4E27E4084273B000004A96 /* TeXBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeXBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C4E8BD41B8F9C5900862C76 /* DonationReminder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DonationReminder.xcodeproj; path = DonationReminder/DonationReminder.xcodeproj; sourceTree = "<group>"; };
@@ -478,20 +476,19 @@
 		2C49445407AD219B00B2A8D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				2C0BE4D916DC5DB70005A62A /* helpIcon.png */,
+				2C16217720CD5CC90026BC2B /* DVIToPDFIcon.icns */,
+				2C16217820CD5CC90026BC2B /* TeXToDVIIcon.icns */,
+				2C16217920CD5CC90026BC2B /* TeXToPDFIcon.icns */,
+				2C16217520CD5CA30026BC2B /* DVIPreviewIcon.icns */,
+				2C16217320CD5AC10026BC2B /* General.icns */,
 				2C0BDD0B16D7B3730005A62A /* tag-blue-16.png */,
 				2C0BDC6616D783A20005A62A /* mi-document.icns */,
 				2C0BDC5A16D783470005A62A /* tag-gray-16.png */,
 				2CE026F00EB0CAB600925F15 /* DVIDocument.icns */,
 				2C6CA3A308CF5565005D5612 /* Reload.png */,
 				2CD5AA9506CCD9B500967BE0 /* TeXBridge.icns */,
-				2C49445A07AD21E900B2A8D8 /* TeXtoPDFIcon.png */,
-				2C49445B07AD21E900B2A8D8 /* TeXtoDVIIcon.png */,
-				2C49445C07AD21E900B2A8D8 /* generalpref.png */,
-				2C49445D07AD21E900B2A8D8 /* DVItoPDFIcon.png */,
 				2C71167D07D177B8008BCAEF /* plus.png */,
 				2C71167E07D177B8008BCAEF /* minus.png */,
-				2C49445E07AD21E900B2A8D8 /* DVIPreviewIcon.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -728,13 +725,12 @@
 				2C5070D21CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings in Resources */,
 				2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */,
 				2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */,
-				2C4E27CA084273B000004A96 /* TeXtoPDFIcon.png in Resources */,
+				2C16217C20CD5CC90026BC2B /* TeXToPDFIcon.icns in Resources */,
 				2CF638101DD1928200C149CF /* Setting.nib in Resources */,
-				2C4E27CB084273B000004A96 /* TeXtoDVIIcon.png in Resources */,
-				2C4E27CC084273B000004A96 /* generalpref.png in Resources */,
+				2C16217A20CD5CC90026BC2B /* DVIToPDFIcon.icns in Resources */,
+				2C16217420CD5AC10026BC2B /* General.icns in Resources */,
 				2CF6380D1DD1924700C149CF /* TeXBridge.nib in Resources */,
-				2C4E27CD084273B000004A96 /* DVItoPDFIcon.png in Resources */,
-				2C4E27CE084273B000004A96 /* DVIPreviewIcon.png in Resources */,
+				2C16217B20CD5CC90026BC2B /* TeXToDVIIcon.icns in Resources */,
 				2C4E27D1084273B000004A96 /* ReplaceDictionary.plist in Resources */,
 				2CC494E81CE786FA00B3BB03 /* TeXBridgeHelp in Resources */,
 				2C4E27D2084273B000004A96 /* plus.png in Resources */,
@@ -748,7 +744,7 @@
 				2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */,
 				2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */,
 				2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */,
-				2C0BE4DA16DC5DB70005A62A /* helpIcon.png in Resources */,
+				2C16217620CD5CA30026BC2B /* DVIPreviewIcon.icns in Resources */,
 				2CCDB79217DDF43C00E98804 /* TeXBridge.sdef in Resources */,
 				2CF6380A1DD1922400C149CF /* LogWindow.nib in Resources */,
 			);
