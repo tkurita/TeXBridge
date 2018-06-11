@@ -50,6 +50,7 @@
 		2C808ACF0E9BDC2E006F19EB /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C808ACD0E9BDC2E006F19EB /* DefaultToNilTransformer.m */; };
 		2C815628097E2BC100FAF593 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */; };
 		2C860B020EA24B51004D54B8 /* ReplaceInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C860B000EA24B51004D54B8 /* ReplaceInputData.m */; };
+		2C8C6E6120CE45DA00D2C1BF /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8C6E5F20CE45DA00D2C1BF /* Setting.nib */; };
 		2CB63A6E08CF053A002FCC88 /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63A6C08CF053A002FCC88 /* TitlelessWindow.m */; };
 		2CBD264E1B91E16D00A761DF /* miclient in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C803AC81B8E00B500F21455 /* miclient */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2CBD26E91B93DFA800A761DF /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4E8BDA1B8F9C5A00862C76 /* DonationReminder.framework */; };
@@ -83,7 +84,6 @@
 		2CF638071DD1920300C149CF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638051DD1920300C149CF /* Localizable.strings */; };
 		2CF6380A1DD1922400C149CF /* LogWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638081DD1922400C149CF /* LogWindow.nib */; };
 		2CF6380D1DD1924700C149CF /* TeXBridge.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6380B1DD1924700C149CF /* TeXBridge.nib */; };
-		2CF638101DD1928200C149CF /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6380E1DD1928200C149CF /* Setting.nib */; };
 		2CF638131DD192BB00C149CF /* NewToolPalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638111DD192BB00C149CF /* NewToolPalette.nib */; };
 		2CF638161DD192EA00C149CF /* NewReferencePalette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF638141DD192EA00C149CF /* NewReferencePalette.nib */; };
 		2CF638231DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6381C1DD1AA8B00C149CF /* GUIScriptingChecker_Localizable.strings */; };
@@ -211,6 +211,7 @@
 		2C8155FD097E2BC100FAF593 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C860AFF0EA24B51004D54B8 /* ReplaceInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceInputData.h; sourceTree = "<group>"; };
 		2C860B000EA24B51004D54B8 /* ReplaceInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceInputData.m; sourceTree = "<group>"; };
+		2C8C6E6020CE45DA00D2C1BF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/Setting.nib; sourceTree = "<group>"; };
 		2CA3F85D08BEE2AB00F997B9 /* ToolPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = ToolPaletteController.h; sourceTree = "<group>"; };
 		2CA3F85E08BEE2AB00F997B9 /* ToolPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = ToolPaletteController.m; sourceTree = "<group>"; };
 		2CB09B4B09BF3663008DA844 /* LogWindowItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogWindowItem.h; sourceTree = "<group>"; };
@@ -273,7 +274,6 @@
 		2CF638061DD1920300C149CF /* ja */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CF638091DD1922400C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/LogWindow.nib; sourceTree = "<group>"; };
 		2CF6380C1DD1924700C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/TeXBridge.nib; sourceTree = "<group>"; };
-		2CF6380F1DD1928200C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/Setting.nib; sourceTree = "<group>"; };
 		2CF638121DD192BB00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewToolPalette.nib; sourceTree = "<group>"; };
 		2CF638151DD192EA00C149CF /* ja */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ja; path = ja.lproj/NewReferencePalette.nib; sourceTree = "<group>"; };
 		2CF6381D1DD1AA8B00C149CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GUIScriptingChecker_Localizable.strings; sourceTree = "<group>"; };
@@ -398,9 +398,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C8C6E5F20CE45DA00D2C1BF /* Setting.nib */,
 				2CF638141DD192EA00C149CF /* NewReferencePalette.nib */,
 				2CF638111DD192BB00C149CF /* NewToolPalette.nib */,
-				2CF6380E1DD1928200C149CF /* Setting.nib */,
 				2CF6380B1DD1924700C149CF /* TeXBridge.nib */,
 				2CF638081DD1922400C149CF /* LogWindow.nib */,
 				2CF638051DD1920300C149CF /* Localizable.strings */,
@@ -672,8 +672,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
 				French,
 				German,
 				en,
@@ -726,7 +724,6 @@
 				2C4E27C7084273B000004A96 /* TeXBridge.icns in Resources */,
 				2C4E27C9084273B000004A96 /* FactorySettings.plist in Resources */,
 				2C16217C20CD5CC90026BC2B /* TeXToPDFIcon.icns in Resources */,
-				2CF638101DD1928200C149CF /* Setting.nib in Resources */,
 				2C16217A20CD5CC90026BC2B /* DVIToPDFIcon.icns in Resources */,
 				2C16217420CD5AC10026BC2B /* General.icns in Resources */,
 				2CF6380D1DD1924700C149CF /* TeXBridge.nib in Resources */,
@@ -743,6 +740,7 @@
 				2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */,
 				2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */,
 				2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */,
+				2C8C6E6120CE45DA00D2C1BF /* Setting.nib in Resources */,
 				2C0BDD0C16D7B3730005A62A /* tag-blue-16.png in Resources */,
 				2C16217620CD5CA30026BC2B /* DVIPreviewIcon.icns in Resources */,
 				2CCDB79217DDF43C00E98804 /* TeXBridge.sdef in Resources */,
@@ -861,6 +859,14 @@
 			name = TXFrontAccessLocalizedStrings.strings;
 			sourceTree = "<group>";
 		};
+		2C8C6E5F20CE45DA00D2C1BF /* Setting.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8C6E6020CE45DA00D2C1BF /* ja */,
+			);
+			name = Setting.nib;
+			sourceTree = "<group>";
+		};
 		2CF638051DD1920300C149CF /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -883,14 +889,6 @@
 				2CF6380C1DD1924700C149CF /* ja */,
 			);
 			name = TeXBridge.nib;
-			sourceTree = "<group>";
-		};
-		2CF6380E1DD1928200C149CF /* Setting.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CF6380F1DD1928200C149CF /* ja */,
-			);
-			name = Setting.nib;
 			sourceTree = "<group>";
 		};
 		2CF638111DD192BB00C149CF /* NewToolPalette.nib */ = {
