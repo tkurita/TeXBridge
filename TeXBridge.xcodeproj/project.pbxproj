@@ -41,6 +41,7 @@
 		2C4E27DD084273B000004A96 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2E545708062E8E0015E9EB /* ApplicationServices.framework */; };
 		2C5070CB1CB2E66A00934222 /* TXFrontAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5070CA1CB2E66A00934222 /* TXFrontAccess.m */; };
 		2C5070D21CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5070D41CB2E6A200934222 /* TXFrontAccessLocalizedStrings.strings */; };
+		2C68CBE420D3A6360007B6FC /* tag-blue-16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C68CBE320D3A6360007B6FC /* tag-blue-16@2x.png */; };
 		2C6CA39808CF5558005D5612 /* NewRefPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6CA39608CF5558005D5612 /* NewRefPanelController.m */; };
 		2C6CA3A408CF5565005D5612 /* Reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C6CA3A308CF5565005D5612 /* Reload.png */; };
 		2C77BDC00CFF935E00C4E9D3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C77BDB10CFF935E00C4E9D3 /* CoreServices.framework */; };
@@ -189,6 +190,7 @@
 		2C5070D51CB2E6A700934222 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TXFrontAccessLocalizedStrings.strings; sourceTree = "<group>"; };
 		2C54024007CCEF5000E8CEEB /* ReplaceInput.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ReplaceInput.applescript; sourceTree = "<group>"; };
 		2C54027507CD5AAB00E8CEEB /* ReplaceDictionary.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = ReplaceDictionary.plist; sourceTree = "<group>"; };
+		2C68CBE320D3A6360007B6FC /* tag-blue-16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag-blue-16@2x.png"; sourceTree = "<group>"; };
 		2C6CA39608CF5558005D5612 /* NewRefPanelController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = NewRefPanelController.m; sourceTree = "<group>"; };
 		2C6CA39708CF5558005D5612 /* NewRefPanelController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = NewRefPanelController.h; sourceTree = "<group>"; };
 		2C6CA3A308CF5565005D5612 /* Reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Reload.png; path = images/Reload.png; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		2C49445407AD219B00B2A8D8 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2C68CBE320D3A6360007B6FC /* tag-blue-16@2x.png */,
 				2C16217720CD5CC90026BC2B /* DVIToPDFIcon.icns */,
 				2C16217820CD5CC90026BC2B /* TeXToDVIIcon.icns */,
 				2C16217920CD5CC90026BC2B /* TeXToPDFIcon.icns */,
@@ -737,6 +740,7 @@
 				2CF1023209AA25A1007DD27C /* ToolSupport.plist in Resources */,
 				2CF638071DD1920300C149CF /* Localizable.strings in Resources */,
 				2C0315710AAD154A005B592F /* HelpSetup.plist in Resources */,
+				2C68CBE420D3A6360007B6FC /* tag-blue-16@2x.png in Resources */,
 				2CE026F10EB0CAB600925F15 /* DVIDocument.icns in Resources */,
 				2C0BDC5B16D783470005A62A /* tag-gray-16.png in Resources */,
 				2C0BDC6716D783A20005A62A /* mi-document.icns in Resources */,
