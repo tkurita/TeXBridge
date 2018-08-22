@@ -10,7 +10,7 @@ property XList : module
 
 property _texbridge : missing value
 
-property _graphicFileSuffixes : {"eps", "pdf", "png", "jpg", "jpeg"}
+property _graphicFileSuffixes : {"eps", "pdf", "png", "jpg", "jpeg", "ai"}
 property _bib_suffixes : {"bib"}
 
 property _float_enviroments : {"figure", "wrapfigure"}
