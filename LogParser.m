@@ -463,7 +463,10 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 			targetText = [self addCurrentLineAndNextLine:currentList];
 		}
 		return [self parseLines:targetText withList:currentList];
-	} else {
+    
+    } else if ([targetText containsString:@"please try again.)"]) {
+        return nil;
+    } else {
 #if useLog
 		NSLog(@"back to parseBody");
 #endif
@@ -483,10 +486,9 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 	NSUInteger matchLength;
 	
 	while(targetText != nil) {
-		
 		if (wholeLineFlag) {
-			targetText = [self parseLines:targetText withList:currentList];
-			if (targetText == nil) break;
+            targetText = [self parseLines:targetText withList:currentList];
+			if (! targetText) break;
 		}
 		targetText = [targetText stringByTrimmingCharactersInSet:whitespaceCharSet];
 		scanner = [NSScanner scannerWithString:targetText];

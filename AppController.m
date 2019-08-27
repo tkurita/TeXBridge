@@ -333,8 +333,9 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	[startupWindow close];
     
     /*
-    LogParser *p = [[LogParser alloc] initWithContentsOfFile:@"/Users/tkurita/Dropbox/Study/制御/2次遅れ要素のステップ応答/Contents/step-response-2nd-delay.log" encodingName: @"UTF-8"];
-    [p setBaseURLWithPath:@"/Users/tkurita/Dropbox/Study/制御/2次遅れ要素のステップ応答/Contents/step-response-2nd-delay"];
+    LogParser *p = [[LogParser alloc] initWithContentsOfFile:@"/Users/tkurita/WorkSpace/Synchrotron/2019-03_RFK-Noise/平行電極間の荷電粒子が受ける仕事/charged-particle-in-parallel-electrode のコピー.log" encodingName: @"UTF-8"];
+    //LogParser *p = [[LogParser alloc] initWithContentsOfFile:@"/Users/tkurita/WorkSpace/Synchrotron/2019-03_RFK-Noise/平行電極間の荷電粒子が受ける仕事/charged-particle-in-parallel-electrode.log" encodingName: @"UTF-8"];
+    [p setBaseURLWithPath:@"/Users/tkurita/WorkSpace/Synchrotron/2019-03_RFK-Noise/平行電極間の荷電粒子が受ける仕事"];
     [p parseLog];
     */
     

@@ -21,7 +21,7 @@ on debug()
 	set loader to boot (module loader of application (get "TeXToolsLib")) for me
 	tell make_with(make (loader's load("TeXBridgeProxy")))
 		log find_begin()
-		find_next_begin()
+		--find_next_begin()
 	end tell
 end debug
 
