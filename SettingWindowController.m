@@ -226,7 +226,7 @@
 
 - (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
 {
-	id current_item= [[userRIDictController selectedObjects] lastObject];
+	NSDictionaryControllerKeyValuePair* current_item= [[userRIDictController selectedObjects] lastObject];
 	if (!current_item) return YES;
 	NSString *msg = nil;
 	if (![current_item value]) {

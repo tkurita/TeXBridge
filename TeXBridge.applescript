@@ -5,15 +5,16 @@ property GUIScriptingChecker : class "GUIScriptingChecker"
 script TeXBridgeController
 	property parent : class "NSObject"
 	
-	property PathConverter : module
-	property XDict : module
-	property XFile : module
-	property XList : module
-	property XText : module
-	property XHandler : module
-	property PathInfo : module
-	property TerminalCommanderBase : module "TerminalCommander"
-	property _ : boot ((module loader of application (get "TeXToolsLib"))'s collecting_modules(true)) for me
+	property PathConverter : "@module"
+	property XDict : "@module"
+	property XFile : "@module"
+	property XList : "@module"
+	property XText : "@module"
+	property XHandler : "@module"
+	property PathInfo : "@module"
+	property TerminalCommanderBase : "@module TerminalCommander"
+    property _local_only_ : true
+    property _ : application (get "TeXToolsLib")'s loader()'s setup(me)
 	
 	(*=== shared constants ===*)
 	property _backslash : missing value
