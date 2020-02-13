@@ -955,6 +955,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 4.1b;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
 				WRAPPER_EXTENSION = app;
@@ -968,7 +969,7 @@
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -981,6 +982,7 @@
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MARKETING_VERSION = 4.1b;
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
