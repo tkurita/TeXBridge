@@ -166,6 +166,7 @@ on preview_dvi_for_frontdoc()
         a_dvi's perform_preview({should_activate:true})
 	on error msg number errno
 		UtilityHandlers's show_error(errno, "preview_dvi_for_frontdoc", msg)
+        return false
 	end try
 	--log "end preview_dvi_for_frontdoc"
 	return true
@@ -620,7 +621,7 @@ on typeset()
 end typeset
 
 on preview_dvi()
-	--log "start preview_dvi"
+	log "start preview_dvi"
 	if not EditorClient's is_frontmost() then
 		if preview_dvi_for_frontdoc() then
             return

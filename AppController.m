@@ -170,8 +170,8 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 }
 - (IBAction)dviPreview:(id)sender
 {
-	[_texBridgeController performHandler:@"preview_dvi"];
-	 
+    [_texBridgeController performHandler:@"preview_dvi"];
+    //[_texBridgeController dviPreview];
 }
 - (IBAction)dviToPDF:(id)sender
 {

@@ -151,7 +151,12 @@ script TeXBridgeController
         -- log "end of setup"
 	end setup
 	
+    on dviPreview()  -- for debug
+        CompileCenter's preview_dvi()
+    end dviPreview
+
 	on performHandler_(a_name)
+        -- log "start perfomHandler : "&(a_name as text)&space&(class of a_name)
 		set x_handler to XHandler's make_with(a_name as text, 0)
 		try
 			set a_result to x_handler's do(CompileCenter)

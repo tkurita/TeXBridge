@@ -14,6 +14,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName);
 - (void)changePDFPreviewer:(id)sender;
 - (id)performTask:(id)script;
 - (void)performHandler:(NSString *)handlerName;
+- (void)dviPreview; // for debug
 //- (id)checkGUIScripting;
 @end
 

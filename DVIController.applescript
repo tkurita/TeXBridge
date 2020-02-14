@@ -226,8 +226,13 @@ script CLIDriver
         end tell
 		set a_dvipath to a_dvi's posix_path()'s quoted form
         set a_texdoc to a_dvi's texdoc()
-        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
-        set linenum to a_texdoc's doc_position()
+        if a_texdoc is missing value then
+            set a_texpath to ""
+            set linenum to ""
+        else
+            set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
+            set linenum to a_texdoc's doc_position()
+        end if
         set x_text to XText's make_with(command_template)'s replace("%line", (linenum as text))
         set x_text to x_text's replace("%dvifile", a_dvipath)
         set x_text to x_text's replace("%texfile", a_texpath)
@@ -246,14 +251,33 @@ script SkimDriver
 	end set_file_type
     
     on open_dvi(a_dvi, should_activate)
+        --log "strt open_dvi of SkimDriver"
         set my _app_alias to UtilityHandlers's find_app_with_ideintifier("net.sourceforge.skim-app.skim")
         set displayline to (POSIX path of my _app_alias)&"Contents/SharedSupport/displayline" -- %line %dvifile %texfile
-        set a_dvipath to a_dvi's posix_path()'s quoted form
+        set a_dvipath to a_dvi's posix_path()
         set a_texdoc to a_dvi's texdoc()
-        set a_texpath to a_texdoc's target_file()'s posix_path()'s quoted form
-        set linenum to a_texdoc's doc_position() as text
-        set a_command to displayline & space & linenum & space & a_dvipath & space & a_texpath
-        do shell script a_command
+        
+        set activate_flag to true
+        set revert_flag to false
+        set background_flag to false
+
+        tell application (get "Skim")
+            using terms from application "Skim"
+                if activate_flag then activate
+                if revert_flag then
+                    try
+                        set theDocs to get documents whose path is a_dvipath
+                        if (count of theDocs) > 0 then revert theDocs
+                    end try
+                end if
+
+                open (a_dvipath as POSIX file)
+                if a_texdoc is not missing value then
+                    tell front document to go to TeX line (a_texdoc's doc_position()) from (a_texdoc's target_file()'s as_alias()) showing reading bar background_flag
+                end if
+            end using terms from
+        end tell
+        --log "end open_dvi of SkimDriver"
 	end open_dvi
 end script
     
