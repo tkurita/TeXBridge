@@ -942,6 +942,8 @@
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
+				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -971,6 +973,8 @@
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 68;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
