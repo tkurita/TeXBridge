@@ -768,7 +768,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = 'Release' ]; then\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\nfi";
+			shellScript = "if [ \"$CONFIGURATION\" = 'Release' ]; then\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\nfi\n";
 		};
 		2CE61F98184811FF00063F1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -937,6 +937,7 @@
 		2C6D92DC0928239E005774F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -955,7 +956,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				MARKETING_VERSION = 4.1b;
+				MARKETING_VERSION = 4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
 				WRAPPER_EXTENSION = app;
@@ -965,6 +966,7 @@
 		2C6D92DD0928239E005774F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -982,7 +984,7 @@
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				MARKETING_VERSION = 4.1b;
+				MARKETING_VERSION = 4.1;
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
