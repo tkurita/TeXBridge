@@ -1,9 +1,9 @@
-property TeXBridgeProxy : module
-property EditorClient : module "miClient"
-property ScannerSource : module
+property TeXBridgeProxy : "@module"
+property EditorClient : "@module miClient"
+property ScannerSource : "@module"
 
 property name : "EnvScanner"
-property version : "1.1.1"
+property version : "1.1.2"
 
 property _beginText : missing value
 property _beginTextLength : missing value
@@ -18,7 +18,10 @@ property _target_text : missing value
 property _scanner_source : missing value
 
 on debug()
-	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+		tell application (get "TeXToolsLib")'s loader()
+		set loader to it
+		its setup(me)
+	end tell
 	tell make_with(make (loader's load("TeXBridgeProxy")))
 		log find_begin()
 		--find_next_begin()

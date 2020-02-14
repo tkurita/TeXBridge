@@ -1,12 +1,12 @@
-property EnvScanner : module
-property ScannerSource : module
-property EditorClient : module "miClient"
-property TeXBridgeProxy : module
-property PathConverter : module
-property XText : module
-property XCharacterSet : module
-property XList : module
---property PathInfo : module
+property EnvScanner : "@module"
+property ScannerSource : "@module"
+property EditorClient : "@module miClient"
+property TeXBridgeProxy : "@module"
+property PathConverter : "@module"
+property XText : "@module"
+property XCharacterSet : "@module"
+property XList : "@module"
+--property PathInfo : "@module"
 
 property _texbridge : missing value
 
@@ -29,7 +29,10 @@ property _env_scanner : missing value
 
 
 on debug()
-	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+	tell application (get "TeXToolsLib")'s loader()
+		set loader to it
+		its setup(me)
+	end tell
 	set PathInfo to loader's load("PathInfo")
 	
 	set target_file to EditorClient's document_file_as_alias()
@@ -49,14 +52,20 @@ on debug()
 end debug
 
 on debug2()
-	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+		tell application (get "TeXToolsLib")'s loader()
+		set loader to it
+		its setup(me)
+	end tell
 	set my _texbridge to make TeXBridgeProxy
 	EnvScanner's initialize()
 	is_in_float_env()
 end debug2
 
 on debug3()
-	set loader to boot (module loader of application (get "TeXToolsLib")) for me
+		tell application (get "TeXToolsLib")'s loader()
+		set loader to it
+		its setup(me)
+	end tell
 	set PathInfo to loader's load("PathInfo")
 	
 	set target_file to EditorClient's document_file_as_alias()

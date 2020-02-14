@@ -1,5 +1,5 @@
-property ToolServerProxy : module "TeXBridgeProxy"
-property EditorClient : module "miClient"
+property ToolServerProxy : "@module TeXBridgeProxy"
+property EditorClient : "@module miClient"
 
 property _commonHeadings : {"section", "subsection", "subsubsection", "paragraph", "subparagraph"}
 property _reportHeadings : {"chapter"} -- heading for report and book class
@@ -13,7 +13,7 @@ on debug()
 	set headRecord to search_preheading()
 	set preHeadLevel to previousLevel of headRecord
 	if preHeadLevel is my _nHead then
-		display alert previousHeading of headRecord & " ã®æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"
+		display alert previousHeading of headRecord & " ‚ÌŸ‚ÌƒŒƒxƒ‹‚Í‚ ‚è‚Ü‚¹‚ñB"
 		return
 	else if preHeadLevel is missing value then
 		set preHeadLevel to 1

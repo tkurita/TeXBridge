@@ -1,4 +1,4 @@
-property EditorClient : module "miClient"
+property EditorClient : "@module miClient"
 
 property _nParagraph : missing value -- number of paragraph of document
 property _parPosition : missing value -- index of the paragraph cursor is in

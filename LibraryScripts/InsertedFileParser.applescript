@@ -1,6 +1,6 @@
-property TeXBridgeProxy : module
-property EditorClient : module "miClient"
-property PathConverter : module
+property TeXBridgeProxy : "@module"
+property EditorClient : "@module miClient"
+property PathConverter : "@module"
 property _graphic_suffixes : {".pdf", ".eps", ".png", ".jpg", ".jpeg"}
 
 property _is_graphic : false
@@ -110,7 +110,10 @@ end graphic_suffixes
 
 
 on debug()
-	boot (module loader of application (get "TeXToolsLib")) for me
+	tell application (get "TeXToolsLib")'s loader()
+		set loader to it
+		its setup(me)
+	end tell
 	do()
 end debug
 

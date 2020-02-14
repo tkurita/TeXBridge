@@ -1,5 +1,5 @@
-property TeXBridgeProxy : module
-property EditorClient : module "miClient"
+property TeXBridgeProxy : "@module"
+property EditorClient : "@module miClient"
 
 property _env_command : missing value --"flushleft"
 property _line_command : missing value --"leftline"
