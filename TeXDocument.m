@@ -97,12 +97,7 @@ static NSArray *SUPPORTED_MODES = nil;
 		return result;
 	}
 	
-	if ([masterfile_path hasPrefix:@":"]) { //relative HFS path
-		NSString *hfs_base_path = [[[_file path] stringByDeletingLastPathComponent] hfsPath];
-		NSString *hfs_abs_path = [hfs_base_path stringByAppendingString:masterfile_path];
-		masterfile_path = [hfs_abs_path posixPath];
-		
-	} else if (! [masterfile_path hasPrefix:@"/"]) { //relative POSIX Path
+    if (! [masterfile_path hasPrefix:@"/"]) { //relative POSIX Path
         NSURL *url = [NSURL URLWithString:masterfile_path relativeToURL:_file];
 		masterfile_path = [url path];
 	}

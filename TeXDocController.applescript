@@ -33,11 +33,7 @@ on resolve_parent(a_paragraph)
 		error a_msg number 1230
 	end if
 	--log parent_file
-	if parent_file's starts_with(":") then --  relative hfs path
-		tell PathConverter's make_with(my _targetFileRef's hfs_path())
-			set tex_file to absolute_path for parent_file's as_unicode()
-		end tell
-	else if parent_file's starts_with("/") then --  absolute posix path
+    if parent_file's starts_with("/") then --  absolute posix path
 		set tex_file to (parent_file's as_unicode()) as POSIX file
 	else -- relative posix path
 		tell PathConverter's make_with(my _targetFileRef's posix_path())

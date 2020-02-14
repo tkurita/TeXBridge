@@ -621,7 +621,7 @@ on typeset()
 end typeset
 
 on preview_dvi()
-	log "start preview_dvi"
+	--log "start preview_dvi"
 	if not EditorClient's is_frontmost() then
 		if preview_dvi_for_frontdoc() then
             return
