@@ -767,8 +767,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = 'Release' ]; then\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\nfi\n";
+			shellPath = "/bin/zsh -l";
+			shellScript = "if [[ $CONFIGURATION = 'Release' ]]; then\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\nfi\n";
 		};
 		2CE61F98184811FF00063F1B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
