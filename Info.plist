@@ -71,5 +71,7 @@
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>TeXBridge.sdef</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>TeXBridge require to control other applications mi, Finder, Terminal and so on via AppleScript to run.</string>
 </dict>
 </plist>
