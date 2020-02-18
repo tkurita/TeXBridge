@@ -52,7 +52,7 @@
 	<key>CFBundleSignature</key>
 	<string>TeXB</string>
 	<key>CFBundleVersion</key>
-	<string>72</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>DonationURL</key>
 	<string>https://www.script-factory.net/donationproxy.html</string>
 	<key>LSApplicationCategoryType</key>
@@ -61,6 +61,8 @@
 	<string>10.8</string>
 	<key>LSUIElement</key>
 	<string>1</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>TeXBridge require to control other applications mi, Finder, Terminal and so on via AppleScript to run.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
@@ -71,7 +73,5 @@
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>TeXBridge.sdef</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>TeXBridge require to control other applications mi, Finder, Terminal and so on via AppleScript to run.</string>
 </dict>
 </plist>

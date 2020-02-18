@@ -679,8 +679,6 @@
 			knownRegions = (
 				en,
 				ja,
-				de,
-				fr,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
@@ -944,6 +942,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 73;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -975,7 +974,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 73;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
 				ENABLE_HARDENED_RUNTIME = YES;
