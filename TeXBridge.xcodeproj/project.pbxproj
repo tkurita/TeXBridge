@@ -942,14 +942,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 74;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
-					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -974,14 +970,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 73;
+				CURRENT_PROJECT_VERSION = 74;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/DonationReminder/build/$(CONFIGURATION)\"",
-					"\"$(SRCROOT)/DonationReminder/build/Debug\"",
-				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/miclient/miclientLib";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_MODE_FLAG = "a+rX";
