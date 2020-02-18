@@ -10,7 +10,6 @@ script TeXBridgeController
 	property XFile : "@module"
 	property XList : "@module"
 	property XText : "@module"
-	property XHandler : "@module"
 	property PathInfo : "@module"
 	property TerminalCommanderBase : "@module TerminalCommander"
     property _local_only_ : true
@@ -151,30 +150,54 @@ script TeXBridgeController
         -- log "end of setup"
 	end setup
 	
-    on dviPreview()  -- for debug
-        CompileCenter's preview_dvi()
-    end dviPreview
+    (* Tool bar actions *)
 
-	on performHandler_(a_name)
-        -- log "start perfomHandler : "&(a_name as text)&space&(class of a_name)
-		set x_handler to XHandler's make_with(a_name as text, 0)
-		try
-			set a_result to x_handler's do(CompileCenter)
-		on error msg number errno
-			if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal 
-				UtilityHandlers's show_error(errno, "open", msg)
-			else
-				error msg number errno
-			end if
-		end try
-		appController's showStatusMessage_("")
-		try
-			get a_result
-		on error
-			set a_result to missing value
-		end try
-		return a_result
-	end performHandler_
+    on typesetPDFPreview()
+        script action
+            CompileCenter's typeset_preview_pdf()
+        end
+        perform_action(action)
+    end
+
+    on dviToPDF()
+        script action
+            CompileCenter's dvi_to_pdf()
+        end
+        perform_action(action)
+    end
+
+    on dviPreview()
+        script action
+            CompileCenter's preview_dvi()
+        end script
+        perform_action(action)
+    end
+    
+    on quickTypesetPreview()
+        script action
+            CimpileCenter's quick_typeset_preview()
+        end script
+        perform_action(action)
+    end
+    
+    on perfrom_action(action)
+        try
+            set a_result to run action
+        on error msg number errno
+            if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal
+                UtilityHandlers's show_error(errno, "open", msg)
+            else
+                error msg number errno
+            end if
+        end try
+        appController's showStatusMessage_("")
+        try
+            get a_result
+        on error
+            set a_result to missing value
+        end try
+        return a_result
+    end
 	
 	on show_setting_window()
 		appController's showSettingWindow_(missing value)

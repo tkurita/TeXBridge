@@ -165,22 +165,22 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 
 - (IBAction)quickTypesetPreview:(id)sender
 {
-	[_texBridgeController performHandler:@"quick_typeset_preview"];
-
+    [_texBridgeController quickTypesetPreview];
 }
+
 - (IBAction)dviPreview:(id)sender
 {
-    [_texBridgeController performHandler:@"preview_dvi"];
-    //[_texBridgeController dviPreview];
+    [_texBridgeController dviPreview];
 }
+
 - (IBAction)dviToPDF:(id)sender
 {
-	[_texBridgeController performHandler:@"dvi_to_pdf"];
-	
+    [_texBridgeController dviToPDF];
 }
+
 - (IBAction)typesetPDFPreview:(id)sender
 {
-	[_texBridgeController performHandler:@"typeset_preview_pdf"];
+    [_texBridgeController typesetPDFPreview];
 }
 
 - (void)showStatusMessage:(NSString *)msg
