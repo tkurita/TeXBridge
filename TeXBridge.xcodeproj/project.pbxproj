@@ -953,7 +953,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.1.1b;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
 				WRAPPER_EXTENSION = app;
@@ -979,7 +979,7 @@
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.1.1b;
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;

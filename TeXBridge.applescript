@@ -152,6 +152,25 @@ script TeXBridgeController
 	
     (* Tool bar actions *)
 
+    on perform_action(action)
+        try
+            set a_result to run action
+        on error msg number errno
+            if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal
+                UtilityHandlers's show_error(errno, "open", msg)
+            else
+                error msg number errno
+            end if
+        end try
+        appController's showStatusMessage_("")
+        try
+            get a_result
+        on error
+            set a_result to missing value
+        end try
+        return a_result
+    end
+
     on typesetPDFPreview()
         script action
             CompileCenter's typeset_preview_pdf()
@@ -175,30 +194,12 @@ script TeXBridgeController
     
     on quickTypesetPreview()
         script action
-            CimpileCenter's quick_typeset_preview()
+            CompileCenter's quick_typeset_preview()
         end script
         perform_action(action)
     end
-    
-    on perfrom_action(action)
-        try
-            set a_result to run action
-        on error msg number errno
-            if errno is in {1700, 1710, 1720} then -- errors related to access com.apple.Terminal
-                UtilityHandlers's show_error(errno, "open", msg)
-            else
-                error msg number errno
-            end if
-        end try
-        appController's showStatusMessage_("")
-        try
-            get a_result
-        on error
-            set a_result to missing value
-        end try
-        return a_result
-    end
 	
+    (* tool commands *)
 	on show_setting_window()
 		appController's showSettingWindow_(missing value)
 	end show_setting_window
