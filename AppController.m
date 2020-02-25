@@ -7,7 +7,6 @@
 #import "TeXDocument.h"
 #import "NewRefPanelController.h"
 #import "DVIPreviewModeTransformer.h"
-#import "GUIScriptingChecker.h"
 
 #import "LogParser.h"
 
@@ -257,6 +256,12 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 }
 
 #pragma mark delegate of NSApplication
+- (BOOL)checkGUIScripting
+{
+    NSDictionary *opts = @{(__bridge id) kAXTrustedCheckOptionPrompt : @YES};
+    return AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)opts);
+}
+
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
 #if useLog
@@ -269,7 +274,7 @@ NSArray *orderdEncodingCandidates(NSString *firstCandidateName)
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:_factoryDefaults];
     [userDefaults addSuiteNamed:@"TeXBridge"]; // to referer old settings
-    if (! [GUIScriptingChecker check]) {
+    if (! [self checkGUIScripting]) {
 #if useLog		
 		NSLog(@"%@", @"should quit because checkGUIScripting is disabled.");
 #endif		

@@ -1,6 +1,5 @@
 property NSBundle : class "NSBundle"
 property NSDictionary : class "NSDictionary"
-property GUIScriptingChecker : class "GUIScriptingChecker"
 
 script TeXBridgeController
 	property parent : class "NSObject"
