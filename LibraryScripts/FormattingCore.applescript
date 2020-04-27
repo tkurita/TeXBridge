@@ -76,10 +76,10 @@ on make_with(a_texbridge)
 			property _endText : plist_value("endText")
 			property _backslash : plist_value("backslash")
 			property _env_options : ""
-			property _env_command : _env_command --"flushleft"
-			property _line_command : _line_command --"leftline"
-			property _declarative_command : _declarative_command --"raggedright"
-			property _declarative_for_line : _declarative_for_line
+			property _env_command : my _env_command --"flushleft"
+			property _line_command : my _line_command --"leftline"
+			property _declarative_command : my _declarative_command --"raggedright"
+			property _declarative_for_line : my _declarative_for_line
 		end script
 	end tell
 	return FormattingCoreInstance
