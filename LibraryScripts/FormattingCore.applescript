@@ -65,6 +65,11 @@ on setup_string_constants() -- deprecated. use make_with
 	end tell
 end setup_string_constants
 
+
+on make
+	return make_with(make TeXBridgeProxy)
+end make
+
 on make_with(a_texbridge)
 	set a_class to me
 	tell a_texbridge
