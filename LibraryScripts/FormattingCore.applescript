@@ -23,7 +23,7 @@ on debug()
 end debug
 
 on run
-	--return debug()
+	return debug()
 	try
 		do()
 	on error errMsg
@@ -95,29 +95,38 @@ on do()
 	set a_text to EditorClient's selection_contents()
 	set nPar to count paragraph of a_text
 	set selinfo to missing value
+	set has_result to false
 	if a_text is "" then
 		if my _declarative_command is not missing value then
 			set a_text to my _backslash & my _declarative_command & space
-		else
+			set has_result to true
+		else if my _line_command is not missing value then
 			set a_text to my _backslash & my _line_command & "{}"
+			set has_result to true
 		end if
-	else
+	end if
+	if not has_result then
 		set selinfo to EditorClient's selection_info()
+		--log selinfo
 		set nchar to length of a_text
 		if (nPar > 1) or (my _line_command is missing value) then
 			if my _env_command is not missing value then
+				set indent_text to ""
+				set endding_text to ""
+				set white_spaces to XCharacterSet's make_whitespaces()
 				if selinfo's cursorInParagraph > 0 then
 					set before_cursor to text 1 thru (selinfo's cursorInParagraph) of (selinfo's currentParagraph)
-					tell XCharacterSet's make_whitespaces()
-						if its is_member(before_cursor) then
-							set indent_text to before_cursor
-						end if
-					end tell
-				else
-					set indent_text to ""
+					if white_spaces's is_member(before_cursor) then
+						set indent_text to before_cursor
+					end if
+				else if a_text is "" then -- no selected text
+					set after_cursor to text 1 thru -1 of (selinfo's currentParagraph)
+					if not white_spaces's is_member(after_cursor) then
+						set endding_text to return
+					end if
 				end if
 				set {a_text, shiftlen} to wrap_with_env(a_text, my _env_command, indent_text)
-				log a_text
+				set a_text to a_text & endding_text
 			else
 				if my _declarative_command is not missing value then
 					set {a_text, shiftlen} to wrap_with_declalative(a_text, my _declarative_command)
@@ -159,7 +168,7 @@ on wrap_with_env(a_text, an_env, indent_text)
 	end if
 	set pretext to build_begin_text(an_env) & my _env_options & return
 	set new_text to pretext & indent_text & a_text & indent_text & end_text
-	return {new_text, length of pretext}
+	return {new_text, (length of pretext) + (length of indent_text)}
 end wrap_with_env
 
 on build_begin_text(an_env)
