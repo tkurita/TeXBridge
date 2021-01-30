@@ -244,10 +244,12 @@ NSMutableDictionary *makeLogRecord(NSString* logContents, unsigned int theNumber
 #if useLog
                 NSLog(@"object : %@", object);
 #endif
-                NSString *next_log = object[@"content"];
-                [a_text appendString:next_log];
-                if ([next_log hasSuffix:@")."]) {
-                    break;
+                if ([object isKindOfClass: [NSMutableDictionary class]]) {
+                    NSString *next_log = object[@"content"];
+                    [a_text appendString:next_log];
+                    if ([next_log hasSuffix:@")."]) {
+                        break;
+                    }
                 }
             }
         }

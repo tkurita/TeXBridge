@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -666,14 +666,9 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1130;
-				TargetAttributes = {
-					2C4E27AD084273B000004A96 = {
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = 2C6D92E00928239E005774F8 /* Build configuration list for PBXProject "TeXBridge" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -938,11 +933,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -953,9 +949,10 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = 4.1.1;
+				MARKETING_VERSION = 4.1.2b;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -966,11 +963,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = TeXBridge.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPYRIGHT = "Copyright 2003-2020, Kurita Tetsuro";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 77;
+				CURRENT_PROJECT_VERSION = 78;
 				DEVELOPMENT_TEAM = 5VBC6385DN;
 				DSTROOT = "${HOME}";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -979,10 +977,11 @@
 				INSTALL_MODE_FLAG = "a+rX";
 				INSTALL_PATH = "/Library/Application Support/mi3/mode/TEX";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MARKETING_VERSION = 4.1.1;
+				MARKETING_VERSION = 4.1.2b;
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.script-factory.TeXBridge";
 				PRODUCT_NAME = TeXBridge;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
