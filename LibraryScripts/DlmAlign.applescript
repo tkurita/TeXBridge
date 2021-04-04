@@ -1,6 +1,6 @@
 property XText : "@module"
 property XList : "@module"
-property TableRow : "@TableRow"
+property TableRow : "@module"
 property name : "DlmAlign"
 
 on as_text()
@@ -33,9 +33,9 @@ on make_with_text(a_text, dlm)
 	set max_width_list to make XList
 	set max_ncols to 0
 	script to_tablerow
-		on do(l)
-			set tblrow to TableRow's make_with(l, dlm)
-			set ncols to tblrow's item_counts()
+		on do(a_line)
+			set tblrow to TableRow's make_with_text(a_line, dlm)
+			set ncols to tblrow's count_items()
 			if ncols > max_ncols then
 				set max_ncols to ncols
 			end if
