@@ -4,6 +4,7 @@ property XList : "@module"
 
 script FilledText
 	property parent : AppleScript
+	property _tabwidth : 4
 	
 	on count_width(a_text)
 		--log "start count_width in FilledText"
@@ -12,7 +13,11 @@ script FilledText
 			on do(num)
 				--log num
 				if num < 128 then
-					set w to 1
+					if num is 9 then
+						set w to my _tabwidth
+					else
+						set w to 1
+					end if
 				else
 					set w to 2
 				end if
@@ -76,7 +81,7 @@ on make_with_xlist(x_list, dlm)
 end make_with_xlist
 
 on make_with_text(a_text, dlm)
-	return make_with_xlist(XList's make_with_text(l, dlm), space & dlm & space)
+	return make_with_xlist(XList's make_with_text(a_text, dlm), space & dlm & space)
 end make_with_text
 
 on count_items()
@@ -102,7 +107,7 @@ on push_coloumn_width(width)
 end push_coloumn_width
 
 on as_text()
-	if my _xlist's item_counts() ≤ 1 then
+	if my _xlist's count_items() ≤ 1 then
 		return _xlixt's item_at(1)
 	end if
 	
