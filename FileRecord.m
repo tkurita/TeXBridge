@@ -1,6 +1,6 @@
 #import "FileRecord.h"
 #import "ErrorRecord.h"
-#import "PathExtra.h"
+#import "PathExtra/PathExtra.h"
 #import "miClient.h"
 
 extern id EditorClient;
