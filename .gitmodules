@@ -25,9 +25,6 @@
 [submodule "LibraryScripts/XText.scptd"]
 	path = LibraryScripts/XText.scptd
 	url = https://github.com/tkurita/XText.scptd.git
-[submodule "LibraryScripts/XHandler.scptd"]
-	path = LibraryScripts/XHandler.scptd
-	url = https://github.com/tkurita/XHandler.scptd.git
 [submodule "LibraryScripts/XCharacterSet.scptd"]
 	path = LibraryScripts/XCharacterSet.scptd
 	url = https://github.com/tkurita/XCharacterSet.scptd.git
