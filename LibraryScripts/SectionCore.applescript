@@ -101,6 +101,7 @@ end build_heading_list
 on search_preheading()
 	set preHeadLevel to missing value
 	set preHead to missing value
+	set is_starred to false
 	tell application "mi"
 		tell document 1
 			set parPosition to index of paragraph 1 of selection object 1
@@ -110,6 +111,7 @@ on search_preheading()
 					set preHead to item j of my _headingList
 					if currentPar contains preHead then
 						set preHeadLevel to j
+						set is_starred to (currentPar contains preHead&"*")
 						exit repeat
 					end if
 				end repeat
@@ -119,5 +121,5 @@ on search_preheading()
 			end repeat
 		end tell
 	end tell
-	return {previousHeading:preHead, previousLevel:preHeadLevel}
+	return {previousHeading:preHead, previousLevel:preHeadLevel, is_starred:is_starred}
 end search_preheading
