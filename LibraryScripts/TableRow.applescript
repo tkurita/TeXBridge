@@ -38,6 +38,7 @@ script FilledText
 	end nspaces
 	
 	on fill(width)
+		-- log "start fill in FilledText"
 		return my _text & nspaces(width - (my _width))
 	end fill
 	
@@ -69,7 +70,7 @@ on make_with_xlist(x_list, dlm)
 			return f_text
 		end do
 	end script
-	--log "start make_with_xlist in TableRow"
+	-- log "start make_with_xlist in TableRow"
 	set x_list to x_list's map(to_filledtext)
 	set a_class to me
 	script TableRowInstance
@@ -107,16 +108,17 @@ on push_coloumn_width(width)
 end push_coloumn_width
 
 on as_text()
+	-- log "start as_text in TableRow"
 	if my _xlist's count_items() ≤ 1 then
-		return _xlixt's item_at(1)
+		return my _xlist's item_at(1)'s dump()
 	end if
-	
 	set max_width_list to my _max_width's reset()
 	script fill_text
 		on do(fText)
+			-- log "do in fill_text"
 			return fText's fill(max_width_list's next())
 		end do
 	end script
-	
+	-- log "befor map(fill_text)'s as_text_with(my _dlm)"
 	return my _xlist's map(fill_text)'s as_text_with(my _dlm)
 end as_text

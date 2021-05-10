@@ -45,7 +45,7 @@ on resolve_parent(a_paragraph)
 	try
 		set tex_file to tex_file as alias
 	on error
-		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", {tex_file as text})
+		set a_msg to UtilityHandlers's localized_string("ParentFileIsNotFound", {tex_file's POSIX path})
 		error a_msg number 1220
 	end try
 	

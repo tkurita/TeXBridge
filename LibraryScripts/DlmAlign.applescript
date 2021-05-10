@@ -4,6 +4,7 @@ property TableRow : "@module"
 property name : "DlmAlign"
 
 on as_text()
+	-- log "start as_text in DlmAlign"
 	script fill_text
 		on do(f_text)
 			return f_text's fill(my _max_width's next())
@@ -14,6 +15,7 @@ on as_text()
 	set indent_text to my _indent
 	script to_text
 		on do(tblrow)
+			-- log "do in to_text in as_text in DlmAlign"
 			set t to tblrow's as_text()
 			return indent_text & t
 		end do
