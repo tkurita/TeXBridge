@@ -47,7 +47,7 @@ Cg
                             <action selector="quickTypesetPreview:" target="-1" id="1443"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="7083114C-F317-4B07-BA29-44476C5B1D08" explicitItemIdentifier="DVIPreview" label="DVI プレビュー" paletteLabel="DVI プレビュー" toolTip="タイプセット &amp; PDF プレビュー" tag="-1" image="DVIPreviewIcon" id="1429">
+                    <toolbarItem implicitItemIdentifier="7083114C-F317-4B07-BA29-44476C5B1D08" explicitItemIdentifier="DVIPreview" label="DVI プレビュー" paletteLabel="DVI プレビュー" toolTip="DVI プレビュー" tag="-1" image="DVIPreviewIcon" id="1429">
                         <connections>
                             <action selector="dviPreview:" target="-1" id="1446"/>
                         </connections>
