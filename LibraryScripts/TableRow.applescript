@@ -61,7 +61,7 @@ script FilledText
 	end make_with
 end script
 
-on make_with_xlist(x_list, dlm)
+on make_with_xlist(x_list, dlm, linedlm)
 	script to_filledtext
 		on do(w)
 			--log "start do in to_filledtext : "&w
@@ -77,6 +77,7 @@ on make_with_xlist(x_list, dlm)
 		property parent : a_class
 		property _xlist : x_list
 		property _dlm : dlm
+		property _linedlm : linedlm
 		property _max_width : missing value
 	end script
 end make_with_xlist
@@ -120,5 +121,5 @@ on as_text()
 		end do
 	end script
 	-- log "befor map(fill_text)'s as_text_with(my _dlm)"
-	return my _xlist's map(fill_text)'s as_text_with(my _dlm)
+	return my _xlist's map(fill_text)'s as_text_with(my _dlm) & my _linedlm
 end as_text
