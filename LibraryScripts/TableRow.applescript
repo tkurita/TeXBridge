@@ -94,8 +94,8 @@ on item_at(n)
 	return my _xlist's item_at(n)
 end item_at
 
-on set_max_width(max_width_list)
-	set my _max_width to max_width_list
+on set_max_width(x_max_width_list)
+	set my _max_width to x_max_width_list
 	return me
 end set_max_width
 
@@ -113,11 +113,11 @@ on as_text()
 	if my _xlist's count_items() ≤ 1 then
 		return my _xlist's item_at(1)'s dump()
 	end if
-	set max_width_list to my _max_width's reset()
+	set x_max_width_list to my _max_width's reset()
 	script fill_text
 		on do(fText)
 			-- log "do in fill_text"
-			return fText's fill(max_width_list's next())
+			return fText's fill(x_max_width_list's next())
 		end do
 	end script
 	-- log "befor map(fill_text)'s as_text_with(my _dlm)"
