@@ -82,8 +82,8 @@ on make_with_xlist(x_list, dlm, linedlm)
 	end script
 end make_with_xlist
 
-on make_with_text(a_text, dlm)
-	return make_with_xlist(XList's make_with_text(a_text, dlm), space & dlm & space)
+on make_with_text(a_text, dlm, linedlm)
+	return make_with_xlist(XList's make_with_text(a_text, dlm), space & dlm & space, linedlm)
 end make_with_text
 
 on count_items()

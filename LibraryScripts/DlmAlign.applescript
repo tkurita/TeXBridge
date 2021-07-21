@@ -23,14 +23,18 @@ on set_indent(a_text)
 	return me
 end set_indent
 
-on make_with_text(a_text, dlm)
+on make_with_text(a_text, dlm, linedlm)
 	set {first_indent, a_text} to XText's strip_beginning(a_text)
 	
 	set max_width_list to make XList
 	set max_ncols to 0
+	set nlinedlm to length of linedlm
 	script to_tablerow
 		on do(a_line)
-			set tblrow to TableRow's make_with_text(a_line, dlm)
+			if a_line ends with linedlm then
+				set a_line to text 1 thru (-1 * (nlinedlm + 1)) of a_line
+			end if
+			set tblrow to TableRow's make_with_text(a_line, dlm, linedlm)
 			set ncols to tblrow's count_items()
 			if ncols > max_ncols then
 				set max_ncols to ncols
