@@ -15,3 +15,5 @@ install: trash clean
 clean:
 	xcodebuild -scheme ${target_scheme} clean
 
+release:
+	xcodebuild -scheme ${target_scheme} -configuration release build
